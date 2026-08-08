@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coca-Cola 2026 Q2 실적브리핑</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+
+/* 헤더 */
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px;font-weight:800}
+.gnb .home{background:var(--blue);color:#fff;font-size:13px;font-weight:700;
+  padding:8px 16px;border-radius:10px;text-decoration:none}
+
+.body{padding:36px 28px 80px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px;margin-bottom:18px}
+h1{font-size:30px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:14px}
+.byline{font-size:14px;color:var(--g400);margin-bottom:8px}
+.source-note{font-size:13px;color:var(--g400);padding-bottom:24px;border-bottom:1px solid var(--g200);margin-bottom:28px}
+p{font-size:16.5px;color:var(--g700);margin-bottom:16px}
+b,strong{font-weight:700;color:var(--g900)}
+mark{background:var(--green-bg);color:var(--g900);padding:1px 2px;border-radius:2px;font-weight:500}
+mark.b{background:var(--blue-bg)}
+mark.r{background:var(--red-bg)}
+
+/* 섹션 */
+section{padding-top:44px}
+.sec-head{margin-bottom:20px}
+.sec-head .l1{font-size:22px;font-weight:800;line-height:1.4;letter-spacing:-0.03em}
+.sec-head .l2{font-size:22px;font-weight:800;line-height:1.4;letter-spacing:-0.03em}
+.sub-head{font-size:17px;font-weight:700;margin:32px 0 12px;display:flex;align-items:center;gap:7px}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 24px}
+.kpi{background:var(--g50);border-radius:14px;padding:16px 18px}
+.kpi .l{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:4px}
+.kpi .v{font-size:23px;font-weight:800;letter-spacing:-0.03em}
+.kpi .d{font-size:13px;font-weight:700;margin-top:2px}
+.pos{color:var(--green)} .neg{color:var(--red)} .amb{color:var(--amber)}
+
+.verdict{display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);color:var(--green);
+  font-size:13px;font-weight:800;padding:6px 14px;border-radius:20px;margin-left:8px;vertical-align:middle}
+
+/* 강조 박스 */
+.callout{background:var(--blue-bg);border-radius:14px;padding:18px 20px;margin:22px 0;
+  font-size:16.5px;font-weight:700;color:var(--g900);line-height:1.6}
+.callout .cap{display:block;font-size:12.5px;font-weight:700;color:var(--blue);margin-bottom:6px;letter-spacing:0}
+
+/* 차트 */
+.chart{background:var(--g50);border-radius:16px;padding:20px 16px 12px;margin:20px 0 8px}
+.chart .ct{font-size:14px;font-weight:700;padding:0 6px 4px;color:var(--g900)}
+.chart .cs{font-size:12.5px;font-weight:500;color:var(--g400);padding:0 6px 12px;display:block}
+svg{width:100%;height:auto;display:block}
+.s-lab{font-size:12.5px;fill:var(--g400);font-weight:600}
+.s-val{font-size:13px;fill:var(--g900);font-weight:800}
+.s-yoy{font-size:12px;fill:var(--green);font-weight:800}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--g500);padding:8px 6px 4px;font-weight:600}
+.legend .d{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
+
+/* 표 */
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0 20px}
+th,td{padding:12px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+th:first-child,td:first-child{text-align:left}
+thead th{color:var(--g500);font-size:13px;font-weight:600;border-bottom:1px solid var(--g200)}
+tbody td{color:var(--g700);font-weight:500}
+tbody tr.hl td{background:var(--g50);font-weight:700;color:var(--g900)}
+/* 가이던스 비교표 */
+.gtable{margin:8px 0 10px}
+.gtable thead th{background:var(--g50)}
+.gtable thead th:first-child{border-radius:10px 0 0 0}
+.gtable thead th:last-child{border-radius:0 10px 0 0}
+.gtable td.g{font-weight:700;color:var(--g900)}
+.gtable td.diff{font-weight:800}
+.g-note{font-size:13.5px;color:var(--g500);font-weight:600;margin:-6px 0 18px}
+
+/* 토스 스타일 분기 재무 */
+.fin-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 8px}
+.fin-kpi{background:var(--g50);border-radius:14px;padding:16px 18px}
+.fin-kpi .l{font-size:12.5px;color:var(--g500);font-weight:600}
+.fin-kpi .v{font-size:22px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.fin-kpi .s{font-size:12px;color:var(--g400);font-weight:600;margin-top:2px}
+.fin-block{margin-top:26px}
+.fin-block h4{font-size:17px;font-weight:800;letter-spacing:-0.03em}
+.fin-block .lede{font-size:14.5px;color:var(--g600);margin:6px 0 4px;font-weight:500}
+.period-chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:12px;
+  font-weight:700;padding:5px 12px;border-radius:20px;margin:8px 6px 4px 0}
+.cv{font-size:12.5px;font-weight:800;fill:var(--g900)}
+.cl{font-size:11.5px;font-weight:600;fill:var(--g400)}
+.clegend{display:flex;gap:14px;font-size:12px;color:var(--g500);font-weight:600;padding:6px 8px 2px;flex-wrap:wrap}
+.clegend .d{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
+.clegend .ln{width:14px;height:3px;border-radius:2px;display:inline-block;margin-right:5px;vertical-align:3px}
+@media(max-width:600px){.fin-kpis{grid-template-columns:1fr 1fr}.fin-kpis .fin-kpi:last-child{grid-column:span 2}}
+/* 지난 분기 체크포인트 점검 */
+.wp-list{display:flex;flex-direction:column;gap:10px;margin:16px 0 20px}
+.wp{display:flex;gap:14px;background:var(--g50);border-radius:14px;padding:16px 18px}
+.wp-badge{flex:0 0 auto;align-self:flex-start;font-size:12px;font-weight:800;
+  padding:5px 12px;border-radius:20px;white-space:nowrap}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp.partial .wp-badge{background:var(--amber-bg);color:var(--amber)}
+.wp.hold .wp-badge{background:var(--g100);color:var(--g500)}
+.wp-q{font-size:15px;font-weight:700;color:var(--g900);line-height:1.5}
+.wp-a{font-size:14.5px;color:var(--g600);margin-top:4px;line-height:1.55}
+.wp-score{font-size:14px;color:var(--g500);font-weight:600;margin:-8px 0 20px}
+.wp-preview{background:var(--blue-bg);border-radius:14px;padding:16px 18px;
+  font-size:14.5px;color:var(--g700);font-weight:500;margin:4px 0 8px}
+
+.gtable td.none{color:var(--g400);font-weight:500}
+.tag{display:inline-block;background:var(--g100);color:var(--g500);font-size:10.5px;font-weight:700;
+  padding:2px 7px;border-radius:6px;margin-left:5px;vertical-align:1px}
+.pending{background:var(--amber-bg);color:var(--amber);border-radius:14px;
+  padding:18px 20px;font-weight:700;font-size:15.5px;margin:16px 0}
+
+/* 인용 */
+.quote{border-left:3px solid var(--blue);padding:2px 0 2px 16px;margin:18px 0;
+  font-size:16.5px;color:var(--g700);line-height:1.65}
+.quote .who{display:block;font-size:13.5px;color:var(--g400);font-weight:600;margin-top:8px}
+
+/* 키워드 */
+.kws{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 20px}
+.kws span{background:var(--blue-bg);color:var(--blue);font-size:13.5px;font-weight:700;
+  padding:7px 14px;border-radius:20px}
+
+/* 장단점 */
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 22px}
+.pc{border-radius:14px;padding:18px}
+.pc.good{background:var(--green-bg)}
+.pc.bad{background:var(--red-bg)}
+.pc h4{font-size:15px;font-weight:800;margin-bottom:10px}
+.pc.good h4{color:var(--green)} .pc.bad h4{color:var(--red)}
+.pc ul{list-style:none}
+.pc li{font-size:14.5px;color:var(--g700);padding-left:14px;position:relative;margin-bottom:9px;line-height:1.55}
+.pc li:before{content:'';position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--g400)}
+.pc li:last-child{margin-bottom:0}
+
+/* 리스트 */
+ul.dots{list-style:none;margin:6px 0 18px}
+ul.dots li{font-size:16.5px;color:var(--g700);padding-left:16px;position:relative;margin-bottom:12px}
+ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--g400)}
+.foot-note{font-size:13px;color:var(--g400);margin-top:-6px;margin-bottom:16px}
+
+/* 다음 일정 */
+.next{background:var(--g50);border-radius:14px;padding:18px 20px;margin-top:24px}
+.next .t{font-size:13px;color:var(--g500);font-weight:700;margin-bottom:4px}
+.next .d{font-size:18px;font-weight:800}
+
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:25px}
+  .kpis,.pros-cons{grid-template-columns:1fr}
+  .sec-head .l1,.sec-head .l2{font-size:20px}
+  p,ul.dots li{font-size:16px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="gnb">
+  <div class="brand"><span class="dot">📊</span> 실적브리핑</div>
+  <a class="home" href="index.html">전체 보고서</a>
+</div>
+
+<div class="body">
+
+<span class="chip">#실적분석 #KO</span>
+<h1>월드컵이 만든 물량 5% 성장<br>코카콜라 2026 Q2<span class="verdict">BEAT</span></h1>
+<div class="byline">2026.08.09 · FY2026 Q2 (2026.04~06) · 발표 2026.07.29 (한국시간)</div>
+<div class="source-note">출처: Coca-Cola IR 보도자료·8-K, Zacks(Yahoo Finance), CNBC, InsiderFinance, stockanalysis.com · ※ 지난 분기 소급 작성분이에요</div>
+
+<p>안녕하세요. 보유 종목 실적 브리핑이에요. 이번 편은 <b>이미 발표된 지난 분기를 소급해서 정리</b>한 보고서예요.</p>
+<p>코카콜라는 <b>매출 $13.4B(+7%), 비교 기준 EPS $0.97(+11%)</b>로 시장 예상을 넘고 <b>연간 가이던스를 상향</b>했어요. 다섯 분기 연속 컨센서스 상회예요. 이번 분기의 주인공은 뜻밖에도 <mark>FIFA 월드컵</mark>이었어요.</p>
+
+<!-- ① -->
+<section>
+<div class="sec-head">
+  <div class="l1">📌 ① 실적 해석,</div>
+  <div class="l2">가격이 아니라 물량이 늘었어요</div>
+</div>
+
+<div class="kpis">
+  <div class="kpi"><div class="l">매출</div><div class="v">$13.38B</div><div class="d pos">YoY +6.7% · 컨센서스 상회</div></div>
+  <div class="kpi"><div class="l">비교 기준 EPS</div><div class="v">$0.97</div><div class="d pos">예상 $0.92 → Beat +5.4%</div></div>
+  <div class="kpi"><div class="l">유기적 매출 성장</div><div class="v">+6%</div><div class="d pos">농축액 +4% · 가격/믹스 +2%</div></div>
+  <div class="kpi"><div class="l">단위케이스 물량</div><div class="v">+5%</div><div class="d pos">월드컵·날씨 효과</div></div>
+</div>
+
+<p>여기서 가장 중요한 건 <b>물량 +5%</b>예요. 지난 몇 년간 코카콜라의 성장은 대부분 <mark class="r">가격 인상</mark>에서 나왔어요 — 팔린 개수는 제자리인데 가격만 올려 매출을 키우는 방식이죠. 이건 오래 지속하기 어려운 성장이에요.</p>
+<p>그런데 이번엔 달랐어요. <mark>유기적 성장 +6% 중 물량이 4%포인트, 가격/믹스가 2%포인트</mark>로, 실제로 더 많이 팔려서 성장한 분기였어요. FIFA 월드컵 마케팅, 우호적인 날씨, 그리고 <b>코카콜라 제로슈거와 fairlife 우유</b>의 수요가 견인했어요.</p>
+
+<div class="chart">
+  <div class="ct">비교 기준 EPS: 시장 예상 vs 실제 (2026 Q2)</div>
+  <span class="cs">Zacks 컨센서스 기준 · 과거 분기 컨센서스는 확인되지 않아 이번 분기만 표시했어요</span>
+  <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg"><line x1="120" y1="200" x2="580" y2="200" stroke="#E5E8EB" stroke-width="1"/><rect x="260" y="57.7" width="60" height="142.3" fill="#D1D6DB" rx="6"/><rect x="360" y="50.0" width="60" height="150.0" fill="#3182F6" rx="6"/><text x="290" y="49.7" text-anchor="middle" class="s-lab">0.92</text><text x="390" y="42.0" text-anchor="middle" class="s-val">$0.97</text><text x="290" y="224" text-anchor="middle" class="s-lab">시장 예상</text><text x="390" y="224" text-anchor="middle" class="s-lab">실제</text><text x="350" y="30" text-anchor="middle" class="s-val">비교 기준 EPS ($)</text></svg>
+  <div class="legend"><span><span class="d" style="background:#D1D6DB"></span>시장 예상</span><span><span class="d" style="background:#3182F6"></span>실제</span></div>
+</div>
+
+<div class="sub-head">🔮 회사 전망치 vs 시장 예상치</div>
+<table class="gtable">
+<thead><tr><th>항목</th><th>회사 가이던스</th><th>시장 예상</th><th>차이</th></tr></thead>
+<tbody>
+<tr class="hl"><td>연간 유기적 매출 성장률</td><td class="g">약 +5%</td><td></td><td></td></tr>
+<tr><td>연간 비교 기준 EPS 성장률 <span class="tag">환율중립</span></td><td class="g">+7~8%</td><td></td><td></td></tr>
+<tr><td>연간 비교 기준 EPS 성장률 <span class="tag">보고 기준</span></td><td class="g">+9~10%</td><td></td><td></td></tr>
+<tr><td>다음 분기 매출·EPS</td><td class="none">회사 가이던스 미제시</td><td></td><td></td></tr>
+<tr><td>마진 · CapEx</td><td class="none">회사 가이던스 미제시</td><td></td><td></td></tr>
+</tbody>
+</table>
+<div class="g-note">직전 가이던스 범위의 <b>상단으로 상향</b>됐어요 · 보고 기준 EPS는 2025년 $3.00 대비 산정이며, 환율에서 3%포인트 순풍과 사업 매각에서 1%포인트 역풍이 포함돼요 · 빈 칸은 시장 컨센서스를 확인하지 못한 항목이에요</div>
+<p>코카콜라는 분기 가이던스를 주지 않고 <b>연간 유기적 성장률과 EPS 성장률</b>로만 눈높이를 제시해요. 이번에 두 항목 모두 기존 범위의 상단으로 올렸어요.</p>
+<p>눈여겨볼 건 <b>환율</b>이에요. 환율중립 기준 +7~8%인 EPS 성장률이 보고 기준으로는 +9~10%가 되는데, <mark>차이인 3%포인트가 환율 순풍</mark>이에요. 달러 약세가 해외 매출 비중이 큰 코카콜라에 유리하게 작용하고 있다는 뜻이라, <b>달러가 다시 강해지면 이 부분은 그대로 역풍으로 바뀌어요.</b></p>
+
+<div class="sub-head">💵 포워드 EPS와 밸류에이션</div>
+<table class="gtable">
+<thead><tr><th>구분</th><th>FY2025 (실적)</th><th>FY2026 (E)</th></tr></thead>
+<tbody>
+<tr class="hl"><td>조정 EPS</td><td>$3.00</td><td class="g">$3.30</td></tr>
+<tr><td>EPS 성장률</td><td class="pos">+4.2%</td><td class="pos">+10.1%</td></tr>
+<tr><td>매출</td><td>$47.94B</td><td>$49.72B</td></tr>
+<tr><td>매출 성장률</td><td class="pos">+1.9%</td><td class="pos">+3.7%</td></tr>
+<tr><td><b>Forward P/E</b></td><td>29.0배</td><td class="diff">26.4배</td></tr>
+<tr><td>배당수익률 <span class="tag">역산</span></td><td>—</td><td>약 2.4%</td></tr>
+</tbody>
+</table>
+<div class="g-note">주가 $87.05(2026.08.07 종가) 기준 직접 계산 · 추정치 출처: S&amp;P Global Market Intelligence(2026.07.30 갱신, 애널리스트 24명) · 배당수익률은 분기 배당 $0.53 × 4 ÷ 주가로 역산했어요 · 조정(Non-GAAP) 기준</div>
+<p>FY2026 기준 <b>26.4배</b>는 매출 성장률(+3.7%)에 비하면 결코 싸지 않아요. 다만 코카콜라는 <mark>성장주가 아니라 안정성과 배당을 사는 종목</mark>이라 배수만으로 비싸다 싸다를 판단하기 어려워요. 60년 넘게 배당을 늘려온 이력, 경기와 무관한 수요, 62.9%의 매출총이익률이 이 프리미엄의 근거예요.</p>
+<p>포트폴리오 관점에서 보면 <b>AI·반도체 비중이 큰 이 포트폴리오에서 KO는 사실상 유일한 방어주</b>예요. 메모리·AI 사이클이 꺾일 때 완충 역할을 하는 자리라고 보면 이해가 쉬워요.</p>
+
+<div class="chart">
+  <div class="ct">연도별 조정 EPS와 Forward P/E</div>
+  <span class="cs">P/E는 주가 $87.05 기준 계산값 · FY2026은 애널리스트 추정치</span>
+  <svg viewBox="0 0 700 290" xmlns="http://www.w3.org/2000/svg"><line x1="60" y1="44.0" x2="640" y2="44.0" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="94.5" x2="640" y2="94.5" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="145.0" x2="640" y2="145.0" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="195.5" x2="640" y2="195.5" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="246.0" x2="640" y2="246.0" stroke="#EDEFF2" stroke-width="1"/><rect x="185.0" y="91.5" width="90" height="154.5" rx="6" fill="#C9DEFB"/><text x="230.0" y="81.5" text-anchor="middle" class="cv">$3.00</text><text x="230.0" y="274" text-anchor="middle" class="cl">FY2025 (실적)</text><rect x="425.0" y="76.0" width="90" height="170.0" rx="6" fill="#3182F6"/><text x="470.0" y="66.0" text-anchor="middle" class="cv">$3.30</text><text x="470.0" y="274" text-anchor="middle" class="cl">FY2026 (E)</text><polyline points="230.0,70.0 470.0,190.0" fill="none" stroke="#FF9500" stroke-width="3"/><circle cx="230.0" cy="70.0" r="5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="230.0" y="57.0" text-anchor="middle" class="cv" fill="#FF9500">29.0배</text><circle cx="470.0" cy="190.0" r="5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="470.0" y="177.0" text-anchor="middle" class="cv" fill="#FF9500">26.4배</text><text x="60" y="24" class="cl">막대 = 조정 EPS (좌)</text><text x="640" y="24" text-anchor="end" class="cl" fill="#FF9500">선 = Forward P/E (우)</text></svg>
+</div>
+
+<div class="callout"><span class="cap">한 문장 요약</span>가격 인상이 아니라 실제로 더 많이 팔려서 성장한 분기예요. 코카콜라에게는 이게 진짜 좋은 신호예요.</div>
+</section>
+
+<!-- ② -->
+<section>
+<div class="sec-head">
+  <div class="l1">📈 ② 재무제표 뜯어보기,</div>
+  <div class="l2">느리지만 흔들리지 않아요</div>
+</div>
+
+<div class="sub-head">📊 계절성을 감안하면 견조해요</div>
+<div class="chart">
+  <div class="ct">분기 매출 추이와 전년 대비 성장률</div>
+  <span class="cs">음료는 여름(2분기)이 성수기, 겨울(4분기)이 비수기라 분기별 편차가 있어요</span>
+  <svg viewBox="0 0 700 255" xmlns="http://www.w3.org/2000/svg"><line x1="40" y1="210" x2="670" y2="210" stroke="#E5E8EB" stroke-width="1"/><rect x="82" y="41.4" width="56" height="168.6" fill="#B8D5FB" rx="6"/><text x="110" y="35.4" text-anchor="middle" class="s-val">12.54B</text><text x="110" y="21.4" text-anchor="middle" class="s-yoy">+1.4%</text><text x="110" y="232" text-anchor="middle" class="s-lab">25 Q2</text><rect x="202" y="42.4" width="56" height="167.6" fill="#A3C9FA" rx="6"/><text x="230" y="36.4" text-anchor="middle" class="s-val">12.46B</text><text x="230" y="22.4" text-anchor="middle" class="s-yoy">+5.1%</text><text x="230" y="232" text-anchor="middle" class="s-lab">25 Q3</text><rect x="322" y="51.0" width="56" height="159.0" fill="#7BB0F8" rx="6"/><text x="350" y="45.0" text-anchor="middle" class="s-val">11.82B</text><text x="350" y="31.0" text-anchor="middle" class="s-yoy">+2.4%</text><text x="350" y="232" text-anchor="middle" class="s-lab">25 Q4</text><rect x="442" y="42.2" width="56" height="167.8" fill="#5497F7" rx="6"/><text x="470" y="36.2" text-anchor="middle" class="s-val">12.47B</text><text x="470" y="22.2" text-anchor="middle" class="s-yoy">+12.1%</text><text x="470" y="232" text-anchor="middle" class="s-lab">26 Q1</text><rect x="562" y="30.0" width="56" height="180.0" fill="#3182F6" rx="6"/><text x="590" y="24.0" text-anchor="middle" class="s-val">13.38B</text><text x="590" y="10.0" text-anchor="middle" class="s-yoy">+6.7%</text><text x="590" y="232" text-anchor="middle" class="s-lab">26 Q2</text></svg>
+</div>
+<p>성장률이 +1.4% → +5.1% → +2.4% → +12.1% → <b>+6.7%</b>로 들쭉날쭉해 보이지만, 이는 전년 동기의 기저 차이 때문이에요. 중요한 건 <mark>2026년 들어 두 분기 연속 두 자릿수에 가까운 성장</mark>을 하고 있다는 점이에요.</p>
+
+<div class="sub-head">🥤 매출의 61%가 농축액이에요</div>
+<div class="chart">
+  <div class="ct">2026 Q2 사업부별 매출 ($13.38B)</div>
+  <svg viewBox="0 0 700 115" xmlns="http://www.w3.org/2000/svg"><rect x="50.0" y="25" width="366.5" height="46" fill="#3182F6" rx="8"/><text x="233.3" y="53" text-anchor="middle" class="s-val" fill="#fff">농축액 사업 $8.15B</text><text x="233.3" y="93" text-anchor="middle" class="s-lab">61%</text><rect x="418.5" y="25" width="235.5" height="46" fill="#15C47E" rx="8"/><text x="536.3" y="53" text-anchor="middle" class="s-val" fill="#fff">완제품 사업 $5.23B</text><text x="536.3" y="93" text-anchor="middle" class="s-lab">39%</text></svg>
+</div>
+<p>코카콜라의 사업 구조를 이해하는 열쇠예요. <b>농축액 사업</b>은 원액을 만들어 전 세계 보틀러(병입업체)에 파는 것이고, <b>완제품 사업</b>은 직접 병에 담아 파는 것이에요. <mark>농축액은 마진이 훨씬 높아서, 이 비중이 61%라는 게 62.9%라는 높은 매출총이익률의 비결</mark>이에요. 무거운 물류와 설비는 보틀러가 부담하는 구조거든요.</p>
+
+<div class="sub-head">💰 마진 구조</div>
+<div class="chart">
+  <div class="ct">2026 Q2 마진 프로필 (%)</div>
+  <svg viewBox="0 0 700 171" xmlns="http://www.w3.org/2000/svg"><text x="140" y="40" text-anchor="end" class="s-lab">매출총이익률</text><rect x="150" y="25" width="510.0" height="24" fill="#3182F6" rx="6"/><text x="646.0" y="41" text-anchor="end" class="s-val" fill="#fff">62.9%</text><text x="140" y="74" text-anchor="end" class="s-lab">FCF 마진</text><rect x="150" y="59" width="308.9" height="24" fill="#15C47E" rx="6"/><text x="444.9" y="75" text-anchor="end" class="s-val" fill="#fff">38.1%</text><text x="140" y="108" text-anchor="end" class="s-lab">영업이익률</text><rect x="150" y="93" width="283.0" height="24" fill="#5AD3A0" rx="6"/><text x="419.0" y="109" text-anchor="end" class="s-val" fill="#fff">34.9%</text><text x="140" y="142" text-anchor="end" class="s-lab">순이익률</text><rect x="150" y="127" width="269.2" height="24" fill="#7BB0F8" rx="6"/><text x="405.2" y="143" text-anchor="end" class="s-val" fill="#fff">33.2%</text></svg>
+</div>
+<p>영업이익률 34.9%는 12개 분기 중 최고 수준이에요. 특히 <b>FCF 마진 38.1%</b>가 인상적인데, 분기 CapEx가 <b>$418M</b>에 불과하기 때문이에요. 매출 $13.4B을 만드는 데 자본이 거의 안 드는 구조라, <mark>번 돈의 대부분을 배당과 자사주로 돌릴 수 있어요.</mark></p>
+
+<div class="sub-head">📊 최근 3년 분기 재무</div>
+<div class="fin-kpis">
+  <div class="fin-kpi"><div class="l">부채비율</div><div class="v amb">181.7%</div><div class="s">총부채 ÷ 총자본</div></div>
+  <div class="fin-kpi"><div class="l">유동비율</div><div class="v amb">130.5%</div><div class="s">단기 지급능력</div></div>
+  <div class="fin-kpi"><div class="l">순현금</div><div class="v neg">-$27.2B</div><div class="s">현금·투자 − 총차입금</div></div>
+</div>
+<p>차입금 $43.5B은 적지 않지만, 분기마다 $5B 넘는 영업현금흐름을 만드는 회사라 상환 능력은 충분해요. 다만 <mark class="r">10-Q에 상당 규모의 IRS(미 국세청) 세금 분쟁 리스크가 공시돼 있다</mark>는 점은 별도로 체크해 둘 필요가 있어요.</p>
+<div><span class="period-chip">최근 3년</span><span class="period-chip">분기별</span></div>
+
+<div class="fin-block">
+  <h4>수익성</h4>
+  <div class="lede">매출·순이익률 — 분기 매출 <b>$13.38B</b>, 순이익률 <b>33.2%</b>로 12개 분기 최고예요.</div>
+  <div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30.0" x2="654" y2="30.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87.0" x2="654" y2="87.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144.0" x2="654" y2="144.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201.0" x2="654" y2="201.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#EDEFF2" stroke-width="1"/><rect x="23.8" y="54.3" width="30.0" height="203.7" rx="4" fill="#C9DEFB"/><rect x="77.3" y="73.1" width="30.0" height="184.9" rx="4" fill="#C9DEFB"/><rect x="130.8" y="65.4" width="30.0" height="192.6" rx="4" fill="#C9DEFB"/><rect x="184.3" y="47.3" width="30.0" height="210.7" rx="4" fill="#C9DEFB"/><rect x="237.8" y="56.0" width="30.0" height="202.0" rx="4" fill="#C9DEFB"/><rect x="291.3" y="61.3" width="30.0" height="196.7" rx="4" fill="#C9DEFB"/><rect x="344.8" y="68.4" width="30.0" height="189.6" rx="4" fill="#C9DEFB"/><rect x="398.3" y="44.4" width="30.0" height="213.6" rx="4" fill="#C9DEFB"/><rect x="451.8" y="45.8" width="30.0" height="212.2" rx="4" fill="#C9DEFB"/><rect x="505.3" y="56.5" width="30.0" height="201.5" rx="4" fill="#C9DEFB"/><rect x="558.8" y="45.5" width="30.0" height="212.5" rx="4" fill="#C9DEFB"/><rect x="612.3" y="30.0" width="30.0" height="228.0" rx="4" fill="#3182F6"/><polyline points="38.8,101.2 92.2,143.4 145.8,87.7 199.2,137.1 252.8,111.1 306.2,138.5 359.8,77.7 413.2,75.6 466.8,79.9 520.2,136.2 573.8,67.4 627.2,59.6" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="627.2" cy="59.6" r="4.5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="619.2" y="48.6" text-anchor="end" class="cv" fill="#FF9500">33.2%</text><text x="627.2" y="22.0" text-anchor="middle" class="cv">13.38B</text><text x="38.8" y="284" text-anchor="middle" class="cl">23 Q3</text><text x="145.8" y="284" text-anchor="middle" class="cl">24 Q1</text><text x="252.8" y="284" text-anchor="middle" class="cl">24 Q3</text><text x="359.8" y="284" text-anchor="middle" class="cl">25 Q1</text><text x="466.8" y="284" text-anchor="middle" class="cl">25 Q3</text><text x="573.8" y="284" text-anchor="middle" class="cl">26 Q1</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>매출(막대)</span><span><span class="ln" style="background:#FF9500"></span>순이익률(선)</span></div></div>
+</div>
+
+<div class="fin-block">
+  <h4>성장성</h4>
+  <div class="lede">영업이익·영업이익률 — 영업이익 <b>$4.67B</b>, 영업이익률 <b>34.9%</b>. 2025년 이후 30%대로 한 단계 올라섰어요.</div>
+  <div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30.0" x2="654" y2="30.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87.0" x2="654" y2="87.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144.0" x2="654" y2="144.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201.0" x2="654" y2="201.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#EDEFF2" stroke-width="1"/><rect x="23.8" y="98.4" width="30.0" height="159.6" rx="4" fill="#C9DEFB"/><rect x="77.3" y="147.1" width="30.0" height="110.9" rx="4" fill="#C9DEFB"/><rect x="130.8" y="153.5" width="30.0" height="104.5" rx="4" fill="#C9DEFB"/><rect x="184.3" y="129.6" width="30.0" height="128.4" rx="4" fill="#C9DEFB"/><rect x="237.8" y="135.5" width="30.0" height="122.5" rx="4" fill="#C9DEFB"/><rect x="291.3" y="125.8" width="30.0" height="132.2" rx="4" fill="#C9DEFB"/><rect x="344.8" y="79.4" width="30.0" height="178.6" rx="4" fill="#C9DEFB"/><rect x="398.3" y="49.1" width="30.0" height="208.9" rx="4" fill="#C9DEFB"/><rect x="451.8" y="63.7" width="30.0" height="194.3" rx="4" fill="#C9DEFB"/><rect x="505.3" y="168.2" width="30.0" height="89.8" rx="4" fill="#C9DEFB"/><rect x="558.8" y="45.3" width="30.0" height="212.7" rx="4" fill="#C9DEFB"/><rect x="612.3" y="30.0" width="30.0" height="228.0" rx="4" fill="#3182F6"/><polyline points="38.8,100.2 92.2,134.5 145.8,145.2 199.2,132.7 252.8,133.4 306.2,121.1 359.8,70.7 413.2,64.0 466.8,75.6 520.2,163.3 573.8,59.6 627.2,59.8" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="627.2" cy="59.8" r="4.5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="619.2" y="48.8" text-anchor="end" class="cv" fill="#FF9500">34.9%</text><text x="627.2" y="22.0" text-anchor="middle" class="cv">4.67B</text><text x="38.8" y="284" text-anchor="middle" class="cl">23 Q3</text><text x="145.8" y="284" text-anchor="middle" class="cl">24 Q1</text><text x="252.8" y="284" text-anchor="middle" class="cl">24 Q3</text><text x="359.8" y="284" text-anchor="middle" class="cl">25 Q1</text><text x="466.8" y="284" text-anchor="middle" class="cl">25 Q3</text><text x="573.8" y="284" text-anchor="middle" class="cl">26 Q1</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>영업이익(막대)</span><span><span class="ln" style="background:#FF9500"></span>영업이익률(선)</span></div></div>
+</div>
+
+<div class="fin-block">
+  <h4>안정성</h4>
+  <div class="lede">총자본·총부채·부채비율 — 자본이 <b>$38.3B</b>으로 늘면서 부채비율이 <b>181.7%</b>까지 낮아졌어요. 12개 분기 전(250%대)보다 개선된 수치예요.</div>
+  <div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30.0" x2="654" y2="30.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87.0" x2="654" y2="87.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144.0" x2="654" y2="144.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201.0" x2="654" y2="201.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#EDEFF2" stroke-width="1"/><rect x="21.2" y="176.8" width="16.1" height="81.2" rx="3" fill="#C9DEFB"/><rect x="40.2" y="54.4" width="16.1" height="203.6" rx="3" fill="#D8DEE6"/><rect x="74.7" y="177.8" width="16.1" height="80.2" rx="3" fill="#C9DEFB"/><rect x="93.8" y="53.0" width="16.1" height="205.0" rx="3" fill="#D8DEE6"/><rect x="128.2" y="176.4" width="16.1" height="81.6" rx="3" fill="#C9DEFB"/><rect x="147.2" y="49.5" width="16.1" height="208.5" rx="3" fill="#D8DEE6"/><rect x="181.7" y="178.0" width="16.1" height="80.0" rx="3" fill="#C9DEFB"/><rect x="200.8" y="42.6" width="16.1" height="215.4" rx="3" fill="#D8DEE6"/><rect x="235.2" y="175.8" width="16.1" height="82.2" rx="3" fill="#C9DEFB"/><rect x="254.2" y="30.0" width="16.1" height="228.0" rx="3" fill="#D8DEE6"/><rect x="288.7" y="181.0" width="16.1" height="77.0" rx="3" fill="#C9DEFB"/><rect x="307.8" y="41.5" width="16.1" height="216.5" rx="3" fill="#D8DEE6"/><rect x="342.2" y="177.0" width="16.1" height="81.0" rx="3" fill="#C9DEFB"/><rect x="361.2" y="42.1" width="16.1" height="215.9" rx="3" fill="#D8DEE6"/><rect x="395.7" y="169.9" width="16.1" height="88.1" rx="3" fill="#C9DEFB"/><rect x="414.8" y="41.6" width="16.1" height="216.4" rx="3" fill="#D8DEE6"/><rect x="449.2" y="160.9" width="16.1" height="97.1" rx="3" fill="#C9DEFB"/><rect x="468.2" y="45.6" width="16.1" height="212.4" rx="3" fill="#D8DEE6"/><rect x="502.7" y="158.0" width="16.1" height="100.0" rx="3" fill="#C9DEFB"/><rect x="521.8" y="52.1" width="16.1" height="205.9" rx="3" fill="#D8DEE6"/><rect x="556.2" y="153.7" width="16.1" height="104.3" rx="3" fill="#C9DEFB"/><rect x="575.2" y="58.1" width="16.1" height="199.9" rx="3" fill="#D8DEE6"/><rect x="609.7" y="146.2" width="16.1" height="111.8" rx="3" fill="#3182F6"/><rect x="628.8" y="54.8" width="16.1" height="203.2" rx="3" fill="#D8DEE6"/><polyline points="38.8,60.5 92.2,57.8 145.8,57.8 199.2,50.3 252.8,45.8 306.2,43.7 359.8,51.8 413.2,63.2 466.8,78.0 520.2,85.1 573.8,92.9 627.2,98.4" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linejoin="round"/><circle cx="627.2" cy="98.4" r="4.5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="619.2" y="87.4" text-anchor="end" class="cv" fill="#FF9500">182%</text><text x="627.2" y="138.2" text-anchor="middle" class="cv">38.31B</text><text x="38.8" y="284" text-anchor="middle" class="cl">23 Q3</text><text x="145.8" y="284" text-anchor="middle" class="cl">24 Q1</text><text x="252.8" y="284" text-anchor="middle" class="cl">24 Q3</text><text x="359.8" y="284" text-anchor="middle" class="cl">25 Q1</text><text x="466.8" y="284" text-anchor="middle" class="cl">25 Q3</text><text x="573.8" y="284" text-anchor="middle" class="cl">26 Q1</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>총자본(막대)</span><span><span class="d" style="background:#D8DEE6"></span>총부채(막대)</span><span><span class="ln" style="background:#FF9500"></span>부채비율(선)</span></div></div>
+</div>
+
+<div class="fin-block">
+  <h4>현금흐름</h4>
+  <div class="lede">영업현금흐름·순현금변동 — 영업으로 <b>$5.52B</b>을 벌었고 현금·투자가 <b>+$2.55B</b> 늘었어요. 2025년 1분기의 큰 유출(-$5.2B)은 일회성 합의금 지급 영향이에요.</div>
+  <div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30.0" x2="654" y2="30.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87.0" x2="654" y2="87.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144.0" x2="654" y2="144.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201.0" x2="654" y2="201.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="147.4" x2="654" y2="147.4" stroke="#D1D6DB" stroke-width="1.5"/><rect x="23.8" y="56.0" width="30.0" height="91.4" rx="4" fill="#C9DEFB"/><rect x="77.3" y="90.6" width="30.0" height="56.8" rx="4" fill="#C9DEFB"/><rect x="130.8" y="136.2" width="30.0" height="11.2" rx="4" fill="#C9DEFB"/><rect x="184.3" y="71.2" width="30.0" height="76.2" rx="4" fill="#C9DEFB"/><rect x="237.8" y="147.4" width="30.0" height="26.8" rx="4" fill="#C9DEFB"/><rect x="291.3" y="63.4" width="30.0" height="84.0" rx="4" fill="#C9DEFB"/><rect x="344.8" y="147.4" width="30.0" height="110.6" rx="4" fill="#C9DEFB"/><rect x="398.3" y="66.4" width="30.0" height="81.0" rx="4" fill="#C9DEFB"/><rect x="451.8" y="40.2" width="30.0" height="107.2" rx="4" fill="#C9DEFB"/><rect x="505.3" y="67.5" width="30.0" height="79.9" rx="4" fill="#C9DEFB"/><rect x="558.8" y="104.4" width="30.0" height="43.0" rx="4" fill="#C9DEFB"/><rect x="612.3" y="30.0" width="30.0" height="117.4" rx="4" fill="#3182F6"/><polyline points="38.8,136.6 92.2,196.9 145.8,59.6 199.2,91.9 252.8,171.1 306.2,246.6 359.8,169.9 413.2,134.6 466.8,108.0 520.2,147.8 573.8,202.7 627.2,78.9" fill="none" stroke="#9B7BF4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="627.2" cy="78.9" r="4.5" fill="#fff" stroke="#9B7BF4" stroke-width="3"/><text x="619.2" y="67.9" text-anchor="end" class="cv" fill="#9B7BF4">+2551M</text><text x="627.2" y="22.0" text-anchor="middle" class="cv">5.52B</text><text x="38.8" y="284" text-anchor="middle" class="cl">23 Q3</text><text x="145.8" y="284" text-anchor="middle" class="cl">24 Q1</text><text x="252.8" y="284" text-anchor="middle" class="cl">24 Q3</text><text x="359.8" y="284" text-anchor="middle" class="cl">25 Q1</text><text x="466.8" y="284" text-anchor="middle" class="cl">25 Q3</text><text x="573.8" y="284" text-anchor="middle" class="cl">26 Q1</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>영업현금흐름(막대)</span><span><span class="ln" style="background:#9B7BF4"></span>순현금변동(선)</span></div></div>
+</div>
+<p class="foot-note">※ 재무 수치 출처: stockanalysis.com(Fiscal.ai, 2026.07.29 갱신) · 분기 실적이 새로 발표되면 최신 분기만 추가돼요.</p>
+</section>
+
+<!-- ③ -->
+<section>
+<div class="sec-head">
+  <div class="l1">🎙️ ③ 어닝콜에서 나온 이야기,</div>
+  <div class="l2">키워드는 '월드컵과 제로슈거'였어요</div>
+</div>
+
+<div class="kws"><span>#물량 +5%</span><span>#FIFA 월드컵</span><span>#제로슈거·fairlife</span><span>#가이던스 상향</span></div>
+
+<p>경영진은 상향된 전망의 근거로 <b>코카콜라 제로슈거, fairlife 우유, 그리고 월드컵 마케팅</b>을 꼽았어요. 특히 제로슈거와 fairlife는 <mark>건강을 의식하는 소비자층을 잡으면서도 마진이 높은 제품</mark>이라, 물량과 믹스를 동시에 개선하는 조합이에요.</p>
+<p>참고로 이번 분기는 <b>Henrique Braun 신임 CEO 체제의 초기 분기</b>예요. 올해 James Quincey 전 CEO에게서 자리를 넘겨받았고, 전임 체제에서 매각을 시도했다가 접었던 Costa(커피 브랜드) 같은 포트폴리오 정리 과제가 남아 있어요.</p>
+
+<div class="sub-head">❓ 애널리스트들이 파고든 세 가지</div>
+<ul class="dots">
+<li><b>월드컵 효과는 일회성 아닌가요?</b> 물량 +5% 중 얼마가 월드컵·날씨 같은 일시적 요인인지가 핵심 쟁점이었어요. 회사는 제로슈거·fairlife의 구조적 성장을 강조했어요.</li>
+<li><b>가이던스 상향이 환율 덕 아닌가요?</b> 보고 기준(+9~10%)과 환율중립 기준(+7~8%)의 3%포인트 차이가 환율에서 나온다는 점이 지적됐어요.</li>
+<li><b>포트폴리오 정리 계획은요?</b> Costa 등 비핵심 브랜드 처리에 대한 질문이 나왔지만 구체적 계획은 제시되지 않았어요.</li>
+</ul>
+<p class="foot-note">※ 어닝콜 내용은 Coca-Cola IR 보도자료와 CNBC·Yahoo Finance·InsiderFinance 하이라이트를 기준으로 정리했어요. 지난 분기 소급 작성이라 발언 인용은 요지 중심이에요.</p>
+</section>
+
+<!-- ④ -->
+<section>
+<div class="sec-head">
+  <div class="l1">🧭 ④ 종합 의견,</div>
+  <div class="l2">포트폴리오의 안전벨트 역할이에요</div>
+</div>
+
+<div class="pros-cons">
+  <div class="pc good"><h4>이런 점이 좋아요</h4><ul>
+    <li>다섯 분기 연속 컨센서스를 상회했어요</li>
+    <li>가격이 아니라 물량(+5%)이 성장을 이끌었어요</li>
+    <li>연간 가이던스를 범위 상단으로 상향했어요</li>
+    <li>영업이익률 34.9%, FCF 마진 38.1%로 최고 수준이에요</li>
+    <li>CapEx 부담이 거의 없어 배당 여력이 탄탄해요</li>
+  </ul></div>
+  <div class="pc bad"><h4>이런 점은 조심해야 해요</h4><ul>
+    <li>매출 성장률은 연 3~4%대로 낮아요</li>
+    <li>EPS 성장의 3%포인트가 환율 순풍이에요</li>
+    <li>월드컵·날씨 효과의 지속성이 불확실해요</li>
+    <li>P/E 26.4배는 성장률 대비 저렴하지 않아요</li>
+    <li>IRS 세금 분쟁 리스크가 10-Q에 공시돼 있어요</li>
+  </ul></div>
+</div>
+
+<p><b>밸류에이션은 이렇게 봐요.</b> 매출 +3.7% 성장에 26.4배를 주는 건 <mark>성장이 아니라 예측 가능성에 대한 프리미엄</mark>이에요. 목표주가 평균 상승 여력이 +8.8%에 그치는 것도 시장이 이 종목을 "크게 오르지도 크게 빠지지도 않는 자산"으로 본다는 뜻이에요. 다만 물량 성장이 돌아왔다는 이번 신호가 이어진다면, 낮아진 성장 눈높이가 상향될 여지는 있어요.</p>
+
+<div class="sub-head">🎯 애널리스트 목표주가</div>
+<p>애널리스트 <b>24명</b> 중 19명이 매수 의견이에요. 1년 후 목표주가 평균은 <b>$94.7</b>로 지금보다 <b>8.8% 높은</b> 수준이에요.</p>
+<div class="chart"><svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg"><rect x="74.7" y="134.0" width="54.6" height="6.0" rx="6" fill="#D8DEE6"/><text x="102.0" y="124.0" text-anchor="middle" class="cv">0명</text><text x="102.0" y="162" text-anchor="middle" class="cl">적극 매도</text><rect x="198.7" y="131.7" width="54.6" height="8.3" rx="6" fill="#D8DEE6"/><text x="226.0" y="121.7" text-anchor="middle" class="cv">1명</text><text x="226.0" y="162" text-anchor="middle" class="cl">매도</text><rect x="322.7" y="106.7" width="54.6" height="33.3" rx="6" fill="#D8DEE6"/><text x="350.0" y="96.7" text-anchor="middle" class="cv">4명</text><text x="350.0" y="162" text-anchor="middle" class="cl">중립</text><rect x="446.7" y="81.7" width="54.6" height="58.3" rx="6" fill="#C9DEFB"/><text x="474.0" y="71.7" text-anchor="middle" class="cv">7명</text><text x="474.0" y="162" text-anchor="middle" class="cl">매수</text><rect x="570.7" y="40.0" width="54.6" height="100.0" rx="6" fill="#3182F6"/><text x="598.0" y="30.0" text-anchor="middle" class="cv">12명</text><text x="598.0" y="162" text-anchor="middle" class="cl">적극 매수</text></svg></div>
+<div class="chart">
+  <div class="ct">1년 후 목표주가 전망</div>
+  <span class="cs">목표주가는 S&amp;P Global 집계(2026.07.30 갱신)</span>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="16" y1="26" x2="692" y2="26" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="106" x2="692" y2="106" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="186" x2="692" y2="186" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="266" x2="692" y2="266" stroke="#EDEFF2" stroke-width="1"/><circle cx="220.0" cy="150.0" r="6" fill="#fff" stroke="#4E5968" stroke-width="3"/><text x="210.0" y="136.0" text-anchor="end" class="cv">현재 $87.05</text><line x1="220.0" y1="150.0" x2="550" y2="50.0" stroke="#F04452" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550" cy="50.0" r="4.5" fill="#fff" stroke="#F04452" stroke-width="3"/><rect x="555" y="39.0" width="142" height="22" rx="11" fill="#F04452" opacity="0.12"/><text x="562" y="54.5" class="cv" fill="#F04452">최고 $104 (+19.5%)</text><line x1="220.0" y1="150.0" x2="550" y2="117.2" stroke="#9B7BF4" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550" cy="117.2" r="4.5" fill="#fff" stroke="#9B7BF4" stroke-width="3"/><rect x="555" y="106.2" width="142" height="22" rx="11" fill="#9B7BF4" opacity="0.12"/><text x="562" y="121.7" class="cv" fill="#9B7BF4">중간 $96 (+10.3%)</text><line x1="220.0" y1="150.0" x2="550" y2="155.6" stroke="#15C47E" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550" cy="155.6" r="4.5" fill="#fff" stroke="#15C47E" stroke-width="3"/><rect x="555" y="144.6" width="142" height="22" rx="11" fill="#15C47E" opacity="0.12"/><text x="562" y="160.1" class="cv" fill="#15C47E">평균 $94.7 (+8.8%)</text><line x1="220.0" y1="150.0" x2="550" y2="237.2" stroke="#3182F6" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550" cy="237.2" r="4.5" fill="#fff" stroke="#3182F6" stroke-width="3"/><rect x="555" y="226.2" width="142" height="22" rx="11" fill="#3182F6" opacity="0.12"/><text x="562" y="241.7" class="cv" fill="#3182F6">최저 $75 (-13.8%)</text><text x="16" y="288" class="cl">오늘</text><text x="560" y="288" class="cl">1년 후 전망 →</text></svg>
+</div>
+<p>최고 $104(+19.5%)와 최저 $75(-13.8%)로 <mark>전망 폭이 보유 종목 중 가장 좁아요.</mark> 리얼티인컴과 함께 예측 가능성이 높은 두 종목인 셈이에요. 배당수익률 약 2.4%를 더하면 기대 총수익은 연 11% 안팎으로 볼 수 있어요.</p>
+
+<div class="sub-head">👀 다음 분기엔 이걸 보면 돼요</div>
+<ul class="dots">
+<li>물량 성장(+5%)이 유지되는지 — 월드컵 효과가 빠진 뒤에도 플러스인지가 핵심이에요</li>
+<li>연간 유기적 성장 +5%, 비교 기준 EPS +9~10% 가이던스 경로를 지키는지</li>
+<li>환율 순풍(3%포인트)이 줄거나 역풍으로 바뀌는지</li>
+<li>영업이익률 34.9% 수준이 유지되는지, IRS 세금 분쟁에 진전이 있는지</li>
+</ul>
+
+<div class="wp-preview">📌 다음 보고서에서는 위 4가지가 실제로 어떻게 됐는지 <b>하나씩 충족·미충족으로 점검</b>해서 맨 앞에 보여드릴게요.</div>
+<div class="next"><div class="t">다음 실적발표</div><div class="d">2026년 10월 21일 예정 <span style="font-size:13px;color:var(--g400);font-weight:600">⚠️ 확정 시 업데이트</span></div></div>
+</section>
+
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+데이터 출처: Coca-Cola IR 보도자료·8-K·10-Q, Zacks(Yahoo Finance), CNBC, InsiderFinance, ChartMill, stockanalysis.com, S&amp;P Global Market Intelligence · earnings-briefing 스킬 자동 생성(소급 작성분)
+</div>
+
+</div>
+</div>
+</body>
+</html>
