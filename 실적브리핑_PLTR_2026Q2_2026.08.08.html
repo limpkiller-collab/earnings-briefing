@@ -108,6 +108,20 @@ tbody tr.hl td{background:var(--g50);font-weight:700;color:var(--g900)}
 .clegend .d{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
 .clegend .ln{width:14px;height:3px;border-radius:2px;display:inline-block;margin-right:5px;vertical-align:3px}
 @media(max-width:600px){.fin-kpis{grid-template-columns:1fr 1fr}.fin-kpis .fin-kpi:last-child{grid-column:span 2}}
+/* 지난 분기 체크포인트 점검 */
+.wp-list{display:flex;flex-direction:column;gap:10px;margin:16px 0 20px}
+.wp{display:flex;gap:14px;background:var(--g50);border-radius:14px;padding:16px 18px}
+.wp-badge{flex:0 0 auto;align-self:flex-start;font-size:12px;font-weight:800;
+  padding:5px 12px;border-radius:20px;white-space:nowrap}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp.partial .wp-badge{background:var(--amber-bg);color:var(--amber)}
+.wp.hold .wp-badge{background:var(--g100);color:var(--g500)}
+.wp-q{font-size:15px;font-weight:700;color:var(--g900);line-height:1.5}
+.wp-a{font-size:14.5px;color:var(--g600);margin-top:4px;line-height:1.55}
+.wp-score{font-size:14px;color:var(--g500);font-weight:600;margin:-8px 0 20px}
+.wp-preview{background:var(--blue-bg);border-radius:14px;padding:16px 18px;
+  font-size:14.5px;color:var(--g700);font-weight:500;margin:4px 0 8px}
 
 .gtable td.none{color:var(--g400);font-weight:500}
 .tag{display:inline-block;background:var(--g100);color:var(--g500);font-size:10.5px;font-weight:700;
@@ -459,6 +473,7 @@ ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;heigh
 <li>파트너 생태계 확장 전략이 구체화되는지</li>
 </ul>
 
+<div class="wp-preview">📌 다음 보고서에서는 위 4가지가 실제로 어떻게 됐는지 <b>하나씩 충족·미충족으로 점검</b>해서 맨 앞에 보여드릴게요.</div>
 <div class="next"><div class="t">다음 실적발표</div><div class="d">2026년 11월 초 예정 <span style="font-size:13px;color:var(--g400);font-weight:600">⚠️ 확정 시 업데이트</span></div></div>
 </section>
 
