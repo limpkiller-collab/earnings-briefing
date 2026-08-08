@@ -4,66 +4,121 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>실적브리핑 아카이브</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
 :root{
-  --bg:#0d1117; --card:#161b22; --card2:#1c2330; --border:#2d333b;
-  --text:#e6edf3; --muted:#8b949e; --accent:#4da3ff; --accent2:#a371f7; --pos:#3fb950; --neg:#f85149; --warn:#d29922;
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',-apple-system,sans-serif;line-height:1.6;padding:28px 16px 60px}
-.wrap{max-width:960px;margin:0 auto}
-header{margin-bottom:22px}
-h1{font-size:24px}
-h1 .accent{color:var(--accent)}
-.sub{color:var(--muted);font-size:13.5px;margin-top:4px}
-.stats{display:flex;gap:12px;margin:16px 0 22px;flex-wrap:wrap}
-.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 18px}
-.stat .n{font-size:20px;font-weight:800;color:var(--accent)}
-.stat .l{font-size:12px;color:var(--muted)}
-h2{font-size:15px;color:var(--muted);font-weight:700;margin:22px 0 10px;text-transform:uppercase;letter-spacing:.05em}
-.upcoming{display:flex;gap:8px;flex-wrap:wrap}
-.up-chip{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12.5px;white-space:nowrap}
-.up-chip b{color:var(--accent)}
-.up-chip .d{color:var(--muted);margin-left:6px}
-.up-chip.soon{border-color:var(--warn)}
-.up-chip.soon .d{color:var(--warn);font-weight:700}
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.f-chip{background:var(--card);border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:5px 14px;font-size:13px;cursor:pointer;user-select:none}
-.f-chip.active{background:rgba(77,163,255,.15);border-color:var(--accent);color:var(--accent);font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;display:block;color:inherit;text-decoration:none;transition:border-color .15s, transform .15s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card .top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.tick{font-size:17px;font-weight:800;color:var(--accent)}
-.q{font-size:12.5px;color:var(--muted)}
-.badge{margin-left:auto;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:800}
-.badge.BEAT{background:rgba(63,185,80,.15);color:var(--pos);border:1px solid var(--pos)}
-.badge.MISS{background:rgba(248,81,73,.15);color:var(--neg);border:1px solid var(--neg)}
-.badge.MIXED{background:rgba(210,153,34,.15);color:var(--warn);border:1px solid var(--warn)}
-.one{font-size:13.5px;margin-bottom:12px;min-height:40px}
-.meta{font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between}
-.empty{color:var(--muted);font-size:14px;padding:30px;text-align:center;background:var(--card);border:1px dashed var(--border);border-radius:14px}
-footer{text-align:center;font-size:11.5px;color:var(--muted);margin-top:36px;padding-top:14px;border-top:1px solid var(--border)}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb .upd{font-size:13px;color:var(--g400);font-weight:600}
+
+.body{padding:36px 28px 80px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px;margin-bottom:16px}
+h1{font-size:30px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.lead{font-size:16.5px;color:var(--g500);margin-bottom:26px}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:40px}
+.stat{background:var(--g50);border-radius:14px;padding:16px 18px}
+.stat .n{font-size:24px;font-weight:800;letter-spacing:-0.03em;color:var(--blue)}
+.stat .l{font-size:13px;color:var(--g500);font-weight:600;margin-top:2px}
+
+h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display:flex;align-items:center;gap:7px}
+.sec{margin-bottom:44px}
+
+/* 다음 일정 */
+.up-list{display:flex;flex-direction:column;gap:1px;background:var(--g200);border-radius:14px;overflow:hidden}
+.up-row{background:#fff;padding:14px 18px;display:flex;align-items:center;gap:12px}
+.up-row .tk{font-size:15px;font-weight:800;min-width:92px}
+.up-row .dt{font-size:14.5px;color:var(--g500);font-weight:600;margin-left:auto}
+.up-row.soon{background:var(--blue-bg)}
+.up-row.soon .dt{color:var(--blue);font-weight:800}
+.dday{background:var(--blue);color:#fff;font-size:11.5px;font-weight:800;padding:3px 9px;border-radius:20px}
+.est{font-size:12px;color:var(--g400);font-weight:600}
+
+/* 필터 */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.f{background:var(--g100);color:var(--g600);font-size:13.5px;font-weight:700;
+  padding:8px 15px;border-radius:20px;cursor:pointer;user-select:none;transition:.12s}
+.f:hover{background:var(--g200)}
+.f.on{background:var(--g900);color:#fff}
+
+/* 카드 */
+.cards{display:flex;flex-direction:column;gap:12px}
+.card{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--g200);
+  border-radius:16px;padding:20px 22px;transition:.15s}
+.card:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(25,31,40,.06);transform:translateY(-1px)}
+.card .top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.card .tk{font-size:17px;font-weight:800;letter-spacing:-0.02em}
+.card .co{font-size:13.5px;color:var(--g400);font-weight:600}
+.vd{margin-left:auto;font-size:11.5px;font-weight:800;padding:4px 11px;border-radius:20px}
+.vd.BEAT{background:var(--green-bg);color:var(--green)}
+.vd.MISS{background:var(--red-bg);color:var(--red)}
+.vd.MIXED{background:var(--amber-bg);color:var(--amber)}
+.card .one{font-size:15.5px;color:var(--g700);line-height:1.6;margin-bottom:12px}
+.card .meta{font-size:12.5px;color:var(--g400);font-weight:600;display:flex;gap:14px}
+
+.empty{background:var(--g50);border-radius:16px;padding:40px;text-align:center;
+  font-size:15px;color:var(--g400);font-weight:600}
+
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:25px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stats .stat:last-child{grid-column:span 2}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-  <h1>📊 실적브리핑 <span class="accent">아카이브</span></h1>
-  <div class="sub">보유 종목 13개 분기 실적 보고서 모음 · earnings-briefing 스킬이 자동 갱신 · 최종 갱신: <span id="last-updated"></span></div>
-</header>
+<div class="page">
+
+<div class="gnb">
+  <div class="brand"><span class="dot">📊</span> 실적브리핑</div>
+  <span class="upd">업데이트 <span id="last-updated"></span></span>
+</div>
+
+<div class="body">
+<span class="chip">#보유종목 13개</span>
+<h1>분기 실적, 발표되면<br>바로 정리해 드려요</h1>
+<div class="lead">실적 해석부터 재무제표 분석, 어닝콜 요약, 종합 의견까지 한 번에 확인하세요.</div>
 
 <div class="stats" id="stats"></div>
 
-<h2>⏭️ 다음 실적발표 예정</h2>
-<div class="upcoming" id="upcoming"></div>
+<div class="sec">
+  <h2>🗓️ 다음 실적발표</h2>
+  <div class="up-list" id="upcoming"></div>
+</div>
 
-<h2>📁 보고서</h2>
-<div class="filters" id="filters"></div>
-<div class="grid" id="grid"></div>
-<div class="empty" id="empty" style="display:none">해당 조건의 보고서가 아직 없어요.</div>
+<div class="sec">
+  <h2>📁 지난 보고서</h2>
+  <div class="filters" id="filters"></div>
+  <div class="cards" id="cards"></div>
+  <div class="empty" id="empty" style="display:none">해당 종목의 보고서가 아직 없어요</div>
+</div>
 
-<footer>본 아카이브의 보고서는 정보 제공 목적이며 투자 권유가 아닙니다. · 생성: earnings-briefing 스킬</footer>
+<div class="disclaimer">
+본 아카이브의 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+earnings-briefing 스킬이 평일 오전 실적발표를 확인해 자동 생성·갱신합니다.
+</div>
+</div>
 </div>
 
 <script>
@@ -74,88 +129,81 @@ const REPORTS_DB = [
   {
     ticker: "PLTR", company: "Palantir", quarter: "2026 Q2",
     report_date: "2026-08-04", created: "2026.08.08", verdict: "BEAT",
-    oneliner: "\"AI 주권\" 수요로 매출 +93% 재가속, 가이던스 대폭 상향 — 밸류에이션 부담은 재부각",
+    oneliner: "'AI 주권' 수요로 매출이 93% 늘며 성장이 재가속됐어요. 가이던스도 크게 올렸지만, 29% 급등으로 밸류에이션 부담은 다시 커졌어요.",
     file: "실적브리핑_PLTR_2026Q2_2026.08.08.html"
   }
 ];
 
-// 다음 발표 예정 (state.json 기준, estimated=true는 ⚠️)
 const UPCOMING_DB = [
-  { ticker: "CRWV", date: "2026-08-12", estimated: false },
-  { ticker: "NVDA", date: "2026-08-27", estimated: false },
-  { ticker: "MU",   date: "2026-09-30", estimated: true },
-  { ticker: "KO",   date: "2026-10-21", estimated: true },
-  { ticker: "SK하이닉스", date: "2026-10-28", estimated: true },
-  { ticker: "MSFT", date: "2026-10-29", estimated: true },
-  { ticker: "GOOGL", date: "2026-10-29", estimated: true },
-  { ticker: "AAPL", date: "2026-10-30", estimated: true },
-  { ticker: "ABBV", date: "2026-10-31", estimated: true },
-  { ticker: "PLTR", date: "2026-11-04", estimated: true },
-  { ticker: "O",    date: null, estimated: true },
-  { ticker: "IONQ", date: null, estimated: true },
-  { ticker: "SMR",  date: null, estimated: true }
+  { ticker: "CRWV", name: "CoreWeave", date: "2026-08-12", estimated: false },
+  { ticker: "NVDA", name: "NVIDIA", date: "2026-08-27", estimated: false },
+  { ticker: "MU", name: "Micron", date: "2026-09-30", estimated: true },
+  { ticker: "KO", name: "Coca-Cola", date: "2026-10-21", estimated: true },
+  { ticker: "000660", name: "SK하이닉스", date: "2026-10-28", estimated: true },
+  { ticker: "MSFT", name: "Microsoft", date: "2026-10-29", estimated: true },
+  { ticker: "GOOGL", name: "Alphabet", date: "2026-10-29", estimated: true },
+  { ticker: "AAPL", name: "Apple", date: "2026-10-30", estimated: true },
+  { ticker: "ABBV", name: "AbbVie", date: "2026-10-31", estimated: true },
+  { ticker: "PLTR", name: "Palantir", date: "2026-11-04", estimated: true },
+  { ticker: "O", name: "Realty Income", date: null, estimated: true },
+  { ticker: "IONQ", name: "IonQ", date: null, estimated: true },
+  { ticker: "SMR", name: "NuScale Power", date: null, estimated: true }
 ];
 // ===== 데이터 블록 끝 =====
 
 document.getElementById('last-updated').textContent = LAST_UPDATED;
 
-// 통계
-const tickerSet = new Set(REPORTS_DB.map(r => r.ticker));
+const tickers = new Set(REPORTS_DB.map(r => r.ticker));
 document.getElementById('stats').innerHTML =
   `<div class="stat"><div class="n">${REPORTS_DB.length}</div><div class="l">보고서</div></div>
-   <div class="stat"><div class="n">${tickerSet.size}</div><div class="l">커버 종목</div></div>
-   <div class="stat"><div class="n">13</div><div class="l">모니터링 종목</div></div>`;
+   <div class="stat"><div class="n">${tickers.size}</div><div class="l">분석 완료 종목</div></div>
+   <div class="stat"><div class="n">${UPCOMING_DB.length}</div><div class="l">모니터링 종목</div></div>`;
 
-// 다음 발표 예정 (날짜순, 14일 이내는 강조)
 const today = new Date();
 const upEl = document.getElementById('upcoming');
-UPCOMING_DB
-  .slice()
-  .sort((a,b) => (a.date||'9999') < (b.date||'9999') ? -1 : 1)
-  .forEach(u => {
-    const chip = document.createElement('span');
-    let soon = false, dtxt = '확인중';
-    if (u.date) {
-      const d = new Date(u.date + 'T09:00:00+09:00');
-      const days = Math.ceil((d - today) / 86400000);
-      soon = days >= 0 && days <= 14;
-      dtxt = u.date.slice(5).replace('-','/') + (u.estimated ? ' ⚠️' : '') + (soon ? ` (D-${days})` : '');
-    }
-    chip.className = 'up-chip' + (soon ? ' soon' : '');
-    chip.innerHTML = `<b>${u.ticker}</b><span class="d">${dtxt}</span>`;
-    upEl.appendChild(chip);
-  });
+UPCOMING_DB.slice().sort((a,b) => (a.date||'9999') < (b.date||'9999') ? -1 : 1).forEach(u => {
+  let soon = false, right = '일정 확인 중';
+  if (u.date) {
+    const days = Math.ceil((new Date(u.date + 'T09:00:00+09:00') - today) / 86400000);
+    soon = days >= 0 && days <= 14;
+    right = u.date.slice(2).replace(/-/g, '.') + (u.estimated ? ' <span class="est">예상</span>' : '');
+    if (soon) right = `<span class="dday">D-${days}</span> ` + right;
+  }
+  const row = document.createElement('div');
+  row.className = 'up-row' + (soon ? ' soon' : '');
+  row.innerHTML = `<span class="tk">${u.ticker}</span><span class="co" style="font-size:13.5px;color:var(--g400);font-weight:600">${u.name}</span><span class="dt">${right}</span>`;
+  upEl.appendChild(row);
+});
 
-// 필터 + 카드 렌더
-let activeFilter = '전체';
+let active = '전체';
 function renderFilters(){
   const el = document.getElementById('filters');
   el.innerHTML = '';
-  ['전체', ...Array.from(new Set(REPORTS_DB.map(r => r.ticker)))].forEach(t => {
+  ['전체', ...tickers].forEach(t => {
     const c = document.createElement('span');
-    c.className = 'f-chip' + (t === activeFilter ? ' active' : '');
+    c.className = 'f' + (t === active ? ' on' : '');
     c.textContent = t;
-    c.onclick = () => { activeFilter = t; renderFilters(); renderGrid(); };
+    c.onclick = () => { active = t; renderFilters(); renderCards(); };
     el.appendChild(c);
   });
 }
-function renderGrid(){
-  const grid = document.getElementById('grid');
-  grid.innerHTML = '';
-  const rows = REPORTS_DB.filter(r => activeFilter === '전체' || r.ticker === activeFilter);
+function renderCards(){
+  const box = document.getElementById('cards');
+  box.innerHTML = '';
+  const rows = REPORTS_DB.filter(r => active === '전체' || r.ticker === active);
   document.getElementById('empty').style.display = rows.length ? 'none' : 'block';
   rows.forEach(r => {
     const a = document.createElement('a');
     a.className = 'card';
     a.href = encodeURI(r.file);
     a.innerHTML =
-      `<div class="top"><span class="tick">${r.ticker}</span><span class="q">${r.company} · ${r.quarter}</span><span class="badge ${r.verdict}">${r.verdict}</span></div>
+      `<div class="top"><span class="tk">${r.ticker}</span><span class="co">${r.company} · ${r.quarter}</span><span class="vd ${r.verdict}">${r.verdict}</span></div>
        <div class="one">${r.oneliner}</div>
        <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`;
-    grid.appendChild(a);
+    box.appendChild(a);
   });
 }
-renderFilters(); renderGrid();
+renderFilters(); renderCards();
 </script>
 </body>
 </html>
