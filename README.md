@@ -7,3 +7,5 @@
 - **자동화**: Claude `earnings-briefing` 스킬이 평일 09시에 실적발표를 확인해 보고서 생성, launchd가 변경 감지 시 자동 push
 
 > 본 저장소의 보고서는 정보 제공 목적이며 투자 권유가 아닙니다.
+
+**온라인 아카이브**: https://limpkiller-collab.github.io/earnings-briefing/
