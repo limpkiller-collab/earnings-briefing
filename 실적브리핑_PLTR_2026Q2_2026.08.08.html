@@ -82,6 +82,16 @@ th:first-child,td:first-child{text-align:left}
 thead th{color:var(--g500);font-size:13px;font-weight:600;border-bottom:1px solid var(--g200)}
 tbody td{color:var(--g700);font-weight:500}
 tbody tr.hl td{background:var(--g50);font-weight:700;color:var(--g900)}
+/* 가이던스 비교표 */
+.gtable{margin:8px 0 10px}
+.gtable thead th{background:var(--g50)}
+.gtable thead th:first-child{border-radius:10px 0 0 0}
+.gtable thead th:last-child{border-radius:0 10px 0 0}
+.gtable td.g{font-weight:700;color:var(--g900)}
+.gtable td.diff{font-weight:800}
+.g-note{font-size:13.5px;color:var(--g500);font-weight:600;margin:-6px 0 18px}
+.pending{background:var(--amber-bg);color:var(--amber);border-radius:14px;
+  padding:18px 20px;font-weight:700;font-size:15.5px;margin:16px 0}
 
 /* 인용 */
 .quote{border-left:3px solid var(--blue);padding:2px 0 2px 16px;margin:18px 0;
@@ -191,7 +201,20 @@ ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;heigh
   <div class="legend"><span><span class="d" style="background:#D1D6DB"></span>시장 예상</span><span><span class="d" style="background:#3182F6"></span>실제</span></div>
 </div>
 
-<p>가이던스도 공격적으로 올렸어요. 2026년 연간 매출 전망을 <b>$8.15B~$8.16B(전년 대비 +82%)</b>로, 조정 FCF를 <b>$4.5B~$4.7B</b>로 상향했고, 3분기 매출은 $2.160B~$2.164B를 제시했어요. 발표 다음 날 주가는 <mark>약 29% 급등해 $162.66에 마감</mark>했고, 공매도 투자자들은 하루 만에 약 $3B의 평가손실을 봤다고 보도됐어요.</p>
+<div class="sub-head">🔮 회사 전망치 vs 시장 예상치</div>
+<p>사실 이번 주가를 움직인 건 지나간 실적보다 <b>앞으로의 전망치</b>였어요. 회사가 제시한 가이던스가 시장 예상을 얼마나 웃돌았는지 보면 이래요.</p>
+<table class="gtable">
+<thead><tr><th>항목</th><th>회사 가이던스</th><th>시장 예상</th><th>차이</th></tr></thead>
+<tbody>
+<tr><td>3분기 매출</td><td class="g">$2.160~2.164B</td><td>$2.00B</td><td class="diff pos">+8.1%</td></tr>
+<tr><td>3분기 조정 영업이익</td><td class="g">$1.292~1.296B</td><td>확인 불가</td><td>—</td></tr>
+<tr class="hl"><td>연간 매출</td><td class="g">$8.15~8.16B</td><td>$7.73B</td><td class="diff pos">+5.5%</td></tr>
+<tr><td>연간 조정 영업이익</td><td class="g">$4.889~4.897B</td><td>확인 불가</td><td>—</td></tr>
+<tr><td>연간 조정 FCF</td><td class="g">$4.5~4.7B</td><td>확인 불가</td><td>—</td></tr>
+</tbody>
+</table>
+<div class="g-note">직전 가이던스였던 연간 매출 $7.65~7.66B에서 <b>6.5% 상향</b>했어요 (전년 대비 +82% 성장에 해당)</div>
+<p>3분기 매출 전망을 시장 예상보다 <b>8% 높게</b> 제시했다는 건, 이미 확보한 수주와 파이프라인에 그만큼 자신이 있다는 뜻이에요. <mark>연간 전망을 분기 중간에 6.5%나 올린 것도 이례적</mark>이고요. 보통 경영진은 나중에 못 지킬까 봐 보수적으로 제시하는데, 이번엔 정반대로 움직였어요. 발표 다음 날 주가가 <b>약 29% 급등해 $162.66에 마감</b>한 것도 실적 자체보다 이 가이던스 때문이라고 보는 게 맞아요. 공매도 투자자들은 하루 만에 약 $3B의 평가손실을 봤다고 보도됐어요.</p>
 
 <div class="callout"><span class="cap">한 문장 요약</span>성장 둔화 우려를 정면으로 반박한 분기예요. 성장률이 꺾이기는커녕 오히려 더 빨라졌어요.</div>
 </section>
@@ -329,7 +352,8 @@ ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;heigh
 
 <div class="sub-head">👀 다음 분기엔 이걸 보면 돼요</div>
 <ul class="dots">
-<li>Q3 매출이 가이던스 상단($2.16B)을 또 넘는지 — '상회 습관'의 지속 여부</li>
+
+<li>Q3 매출이 가이던스 상단($2.164B)을 또 넘는지 — 시장 예상보다 8% 높게 잡은 전망을 스스로 다시 넘어설 수 있을지가 관건이에요</li>
 <li>미국 상업 성장률(+149%)이 유지되는지, 상업이 정부를 언제 추월하는지</li>
 <li>Sovereignty 부트캠프가 실제 대형 계약으로 얼마나 이어지는지</li>
 <li>파트너 생태계 확장 전략이 구체화되는지</li>
