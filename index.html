@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>실적브리핑 아카이브</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#3182F6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="실적브리핑">
+<link rel="apple-touch-icon" href="./icon-192.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
 :root{
@@ -76,6 +82,22 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .empty{background:var(--g50);border-radius:16px;padding:40px;text-align:center;
   font-size:15px;color:var(--g400);font-weight:600}
 
+/* 알림 설정 */
+.notify-box{background:var(--g50);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.notify-box .nt{font-size:15px;font-weight:800;margin-bottom:4px}
+.notify-box .nd{font-size:13.5px;color:var(--g500);font-weight:500;line-height:1.6}
+.btn{display:inline-block;background:var(--blue);color:#fff;border:0;border-radius:10px;
+  font-family:inherit;font-size:14px;font-weight:700;padding:11px 20px;margin-top:14px;cursor:pointer}
+.btn:disabled{background:var(--g200);color:var(--g400);cursor:default}
+.btn.sub{background:var(--g900);margin-left:8px}
+.nstat{font-size:13.5px;font-weight:700;margin-top:12px}
+.nstat.ok{color:var(--green)} .nstat.err{color:var(--red)} .nstat.info{color:var(--g500)}
+#sub-json{width:100%;height:120px;margin-top:12px;padding:12px;border:1px solid var(--g200);
+  border-radius:10px;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--g600);
+  background:#fff;resize:vertical;display:none}
+.steps{font-size:13.5px;color:var(--g600);margin-top:12px;padding-left:18px;line-height:1.75}
+.steps li{margin-bottom:4px}
+
 .disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
   font-size:12.5px;color:var(--g400);line-height:1.7}
 
@@ -101,6 +123,12 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 <div class="lead">실적 해석부터 재무제표 분석, 어닝콜 요약, 종합 의견까지 한 번에 확인하세요.</div>
 
 <div class="stats" id="stats"></div>
+
+<div class="notify-box" id="notify-box">
+  <div class="nt">🔔 실적 알림 받기</div>
+  <div class="nd">새 실적 보고서가 나오거나 어닝콜 요약이 보완되면 아이폰으로 알려드려요.</div>
+  <div id="notify-body"></div>
+</div>
 
 <div class="sec">
   <h2>🗓️ 다음 실적발표</h2>
@@ -204,6 +232,99 @@ function renderCards(){
   });
 }
 renderFilters(); renderCards();
+
+/* ===== 웹푸시 구독 ===== */
+const VAPID_PUBLIC_KEY = 'BNyxJGZtqpXxFwptu42kILeG_uLlOuMdwG12JJL2RX03JDKInoFt_4uw2N8kui57IfQnq8fsOBbiXIHxK0cYSaY';
+
+function b64ToUint8(base64) {
+  const padding = '='.repeat((4 - (base64.length % 4)) % 4);
+  const raw = atob((base64 + padding).replace(/-/g, '+').replace(/_/g, '/'));
+  return Uint8Array.from([...raw].map(c => c.charCodeAt(0)));
+}
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+const nb = document.getElementById('notify-body');
+
+function html(s){ nb.innerHTML = s; }
+function stat(cls, msg){
+  const el = document.getElementById('nstat');
+  if (el){ el.className = 'nstat ' + cls; el.textContent = msg; }
+}
+
+function render() {
+  if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+    html('<div class="nstat err">이 브라우저는 웹푸시를 지원하지 않아요.' +
+         (isIOS ? ' 아이폰은 홈 화면에 추가한 뒤 그 앱에서 열어야 해요.' : '') + '</div>');
+    return;
+  }
+  if (isIOS && !isStandalone) {
+    html('<ol class="steps">' +
+      '<li>사파리 하단 <b>공유</b> 버튼을 누르세요</li>' +
+      '<li><b>홈 화면에 추가</b>를 선택하세요</li>' +
+      '<li>홈 화면의 <b>실적브리핑</b> 아이콘으로 다시 여세요</li>' +
+      '<li>여기로 돌아와 <b>알림 켜기</b>를 누르면 끝이에요</li></ol>' +
+      '<div class="nstat info" id="nstat">아이폰은 홈 화면에 추가한 앱에서만 알림을 켤 수 있어요.</div>');
+    return;
+  }
+  if (Notification.permission === 'denied') {
+    html('<div class="nstat err" id="nstat">알림이 차단돼 있어요. 설정 → 알림에서 실적브리핑을 허용해 주세요.</div>');
+    return;
+  }
+  html('<button class="btn" id="btn-sub">알림 켜기</button>' +
+       '<button class="btn sub" id="btn-copy" style="display:none">구독정보 복사</button>' +
+       '<div class="nstat info" id="nstat"></div>' +
+       '<textarea id="sub-json" readonly></textarea>');
+  document.getElementById('btn-sub').onclick = subscribe;
+  document.getElementById('btn-copy').onclick = copySub;
+  navigator.serviceWorker.getRegistration().then(r => r && r.pushManager.getSubscription()).then(s => {
+    if (s) showSub(s, '이미 알림이 켜져 있어요. 아직 등록 전이라면 아래 구독정보를 복사해 전달해 주세요.');
+  }).catch(()=>{});
+}
+
+async function subscribe() {
+  const btn = document.getElementById('btn-sub');
+  btn.disabled = true; stat('info', '설정 중이에요...');
+  try {
+    const reg = await navigator.serviceWorker.register('./sw.js');
+    await navigator.serviceWorker.ready;
+    const perm = await Notification.requestPermission();
+    if (perm !== 'granted') { stat('err', '알림 권한이 허용되지 않았어요.'); btn.disabled = false; return; }
+    let sub = await reg.pushManager.getSubscription();
+    if (!sub) {
+      sub = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: b64ToUint8(VAPID_PUBLIC_KEY),
+      });
+    }
+    showSub(sub, '알림이 켜졌어요! 아래 구독정보를 복사해 Claude에 붙여넣어 주세요.');
+  } catch (e) {
+    stat('err', '실패: ' + e.message);
+    btn.disabled = false;
+  }
+}
+
+function showSub(sub, msg) {
+  const ta = document.getElementById('sub-json');
+  ta.value = JSON.stringify(sub.toJSON());
+  ta.style.display = 'block';
+  document.getElementById('btn-copy').style.display = 'inline-block';
+  const b = document.getElementById('btn-sub');
+  if (b) { b.disabled = true; b.textContent = '알림 켜짐'; }
+  stat('ok', msg);
+}
+
+async function copySub() {
+  const ta = document.getElementById('sub-json');
+  try {
+    await navigator.clipboard.writeText(ta.value);
+    stat('ok', '복사했어요. Claude 대화창에 붙여넣어 주세요.');
+  } catch (e) {
+    ta.select();
+    stat('info', '길게 눌러 복사해 주세요.');
+  }
+}
+
+render();
 </script>
 </body>
 </html>
