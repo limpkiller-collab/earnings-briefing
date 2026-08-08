@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Realty Income 2026 Q2 실적브리핑</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+
+/* 헤더 */
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px;font-weight:800}
+.gnb .home{background:var(--blue);color:#fff;font-size:13px;font-weight:700;
+  padding:8px 16px;border-radius:10px;text-decoration:none}
+
+.body{padding:36px 28px 80px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px;margin-bottom:18px}
+h1{font-size:30px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:14px}
+.byline{font-size:14px;color:var(--g400);margin-bottom:8px}
+.source-note{font-size:13px;color:var(--g400);padding-bottom:24px;border-bottom:1px solid var(--g200);margin-bottom:28px}
+p{font-size:16.5px;color:var(--g700);margin-bottom:16px}
+b,strong{font-weight:700;color:var(--g900)}
+mark{background:var(--green-bg);color:var(--g900);padding:1px 2px;border-radius:2px;font-weight:500}
+mark.b{background:var(--blue-bg)}
+mark.r{background:var(--red-bg)}
+
+/* 섹션 */
+section{padding-top:44px}
+.sec-head{margin-bottom:20px}
+.sec-head .l1{font-size:22px;font-weight:800;line-height:1.4;letter-spacing:-0.03em}
+.sec-head .l2{font-size:22px;font-weight:800;line-height:1.4;letter-spacing:-0.03em}
+.sub-head{font-size:17px;font-weight:700;margin:32px 0 12px;display:flex;align-items:center;gap:7px}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 24px}
+.kpi{background:var(--g50);border-radius:14px;padding:16px 18px}
+.kpi .l{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:4px}
+.kpi .v{font-size:23px;font-weight:800;letter-spacing:-0.03em}
+.kpi .d{font-size:13px;font-weight:700;margin-top:2px}
+.pos{color:var(--green)} .neg{color:var(--red)} .amb{color:var(--amber)}
+
+.verdict{display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);color:var(--green);
+  font-size:13px;font-weight:800;padding:6px 14px;border-radius:20px;margin-left:8px;vertical-align:middle}
+
+/* 강조 박스 */
+.callout{background:var(--blue-bg);border-radius:14px;padding:18px 20px;margin:22px 0;
+  font-size:16.5px;font-weight:700;color:var(--g900);line-height:1.6}
+.callout .cap{display:block;font-size:12.5px;font-weight:700;color:var(--blue);margin-bottom:6px;letter-spacing:0}
+
+/* 차트 */
+.chart{background:var(--g50);border-radius:16px;padding:20px 16px 12px;margin:20px 0 8px}
+.chart .ct{font-size:14px;font-weight:700;padding:0 6px 4px;color:var(--g900)}
+.chart .cs{font-size:12.5px;font-weight:500;color:var(--g400);padding:0 6px 12px;display:block}
+svg{width:100%;height:auto;display:block}
+.s-lab{font-size:12.5px;fill:var(--g400);font-weight:600}
+.s-val{font-size:13px;fill:var(--g900);font-weight:800}
+.s-yoy{font-size:12px;fill:var(--green);font-weight:800}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--g500);padding:8px 6px 4px;font-weight:600}
+.legend .d{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
+
+/* 표 */
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0 20px}
+th,td{padding:12px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+th:first-child,td:first-child{text-align:left}
+thead th{color:var(--g500);font-size:13px;font-weight:600;border-bottom:1px solid var(--g200)}
+tbody td{color:var(--g700);font-weight:500}
+tbody tr.hl td{background:var(--g50);font-weight:700;color:var(--g900)}
+/* 가이던스 비교표 */
+.gtable{margin:8px 0 10px}
+.gtable thead th{background:var(--g50)}
+.gtable thead th:first-child{border-radius:10px 0 0 0}
+.gtable thead th:last-child{border-radius:0 10px 0 0}
+.gtable td.g{font-weight:700;color:var(--g900)}
+.gtable td.diff{font-weight:800}
+.g-note{font-size:13.5px;color:var(--g500);font-weight:600;margin:-6px 0 18px}
+
+/* 토스 스타일 분기 재무 */
+.fin-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 8px}
+.fin-kpi{background:var(--g50);border-radius:14px;padding:16px 18px}
+.fin-kpi .l{font-size:12.5px;color:var(--g500);font-weight:600}
+.fin-kpi .v{font-size:22px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.fin-kpi .s{font-size:12px;color:var(--g400);font-weight:600;margin-top:2px}
+.fin-block{margin-top:26px}
+.fin-block h4{font-size:17px;font-weight:800;letter-spacing:-0.03em}
+.fin-block .lede{font-size:14.5px;color:var(--g600);margin:6px 0 4px;font-weight:500}
+.period-chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:12px;
+  font-weight:700;padding:5px 12px;border-radius:20px;margin:8px 6px 4px 0}
+.cv{font-size:12.5px;font-weight:800;fill:var(--g900)}
+.cl{font-size:11.5px;font-weight:600;fill:var(--g400)}
+.clegend{display:flex;gap:14px;font-size:12px;color:var(--g500);font-weight:600;padding:6px 8px 2px;flex-wrap:wrap}
+.clegend .d{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
+.clegend .ln{width:14px;height:3px;border-radius:2px;display:inline-block;margin-right:5px;vertical-align:3px}
+@media(max-width:600px){.fin-kpis{grid-template-columns:1fr 1fr}.fin-kpis .fin-kpi:last-child{grid-column:span 2}}
+/* 지난 분기 체크포인트 점검 */
+.wp-list{display:flex;flex-direction:column;gap:10px;margin:16px 0 20px}
+.wp{display:flex;gap:14px;background:var(--g50);border-radius:14px;padding:16px 18px}
+.wp-badge{flex:0 0 auto;align-self:flex-start;font-size:12px;font-weight:800;
+  padding:5px 12px;border-radius:20px;white-space:nowrap}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp.partial .wp-badge{background:var(--amber-bg);color:var(--amber)}
+.wp.hold .wp-badge{background:var(--g100);color:var(--g500)}
+.wp-q{font-size:15px;font-weight:700;color:var(--g900);line-height:1.5}
+.wp-a{font-size:14.5px;color:var(--g600);margin-top:4px;line-height:1.55}
+.wp-score{font-size:14px;color:var(--g500);font-weight:600;margin:-8px 0 20px}
+.wp-preview{background:var(--blue-bg);border-radius:14px;padding:16px 18px;
+  font-size:14.5px;color:var(--g700);font-weight:500;margin:4px 0 8px}
+
+.gtable td.none{color:var(--g400);font-weight:500}
+.tag{display:inline-block;background:var(--g100);color:var(--g500);font-size:10.5px;font-weight:700;
+  padding:2px 7px;border-radius:6px;margin-left:5px;vertical-align:1px}
+.pending{background:var(--amber-bg);color:var(--amber);border-radius:14px;
+  padding:18px 20px;font-weight:700;font-size:15.5px;margin:16px 0}
+
+/* 인용 */
+.quote{border-left:3px solid var(--blue);padding:2px 0 2px 16px;margin:18px 0;
+  font-size:16.5px;color:var(--g700);line-height:1.65}
+.quote .who{display:block;font-size:13.5px;color:var(--g400);font-weight:600;margin-top:8px}
+
+/* 키워드 */
+.kws{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 20px}
+.kws span{background:var(--blue-bg);color:var(--blue);font-size:13.5px;font-weight:700;
+  padding:7px 14px;border-radius:20px}
+
+/* 장단점 */
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 22px}
+.pc{border-radius:14px;padding:18px}
+.pc.good{background:var(--green-bg)}
+.pc.bad{background:var(--red-bg)}
+.pc h4{font-size:15px;font-weight:800;margin-bottom:10px}
+.pc.good h4{color:var(--green)} .pc.bad h4{color:var(--red)}
+.pc ul{list-style:none}
+.pc li{font-size:14.5px;color:var(--g700);padding-left:14px;position:relative;margin-bottom:9px;line-height:1.55}
+.pc li:before{content:'';position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--g400)}
+.pc li:last-child{margin-bottom:0}
+
+/* 리스트 */
+ul.dots{list-style:none;margin:6px 0 18px}
+ul.dots li{font-size:16.5px;color:var(--g700);padding-left:16px;position:relative;margin-bottom:12px}
+ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--g400)}
+.foot-note{font-size:13px;color:var(--g400);margin-top:-6px;margin-bottom:16px}
+
+/* 다음 일정 */
+.next{background:var(--g50);border-radius:14px;padding:18px 20px;margin-top:24px}
+.next .t{font-size:13px;color:var(--g500);font-weight:700;margin-bottom:4px}
+.next .d{font-size:18px;font-weight:800}
+
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:25px}
+  .kpis,.pros-cons{grid-template-columns:1fr}
+  .sec-head .l1,.sec-head .l2{font-size:20px}
+  p,ul.dots li{font-size:16px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="gnb">
+  <div class="brand"><span class="dot">📊</span> 실적브리핑</div>
+  <a class="home" href="index.html">전체 보고서</a>
+</div>
+
+<div class="body">
+
+<span class="chip">#실적분석 #O</span>
+<h1>배당은 그대로, 성장 눈높이는 올렸어요<br>리얼티인컴 2026 Q2<span class="verdict" style="background:var(--amber-bg);color:var(--amber)">MIXED</span></h1>
+<div class="byline">2026.08.08 · FY2026 Q2 (2026.04~06) · 발표 2026.08.06 (한국시간)</div>
+<div class="source-note">출처: Realty Income IR·8-K, Zacks(Yahoo Finance), Investing.com, Seeking Alpha, stockanalysis.com</div>
+
+<p>안녕하세요. 보유 종목 실적 브리핑이에요.</p>
+<p>이번 분기 리얼티인컴은 <b>월배당 REIT다운 무난한 성적표</b>를 냈어요. AFFO는 예상에 딱 맞았고 매출은 소폭 웃돌았는데, GAAP EPS는 예상을 살짝 밑돌았어요. 그보다 눈에 띄는 건 <mark>연간 AFFO 가이던스와 투자 목표를 둘 다 올렸고, 데이터센터라는 새 성장 채널을 공식화했다는 점</mark>이에요.</p>
+
+<!-- ① -->
+<section>
+<div class="sec-head">
+  <div class="l1">📌 ① 실적 해석,</div>
+  <div class="l2">조용히 예상대로, 가이던스는 위로</div>
+</div>
+
+<div class="kpis">
+  <div class="kpi"><div class="l">매출</div><div class="v">$1.548B</div><div class="d pos">YoY +9.7% · 컨센서스 $1.53B 상회</div></div>
+  <div class="kpi"><div class="l">AFFO/주</div><div class="v">$1.09</div><div class="d amb">YoY +3.8% · 예상 $1.09 부합</div></div>
+  <div class="kpi"><div class="l">GAAP EPS</div><div class="v">$0.37</div><div class="d neg">예상 $0.39 → Miss</div></div>
+  <div class="kpi"><div class="l">포트폴리오 점유율</div><div class="v">98.8%</div><div class="d pos">재계약 임대료 회수율 100% 이상</div></div>
+</div>
+
+<p>REIT는 감가상각이 커서 GAAP EPS보다 <b>AFFO(조정 운영자금)</b>가 실질 수익력을 보여줘요. AFFO/주 $1.09는 컨센서스에 정확히 부합했고, 상반기 누적으로는 $2.22로 <b>+5.2% 성장</b>해 작년 같은 기간보다 속도가 붙었어요. 매출 $1.548B는 컨센서스($1.53B)를 <b>약 1.2% 웃돌았어요.</b></p>
+
+<div class="chart">
+  <div class="ct">AFFO/주: 시장 예상 vs 실제 (2026 Q2)</div>
+  <span class="cs">과거 분기 컨센서스는 확인되지 않아 이번 분기만 표시했어요</span>
+  <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg"><line x1="120" y1="200" x2="580" y2="200" stroke="#E5E8EB" stroke-width="1"/><rect x="260" y="50.0" width="60" height="150.0" fill="#D1D6DB" rx="6"/><rect x="360" y="50.0" width="60" height="150.0" fill="#3182F6" rx="6"/><text x="290" y="42.0" text-anchor="middle" class="s-lab">1.09</text><text x="390" y="42.0" text-anchor="middle" class="s-val">$1.09</text><text x="290" y="224" text-anchor="middle" class="s-lab">시장 예상</text><text x="390" y="224" text-anchor="middle" class="s-lab">실제</text><text x="350" y="30" text-anchor="middle" class="s-val">AFFO/주 ($)</text></svg>
+  <div class="legend"><span><span class="d" style="background:#D1D6DB"></span>시장 예상</span><span><span class="d" style="background:#3182F6"></span>실제</span></div>
+</div>
+
+<div class="sub-head">🔮 회사 전망치 vs 시장 예상치</div>
+<p>리얼티인컴은 분기 가이던스를 주지 않는 대신 <b>연간 AFFO와 투자 규모</b>로 눈높이를 제시하는데, 이번에 둘 다 올렸어요.</p>
+<table class="gtable">
+<thead><tr><th>항목</th><th>회사 가이던스</th><th>시장 예상</th><th>차이</th></tr></thead>
+<tbody>
+<tr class="hl"><td>연간 AFFO/주</td><td class="g">$4.44~4.45</td><td></td><td></td></tr>
+<tr><td>연간 투자 규모</td><td class="g">$10B</td><td></td><td></td></tr>
+<tr><td>다음 분기 매출·EPS</td><td class="none">회사 가이던스 미제시</td><td></td><td></td></tr>
+<tr><td>마진 · CapEx</td><td class="none">회사 가이던스 미제시</td><td></td><td></td></tr>
+</tbody>
+</table>
+<div class="g-note">직전 가이던스 대비 AFFO/주 <b>+$0.02 상향</b>($4.42~4.43→$4.44~4.45), 투자 규모 <b>+$0.5B 상향</b>($9.5B→$10B) · 빈 칸은 시장 컨센서스를 확인하지 못한 항목이에요(S&amp;P 집계 FFO/주 $4.37은 AFFO와 산식이 달라 직접 비교하지 않았어요)</div>
+<p>가이던스 중앙값 기준 올해 AFFO 성장률은 <b>약 +4%</b>예요. 화려하진 않지만, <mark>연간 투자 목표를 $10B로 올린 건 "살 만한 물건이 계속 보인다"는 뜻</mark>이라 배당 성장의 연료가 유지된다는 신호로 읽을 수 있어요. 마진·CapEx 가이던스는 임대업 특성상 원래 제시하지 않아요.</p>
+
+<div class="sub-head">💵 포워드 이익과 밸류에이션</div>
+<table class="gtable">
+<thead><tr><th>구분</th><th>FY2025 (실적)</th><th>FY2026 (E)</th><th>FY2027 (E)</th></tr></thead>
+<tbody>
+<tr class="hl"><td>조정 EPS</td><td>$1.19</td><td class="g">$1.61</td><td class="g">$1.71</td></tr>
+<tr><td>EPS 성장률</td><td>+9.6%</td><td class="pos">+35.9%</td><td class="pos">+5.9%</td></tr>
+<tr><td>매출</td><td>$5.76B</td><td>$5.81B</td><td>$6.21B</td></tr>
+<tr><td><b>P/AFFO</b> <span class="tag">가이던스 기준</span></td><td>—</td><td class="diff">14.1배</td><td>—</td></tr>
+<tr><td>Forward P/E</td><td>—</td><td>38.8배</td><td>36.6배</td></tr>
+</tbody>
+</table>
+<div class="g-note">주가 $62.51(2026.08.07 종가) 기준 · 추정치 출처: S&amp;P Global Market Intelligence(2026.07.22 갱신 ⚠️ 발표 이전 갱신본이라 이후 조정될 수 있어요) · 애널리스트 9명</div>
+<p>REIT는 P/E보다 <b>P/AFFO</b>로 보는 게 맞아요. 가이던스 중앙값($4.445) 기준 <b>14.1배</b>로, 역사적 평균(15배 안팎) 대비 <mark>비싸지도 싸지도 않은 중립 구간</mark>이에요. 배당수익률은 월배당 연환산 기준 5%대라, 결국 이 종목의 투자 포인트는 시세차익보다 <b>현금흐름의 안정성</b>이에요.</p>
+
+<div class="chart">
+  <div class="ct">연도별 FFO/주와 P/FFO</div>
+  <span class="cs">FY2024·FY2025는 실적, FY2026은 추정치 · P/FFO는 주가 $62.51 기준 계산값</span>
+  <svg viewBox="0 0 700 290" xmlns="http://www.w3.org/2000/svg"><line x1="60" y1="44.0" x2="640" y2="44.0" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="94.5" x2="640" y2="94.5" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="145.0" x2="640" y2="145.0" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="195.5" x2="640" y2="195.5" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="246.0" x2="640" y2="246.0" stroke="#EDEFF2" stroke-width="1"/><rect x="118.0" y="90.0" width="77.3" height="156.0" rx="6" fill="#C9DEFB"/><text x="156.7" y="80.0" text-anchor="middle" class="cv">$4.01</text><text x="156.7" y="274" text-anchor="middle" class="cl">FY2024 (실적)</text><rect x="311.3" y="80.7" width="77.3" height="165.3" rx="6" fill="#C9DEFB"/><text x="350.0" y="70.7" text-anchor="middle" class="cv">$4.25</text><text x="350.0" y="274" text-anchor="middle" class="cl">FY2025 (실적)</text><rect x="504.6" y="76.0" width="77.3" height="170.0" rx="6" fill="#3182F6"/><text x="543.3" y="66.0" text-anchor="middle" class="cv">$4.37</text><text x="543.3" y="274" text-anchor="middle" class="cl">FY2026 (E)</text><polyline points="156.7,70.0 350.0,158.7 543.3,200.0" fill="none" stroke="#FF9500" stroke-width="3" stroke-linejoin="round"/><circle cx="156.7" cy="70.0" r="5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="156.7" y="57.0" text-anchor="middle" class="cv" fill="#FF9500">15.6배</text><circle cx="350.0" cy="158.7" r="5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="350.0" y="145.7" text-anchor="middle" class="cv" fill="#FF9500">14.7배</text><circle cx="543.3" cy="200.0" r="5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="543.3" y="187.0" text-anchor="middle" class="cv" fill="#FF9500">14.3배</text><text x="60" y="24" class="cl">막대 = FFO/주</text><text x="640" y="24" text-anchor="end" class="cl" fill="#FF9500">선 = P/FFO (주가 $62.51 기준)</text></svg>
+</div>
+
+<div class="callout"><span class="cap">한 문장 요약</span>실적은 예상대로, 가이던스는 위로. 서프라이즈는 없지만 배당 REIT에게는 이게 정답에 가까운 분기예요.</div>
+</section>
+
+<!-- ② -->
+<section>
+<div class="sec-head">
+  <div class="l1">📈 ② 재무제표 뜯어보기,</div>
+  <div class="l2">한 자릿수 성장이 몸에 뱄어요</div>
+</div>
+
+<div class="sub-head">🏠 매출은 꾸준히 우상향이에요</div>
+<div class="chart">
+  <div class="ct">분기 매출 추이 ($M)와 전년 대비 성장률</div>
+  <svg viewBox="0 0 700 255" xmlns="http://www.w3.org/2000/svg"><line x1="40" y1="210" x2="670" y2="210" stroke="#E5E8EB" stroke-width="1"/><rect x="82" y="46.2" width="56" height="163.8" fill="#B8D5FB" rx="6"/><text x="110" y="40.2" text-anchor="middle" class="s-val">1,410</text><text x="110" y="26.2" text-anchor="middle" class="s-yoy">+5.3%</text><text x="110" y="232" text-anchor="middle" class="s-lab">2025 Q2</text><rect x="202" y="39.1" width="56" height="170.9" fill="#A3C9FA" rx="6"/><text x="230" y="33.1" text-anchor="middle" class="s-val">1,471</text><text x="230" y="19.1" text-anchor="middle" class="s-yoy">+10.5%</text><text x="230" y="232" text-anchor="middle" class="s-lab">2025 Q3</text><rect x="322" y="37.1" width="56" height="172.9" fill="#7BB0F8" rx="6"/><text x="350" y="31.1" text-anchor="middle" class="s-val">1,488</text><text x="350" y="17.1" text-anchor="middle" class="s-yoy">+11.0%</text><text x="350" y="232" text-anchor="middle" class="s-lab">2025 Q4</text><rect x="442" y="30.0" width="56" height="180.0" fill="#5497F7" rx="6"/><text x="470" y="24.0" text-anchor="middle" class="s-val">1,549</text><text x="470" y="10.0" text-anchor="middle" class="s-yoy">+12.2%</text><text x="470" y="232" text-anchor="middle" class="s-lab">2026 Q1</text><rect x="562" y="30.1" width="56" height="179.9" fill="#3182F6" rx="6"/><text x="590" y="24.1" text-anchor="middle" class="s-val">1,548</text><text x="590" y="10.1" text-anchor="middle" class="s-yoy">+9.7%</text><text x="590" y="232" text-anchor="middle" class="s-lab">2026 Q2</text></svg>
+</div>
+<p>성장률이 +5% → +10% → +11% → +12% → <b>+9.7%</b>로 두 자릿수 언저리를 유지하고 있어요. 임대료 인상분에 신규 투자(부동산 매입)가 얹히는 구조라, <b>투자 규모 가이던스($10B)가 곧 내년 매출 성장률</b>이라고 보면 돼요.</p>
+
+<div class="sub-head">🧾 매출의 86%가 순수 임대료예요</div>
+<div class="chart">
+  <div class="ct">2026 Q2 매출 구성 ($1,548M)</div>
+  <svg viewBox="0 0 700 115" xmlns="http://www.w3.org/2000/svg"><rect x="50.0" y="25" width="519.2" height="46" fill="#3182F6" rx="8"/><text x="309.6" y="53.0" text-anchor="middle" class="s-val" fill="#fff">임대(순수) $1,335M</text><text x="309.6" y="93" text-anchor="middle" class="s-lab">86%</text><rect x="571.2" y="25" width="35.4" height="46" fill="#15C47E" rx="8"/><text x="588.9" y="93" text-anchor="middle" class="s-lab">환급형 6%</text><rect x="608.6" y="25" width="47.4" height="46" fill="#B0B8C1" rx="8"/><text x="632.3" y="93" text-anchor="middle" class="s-lab">기타 8%</text></svg>
+</div>
+<p>환급형 임대(관리비 등을 세입자에게 청구)와 이자 등 기타를 빼면 <b>순수 임대수익이 $1.34B</b>이에요. 15,600여 개 자산에 분산돼 있고 점유율 98.8%, 재계약 임대료 회수율 100% 이상이라 <mark>임대 현금흐름 자체는 매우 안정적</mark>이에요.</p>
+
+<div class="sub-head">💰 마진 구조</div>
+<div class="chart">
+  <div class="ct">2026 Q2 마진 프로필 (%)</div>
+  <span class="cs">AFFO 마진은 AFFO/주 × 주식수로 역산한 값이에요 ⚠️</span>
+  <svg viewBox="0 0 700 171" xmlns="http://www.w3.org/2000/svg"><text x="140" y="40" text-anchor="end" class="s-lab">매출총이익률</text><rect x="150" y="25" width="510.0" height="24" fill="#3182F6" rx="6"/><text x="646.0" y="41" text-anchor="end" class="s-val" fill="#fff">92.7%</text><text x="140" y="74" text-anchor="end" class="s-lab">영업이익률</text><rect x="150" y="59" width="238.2" height="24" fill="#5AD3A0" rx="6"/><text x="374.2" y="75" text-anchor="end" class="s-val" fill="#fff">43.3%</text><text x="140" y="108" text-anchor="end" class="s-lab">AFFO 마진 (역산)</text><rect x="150" y="93" width="349.4" height="24" fill="#15C47E" rx="6"/><text x="485.4" y="109" text-anchor="end" class="s-val" fill="#fff">63.5%</text><text x="140" y="142" text-anchor="end" class="s-lab">GAAP 순이익률</text><rect x="150" y="127" width="131.5" height="24" fill="#7BB0F8" rx="6"/><text x="267.5" y="143" text-anchor="end" class="s-val" fill="#fff">23.9%</text></svg>
+</div>
+<p>매출총이익률 92.7%는 임대업의 특성이고, 관건은 아래 단이에요. <b>영업이익률 43.3%는 최근 12개 분기 중 최고</b> 수준까지 올라왔어요. GAAP 순이익률(23.9%)이 낮아 보이는 건 감가상각 때문이라 걱정할 부분은 아니에요.</p>
+
+<div class="sub-head">📊 최근 3년 분기 재무</div>
+<div class="fin-kpis">
+  <div class="fin-kpi"><div class="l">부채비율</div><div class="v amb">82.3%</div><div class="s">총부채 ÷ 총자본</div></div>
+  <div class="fin-kpi"><div class="l">유동비율</div><div class="v amb">44.5%</div><div class="s">단기 지급능력</div></div>
+  <div class="fin-kpi"><div class="l">순현금</div><div class="v neg">-$25.3B</div><div class="s">현금·투자 − 총부채</div></div>
+</div>
+<p>차입금 $32.1B을 지고 있는 <b>전형적인 레버리지 REIT 구조</b>예요. 부동산을 담보로 싸게 빌려 임대수익률과의 차이를 먹는 사업이라 순현금이 마이너스인 건 정상이지만, <mark class="r">금리가 다시 오르면 조달비용이 AFFO를 갉아먹는 구조라는 점</mark>은 늘 염두에 둬야 해요.</p>
+<div><span class="period-chip">최근 3년</span><span class="period-chip">분기별</span></div>
+
+<div class="fin-block">
+  <h4>수익성</h4>
+  <div class="lede">매출·순이익률 — 2026년 2분기 매출 <b>$1.55B</b>, 순이익률은 <b>23.9%</b>로 12개 분기 내 최고예요.</div>
+  <div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30.0" x2="654" y2="30.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87.0" x2="654" y2="87.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144.0" x2="654" y2="144.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201.0" x2="654" y2="201.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#EDEFF2" stroke-width="1"/><rect x="23.8" y="105.1" width="30.0" height="152.9" rx="4" fill="#C9DEFB"/><rect x="77.3" y="99.6" width="30.0" height="158.4" rx="4" fill="#C9DEFB"/><rect x="130.8" y="72.5" width="30.0" height="185.5" rx="4" fill="#C9DEFB"/><rect x="184.3" y="60.9" width="30.0" height="197.1" rx="4" fill="#C9DEFB"/><rect x="237.8" y="62.1" width="30.0" height="195.9" rx="4" fill="#C9DEFB"/><rect x="291.3" y="60.8" width="30.0" height="197.2" rx="4" fill="#C9DEFB"/><rect x="344.8" y="54.7" width="30.0" height="203.3" rx="4" fill="#C9DEFB"/><rect x="398.3" y="50.5" width="30.0" height="207.5" rx="4" fill="#C9DEFB"/><rect x="451.8" y="41.5" width="30.0" height="216.5" rx="4" fill="#C9DEFB"/><rect x="505.3" y="39.0" width="30.0" height="219.0" rx="4" fill="#C9DEFB"/><rect x="558.8" y="30.0" width="30.0" height="228.0" rx="4" fill="#C9DEFB"/><rect x="612.3" y="30.1" width="30.0" height="227.9" rx="4" fill="#3182F6"/><polyline points="38.8,70.8 92.2,87.1 145.8,163.7 199.2,94.5 252.8,87.5 306.2,129.3 359.8,104.3 413.2,136.4 466.8,77.9 520.2,88.3 573.8,84.8 627.2,59.6" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="627.2" cy="59.6" r="4.5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="619.2" y="48.6" text-anchor="end" class="cv" fill="#FF9500">23.9%</text><text x="627.2" y="22.1" text-anchor="middle" class="cv">1.55B</text><text x="38.8" y="284" text-anchor="middle" class="cl">23 Q3</text><text x="145.8" y="284" text-anchor="middle" class="cl">24 Q1</text><text x="252.8" y="284" text-anchor="middle" class="cl">24 Q3</text><text x="359.8" y="284" text-anchor="middle" class="cl">25 Q1</text><text x="466.8" y="284" text-anchor="middle" class="cl">25 Q3</text><text x="573.8" y="284" text-anchor="middle" class="cl">26 Q1</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>매출(막대)</span><span><span class="ln" style="background:#FF9500"></span>순이익률(선)</span></div></div>
+</div>
+
+<div class="fin-block">
+  <h4>성장성</h4>
+  <div class="lede">영업이익·영업이익률 — 영업이익 <b>$669M</b>, 영업이익률 <b>43.3%</b>로 우상향 추세예요.</div>
+  <div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30.0" x2="654" y2="30.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87.0" x2="654" y2="87.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144.0" x2="654" y2="144.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201.0" x2="654" y2="201.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#EDEFF2" stroke-width="1"/><rect x="23.8" y="115.9" width="30.0" height="142.1" rx="4" fill="#C9DEFB"/><rect x="77.3" y="107.0" width="30.0" height="151.0" rx="4" fill="#C9DEFB"/><rect x="130.8" y="133.5" width="30.0" height="124.5" rx="4" fill="#C9DEFB"/><rect x="184.3" y="91.2" width="30.0" height="166.8" rx="4" fill="#C9DEFB"/><rect x="237.8" y="91.5" width="30.0" height="166.5" rx="4" fill="#C9DEFB"/><rect x="291.3" y="103.2" width="30.0" height="154.8" rx="4" fill="#C9DEFB"/><rect x="344.8" y="86.4" width="30.0" height="171.6" rx="4" fill="#C9DEFB"/><rect x="398.3" y="100.6" width="30.0" height="157.4" rx="4" fill="#C9DEFB"/><rect x="451.8" y="61.6" width="30.0" height="196.4" rx="4" fill="#C9DEFB"/><rect x="505.3" y="68.8" width="30.0" height="189.2" rx="4" fill="#C9DEFB"/><rect x="558.8" y="52.8" width="30.0" height="205.2" rx="4" fill="#C9DEFB"/><rect x="612.3" y="30.0" width="30.0" height="228.0" rx="4" fill="#3182F6"/><polyline points="38.8,73.0 92.2,68.6 145.8,121.2 199.2,88.6 252.8,87.8 306.2,100.1 359.8,88.8 413.2,105.0 466.8,77.1 520.2,85.2 573.8,78.4 627.2,59.6" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="627.2" cy="59.6" r="4.5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="619.2" y="48.6" text-anchor="end" class="cv" fill="#FF9500">43.3%</text><text x="627.2" y="22.0" text-anchor="middle" class="cv">669M</text><text x="38.8" y="284" text-anchor="middle" class="cl">23 Q3</text><text x="145.8" y="284" text-anchor="middle" class="cl">24 Q1</text><text x="252.8" y="284" text-anchor="middle" class="cl">24 Q3</text><text x="359.8" y="284" text-anchor="middle" class="cl">25 Q1</text><text x="466.8" y="284" text-anchor="middle" class="cl">25 Q3</text><text x="573.8" y="284" text-anchor="middle" class="cl">26 Q1</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>영업이익(막대)</span><span><span class="ln" style="background:#FF9500"></span>영업이익률(선)</span></div></div>
+</div>
+
+<div class="fin-block">
+  <h4>안정성</h4>
+  <div class="lede">총자본·총부채·부채비율 — 자본 <b>$41.9B</b>, 부채비율은 <b>82.3%</b>로 조금씩 오르는 중이에요. 투자를 늘리는 만큼 조달도 늘어나는 구조예요.</div>
+  <div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30.0" x2="654" y2="30.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87.0" x2="654" y2="87.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144.0" x2="654" y2="144.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201.0" x2="654" y2="201.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#EDEFF2" stroke-width="1"/><rect x="21.2" y="85.0" width="16.1" height="173.0" rx="3" fill="#C9DEFB"/><rect x="40.2" y="130.2" width="16.1" height="127.8" rx="3" fill="#D8DEE6"/><rect x="74.7" y="78.0" width="16.1" height="180.0" rx="3" fill="#C9DEFB"/><rect x="93.8" y="123.9" width="16.1" height="134.1" rx="3" fill="#D8DEE6"/><rect x="128.2" y="45.1" width="16.1" height="212.9" rx="3" fill="#C9DEFB"/><rect x="147.2" y="100.3" width="16.1" height="157.7" rx="3" fill="#D8DEE6"/><rect x="181.7" y="47.3" width="16.1" height="210.7" rx="3" fill="#C9DEFB"/><rect x="200.8" y="99.5" width="16.1" height="158.5" rx="3" fill="#D8DEE6"/><rect x="235.2" y="47.7" width="16.1" height="210.3" rx="3" fill="#C9DEFB"/><rect x="254.2" y="96.0" width="16.1" height="162.0" rx="3" fill="#D8DEE6"/><rect x="288.7" y="45.7" width="16.1" height="212.3" rx="3" fill="#C9DEFB"/><rect x="307.8" y="96.1" width="16.1" height="161.9" rx="3" fill="#D8DEE6"/><rect x="342.2" y="44.6" width="16.1" height="213.4" rx="3" fill="#C9DEFB"/><rect x="361.2" y="92.1" width="16.1" height="165.9" rx="3" fill="#D8DEE6"/><rect x="395.7" y="44.0" width="16.1" height="214.0" rx="3" fill="#C9DEFB"/><rect x="414.8" y="83.7" width="16.1" height="174.3" rx="3" fill="#D8DEE6"/><rect x="449.2" y="44.5" width="16.1" height="213.5" rx="3" fill="#C9DEFB"/><rect x="468.2" y="83.9" width="16.1" height="174.1" rx="3" fill="#D8DEE6"/><rect x="502.7" y="39.8" width="16.1" height="218.2" rx="3" fill="#C9DEFB"/><rect x="521.8" y="80.4" width="16.1" height="177.6" rx="3" fill="#D8DEE6"/><rect x="556.2" y="33.8" width="16.1" height="224.2" rx="3" fill="#C9DEFB"/><rect x="575.2" y="76.8" width="16.1" height="181.2" rx="3" fill="#D8DEE6"/><rect x="609.7" y="30.0" width="16.1" height="228.0" rx="3" fill="#3182F6"/><rect x="628.8" y="70.4" width="16.1" height="187.6" rx="3" fill="#D8DEE6"/><polyline points="38.8,98.4 92.2,94.3 145.8,97.0 199.2,89.7 252.8,77.7 306.2,82.9 359.8,73.2 413.2,49.1 466.8,48.5 520.2,49.3 573.8,53.4 627.2,43.7" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linejoin="round"/><circle cx="627.2" cy="43.7" r="4.5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="619.2" y="32.7" text-anchor="end" class="cv" fill="#FF9500">82.3%</text><text x="627.2" y="22.0" text-anchor="middle" class="cv">41.93B</text><text x="38.8" y="284" text-anchor="middle" class="cl">23 Q3</text><text x="145.8" y="284" text-anchor="middle" class="cl">24 Q1</text><text x="252.8" y="284" text-anchor="middle" class="cl">24 Q3</text><text x="359.8" y="284" text-anchor="middle" class="cl">25 Q1</text><text x="466.8" y="284" text-anchor="middle" class="cl">25 Q3</text><text x="573.8" y="284" text-anchor="middle" class="cl">26 Q1</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>총자본(막대)</span><span><span class="d" style="background:#D8DEE6"></span>총부채(막대)</span><span><span class="ln" style="background:#FF9500"></span>부채비율(선)</span></div></div>
+</div>
+
+<div class="fin-block">
+  <h4>현금흐름</h4>
+  <div class="lede">영업현금흐름·순현금변동 — 영업으로 <b>$1.15B</b>을 벌었고 현금은 <b>+$179M</b> 늘었어요. 번 돈 대부분은 배당과 신규 부동산 매입으로 나가요.</div>
+  <div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30.0" x2="654" y2="30.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87.0" x2="654" y2="87.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144.0" x2="654" y2="144.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201.0" x2="654" y2="201.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#D1D6DB" stroke-width="1.5"/><rect x="23.8" y="119.3" width="30.0" height="138.7" rx="4" fill="#C9DEFB"/><rect x="77.3" y="113.8" width="30.0" height="144.2" rx="4" fill="#C9DEFB"/><rect x="130.8" y="110.4" width="30.0" height="147.6" rx="4" fill="#C9DEFB"/><rect x="184.3" y="72.0" width="30.0" height="186.0" rx="4" fill="#C9DEFB"/><rect x="237.8" y="98.5" width="30.0" height="159.5" rx="4" fill="#C9DEFB"/><rect x="291.3" y="73.8" width="30.0" height="184.2" rx="4" fill="#C9DEFB"/><rect x="344.8" y="108.7" width="30.0" height="149.3" rx="4" fill="#C9DEFB"/><rect x="398.3" y="56.9" width="30.0" height="201.1" rx="4" fill="#C9DEFB"/><rect x="451.8" y="79.3" width="30.0" height="178.7" rx="4" fill="#C9DEFB"/><rect x="505.3" y="30.0" width="30.0" height="228.0" rx="4" fill="#C9DEFB"/><rect x="558.8" y="92.3" width="30.0" height="165.7" rx="4" fill="#C9DEFB"/><rect x="612.3" y="41.0" width="30.0" height="217.0" rx="4" fill="#3182F6"/><polyline points="38.8,144.2 92.2,187.8 145.8,67.0 199.2,215.0 252.8,173.6 306.2,153.4 359.8,191.0 413.2,59.6 466.8,246.6 520.2,159.9 573.8,177.0 627.2,125.0" fill="none" stroke="#9B7BF4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="627.2" cy="125.0" r="4.5" fill="#fff" stroke="#9B7BF4" stroke-width="3"/><text x="619.2" y="114.0" text-anchor="end" class="cv" fill="#9B7BF4">+179M</text><text x="627.2" y="33.0" text-anchor="middle" class="cv">1.15B</text><text x="38.8" y="284" text-anchor="middle" class="cl">23 Q3</text><text x="145.8" y="284" text-anchor="middle" class="cl">24 Q1</text><text x="252.8" y="284" text-anchor="middle" class="cl">24 Q3</text><text x="359.8" y="284" text-anchor="middle" class="cl">25 Q1</text><text x="466.8" y="284" text-anchor="middle" class="cl">25 Q3</text><text x="573.8" y="284" text-anchor="middle" class="cl">26 Q1</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>영업현금흐름(막대)</span><span><span class="ln" style="background:#9B7BF4"></span>순현금변동(선)</span></div></div>
+</div>
+<p class="foot-note">※ 재무 수치 출처: stockanalysis.com(Fiscal.ai, 2026.08.05 갱신) · 분기 실적이 새로 발표되면 최신 분기만 추가돼요.</p>
+</section>
+
+<!-- ③ -->
+<section>
+<div class="sec-head">
+  <div class="l1">🎙️ ③ 어닝콜에서 나온 이야기,</div>
+  <div class="l2">키워드는 '데이터센터'였어요</div>
+</div>
+
+<div class="kws"><span>#데이터센터 JV</span><span>#투자 $10B</span><span>#AFFO 가이던스 상향</span><span>#유럽 넷리스</span></div>
+
+<div class="quote">"데이터센터는 AI 도입, 클라우드 컴퓨팅, 디지털화와 맞물린 다년(multi-year) 성장 채널입니다."<span class="who">Sumit Roy, CEO · 국문 번역</span></div>
+
+<p>이번 콜의 중심은 <b>Cloud Capital과의 $6B 규모 하이퍼스케일 데이터센터 합작(JV)</b>이었어요. 리얼티인컴이 <b>최대 $1.4B을 투자해 지분 45%</b>를 갖고, 노던버지니아의 3개 자산(총 400MW)으로 시작해요. 편의점·달러스토어 중심의 넷리스 회사가 <mark>AI 인프라 임대업으로 발을 넓히는 첫 대형 딜</mark>이라는 점에서 의미가 커요.</p>
+
+<div class="sub-head">❓ 애널리스트들이 파고든 세 가지</div>
+<ul class="dots">
+<li><b>데이터센터 JV의 리스크는요?</b> 경영진은 하이퍼스케일러와의 장기 임대차 계약 기반이라 기존 넷리스와 리스크 성격이 같다는 점을 강조했어요.</li>
+<li><b>$10B 투자는 어떻게 조달하나요?</b> 약 $9B은 자체 대차대조표로 소화할 계획이라고 해요. 증자 부담이 상대적으로 작다는 뜻이에요.</li>
+<li><b>성장 채널은 어디인가요?</b> 미국·유럽 넷리스, 개발 파트너십 중심의 산업용 부동산, 그리고 데이터센터 JV — 세 갈래로 넓힌다고 답했어요.</li>
+</ul>
+<p class="foot-note">※ 어닝콜 내용은 Investing.com 트랜스크립트와 GuruFocus·Yahoo Finance 하이라이트를 기준으로 정리했어요.</p>
+</section>
+
+<!-- ④ -->
+<section>
+<div class="sec-head">
+  <div class="l1">🧭 ④ 종합 의견,</div>
+  <div class="l2">배당 기계에 성장 옵션이 붙었어요</div>
+</div>
+
+<div class="pros-cons">
+  <div class="pc good"><h4>이런 점이 좋아요</h4><ul>
+    <li>AFFO가 예상에 부합하고 연간 가이던스를 상향했어요</li>
+    <li>투자 목표 $10B — 배당 성장의 연료가 유지돼요</li>
+    <li>점유율 98.8%, 재계약 임대료 회수율 100% 이상으로 임대 기반이 탄탄해요</li>
+    <li>데이터센터 JV로 AI 수혜 채널이 새로 생겼어요</li>
+  </ul></div>
+  <div class="pc bad"><h4>이런 점은 조심해야 해요</h4><ul>
+    <li>GAAP EPS는 예상($0.39)을 밑돌았어요($0.37)</li>
+    <li>AFFO 성장 +4%는 시장 평균보다 느린 속도예요</li>
+    <li>총부채 $32.1B — 금리 재상승 시 조달비용 부담이 커져요</li>
+    <li>데이터센터는 아직 실적 기여 전 단계예요</li>
+  </ul></div>
+</div>
+
+<p><b>밸류에이션은 이렇게 봐요.</b> P/AFFO 14.1배는 중립 구간이고, 애널리스트 24명 중 15명이 중립 의견일 만큼 <mark>시장도 "안정적이지만 밋밋하다"는 시각</mark>이에요. 다만 데이터센터 JV가 실제 AFFO에 기여하기 시작하면 "성장 없는 배당주"라는 꼬리표가 바뀔 여지가 있어요.</p>
+
+<div class="sub-head">🎯 애널리스트 목표주가</div>
+<p>애널리스트 <b>24명</b> 중 8명이 매수, 15명이 중립이에요. 1년 후 목표주가 평균은 <b>$68.0</b>으로 지금보다 <b>8.8% 높은</b> 수준이에요.</p>
+<div class="chart"><svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg"><rect x="74.7" y="134.0" width="54.6" height="6.0" rx="6" fill="#D8DEE6"/><text x="102.0" y="124.0" text-anchor="middle" class="cv">0명</text><text x="102.0" y="162" text-anchor="middle" class="cl">적극 매도</text><rect x="198.7" y="133.3" width="54.6" height="6.7" rx="6" fill="#D8DEE6"/><text x="226.0" y="123.3" text-anchor="middle" class="cv">1명</text><text x="226.0" y="162" text-anchor="middle" class="cl">매도</text><rect x="322.7" y="40.0" width="54.6" height="100.0" rx="6" fill="#D8DEE6"/><text x="350.0" y="30.0" text-anchor="middle" class="cv">15명</text><text x="350.0" y="162" text-anchor="middle" class="cl">중립</text><rect x="446.7" y="120.0" width="54.6" height="20.0" rx="6" fill="#C9DEFB"/><text x="474.0" y="110.0" text-anchor="middle" class="cv">3명</text><text x="474.0" y="162" text-anchor="middle" class="cl">매수</text><rect x="570.7" y="106.7" width="54.6" height="33.3" rx="6" fill="#3182F6"/><text x="598.0" y="96.7" text-anchor="middle" class="cv">5명</text><text x="598.0" y="162" text-anchor="middle" class="cl">적극 매수</text></svg></div>
+<div class="chart">
+  <div class="ct">1년 후 목표주가 전망</div>
+  <span class="cs">목표주가는 S&amp;P Global 집계(2026.07.22 갱신 ⚠️ 발표 이전 기준)</span>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="16" y1="26" x2="692" y2="26" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="106" x2="692" y2="106" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="186" x2="692" y2="186" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="266" x2="692" y2="266" stroke="#EDEFF2" stroke-width="1"/><circle cx="220.0" cy="150.0" r="6" fill="#fff" stroke="#4E5968" stroke-width="3"/><text x="210.0" y="136.0" text-anchor="end" class="cv">현재 $62.51</text><line x1="220.0" y1="150.0" x2="550" y2="50.0" stroke="#F04452" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550" cy="50.0" r="4.5" fill="#fff" stroke="#F04452" stroke-width="3"/><rect x="561" y="39.0" width="134" height="22" rx="11" fill="#F04452" opacity="0.12"/><text x="569" y="54.5" class="cv" fill="#F04452">최고 $72 (+15.2%)</text><line x1="220.0" y1="150.0" x2="550" y2="107.6" stroke="#15C47E" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550" cy="107.6" r="4.5" fill="#fff" stroke="#15C47E" stroke-width="3"/><rect x="561" y="96.6" width="134" height="22" rx="11" fill="#15C47E" opacity="0.12"/><text x="569" y="112.1" class="cv" fill="#15C47E">평균 $68.0 (+8.8%)</text><line x1="220.0" y1="150.0" x2="550" y2="150.8" stroke="#9B7BF4" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550" cy="150.8" r="4.5" fill="#fff" stroke="#9B7BF4" stroke-width="3"/><rect x="561" y="139.8" width="134" height="22" rx="11" fill="#9B7BF4" opacity="0.12"/><text x="569" y="155.3" class="cv" fill="#9B7BF4">중간 $67.5 (+8.0%)</text><line x1="220.0" y1="150.0" x2="550" y2="232.4" stroke="#3182F6" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550" cy="232.4" r="4.5" fill="#fff" stroke="#3182F6" stroke-width="3"/><rect x="561" y="221.4" width="134" height="22" rx="11" fill="#3182F6" opacity="0.12"/><text x="569" y="236.9" class="cv" fill="#3182F6">최저 $61.5 (-1.6%)</text><text x="16" y="288" class="cl">오늘</text><text x="560" y="288" class="cl">1년 후 전망 →</text></svg>
+</div>
+<p>최고 $72(+15%)와 최저 $61.5(-2%)의 폭이 좁아요. <b>큰 하락도 큰 상승도 기대하지 않는다</b>는 뜻이라, 월배당(연 5%대)을 깔고 가는 종목이라는 성격이 목표주가 분포에도 그대로 드러나요.</p>
+
+<div class="sub-head">👀 다음 분기엔 이걸 보면 돼요</div>
+<ul class="dots">
+<li>연간 투자 $10B 목표의 진행 속도 — 3분기까지 누적 투자액이 연간 페이스에 맞는지</li>
+<li>데이터센터 JV의 투자 집행 — $1.4B 집행 진척과 추가 자산 편입 언급이 나오는지</li>
+<li>AFFO 가이던스 상단($4.45) 경로 — Q3 AFFO/주가 분기 $1.11 수준을 넘는지</li>
+<li>점유율 98.8%·재계약 임대료 회수율 100% 이상이 유지되는지</li>
+</ul>
+
+<div class="wp-preview">📌 다음 보고서에서는 위 4가지가 실제로 어떻게 됐는지 <b>하나씩 충족·미충족으로 점검</b>해서 맨 앞에 보여드릴게요.</div>
+<div class="next"><div class="t">다음 실적발표</div><div class="d">2026년 11월 초 예정 <span style="font-size:13px;color:var(--g400);font-weight:600">⚠️ 확정 시 업데이트</span></div></div>
+</section>
+
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+데이터 출처: Realty Income IR·8-K, Zacks(Yahoo Finance), Investing.com, Seeking Alpha, RTTNews, stockanalysis.com · earnings-briefing 스킬 자동 생성
+</div>
+
+</div>
+</div>
+</body>
+</html>
