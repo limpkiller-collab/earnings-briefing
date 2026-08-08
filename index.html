@@ -47,15 +47,62 @@ h1{font-size:30px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margi
 h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display:flex;align-items:center;gap:7px}
 .sec{margin-bottom:44px}
 
+/* KPI 진행 바 */
+.stat .bar{height:4px;border-radius:4px;background:var(--g200);margin-top:9px;overflow:hidden}
+.stat .bar i{display:block;height:100%;background:var(--blue);border-radius:4px}
+.stat .n small{font-size:15px;font-weight:700;color:var(--g400);letter-spacing:-0.02em}
+
+/* 캘린더 */
+.cal-nav{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.cal-btn{width:32px;height:32px;border-radius:9px;border:1px solid var(--g200);background:#fff;
+  cursor:pointer;font-size:14px;color:var(--g600);font-family:inherit;line-height:1}
+.cal-btn.wide{width:auto;padding:0 12px;font-size:12.5px;font-weight:700}
+.cal-ttl{font-size:15.5px;font-weight:800;margin-left:4px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--g200);
+  border:1px solid var(--g200);border-radius:14px;overflow:hidden}
+.cal-hd{background:var(--g50);text-align:center;font-size:11.5px;font-weight:700;color:var(--g500);padding:7px 0}
+.cal .cell{background:#fff;min-height:76px;padding:6px 4px}
+.cal .cell.out{background:var(--g50)}
+.cal .cell .dn{font-size:11.5px;font-weight:700;color:var(--g500);margin-bottom:3px}
+.cal .cell.today .dn{background:var(--blue);color:#fff;border-radius:50%;width:19px;height:19px;
+  display:grid;place-items:center;font-size:11px}
+.cal .cell.sun .dn{color:var(--red)}
+.pill{display:block;width:100%;border:1px solid transparent;font-family:inherit;font-size:10px;
+  font-weight:800;padding:2px 4px;border-radius:5px;margin-bottom:2px;text-align:center;line-height:1.45;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:-0.04em}
+.pill.fix{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-bg);cursor:pointer}
+.pill.fix:active{background:var(--blue);color:#fff}
+.pill.est{background:#fff;color:var(--blue);border:1px dashed var(--blue);opacity:.72;cursor:default}
+.pill.done{background:var(--g100);color:var(--g500);border-color:var(--g100);cursor:default}
+.cal-legend{display:flex;gap:13px;align-items:center;flex-wrap:wrap;margin:11px 0 22px;
+  font-size:12px;color:var(--g500);font-weight:600}
+.cal-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;
+  vertical-align:-1px;border:1px solid transparent}
+.lg-fix{background:var(--blue-bg);border-color:var(--blue-bg)!important}
+.lg-est{background:#fff;border:1px dashed var(--blue)!important}
+.lg-done{background:var(--g100);border-color:var(--g100)!important}
+
 /* 다음 일정 */
 .up-list{display:flex;flex-direction:column;gap:1px;background:var(--g200);border-radius:14px;overflow:hidden}
-.up-row{background:#fff;padding:14px 18px;display:flex;align-items:center;gap:12px}
-.up-row .tk{font-size:15px;font-weight:800;min-width:92px}
-.up-row .dt{font-size:14.5px;color:var(--g500);font-weight:600;margin-left:auto}
+.up-row{background:#fff;padding:14px 18px;display:flex;align-items:center;gap:10px}
+.up-row .tm{width:20px;flex:0 0 20px;text-align:center;font-size:13px}
+.up-row .tk{font-size:15px;font-weight:800;min-width:84px}
+.up-row .co{font-size:13.5px;color:var(--g400);font-weight:600;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.up-row .dt{font-size:14.5px;color:var(--g500);font-weight:600;margin-left:auto;
+  white-space:nowrap;flex:0 0 auto}
 .up-row.soon{background:var(--blue-bg)}
 .up-row.soon .dt{color:var(--blue);font-weight:800}
 .dday{background:var(--blue);color:#fff;font-size:11.5px;font-weight:800;padding:3px 9px;border-radius:20px}
 .est{font-size:12px;color:var(--g400);font-weight:600}
+.hm{font-size:12.5px;color:var(--g400);font-weight:600}
+.sec-foot{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:10px;padding-left:2px;line-height:1.6}
+
+/* 토스트 */
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);
+  background:var(--g900);color:#fff;font-size:13.5px;font-weight:700;padding:12px 18px;border-radius:12px;
+  opacity:0;transition:.22s;pointer-events:none;z-index:50;max-width:88vw;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* 필터 */
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
@@ -106,6 +153,13 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   h1{font-size:25px}
   .stats{grid-template-columns:1fr 1fr}
   .stats .stat:last-child{grid-column:span 2}
+  .cal .cell{min-height:66px;padding:5px 3px}
+  .pill{font-size:9.5px;padding:2px 3px}
+  .cal-ttl{font-size:14px}
+  .up-row{padding:13px 14px;gap:8px}
+  .up-row .tk{font-size:14.5px;min-width:76px}
+  .up-row .co{font-size:12.5px}
+  .up-row .dt{font-size:13.5px}
 }
 </style>
 </head>
@@ -132,7 +186,22 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <div class="sec">
   <h2>🗓️ 다음 실적발표</h2>
+
+  <div class="cal-nav">
+    <button class="cal-btn wide" id="cal-today">이번 달</button>
+    <button class="cal-btn" id="cal-prev">‹</button>
+    <button class="cal-btn" id="cal-next">›</button>
+    <span class="cal-ttl" id="cal-title"></span>
+  </div>
+  <div class="cal" id="cal"></div>
+  <div class="cal-legend">
+    <span><i class="lg-fix"></i>확정 · 탭하면 캘린더 추가</span>
+    <span><i class="lg-est"></i>예상일 · 추가 불가</span>
+    <span><i class="lg-done"></i>발표 완료</span>
+  </div>
+
   <div class="up-list" id="upcoming"></div>
+  <div class="sec-foot">모든 시각은 한국시간 기준이에요 · 평일 오전 9시에 자동으로 일정을 확인해 갱신해요</div>
 </div>
 
 <div class="sec">
@@ -148,6 +217,8 @@ earnings-briefing 스킬이 평일 오전 실적발표를 확인해 자동 생�
 </div>
 </div>
 </div>
+
+<div class="toast" id="toast"></div>
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
@@ -168,106 +239,271 @@ const REPORTS_DB = [
   },
   {
     ticker: "KO", company: "Coca-Cola", quarter: "2026 Q2",
-    report_date: "2026-07-29", created: "2026.08.09", verdict: "BEAT",
+    report_date: "2026-07-28", created: "2026.08.09", verdict: "BEAT",
     oneliner: "매출 +7%, 비교 기준 EPS $0.97로 다섯 분기 연속 상회했어요. 가격이 아니라 물량이 5% 늘어난 성장이라 질이 좋고, 연간 가이던스도 상향했어요.",
     file: "실적브리핑_KO_2026Q2_2026.08.09.html"
   },
   {
     ticker: "MU", company: "Micron", quarter: "FY2026 Q3",
-    report_date: "2026-06-25", created: "2026.08.09", verdict: "BEAT",
+    report_date: "2026-06-26", created: "2026.08.09", verdict: "BEAT",
     oneliner: "매출 $41.5B(+346%), 매출총이익률 84.6%로 메모리 슈퍼사이클의 정점을 보여줬어요. 다음 분기 가이던스 $50B은 컨센서스보다 14.7% 높아요.",
     file: "실적브리핑_MU_FY2026Q3_2026.08.09.html"
   },
   {
     ticker: "MSFT", company: "Microsoft", quarter: "FY2026 Q4",
-    report_date: "2026-07-30", created: "2026.08.09", verdict: "BEAT",
+    report_date: "2026-07-31", created: "2026.08.09", verdict: "BEAT",
     oneliner: "Azure 연 매출 $100B 돌파에 성장률 +43%, 조정 EPS $4.74로 컨센서스를 크게 넘었어요. CapEx 계획을 오히려 낮춰 주가가 8% 뛰었어요.",
     file: "실적브리핑_MSFT_FY2026Q4_2026.08.09.html"
   },
   {
     ticker: "AAPL", company: "Apple", quarter: "FY2026 Q3",
-    report_date: "2026-07-31", created: "2026.08.09", verdict: "MIXED",
+    report_date: "2026-08-01", created: "2026.08.09", verdict: "MIXED",
     oneliner: "매출 $109.4B(+16%)로 6월 분기 최대지만 서비스가 예상을 밑돌았어요. 메모리 가격 급등으로 다음 분기 마진 가이던스를 47~48%로 낮췄어요.",
     file: "실적브리핑_AAPL_FY2026Q3_2026.08.09.html"
   },
   {
     ticker: "GOOGL", company: "Alphabet", quarter: "2026 Q2",
-    report_date: "2026-07-23", created: "2026.08.09", verdict: "MIXED",
+    report_date: "2026-07-24", created: "2026.08.09", verdict: "MIXED",
     oneliner: "매출 +24%, 클라우드 +82%에 백로그 $514B로 사업은 최고조예요. 다만 연간 CapEx를 $195~205B로 또 올려 FCF가 마이너스로 돌아섰어요.",
     file: "실적브리핑_GOOGL_2026Q2_2026.08.09.html"
   },
   {
     ticker: "NVDA", company: "NVIDIA", quarter: "FY2027 Q1",
-    report_date: "2026-05-21", created: "2026.08.09", verdict: "BEAT",
+    report_date: "2026-05-22", created: "2026.08.09", verdict: "BEAT",
     oneliner: "매출 $81.6B(+85%), 데이터센터 +92%로 성장이 재가속됐고 가이던스도 컨센서스를 4.8% 상회했어요. 그럼에도 주가는 5.5% 하락했어요.",
     file: "실적브리핑_NVDA_FY2027Q1_2026.08.09.html"
   },
   {
     ticker: "IONQ", company: "IonQ", quarter: "2026 Q2",
-    report_date: "2026-08-06", created: "2026.08.08", verdict: "BEAT",
+    report_date: "2026-08-07", created: "2026.08.08", verdict: "BEAT",
     oneliner: "매출 $80.1M(+287%)로 컨센서스를 21% 웃돌고 연간 가이던스를 $280~290M로 올렸어요. 다만 손실 폭도 커졌고, PSR 61배는 고성장 지속을 전제한 가격이에요.",
     file: "실적브리핑_IONQ_2026Q2_2026.08.08.html"
   },
   {
     ticker: "O", company: "Realty Income", quarter: "2026 Q2",
-    report_date: "2026-08-06", created: "2026.08.08", verdict: "MIXED",
+    report_date: "2026-08-07", created: "2026.08.08", verdict: "MIXED",
     oneliner: "AFFO $1.09로 예상에 부합했고 연간 AFFO·투자($10B) 가이던스를 상향했어요. 데이터센터 JV로 AI 성장 채널을 새로 열었어요.",
     file: "실적브리핑_O_2026Q2_2026.08.08.html"
   },
   {
     ticker: "SMR", company: "NuScale Power", quarter: "2026 Q2",
-    report_date: "2026-08-06", created: "2026.08.08", verdict: "MISS",
+    report_date: "2026-08-07", created: "2026.08.08", verdict: "MISS",
     oneliner: "RoPower FEED 종료로 매출이 $75K까지 줄었어요. 대신 현금 $1.9B을 쌓아두고 TVA 6~8GW 계약 결과를 기다리는 이벤트 드리븐 국면이에요.",
     file: "실적브리핑_SMR_2026Q2_2026.08.08.html"
   },
   {
     ticker: "PLTR", company: "Palantir", quarter: "2026 Q2",
-    report_date: "2026-08-04", created: "2026.08.08", verdict: "BEAT",
+    report_date: "2026-08-05", created: "2026.08.08", verdict: "BEAT",
     oneliner: "'AI 주권' 수요로 매출이 93% 늘며 성장이 재가속됐어요. 가이던스도 크게 올렸지만, 29% 급등으로 밸류에이션 부담은 다시 커졌어요.",
     file: "실적브리핑_PLTR_2026Q2_2026.08.08.html"
   }
 ];
 
+// 모든 날짜는 한국시간(KST) 기준.
+//   date        : 다음 발표 예정일 (state.json의 next_earnings_date)
+//   estimated   : true면 예상일 — 캘린더 추가 불가, 점선 칩으로 표시
+//   when        : 'bmo'(미국 장 시작 전) | 'amc'(미국 장 마감 후) | null(미확인) — 확정 건만 채운다
+//   utc         : 확정 공시가 있을 때만 채우는 절대시각(예: 20260826T210000Z).
+//                 화면은 항상 KST로 보여주고, 캘린더 일정은 이 값으로 만들어 해외에서도 현지시간 자동 변환된다.
+//   last_report : 직전 실제 발표일 (state.json의 last_report_date) — KPI '이번 분기 발표 n/13' 계산에 쓴다
 const UPCOMING_DB = [
-  { ticker: "CRWV", name: "CoreWeave", date: "2026-08-12", estimated: false },
-  { ticker: "NVDA", name: "NVIDIA", date: "2026-08-27", estimated: false },
-  { ticker: "MU", name: "Micron", date: "2026-09-30", estimated: true },
-  { ticker: "KO", name: "Coca-Cola", date: "2026-10-21", estimated: true },
-  { ticker: "000660", name: "SK하이닉스", date: "2026-10-28", estimated: true },
-  { ticker: "MSFT", name: "Microsoft", date: "2026-10-29", estimated: true },
-  { ticker: "GOOGL", name: "Alphabet", date: "2026-10-29", estimated: true },
-  { ticker: "AAPL", name: "Apple", date: "2026-10-30", estimated: true },
-  { ticker: "ABBV", name: "AbbVie", date: "2026-10-31", estimated: true },
-  { ticker: "PLTR", name: "Palantir", date: "2026-11-04", estimated: true },
-  { ticker: "O", name: "Realty Income", date: "2026-11-04", estimated: true },
-  { ticker: "IONQ", name: "IonQ", date: "2026-11-05", estimated: true },
-  { ticker: "SMR", name: "NuScale Power", date: "2026-11-06", estimated: true }
+  { ticker: "CRWV", name: "CoreWeave", date: "2026-08-12", estimated: false, when: "amc", utc: "20260811T210000Z", last_report: "2026-05-08" },
+  { ticker: "NVDA", name: "NVIDIA", date: "2026-08-27", estimated: false, when: "amc", utc: "20260826T210000Z", last_report: "2026-05-22" },
+  { ticker: "MU", name: "Micron", date: "2026-09-30", estimated: true, when: null, utc: null, last_report: "2026-06-26" },
+  { ticker: "KO", name: "Coca-Cola", date: "2026-10-21", estimated: true, when: null, utc: null, last_report: "2026-07-28" },
+  { ticker: "000660", name: "SK하이닉스", short: "하이닉스", date: "2026-10-28", estimated: true, when: null, utc: null, last_report: "2026-07-29" },
+  { ticker: "MSFT", name: "Microsoft", date: "2026-10-29", estimated: true, when: null, utc: null, last_report: "2026-07-31" },
+  { ticker: "GOOGL", name: "Alphabet", date: "2026-10-29", estimated: true, when: null, utc: null, last_report: "2026-07-24" },
+  { ticker: "AAPL", name: "Apple", date: "2026-10-30", estimated: true, when: null, utc: null, last_report: "2026-08-01" },
+  { ticker: "ABBV", name: "AbbVie", date: "2026-10-31", estimated: true, when: null, utc: null, last_report: "2026-07-31" },
+  { ticker: "PLTR", name: "Palantir", date: "2026-11-04", estimated: true, when: null, utc: null, last_report: "2026-08-05" },
+  { ticker: "O", name: "Realty Income", date: "2026-11-04", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
+  { ticker: "IONQ", name: "IonQ", date: "2026-11-05", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
+  { ticker: "SMR", name: "NuScale Power", date: "2026-11-06", estimated: true, when: null, utc: null, last_report: "2026-08-07" }
 ];
 // ===== 데이터 블록 끝 =====
 
 document.getElementById('last-updated').textContent = LAST_UPDATED;
 
 const tickers = new Set(REPORTS_DB.map(r => r.ticker));
+
+/* ===== 공통 유틸 (모든 표시는 한국시간 기준) ===== */
+const DOW = ['일','월','화','수','목','금','토'];
+const P2 = n => String(n).padStart(2, '0');
+const today = new Date();
+const T0 = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+const dkey = d => `${d.getFullYear()}-${P2(d.getMonth()+1)}-${P2(d.getDate())}`;
+const dparse = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); };
+const dday = s => Math.ceil((dparse(s) - T0) / 86400000);
+const tkLabel = u => u.short || u.ticker;
+
+function utcToDate(s){
+  const m = s.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$/);
+  return new Date(Date.UTC(+m[1], +m[2]-1, +m[3], +m[4], +m[5], +m[6]));
+}
+/* 접속 지역과 무관하게 항상 한국시간으로 표시 */
+function kstParts(d){
+  const KST = { timeZone: 'Asia/Seoul' };
+  return {
+    date: new Intl.DateTimeFormat('en-CA', { ...KST, year:'numeric', month:'2-digit', day:'2-digit' }).format(d),
+    time: new Intl.DateTimeFormat('en-GB', { ...KST, hour:'2-digit', minute:'2-digit', hour12:false }).format(d)
+  };
+}
+const showDate = u => u.utc ? kstParts(utcToDate(u.utc)).date : u.date;
+const showTime = u => u.utc ? kstParts(utcToDate(u.utc)).time : null;
+
+/* ===== KPI — 이번 분기 발표 진행률 =====
+   발표창 = 오늘이 속한 캘린더 분기 / 라벨 = 그 직전 분기
+   (예: 8월이면 7/1~9/30 안에 발표한 종목 수를 '2026 2Q 발표'로 센다) */
+function seasonInfo(){
+  const y = today.getFullYear(), q = Math.floor(today.getMonth() / 3);
+  const lastD = new Date(y, q*3+3, 0).getDate();
+  return {
+    ws: `${y}-${P2(q*3+1)}-01`,
+    we: `${y}-${P2(q*3+3)}-${P2(lastD)}`,
+    label: `${q === 0 ? y-1 : y} ${q === 0 ? 4 : q}Q`
+  };
+}
+const SEASON = seasonInfo();
+const reportedCnt = UPCOMING_DB.filter(u =>
+  u.last_report && u.last_report >= SEASON.ws && u.last_report <= SEASON.we).length;
+const reportedPct = Math.round(reportedCnt / UPCOMING_DB.length * 1000) / 10;
+
 document.getElementById('stats').innerHTML =
   `<div class="stat"><div class="n">${REPORTS_DB.length}</div><div class="l">보고서</div></div>
-   <div class="stat"><div class="n">${tickers.size}</div><div class="l">분석 완료 종목</div></div>
+   <div class="stat">
+     <div class="n">${reportedCnt}<small>/${UPCOMING_DB.length}</small></div>
+     <div class="l">${SEASON.label} 발표</div>
+     <div class="bar"><i style="width:${reportedPct}%"></i></div>
+   </div>
    <div class="stat"><div class="n">${UPCOMING_DB.length}</div><div class="l">모니터링 종목</div></div>`;
 
-const today = new Date();
-const upEl = document.getElementById('upcoming');
-UPCOMING_DB.slice().sort((a,b) => (a.date||'9999') < (b.date||'9999') ? -1 : 1).forEach(u => {
-  let soon = false, right = '일정 확인 중';
-  if (u.date) {
-    const days = Math.ceil((new Date(u.date + 'T09:00:00+09:00') - today) / 86400000);
-    soon = days >= 0 && days <= 14;
-    right = u.date.slice(2).replace(/-/g, '.') + (u.estimated ? ' <span class="est">예상</span>' : '');
-    if (soon) right = `<span class="dday">D-${days}</span> ` + right;
-  }
-  const row = document.createElement('div');
-  row.className = 'up-row' + (soon ? ' soon' : '');
-  row.innerHTML = `<span class="tk">${u.ticker}</span><span class="co" style="font-size:13.5px;color:var(--g400);font-weight:600">${u.name}</span><span class="dt">${right}</span>`;
-  upEl.appendChild(row);
+/* ===== 캘린더 (표시용 · 확정 건만 일정 추가) ===== */
+const CAL_EVENTS = [];
+UPCOMING_DB.forEach(u => {
+  CAL_EVENTS.push({ ...u, d: showDate(u), done: false });
+  if (u.last_report) CAL_EVENTS.push({ ...u, d: u.last_report, done: true });
 });
+
+let calMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+function renderCal(){
+  document.getElementById('cal-title').textContent = `${calMonth.getFullYear()}년 ${calMonth.getMonth()+1}월`;
+  const cal = document.getElementById('cal');
+  cal.innerHTML = '';
+  DOW.forEach(d => {
+    const h = document.createElement('div'); h.className = 'cal-hd'; h.textContent = d; cal.appendChild(h);
+  });
+
+  const first = new Date(calMonth);
+  const days  = new Date(calMonth.getFullYear(), calMonth.getMonth()+1, 0).getDate();
+  const weeks = Math.ceil((first.getDay() + days) / 7);
+  const start = new Date(first); start.setDate(1 - first.getDay());
+
+  for (let i = 0; i < weeks*7; i++){
+    const d = new Date(start); d.setDate(start.getDate()+i);
+    const k = dkey(d), out = d.getMonth() !== calMonth.getMonth();
+    const cell = document.createElement('div');
+    cell.className = 'cell' + (out ? ' out' : '') + (k === dkey(today) ? ' today' : '') + (d.getDay() === 0 ? ' sun' : '');
+    cell.innerHTML = `<div class="dn">${d.getDate()}</div>`;
+    if (!out) CAL_EVENTS.filter(e => e.d === k).forEach(e => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = tkLabel(e);
+      if (e.done){
+        b.className = 'pill done'; b.disabled = true;
+        b.title = `${e.ticker} ${e.name} — 발표 완료`;
+      } else if (e.estimated){
+        b.className = 'pill est'; b.disabled = true;
+        b.title = `${e.ticker} ${e.name} — 예상일이라 캘린더에 추가할 수 없어요`;
+      } else {
+        b.className = 'pill fix';
+        b.title = `${e.ticker} ${e.name} 실적발표 — 탭하면 캘린더에 추가`;
+        b.onclick = () => addToCalendar(e);
+      }
+      cell.appendChild(b);
+    });
+    cal.appendChild(cell);
+  }
+}
+document.getElementById('cal-prev').onclick  = () => { calMonth.setMonth(calMonth.getMonth()-1); renderCal(); };
+document.getElementById('cal-next').onclick  = () => { calMonth.setMonth(calMonth.getMonth()+1); renderCal(); };
+document.getElementById('cal-today').onclick = () => { calMonth = new Date(today.getFullYear(), today.getMonth(), 1); renderCal(); };
+
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(toast._h);
+  toast._h = setTimeout(() => t.classList.remove('on'), 2600);
+}
+
+/* .ics 생성 — 확정 일정만. utc가 있으면 절대시각으로 넣어
+   해외에서 열어도 캘린더 앱이 현지시간으로 자동 변환한다. */
+function addToCalendar(e){
+  if (e.estimated){ toast('아직 예상일이라 캘린더에 추가할 수 없어요'); return; }
+  const fmtZ = d => `${d.getUTCFullYear()}${P2(d.getUTCMonth()+1)}${P2(d.getUTCDate())}T` +
+                    `${P2(d.getUTCHours())}${P2(d.getUTCMinutes())}${P2(d.getUTCSeconds())}Z`;
+  const nm = `${e.ticker} 실적발표`;
+  const desc = `${e.name} 분기 실적발표` +
+               (e.when === 'bmo' ? ' · 미국 장 시작 전' : e.when === 'amc' ? ' · 미국 장 마감 후' : '');
+  let when, alarm;
+  if (e.utc){
+    const st = utcToDate(e.utc);
+    when  = `DTSTART:${e.utc}\r\nDTEND:${fmtZ(new Date(st.getTime() + 3600000))}`;
+    alarm = 'TRIGGER:-PT30M';
+  } else {
+    const n = dparse(e.date); n.setDate(n.getDate()+1);
+    when  = `DTSTART;VALUE=DATE:${e.date.replace(/-/g,'')}\r\nDTEND;VALUE=DATE:${dkey(n).replace(/-/g,'')}`;
+    alarm = 'TRIGGER:PT9H';
+  }
+  const ics = [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//실적브리핑//KO','CALSCALE:GREGORIAN','METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    `UID:${e.ticker}-${e.date}@earnings-briefing`,
+    `DTSTAMP:${fmtZ(new Date())}`, when,
+    `SUMMARY:${nm}`, `DESCRIPTION:${desc}`,
+    'BEGIN:VALARM', alarm, 'ACTION:DISPLAY', `DESCRIPTION:${nm}`, 'END:VALARM',
+    'END:VEVENT','END:VCALENDAR'
+  ].join('\r\n');
+  try {
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    const url  = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `${e.ticker}_실적발표_${showDate(e)}.ics`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    toast(`${e.ticker} 일정을 캘린더에 추가할게요`);
+  } catch (err) {
+    toast('캘린더 추가에 실패했어요: ' + err.message);
+  }
+}
+
+/* ===== 다음 실적발표 리스트 ===== */
+const upEl = document.getElementById('upcoming');
+UPCOMING_DB.slice()
+  .sort((a,b) => (showDate(a) || '9999') < (showDate(b) || '9999') ? -1 : 1)
+  .forEach(u => {
+    const dt = showDate(u);
+    let soon = false, right = '일정 확인 중';
+    if (dt) {
+      const days = dday(dt);
+      soon = days >= 0 && days <= 14;
+      const hm = showTime(u);
+      right = dt.slice(2).replace(/-/g, '.')
+            + (hm ? ` <span class="hm">${hm}</span>` : '')
+            + (u.estimated ? ' <span class="est">예상</span>' : '');
+      if (soon) right = `<span class="dday">D-${days}</span> ` + right;
+    }
+    const ico = u.when === 'bmo' ? '<span class="tm" title="미국 장 시작 전">🌅</span>'
+              : u.when === 'amc' ? '<span class="tm" title="미국 장 마감 후">🌙</span>'
+              : '<span class="tm"></span>';
+    const row = document.createElement('div');
+    row.className = 'up-row' + (soon ? ' soon' : '');
+    row.innerHTML = `${ico}<span class="tk">${u.ticker}</span><span class="co">${u.name}</span><span class="dt">${right}</span>`;
+    upEl.appendChild(row);
+  });
+
+renderCal();
 
 let active = '전체';
 function renderFilters(){
