@@ -222,9 +222,15 @@ earnings-briefing 스킬이 평일 오전 실적발표를 확인해 자동 생�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.08.09";
+const LAST_UPDATED = "2026.08.12";
 
 const REPORTS_DB = [
+  {
+    ticker: "CRWV", company: "CoreWeave", quarter: "2026 Q2",
+    report_date: "2026-08-12", created: "2026.08.12", verdict: "BEAT",
+    oneliner: "매출 $2.58B(+112%)·조정 EPS -$1.03으로 모두 예상을 넘겼고 수주잔고는 $104B이 됐어요. 매출·조정 영업이익·CapEx 가이던스를 모두 올렸지만, 총차입금이 한 분기에 $35B→$52B으로 늘었어요.",
+    file: "실적브리핑_CRWV_2026Q2_2026.08.12.html"
+  },
   {
     ticker: "CRWV", company: "CoreWeave", quarter: "2026 Q1",
     report_date: "2026-05-08", created: "2026.08.09", verdict: "MIXED",
@@ -307,7 +313,6 @@ const REPORTS_DB = [
 //                 화면은 항상 KST로 보여주고, 캘린더 일정은 이 값으로 만들어 해외에서도 현지시간 자동 변환된다.
 //   last_report : 직전 실제 발표일 (state.json의 last_report_date) — KPI '이번 분기 발표 n/13' 계산에 쓴다
 const UPCOMING_DB = [
-  { ticker: "CRWV", name: "CoreWeave", date: "2026-08-12", estimated: false, when: "amc", utc: "20260811T210000Z", last_report: "2026-05-08" },
   { ticker: "NVDA", name: "NVIDIA", date: "2026-08-27", estimated: false, when: "amc", utc: "20260826T210000Z", last_report: "2026-05-22" },
   { ticker: "MU", name: "Micron", date: "2026-09-30", estimated: true, when: null, utc: null, last_report: "2026-06-26" },
   { ticker: "KO", name: "Coca-Cola", date: "2026-10-21", estimated: true, when: null, utc: null, last_report: "2026-07-28" },
@@ -319,7 +324,8 @@ const UPCOMING_DB = [
   { ticker: "PLTR", name: "Palantir", date: "2026-11-04", estimated: true, when: null, utc: null, last_report: "2026-08-05" },
   { ticker: "O", name: "Realty Income", date: "2026-11-04", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
   { ticker: "IONQ", name: "IonQ", date: "2026-11-05", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
-  { ticker: "SMR", name: "NuScale Power", date: "2026-11-06", estimated: true, when: null, utc: null, last_report: "2026-08-07" }
+  { ticker: "SMR", name: "NuScale Power", date: "2026-11-06", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
+  { ticker: "CRWV", name: "CoreWeave", date: "2026-11-11", estimated: true, when: null, utc: null, last_report: "2026-08-12" }
 ];
 // ===== 데이터 블록 끝 =====
 
