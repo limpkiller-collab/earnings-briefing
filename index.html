@@ -148,6 +148,24 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
   font-size:12.5px;color:var(--g400);line-height:1.7}
 
+/* 실적발표 ↔ 경제 지표 토글 */
+.seg{display:flex;background:var(--g100);border-radius:13px;padding:4px;margin-bottom:26px}
+.seg button{flex:1;border:0;background:transparent;font-family:inherit;font-size:14.5px;font-weight:800;
+  color:var(--g500);padding:10px 0;border-radius:10px;cursor:pointer;transition:.15s;letter-spacing:-0.02em}
+.seg button.on{background:#fff;color:var(--g900);box-shadow:0 1px 4px rgba(25,31,40,.09)}
+
+/* 경제 지표 캘린더 칩 (주황 계열) */
+.pill.mfix{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-bg);cursor:pointer}
+.pill.mfix:active{background:var(--amber);color:#fff}
+.pill.mest{background:#fff;color:var(--amber);border:1px dashed var(--amber);opacity:.72;cursor:default}
+.lg-mfix{background:var(--amber-bg);border-color:var(--amber-bg)!important}
+.lg-mest{background:#fff;border:1px dashed var(--amber)!important}
+
+/* 경제 지표 카드 판정 배지 */
+.vd.GOOD{background:var(--green-bg);color:var(--green)}
+.vd.BAD{background:var(--red-bg);color:var(--red)}
+.vd.NEUT{background:var(--amber-bg);color:var(--amber)}
+
 @media(max-width:600px){
   .body{padding:28px 20px 60px}
   h1{font-size:25px}
@@ -172,20 +190,25 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 </div>
 
 <div class="body">
-<span class="chip">#보유종목 13개</span>
-<h1>분기 실적, 발표되면<br>바로 정리해 드려요</h1>
-<div class="lead">실적 해석부터 재무제표 분석, 어닝콜 요약, 종합 의견까지 한 번에 확인하세요.</div>
+<span class="chip" id="hero-chip">#보유종목 13개</span>
+<h1 id="hero-h1">분기 실적, 발표되면<br>바로 정리해 드려요</h1>
+<div class="lead" id="hero-lead">실적 해석부터 재무제표 분석, 어닝콜 요약, 종합 의견까지 한 번에 확인하세요.</div>
+
+<div class="seg">
+  <button type="button" id="seg-earn" class="on">📊 실적발표</button>
+  <button type="button" id="seg-macro">📈 경제 지표</button>
+</div>
 
 <div class="stats" id="stats"></div>
 
 <div class="notify-box" id="notify-box">
-  <div class="nt">🔔 실적 알림 받기</div>
-  <div class="nd">새 실적 보고서가 나오거나 어닝콜 요약이 보완되면 아이폰으로 알려드려요.</div>
+  <div class="nt">🔔 알림 받기</div>
+  <div class="nd">새 실적 보고서나 경제 지표 분석이 나오면 아이폰으로 알려드려요.</div>
   <div id="notify-body"></div>
 </div>
 
 <div class="sec">
-  <h2>🗓️ 다음 실적발표</h2>
+  <h2>🗓️ 경제 캘린더</h2>
 
   <div class="cal-nav">
     <button class="cal-btn wide" id="cal-today">이번 달</button>
@@ -195,13 +218,15 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   </div>
   <div class="cal" id="cal"></div>
   <div class="cal-legend">
-    <span><i class="lg-fix"></i>확정 · 탭하면 캘린더 추가</span>
-    <span><i class="lg-est"></i>예상일 · 추가 불가</span>
+    <span><i class="lg-fix"></i>실적 확정 · 탭하면 캘린더 추가</span>
+    <span><i class="lg-est"></i>실적 예상일</span>
+    <span><i class="lg-mfix"></i>경제 지표 확정</span>
+    <span><i class="lg-mest"></i>경제 지표 예상일</span>
     <span><i class="lg-done"></i>발표 완료</span>
   </div>
 
   <div class="up-list" id="upcoming"></div>
-  <div class="sec-foot">모든 시각은 한국시간 기준이에요 · 평일 오전 9시에 자동으로 일정을 확인해 갱신해요</div>
+  <div class="sec-foot">실적발표와 경제 지표 일정을 하나의 캘린더로 보여드려요 · 모든 시각은 한국시간 기준 · 평일 오전 9시에 자동으로 확인해 갱신해요</div>
 </div>
 
 <div class="sec">
@@ -213,7 +238,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <div class="disclaimer">
 본 아카이브의 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
-earnings-briefing 스킬이 평일 오전 실적발표를 확인해 자동 생성·갱신합니다.
+earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제 지표를 확인해 자동 생성·갱신합니다.
 </div>
 </div>
 </div>
@@ -222,7 +247,7 @@ earnings-briefing 스킬이 평일 오전 실적발표를 확인해 자동 생�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.08.13";
+const LAST_UPDATED = "2026.08.14";
 
 const REPORTS_DB = [
   {
@@ -327,11 +352,40 @@ const UPCOMING_DB = [
   { ticker: "SMR", name: "NuScale Power", date: "2026-11-06", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
   { ticker: "CRWV", name: "CoreWeave", date: "2026-11-11", estimated: true, when: null, utc: null, last_report: "2026-08-12" }
 ];
+
+// ----- 경제 지표 (macro-briefing 스킬이 갱신) -----
+// verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
+const MACRO_REPORTS_DB = [
+  {
+    id: "CPI", name: "소비자물가지수(CPI)", period: "2026년 7월", category: "물가", tier: 3,
+    report_date: "2026-08-12", created: "2026.08.14", verdict: "GOOD", vlabel: "둔화",
+    oneliner: "7월 CPI가 전년 대비 3.4%로 두 달 연속 둔화했어요(예측 부합). 전월 대비 +0.1%, 상승분의 2/3는 주거비였고 에너지는 -1.5%로 내렸어요. 9월 금리 인상 확률이 42%로 낮아지며 주가는 오르고 국채금리는 하락했어요.",
+    file: "경제지표_CPI_2026.07_2026.08.12.html"
+  }
+];
+
+// 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
+const MACRO_UPCOMING_DB = [
+  { id: "RETAIL", name: "소매판매", short: "소매판매", period: "7월", date: "2026-08-14", estimated: false, utc: "20260814T123000Z", tier: 2, last_release: null },
+  { id: "FOMC_MIN", name: "FOMC 의사록", short: "의사록", period: "7월 회의", date: "2026-08-20", estimated: true, utc: null, tier: 2, last_release: null },
+  { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "2분기", date: "2026-08-27", estimated: true, utc: null, tier: 2, last_release: null },
+  { id: "PCE", name: "PCE 물가지수", short: "PCE", period: "7월", date: "2026-08-28", estimated: true, utc: null, tier: 3, last_release: null },
+  { id: "JACKSON", name: "잭슨홀 심포지엄", short: "잭슨홀", period: "", date: "2026-08-28", estimated: true, utc: null, tier: 2, last_release: null },
+  { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "8월", date: "2026-09-01", estimated: true, utc: null, tier: 2, last_release: null },
+  { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "8월", date: "2026-09-03", estimated: true, utc: null, tier: 2, last_release: null },
+  { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "8월", date: "2026-09-04", estimated: true, utc: null, tier: 3, last_release: "2026-08-07" },
+  { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "8월", date: "2026-09-10", estimated: true, utc: null, tier: 3, last_release: "2026-08-12" },
+  { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "8월", date: "2026-09-11", estimated: true, utc: null, tier: 2, last_release: "2026-08-13" },
+  { id: "FOMC", name: "FOMC 금리결정", short: "FOMC", period: "9월 회의", date: "2026-09-17", estimated: true, utc: null, tier: 3, last_release: "2026-07-30" }
+];
 // ===== 데이터 블록 끝 =====
 
 document.getElementById('last-updated').textContent = LAST_UPDATED;
 
 const tickers = new Set(REPORTS_DB.map(r => r.ticker));
+const macroCats = ['전체', ...new Set(MACRO_REPORTS_DB.map(r => r.category))];
+let VIEW = 'earn';
+try { if (localStorage.getItem('briefView') === 'macro') VIEW = 'macro'; } catch(e) {}
 
 /* ===== 공통 유틸 (모든 표시는 한국시간 기준) ===== */
 const DOW = ['일','월','화','수','목','금','토'];
@@ -375,20 +429,37 @@ const reportedCnt = UPCOMING_DB.filter(u =>
   u.last_report && u.last_report >= SEASON.ws && u.last_report <= SEASON.we).length;
 const reportedPct = Math.round(reportedCnt / UPCOMING_DB.length * 1000) / 10;
 
-document.getElementById('stats').innerHTML =
-  `<div class="stat"><div class="n">${REPORTS_DB.length}</div><div class="l">보고서</div></div>
-   <div class="stat">
-     <div class="n">${reportedCnt}<small>/${UPCOMING_DB.length}</small></div>
-     <div class="l">${SEASON.label} 발표</div>
-     <div class="bar"><i style="width:${reportedPct}%"></i></div>
-   </div>
-   <div class="stat"><div class="n">${UPCOMING_DB.length}</div><div class="l">모니터링 종목</div></div>`;
+function renderStats(){
+  const el = document.getElementById('stats');
+  if (VIEW === 'earn'){
+    el.innerHTML =
+      `<div class="stat"><div class="n">${REPORTS_DB.length}</div><div class="l">보고서</div></div>
+       <div class="stat">
+         <div class="n">${reportedCnt}<small>/${UPCOMING_DB.length}</small></div>
+         <div class="l">${SEASON.label} 발표</div>
+         <div class="bar"><i style="width:${reportedPct}%"></i></div>
+       </div>
+       <div class="stat"><div class="n">${UPCOMING_DB.length}</div><div class="l">모니터링 종목</div></div>`;
+  } else {
+    const mk = `${today.getFullYear()}-${P2(today.getMonth()+1)}`;
+    const tk = `${today.getFullYear()}-${P2(today.getMonth()+1)}-${P2(today.getDate())}`;
+    const remain = MACRO_UPCOMING_DB.filter(u => u.date && u.date.slice(0,7) === mk && u.date >= tk).length;
+    el.innerHTML =
+      `<div class="stat"><div class="n">${MACRO_REPORTS_DB.length}</div><div class="l">보고서</div></div>
+       <div class="stat"><div class="n">${remain}</div><div class="l">이번 달 남은 일정</div></div>
+       <div class="stat"><div class="n">21</div><div class="l">모니터링 지표</div></div>`;
+  }
+}
 
 /* ===== 캘린더 (표시용 · 확정 건만 일정 추가) ===== */
 const CAL_EVENTS = [];
 UPCOMING_DB.forEach(u => {
   CAL_EVENTS.push({ ...u, d: showDate(u), done: false });
   if (u.last_report) CAL_EVENTS.push({ ...u, d: u.last_report, done: true });
+});
+MACRO_UPCOMING_DB.forEach(u => {
+  CAL_EVENTS.push({ ...u, ticker: u.short, m: true, d: showDate(u), done: false });
+  if (u.last_release) CAL_EVENTS.push({ ...u, ticker: u.short, m: true, d: u.last_release, done: true });
 });
 
 let calMonth = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -416,15 +487,16 @@ function renderCal(){
       const b = document.createElement('button');
       b.type = 'button';
       b.textContent = tkLabel(e);
+      const what = e.m ? `${e.name}${e.period ? ' ' + e.period : ''}` : `${e.ticker} ${e.name}`;
       if (e.done){
         b.className = 'pill done'; b.disabled = true;
-        b.title = `${e.ticker} ${e.name} — 발표 완료`;
+        b.title = `${what} — 발표 완료`;
       } else if (e.estimated){
-        b.className = 'pill est'; b.disabled = true;
-        b.title = `${e.ticker} ${e.name} — 예상일이라 캘린더에 추가할 수 없어요`;
+        b.className = 'pill ' + (e.m ? 'mest' : 'est'); b.disabled = true;
+        b.title = `${what} — 예상일이라 캘린더에 추가할 수 없어요`;
       } else {
-        b.className = 'pill fix';
-        b.title = `${e.ticker} ${e.name} 실적발표 — 탭하면 캘린더에 추가`;
+        b.className = 'pill ' + (e.m ? 'mfix' : 'fix');
+        b.title = `${what} ${e.m ? '발표' : '실적발표'} — 탭하면 캘린더에 추가`;
         b.onclick = () => addToCalendar(e);
       }
       cell.appendChild(b);
@@ -449,8 +521,8 @@ function addToCalendar(e){
   if (e.estimated){ toast('아직 예상일이라 캘린더에 추가할 수 없어요'); return; }
   const fmtZ = d => `${d.getUTCFullYear()}${P2(d.getUTCMonth()+1)}${P2(d.getUTCDate())}T` +
                     `${P2(d.getUTCHours())}${P2(d.getUTCMinutes())}${P2(d.getUTCSeconds())}Z`;
-  const nm = `${e.ticker} 실적발표`;
-  const desc = `${e.name} 분기 실적발표` +
+  const nm = e.m ? `${e.name}${e.period ? ' ' + e.period : ''} 발표` : `${e.ticker} 실적발표`;
+  const desc = (e.m ? '미국 경제 지표 발표' : `${e.name} 분기 실적발표`) +
                (e.when === 'bmo' ? ' · 미국 장 시작 전' : e.when === 'amc' ? ' · 미국 장 마감 후' : '');
   let when, alarm;
   if (e.utc){
@@ -486,7 +558,11 @@ function addToCalendar(e){
 
 /* ===== 다음 실적발표 리스트 ===== */
 const upEl = document.getElementById('upcoming');
-UPCOMING_DB.slice()
+const UP_ALL = [
+  ...UPCOMING_DB.map(u => ({ ...u, m: false })),
+  ...MACRO_UPCOMING_DB.map(u => ({ ...u, m: true }))
+];
+UP_ALL
   .sort((a,b) => (showDate(a) || '9999') < (showDate(b) || '9999') ? -1 : 1)
   .forEach(u => {
     const dt = showDate(u);
@@ -500,12 +576,17 @@ UPCOMING_DB.slice()
             + (u.estimated ? ' <span class="est">예상</span>' : '');
       if (soon) right = `<span class="dday">D-${days}</span> ` + right;
     }
-    const ico = u.when === 'bmo' ? '<span class="tm" title="미국 장 시작 전">🌅</span>'
+    const ico = u.m ? (u.id && u.id.indexOf('FOMC') === 0
+                ? '<span class="tm" title="연준 이벤트">🏛️</span>'
+                : '<span class="tm" title="경제 지표">📈</span>')
+              : u.when === 'bmo' ? '<span class="tm" title="미국 장 시작 전">🌅</span>'
               : u.when === 'amc' ? '<span class="tm" title="미국 장 마감 후">🌙</span>'
               : '<span class="tm"></span>';
+    const label = u.m ? tkLabel(u) : u.ticker;
+    const co = u.m ? `${u.name}${u.period ? ' · ' + u.period : ''} · ${'★'.repeat(u.tier)}` : u.name;
     const row = document.createElement('div');
     row.className = 'up-row' + (soon ? ' soon' : '');
-    row.innerHTML = `${ico}<span class="tk">${u.ticker}</span><span class="co">${u.name}</span><span class="dt">${right}</span>`;
+    row.innerHTML = `${ico}<span class="tk">${label}</span><span class="co">${co}</span><span class="dt">${right}</span>`;
     upEl.appendChild(row);
   });
 
@@ -515,7 +596,8 @@ let active = '전체';
 function renderFilters(){
   const el = document.getElementById('filters');
   el.innerHTML = '';
-  ['전체', ...tickers].forEach(t => {
+  const opts = VIEW === 'earn' ? ['전체', ...tickers] : macroCats;
+  opts.forEach(t => {
     const c = document.createElement('span');
     c.className = 'f' + (t === active ? ' on' : '');
     c.textContent = t;
@@ -526,20 +608,48 @@ function renderFilters(){
 function renderCards(){
   const box = document.getElementById('cards');
   box.innerHTML = '';
-  const rows = REPORTS_DB.filter(r => active === '전체' || r.ticker === active);
-  document.getElementById('empty').style.display = rows.length ? 'none' : 'block';
+  const rows = VIEW === 'earn'
+    ? REPORTS_DB.filter(r => active === '전체' || r.ticker === active)
+    : MACRO_REPORTS_DB.filter(r => active === '전체' || r.category === active);
+  const empty = document.getElementById('empty');
+  empty.style.display = rows.length ? 'none' : 'block';
+  empty.textContent = VIEW === 'earn' ? '해당 종목의 보고서가 아직 없어요' : '해당 카테고리의 보고서가 아직 없어요';
   rows.forEach(r => {
     const a = document.createElement('a');
     a.className = 'card';
     a.href = encodeURI(r.file);
-    a.innerHTML =
-      `<div class="top"><span class="tk">${r.ticker}</span><span class="co">${r.company} · ${r.quarter}</span><span class="vd ${r.verdict}">${r.verdict}</span></div>
-       <div class="one">${r.oneliner}</div>
-       <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`;
+    a.innerHTML = VIEW === 'earn'
+      ? `<div class="top"><span class="tk">${r.ticker}</span><span class="co">${r.company} · ${r.quarter}</span><span class="vd ${r.verdict}">${r.verdict}</span></div>
+         <div class="one">${r.oneliner}</div>
+         <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`
+      : `<div class="top"><span class="tk">${r.name}</span><span class="co">${r.period} · ${'★'.repeat(r.tier)}</span><span class="vd ${r.verdict}">${r.vlabel}</span></div>
+         <div class="one">${r.oneliner}</div>
+         <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`;
     box.appendChild(a);
   });
 }
-renderFilters(); renderCards();
+
+/* ===== 실적발표 ↔ 경제 지표 토글 (경제 캘린더는 공용) ===== */
+const HERO = {
+  earn: { chip: '#보유종목 13개', h1: '분기 실적, 발표되면<br>바로 정리해 드려요',
+          lead: '실적 해석부터 재무제표 분석, 어닝콜 요약, 종합 의견까지 한 번에 확인하세요.' },
+  macro:{ chip: '#미국 경제 지표 21종', h1: '미국 경제 지표,<br>발표되면 바로 해석해 드려요',
+          lead: '발표 결과 해석부터 시장 반응, 연준 경로, 보유 종목 영향까지 한 번에 확인하세요.' }
+};
+function setView(v){
+  VIEW = v;
+  try { localStorage.setItem('briefView', v); } catch(e) {}
+  document.getElementById('seg-earn').className = v === 'earn' ? 'on' : '';
+  document.getElementById('seg-macro').className = v === 'macro' ? 'on' : '';
+  document.getElementById('hero-chip').textContent = HERO[v].chip;
+  document.getElementById('hero-h1').innerHTML = HERO[v].h1;
+  document.getElementById('hero-lead').textContent = HERO[v].lead;
+  active = '전체';
+  renderStats(); renderFilters(); renderCards();
+}
+document.getElementById('seg-earn').onclick = () => setView('earn');
+document.getElementById('seg-macro').onclick = () => setView('macro');
+setView(VIEW);
 
 /* ===== 웹푸시 구독 ===== */
 const VAPID_PUBLIC_KEY = 'BNyxJGZtqpXxFwptu42kILeG_uLlOuMdwG12JJL2RX03JDKInoFt_4uw2N8kui57IfQnq8fsOBbiXIHxK0cYSaY';
