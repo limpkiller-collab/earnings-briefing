@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실적 프리뷰 — NVIDIA FY2027 Q2</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 수치 2카드 (토스증권 경제지표 페이지 스타일) */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--red-bg);color:var(--red)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 발표 이력 테이블 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
+.htable tr.new td{background:var(--blue-bg)}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI 카드 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
+/* 콜아웃·인용 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 영향 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--amber-bg);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지표 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">🔭</span> 실적 프리뷰</div>
+  <a href="./index.html">← 아카이브</a>
+</div>
+<div class="body">
+<div class="chips">
+  <span class="chip b">#프리뷰</span><span class="chip">#NVDA</span><span class="chip">#발표 8/27 (목) 06:00</span><span class="chip">#가이던스 $91.0B</span>
+</div>
+<h1>NVIDIA FY2027 2분기<br>실적 프리뷰</h1>
+<div class="meta">발표 2026년 8월 27일(목) 06:00 (한국시간) · 미국 8/26 장 마감 후 · 프리뷰 작성 2026.08.14 · 발표 후 정식 실적 브리핑이 자동 발행돼요</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">매출 컨센서스</div>
+    <div class="num">$93~95B</div>
+    <div class="cmp">회사 가이던스 <b>$91.0B</b>보다 <b class="up">+2~4% 초과</b>를 기본 시나리오로 반영</div>
+    <div class="core">전분기(FY27 Q1) 실제 $81.6B — QoQ 두 자릿수 성장 기대</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">조정 EPS 컨센서스</div>
+    <div class="num">$2.01~2.08</div>
+    <div class="cmp">집계 기관별 편차 — TipRanks $2.08(37명) · Zacks $2.01(11명)</div>
+    <div class="core">조정 매출총이익률 가이던스 75.0% 유지 여부가 핵심</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 프리뷰</div>
+  <p>시장은 <b>가이던스($91.0B) 초과 달성을 이미 기본값</b>으로 보고 있어요. 컨센서스가 가이던스보다 2~4% 위에 있다는 게 그 증거예요.</p>
+  <p>그래서 관건은 달성 여부가 아니라 <b>서프라이즈의 폭</b>이에요. 전분기엔 가이던스를 +3.6% 넘겼는데, 이번에 그보다 작으면 "성장 둔화"로 읽힐 수 있어요. 다음 분기(FY27 Q3) 가이던스가 사실상 주가를 결정해요.</p>
+  <p>발표를 앞두고도 <mark>월가는 목표가 $280~315를 재확인</mark>하고 있어요(평균 $302.83, 현재가 대비 +34%). 다만 전분기엔 호실적에도 주가가 5.5% 하락했다는 점은 기억할 필요가 있어요.</p>
+</div>
+
+<div class="sub-head">📋 가이던스 vs 컨센서스</div>
+<div class="sub-desc">회사가 제시한 전망과 시장 기대치를 미리 비교해두면 발표를 읽기 쉬워요.</div>
+<table class="htable">
+  <tr><th>항목</th><th>회사 가이던스</th><th>시장 컨센서스</th><th>보는 법</th></tr>
+  <tr><td>매출</td><td class="a">$91.0B ±2%</td><td class="a up">$93~95B</td><td>컨센서스 하회 시 부정적 서프라이즈</td></tr>
+  <tr><td>조정 매출총이익률</td><td class="a">75.0%</td><td>—</td><td>메모리 원가 전가 여부의 시금석</td></tr>
+  <tr><td>조정 EPS</td><td>미제시</td><td class="a">$2.01~2.08</td><td>$2.08 이상이면 상단 돌파</td></tr>
+</table>
+<div class="g-note">컨센서스는 2026.08.14 기준 언론·집계기관 종합. 발표 직전까지 변동될 수 있어요.</div>
+
+<div class="sub-head">🎯 애널리스트 동향</div>
+<div class="sub-desc">발표 직전 일주일에도 목표가 재확인이 이어졌어요.</div>
+<div class="kpi">
+  <div class="k"><div class="l">목표주가 평균</div><div class="v">$302.83</div><div class="d">61명 · 현재가 $225.30(8/13) 대비 <b>+34%</b></div></div>
+  <div class="k"><div class="l">Wells Fargo</div><div class="v">$315</div><div class="d">8/12 Buy 재확인 (Aaron Rakers)</div></div>
+  <div class="k"><div class="l">Goldman Sachs</div><div class="v">$285</div><div class="d">8/12 Buy 재확인 (James Schneider)</div></div>
+  <div class="k"><div class="l">UBS</div><div class="v">$280</div><div class="d">8/14 Buy 유지 (Timothy Arcuri)</div></div>
+</div>
+
+<div class="sub-head">👀 이번 발표에서 확인할 4가지</div>
+<div class="sub-desc">지난 분기 보고서에서 "다음 분기엔 이걸 보자"고 했던 항목이에요 — 발표 후 정식 브리핑에서 하나씩 판정해요.</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">FY27 Q2 매출이 가이던스 $91.0B을 넘는지<small>서프라이즈 폭이 전분기(+3.6%)보다 커지는지가 진짜 관전 포인트예요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">데이터센터 성장률 +92%가 유지되는지<small>매출 비중 91%에서 더 쏠리는지도 함께 봐요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">매출총이익률이 가이던스 75% 선을 지키는지<small>메모리 원가 상승을 가격에 전가하고 있는지의 시금석이에요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">빅테크 고객의 CapEx 계획 변화<small>MSFT 캘린더 2026년 $175B 계획 유지 여부 등 어닝콜 발언을 확인해요</small></div></div>
+</div>
+
+<div class="callout"><div class="ct">한 줄 정리</div>숫자 자체보다 "가이던스를 얼마나 넘겼는지"와 "다음 분기를 얼마로 제시하는지"가 주가를 움직여요. 발표 당일 새벽(한국시간 8/27 06:00) 이후 정식 브리핑으로 정리해 드릴게요.</div>
+
+<div class="disclaimer">
+본 프리뷰는 발표 전 컨센서스 기반 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 실제 발표 결과는 컨센서스와 다를 수 있습니다.<br>
+출처: stockanalysis.com, TipRanks, Zacks, 언론 보도(2026.08.14 기준) · earnings-briefing 스킬의 D-3 프리뷰 기능이 자동 생성합니다(이번 건은 시범 발행).
+</div>
+</div>
+</div>
+</body>
+</html>

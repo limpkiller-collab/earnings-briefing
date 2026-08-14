@@ -183,6 +183,27 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .wgrp li::before{content:'';position:absolute;left:4px;top:9px;width:6px;height:6px;border-radius:50%;
   background:var(--blue-bg);border:2px solid var(--blue)}
 
+/* 밸류에이션 스냅샷 */
+.vwrap{overflow-x:auto;border:1px solid var(--g200);border-radius:16px}
+.vtable{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+.vtable th{background:var(--g50);color:var(--g500);font-size:12px;font-weight:700;padding:10px 12px;text-align:right;white-space:nowrap}
+.vtable th:first-child{text-align:left}
+.vtable td{padding:11px 12px;text-align:right;border-top:1px solid var(--g100);font-weight:600;color:var(--g700);white-space:nowrap}
+.vtable td:first-child{text-align:left;font-weight:800;color:var(--g900)}
+.vtable tr.rowlink{cursor:pointer}
+.vtable tr.rowlink:hover td{background:var(--g50)}
+.vtable .pos{color:var(--green);font-weight:800} .vtable .neg{color:var(--red);font-weight:800}
+.vtable .mut{color:var(--g400);font-weight:600;font-size:11.5px}
+
+/* 기업 이벤트 칩 (초록) */
+.pill.evfix{background:var(--green-bg);color:var(--green);border-color:var(--green-bg);cursor:pointer}
+.pill.evfix:active{background:var(--green);color:#fff}
+.pill.evest{background:#fff;color:var(--green);border:1px dashed var(--green);opacity:.72;cursor:default}
+.lg-evest{background:#fff;border:1px dashed var(--green)!important}
+
+/* 프리뷰 카드 배지 */
+.vd.PREV{background:var(--amber-bg);color:var(--amber)}
+
 /* 보고서 검색 */
 .search{display:flex;align-items:center;gap:9px;background:var(--g100);border-radius:12px;
   padding:11px 15px;margin-bottom:12px}
@@ -232,6 +253,12 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   <div id="notify-body"></div>
 </div>
 
+<div class="sec" id="val-sec">
+  <h2>💰 밸류에이션 스냅샷</h2>
+  <div class="vwrap"><table class="vtable" id="vtable"></table></div>
+  <div class="sec-foot">기준 2026.08.13~14 종가 · 컨센서스 출처 stockanalysis.com(SK하이닉스는 국내 증권사 평균 — 편차 큼) · O는 P/FFO · GOOGL 차년 P/E는 당해 일회성 이익 영향 주의 · 행을 누르면 최신 실적 보고서로 이동 · 실적 보고서 발행 시 해당 행이 갱신돼요</div>
+</div>
+
 <div class="sec">
   <h2>🗓️ 경제 캘린더</h2>
 
@@ -247,6 +274,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
     <span><i class="lg-est"></i>실적 예상일</span>
     <span><i class="lg-mfix"></i>경제 지표 확정</span>
     <span><i class="lg-mest"></i>경제 지표 예상일</span>
+    <span><i class="lg-evest"></i>기업 이벤트</span>
     <span><i class="lg-done"></i>발표 완료</span>
   </div>
 
@@ -282,6 +310,12 @@ earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제
 const LAST_UPDATED = "2026.08.14";
 
 const REPORTS_DB = [
+  {
+    ticker: "NVDA", company: "NVIDIA", quarter: "FY2027 Q2",
+    report_date: "2026-08-27", created: "2026.08.14", verdict: "PREV", vlabel: "프리뷰",
+    oneliner: "발표 D-13 프리뷰 — 컨센서스는 매출 $93~95B로 가이던스($91.0B) 초과를 기본 시나리오로 봐요. 관건은 서프라이즈 폭(전분기 +3.6%)과 다음 분기 가이던스. 목표주가 평균 $302.83로 현재가 대비 +34%예요.",
+    file: "실적프리뷰_NVDA_FY2027Q2_2026.08.14.html"
+  },
   {
     ticker: "CRWV", company: "CoreWeave", quarter: "2026 Q2",
     report_date: "2026-08-12", created: "2026.08.13", verdict: "BEAT",
@@ -494,6 +528,29 @@ const WATCH_DB = [
     "수주잔고 $104B + 신규 $25B 반영 여부",
     "관리형 인퍼런스 ARR 연말 $250M 경로, 7월 25% 가격 인상의 마진 반영"]}
 ];
+
+// 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
+const VAL_DB = [
+  { ticker: "NVDA", price: 225.30, tgt: 302.83, eps_cur: 8.96, eps_next: 12.82, note: "" },
+  { ticker: "MU", price: 949.83, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
+  { ticker: "MSFT", price: 496.88, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
+  { ticker: "GOOGL", price: 348.25, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
+  { ticker: "AAPL", price: 305.26, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "" },
+  { ticker: "PLTR", price: 179.01, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "KO", price: 87.42, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
+  { ticker: "ABBV", price: 248.76, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
+  { ticker: "O", price: 62.95, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
+  { ticker: "CRWV", price: 106.29, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 44.98, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 9.85, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "000660", price: 1593000, tgt: 3317917, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
+];
+
+// 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
+const EVENTS_DB = [
+  { id: "AAPL_EVENT", company: "AAPL", short: "애플이벤트", name: "애플 아이폰 18 공개 이벤트", date: "2026-09-09", estimated: true, utc: null, note: "블룸버그 보도 기준 예상일 · 초청장 8월 말 발송 전망" },
+  { id: "NVDA_GTC", company: "NVDA", short: "GTC베를린", name: "NVIDIA GTC Berlin (10/20~22)", date: "2026-10-20", estimated: true, utc: null, note: "보도 기준 · 공식 일정 재확인 필요" }
+];
 // ===== 데이터 블록 끝 =====
 
 document.getElementById('last-updated').textContent = LAST_UPDATED;
@@ -577,6 +634,9 @@ MACRO_UPCOMING_DB.forEach(u => {
   CAL_EVENTS.push({ ...u, ticker: u.short, m: true, d: showDate(u), done: false });
   if (u.last_release) CAL_EVENTS.push({ ...u, ticker: u.short, m: true, d: u.last_release, done: true });
 });
+EVENTS_DB.forEach(u => {
+  CAL_EVENTS.push({ ...u, ticker: u.short, ev: true, d: showDate(u), done: showDate(u) < dkey(today) });
+});
 
 let calMonth = new Date(today.getFullYear(), today.getMonth(), 1);
 
@@ -603,16 +663,16 @@ function renderCal(){
       const b = document.createElement('button');
       b.type = 'button';
       b.textContent = tkLabel(e);
-      const what = e.m ? `${e.name}${e.period ? ' ' + e.period : ''}` : `${e.ticker} ${e.name}`;
+      const what = e.ev ? e.name : e.m ? `${e.name}${e.period ? ' ' + e.period : ''}` : `${e.ticker} ${e.name}`;
       if (e.done){
         b.className = 'pill done'; b.disabled = true;
-        b.title = `${what} — 발표 완료`;
+        b.title = `${what} — ${e.ev ? '종료' : '발표 완료'}`;
       } else if (e.estimated){
-        b.className = 'pill ' + (e.m ? 'mest' : 'est'); b.disabled = true;
-        b.title = `${what} — 예상일이라 캘린더에 추가할 수 없어요`;
+        b.className = 'pill ' + (e.ev ? 'evest' : e.m ? 'mest' : 'est'); b.disabled = true;
+        b.title = `${what} — 예상일이라 캘린더에 추가할 수 없어요${e.ev && e.note ? ' · ' + e.note : ''}`;
       } else {
-        b.className = 'pill ' + (e.m ? 'mfix' : 'fix');
-        b.title = `${what} ${e.m ? '발표' : '실적발표'} — 탭하면 캘린더에 추가`;
+        b.className = 'pill ' + (e.ev ? 'evfix' : e.m ? 'mfix' : 'fix');
+        b.title = `${what} ${e.ev ? '' : e.m ? '발표' : '실적발표'} — 탭하면 캘린더에 추가`;
         b.onclick = () => addToCalendar(e);
       }
       cell.appendChild(b);
@@ -637,8 +697,8 @@ function addToCalendar(e){
   if (e.estimated){ toast('아직 예상일이라 캘린더에 추가할 수 없어요'); return; }
   const fmtZ = d => `${d.getUTCFullYear()}${P2(d.getUTCMonth()+1)}${P2(d.getUTCDate())}T` +
                     `${P2(d.getUTCHours())}${P2(d.getUTCMinutes())}${P2(d.getUTCSeconds())}Z`;
-  const nm = e.m ? `${e.name}${e.period ? ' ' + e.period : ''} 발표` : `${e.ticker} 실적발표`;
-  const desc = (e.m ? '미국 경제 지표 발표' : `${e.name} 분기 실적발표`) +
+  const nm = e.ev ? e.name : e.m ? `${e.name}${e.period ? ' ' + e.period : ''} 발표` : `${e.ticker} 실적발표`;
+  const desc = (e.ev ? '기업 이벤트' : e.m ? '미국 경제 지표 발표' : `${e.name} 분기 실적발표`) +
                (e.when === 'bmo' ? ' · 미국 장 시작 전' : e.when === 'amc' ? ' · 미국 장 마감 후' : '');
   let when, alarm;
   if (e.utc){
@@ -676,7 +736,8 @@ function addToCalendar(e){
 const upEl = document.getElementById('upcoming');
 const UP_ALL = [
   ...UPCOMING_DB.map(u => ({ ...u, m: false })),
-  ...MACRO_UPCOMING_DB.map(u => ({ ...u, m: true }))
+  ...MACRO_UPCOMING_DB.map(u => ({ ...u, m: true })),
+  ...EVENTS_DB.filter(u => u.date >= dkey(today)).map(u => ({ ...u, ev: true }))
 ];
 UP_ALL
   .sort((a,b) => (showDate(a) || '9999') < (showDate(b) || '9999') ? -1 : 1)
@@ -692,14 +753,16 @@ UP_ALL
             + (u.estimated ? ' <span class="est">예상</span>' : '');
       if (soon) right = `<span class="dday">D-${days}</span> ` + right;
     }
-    const ico = u.m ? (u.id && u.id.indexOf('FOMC') === 0
+    const ico = u.ev ? '<span class="tm" title="기업 이벤트">🎪</span>'
+              : u.m ? (u.id && u.id.indexOf('FOMC') === 0
                 ? '<span class="tm" title="연준 이벤트">🏛️</span>'
                 : '<span class="tm" title="경제 지표">📈</span>')
               : u.when === 'bmo' ? '<span class="tm" title="미국 장 시작 전">🌅</span>'
               : u.when === 'amc' ? '<span class="tm" title="미국 장 마감 후">🌙</span>'
               : '<span class="tm"></span>';
-    const label = u.m ? tkLabel(u) : u.ticker;
-    const co = u.m ? `${u.name}${u.period ? ' · ' + u.period : ''} · ${'★'.repeat(u.tier)}` : u.name;
+    const label = (u.m || u.ev) ? tkLabel(u) : u.ticker;
+    const co = u.ev ? `${u.name} · 기업 이벤트`
+             : u.m ? `${u.name}${u.period ? ' · ' + u.period : ''} · ${'★'.repeat(u.tier)}` : u.name;
     const row = document.createElement('div');
     row.className = 'up-row' + (soon ? ' soon' : '');
     row.innerHTML = `${ico}<span class="tk">${label}</span><span class="co">${co}</span><span class="dt">${right}</span>`;
@@ -707,6 +770,30 @@ UP_ALL
   });
 
 renderCal();
+
+/* ===== 밸류에이션 스냅샷 (실적발표 탭 전용) ===== */
+function renderVal(){
+  const t = document.getElementById('vtable');
+  const fmtP = v => v >= 10000 ? Math.round(v / 10000) + '만원' : '$' + v.toFixed(2);
+  const pe = (price, e) => e == null ? '<span class="mut">—</span>'
+    : e <= 0 ? '<span class="neg">적자</span>' : (price / e).toFixed(1);
+  const rows = VAL_DB.map(v => {
+    const rep = REPORTS_DB.find(r => r.ticker === v.ticker && r.verdict !== 'PREV');
+    const up = UPCOMING_DB.find(u => u.ticker === v.ticker);
+    const ups = v.tgt ? (v.tgt / v.price - 1) * 100 : null;
+    const upsHtml = ups == null ? ''
+      : ` <span class="${ups >= 0 ? 'pos' : 'neg'}">${ups >= 0 ? '+' : ''}${ups.toFixed(0)}%</span>`;
+    const nx = up && up.date ? up.date.slice(5).replace('-', '.') + (up.estimated ? 'E' : '') : '—';
+    return `<tr${rep ? ` class="rowlink" onclick="location.href='${encodeURI(rep.file)}'"` : ''}>
+      <td>${v.ticker}${v.note ? ` <span class="mut">${v.note}</span>` : ''}</td>
+      <td>${fmtP(v.price)}</td>
+      <td>${pe(v.price, v.eps_cur)}</td><td>${pe(v.price, v.eps_next)}</td>
+      <td>${v.tgt ? fmtP(v.tgt) : '<span class="mut">—</span>'}${upsHtml}</td>
+      <td class="mut">${nx}</td></tr>`;
+  }).join('');
+  t.innerHTML = '<tr><th>종목</th><th>주가</th><th>P/E 당해E</th><th>차년E</th><th>목표가 평균(괴리)</th><th>다음실적</th></tr>' + rows;
+}
+renderVal();
 
 /* ===== 다음 발표 체크포인트 (경제 캘린더 공용 위젯) ===== */
 (function(){
@@ -765,7 +852,7 @@ function renderCards(){
     a.className = 'card';
     a.href = encodeURI(r.file);
     a.innerHTML = VIEW === 'earn'
-      ? `<div class="top"><span class="tk">${r.ticker}</span><span class="co">${r.company} · ${r.quarter}</span><span class="vd ${r.verdict}">${r.verdict}</span>${sup(r)}</div>
+      ? `<div class="top"><span class="tk">${r.ticker}</span><span class="co">${r.company} · ${r.quarter}</span><span class="vd ${r.verdict}">${r.vlabel || r.verdict}</span>${sup(r)}</div>
          <div class="one">${r.oneliner}</div>
          <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`
       : `<div class="top"><span class="tk">${r.name}</span><span class="co">${r.period} · ${'★'.repeat(r.tier)}</span><span class="vd ${r.verdict}">${r.vlabel}</span>${sup(r)}</div>
@@ -791,6 +878,7 @@ function setView(v){
   document.getElementById('hero-chip').textContent = HERO[v].chip;
   document.getElementById('hero-h1').innerHTML = HERO[v].h1;
   document.getElementById('hero-lead').textContent = HERO[v].lead;
+  document.getElementById('val-sec').style.display = v === 'earn' ? '' : 'none';
   active = '전체';
   renderStats(); renderFilters(); renderCards();
 }
