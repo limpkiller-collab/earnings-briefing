@@ -166,6 +166,31 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .vd.BAD{background:var(--red-bg);color:var(--red)}
 .vd.NEUT{background:var(--amber-bg);color:var(--amber)}
 
+/* 서프라이즈 배지 (예측 대비 편차) */
+.sup{font-size:11px;font-weight:800;padding:4px 9px;border-radius:20px;margin-left:6px;white-space:nowrap}
+.sup.down{background:var(--blue-bg);color:var(--blue)}
+.sup.up{background:var(--red-bg);color:var(--red)}
+.sup.flat{background:var(--g100);color:var(--g500)}
+
+/* 다음 발표 체크포인트 위젯 */
+.wgrp{border:1px solid var(--g200);border-radius:16px;padding:16px 19px;margin-bottom:10px}
+.wgrp .wh{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800}
+.wgrp .wh .wico{font-size:14px}
+.wgrp .wh .wd{margin-left:auto;font-size:13px;color:var(--g500);font-weight:700;white-space:nowrap}
+.wgrp .wh .wd .dday{margin-right:6px}
+.wgrp ul{list-style:none;margin-top:9px;display:flex;flex-direction:column;gap:7px}
+.wgrp li{font-size:14px;color:var(--g700);line-height:1.6;padding-left:20px;position:relative}
+.wgrp li::before{content:'';position:absolute;left:4px;top:9px;width:6px;height:6px;border-radius:50%;
+  background:var(--blue-bg);border:2px solid var(--blue)}
+
+/* 보고서 검색 */
+.search{display:flex;align-items:center;gap:9px;background:var(--g100);border-radius:12px;
+  padding:11px 15px;margin-bottom:12px}
+.search input{flex:1;border:0;background:transparent;font-family:inherit;font-size:14.5px;
+  outline:none;color:var(--g900);letter-spacing:-0.02em}
+.search input::placeholder{color:var(--g400)}
+.search .cnt{font-size:12.5px;color:var(--g400);font-weight:700;white-space:nowrap}
+
 @media(max-width:600px){
   .body{padding:28px 20px 60px}
   h1{font-size:25px}
@@ -230,7 +255,14 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 </div>
 
 <div class="sec">
+  <h2>👀 다음 발표 체크포인트</h2>
+  <div id="watch"></div>
+  <div class="sec-foot">지난 보고서에서 "다음엔 이걸 보자"고 했던 항목이에요 · 발표가 가까운 순으로 3건을 보여드려요</div>
+</div>
+
+<div class="sec">
   <h2>📁 지난 보고서</h2>
+  <div class="search">🔍 <input type="search" id="q" placeholder="종목·지표·키워드 검색"><span class="cnt" id="q-cnt"></span></div>
   <div class="filters" id="filters"></div>
   <div class="cards" id="cards"></div>
   <div class="empty" id="empty" style="display:none">해당 종목의 보고서가 아직 없어요</div>
@@ -359,12 +391,14 @@ const MACRO_REPORTS_DB = [
   {
     id: "PPI", name: "생산자물가지수(PPI)", period: "2026년 7월", category: "물가", tier: 2,
     report_date: "2026-08-13", created: "2026.08.14", verdict: "GOOD", vlabel: "둔화",
+    surprise: { text: "예측 -0.2%p", cls: "down" },
     oneliner: "7월 도매물가가 보합(0.0%)으로 예측(+0.2%)을 밑돌았어요. 연료 하락으로 상품이 -0.7% 내렸고, YoY는 4.7%로 정점(6.0%) 대비 두 달 연속 둔화. 전날 CPI에 이어 물가 둔화가 도매 단계에서도 확인됐어요.",
     file: "경제지표_PPI_2026.07_2026.08.13.html"
   },
   {
     id: "CPI", name: "소비자물가지수(CPI)", period: "2026년 7월", category: "물가", tier: 3,
     report_date: "2026-08-12", created: "2026.08.14", verdict: "GOOD", vlabel: "둔화",
+    surprise: { text: "예측 부합", cls: "flat" },
     oneliner: "7월 CPI가 전년 대비 3.4%로 두 달 연속 둔화했어요(예측 부합). 전월 대비 +0.1%, 상승분의 2/3는 주거비였고 에너지는 -1.5%로 내렸어요. 9월 금리 인상 확률이 42%로 낮아지며 주가는 오르고 국채금리는 하락했어요.",
     file: "경제지표_CPI_2026.07_2026.08.12.html"
   }
@@ -383,6 +417,82 @@ const MACRO_UPCOMING_DB = [
   { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "8월", date: "2026-09-10", estimated: true, utc: null, tier: 3, last_release: "2026-08-12" },
   { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "8월", date: "2026-09-11", estimated: true, utc: null, tier: 2, last_release: "2026-08-13" },
   { id: "FOMC", name: "FOMC 금리결정", short: "FOMC", period: "9월 회의", date: "2026-09-17", estimated: true, utc: null, tier: 3, last_release: "2026-07-30" }
+];
+
+// 다음 발표 체크포인트 (skills가 두 state.json의 watchpoints를 동기화 · 발표 가까운 순 3건 표시)
+const WATCH_DB = [
+  { key: "NVDA", name: "NVIDIA FY27 Q2 실적", date: "2026-08-27", type: "e", items: [
+    "FY27 Q2 매출이 가이던스 $91.0B을 넘는지 — 서프라이즈 폭이 이번(+3.6%)보다 커지는지",
+    "데이터센터 성장률 +92%가 유지되는지, 매출 비중 91%에서 더 쏠리는지",
+    "매출총이익률이 가이던스 75% 선을 지키는지 — 메모리 원가 상승 전가 여부",
+    "주요 고객(빅테크)의 CapEx 계획 변화 — MSFT 캘린더 2026년 $175B 계획 유지 여부"]},
+  { key: "CPI", name: "소비자물가지수(CPI) 8월", date: "2026-09-10", type: "m", items: [
+    "8월에도 헤드라인 둔화(3.4% → 3.3% 이하)가 이어지는지",
+    "주거비 상승률이 재가속하는지 — 7월엔 +0.1%로 낮았지만 헤드라인 기여 2/3",
+    "에너지 YoY +14.7%가 꺾이는지 — 헤드라인과 근원(2.5%) 격차의 주범",
+    "9월 FOMC 전 마지막 CPI — 인상 확률(42%)이 어느 쪽으로 굳어지는지"]},
+  { key: "PPI", name: "생산자물가지수(PPI) 8월", date: "2026-09-11", type: "m", items: [
+    "8월 MoM이 다시 플러스로 튀는지 — 관세 원가 전가 재개 여부",
+    "YoY 4.7%가 3%대로 내려서는지 — 기저효과 구간 진입",
+    "서비스 PPI +0.2%의 끈적함 — 상품이 내려도 서비스가 버티는지",
+    "건설비 급등(+2.2%)이 일회성인지 추세인지 — AI CapEx 원가 영향"]},
+  { key: "MU", name: "Micron FY26 Q4 실적", date: "2026-09-30", type: "e", items: [
+    "FY26 Q4 매출이 가이던스 $50B을 달성하는지 — 컨센서스보다 14.7% 높게 잡은 전망을 지키는지",
+    "매출총이익률이 가이던스 86%에 도달하는지, 아니면 정점을 지나 꺾이는지",
+    "장기계약 비중 — '매출의 절반 이상'이 실제 수치로 확인되는지",
+    "HBM4 램프업 속도와 데이터센터(CMBU+CDBU) 매출 비중 61%가 더 올라가는지"]},
+  { key: "KO", name: "Coca-Cola 2026 Q3 실적", date: "2026-10-21", type: "e", items: [
+    "물량 성장(+5%)이 유지되는지 — 월드컵 효과가 빠진 뒤에도 플러스인지",
+    "연간 유기적 성장 +5%, 비교 기준 EPS +9~10% 가이던스 경로를 지키는지",
+    "환율 순풍(3%포인트)이 줄거나 역풍으로 바뀌는지",
+    "영업이익률 34.9% 수준이 유지되는지, IRS 세금 분쟁에 진전이 있는지"]},
+  { key: "000660", name: "SK하이닉스 2026 Q3 실적", date: "2026-10-28", type: "e", items: [
+    "3분기 영업이익이 컨센서스를 다시 밑도는지 — 두 분기 연속 하회면 사이클 논쟁이 커져요",
+    "D램 출하량 가이던스 +10% 달성 여부, 하반기 메모리 가격 방향",
+    "추가 주주환원 방안이 3분기 중 실제로 확정·발표되는지",
+    "HBM4 양산 확대 속도와 공급 계약 세부(물량·가격)가 공개되는지"]},
+  { key: "MSFT", name: "Microsoft FY27 Q1 실적", date: "2026-10-29", type: "e", items: [
+    "Azure 성장률이 가이던스 +45%를 지키는지 — 용량 제약이 성장률을 깎지 않는지",
+    "FY27 Q1 매출이 가이던스 상단($90.95B)을 넘는지",
+    "CapEx가 캘린더 2026년 $175B 계획대로 통제되는지, 분기 $50B 선을 넘는지",
+    "Copilot 유료 시트가 3,000만에서 얼마나 더 늘어나는지"]},
+  { key: "GOOGL", name: "Alphabet 2026 Q3 실적", date: "2026-10-29", type: "e", items: [
+    "연간 CapEx가 $195~205B에서 또 올라가는지 — 상향 반복 시 주가 부담",
+    "FCF가 마이너스(-$5.9B)에서 회복되는지",
+    "클라우드 성장률 +82%와 백로그 $514B이 유지·확대되는지",
+    "영업이익률이 34.0%에서 더 내려가는지"]},
+  { key: "AAPL", name: "Apple FY26 Q4 실적", date: "2026-10-30", type: "e", items: [
+    "매출총이익률이 가이던스 47~48%를 지키는지 — 메모리 원가 전가가 되는지",
+    "9월 분기 매출 성장률이 가이던스 +9~11% 상단을 넘는지",
+    "서비스 매출이 다시 컨센서스를 상회하는지 — 두 자릿수 성장 유지",
+    "아이폰 가격 정책 — 메모리 원가를 제품 가격에 반영하는지"]},
+  { key: "PLTR", name: "Palantir 2026 Q3 실적", date: "2026-11-04", type: "e", items: [
+    "Q3 매출이 가이던스 상단($2.164B)을 또 넘는지",
+    "미국 상업 성장률(+149%)이 유지되는지, 상업이 정부를 언제 추월하는지",
+    "Sovereignty 부트캠프가 실제 대형 계약으로 얼마나 이어지는지",
+    "파트너 생태계 확장 전략이 구체화되는지"]},
+  { key: "O", name: "Realty Income 2026 Q3 실적", date: "2026-11-04", type: "e", items: [
+    "연간 투자 $10B 목표의 진행 속도 — 누적 투자액이 연간 페이스에 맞는지",
+    "데이터센터 JV의 투자 집행 — $1.4B 집행 진척과 추가 자산 편입",
+    "AFFO 가이던스 상단($4.45) 경로 — Q3 AFFO/주가 $1.11 수준을 넘는지",
+    "점유율 98.8%·재계약 임대료 회수율 100% 이상 유지"]},
+  { key: "IONQ", name: "IonQ 2026 Q3 실적", date: "2026-11-05", type: "e", items: [
+    "연간 가이던스 $280~290M 경로 — 컨센서스($268M)가 가이던스 위로 올라오는지",
+    "SkyWater 연결 효과 — Q3부터 합산되는 매출 규모와 통합 비용",
+    "RPO가 $485M에서 더 늘어나는지 — 신규 시스템 계약 발표 여부",
+    "현금 소진 속도 — 분기 OCF -$104M에서 더 커지는지, 현금 $3.0B 유지"]},
+  { key: "SMR", name: "NuScale Power 2026 Q3 실적", date: "2026-11-06", type: "e", items: [
+    "TVA·ENTRA1 최종 계약(6~8GW) 발표 여부",
+    "매출 재개 여부 — Q3 매출이 $75K 수준을 벗어나는지",
+    "현금 소진 속도 — 현금·투자 $1.9B 유지 여부, 추가 증자 언급",
+    "신규 고객 파이프라인 — 데이터센터 전력 수요 관련 신규 MOU·FEED"]},
+  { key: "CRWV", name: "CoreWeave 2026 Q3 실적", date: "2026-11-11", type: "e", items: [
+    "Q3 매출이 가이던스 상단 $3.6B을 넘는지 — 컨센서스($3.43B) 대비 폭",
+    "Q3 조정 영업이익이 가이던스 $200~260M을 넘고 Q4 '10%대 초반 마진' 경로 유지",
+    "이자비용이 가이던스 $860~940M 안에 들어오는지, 총차입금 $51.6B 증가 속도",
+    "가동 전력 연말 1.85GW 경로(Q3 약 1.7GW), 계약 전력 4.2GW 확대 여부",
+    "수주잔고 $104B + 신규 $25B 반영 여부",
+    "관리형 인퍼런스 ARR 연말 $250M 경로, 7월 25% 가격 인상의 마진 반영"]}
 ];
 // ===== 데이터 블록 끝 =====
 
@@ -598,7 +708,31 @@ UP_ALL
 
 renderCal();
 
+/* ===== 다음 발표 체크포인트 (경제 캘린더 공용 위젯) ===== */
+(function(){
+  const box = document.getElementById('watch');
+  const rows = WATCH_DB
+    .filter(w => w.items && w.items.length && dday(w.date) >= 0)
+    .sort((a,b) => a.date < b.date ? -1 : 1)
+    .slice(0, 3);
+  if (!rows.length){
+    box.innerHTML = '<div class="empty">점검할 체크포인트가 아직 없어요</div>';
+    return;
+  }
+  rows.forEach(w => {
+    const days = dday(w.date);
+    const g = document.createElement('div');
+    g.className = 'wgrp';
+    g.innerHTML =
+      `<div class="wh"><span class="wico">${w.type === 'm' ? '📈' : '📊'}</span>${w.name}` +
+      `<span class="wd">${days <= 14 ? `<span class="dday">D-${days}</span>` : ''}${w.date.slice(2).replace(/-/g,'.')}</span></div>` +
+      `<ul>${w.items.map(t => `<li>${t}</li>`).join('')}</ul>`;
+    box.appendChild(g);
+  });
+})();
+
 let active = '전체';
+let query = '';
 function renderFilters(){
   const el = document.getElementById('filters');
   el.innerHTML = '';
@@ -614,26 +748,33 @@ function renderFilters(){
 function renderCards(){
   const box = document.getElementById('cards');
   box.innerHTML = '';
-  const rows = VIEW === 'earn'
+  let rows = VIEW === 'earn'
     ? REPORTS_DB.filter(r => active === '전체' || r.ticker === active)
     : MACRO_REPORTS_DB.filter(r => active === '전체' || r.category === active);
+  if (query) rows = rows.filter(r =>
+    [r.ticker, r.company, r.name, r.id, r.period, r.quarter, r.category, r.oneliner]
+      .filter(Boolean).join(' ').toLowerCase().includes(query));
+  document.getElementById('q-cnt').textContent = query ? `${rows.length}건` : '';
   const empty = document.getElementById('empty');
   empty.style.display = rows.length ? 'none' : 'block';
-  empty.textContent = VIEW === 'earn' ? '해당 종목의 보고서가 아직 없어요' : '해당 카테고리의 보고서가 아직 없어요';
+  empty.textContent = query ? '검색 결과가 없어요'
+    : VIEW === 'earn' ? '해당 종목의 보고서가 아직 없어요' : '해당 카테고리의 보고서가 아직 없어요';
+  const sup = r => r.surprise ? `<span class="sup ${r.surprise.cls}">${r.surprise.text}</span>` : '';
   rows.forEach(r => {
     const a = document.createElement('a');
     a.className = 'card';
     a.href = encodeURI(r.file);
     a.innerHTML = VIEW === 'earn'
-      ? `<div class="top"><span class="tk">${r.ticker}</span><span class="co">${r.company} · ${r.quarter}</span><span class="vd ${r.verdict}">${r.verdict}</span></div>
+      ? `<div class="top"><span class="tk">${r.ticker}</span><span class="co">${r.company} · ${r.quarter}</span><span class="vd ${r.verdict}">${r.verdict}</span>${sup(r)}</div>
          <div class="one">${r.oneliner}</div>
          <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`
-      : `<div class="top"><span class="tk">${r.name}</span><span class="co">${r.period} · ${'★'.repeat(r.tier)}</span><span class="vd ${r.verdict}">${r.vlabel}</span></div>
+      : `<div class="top"><span class="tk">${r.name}</span><span class="co">${r.period} · ${'★'.repeat(r.tier)}</span><span class="vd ${r.verdict}">${r.vlabel}</span>${sup(r)}</div>
          <div class="one">${r.oneliner}</div>
          <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`;
     box.appendChild(a);
   });
 }
+document.getElementById('q').oninput = e => { query = e.target.value.trim().toLowerCase(); renderCards(); };
 
 /* ===== 실적발표 ↔ 경제 지표 토글 (경제 캘린더는 공용) ===== */
 const HERO = {
