@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경제 지표 — 생산자물가지수(PPI) 2026년 7월</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 수치 2카드 (토스증권 경제지표 페이지 스타일) */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--red-bg);color:var(--red)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 발표 이력 테이블 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
+.htable tr.new td{background:var(--blue-bg)}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI 카드 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
+/* 콜아웃·인용 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 영향 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--amber-bg);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지표 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">📈</span> 경제 지표</div>
+  <a href="./index.html">← 아카이브</a>
+</div>
+<div class="body">
+<div class="chips">
+  <span class="chip b">#물가</span><span class="chip">#매달 발표</span><span class="chip">#★★</span><span class="chip">#전월 대비 · 전년 대비</span>
+</div>
+<h1>생산자물가지수(PPI)<br>2026년 7월</h1>
+<div class="meta">2026년 8월 13일 21:30 발표 (한국시간) · 출처 미국 노동통계국(BLS) · 컨센서스 언론 종합</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">전월 대비 (MoM)</div>
+    <div class="num">0.0%</div>
+    <div class="cmp">예측(+0.2%)보다 <b class="down">-0.2%p 하회</b> · 지난달 <b>-0.3%</b>에 이어 보합</div>
+    <div class="core">근원(Core) +0.2% — 예측(+0.3%)을 소폭 하회</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">전년 대비 (YoY)</div>
+    <div class="num">4.7%</div>
+    <div class="cmp">지난달보다 <b class="down">-0.8%p</b> — 5월 정점(6.0%) 이후 두 달 연속 둔화</div>
+    <div class="core">근원(Core) YoY는 7월치 미확인 — 6월 4.7%</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p>미국 7월 도매물가가 <b>보합(0.0%)</b>에 그치며 예측(+0.2%)을 밑돌았어요. 연료 가격 하락으로 <b>상품 물가가 -0.7%</b> 내린 게 컸어요.</p>
+  <p>연간으로는 4.7%로, 봄철 정점(6.0%)에서 <b>두 달 연속 내려오는 중</b>이에요. 다만 서비스(+0.2%)와 건설(+2.2%)은 여전히 오르고 있어요.</p>
+  <p>전날 CPI에 이어 <mark>물가 둔화가 도매 단계에서도 확인</mark>됐어요. 도매물가는 소비자물가의 파이프라인이라, 8월 CPI 둔화 기대에 힘을 보태는 결과예요.</p>
+</div>
+
+<div class="sub-head">📈 도매물가 추이</div>
+<div class="sub-desc">봄철 관세·에너지발 급등(월 +1%대)이 6월 하락, 7월 보합으로 확실히 식었어요.</div>
+
+<div class="chart-card">
+  <div class="ct">PPI 전월 대비 상승률</div>
+  <div class="cs">2026년 1월 ~ 7월 · 4월은 속보치 +1.4%에서 +1.1%로 수정된 값</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-0.6</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">-0.1</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">0.4</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">0.9</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">1.4</text><polygon points="14.0,260 14.0,130.7 119.0,106.1 224.0,106.1 329.0,56.8 434.0,56.8 539.0,229.2 644.0,192.3 644.0,260" fill="#F2F4F6" opacity="0.85"/><polyline points="14.0,130.7 119.0,106.1 224.0,106.1 329.0,56.8 434.0,56.8 539.0,229.2 644.0,192.3" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><line x1="644.0" y1="192.3" x2="644.0" y2="260" stroke="#3182F6" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/><circle cx="644.0" cy="167.6" r="8.5" fill="none" stroke="#8B95A1" stroke-width="2" stroke-dasharray="3.5,3"/><text x="631.0" y="171.6" text-anchor="end" class="cv" style="fill:#8B95A1;font-size:11.5px">예측 +0.2%</text><circle cx="644.0" cy="192.3" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/><text x="634.0" y="179.3" text-anchor="end" class="cv" style="fill:#3182F6">발표 0.0%</text><text x="14.0" y="286" text-anchor="middle" class="cl">26.1</text><text x="224.0" y="286" text-anchor="middle" class="cl">26.3</text><text x="434.0" y="286" text-anchor="middle" class="cl">26.5</text><text x="644.0" y="286" text-anchor="middle" class="cl">26.7</text></svg>
+</div>
+<div class="chart-card">
+  <div class="ct">PPI 전년 대비 상승률</div>
+  <div class="cs">최근 4개월 · 5월 6.0%을 정점으로 둔화 국면</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-0.1</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">1.6</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">3.3</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">5.0</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">6.7</text><line x1="14" y1="254.9" x2="644" y2="254.9" stroke="#D1D6DB" stroke-width="1.5"/><rect x="59.7" y="50.5" width="66.1" height="204.4" rx="3.5" fill="#C9DEFB"/><text x="92.8" y="44.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">6.0</text><text x="92.8" y="286" text-anchor="middle" class="cl">26.4</text><rect x="217.2" y="50.5" width="66.1" height="204.4" rx="3.5" fill="#C9DEFB"/><text x="250.2" y="44.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">6.0</text><text x="250.2" y="286" text-anchor="middle" class="cl">26.5</text><rect x="374.7" y="67.6" width="66.1" height="187.3" rx="3.5" fill="#C9DEFB"/><text x="407.8" y="61.6" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.5</text><text x="407.8" y="286" text-anchor="middle" class="cl">26.6</text><rect x="532.2" y="94.8" width="66.1" height="160.1" rx="3.5" fill="#3182F6"/><text x="565.2" y="88.8" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">4.7</text><text x="565.2" y="286" text-anchor="middle" class="cl">26.7</text></svg>
+</div>
+
+<div class="sub-head">🗓️ 발표 이력</div>
+<div class="sub-desc">예측 상회는 빨강, 하회는 파랑으로 표시해요.</div>
+<table class="htable">
+  <tr><th>발표일 (대상월)</th><th>MoM 발표</th><th>예측</th><th>YoY 발표</th><th>이전(YoY)</th></tr>
+  <tr class="new"><td>2026.08.13 (7월)</td><td class="a down">0.0%</td><td>+0.2%</td><td class="a">4.7%</td><td>5.5%</td></tr>
+  <tr><td>2026.07.15 (6월)</td><td class="a down">-0.3%</td><td>0.0%</td><td class="a down">5.5%</td><td>6.0%</td></tr>
+  <tr><td>2026.06.11 (5월)</td><td class="a">+1.1%</td><td>—</td><td class="a">6.5%</td><td>6.0%</td></tr>
+  <tr><td>2026.05.13 (4월)</td><td class="a up">+1.4%</td><td>+0.5%</td><td class="a up">6.0%</td><td>—</td></tr>
+</table>
+<div class="g-note">예측치는 발표 당시 시장 컨센서스(언론 종합). 5월분 MoM 예측치는 확인되지 않아 비워뒀어요. 4·5월 수치는 발표 당시 값이며 이후 일부 수정됐어요(4월 MoM +1.4%→+1.1%, 5월 YoY 6.5%→6.0%).</div>
+
+<div class="sub-head">🔍 무엇이 도매물가를 움직였나</div>
+<div class="sub-desc">연료가 끌어내리고, 서비스·건설이 받치는 구도예요.</div>
+<div class="kpi">
+  <div class="k"><div class="l">최종수요 상품</div><div class="v"><span class="down">-0.7%</span></div><div class="d">MoM · 연료(에너지) 가격 하락이 주도</div></div>
+  <div class="k"><div class="l">최종수요 서비스</div><div class="v">+0.2%</div><div class="d">MoM · 상품 하락을 일부 상쇄</div></div>
+  <div class="k"><div class="l">최종수요 건설</div><div class="v"><span class="up">+2.2%</span></div><div class="d">MoM · 이번 달 가장 큰 상승 항목</div></div>
+  <div class="k"><div class="l">근원 (식품·에너지 제외)</div><div class="v">+0.2%</div><div class="d">MoM · 예측(+0.3%) 하회</div></div>
+</div>
+<p class="body-p">CPI와 같은 그림이에요. <b>에너지가 내리면서 헤드라인을 끌어내리고</b>, 서비스는 꾸준히 오르는 구도죠. 도매 단계의 상품 가격(-0.7%)이 내렸다는 건 <mark>관세발 원가 압력이 소비자에게 전가되기 전에 식고 있다</mark>는 신호로 읽을 수 있어요. 다만 건설비(+2.2%)의 급등은 데이터센터 건설 붐과 맞물려 지켜볼 항목이에요.</p>
+<div class="sub-head">🏛️ 시장 반응과 연준 경로</div>
+<div class="sub-desc">전날 CPI 랠리 이후라 반응은 차분했지만, 방향은 같은 쪽이었어요.</div>
+<p class="body-p">발표 직후 주가지수와 국채금리는 <b>큰 변동 없이 차분</b>했어요(“Stocks, Yields Muted After Flat PPI” — Schwab). 전날 CPI 둔화로 이미 한 차례 안도 랠리가 나온 뒤라, PPI는 그 흐름을 <b>확인해 주는 역할</b>에 그쳤죠. 기준금리는 3.50~3.75%로, 시장의 관심은 9월 FOMC(한국시간 9/17 새벽)까지 남은 <b>8월 고용보고서(9/4)와 8월 CPI(9/10)</b>로 넘어갔어요.</p>
+<div class="callout"><div class="ct">한 줄 결론</div>도매물가까지 식으면서 "9월 추가 인상" 명분은 더 약해졌어요. CPI(소비자)·PPI(도매)가 같은 방향을 가리킨 한 주였어요.</div>
+
+<div class="sub-head">💼 보유 종목 영향</div>
+<div class="sub-desc">PPI는 기업 원가의 선행 지표라, 마진 관점에서 보면 돼요.</div>
+
+<div class="stock-g">
+  <div class="sg-t">반도체·AI 인프라 <span class="tks">NVDA · MU · SK하이닉스 · CRWV</span> <span class="badge pos">우호적</span></div>
+  <p>도매 단계의 상품·에너지 가격 하락은 <b>제조·운영 원가 부담 완화</b> 요인이에요. 특히 전력·연료 비용이 큰 CRWV 같은 데이터센터 사업자에게 연료가 하락은 반가운 방향이죠. <mark class="r">다만 건설비 +2.2% 급등은 데이터센터 신규 증설 원가를 밀어 올리는 요인</mark>이라, CRWV·빅테크의 CapEx 효율에는 부담이 될 수 있어요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">소비재·방어 <span class="tks">KO · ABBV</span> <span class="badge neu">중립~우호</span></div>
+  <p>KO는 원재료 도매가가 식으면 <b>원가 부담이 줄지만, 가격 인상 명분도 함께 줄어요</b>. 이번 분기 확인된 물량 성장(+5%)이 이어진다면 물가 둔화 국면이 오히려 실적의 질을 높여줘요. 헬스케어(ABBV)는 PPI 민감도가 낮아요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">금리민감 성장주·REIT <span class="tks">PLTR · IONQ · SMR · O</span> <span class="badge pos">우호적</span></div>
+  <p>CPI에 이어 PPI까지 둔화가 확인되면서 <mark>금리 인상 우려 완화 흐름이 이틀 연속 이어졌어요</mark>. 할인율에 민감한 고밸류 성장주와, 10년물 금리에 직접 연동되는 REIT(O) 모두 같은 방향의 수혜예요.</p>
+</div>
+
+<div class="sub-head">👀 다음 발표에선 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">8월 MoM이 다시 플러스로 튀는지 — 관세 원가 전가가 재개되는지<small>6월 -0.3% → 7월 0.0% 이후 +0.3% 이상이면 둔화 추세에 제동이에요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">YoY 4.7%가 3%대로 내려서는지<small>봄철 급등의 기저효과가 사라지는 가을부터 빠르게 내려올 수 있어요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">서비스 PPI +0.2%의 끈적함 — 상품이 내려도 서비스가 버티는지<small>서비스가 +0.3% 이상으로 올라서면 근원 물가 둔화가 막혀요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">건설비 급등(+2.2%)이 일회성인지 추세인지<small>데이터센터 건설 붐과 맞물리면 AI CapEx의 실질 비용이 올라가요</small></div></div>
+</div>
+<div class="wp-preview">📌 다음 보고서에서는 위 4가지가 실제로 어떻게 됐는지 <b>하나씩 점검</b>해서 보여드릴게요.</div>
+
+<div class="next-box">🗓️ 다음 발표 — 2026년 9월 11일 (금) 21:30 <span class="est">예상 · 8월분</span></div>
+
+<div class="sub-head">📚 생산자물가지수(PPI)란?</div>
+<div class="explain">
+  <h3>소비자물가의 '파이프라인'이 되는 도매 물가예요</h3>
+  <p>국내 생산자가 판매하는 상품과 서비스의 가격 변동을 측정하는 지표예요. 미국 노동통계국(BLS)이 매달 CPI 다음 날 전후로 발표해요.</p>
+  <p>생산자가 받는 가격이 오르면 시차를 두고 소비자 가격에 전가되는 경우가 많아서, <b>CPI를 미리 보여주는 선행 지표</b>로 활용돼요. 특히 관세처럼 기업 원가에 먼저 반영되는 충격은 PPI에서 먼저 관찰돼요.</p>
+  <p>연준이 중요하게 보는 PCE 물가지수는 CPI와 PPI의 세부 항목을 재료로 산출되기 때문에, CPI·PPI가 모두 나오면 그 달 PCE의 윤곽을 어느 정도 가늠할 수 있어요.</p>
+</div>
+
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: 미국 노동통계국(BLS) 보도자료, CNBC·Axios·UPI·Schwab 보도, TradingEconomics · macro-briefing 스킬이 자동 생성했습니다.
+</div>
+</div>
+</div>
+</body>
+</html>
