@@ -75,6 +75,9 @@ b{font-weight:800}
 .htable td.a{font-weight:800}
 .htable .up{color:var(--red)} .htable .down{color:var(--blue)}
 .htable tr.new td{background:var(--blue-bg)}
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.htable th{white-space:nowrap}
 .g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
 /* KPI 카드 */
 .kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
@@ -179,14 +182,14 @@ b{font-weight:800}
 
 <div class="sub-head">🗓️ 발표 이력</div>
 <div class="sub-desc">예측 상회는 빨강, 하회는 파랑으로 표시해요.</div>
-<table class="htable">
+<div class="twrap"><table class="htable">
   <tr><th>발표일 (대상월)</th><th>YoY 발표</th><th>예측</th><th>이전</th><th>MoM</th></tr>
   <tr class="new"><td>2026.08.12 (7월)</td><td class="a">3.4%</td><td>3.4%</td><td>3.5%</td><td class="a">+0.1%</td></tr>
   <tr><td>2026.07.14 (6월)</td><td class="a down">3.5%</td><td>3.8%</td><td>4.2%</td><td class="down">-0.4%</td></tr>
   <tr><td>2026.06.10 (5월)</td><td class="a">4.2%</td><td>4.2%</td><td>3.8%</td><td>+0.5%</td></tr>
   <tr><td>2026.05.12 (4월)</td><td class="a up">3.8%</td><td>3.7%</td><td>3.3%</td><td>+0.6%</td></tr>
   <tr><td>2026.04.10 (3월)</td><td class="a">3.3%</td><td>3.3%</td><td>2.4%</td><td>—</td></tr>
-</table>
+</table></div>
 <div class="g-note">예측치는 발표 당시 시장 컨센서스(언론 종합). 3월분 MoM은 확인되지 않아 비워뒀어요.</div>
 
 <div class="sub-head">🔍 무엇이 물가를 움직였나</div>

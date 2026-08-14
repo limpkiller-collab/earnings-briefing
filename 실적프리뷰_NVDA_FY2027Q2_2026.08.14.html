@@ -75,6 +75,11 @@ b{font-weight:800}
 .htable td.a{font-weight:800}
 .htable .up{color:var(--red)} .htable .down{color:var(--blue)}
 .htable tr.new td{background:var(--blue-bg)}
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.htable th{white-space:nowrap}
+.htable td:last-child,.htable th:last-child{white-space:normal;text-align:left;
+  min-width:150px;line-height:1.55;font-size:12.5px;color:var(--g600)}
 .g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
 /* KPI 카드 */
 .kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
@@ -164,12 +169,12 @@ b{font-weight:800}
 
 <div class="sub-head">📋 가이던스 vs 컨센서스</div>
 <div class="sub-desc">회사가 제시한 전망과 시장 기대치를 미리 비교해두면 발표를 읽기 쉬워요.</div>
-<table class="htable">
+<div class="twrap"><table class="htable">
   <tr><th>항목</th><th>회사 가이던스</th><th>시장 컨센서스</th><th>보는 법</th></tr>
   <tr><td>매출</td><td class="a">$91.0B ±2%</td><td class="a up">$93~95B</td><td>컨센서스 하회 시 부정적 서프라이즈</td></tr>
   <tr><td>조정 매출총이익률</td><td class="a">75.0%</td><td>—</td><td>메모리 원가 전가 여부의 시금석</td></tr>
   <tr><td>조정 EPS</td><td>미제시</td><td class="a">$2.01~2.08</td><td>$2.08 이상이면 상단 돌파</td></tr>
-</table>
+</table></div>
 <div class="g-note">컨센서스는 2026.08.14 기준 언론·집계기관 종합. 발표 직전까지 변동될 수 있어요.</div>
 
 <div class="sub-head">🎯 애널리스트 동향</div>
