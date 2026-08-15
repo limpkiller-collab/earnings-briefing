@@ -307,7 +307,7 @@ earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.08.14";
+const LAST_UPDATED = "2026.08.15";
 
 const REPORTS_DB = [
   {
@@ -423,6 +423,13 @@ const UPCOMING_DB = [
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
   {
+    id: "RETAIL", name: "소매판매", period: "2026년 7월", category: "소비", tier: 2,
+    report_date: "2026-08-14", created: "2026.08.14", verdict: "BAD", vlabel: "감소",
+    surprise: { text: "예측 크게 하회", cls: "up" },
+    oneliner: "7월 소매판매가 전월 대비 -0.6%로 9개월 만에 감소했어요(예측은 +0.1~0.4% 증가). 온라인 -2.2%·자동차 -1.8%가 낙폭을 주도했고 세금 환급 효과 소진이 원인으로 꼽혀요. 9월 인상 확률은 30.6%까지 내려갔어요.",
+    file: "경제지표_RETAIL_2026.07_2026.08.14.html"
+  },
+  {
     id: "PPI", name: "생산자물가지수(PPI)", period: "2026년 7월", category: "물가", tier: 2,
     report_date: "2026-08-13", created: "2026.08.14", verdict: "GOOD", vlabel: "둔화",
     surprise: { text: "예측 -0.2%p", cls: "down" },
@@ -440,7 +447,7 @@ const MACRO_REPORTS_DB = [
 
 // 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
 const MACRO_UPCOMING_DB = [
-  { id: "RETAIL", name: "소매판매", short: "소매판매", period: "7월", date: "2026-08-14", estimated: false, utc: "20260814T123000Z", tier: 2, last_release: null },
+  { id: "RETAIL", name: "소매판매", short: "소매판매", period: "8월", date: "2026-09-15", estimated: true, utc: null, tier: 2, last_release: "2026-08-14" },
   { id: "FOMC_MIN", name: "FOMC 의사록", short: "의사록", period: "7월 회의", date: "2026-08-20", estimated: true, utc: null, tier: 2, last_release: null },
   { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "2분기", date: "2026-08-27", estimated: true, utc: null, tier: 2, last_release: null },
   { id: "PCE", name: "PCE 물가지수", short: "PCE", period: "7월", date: "2026-08-28", estimated: true, utc: null, tier: 3, last_release: null },
@@ -460,6 +467,11 @@ const WATCH_DB = [
     "데이터센터 성장률 +92%가 유지되는지, 매출 비중 91%에서 더 쏠리는지",
     "매출총이익률이 가이던스 75% 선을 지키는지 — 메모리 원가 상승 전가 여부",
     "주요 고객(빅테크)의 CapEx 계획 변화 — MSFT 캘린더 2026년 $175B 계획 유지 여부"]},
+  { key: "RETAIL", name: "소매판매 8월", date: "2026-09-15", type: "m", items: [
+    "8월에 반등하는지, 두 달 연속 감소로 가는지 — 소비 사이클 전환 여부",
+    "온라인(무점포) -2.2%가 회복되는지 — 가장 견조하던 채널이 꺾인 게 핵심",
+    "근원(자동차·주유소 제외) -0.2%가 플러스로 돌아서는지 — 3분기 GDP 직결",
+    "외식(+0.5%)의 온기가 유지되는지 — 서비스 소비까지 꺾이면 전면 위축"]},
   { key: "CPI", name: "소비자물가지수(CPI) 8월", date: "2026-09-10", type: "m", items: [
     "8월에도 헤드라인 둔화(3.4% → 3.3% 이하)가 이어지는지",
     "주거비 상승률이 재가속하는지 — 7월엔 +0.1%로 낮았지만 헤드라인 기여 2/3",
