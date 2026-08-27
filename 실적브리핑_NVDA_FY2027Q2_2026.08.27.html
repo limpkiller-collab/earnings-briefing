@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVIDIA FY2027 Q2 실적브리핑</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+
+/* 헤더 */
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px;font-weight:800}
+.gnb .home{background:var(--blue);color:#fff;font-size:13px;font-weight:700;
+  padding:8px 16px;border-radius:10px;text-decoration:none}
+
+.body{padding:36px 28px 80px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px;margin-bottom:18px}
+h1{font-size:30px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:14px}
+.byline{font-size:14px;color:var(--g400);margin-bottom:8px}
+.source-note{font-size:13px;color:var(--g400);padding-bottom:24px;border-bottom:1px solid var(--g200);margin-bottom:28px}
+p{font-size:16.5px;color:var(--g700);margin-bottom:16px}
+b,strong{font-weight:700;color:var(--g900)}
+mark{background:var(--green-bg);color:var(--g900);padding:1px 2px;border-radius:2px;font-weight:500}
+mark.b{background:var(--blue-bg)}
+mark.r{background:var(--red-bg)}
+
+/* 섹션 */
+section{padding-top:44px}
+.sec-head{margin-bottom:20px}
+.sec-head .l1{font-size:22px;font-weight:800;line-height:1.4;letter-spacing:-0.03em}
+.sec-head .l2{font-size:22px;font-weight:800;line-height:1.4;letter-spacing:-0.03em}
+.sub-head{font-size:17px;font-weight:700;margin:32px 0 12px;display:flex;align-items:center;gap:7px}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 24px}
+.kpi{background:var(--g50);border-radius:14px;padding:16px 18px}
+.kpi .l{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:4px}
+.kpi .v{font-size:23px;font-weight:800;letter-spacing:-0.03em}
+.kpi .d{font-size:13px;font-weight:700;margin-top:2px}
+.pos{color:var(--green)} .neg{color:var(--red)} .amb{color:var(--amber)}
+
+.verdict{display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);color:var(--green);
+  font-size:13px;font-weight:800;padding:6px 14px;border-radius:20px;margin-left:8px;vertical-align:middle}
+
+/* 강조 박스 */
+.callout{background:var(--blue-bg);border-radius:14px;padding:18px 20px;margin:22px 0;
+  font-size:16.5px;font-weight:700;color:var(--g900);line-height:1.6}
+.callout .cap{display:block;font-size:12.5px;font-weight:700;color:var(--blue);margin-bottom:6px;letter-spacing:0}
+
+/* 차트 */
+.chart{background:var(--g50);border-radius:16px;padding:20px 16px 12px;margin:20px 0 8px}
+.chart .ct{font-size:14px;font-weight:700;padding:0 6px 4px;color:var(--g900)}
+.chart .cs{font-size:12.5px;font-weight:500;color:var(--g400);padding:0 6px 12px;display:block}
+svg{width:100%;height:auto;display:block}
+.s-lab{font-size:12.5px;fill:var(--g400);font-weight:600}
+.s-val{font-size:13px;fill:var(--g900);font-weight:800}
+.s-yoy{font-size:12px;fill:var(--green);font-weight:800}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--g500);padding:8px 6px 4px;font-weight:600}
+.legend .d{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
+
+/* 표 */
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0 20px}
+th,td{padding:12px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+th:first-child,td:first-child{text-align:left}
+thead th{color:var(--g500);font-size:13px;font-weight:600;border-bottom:1px solid var(--g200)}
+tbody td{color:var(--g700);font-weight:500}
+tbody tr.hl td{background:var(--g50);font-weight:700;color:var(--g900)}
+/* 가이던스 비교표 */
+.gtable{margin:8px 0 10px}
+.gtable thead th{background:var(--g50)}
+.gtable thead th:first-child{border-radius:10px 0 0 0}
+.gtable thead th:last-child{border-radius:0 10px 0 0}
+.gtable td.g{font-weight:700;color:var(--g900)}
+.gtable td.diff{font-weight:800}
+.g-note{font-size:13.5px;color:var(--g500);font-weight:600;margin:-6px 0 18px}
+
+/* 토스 스타일 분기 재무 */
+.fin-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 8px}
+.fin-kpi{background:var(--g50);border-radius:14px;padding:16px 18px}
+.fin-kpi .l{font-size:12.5px;color:var(--g500);font-weight:600}
+.fin-kpi .v{font-size:22px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.fin-kpi .s{font-size:12px;color:var(--g400);font-weight:600;margin-top:2px}
+.fin-block{margin-top:26px}
+.fin-block h4{font-size:17px;font-weight:800;letter-spacing:-0.03em}
+.fin-block .lede{font-size:14.5px;color:var(--g600);margin:6px 0 4px;font-weight:500}
+.period-chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:12px;
+  font-weight:700;padding:5px 12px;border-radius:20px;margin:8px 6px 4px 0}
+.cv{font-size:12.5px;font-weight:800;fill:var(--g900)}
+.cl{font-size:11.5px;font-weight:600;fill:var(--g400)}
+.clegend{display:flex;gap:14px;font-size:12px;color:var(--g500);font-weight:600;padding:6px 8px 2px;flex-wrap:wrap}
+.clegend .d{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
+.clegend .ln{width:14px;height:3px;border-radius:2px;display:inline-block;margin-right:5px;vertical-align:3px}
+@media(max-width:600px){.fin-kpis{grid-template-columns:1fr 1fr}.fin-kpis .fin-kpi:last-child{grid-column:span 2}}
+/* 지난 분기 체크포인트 점검 */
+.wp-list{display:flex;flex-direction:column;gap:10px;margin:16px 0 20px}
+.wp{display:flex;gap:14px;background:var(--g50);border-radius:14px;padding:16px 18px}
+.wp-badge{flex:0 0 auto;align-self:flex-start;font-size:12px;font-weight:800;
+  padding:5px 12px;border-radius:20px;white-space:nowrap}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp.partial .wp-badge{background:var(--amber-bg);color:var(--amber)}
+.wp.hold .wp-badge{background:var(--g100);color:var(--g500)}
+.wp-q{font-size:15px;font-weight:700;color:var(--g900);line-height:1.5}
+.wp-a{font-size:14.5px;color:var(--g600);margin-top:4px;line-height:1.55}
+.wp-score{font-size:14px;color:var(--g500);font-weight:600;margin:-8px 0 20px}
+.wp-preview{background:var(--blue-bg);border-radius:14px;padding:16px 18px;
+  font-size:14.5px;color:var(--g700);font-weight:500;margin:4px 0 8px}
+
+.gtable td.none{color:var(--g400);font-weight:500}
+.tag{display:inline-block;background:var(--g100);color:var(--g500);font-size:10.5px;font-weight:700;
+  padding:2px 7px;border-radius:6px;margin-left:5px;vertical-align:1px}
+.pending{background:var(--amber-bg);color:var(--amber);border-radius:14px;
+  padding:18px 20px;font-weight:700;font-size:15.5px;margin:16px 0}
+
+/* 인용 */
+.quote{border-left:3px solid var(--blue);padding:2px 0 2px 16px;margin:18px 0;
+  font-size:16.5px;color:var(--g700);line-height:1.65}
+.quote .who{display:block;font-size:13.5px;color:var(--g400);font-weight:600;margin-top:8px}
+
+/* 키워드 */
+.kws{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 20px}
+.kws span{background:var(--blue-bg);color:var(--blue);font-size:13.5px;font-weight:700;
+  padding:7px 14px;border-radius:20px}
+
+/* 장단점 */
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 22px}
+.pc{border-radius:14px;padding:18px}
+.pc.good{background:var(--green-bg)}
+.pc.bad{background:var(--red-bg)}
+.pc h4{font-size:15px;font-weight:800;margin-bottom:10px}
+.pc.good h4{color:var(--green)} .pc.bad h4{color:var(--red)}
+.pc ul{list-style:none}
+.pc li{font-size:14.5px;color:var(--g700);padding-left:14px;position:relative;margin-bottom:9px;line-height:1.55}
+.pc li:before{content:'';position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--g400)}
+.pc li:last-child{margin-bottom:0}
+
+/* 리스트 */
+ul.dots{list-style:none;margin:6px 0 18px}
+ul.dots li{font-size:16.5px;color:var(--g700);padding-left:16px;position:relative;margin-bottom:12px}
+ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--g400)}
+.foot-note{font-size:13px;color:var(--g400);margin-top:-6px;margin-bottom:16px}
+
+/* 다음 일정 */
+.next{background:var(--g50);border-radius:14px;padding:18px 20px;margin-top:24px}
+.next .t{font-size:13px;color:var(--g500);font-weight:700;margin-bottom:4px}
+.next .d{font-size:18px;font-weight:800}
+
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:25px}
+  .kpis,.pros-cons{grid-template-columns:1fr}
+  .sec-head .l1,.sec-head .l2{font-size:20px}
+  p,ul.dots li{font-size:16px}
+}
+
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.twrap table{min-width:520px}
+.twrap td,.twrap th{white-space:normal;word-break:keep-all}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="gnb">
+  <div class="brand"><span class="dot">📊</span> 실적브리핑</div>
+  <a class="home" href="index.html">전체 보고서</a>
+</div>
+
+<div class="body">
+
+<span class="chip">#실적분석 #NVDA</span>
+<h1>매출이 1년 만에 두 배가 됐어요<br>엔비디아 FY2027 Q2<span class="verdict">BEAT</span></h1>
+<div class="byline">2026.08.27 · FY2027 Q2 (2026.05~07, 캘린더 2분기) · 발표 2026.08.27 06:20 (한국시간)</div>
+<div class="source-note">출처: NVIDIA IR 보도자료·CFO 코멘터리, Kiplinger 어닝콜 라이브, CNBC, Fortune, stockanalysis.com(S&amp;P Global Market Intelligence)</div>
+
+<p>안녕하세요. 보유 종목 실적 브리핑이에요. 한국시간 오늘 새벽 엔비디아가 <b>FY2027 2분기</b> 실적을 발표했어요.</p>
+<p>결론부터 말하면 <b>매출 $96.2B(+106%)</b>, <b>조정 EPS $2.22(+120%)</b>로 시장 예상을 모두 넘었고, 다음 분기 가이던스 <b>$108.0B</b>도 컨센서스를 약 4% 웃돌았어요. 그런데 이번 보고서에서 진짜 봐야 할 건 헤드라인이 아니라 두 가지예요. <mark>회사가 처음으로 "내년 매출 +70%"라는 숫자를 스스로 꺼냈다는 것</mark>, 그리고 <mark class="r">그 대가로 매출총이익률이 4분기에 71~72%까지 내려간다고 예고했다는 것</mark>이에요.</p>
+
+<!-- 지난 분기 체크포인트 -->
+<div class="sub-head">✅ 지난 분기 체크포인트 점검</div>
+<p>FY2027 Q1 보고서에서 "다음 분기엔 이걸 보자"고 했던 4가지가 어떻게 됐는지 먼저 확인해볼게요.</p>
+<div class="wp-list">
+  <div class="wp met"><div class="wp-badge">충족</div><div>
+    <div class="wp-q">FY27 Q2 매출이 가이던스 $91.0B을 넘는지 — 서프라이즈 폭이 지난 분기(+3.6%)보다 커지는지</div>
+    <div class="wp-a">매출 <b>$96.221B</b>으로 가이던스 대비 <b>+5.7%</b>, 컨센서스 $92.2B 대비 <b>+4.4%</b>였어요. 컨센서스 서프라이즈가 지난 분기 +3.6%에서 +4.4%로 확대됐어요.</div></div></div>
+  <div class="wp met"><div class="wp-badge">충족</div><div>
+    <div class="wp-q">데이터센터 성장률 +92%가 유지되는지, 매출 비중 91%에서 더 쏠리는지</div>
+    <div class="wp-a">데이터센터 <b>$89.02B</b>으로 YoY <b>+116.6%</b> — 성장률이 오히려 24%p 더 빨라졌어요. 전체 매출 대비 비중도 91%에서 <b>92.5%</b>로 더 쏠렸어요.</div></div></div>
+  <div class="wp met"><div class="wp-badge">충족</div><div>
+    <div class="wp-q">매출총이익률이 가이던스 75% 선을 지키는지 — 메모리 원가 상승 전가 여부</div>
+    <div class="wp-a">GAAP·조정 모두 <b>75.0%</b>로 가이던스를 정확히 지켰어요. 다만 회사는 같은 자리에서 Q3 74.0%, <b>Q4 71~72%</b>로 내려간다고 예고해서, 전가에 한계가 있다는 점도 함께 확인됐어요.</div></div></div>
+  <div class="wp partial"><div class="wp-badge">부분 충족</div><div>
+    <div class="wp-q">주요 고객(빅테크)의 CapEx 계획 변화 — 특히 MSFT 캘린더 2026년 $175B 계획 유지 여부</div>
+    <div class="wp-a">CFO가 하이퍼스케일러 CapEx를 <b>2026년 $800B 이상, 2027년 $1.3조</b>로 제시하며 전체 방향은 확인됐어요. 다만 마이크로소프트 $175B 계획을 개별적으로 언급하진 않아 개별사 확인은 못 했어요.</div></div></div>
+</div>
+<div class="wp-score">4개 중 3개 충족 · 1개 부분 충족</div>
+
+<!-- ① -->
+<section>
+<div class="sec-head">
+  <div class="l1">📌 ① 실적 해석,</div>
+  <div class="l2">숫자는 완벽했고, 마진은 예고편이었어요</div>
+</div>
+
+<div class="kpis">
+  <div class="kpi"><div class="l">매출</div><div class="v">$96.2B</div><div class="d pos">YoY +105.9% · 예상 $92.2B → Beat +4.4%</div></div>
+  <div class="kpi"><div class="l">조정 EPS</div><div class="v">$2.22</div><div class="d pos">예상 $2.09 → Beat +6.2%</div></div>
+  <div class="kpi"><div class="l">데이터센터</div><div class="v">$89.0B</div><div class="d pos">YoY +116.6% · 비중 92.5%</div></div>
+  <div class="kpi"><div class="l">영업이익률</div><div class="v">66.2%</div><div class="d pos">12개 분기 최고</div></div>
+</div>
+
+<p>GAAP 희석 EPS는 <b>$2.46</b>, 조정 기준은 <b>$2.22</b>로 전년 대비 <b>+120%</b> 늘었어요. 매출이 +106% 느는 동안 이익이 그보다 더 빨리 늘었으니 <mark>규모가 커질수록 마진이 좋아지는 구조가 아직 살아 있다</mark>는 뜻이에요. 실제로 영업이익률은 <b>66.2%</b>로 12개 분기 중 가장 높았어요.</p>
+<p>성장을 끌고 간 건 <b>Blackwell Ultra 램프</b>였어요. 여기에 <b>Vera Rubin 플랫폼이 완전 양산에 들어가면서</b> CoreWeave·구글 클라우드·애저·오라클·Nebius에 랙이 들어가기 시작했어요. 주주환원도 컸어요. 이번 분기에 자사주 매입과 배당으로 <b>$26.0B</b>을 돌려줬고, 자사주 매입 한도는 아직 <b>$99.0B</b>이 남아 있어요.</p>
+
+<div class="chart">
+  <div class="ct">조정 EPS: 시장 예상 vs 실제</div>
+  <span class="cs">그 이전 분기는 발표 시점 컨센서스가 확인되지 않아 제외했어요</span>
+  <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg"><line x1="120" y1="200" x2="580" y2="200" stroke="#E5E8EB" stroke-width="1"/><rect x="188" y="75.3" width="56" height="124.7" fill="#D1D6DB" rx="6"/><text x="216" y="67.3" text-anchor="middle" class="s-lab">1.76</text><rect x="256" y="67.5" width="56" height="132.5" fill="#A3C9FA" rx="6"/><text x="284" y="59.5" text-anchor="middle" class="s-val">$1.87</text><rect x="398" y="51.9" width="56" height="148.1" fill="#D1D6DB" rx="6"/><text x="426" y="43.9" text-anchor="middle" class="s-lab">2.09</text><rect x="466" y="42.7" width="56" height="157.3" fill="#3182F6" rx="6"/><text x="494" y="34.7" text-anchor="middle" class="s-val">$2.22</text><text x="250" y="224" text-anchor="middle" class="s-lab">FY27 Q1</text><text x="460" y="224" text-anchor="middle" class="s-lab">FY27 Q2</text><text x="60" y="34" class="cl">단위: 달러</text></svg>
+  <div class="legend"><span><span class="d" style="background:#D1D6DB"></span>시장 예상</span><span><span class="d" style="background:#3182F6"></span>실제</span></div>
+</div>
+
+<div class="sub-head">🔮 회사 전망치 vs 시장 예상치</div>
+<div class="twrap">
+<table class="gtable">
+<thead><tr><th>항목</th><th>회사 가이던스</th><th>시장 예상</th><th>차이</th></tr></thead>
+<tbody>
+<tr class="hl"><td>FY27 Q3 매출</td><td class="g">$108.0B ±2%</td><td>$104.2B</td><td class="diff pos">+3.6%</td></tr>
+<tr><td>FY27 Q3 GAAP·조정 매출총이익률</td><td class="g">74.0% ±50bp</td><td></td><td></td></tr>
+<tr><td>FY27 Q3 GAAP 영업비용</td><td class="g">약 $9.2B</td><td></td><td></td></tr>
+<tr><td>FY27 Q3 조정 영업비용</td><td class="g">약 $9.0B</td><td></td><td></td></tr>
+<tr><td>└ FY27 Q3 조정 영업이익률 <span class="tag">역산</span></td><td class="g">약 65.7%</td><td></td><td></td></tr>
+<tr><td>FY27 Q4 매출총이익률 <span class="tag">어닝콜</span></td><td class="g">71~72% (저점)</td><td></td><td></td></tr>
+<tr class="hl"><td>FY2028 매출 성장률 <span class="tag">어닝콜</span></td><td class="g">약 +70%</td><td>+44.0%</td><td class="diff pos">+26.0%p</td></tr>
+<tr><td>FY2027 세율</td><td class="g">16.0~18.0%</td><td></td><td></td></tr>
+<tr><td>EPS · CapEx</td><td class="none">회사 가이던스 미제시</td><td></td><td></td></tr>
+</tbody>
+</table>
+</div>
+<div class="g-note">엔비디아는 매출·마진·영업비용·세율만 가이던스로 주고 EPS와 CapEx는 제시하지 않아요 · Q3 조정 영업이익률은 (매출×74.0% − 조정 영업비용 $9.0B) ÷ 매출로 역산한 값이에요 · Q3 매출 컨센서스는 집계기관에 따라 $103.9~104.8B로 갈렸고 중간값 $104.2B을 기준으로 썼어요 · 직전 가이던스($91.0B) 대비 <b>+18.7% 상향</b>이에요 · 빈 칸은 시장 컨센서스를 확인하지 못한 항목이에요</div>
+<p>다음 분기 매출 전망 <b>$108.0B</b>은 컨센서스보다 <b>3.6% 높아요.</b> 전년 동기($57.0B) 대비로는 <b>+89%</b>예요. 회사는 이 전망에 <mark>중국 데이터센터 컴퓨트 매출을 하나도 넣지 않았다</mark>고 명시했어요. 중국이 열리면 그만큼이 순수한 추가분이라는 뜻이에요.</p>
+<p>더 중요한 건 <b>FY2028 매출 +70%</b>라는 숫자예요. CFO는 이게 "수요"가 아니라 <b>"공급 제약을 반영한"</b> 숫자라고 못 박았고, 황 CEO는 <mark>"70% 성장할 만큼의 공급을 확보했다. 수요는 그보다 훨씬 많다"</mark>고 덧붙였어요. 현재 시장 컨센서스가 +44%니까, 회사 말이 맞다면 내년 추정치는 통째로 올라가야 해요.</p>
+<p>반대편에는 마진이 있어요. <mark class="r">Q3 74.0% → Q4 71~72%로 내려가고, 그 원인은 상당 부분 메모리 가격</mark>이에요. CFO는 이 부분을 피하지 않고 "오늘의 메모리 부족은 상당 부분 AI 인프라 구축 그 자체가 만든 것"이라고 설명했어요. 자기가 만든 수요가 자기 원가를 올리는 구조예요.</p>
+
+<div class="sub-head">💵 포워드 EPS와 밸류에이션</div>
+<div class="twrap">
+<table class="gtable">
+<thead><tr><th>구분</th><th>FY2026 (실적)</th><th>FY2027 (E)</th><th>FY2028 (E)</th></tr></thead>
+<tbody>
+<tr class="hl"><td>조정 EPS</td><td>$4.77</td><td class="g">$9.02</td><td class="g">$13.04</td></tr>
+<tr><td>EPS 성장률</td><td class="pos">+59.5%</td><td class="pos">+89.0%</td><td class="pos">+44.6%</td></tr>
+<tr><td>매출</td><td>$215.94B</td><td>$395.73B</td><td>$570.01B</td></tr>
+<tr><td>매출 성장률</td><td class="pos">+65.5%</td><td class="pos">+83.3%</td><td class="pos">+44.0%</td></tr>
+<tr><td><b>Forward P/E</b></td><td>46.0배</td><td class="diff">24.3배</td><td class="diff">16.8배</td></tr>
+</tbody>
+</table>
+</div>
+<div class="g-note">주가 $219.55(2026.08.26 19:59 ET 시간외) 기준 직접 계산 · 추정치 출처: S&amp;P Global Market Intelligence(2026.08.25 갱신, 애널리스트 54~61명) · 조정(Non-GAAP) 기준 · FY2027 추정 범위 EPS $8.20~9.65 / 매출 $358.4~418.0B · <b>⚠️ 이 컨센서스는 실적 발표 직전에 갱신된 값이라 이번 실적과 가이던스를 아직 반영하지 않았어요.</b> 다음 며칠에 걸쳐 상향될 가능성이 커요</div>
+<p>FY2027 기준 Forward P/E는 <mark>24.3배</mark>, FY2028 기준으로는 <b>16.8배</b>까지 내려가요. EPS 성장률로 나눈 PEG는 <b>0.27</b>이라, 표면 숫자만 보면 시가총액 1위 기업치고는 놀랍도록 싸 보여요.</p>
+<p>다만 이 숫자를 그대로 믿기는 어려워요. <mark class="r">P/E 24.3배가 성립하려면 FY2027 EPS가 $4.77 → $9.02로 89% 늘어야 하고, 16.8배가 성립하려면 그 위에서 다시 45%가 더 늘어야 해요.</mark> 여기에 이번 분기에 확인된 마진 하락 경로(75% → 71~72%)가 아직 컨센서스에 반영되지 않았다는 점도 함께 봐야 해요. 매출은 회사 말대로 올라가더라도 EPS는 그만큼 못 따라갈 수 있어요.</p>
+<p>참고로 회사가 말한 <b>FY2028 매출 +70%</b>를 현재 FY2027 컨센서스($395.73B)에 그대로 적용하면 약 <b>$673B</b>이 나와요. 지금 컨센서스 $570B보다 <b>18% 높은</b> 수준이에요. <span class="tag">계산값</span></p>
+
+<div class="chart">
+  <div class="ct">연도별 조정 EPS와 Forward P/E</div>
+  <span class="cs">P/E는 주가 $219.55 기준 계산값 · FY2027·FY2028은 애널리스트 추정치</span>
+  <svg viewBox="0 0 700 290" xmlns="http://www.w3.org/2000/svg"><line x1="60" y1="30" x2="640" y2="30" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="84" x2="640" y2="84" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="138" x2="640" y2="138" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="192" x2="640" y2="192" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="246" x2="640" y2="246" stroke="#EDEFF2" stroke-width="1"/><rect x="130" y="167.0" width="90" height="79.0" rx="6" fill="#C9DEFB"/><text x="175" y="157.0" text-anchor="middle" class="cv">$4.77</text><text x="175" y="270" text-anchor="middle" class="cl">FY2026 (실적)</text><rect x="305" y="96.6" width="90" height="149.4" rx="6" fill="#A3C9FA"/><text x="350" y="86.6" text-anchor="middle" class="cv">$9.02</text><text x="350" y="270" text-anchor="middle" class="cl">FY2027 (E)</text><rect x="480" y="30.0" width="90" height="216.0" rx="6" fill="#3182F6"/><text x="525" y="22.0" text-anchor="middle" class="cv">$13.04</text><text x="525" y="270" text-anchor="middle" class="cl">FY2028 (E)</text><polyline points="175,70 350,166.6 525,200" fill="none" stroke="#FF9500" stroke-width="3"/><circle cx="175" cy="70" r="5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="175" y="57" text-anchor="middle" class="cv" fill="#FF9500">46.0배</text><circle cx="350" cy="166.6" r="5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="350" y="153.6" text-anchor="middle" class="cv" fill="#FF9500">24.3배</text><circle cx="525" cy="200" r="5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="525" y="187" text-anchor="middle" class="cv" fill="#FF9500">16.8배</text><text x="60" y="18" class="cl">막대 = 조정 EPS (좌)</text><text x="640" y="18" text-anchor="end" class="cl" fill="#FF9500">선 = Forward P/E (우)</text></svg>
+</div>
+
+<div class="callout"><span class="cap">한 문장 요약</span>실적·가이던스 모두 이겼고 내년 +70% 성장까지 회사가 직접 제시했어요. 대신 마진이 4분기에 71~72%까지 내려간다는 청구서도 같이 왔어요.</div>
+</section>
+
+<!-- ② -->
+<section>
+<div class="sec-head">
+  <div class="l1">📈 ② 재무제표 뜯어보기,</div>
+  <div class="l2">성장률이 다섯 분기째 빨라졌어요</div>
+</div>
+
+<div class="sub-head">🚀 성장률이 세 자릿수로 올라섰어요</div>
+<div class="chart">
+  <div class="ct">분기 매출 추이와 전년 대비 성장률</div>
+  <svg viewBox="0 0 700 255" xmlns="http://www.w3.org/2000/svg"><line x1="40" y1="210" x2="670" y2="210" stroke="#E5E8EB" stroke-width="1"/><rect x="82" y="122.6" width="56" height="87.4" fill="#B8D5FB" rx="6"/><text x="110" y="116.6" text-anchor="middle" class="s-val">46.7B</text><text x="110" y="102.6" text-anchor="middle" class="s-yoy">+55.6%</text><text x="110" y="232" text-anchor="middle" class="s-lab">FY26 Q2</text><rect x="202" y="103.4" width="56" height="106.6" fill="#A3C9FA" rx="6"/><text x="230" y="97.4" text-anchor="middle" class="s-val">57.0B</text><text x="230" y="83.4" text-anchor="middle" class="s-yoy">+62.5%</text><text x="230" y="232" text-anchor="middle" class="s-lab">FY26 Q3</text><rect x="322" y="82.6" width="56" height="127.4" fill="#7BB0F8" rx="6"/><text x="350" y="76.6" text-anchor="middle" class="s-val">68.1B</text><text x="350" y="62.6" text-anchor="middle" class="s-yoy">+73.2%</text><text x="350" y="232" text-anchor="middle" class="s-lab">FY26 Q4</text><rect x="442" y="57.3" width="56" height="152.7" fill="#5497F7" rx="6"/><text x="470" y="51.3" text-anchor="middle" class="s-val">81.6B</text><text x="470" y="37.3" text-anchor="middle" class="s-yoy">+85.2%</text><text x="470" y="232" text-anchor="middle" class="s-lab">FY27 Q1</text><rect x="562" y="30.0" width="56" height="180.0" fill="#3182F6" rx="6"/><text x="590" y="24.0" text-anchor="middle" class="s-val">96.2B</text><text x="590" y="10.0" text-anchor="middle" class="s-yoy">+105.9%</text><text x="590" y="232" text-anchor="middle" class="s-lab">FY27 Q2</text></svg>
+</div>
+<p>+56% → +62% → +73% → +85% → <b>+106%.</b> <mark>다섯 분기 연속으로 성장률이 빨라졌어요.</mark> 분기 매출이 $47B에서 $96B으로 두 배가 되는 동안 성장률이 오히려 올라간 건 이 규모의 기업에서는 대단히 드문 일이에요. CFO도 "4개 분기 연속 성장 가속"이라는 표현을 썼어요.</p>
+
+<div class="sub-head">🖥️ 하이퍼스케일러 밖에서 더 빨리 커요</div>
+<div class="chart">
+  <div class="ct">FY2027 Q2 세그먼트별 매출 ($96.2B)</div>
+  <span class="cs">데이터센터 = 하이퍼스케일 + ACIE(AI 클라우드·산업·기업) 합산 $89.0B</span>
+  <svg viewBox="0 0 700 115" xmlns="http://www.w3.org/2000/svg"><rect x="50.0" y="25" width="303.7" height="46" fill="#3182F6" rx="8"/><text x="201.9" y="53" text-anchor="middle" class="s-val" fill="#fff">하이퍼스케일 $48.7B</text><text x="201.9" y="93" text-anchor="middle" class="s-lab">50.6% · YoY +101.5%</text><rect x="355.7" y="25" width="251.4" height="46" fill="#7BB0F8" rx="8"/><text x="481.4" y="53" text-anchor="middle" class="s-val" fill="#fff">ACIE $40.3B</text><text x="481.4" y="93" text-anchor="middle" class="s-lab">41.9% · YoY +138.1%</text><rect x="609.1" y="25" width="44.9" height="46" fill="#B0B8C1" rx="8"/><text x="631.6" y="53" text-anchor="middle" class="s-val" fill="#fff">엣지</text><text x="631.6" y="93" text-anchor="middle" class="s-lab">7.5%</text></svg>
+</div>
+<p>눈여겨볼 건 <b>ACIE</b>예요. AI 네이티브 스타트업·기업·소버린(국가) 고객이 들어 있는 이 묶음이 <mark>YoY +138%, 전분기 대비 +25%로 하이퍼스케일러(+102%, +13%)보다 두 배 빠르게 크고 있어요.</mark> 황 CEO가 "1년 전엔 한 곳의 연구소가 구축을 이끌었지만 지금은 여러 프런티어 랩이 동시에 확장 중"이라고 말한 게 이 숫자로 나타난 거예요. 고객 집중 리스크가 조금씩 옅어지고 있다는 신호예요.</p>
+<p>반면 <b>엣지 컴퓨팅은 $7.2B(+27.5%)</b>에 그쳤어요. Blackwell 워크스테이션은 잘 팔렸지만 <mark class="r">메모리·시스템 가격이 오르면서 소비자 PC 판매가 둔화</mark>됐다고 회사가 밝혔어요. 메모리 가격 상승이 마진뿐 아니라 매출 쪽에서도 이미 흔적을 남기고 있어요.</p>
+
+<div class="sub-head">💰 마진은 최고, 현금흐름은 급감이에요</div>
+<div class="chart">
+  <div class="ct">FY2027 Q2 마진 프로필 (%)</div>
+  <svg viewBox="0 0 700 171" xmlns="http://www.w3.org/2000/svg"><text x="140" y="41" text-anchor="end" class="s-lab">매출총이익률</text><rect x="150" y="25" width="382.5" height="24" fill="#3182F6" rx="6"/><text x="518.5" y="41" text-anchor="end" class="s-val" fill="#fff">75.0%</text><text x="140" y="75" text-anchor="end" class="s-lab">영업이익률</text><rect x="150" y="59" width="337.9" height="24" fill="#7BB0F8" rx="6"/><text x="473.9" y="75" text-anchor="end" class="s-val" fill="#fff">66.2%</text><text x="140" y="109" text-anchor="end" class="s-lab">순이익률</text><rect x="150" y="93" width="316.3" height="24" fill="#5AD3A0" rx="6"/><text x="452.3" y="109" text-anchor="end" class="s-val" fill="#fff">62.0%</text><text x="140" y="143" text-anchor="end" class="s-lab">FCF 마진</text><rect x="150" y="127" width="113.2" height="24" fill="#F04452" rx="6"/><text x="249.2" y="143" text-anchor="end" class="s-val" fill="#fff">22.2%</text></svg>
+</div>
+<p>매출총이익률 75.0%, 영업이익률 66.2%는 모두 12개 분기 최고예요. 그런데 <mark class="r">FCF 마진이 한 분기 만에 59.5% → 22.2%로 주저앉았어요.</mark> 이익이 줄어서가 아니에요. <b>매출채권이 $22.3B, 재고가 $5.8B 늘면서</b> 벌어들인 돈이 운전자본으로 묶인 거예요. 잉여현금흐름은 $48.6B에서 <b>$21.3B</b>으로 줄었어요.</p>
+<p>이걸 어떻게 볼지가 갈려요. 좋게 보면 <b>다음 분기에 팔릴 물건과 받을 돈이 그만큼 쌓여 있다</b>는 뜻이고(Q3 가이던스 $108B과 방향이 맞아요), 나쁘게 보면 <b>매출 인식이 현금 회수보다 앞서 나가고 있다</b>는 뜻이에요. 회사가 $500B 규모 제3자 자본 조달 플랫폼을 만들고 있다는 점과 겹쳐서, 이른바 '순환 금융' 논란이 나오는 지점이 바로 여기예요.</p>
+<p>한 가지 더. 이번 분기에 <b>장기차입금이 $7.5B에서 $32.4B으로</b> 늘었어요. $24.9B을 새로 조달한 건데, 현금 없는 회사가 아니라 <mark>현금이 넘치는 회사가 굳이 빚을 낸 것</mark>이라 용처(설비·투자·자사주)가 다음 분기 확인 포인트예요.</p>
+
+<div class="sub-head">📊 최근 3년 분기 재무</div>
+<div class="fin-kpis">
+  <div class="fin-kpi"><div class="l">부채비율</div><div class="v pos">39.9%</div><div class="s">총부채 ÷ 총자본</div></div>
+  <div class="fin-kpi"><div class="l">유동비율</div><div class="v pos">458.9%</div><div class="s">단기 지급능력</div></div>
+  <div class="fin-kpi"><div class="l">순현금</div><div class="v pos">+$61.0B</div><div class="s">현금·투자 − 총차입금</div></div>
+</div>
+<p>차입금이 $12.8B에서 <b>$38.4B</b>으로 세 배가 됐지만, 현금·투자도 $53.2B에서 <b>$99.4B</b>으로 늘어 순현금은 오히려 <b>+$61.0B</b>으로 커졌어요. 부채비율 39.9%는 12개 분기 중 중간 수준이고 유동비율 458.9%는 여유가 크니, <mark>재무 위험보다는 "왜 지금 빌렸나"라는 전략 질문이 남는 국면</mark>이에요.</p>
+<div><span class="period-chip">최근 3년</span><span class="period-chip">분기별</span></div>
+
+<div class="fin-block">
+  <h4>수익성</h4>
+  <div class="lede">매출·순이익률 — 분기 매출 <b>$96.2B</b>으로 최고치를 다시 썼어요. 순이익률은 <b>62.0%</b>로 전분기(71.5%)보다 내려왔는데, 지난 분기에 지분증권 평가이익 $15.9B이 크게 잡혔던 기저효과예요.</div>
+  <div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30" x2="654" y2="30" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87" x2="654" y2="87" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144" x2="654" y2="144" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201" x2="654" y2="201" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258" x2="654" y2="258" stroke="#EDEFF2" stroke-width="1"/><rect x="23.8" y="215.1" width="30" height="42.9" rx="4" fill="#C9DEFB"/><rect x="77.3" y="205.6" width="30" height="52.4" rx="4" fill="#C9DEFB"/><rect x="130.8" y="196.3" width="30" height="61.7" rx="4" fill="#C9DEFB"/><rect x="184.3" y="186.8" width="30" height="71.2" rx="4" fill="#C9DEFB"/><rect x="237.8" y="174.9" width="30" height="83.1" rx="4" fill="#C9DEFB"/><rect x="291.3" y="164.8" width="30" height="93.2" rx="4" fill="#C9DEFB"/><rect x="344.8" y="153.6" width="30" height="104.4" rx="4" fill="#C9DEFB"/><rect x="398.3" y="147.2" width="30" height="110.8" rx="4" fill="#C9DEFB"/><rect x="451.8" y="122.9" width="30" height="135.1" rx="4" fill="#C9DEFB"/><rect x="505.3" y="96.6" width="30" height="161.4" rx="4" fill="#C9DEFB"/><rect x="558.8" y="64.6" width="30" height="193.4" rx="4" fill="#C9DEFB"/><rect x="612.3" y="30.0" width="30" height="228.0" rx="4" fill="#3182F6"/><polyline points="38.8,173.4 92.3,149.9 145.8,141.8 199.3,151.5 252.8,152.7 306.3,146.8 359.8,216.6 413.3,144.9 466.8,147.8 520.3,111.4 573.8,68.2 627.3,116.7" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="627.3" cy="116.7" r="4.5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="619.3" y="105.7" text-anchor="end" class="cv" fill="#FF9500">62.0%</text><text x="627.3" y="22" text-anchor="middle" class="cv">96.22B</text><text x="38.8" y="284" text-anchor="middle" class="cl">FY24 Q3</text><text x="145.8" y="284" text-anchor="middle" class="cl">FY25 Q1</text><text x="252.8" y="284" text-anchor="middle" class="cl">FY25 Q3</text><text x="359.8" y="284" text-anchor="middle" class="cl">FY26 Q1</text><text x="466.8" y="284" text-anchor="middle" class="cl">FY26 Q3</text><text x="573.8" y="284" text-anchor="middle" class="cl">FY27 Q1</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>매출(막대)</span><span><span class="ln" style="background:#FF9500"></span>순이익률(선)</span></div></div>
+</div>
+
+<div class="fin-block">
+  <h4>성장성</h4>
+  <div class="lede">영업이익·영업이익률 — 영업이익 <b>$63.7B</b>(+124%), 영업이익률 <b>66.2%</b>로 둘 다 12개 분기 최고예요. 매출이 5배가 되는 동안 마진도 함께 올라갔어요.</div>
+  <div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30" x2="654" y2="30" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87" x2="654" y2="87" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144" x2="654" y2="144" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201" x2="654" y2="201" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258" x2="654" y2="258" stroke="#EDEFF2" stroke-width="1"/><rect x="23.8" y="220.7" width="30" height="37.3" rx="4" fill="#C9DEFB"/><rect x="77.3" y="209.3" width="30" height="48.7" rx="4" fill="#C9DEFB"/><rect x="130.8" y="197.5" width="30" height="60.5" rx="4" fill="#C9DEFB"/><rect x="184.3" y="191.3" width="30" height="66.7" rx="4" fill="#C9DEFB"/><rect x="237.8" y="179.8" width="30" height="78.2" rx="4" fill="#C9DEFB"/><rect x="291.3" y="172.0" width="30" height="86.0" rx="4" fill="#C9DEFB"/><rect x="344.8" y="180.6" width="30" height="77.4" rx="4" fill="#C9DEFB"/><rect x="398.3" y="156.3" width="30" height="101.7" rx="4" fill="#C9DEFB"/><rect x="451.8" y="129.2" width="30" height="128.8" rx="4" fill="#C9DEFB"/><rect x="505.3" y="99.5" width="30" height="158.5" rx="4" fill="#C9DEFB"/><rect x="558.8" y="66.5" width="30" height="191.5" rx="4" fill="#C9DEFB"/><rect x="612.3" y="30.0" width="30" height="228.0" rx="4" fill="#3182F6"/><polyline points="38.8,140.1 92.3,110.6 145.8,86.6 199.3,107.2 252.8,105.2 306.3,114.0 359.8,200.4 413.3,116.0 466.8,99.2 520.3,85.9 573.8,81.7 627.3,77.1" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="627.3" cy="77.1" r="4.5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="619.3" y="66.1" text-anchor="end" class="cv" fill="#FF9500">66.2%</text><text x="627.3" y="22" text-anchor="middle" class="cv">63.73B</text><text x="38.8" y="284" text-anchor="middle" class="cl">FY24 Q3</text><text x="145.8" y="284" text-anchor="middle" class="cl">FY25 Q1</text><text x="252.8" y="284" text-anchor="middle" class="cl">FY25 Q3</text><text x="359.8" y="284" text-anchor="middle" class="cl">FY26 Q1</text><text x="466.8" y="284" text-anchor="middle" class="cl">FY26 Q3</text><text x="573.8" y="284" text-anchor="middle" class="cl">FY27 Q1</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>영업이익(막대)</span><span><span class="ln" style="background:#FF9500"></span>영업이익률(선)</span></div></div>
+</div>
+
+<div class="fin-block">
+  <h4>안정성</h4>
+  <div class="lede">총자본·총부채·부채비율 — 자본이 <b>$229.0B</b>으로 12개 분기 만에 7배가 됐어요. 부채비율은 차입 확대로 31.5%(FY26 Q4) → <b>39.9%</b>로 올라왔지만 여전히 낮은 편이에요.</div>
+  <div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30" x2="654" y2="30" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87" x2="654" y2="87" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144" x2="654" y2="144" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201" x2="654" y2="201" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258" x2="654" y2="258" stroke="#EDEFF2" stroke-width="1"/><rect x="21.2" y="224.9" width="16.1" height="33.1" rx="3" fill="#C9DEFB"/><rect x="40.2" y="237.2" width="16.1" height="20.8" rx="3" fill="#D8DEE6"/><rect x="74.7" y="215.2" width="16.1" height="42.8" rx="3" fill="#C9DEFB"/><rect x="93.7" y="235.4" width="16.1" height="22.6" rx="3" fill="#D8DEE6"/><rect x="128.2" y="209.1" width="16.1" height="48.9" rx="3" fill="#C9DEFB"/><rect x="147.2" y="230.2" width="16.1" height="27.8" rx="3" fill="#D8DEE6"/><rect x="181.7" y="200.1" width="16.1" height="57.9" rx="3" fill="#C9DEFB"/><rect x="200.7" y="231.0" width="16.1" height="27.0" rx="3" fill="#D8DEE6"/><rect x="235.2" y="192.4" width="16.1" height="65.6" rx="3" fill="#C9DEFB"/><rect x="254.2" y="228.0" width="16.1" height="30.0" rx="3" fill="#D8DEE6"/><rect x="288.7" y="179.0" width="16.1" height="79.0" rx="3" fill="#C9DEFB"/><rect x="307.7" y="225.9" width="16.1" height="32.1" rx="3" fill="#D8DEE6"/><rect x="342.2" y="174.5" width="16.1" height="83.5" rx="3" fill="#C9DEFB"/><rect x="361.2" y="216.8" width="16.1" height="41.2" rx="3" fill="#D8DEE6"/><rect x="395.7" y="158.3" width="16.1" height="99.7" rx="3" fill="#C9DEFB"/><rect x="414.7" y="217.5" width="16.1" height="40.5" rx="3" fill="#D8DEE6"/><rect x="449.2" y="139.6" width="16.1" height="118.4" rx="3" fill="#C9DEFB"/><rect x="468.2" y="215.9" width="16.1" height="42.1" rx="3" fill="#D8DEE6"/><rect x="502.7" y="101.4" width="16.1" height="156.6" rx="3" fill="#C9DEFB"/><rect x="521.7" y="208.7" width="16.1" height="49.3" rx="3" fill="#D8DEE6"/><rect x="556.2" y="63.4" width="16.1" height="194.6" rx="3" fill="#C9DEFB"/><rect x="575.2" y="194.3" width="16.1" height="63.7" rx="3" fill="#D8DEE6"/><rect x="609.7" y="30.0" width="16.1" height="228.0" rx="3" fill="#3182F6"/><rect x="628.7" y="167.1" width="16.1" height="90.9" rx="3" fill="#D8DEE6"/><polyline points="38.8,70.1 92.3,118.7 145.8,99.3 199.3,149.4 252.8,154.2 306.3,178.0 359.8,135.8 413.3,178.5 466.8,203.3 520.3,222.7 573.8,216.9 627.3,181.9" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linejoin="round"/><circle cx="627.3" cy="181.9" r="4.5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="619.3" y="170.9" text-anchor="end" class="cv" fill="#FF9500">39.9%</text><text x="627.3" y="22" text-anchor="middle" class="cv">228.98B</text><text x="38.8" y="284" text-anchor="middle" class="cl">FY24 Q3</text><text x="145.8" y="284" text-anchor="middle" class="cl">FY25 Q1</text><text x="252.8" y="284" text-anchor="middle" class="cl">FY25 Q3</text><text x="359.8" y="284" text-anchor="middle" class="cl">FY26 Q1</text><text x="466.8" y="284" text-anchor="middle" class="cl">FY26 Q3</text><text x="573.8" y="284" text-anchor="middle" class="cl">FY27 Q1</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>총자본(막대)</span><span><span class="d" style="background:#D8DEE6"></span>총부채(막대)</span><span><span class="ln" style="background:#FF9500"></span>부채비율(선)</span></div></div>
+</div>
+
+<div class="fin-block">
+  <h4>현금흐름</h4>
+  <div class="lede">영업현금흐름·현금투자 증감 — 영업으로 <b>$24.1B</b>을 벌었는데 전분기($50.3B)의 절반이에요. 운전자본이 크게 늘어난 탓이에요. 대신 차입 $24.9B이 더해지며 현금·투자는 <b>+$46.2B</b> 늘었어요.</div>
+  <div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30" x2="654" y2="30" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87" x2="654" y2="87" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144" x2="654" y2="144" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201" x2="654" y2="201" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258" x2="654" y2="258" stroke="#D1D6DB" stroke-width="1.5"/><rect x="23.8" y="224.8" width="30" height="33.2" rx="4" fill="#C9DEFB"/><rect x="77.3" y="205.9" width="30" height="52.1" rx="4" fill="#C9DEFB"/><rect x="130.8" y="188.5" width="30" height="69.5" rx="4" fill="#C9DEFB"/><rect x="184.3" y="192.4" width="30" height="65.6" rx="4" fill="#C9DEFB"/><rect x="237.8" y="178.2" width="30" height="79.8" rx="4" fill="#C9DEFB"/><rect x="291.3" y="182.7" width="30" height="75.3" rx="4" fill="#C9DEFB"/><rect x="344.8" y="133.8" width="30" height="124.2" rx="4" fill="#C9DEFB"/><rect x="398.3" y="188.4" width="30" height="69.6" rx="4" fill="#C9DEFB"/><rect x="451.8" y="150.4" width="30" height="107.6" rx="4" fill="#C9DEFB"/><rect x="505.3" y="94.1" width="30" height="163.9" rx="4" fill="#C9DEFB"/><rect x="558.8" y="30.0" width="30" height="228.0" rx="4" fill="#C9DEFB"/><rect x="612.3" y="149.0" width="30" height="109.0" rx="4" fill="#3182F6"/><polyline points="38.8,201.3 92.3,182.7 145.8,190.4 199.3,197.5 252.8,196.4 306.3,192.9 359.8,173.2 413.3,198.4 466.8,196.0 520.3,202.3 573.8,241.1 627.3,51.0" fill="none" stroke="#9B7BF4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="627.3" cy="51.0" r="4.5" fill="#fff" stroke="#9B7BF4" stroke-width="3"/><text x="619.3" y="40.0" text-anchor="end" class="cv" fill="#9B7BF4">+46,197M</text><text x="627.3" y="141.0" text-anchor="middle" class="cv">24.08B</text><text x="38.8" y="284" text-anchor="middle" class="cl">FY24 Q3</text><text x="145.8" y="284" text-anchor="middle" class="cl">FY25 Q1</text><text x="252.8" y="284" text-anchor="middle" class="cl">FY25 Q3</text><text x="359.8" y="284" text-anchor="middle" class="cl">FY26 Q1</text><text x="466.8" y="284" text-anchor="middle" class="cl">FY26 Q3</text><text x="573.8" y="284" text-anchor="middle" class="cl">FY27 Q1</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>영업현금흐름(막대)</span><span><span class="ln" style="background:#9B7BF4"></span>현금·투자 증감(선)</span></div></div>
+</div>
+<p class="foot-note">※ 재무 수치 출처: NVIDIA 분기 보도자료(FY27 Q2) 및 stockanalysis.com(S&amp;P Global Market Intelligence·Fiscal.ai, 2026.08.26 갱신) · 분기 실적이 새로 발표되면 가장 오래된 분기를 빼고 최신 분기만 추가돼요 · '현금·투자 증감'은 현금및현금성자산+유가증권의 전분기 대비 변동이에요.</p>
+</section>
+
+<!-- ③ -->
+<section>
+<div class="sec-head">
+  <div class="l1">🎙️ ③ 어닝콜에서 나온 이야기,</div>
+  <div class="l2">"컴퓨트가 곧 매출이다"</div>
+</div>
+
+<div class="kws"><span>#컴퓨트가 매출</span><span>#수주잔고 $2조</span><span>#FY28 +70%</span><span>#메모리 부족</span><span>#AWS 200만 GPU</span></div>
+
+<div class="quote">"AI가 변곡점에 도달했습니다. 실제로 쓸모 있는 일을 하고 있어요. 토큰이 생산적이고 수익성이 있습니다. 이제 컴퓨트가 곧 매출입니다."<span class="who">Jensen Huang, CEO · 보도자료 · 국문 번역</span></div>
+<div class="quote">"70% 성장할 만큼의 공급은 확보했습니다. 수요는 그보다 훨씬 많습니다."<span class="who">Jensen Huang, CEO · 어닝콜 · 국문 번역</span></div>
+<div class="quote">"오늘의 메모리 부족은 상당 부분 AI 인프라 구축 그 자체가 만들어낸 것입니다."<span class="who">Colette Kress, CFO · 어닝콜 · 국문 번역·요지</span></div>
+
+<p>이번 어닝콜의 무게중심은 <b>"지금 잘했다"가 아니라 "내년에도 이만큼 간다"</b>였어요. CFO 크레스는 발언 초반에 <mark>FY2028 매출 성장률 약 70%</mark>를 제시했고, 이 수치가 <b>공급 제약을 반영한(supply-constrained)</b> 값이라고 분명히 했어요. 시장 컨센서스가 +44%였으니 상당한 격차예요. 주가는 이 발언이 나온 직후 시간외에서 마이너스에서 <b>+5% 가까이</b>로 방향을 틀었어요.</p>
+<p>뒷받침하는 숫자도 함께 나왔어요. <b>수주잔고 $2조 이상</b>, 하이퍼스케일러 CapEx <b>2026년 $800B 초과 · 2027년 $1.3조</b> 전망, 그리고 <b>AWS가 엔비디아 GPU 200만 장과 신규 CPU Vera를 도입</b>한다는 발표예요. 황 CEO는 "사업의 절반가량이 연 100% 정도로 크고 있고, 그건 클라우드 바깥에서 벌어지는 일"이라고 말했어요.</p>
+
+<div class="sub-head">❓ 애널리스트들이 파고든 세 가지</div>
+<ul class="dots">
+<li><b>마진은 어디까지 내려가나요?</b> 회사는 회피하지 않고 <mark class="r">Q3 74.0% → Q4 71~72%에서 바닥</mark>이라고 구체적으로 답했어요. 원인은 메모리 가격이고, 그 이후엔 개선된다는 전제예요. "언제 바닥인지"를 숫자로 못 박은 건 불확실성을 줄여준 부분이에요.</li>
+<li><b>'순환 금융' 아닌가요?</b> 아폴로·블랙록·블랙스톤·브룩필드·골드만삭스·KKR과 함께 만든 <b>$500B 규모 제3자 자본 조달 플랫폼</b>이 도마에 올랐어요. 크레스는 이를 정면으로 다루며, 엔비디아의 직접 재무 노출을 늘리지 않으면서 인프라 구축을 지원하는 구조라고 설명했어요.</li>
+<li><b>이 성장이 얼마나 오래 가나요?</b> 황 CEO는 "1년 전엔 한 곳의 연구소가 구축을 이끌었지만, 지금은 새로운 AI 랩과 스타트업의 황금기이고 여러 프런티어 랩이 동시에 확장 중"이라고 답했어요. 고객이 한 곳에서 여러 곳으로 넓어졌다는 게 회사의 방어 논리예요. ACIE 매출 +138%가 그 증거로 제시됐어요.</li>
+</ul>
+
+<div class="sub-head">📉 주가는 이렇게 움직였어요</div>
+<p>정규장에서 <b>-1.59%($209.66)</b>로 마감한 뒤, 실적 발표 직후 시간외에서 오히려 <b>-1.3%까지 더 밀렸어요.</b> 매출총이익률 가이던스가 75% → 74%로 내려간 게 먼저 눈에 띄었기 때문이에요. 그러다 <mark>CFO가 FY2028 +70% 성장을 언급한 순간 방향이 바뀌어</mark> 시간외 <b>+4.7%($219.55, 19:59 ET)</b>까지 올랐어요.</p>
+<p>정규장 마감 기준으로 NVDA는 <b>연초 대비 +13%</b>, 직전 실적발표일(5/20) 대비로는 <b>-2%</b> 수준이었어요. <mark class="r">두 분기 연속으로 "잘했는데 주가는 제자리"였던 흐름을 이번 가이던스가 깰 수 있을지</mark>가 다음 며칠의 관전 포인트예요.</p>
+<p class="foot-note">※ 어닝콜 내용은 NVIDIA IR 보도자료·CFO 코멘터리(PDF)와 Kiplinger 실시간 라이브블로그, CNBC 정리 기사를 기준으로 했어요. 전체 트랜스크립트가 공개되면 세부 발언이 보완될 수 있어요.</p>
+</section>
+
+<!-- ④ -->
+<section>
+<div class="sec-head">
+  <div class="l1">🧭 ④ 종합 의견,</div>
+  <div class="l2">성장은 회사가, 마진은 메모리가 정해요</div>
+</div>
+
+<div class="pros-cons">
+  <div class="pc good"><h4>이런 점이 좋아요</h4><ul>
+    <li>매출 +106%로 다섯 분기 연속 성장 가속, 데이터센터 +117%</li>
+    <li>Q3 가이던스 $108.0B이 컨센서스를 3.6% 상회 (직전 대비 +18.7%)</li>
+    <li>회사가 FY2028 매출 +70%를 직접 제시 — 컨센서스(+44%)보다 26%p 높아요</li>
+    <li>수주잔고 $2조 이상, AWS 200만 GPU 도입 발표</li>
+    <li>ACIE(+138%)가 하이퍼스케일러(+102%)보다 빨라 고객 집중도가 옅어져요</li>
+    <li>Q3 전망에 중국 데이터센터 매출을 아예 넣지 않았어요</li>
+  </ul></div>
+  <div class="pc bad"><h4>이런 점은 조심해야 해요</h4><ul>
+    <li>매출총이익률이 Q3 74.0% → Q4 71~72%로 내려간다고 회사가 예고했어요</li>
+    <li>FCF 마진이 59.5% → 22.2%로 급감 (매출채권 +$22.3B·재고 +$5.8B)</li>
+    <li>장기차입금이 $7.5B → $32.4B으로 급증, 용처 확인이 필요해요</li>
+    <li>$500B 자본 조달 플랫폼을 둘러싼 '순환 금융' 논란이 계속돼요</li>
+    <li>매출의 92.5%가 데이터센터 한 곳에 몰려 있어요</li>
+    <li>엣지는 메모리 가격 탓에 +27.5%에 그쳤어요 — 원가 상승이 매출도 눌러요</li>
+  </ul></div>
+</div>
+
+<p><b>밸류에이션은 이렇게 봐요.</b> FY2027 24.3배·FY2028 16.8배·PEG 0.27은 표면적으로 매우 매력적이에요. 하지만 <mark class="r">이 배수의 분모(EPS 추정치)는 발표 직전 값이라 이번 가이던스와 마진 하락 경로를 아직 반영하지 않았어요.</mark> 앞으로 며칠간 매출 추정치는 올라가고 마진 추정치는 내려갈 텐데, 둘이 상쇄되고 나서 EPS가 어디에 자리 잡느냐가 실제 밸류에이션이에요.</p>
+<p>구조적으로 보면 이번 분기는 <mark>"성장의 크기는 회사가 정하고, 이익의 질은 메모리 업체가 정한다"</mark>는 그림을 명확히 보여줬어요. 매출 전망은 회사가 자신 있게 올렸지만 마진 저점은 원가 사이클에 달려 있어요. 공교롭게도 보유 종목 중 마이크론과 SK하이닉스가 그 반대편에 있어서, 포트폴리오 안에서는 어느 정도 상쇄되는 구조이기도 해요.</p>
+
+<div class="sub-head">🎯 애널리스트 목표주가</div>
+<p>애널리스트 <b>61명</b> 중 58명이 매수 의견이에요. 1년 후 목표주가 평균은 <b>$305.79</b>로 시간외 주가($219.55) 대비 <b>+39.3%</b> 수준이에요.</p>
+<div class="chart"><svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg"><rect x="74.7" y="134.0" width="54.6" height="6.0" rx="6" fill="#D8DEE6"/><text x="102" y="124" text-anchor="middle" class="cv">1명</text><text x="102" y="162" text-anchor="middle" class="cl">적극 매도</text><rect x="198.7" y="134.0" width="54.6" height="6.0" rx="6" fill="#D8DEE6"/><text x="226" y="124" text-anchor="middle" class="cv">0명</text><text x="226" y="162" text-anchor="middle" class="cl">매도</text><rect x="322.7" y="134.0" width="54.6" height="6.0" rx="6" fill="#D8DEE6"/><text x="350" y="124" text-anchor="middle" class="cv">2명</text><text x="350" y="162" text-anchor="middle" class="cl">중립</text><rect x="446.7" y="121.6" width="54.6" height="18.4" rx="6" fill="#C9DEFB"/><text x="474" y="111.6" text-anchor="middle" class="cv">9명</text><text x="474" y="162" text-anchor="middle" class="cl">매수</text><rect x="570.7" y="40.0" width="54.6" height="100.0" rx="6" fill="#3182F6"/><text x="598" y="30" text-anchor="middle" class="cv">49명</text><text x="598" y="162" text-anchor="middle" class="cl">적극 매수</text></svg></div>
+<div class="chart">
+  <div class="ct">1년 후 목표주가 전망</div>
+  <span class="cs">목표주가는 S&amp;P Global 집계(2026.08.25 갱신, 61명) · 현재가는 발표 당일 시간외 $219.55</span>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="16" y1="26" x2="692" y2="26" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="106" x2="692" y2="106" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="186" x2="692" y2="186" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="266" x2="692" y2="266" stroke="#EDEFF2" stroke-width="1"/><circle cx="220" cy="212.7" r="6" fill="#fff" stroke="#4E5968" stroke-width="3"/><text x="210" y="198.7" text-anchor="end" class="cv">현재 $220</text><line x1="220" y1="212.7" x2="550" y2="40" stroke="#F04452" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550" cy="40" r="4.5" fill="#fff" stroke="#F04452" stroke-width="3"/><rect x="561" y="29" width="132" height="22" rx="11" fill="#F04452" opacity="0.12"/><text x="569" y="44.5" class="cv" fill="#F04452">최고 $500 (+128%)</text><line x1="220" y1="212.7" x2="550" y2="159.6" stroke="#15C47E" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550" cy="159.6" r="4.5" fill="#fff" stroke="#15C47E" stroke-width="3"/><line x1="550" y1="159.6" x2="561" y2="152" stroke="#15C47E" stroke-width="1" opacity="0.5"/><rect x="561" y="141" width="132" height="22" rx="11" fill="#15C47E" opacity="0.12"/><text x="569" y="156.5" class="cv" fill="#15C47E">평균 $306 (+39%)</text><line x1="220" y1="212.7" x2="550" y2="163.1" stroke="#9B7BF4" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550" cy="163.1" r="4.5" fill="#fff" stroke="#9B7BF4" stroke-width="3"/><line x1="550" y1="163.1" x2="561" y2="184" stroke="#9B7BF4" stroke-width="1" opacity="0.5"/><rect x="561" y="173" width="132" height="22" rx="11" fill="#9B7BF4" opacity="0.12"/><text x="569" y="188.5" class="cv" fill="#9B7BF4">중간 $300 (+37%)</text><line x1="220" y1="212.7" x2="550" y2="237" stroke="#3182F6" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550" cy="237" r="4.5" fill="#fff" stroke="#3182F6" stroke-width="3"/><rect x="561" y="226" width="132" height="22" rx="11" fill="#3182F6" opacity="0.12"/><text x="569" y="241.5" class="cv" fill="#3182F6">최저 $180 (−18%)</text><text x="16" y="288" class="cl">오늘</text><text x="560" y="288" class="cl">1년 후 전망 →</text></svg>
+</div>
+<p>보유 종목 중 <b>매수 의견 비율이 가장 높은 종목</b>(95%)이에요. 최근 일주일에도 레이먼드제임스가 목표가를 $330 → <b>$352</b>로 올렸고 BMO $340, KeyBanc $330, JP모건 $280이 유지됐어요. 다만 <mark>최저 $180(-18%)을 제시한 곳이 여전히 있어 하방 시나리오가 사라진 건 아니에요.</mark> 이 목표주가들 역시 실적 발표 전 값이라, 다음 주 초에 대거 조정될 가능성이 커요.</p>
+
+<div class="sub-head">👀 다음 분기엔 이걸 보면 돼요</div>
+<ul class="dots">
+<li>FY27 Q3 매출이 가이던스 $108.0B을 넘는지 — 서프라이즈 폭이 이번(+4.4%)보다 커지는지</li>
+<li>매출총이익률이 Q3 가이던스 74.0%를 지키는지, Q4 저점 71~72% 전망이 유지되는지</li>
+<li>FCF 마진 22.2%가 회복되는지 — 매출채권 +$22.3B이 실제 현금으로 회수되는지</li>
+<li>FY2028 매출 +70% 전망이 어닝콜에서 재확인·상향되는지, 수주잔고 $2조가 더 늘어나는지</li>
+<li>새로 조달한 차입금 $24.9B의 용처와 총차입금 $38.4B의 추가 증가 여부</li>
+<li>중국 데이터센터 컴퓨트 매출이 가이던스에 포함되기 시작하는지</li>
+</ul>
+
+<div class="wp-preview">📌 다음 보고서에서는 위 6가지가 실제로 어떻게 됐는지 <b>하나씩 충족·미충족으로 점검</b>해서 맨 앞에 보여드릴게요.</div>
+<div class="next"><div class="t">다음 실적발표</div><div class="d">2026년 11월 26일 예정 <span style="font-size:13px;font-weight:600;color:var(--g400)">(⚠️ 예상일 · 공식 발표 전)</span></div></div>
+</section>
+
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+데이터 출처: NVIDIA IR 보도자료 및 CFO 코멘터리(FY2027 Q2), Kiplinger 어닝콜 라이브블로그, CNBC, Fortune, CoinDesk, stockanalysis.com, S&amp;P Global Market Intelligence · earnings-briefing 스킬 자동 생성
+</div>
+
+</div>
+</div>
+</body>
+</html>

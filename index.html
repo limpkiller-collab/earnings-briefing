@@ -307,9 +307,15 @@ earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.08.20";
+const LAST_UPDATED = "2026.08.27";
 
 const REPORTS_DB = [
+  {
+    ticker: "NVDA", company: "NVIDIA", quarter: "FY2027 Q2",
+    report_date: "2026-08-27", created: "2026.08.27", verdict: "BEAT",
+    oneliner: "매출 $96.2B(+106%)·조정 EPS $2.22로 모두 예상을 넘었고, Q3 가이던스 $108.0B은 컨센서스를 3.6% 상회했어요. 어닝콜에서 FY2028 매출 +70%(컨센서스 +44%)를 직접 제시하며 시간외 +4.7%. 다만 매출총이익률은 Q4에 71~72%까지 내려간다고 예고했어요.",
+    file: "실적브리핑_NVDA_FY2027Q2_2026.08.27.html"
+  },
   {
     ticker: "NVDA", company: "NVIDIA", quarter: "FY2027 Q2",
     report_date: "2026-08-27", created: "2026.08.14", verdict: "PREV", vlabel: "프리뷰",
@@ -404,7 +410,6 @@ const REPORTS_DB = [
 //                 화면은 항상 KST로 보여주고, 캘린더 일정은 이 값으로 만들어 해외에서도 현지시간 자동 변환된다.
 //   last_report : 직전 실제 발표일 (state.json의 last_report_date) — KPI '이번 분기 발표 n/13' 계산에 쓴다
 const UPCOMING_DB = [
-  { ticker: "NVDA", name: "NVIDIA", date: "2026-08-27", estimated: false, when: "amc", utc: "20260826T210000Z", last_report: "2026-05-22" },
   { ticker: "MU", name: "Micron", date: "2026-09-30", estimated: true, when: null, utc: null, last_report: "2026-06-26" },
   { ticker: "KO", name: "Coca-Cola", date: "2026-10-21", estimated: true, when: null, utc: null, last_report: "2026-07-28" },
   { ticker: "000660", name: "SK하이닉스", short: "하이닉스", date: "2026-10-28", estimated: true, when: null, utc: null, last_report: "2026-07-29" },
@@ -416,12 +421,27 @@ const UPCOMING_DB = [
   { ticker: "O", name: "Realty Income", date: "2026-11-04", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
   { ticker: "IONQ", name: "IonQ", date: "2026-11-05", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
   { ticker: "SMR", name: "NuScale Power", date: "2026-11-06", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
-  { ticker: "CRWV", name: "CoreWeave", date: "2026-11-11", estimated: true, when: null, utc: null, last_report: "2026-08-12" }
+  { ticker: "CRWV", name: "CoreWeave", date: "2026-11-11", estimated: true, when: null, utc: null, last_report: "2026-08-12" },
+  { ticker: "NVDA", name: "NVIDIA", date: "2026-11-26", estimated: true, when: null, utc: null, last_report: "2026-08-27" }
 ];
 
 // ----- 경제 지표 (macro-briefing 스킬이 갱신) -----
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
+  {
+    id: "PCE", name: "PCE 물가지수", period: "2026년 7월", category: "물가", tier: 3,
+    report_date: "2026-08-26", created: "2026.08.27", verdict: "NEUT", vlabel: "정체",
+    surprise: { text: "예측 +0.1%p", cls: "up" },
+    oneliner: "연준이 보는 물가가 헤드라인 3.7%·근원 3.3%로 두 달 연속 제자리였어요. 헤드라인은 예측을 0.1%p 웃돌았지만 근원이 정확히 부합해 9월 인상 확률은 36%까지 내려왔어요. 재화(-0.1%)는 내리고 서비스(+0.3%)가 밀어올리는 구도이고, 실질 소비는 0.0%로 멈췄어요.",
+    file: "경제지표_PCE_2026.07_2026.08.27.html"
+  },
+  {
+    id: "GDP_2ND", name: "GDP 잠정치", period: "2026년 2분기", category: "성장", tier: 2,
+    report_date: "2026-08-26", created: "2026.08.27", verdict: "NEUT", vlabel: "부합",
+    surprise: { text: "예측 부합", cls: "flat" },
+    oneliner: "2분기 성장률은 +1.5%로 속보치에서 그대로였지만, 민간 최종수요가 3.9%→4.2%로 상향되며 민간 경제 체력이 더 좋게 드러났어요. 대신 근원 PCE 물가가 3.4%→3.6%로 오르고 기업이익이 $4,009억 급증해, 성장도 물가도 식지 않는 조합이에요.",
+    file: "경제지표_GDP_2ND_2026.2Q_2026.08.27.html"
+  },
   {
     id: "FOMC_MIN", name: "FOMC 의사록", period: "2026년 7월 회의", category: "연준", tier: 2,
     report_date: "2026-08-20", created: "2026.08.20", verdict: "BAD", vlabel: "매파",
@@ -455,8 +475,8 @@ const MACRO_REPORTS_DB = [
 // 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
 const MACRO_UPCOMING_DB = [
   { id: "RETAIL", name: "소매판매", short: "소매판매", period: "8월", date: "2026-09-16", estimated: false, utc: "20260916T123000Z", tier: 2, last_release: "2026-08-14" },
-  { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "2분기", date: "2026-08-26", estimated: false, utc: "20260826T123000Z", tier: 2, last_release: null },
-  { id: "PCE", name: "PCE 물가지수", short: "PCE", period: "7월", date: "2026-08-26", estimated: false, utc: "20260826T123000Z", tier: 3, last_release: null },
+  { id: "GDP_3RD", name: "GDP 확정치", short: "GDP확정", period: "2분기", date: "2026-09-30", estimated: false, utc: "20260930T123000Z", tier: 2, last_release: "2026-08-26" },
+  { id: "PCE", name: "PCE 물가지수", short: "PCE", period: "8월", date: "2026-09-30", estimated: false, utc: "20260930T123000Z", tier: 3, last_release: "2026-08-26" },
   { id: "JACKSON", name: "잭슨홀 심포지엄", short: "잭슨홀", period: "", date: "2026-08-28", estimated: true, utc: null, tier: 2, last_release: null },
   { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "8월", date: "2026-09-01", estimated: true, utc: null, tier: 2, last_release: null },
   { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "8월", date: "2026-09-03", estimated: true, utc: null, tier: 2, last_release: null },
@@ -469,11 +489,16 @@ const MACRO_UPCOMING_DB = [
 
 // 다음 발표 체크포인트 (skills가 두 state.json의 watchpoints를 동기화 · 발표 가까운 순 3건 표시)
 const WATCH_DB = [
-  { key: "NVDA", name: "NVIDIA FY27 Q2 실적", date: "2026-08-27", type: "e", items: [
-    "FY27 Q2 매출이 가이던스 $91.0B을 넘는지 — 서프라이즈 폭이 이번(+3.6%)보다 커지는지",
-    "데이터센터 성장률 +92%가 유지되는지, 매출 비중 91%에서 더 쏠리는지",
-    "매출총이익률이 가이던스 75% 선을 지키는지 — 메모리 원가 상승 전가 여부",
-    "주요 고객(빅테크)의 CapEx 계획 변화 — MSFT 캘린더 2026년 $175B 계획 유지 여부"]},
+  { key: "PCE", name: "PCE 물가지수 8월", date: "2026-09-30", type: "m", items: [
+    "헤드라인 3.7%가 세 달 연속 제자리인지, 3.6% 이하로 내려서는지",
+    "근원 3.3%가 흔들리는지 — 두 달 연속 예측 부합이 이어질지",
+    "서비스 물가 +0.3%가 꺾이는지, 금융·보험 +1.2%가 일회성이었는지",
+    "실질 소비 0.0%가 마이너스로 내려가는지 — 소비 사이클 전환의 결정적 신호"]},
+  { key: "GDP_3RD", name: "GDP 확정치 2026년 2분기", date: "2026-09-30", type: "m", items: [
+    "실질 GDP 1.5%가 GDI(2.2%) 쪽으로 상향되는지",
+    "근원 PCE 물가 3.6%가 또 위로 수정되는지 — 두 번 연속이면 물가 재가속 신호",
+    "민간 최종수요 4.2%가 3분기에도 4%대를 지키는지",
+    "기업이익 +$4,009억이 일회성인지, 3분기에도 이어지는지"]},
   { key: "RETAIL", name: "소매판매 8월", date: "2026-09-16", type: "m", items: [
     "8월에 반등하는지, 두 달 연속 감소로 가는지 — 소비 사이클 전환 여부",
     "온라인(무점포) -2.2%가 회복되는지 — 가장 견조하던 채널이 꺾인 게 핵심",
@@ -550,12 +575,19 @@ const WATCH_DB = [
     "이자비용이 가이던스 $860~940M 안에 들어오는지, 총차입금 $51.6B 증가 속도",
     "가동 전력 연말 1.85GW 경로(Q3 약 1.7GW), 계약 전력 4.2GW 확대 여부",
     "수주잔고 $104B + 신규 $25B 반영 여부",
-    "관리형 인퍼런스 ARR 연말 $250M 경로, 7월 25% 가격 인상의 마진 반영"]}
+    "관리형 인퍼런스 ARR 연말 $250M 경로, 7월 25% 가격 인상의 마진 반영"]},
+  { key: "NVDA", name: "NVIDIA FY27 Q3 실적", date: "2026-11-26", type: "e", items: [
+    "FY27 Q3 매출이 가이던스 $108.0B을 넘는지 — 서프라이즈 폭이 이번(+4.4%)보다 커지는지",
+    "매출총이익률이 Q3 가이던스 74.0%를 지키는지, Q4 저점 71~72% 전망이 유지되는지",
+    "FCF 마진 22.2%가 회복되는지 — 매출채권 +$22.3B이 실제 현금으로 회수되는지",
+    "FY2028 매출 +70% 전망이 재확인·상향되는지, 수주잔고 $2조가 더 늘어나는지",
+    "새로 조달한 차입금 $24.9B의 용처와 총차입금 $38.4B의 추가 증가 여부",
+    "중국 데이터센터 컴퓨트 매출이 가이던스에 포함되기 시작하는지"]}
 ];
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 225.30, tgt: 302.83, eps_cur: 8.96, eps_next: 12.82, note: "" },
+  { ticker: "NVDA", price: 219.55, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
   { ticker: "MU", price: 949.83, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
   { ticker: "MSFT", price: 496.88, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
   { ticker: "GOOGL", price: 348.25, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GDP 잠정치 2026년 2분기 — 경제 지표</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 수치 2카드 (토스증권 경제지표 페이지 스타일) */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--red-bg);color:var(--red)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 발표 이력 테이블 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
+.htable tr.new td{background:var(--blue-bg)}
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.htable th{white-space:nowrap}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI 카드 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
+/* 콜아웃·인용 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 영향 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--amber-bg);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지표 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">📈</span> 경제 지표</div>
+  <a href="./index.html">← 아카이브</a>
+</div>
+<div class="body">
+
+<div class="chips">
+  <span class="chip b">#성장</span><span class="chip">#분기 발표</span><span class="chip">#★★</span><span class="chip">#2차 잠정치</span>
+</div>
+<h1>GDP 잠정치(2차 추정)<br>2026년 2분기</h1>
+<div class="meta">2026년 8월 26일 21:30 발표 (한국시간) · 출처 미국 경제분석국(BEA) · 컨센서스 언론 종합</div>
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">실질 GDP 성장률 (연율)</div>
+    <div class="num">+1.5%</div>
+    <div class="cmp">예측과 <b class="flat">부합</b> · 속보치(1.5%)에서 <b class="flat">사실상 변동 없음</b></div>
+    <div class="core">1분기 +2.1% → 2분기 +1.5%로 둔화</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">민간 최종수요 (연율)</div>
+    <div class="num">+4.2%</div>
+    <div class="cmp">속보치 3.9%에서 <b class="up">+0.3%p 상향</b></div>
+    <div class="core">소비+민간고정투자 — 경제의 진짜 체력</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p>2분기 성장률은 <b>+1.5%</b>로 속보치에서 바뀌지 않았어요. 1분기 2.1%에서 둔화한 건 <b>정부지출이 감소로 돌아섰기 때문</b>이고, 소비는 오히려 가속됐어요.</p>
+  <p>진짜 이야기는 헤드라인 아래에 있어요. <mark>민간 최종수요가 4.2%로 상향되면서, 껍데기(정부·무역)를 걷어낸 민간 경제는 1.5%가 아니라 4%대로 돌고 있다는 게 드러났어요.</mark></p>
+  <p>대신 <mark class="r">물가 지표가 전부 위로 수정됐어요.</mark> 분기 근원 PCE 물가가 3.4% → 3.6%로 올라갔고, 기업이익은 $4,009억 급증했어요. 성장도 물가도 식지 않는 조합이에요.</p>
+</div>
+
+<div class="sub-head">🔍 항목별로 보면</div>
+<div class="sub-desc">2분기 연율 기준. 성장 지표(파랑 계열)와 물가 지표(오른쪽 3개)를 함께 놓고 봐요.</div>
+<div class="chart-card">
+  <div class="ct">2026년 2분기 주요 지표 (전분기 대비 연율, %)</div>
+  <div class="cs">출처: BEA 「GDP (Second Estimate) and Corporate Profits, 2nd Quarter 2026」</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-0.1</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">1.5</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">3.2</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">4.8</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">6.5</text><line x1="14" y1="254.7" x2="644" y2="254.7" stroke="#D1D6DB" stroke-width="1.5"/><rect x="40.1" y="201.9" width="37.8" height="52.8" rx="3.5" fill="#3182F6"/><text x="59.0" y="195.9" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">1.5</text><text x="59.0" y="286" text-anchor="middle" class="cl">실질GDP</text><rect x="130.1" y="177.3" width="37.8" height="77.5" rx="3.5" fill="#3182F6"/><text x="149.0" y="171.3" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">2.2</text><text x="149.0" y="286" text-anchor="middle" class="cl">실질GDI</text><rect x="220.1" y="191.3" width="37.8" height="63.4" rx="3.5" fill="#3182F6"/><text x="239.0" y="185.3" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">1.8</text><text x="239.0" y="286" text-anchor="middle" class="cl">GDP·GDI 평균</text><rect x="310.1" y="106.8" width="37.8" height="147.9" rx="3.5" fill="#3182F6"/><text x="329.0" y="100.8" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">4.2</text><text x="329.0" y="286" text-anchor="middle" class="cl">민간최종수요</text><rect x="400.1" y="50.5" width="37.8" height="204.2" rx="3.5" fill="#3182F6"/><text x="419.0" y="44.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.8</text><text x="419.0" y="286" text-anchor="middle" class="cl">국내구매물가</text><rect x="490.1" y="68.1" width="37.8" height="186.6" rx="3.5" fill="#3182F6"/><text x="509.0" y="62.1" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.3</text><text x="509.0" y="286" text-anchor="middle" class="cl">PCE물가</text><rect x="580.1" y="128.0" width="37.8" height="126.8" rx="3.5" fill="#3182F6"/><text x="599.0" y="122.0" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">3.6</text><text x="599.0" y="286" text-anchor="middle" class="cl">근원PCE물가</text></svg>
+</div>
+<p>왼쪽 네 개가 성장, 오른쪽 세 개가 물가예요. <b>성장은 1.5~4.2%인데 물가는 3.6~5.8%</b>로 전부 더 높아요. <mark class="r">명목으로는 8.0% 커졌는데 실질로는 1.5%밖에 안 늘었다는 뜻</mark>이고, 그 차이가 전부 물가예요.</p>
+<p>주목할 건 <b>실질 GDI(국내총소득) +2.2%</b>예요. GDP는 "얼마나 만들었나", GDI는 "얼마나 벌었나"를 다른 통계로 잰 값이라 이론상 같아야 해요. 이번엔 GDI가 GDP보다 0.7%p 높은데, <mark>보통 GDI가 높으면 나중에 GDP가 위로 수정되는 경우가 많아요.</mark> 두 값의 평균은 +1.8%예요.</p>
+
+<div class="sub-head">📋 속보치 대비 수정 내역</div>
+<div class="twrap"><table class="htable">
+<thead><tr><th>항목</th><th>속보치</th><th>잠정치</th><th>수정 폭</th></tr></thead>
+<tbody>
+<tr class="hl"><td>실질 GDP</td><td>1.5</td><td>1.5</td><td class="flat">변동 없음</td></tr>
+<tr><td>명목 GDP</td><td>7.9</td><td>8.0</td><td class="up">+0.1%p</td></tr>
+<tr><td>민간 최종수요</td><td>3.9</td><td>4.2</td><td class="up">+0.3%p</td></tr>
+<tr><td>실질 GDI</td><td>—</td><td>2.2</td><td>이번에 첫 공개</td></tr>
+<tr><td>GDP·GDI 평균</td><td>—</td><td>1.8</td><td>이번에 첫 공개</td></tr>
+<tr><td>국내구매 물가지수</td><td>5.7</td><td>5.8</td><td class="up">+0.1%p</td></tr>
+<tr><td>PCE 물가지수</td><td>5.1</td><td>5.3</td><td class="up">+0.2%p</td></tr>
+<tr class="hl"><td>근원 PCE 물가지수</td><td>3.4</td><td>3.6</td><td class="up">+0.2%p</td></tr>
+</tbody>
+</table></div>
+<p class="fn">※ 단위 %(연율). 빨강 = 상향 수정. 실질 GDP는 0.1%p 미만의 하향 수정이 있었지만 반올림하면 1.5%로 같아요.</p>
+<p>수정의 내용을 보면 <b>소비지출은 위로, 수입도 위로</b> 갔어요. 수입은 GDP 계산에서 빼는 항목이라 둘이 상쇄되면서 헤드라인이 그대로 남은 거예요. 소비 상향은 <b>의료(병원·의사 서비스)</b>가 이끌었고, 재화 쪽에서는 정보처리장비를 포함한 오락용품·차량이 아래로 수정됐어요.</p>
+
+<div class="sub-head">💰 기업이익이 폭발했어요</div>
+<div class="twrap"><table class="htable">
+<thead><tr><th>항목</th><th>1분기</th><th>2분기</th><th>해석</th></tr></thead>
+<tbody>
+<tr class="hl"><td>기업이익 증가액</td><td>+$744억</td><td class="up">+$4,009억</td><td style="white-space:normal">한 분기에 <b>5배 이상</b>으로 뛰었어요</td></tr>
+</tbody>
+</table></div>
+<p>재고평가·자본소모 조정을 반영한 <b>현행생산 기준 기업이익이 2분기에 $4,009억 늘었어요.</b> 1분기(+$744억)의 5배가 넘어요. <mark>기업이 물가 상승분을 소비자에게 넘기는 데 성공하고 있다는 뜻</mark>이라, 이익 측면에서는 긍정적이지만 물가 측면에서는 연준이 반길 소식이 아니에요.</p>
+<p>보유 종목 실적과도 맞물려요. 같은 분기에 <a href="실적브리핑_NVDA_FY2027Q2_2026.08.27.html">엔비디아</a> 영업이익이 +124%, <a href="실적브리핑_MSFT_FY2026Q4_2026.08.09.html">마이크로소프트</a>·<a href="실적브리핑_GOOGL_2026Q2_2026.08.09.html">알파벳</a>도 최고 마진을 기록했죠. <b>거시 통계의 기업이익 급증은 이런 개별 실적의 합계</b>인 셈이에요.</p>
+
+<div class="sub-head">📉 시장 반응과 연준 경로</div>
+<p>이날은 <b>PCE 물가와 GDP가 같은 시각에 발표</b>돼서 시장의 시선은 물가 쪽에 쏠렸어요. GDP가 예상과 정확히 부합해 별도의 충격이 없었기 때문이에요. 발표 후 주가지수는 소폭 하락, 10년물 국채금리는 4.65% 내외로 올랐고, <mark>9월 금리 인상 확률은 36%로 내려왔어요.</mark></p>
+<div class="callout">GDP 자체는 조용히 지나갔지만, 이 보고서가 남긴 진짜 메시지는 <b>"성장률 1.5%는 생각보다 튼튼하다"</b>예요. 민간 최종수요 4.2%·GDI 2.2%·기업이익 +$4,009억이 모두 그 방향을 가리켜요. <mark class="r">경기가 약해서 연준이 못 올리는 상황이 아니라는 뜻</mark>이라, 물가만 재가속하면 인상 논의가 빠르게 되살아날 수 있어요.</div>
+
+<div class="sub-head">💼 보유 종목 영향</div>
+<div class="stock-g">
+  <div class="sg-t">금리 민감 성장주 <span class="tks">PLTR · IONQ · SMR · CRWV</span></div>
+  <p>이 그룹엔 <b>양날의 검</b>이에요. 경기가 튼튼하다는 건 기업 IT·인프라 지출이 유지된다는 뜻이라 매출에는 좋아요. 하지만 <mark class="r">"경기 둔화 → 금리 인하"라는 시나리오가 멀어지는 것</mark>이기도 해요. 민간 최종수요 4.2%는 금리 인하를 정당화하기 어려운 숫자예요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">반도체 <span class="tks">NVDA · MU · SK하이닉스</span></div>
+  <p>GDP 세부에서 <b>정보처리장비를 포함한 재화 소비가 하향 수정</b>된 건 소비자용 PC·기기 쪽 이야기예요. 마침 <a href="실적브리핑_NVDA_FY2027Q2_2026.08.27.html">엔비디아</a>도 엣지 컴퓨팅 부문이 메모리·시스템 가격 상승 탓에 +27.5%에 그쳤다고 밝혔죠. <mark>데이터센터는 폭발하고 소비자 기기는 눌리는 양극화</mark>가 거시 통계에서도 확인돼요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">빅테크 <span class="tks">AAPL · MSFT · GOOGL</span></div>
+  <p>소비 상향을 이끈 게 <b>의료 서비스</b>이고 재화는 하향됐다는 점이 <a href="실적브리핑_AAPL_FY2026Q3_2026.08.09.html">애플</a>에는 부담이에요. 반대로 기업이익 급증은 <a href="실적브리핑_MSFT_FY2026Q4_2026.08.09.html">마이크로소프트</a>·<a href="실적브리핑_GOOGL_2026Q2_2026.08.09.html">알파벳</a>의 고객사가 IT 예산을 줄일 이유가 없다는 뜻이라 우호적이에요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">배당·방어 <span class="tks">O · KO · ABBV</span></div>
+  <p>경기가 튼튼하면 방어주의 상대 매력은 떨어져요. 특히 <a href="실적브리핑_O_2026Q2_2026.08.08.html">리얼티인컴</a>은 금리 인하 기대가 멀어질수록 불리해요. 반면 <b>ABBV는 소비 상향을 이끈 의료 서비스 카테고리의 직접 수혜권</b>이라 이번 데이터에서 가장 결이 맞는 종목이에요. <a href="실적브리핑_KO_2026Q2_2026.08.09.html">코카콜라</a>는 재화 소비 하향이 걸리지만 필수소비재라 충격은 제한적이에요.</p>
+</div>
+
+<div class="sub-head">👀 다음 발표에선 이걸 보면 돼요</div>
+<ul class="dots">
+<li>3차 확정치(9/30)에서 실질 GDP 1.5%가 GDI(2.2%) 쪽으로 상향되는지</li>
+<li>근원 PCE 물가 3.6%가 또 위로 수정되는지 — 두 번 연속 상향이면 물가 재가속 신호</li>
+<li>민간 최종수요 4.2%가 3분기에도 4%대를 지키는지 — 정부·무역을 뺀 진짜 체력</li>
+<li>기업이익 +$4,009억이 일회성인지, 3분기에도 이어지는지</li>
+</ul>
+<p class="fn">※ 다음 발표: 2026년 9월 30일 21:30 (한국시간) — 2분기 3차 확정치. 같은 날 BEA 연간 개정이 함께 이뤄져 과거 분기 수치도 수정될 수 있어요.</p>
+
+<div class="sub-head">📚 GDP 잠정치란?</div>
+<p>미국 GDP는 <b>같은 분기를 세 번에 걸쳐 발표</b>해요. 분기가 끝나고 약 한 달 뒤 <b>속보치(Advance)</b>, 두 달 뒤 <b>잠정치(Second)</b>, 세 달 뒤 <b>확정치(Third)</b> 순이에요. 왜 나눠서 낼까요? 속보치 시점엔 아직 안 들어온 통계가 많아서예요. 이번 수정도 <b>인구조사국의 분기 서비스 조사와 6월 무역 데이터가 새로 들어오면서</b> 이뤄졌어요.</p>
+<p>그래서 잠정치는 "새 뉴스"라기보다 <b>"속보치가 맞았는지 확인하는 자리"</b>에 가까워요. 시장 반응이 대체로 조용한 이유죠. 다만 이번처럼 <mark>헤드라인은 그대로인데 속 항목(민간수요·물가)이 크게 바뀌면 해석이 달라질 수 있어요.</mark></p>
+<p><b>연율(annual rate)</b>이라는 표현도 알아두면 좋아요. "2분기 +1.5%"는 3개월 동안 1.5% 컸다는 게 아니라, <b>이 속도가 1년 내내 이어지면 1.5% 커진다</b>는 뜻이에요. 분기 자체로는 약 0.4% 성장이었어요.</p>
+
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+데이터 출처: 미국 경제분석국(BEA) 보도자료 「GDP (Second Estimate) and Corporate Profits, 2nd Quarter 2026」, Invezz, CME FedWatch · macro-briefing 스킬 자동 생성
+</div>
+
+</div>
+</div>
+</body>
+</html>
