@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경제 지표 — 잭슨홀 심포지엄 워시 의장 기조연설</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 수치 2카드 (토스증권 경제지표 페이지 스타일) */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--red-bg);color:var(--red)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 발표 이력 테이블 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
+.htable tr.new td{background:var(--blue-bg)}
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.htable th{white-space:nowrap}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI 카드 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
+/* 콜아웃·인용 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 영향 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--amber-bg);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지표 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+.htable td.wrap{white-space:normal;min-width:150px;text-align:left;line-height:1.55}
+.callout p+p{margin-top:10px}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">📈</span> 경제 지표</div>
+  <a href="./index.html">← 아카이브</a>
+</div>
+<div class="body">
+
+<div class="chips">
+  <span class="chip b">#연준</span><span class="chip">#연 1회</span><span class="chip">#★★</span><span class="chip">#워시 의장 취임 100일</span>
+</div>
+<h1>잭슨홀 심포지엄<br>워시 의장 기조연설</h1>
+<div class="meta">2026년 8월 28일 23:00 연설 (한국시간) · 출처 연방준비제도 연설 원문 · 시장 반응은 CME FedWatch·언론 종합</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">9월 FOMC 인상 확률</div>
+    <div class="num"><span class="up">57.5%</span></div>
+    <div class="cmp">하루 전(35.4%)보다 <b class="up">+22.1%p</b> · 동결에서 <b>인상 우위</b>로 역전</div>
+    <div class="core">CME FedWatch · 2026.08.28 기준 ⚠️ 스냅샷 시점에 따라 변동</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">미 국채 2년물</div>
+    <div class="num"><span class="up">4.356%</span></div>
+    <div class="cmp">연설 직후 <b class="up">+12bp 이상</b> 급등 · 7월 말 이후 최고</div>
+    <div class="core">10년물 4.726%(+5bp) · 30년물 5.211%(+2bp) — 단기물만 크게 올랐어요</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p>워시 의장은 <b>금리를 어떻게 하겠다는 말을 끝내 하지 않았어요</b>. 대신 <mark class="r">"여름의 PCE·CPI가 예상보다 좋게 나왔지만, 그것이 기저 추세가 의미 있게 개선됐다는 뜻은 아니다"</mark>라고 못 박았고, 시장은 이걸 매파 신호로 읽었어요.</p>
+  <p>연설의 진짜 주제는 금리가 아니라 <b>연준의 소통 방식</b>이었어요. 포워드 가이던스도, 반응함수(데이터가 이러면 금리를 이렇게 한다는 공식)도 <b>둘 다 거부</b>했어요. "나는 결정이 아니라 규율에 헌신한다"는 문장이 연설의 결론이에요.</p>
+  <p>그런데도 시장은 방향을 잡았어요. 9월 인상 확률이 하루 만에 <mark class="r">35.4% → 57.5%</mark>로 뒤집혔고, S&amp;P 500은 <b>-0.25%</b>로 소폭 밀렸지만 주간으로는 <b>+0.5% 상승</b> 마감했어요.</p>
+</div>
+
+<div class="sub-head">🏛️ 연설은 네 부분으로 짜였어요</div>
+<div class="sub-desc">본인이 서두에 "이건 아웃라인이지 포워드 가이던스가 아니다"라고 농담처럼 밝혔어요.</div>
+<div class="twrap"><table class="htable">
+  <tr><th>파트</th><th>주제</th><th>핵심</th></tr>
+  <tr><td>1</td><td>AI와 경제</td><td class="wrap">AI를 <b>새로운 생산요소</b>로 규정 · 생산성·고용·시장구조에 대한 질문을 <b>태스크포스</b>에 맡김. 단, <b>현재 정책 결정에는 영향 없음</b>을 명시</td></tr>
+  <tr class="new"><td>2</td><td>포워드 가이던스</td><td class="wrap">위기 때 도입한 관행이 <b>"너무 오래 머물렀다"</b> · 반응함수 제시도 거부. 시장과 연준이 서로를 비추는 <b>'거울의 방(hall of mirrors)'</b> 문제를 경계</td></tr>
+  <tr><td>3</td><td>7가지 정책 원칙</td><td class="wrap">추세 우선 · 공급측 불확실성 인정 · <b>PCE 2% 목표는 고정</b> · 이중책무는 상충하지 않음 · 단기금리가 주된 수단 · <b>통화량도 본다</b> · 조용한 연준</td></tr>
+  <tr><td>4</td><td>경제 평가</td><td class="wrap">성장·고용은 <b>인상적으로 견조</b>, 물가는 <b>여전히 문제</b>. "지금 연준의 주된 초점은 물가에 있어야 한다"</td></tr>
+</table></div>
+
+<div class="sub-head">📉 시장은 이렇게 읽었어요</div>
+<div class="sub-desc">방향을 안 알려줬는데도 확률이 크게 움직인 게 이번 연설의 특징이에요.</div>
+
+<div class="chart-card">
+  <div class="ct">9월 FOMC 0.25%p 인상 확률</div>
+  <div class="cs">CME FedWatch · 가운데 지점은 연설 하루 전인 8월 27일(목) 35.4%</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">35.1</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">40.8</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">46.5</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">52.1</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">57.8</text><polygon points="14.0,260 14.0,46.2 329.0,257.4 644.0,28.6 644.0,260" fill="#F2F4F6" opacity="0.85"/><polyline points="14.0,46.2 329.0,257.4 644.0,28.6" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="329.0" cy="257.4" r="4" fill="#fff" stroke="#8B95A1" stroke-width="2.5"/><text x="329.0" y="278" text-anchor="middle" class="cl">8.27(목) 35.4%</text><line x1="644.0" y1="28.6" x2="644.0" y2="260" stroke="#3182F6" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/><circle cx="644.0" cy="28.6" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/><text x="634.0" y="15.6" text-anchor="end" class="cv" style="fill:#3182F6">연설 후 57.5%</text><text x="14.0" y="286" text-anchor="middle" class="cl">약 한 달 전 55.8%</text><text x="644.0" y="286" text-anchor="middle" class="cl">8.28(금)</text></svg>
+  <div class="legend"><span><i style="background:#4E5968"></i>인상 확률(%)</span><span>7월 고용 부진·물가 둔화로 한 번 꺾였다가 연설로 되돌아왔어요</span></div>
+</div>
+
+<div class="kpi">
+  <div class="k"><div class="l">S&amp;P 500</div><div class="v"><span class="down">7,711.76</span></div><div class="d">8/28 종가 -0.25% · 주간으로는 +0.5%</div></div>
+  <div class="k"><div class="l">나스닥 종합</div><div class="v"><span class="down">26,402.42</span></div><div class="d">-0.52% · 반도체 약세 · 주간 +0.9%</div></div>
+  <div class="k"><div class="l">미 국채 2년물</div><div class="v"><span class="up">4.356%</span></div><div class="d">연설 직후 +12bp 이상 · 7월 말 이후 최고</div></div>
+  <div class="k"><div class="l">미 국채 30년물</div><div class="v"><span class="up">5.211%</span></div><div class="d">+2bp에 그침 · 최근 수십 년래 고점권</div></div>
+</div>
+<p class="body-p">숫자를 보면 시장의 해석이 선명해요. <b>단기물은 뛰고 장기물은 거의 안 움직였어요</b>. 연준이 지금 더 조이겠다는 뜻으로 읽으면 2년물이 오르고, 대신 <mark>물가를 잡아줄 거라는 신뢰가 생기면 장기물은 오히려 안정</mark>돼요. 최근 몇 주 30년물 급등이 시장의 걱정거리였는데, 이번 연설은 그쪽에는 안도감을 준 셈이에요.</p>
+<div class="callout">
+  <div class="ct">📌 시장 코멘트</div>
+  <p style="font-size:14.5px;color:var(--g600)">"의도적으로 매파적인 연설이었고, 물가 안정을 되찾기 위해 금리를 올릴 의지가 있는지에 대한 의구심을 잠재울 것" <b style="color:var(--g700)">— BMO 미국 금리전략가 베일 하트먼</b></p>
+  <p style="font-size:14.5px;color:var(--g600)">"9월 인상 위험이 커졌다. 시장이 긍정적으로 반응한 건, 메시지가 매파적이어도 <b style="color:var(--g700)">명확함 자체에 프리미엄</b>을 두기 때문" — 프린시펄 자산운용 수석 글로벌전략가 시마 샤</p>
+</div>
+
+<div class="sub-head">🔥 워시가 물가를 판단하는 방법</div>
+<div class="sub-desc">헤드라인 대신 "몇 개 품목이 여전히 많이 오르고 있나"를 봐요.</div>
+
+<div class="chart-card">
+  <div class="ct">PCE 199개 품목 중 3% 넘게 오른 비중</div>
+  <div class="cs">워시 의장이 연설에서 직접 제시한 수치 · 최근 12개월·6개월은 연율 기준</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-0.1</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">21.4</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">43.0</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">64.6</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">86.2</text><line x1="14" y1="259.6" x2="644" y2="259.6" stroke="#D1D6DB" stroke-width="1.5"/><rect x="59.7" y="172.9" width="66.1" height="86.7" rx="3.5" fill="#3182F6"/><text x="92.8" y="166.9" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">32.0</text><text x="92.8" y="286" text-anchor="middle" class="cl">팬데믹 전 20년</text><rect x="217.2" y="51.0" width="66.1" height="208.6" rx="3.5" fill="#F04452"/><text x="250.2" y="45.0" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">77.0</text><text x="250.2" y="286" text-anchor="middle" class="cl">팬데믹 후 최고</text><rect x="374.7" y="113.3" width="66.1" height="146.3" rx="3.5" fill="#3182F6"/><text x="407.8" y="107.3" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">54.0</text><text x="407.8" y="286" text-anchor="middle" class="cl">최근 12개월</text><rect x="532.2" y="126.9" width="66.1" height="132.7" rx="3.5" fill="#3182F6"/><text x="565.2" y="120.9" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">49.0</text><text x="565.2" y="286" text-anchor="middle" class="cl">최근 6개월</text></svg>
+  <div class="legend"><span><i style="background:#3182F6"></i>3% 초과 상승 품목 비중(%)</span><span><i style="background:#F04452"></i>팬데믹 후 최고치</span></div>
+</div>
+<p class="body-p">이 차트가 이번 연설에서 <b>가장 중요한 숫자</b>예요. 헤드라인 물가는 2022년 고점에서 많이 내려왔지만, <mark class="r">개별 품목 단위로 보면 여전히 절반가량이 3% 넘게 오르고 있어요</mark>. 팬데믹 이전 20년 평균이 32%였으니 아직 한참 위죠. 워시 의장이 "여름 지표가 좋았지만 <b>기저 추세가 개선됐다고 말해주지는 않는다</b>"고 한 근거가 바로 이거예요.</p>
+<div class="kpi">
+  <div class="k"><div class="l">PCE 물가 (12개월)</div><div class="v"><span class="up">3.7%</span></div><div class="d">연준 목표 2%의 1.85배</div></div>
+  <div class="k"><div class="l">PCE 물가 (6개월 연율)</div><div class="v"><span class="up">4.1%</span></div><div class="d">12개월보다 <b>더 높아요</b> — 최근이 더 나쁘다는 뜻</div></div>
+</div>
+<p class="body-p">6개월 연율(4.1%)이 12개월(3.7%)보다 높다는 건, 최근 반년의 물가 속도가 지난 1년 평균보다 <b>더 빠르다</b>는 의미예요. 워시 의장이 "우리는 방향뿐 아니라 <b>속도</b>도 봐야 한다"고 말한 대목과 연결돼요. 다만 그는 <b>기대인플레이션은 잘 고정돼 있다</b>고 평가했고, 스왑시장의 인플레이션 보상 지표도 같은 신호를 준다고 했어요.</p>
+
+<div class="sub-head">💪 그런데 경제는 "인상적"이라고 했어요</div>
+<div class="sub-desc">물가를 걱정하면서 경제는 강하다고 본 게 매파로 읽힌 두 번째 이유예요.</div>
+<div class="twrap"><table class="htable">
+  <tr><th>항목</th><th>수치</th><th>워시 의장의 평가</th></tr>
+  <tr class="new"><td>설비·무형자산 투자</td><td class="a up">+9%</td><td class="wrap">4분기 누적 증가율 · <b>2021년 이후 최고</b> · 올해 증가분의 절반 이상이 <b>AI 빌드아웃</b></td></tr>
+  <tr><td>S&amp;P 500 기업이익</td><td class="a up">+20%↑</td><td class="wrap">지난 1년 · 이익률도 역사적으로 높은 수준 · 주식 변동성은 낮음</td></tr>
+  <tr><td>민간 최종수요(PDFP)</td><td class="a">약 +3%</td><td class="wrap">올해 들어 · "GDP보다 신호가 더 강한 지표"</td></tr>
+  <tr><td>실질 소비지출</td><td class="a">+2%↑</td><td class="wrap">최근 4분기 · 여러 충격에도 견조</td></tr>
+  <tr><td>실업률</td><td class="a">4.1%</td><td class="wrap">역사적으로 낮음 · 2년째 큰 변화 없음 · <b>"완전고용에 부합"</b></td></tr>
+  <tr><td>신용 스프레드</td><td class="a">역사적 저점권</td><td class="wrap">회사채·레버리지론 모두 · C&amp;I 대출 기준도 완화적</td></tr>
+</table></div>
+<div class="callout"><div class="ct">한 줄 결론</div>워시 의장은 <mark class="r">"전반적인 금융여건을 긴축적이라고 표현하기는 어렵다"</mark>고 말했어요. 이건 7월 FOMC 의사록에서 '일부(some)' 참석자가 지적했던 문장과 정확히 같은 논리예요 — 이제 <b>의장 본인이 그 자리에 섰다</b>는 게 달라진 점이에요. 다만 주택·농업은 압박을 받고 있다고 따로 짚었어요.</div>
+
+<div class="sub-head">📌 원문 핵심 문장</div>
+<div class="sub-desc">시장이 반응한 두 문장과, 연설 전체를 요약하는 한 문장이에요.</div>
+<div class="callout">
+  <p style="font-size:14.5px;color:var(--g600);margin-bottom:10px">"While this summer's PCE and CPI readings were better than expected, they do not tell me that underlying trends have meaningfully improved."<br><b style="color:var(--g700)">— 올여름 PCE·CPI가 예상보다 좋게 나왔지만, 기저 추세가 의미 있게 개선됐다고 말해주지는 않는다.</b></p>
+  <p style="font-size:14.5px;color:var(--g600);margin-bottom:10px">"We must be confident that underlying inflation is moving to our objective, clearly and at sufficient speed. Otherwise, we have work to do."<br><b style="color:var(--g700)">— 기저 물가가 목표를 향해 분명하게, 충분한 속도로 움직이고 있다고 확신할 수 있어야 한다. 그렇지 않다면 우리는 할 일이 남아 있다.</b></p>
+  <p style="font-size:14.5px;color:var(--g600)">"I stand here today committed to a discipline, not to a decision."<br><b style="color:var(--g700)">— 저는 오늘 이 자리에 특정 결정이 아니라 규율에 헌신하는 사람으로 섰습니다.</b></p>
+</div>
+<p class="body-p">한 가지 더 눈에 띄는 문장이 있어요. <mark class="r">"65개월간 이어진 높은 인플레이션의 책임은 전적으로 중앙은행에 있고, 그게 있어야 할 자리"</mark>라고 했어요. 관세나 공급망 탓을 하지 않고 연준의 책임으로 못 박은 건, 앞으로 물가를 이유로 움직일 명분을 스스로 세워둔 것으로 읽혀요.</p>
+
+<div class="sub-head">🤖 연준이 AI를 보는 방식</div>
+<div class="sub-desc">포트폴리오와 직결되는 대목이라 따로 정리했어요.</div>
+<p class="body-p">워시 의장은 AI를 <b>"잠재적으로 새로운 생산요소"</b>로 규정했어요. 근거로 <mark>상위 두 개 AI 랩의 연환산 토큰 매출이 1,000억 달러를 넘고, 1년 전보다 500% 이상 늘었다</mark>는 수치를 들었어요. 그러면서 답이 없는 질문들을 나열했어요 — 생산성이 언제 오를지, 토큰이 노동을 <b>보완</b>할지 <b>대체</b>할지, 다음 세대 모델이 자본을 더 쓸지 덜 쓸지, 그리고 <b>잉여가 어디로 귀속될지</b>.</p>
+<p class="body-p">특히 이 문장이 중요해요 — <b>"초기에는 희소자산 보유자(AI 랩·칩 제조사·에너지 생산자·클라우드 사업자)에게 얼마나 돌아가고, 시간이 지나면 그 가치가 기업과 소비자에게 얼마나 이전되는가?"</b> 지금 우리 포트폴리오의 AI 비중이 바로 그 <b>'희소자산 보유자'</b> 쪽에 서 있다는 뜻이에요. 다만 그는 <b>태스크포스의 권고는 나중 일이며 현재 정책 결정에는 영향이 없다</b>고 선을 그었어요.</p>
+
+<div class="sub-head">💼 보유 종목 영향</div>
+<div class="sub-desc">"9월 인상 확률 57.5% + 금융여건이 긴축적이지 않다"는 조합이 핵심이에요.</div>
+
+<div class="stock-g">
+  <div class="sg-t">금리민감 성장주 <span class="tks">PLTR · IONQ · SMR · CRWV</span> <span class="badge neg">비우호적</span></div>
+  <p>가장 직접적으로 불리한 그룹이에요. 인상 확률이 하루 만에 <b>35.4% → 57.5%</b>로 뒤집혔고, 워시 의장이 <mark class="r">"신용 스프레드가 역사적 저점권이라 금융여건이 제약적이지 않다"</mark>고 말한 건 <b>스프레드가 벌어지는 방향</b>을 용인하겠다는 뜻으로도 읽혀요. 차입 의존도가 가장 높은 <a href="실적브리핑_CRWV_2026Q2_2026.08.12.html">CRWV</a>(총차입금 $51.6B, 분기 이자비용 가이던스 $860~940M)가 최전선이에요. 아직 현금을 태우는 <a href="실적브리핑_IONQ_2026Q2_2026.08.08.html">IONQ</a>·<a href="실적브리핑_SMR_2026Q2_2026.08.08.html">SMR</a>도 조달환경에 민감하고, <a href="실적브리핑_PLTR_2026Q2_2026.08.08.html">PLTR</a>은 현금흐름은 튼튼하지만 높은 배수 탓에 할인율 상승에 취약해요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">반도체·AI 인프라 <span class="tks">NVDA · MU · SK하이닉스</span> <span class="badge neu">중립 — 강한 수요가 곧 인상 명분</span></div>
+  <p>묘한 자리예요. 워시 의장이 경제가 강하다는 근거로 든 <b>설비투자 +9%, 그 절반 이상이 AI 빌드아웃</b>이라는 수치는 <a href="실적브리핑_NVDA_FY2027Q2_2026.08.27.html">NVDA</a>·<a href="실적브리핑_MU_FY2026Q3_2026.08.09.html">MU</a>·<a href="실적브리핑_000660_2026Q2_2026.08.09.html">SK하이닉스</a>의 수요 그 자체예요. 하지만 <mark class="r">그 강한 수요가 연준이 금리를 올릴 근거로 인용됐다</mark>는 게 역설이죠. 실제로 8/28 엔비디아는 전일 +9% 급등을 되돌려 <b>-3%</b> 하락했고, 반도체 ETF(SMH)는 주간 -3% 이상이었어요. 실적은 방어해주지만 매크로 헤드윈드는 그대로예요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">빅테크 <span class="tks">AAPL · MSFT · GOOGL</span> <span class="badge neu">중립</span></div>
+  <p>현금흐름이 두터워 금리 민감도는 낮은 편이에요. 다만 CapEx를 차입으로 메우는 국면에서는 조달금리가 곧 비용이라, <a href="실적브리핑_MSFT_FY2026Q4_2026.08.09.html">MSFT</a>(캘린더 2026년 CapEx $175B)와 <a href="실적브리핑_GOOGL_2026Q2_2026.08.09.html">GOOGL</a>(연간 CapEx $195~205B, 2Q FCF -$5.9B)은 장기금리 레벨을 계속 봐야 해요. 이번엔 30년물이 +2bp에 그쳐 <b>당장의 추가 부담은 없었어요</b>. <a href="실적브리핑_AAPL_FY2026Q3_2026.08.09.html">AAPL</a>은 CapEx 부담이 작아 이 축에서 가장 편한 위치예요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">배당·방어 <span class="tks">O · KO · ABBV</span> <span class="badge neu">O는 오히려 안도</span></div>
+  <p>REIT인 <a href="실적브리핑_O_2026Q2_2026.08.08.html">O</a>에게 이번 조합은 <b>나쁘지만은 않아요</b> — 단기물이 뛰는 동안 <mark>10년물은 +5bp, 30년물은 +2bp에 그쳤어요</mark>. REIT의 배당 매력과 조달비용을 좌우하는 건 장기금리라, 연준이 물가를 잡아줄 거라는 신뢰로 장기물이 안정되면 O에는 우호적이에요. 다만 30년물 5.21%라는 절대 레벨 자체는 여전히 부담이에요. <a href="실적브리핑_KO_2026Q2_2026.08.09.html">KO</a>와 ABBV는 금리보다 물량·파이프라인이 지배 변수라 영향이 제한적이고, 인상 국면에서는 방어 역할을 해요. 참고로 이번 주 밀·옥수수가 3년 내 최고로 뛰었는데, 원재료 물가는 KO 쪽 원가에 붙는 변수예요.</p>
+</div>
+
+<div class="sub-head">👀 다음 발표에선 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">9월 4일 고용보고서가 인상 확률 57.5%를 굳히는지, 되돌리는지<small>8월 7일 발표된 7월 고용이 부진해서 확률이 55.8%→35.4%로 꺾였던 전례가 있어요. 이번에도 같은 힘이 작동할지가 관건이에요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">9월 10일 CPI에서 "기저 추세"가 실제로 개선되는지<small>워시 의장의 기준은 헤드라인이 아니라 3% 넘게 오르는 품목의 비중이에요. 근원 CPI와 광범위성이 함께 내려와야 인상을 피할 수 있어요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">9월 17일(한국시간) FOMC에서 2022년 이후 첫 인상이 나오는지, 점도표가 어디로 이동하는지<small>9월은 SEP(경제전망) 회의라 점도표가 함께 나와요. 인상하지 않더라도 점도표가 위로 옮겨가면 같은 효과예요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">단기물만 오르고 장기물은 안정되는 구도가 이어지는지<small>이 구도가 유지되면 O·MSFT·GOOGL의 조달 부담은 제한적이에요. 반대로 30년물이 5.2%를 크게 넘어서면 이야기가 달라져요</small></div></div>
+</div>
+<div class="wp-preview">📌 다음 보고서에서는 위 4가지가 실제로 어떻게 됐는지 <b>하나씩 점검</b>해서 보여드릴게요.</div>
+
+<div class="next-box">🗓️ 다음 잭슨홀 심포지엄 — 2027년 8월 (예정) <span class="est">연 1회 · 캔자스시티 연은 주최</span></div>
+
+<div class="sub-head">📚 잭슨홀 심포지엄이란?</div>
+<div class="explain">
+  <h3>연준 의장이 1년에 한 번 '큰 그림'을 말하는 자리예요</h3>
+  <p>미국 캔자스시티 연방준비은행이 매년 8월 말 와이오밍주 잭슨홀에서 여는 경제정책 심포지엄이에요. 전 세계 중앙은행 총재·경제학자·시장 참가자가 모여 사흘간 토론해요. 하이라이트는 <b>연준 의장의 기조연설</b>인데, FOMC 성명서처럼 형식에 얽매이지 않아 정책 철학과 방향을 비교적 자유롭게 말할 수 있어요. 그래서 시장이 가장 주목하는 연중 이벤트 중 하나예요.</p>
+  <p>2026년 주제는 <b>"금융 혁신: 지급결제와 정책에 대한 함의(Financial Innovation: Implications for Payments and Policy)"</b>였고, 케빈 워시 의장의 <b>첫 잭슨홀 연설</b>이자 취임 100일째 되는 날이었어요.</p>
+  <p>이번 연설이 특별했던 건 <b>포워드 가이던스를 하지 않겠다고 선언한 연설</b>이었다는 점이에요. 포워드 가이던스는 중앙은행이 앞으로의 금리 방향을 미리 알려주는 관행으로, 2008년 금융위기 때 도입됐어요. 워시 의장은 이걸 "위기의 유산이 너무 오래 남았다"고 보고, 시장과 연준이 서로의 눈치만 보는 <b>'거울의 방' 문제</b>를 만든다고 비판했어요. 앞으로는 연준 발언에서 다음 수를 읽어내기가 더 어려워질 수 있다는 뜻이에요.</p>
+</div>
+
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: 연방준비제도 워시 의장 잭슨홀 기조연설 원문(2026년 8월 28일), CME FedWatch, CNBC 보도(국채금리·증시 종가·인상 확률) · macro-briefing 스킬이 자동 생성했습니다.
+</div>
+</div>
+</div>
+</body>
+</html>
