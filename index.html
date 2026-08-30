@@ -129,10 +129,37 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .empty{background:var(--g50);border-radius:16px;padding:40px;text-align:center;
   font-size:15px;color:var(--g400);font-weight:600}
 
-/* 알림 설정 */
-.notify-box{background:var(--g50);border-radius:16px;padding:20px 22px;margin-bottom:40px}
-.notify-box .nt{font-size:15px;font-weight:800;margin-bottom:4px}
-.notify-box .nd{font-size:13.5px;color:var(--g500);font-weight:500;line-height:1.6}
+/* 알림 — GNB 버튼 + 바텀시트 */
+.gnb .right{display:flex;align-items:center;gap:10px}
+.nbtn{display:inline-flex;align-items:center;gap:5px;background:var(--g50);border:1px solid var(--g200);
+  color:var(--g600);font-family:inherit;font-size:12.5px;font-weight:700;letter-spacing:-0.02em;
+  padding:6px 12px;border-radius:20px;cursor:pointer;transition:.12s;white-space:nowrap}
+.nbtn:hover{background:var(--g100);border-color:var(--g400)}
+.nbtn.on{background:var(--green-bg);border-color:var(--green-bg);color:var(--green)}
+.nbtn .nd-dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:none}
+.nbtn.on .nd-dot{display:block}
+
+.dim{position:fixed;inset:0;background:rgba(25,31,40,.45);opacity:0;visibility:hidden;
+  transition:.22s;z-index:60}
+.dim.on{opacity:1;visibility:visible}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:61;background:#fff;
+  border-radius:20px 20px 0 0;padding:10px 24px calc(28px + env(safe-area-inset-bottom));
+  max-width:760px;margin:0 auto;max-height:86vh;overflow-y:auto;
+  transform:translateY(101%);transition:transform .26s cubic-bezier(.32,.72,0,1)}
+.sheet.on{transform:translateY(0)}
+.sheet .grab{width:36px;height:4px;border-radius:4px;background:var(--g200);margin:0 auto 16px}
+.sheet .sh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.sheet .st{font-size:18px;font-weight:800;letter-spacing:-0.03em}
+.sheet .sx{margin-left:auto;border:0;background:var(--g100);color:var(--g500);width:30px;height:30px;
+  border-radius:50%;font-size:14px;font-family:inherit;font-weight:700;cursor:pointer;line-height:1}
+.sheet .sd{font-size:13.5px;color:var(--g500);font-weight:500;line-height:1.6}
+
+/* 더보기 */
+.more{width:100%;border:1px solid var(--g200);background:#fff;color:var(--g600);font-family:inherit;
+  font-size:13.5px;font-weight:700;letter-spacing:-0.02em;padding:12px 0;border-radius:12px;
+  cursor:pointer;margin-top:10px;transition:.12s}
+.more:hover{background:var(--g50);border-color:var(--g400)}
+
 .btn{display:inline-block;background:var(--blue);color:#fff;border:0;border-radius:10px;
   font-family:inherit;font-size:14px;font-weight:700;padding:11px 20px;margin-top:14px;cursor:pointer}
 .btn:disabled{background:var(--g200);color:var(--g400);cursor:default}
@@ -174,11 +201,14 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 /* 다음 발표 체크포인트 위젯 */
 .wgrp{border:1px solid var(--g200);border-radius:16px;padding:16px 19px;margin-bottom:10px}
-.wgrp .wh{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800}
+.wgrp .wh{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;cursor:pointer;user-select:none}
 .wgrp .wh .wico{font-size:14px}
 .wgrp .wh .wd{margin-left:auto;font-size:13px;color:var(--g500);font-weight:700;white-space:nowrap}
 .wgrp .wh .wd .dday{margin-right:6px}
-.wgrp ul{list-style:none;margin-top:9px;display:flex;flex-direction:column;gap:7px}
+.wgrp .wh .arw{font-size:10px;color:var(--g400);transition:transform .18s;flex:0 0 auto}
+.wgrp.open .wh .arw{transform:rotate(180deg)}
+.wgrp ul{list-style:none;margin-top:9px;display:none;flex-direction:column;gap:7px}
+.wgrp.open ul{display:flex}
 .wgrp li{font-size:14px;color:var(--g700);line-height:1.6;padding-left:20px;position:relative}
 .wgrp li::before{content:'';position:absolute;left:4px;top:9px;width:6px;height:6px;border-radius:50%;
   background:var(--blue-bg);border:2px solid var(--blue)}
@@ -224,6 +254,14 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   .up-row .tk{font-size:14.5px;min-width:76px}
   .up-row .co{font-size:12.5px}
   .up-row .dt{font-size:13.5px}
+  .gnb{padding:12px 20px}
+  .gnb .right{gap:8px}
+  .gnb .upd{font-size:11.5px}
+  .nbtn{font-size:12px;padding:5px 10px}
+  .sheet{padding:10px 20px calc(24px + env(safe-area-inset-bottom))}
+}
+@media(max-width:390px){
+  .gnb .upd{display:none}
 }
 </style>
 </head>
@@ -232,7 +270,10 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <div class="gnb">
   <div class="brand"><span class="dot">📊</span> 실적브리핑</div>
-  <span class="upd">업데이트 <span id="last-updated"></span></span>
+  <div class="right">
+    <span class="upd">업데이트 <span id="last-updated"></span></span>
+    <button type="button" class="nbtn" id="nbtn"><span class="nd-dot"></span>🔔 알림</button>
+  </div>
 </div>
 
 <div class="body">
@@ -246,12 +287,6 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 </div>
 
 <div class="stats" id="stats"></div>
-
-<div class="notify-box" id="notify-box">
-  <div class="nt">🔔 알림 받기</div>
-  <div class="nd">새 실적 보고서나 경제 지표 분석이 나오면 아이폰으로 알려드려요.</div>
-  <div id="notify-body"></div>
-</div>
 
 <div class="sec" id="val-sec">
   <h2>💰 밸류에이션 스냅샷</h2>
@@ -279,13 +314,13 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   </div>
 
   <div class="up-list" id="upcoming"></div>
-  <div class="sec-foot">실적발표와 경제 지표 일정을 하나의 캘린더로 보여드려요 · 모든 시각은 한국시간 기준 · 평일 오전 9시에 자동으로 확인해 갱신해요</div>
+  <div class="sec-foot">실적발표와 경제 지표 일정을 하나의 캘린더로 보여드려요 · 리스트는 D-12 이내 일정만 먼저 보여드려요 · 모든 시각은 한국시간 기준 · 평일 오전 9시에 자동으로 확인해 갱신해요</div>
 </div>
 
 <div class="sec">
   <h2>👀 다음 발표 체크포인트</h2>
   <div id="watch"></div>
-  <div class="sec-foot">지난 보고서에서 "다음엔 이걸 보자"고 했던 항목이에요 · 발표가 가까운 순으로 3건을 보여드려요</div>
+  <div class="sec-foot">지난 보고서에서 "다음엔 이걸 보자"고 했던 항목이에요 · 발표가 가까운 순으로 3건을 보여드려요 · 제목을 누르면 세부 항목이 펼쳐져요</div>
 </div>
 
 <div class="sec">
@@ -301,6 +336,17 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제 지표를 확인해 자동 생성·갱신합니다.
 </div>
 </div>
+</div>
+
+<div class="dim" id="notify-dim"></div>
+<div class="sheet" id="notify-sheet" role="dialog" aria-modal="true" aria-labelledby="notify-title">
+  <div class="grab"></div>
+  <div class="sh">
+    <span class="st" id="notify-title">🔔 알림 받기</span>
+    <button type="button" class="sx" id="notify-close" aria-label="닫기">✕</button>
+  </div>
+  <div class="sd">새 실적 보고서나 경제 지표 분석이 나오면 아이폰으로 알려드려요. 한 번만 설정하면 돼요.</div>
+  <div id="notify-body"></div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -807,6 +853,9 @@ const UP_ALL = [
   ...MACRO_UPCOMING_DB.map(u => ({ ...u, m: true })),
   ...EVENTS_DB.filter(u => u.date >= dkey(today)).map(u => ({ ...u, ev: true }))
 ];
+/* D-12 이내(및 날짜 미정 제외한 지난 건)만 기본 노출, 나머지는 '더보기'로 펼친다 */
+const UP_CUT = 12;
+let upHidden = 0;
 UP_ALL
   .sort((a,b) => (showDate(a) || '9999') < (showDate(b) || '9999') ? -1 : 1)
   .forEach(u => {
@@ -831,11 +880,26 @@ UP_ALL
     const label = (u.m || u.ev) ? tkLabel(u) : u.ticker;
     const co = u.ev ? `${u.name} · 기업 이벤트`
              : u.m ? `${u.name}${u.period ? ' · ' + u.period : ''} · ${'★'.repeat(u.tier)}` : u.name;
+    const far = !dt || dday(dt) > UP_CUT;
     const row = document.createElement('div');
-    row.className = 'up-row' + (soon ? ' soon' : '');
+    row.className = 'up-row' + (soon ? ' soon' : '') + (far ? ' up-more' : '');
+    if (far){ row.style.display = 'none'; upHidden++; }
     row.innerHTML = `${ico}<span class="tk">${label}</span><span class="co">${co}</span><span class="dt">${right}</span>`;
     upEl.appendChild(row);
   });
+
+if (upHidden){
+  const mb = document.createElement('button');
+  mb.type = 'button'; mb.className = 'more'; mb.id = 'up-more-btn';
+  mb.textContent = `이후 일정 ${upHidden}건 더보기 ▾`;
+  mb.onclick = () => {
+    const rows = upEl.querySelectorAll('.up-more');
+    const open = rows.length && rows[0].style.display === 'none';
+    rows.forEach(r => { r.style.display = open ? '' : 'none'; });
+    mb.textContent = open ? '접기 ▴' : `이후 일정 ${upHidden}건 더보기 ▾`;
+  };
+  upEl.parentNode.insertBefore(mb, upEl.nextSibling);
+}
 
 renderCal();
 
@@ -880,8 +944,19 @@ renderVal();
     g.className = 'wgrp';
     g.innerHTML =
       `<div class="wh"><span class="wico">${w.type === 'm' ? '📈' : '📊'}</span>${w.name}` +
-      `<span class="wd">${days <= 14 ? `<span class="dday">D-${days}</span>` : ''}${w.date.slice(2).replace(/-/g,'.')}</span></div>` +
+      `<span class="wd">${days <= 14 ? `<span class="dday">D-${days}</span>` : ''}${w.date.slice(2).replace(/-/g,'.')}</span>` +
+      `<span class="arw">▼</span></div>` +
       `<ul>${w.items.map(t => `<li>${t}</li>`).join('')}</ul>`;
+    const hd = g.querySelector('.wh');
+    hd.setAttribute('role', 'button');
+    hd.setAttribute('tabindex', '0');
+    hd.setAttribute('aria-expanded', 'false');
+    const toggle = () => {
+      g.classList.toggle('open');
+      hd.setAttribute('aria-expanded', g.classList.contains('open') ? 'true' : 'false');
+    };
+    hd.onclick = toggle;
+    hd.onkeydown = e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); } };
     box.appendChild(g);
   });
 })();
@@ -966,6 +1041,23 @@ const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 const nb = document.getElementById('notify-body');
 
+/* --- 바텀시트 열기·닫기 --- */
+const nBtn   = document.getElementById('nbtn');
+const nSheet = document.getElementById('notify-sheet');
+const nDim   = document.getElementById('notify-dim');
+function openNotify(){
+  nSheet.classList.add('on'); nDim.classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closeNotify(){
+  nSheet.classList.remove('on'); nDim.classList.remove('on');
+  document.body.style.overflow = '';
+}
+nBtn.onclick = openNotify;
+nDim.onclick = closeNotify;
+document.getElementById('notify-close').onclick = closeNotify;
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && nSheet.classList.contains('on')) closeNotify(); });
+
 function html(s){ nb.innerHTML = s; }
 function stat(cls, msg){
   const el = document.getElementById('nstat');
@@ -1025,6 +1117,8 @@ async function subscribe() {
 }
 
 function showSub(sub, msg) {
+  nBtn.classList.add('on');
+  nBtn.innerHTML = '<span class="nd-dot"></span>🔔 알림 켜짐';
   const ta = document.getElementById('sub-json');
   ta.value = JSON.stringify(sub.toJSON());
   ta.style.display = 'block';
