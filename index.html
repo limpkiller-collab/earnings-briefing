@@ -116,10 +116,11 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .card{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--g200);
   border-radius:16px;padding:20px 22px;transition:.15s}
 .card:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(25,31,40,.06);transform:translateY(-1px)}
-.card .top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
-.card .tk{font-size:17px;font-weight:800;letter-spacing:-0.02em}
-.card .co{font-size:13.5px;color:var(--g400);font-weight:600}
-.vd{margin-left:auto;font-size:11.5px;font-weight:800;padding:4px 11px;border-radius:20px}
+.card .top{display:flex;align-items:center;gap:9px;margin-bottom:8px;flex-wrap:wrap}
+.card .tk{font-size:17px;font-weight:800;letter-spacing:-0.02em;white-space:nowrap}
+.card .co{font-size:13.5px;color:var(--g400);font-weight:600;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;min-width:0}
+.vd{margin-left:auto;font-size:11.5px;font-weight:800;padding:4px 11px;border-radius:20px;white-space:nowrap}
 .vd.BEAT{background:var(--green-bg);color:var(--green)}
 .vd.MISS{background:var(--red-bg);color:var(--red)}
 .vd.MIXED{background:var(--amber-bg);color:var(--amber)}
@@ -365,91 +366,91 @@ const REPORTS_DB = [
   {
     ticker: "NVDA", company: "NVIDIA", quarter: "FY2027 Q2",
     report_date: "2026-08-27", created: "2026.08.27", verdict: "BEAT",
-    oneliner: "매출 $96.2B(+106%)·조정 EPS $2.22로 모두 예상을 넘었고, Q3 가이던스 $108.0B은 컨센서스를 3.6% 상회했어요. 어닝콜에서 FY2028 매출 +70%(컨센서스 +44%)를 직접 제시하며 시간외 +4.7%. 다만 매출총이익률은 Q4에 71~72%까지 내려간다고 예고했어요.",
+    oneliner: "매출 $96.2B(+106%)·조정 EPS $2.22로 모두 예상을 넘었고, Q3 가이던스 $108.0B은 컨센서스를 3.6% 상회했어요.",
     file: "실적브리핑_NVDA_FY2027Q2_2026.08.27.html"
   },
   {
     ticker: "NVDA", company: "NVIDIA", quarter: "FY2027 Q2",
     report_date: "2026-08-27", created: "2026.08.14", verdict: "PREV", vlabel: "프리뷰",
-    oneliner: "발표 D-13 프리뷰 — 컨센서스는 매출 $93~95B로 가이던스($91.0B) 초과를 기본 시나리오로 봐요. 관건은 서프라이즈 폭(전분기 +3.6%)과 다음 분기 가이던스. 목표주가 평균 $302.83로 현재가 대비 +34%예요.",
+    oneliner: "발표 D-13 프리뷰 — 컨센서스는 매출 $93~95B로 가이던스($91.0B) 초과를 기본 시나리오로 봐요.",
     file: "실적프리뷰_NVDA_FY2027Q2_2026.08.14.html"
   },
   {
     ticker: "CRWV", company: "CoreWeave", quarter: "2026 Q2",
     report_date: "2026-08-12", created: "2026.08.13", verdict: "BEAT",
-    oneliner: "매출 $2.58B(+112%)·조정 EPS -$1.03으로 모두 예상을 넘겼고 수주잔고는 $104B이 됐어요. 어닝콜에서 7월 전 SKU 약 25% 가격 인상·신규 계약 기여마진 +5~10%p가 확인되며 주가는 +19.3% 급등했지만, 총차입금은 한 분기에 $35B→$52B으로 늘었어요.",
+    oneliner: "매출 $2.58B(+112%)·조정 EPS -$1.03으로 모두 예상을 넘겼고 수주잔고는 $104B이 됐어요.",
     file: "실적브리핑_CRWV_2026Q2_2026.08.12.html"
   },
   {
     ticker: "CRWV", company: "CoreWeave", quarter: "2026 Q1",
     report_date: "2026-05-08", created: "2026.08.09", verdict: "MIXED",
-    oneliner: "매출 $2.08B(+112%)에 수주잔고 $99.4B로 성장은 폭발적이지만, 부채비율 1,068%·FCF -$4.7B로 재무 부담도 극단으로 커졌어요. 8/12 신규 발표 예정이에요.",
+    oneliner: "매출 $2.08B(+112%)·수주잔고 $99.4B로 성장은 폭발적이지만, 부채비율 1,068%로 재무 부담도 커졌어요.",
     file: "실적브리핑_CRWV_2026Q1_2026.08.09.html"
   },
   {
     ticker: "000660", company: "SK하이닉스", quarter: "2026 Q2",
     report_date: "2026-07-29", created: "2026.08.09", verdict: "MISS",
-    oneliner: "매출 79.3조·영업이익 60.5조로 사상 최대지만 컨센서스(64.9조)를 6.7% 밑돌았어요. 순이익 93.9조는 키옥시아 일회성 이익이 큰 비중이에요.",
+    oneliner: "매출 79.3조·영업이익 60.5조로 사상 최대지만 컨센서스(64.9조)를 6.7% 밑돌았어요.",
     file: "실적브리핑_000660_2026Q2_2026.08.09.html"
   },
   {
     ticker: "KO", company: "Coca-Cola", quarter: "2026 Q2",
     report_date: "2026-07-28", created: "2026.08.09", verdict: "BEAT",
-    oneliner: "매출 +7%, 비교 기준 EPS $0.97로 다섯 분기 연속 상회했어요. 가격이 아니라 물량이 5% 늘어난 성장이라 질이 좋고, 연간 가이던스도 상향했어요.",
+    oneliner: "매출 +7%, 비교 기준 EPS $0.97로 다섯 분기 연속 상회했고 연간 가이던스도 상향했어요.",
     file: "실적브리핑_KO_2026Q2_2026.08.09.html"
   },
   {
     ticker: "MU", company: "Micron", quarter: "FY2026 Q3",
     report_date: "2026-06-26", created: "2026.08.09", verdict: "BEAT",
-    oneliner: "매출 $41.5B(+346%), 매출총이익률 84.6%로 메모리 슈퍼사이클의 정점을 보여줬어요. 다음 분기 가이던스 $50B은 컨센서스보다 14.7% 높아요.",
+    oneliner: "매출 $41.5B(+346%)·매출총이익률 84.6%, 다음 분기 가이던스 $50B은 컨센서스보다 14.7% 높아요.",
     file: "실적브리핑_MU_FY2026Q3_2026.08.09.html"
   },
   {
     ticker: "MSFT", company: "Microsoft", quarter: "FY2026 Q4",
     report_date: "2026-07-31", created: "2026.08.09", verdict: "BEAT",
-    oneliner: "Azure 연 매출 $100B 돌파에 성장률 +43%, 조정 EPS $4.74로 컨센서스를 크게 넘었어요. CapEx 계획을 오히려 낮춰 주가가 8% 뛰었어요.",
+    oneliner: "Azure 연 매출 $100B 돌파(+43%), 조정 EPS $4.74로 컨센서스를 크게 넘었어요.",
     file: "실적브리핑_MSFT_FY2026Q4_2026.08.09.html"
   },
   {
     ticker: "AAPL", company: "Apple", quarter: "FY2026 Q3",
     report_date: "2026-08-01", created: "2026.08.09", verdict: "MIXED",
-    oneliner: "매출 $109.4B(+16%)로 6월 분기 최대지만 서비스가 예상을 밑돌았어요. 메모리 가격 급등으로 다음 분기 마진 가이던스를 47~48%로 낮췄어요.",
+    oneliner: "매출 $109.4B(+16%)로 6월 분기 최대지만, 서비스가 예상을 밑돌고 마진 가이던스를 47~48%로 낮췄어요.",
     file: "실적브리핑_AAPL_FY2026Q3_2026.08.09.html"
   },
   {
     ticker: "GOOGL", company: "Alphabet", quarter: "2026 Q2",
     report_date: "2026-07-24", created: "2026.08.09", verdict: "MIXED",
-    oneliner: "매출 +24%, 클라우드 +82%에 백로그 $514B로 사업은 최고조예요. 다만 연간 CapEx를 $195~205B로 또 올려 FCF가 마이너스로 돌아섰어요.",
+    oneliner: "매출 +24%·클라우드 +82%·백로그 $514B이지만, 연간 CapEx 상향으로 FCF가 마이너스로 돌아섰어요.",
     file: "실적브리핑_GOOGL_2026Q2_2026.08.09.html"
   },
   {
     ticker: "NVDA", company: "NVIDIA", quarter: "FY2027 Q1",
     report_date: "2026-05-22", created: "2026.08.09", verdict: "BEAT",
-    oneliner: "매출 $81.6B(+85%), 데이터센터 +92%로 성장이 재가속됐고 가이던스도 컨센서스를 4.8% 상회했어요. 그럼에도 주가는 5.5% 하락했어요.",
+    oneliner: "매출 $81.6B(+85%)·데이터센터 +92%로 성장이 재가속됐고 가이던스도 컨센서스를 4.8% 상회했어요.",
     file: "실적브리핑_NVDA_FY2027Q1_2026.08.09.html"
   },
   {
     ticker: "IONQ", company: "IonQ", quarter: "2026 Q2",
     report_date: "2026-08-07", created: "2026.08.08", verdict: "BEAT",
-    oneliner: "매출 $80.1M(+287%)로 컨센서스를 21% 웃돌고 연간 가이던스를 $280~290M로 올렸어요. 다만 손실 폭도 커졌고, PSR 61배는 고성장 지속을 전제한 가격이에요.",
+    oneliner: "매출 $80.1M(+287%)로 컨센서스를 21% 웃돌고 연간 가이던스를 $280~290M로 올렸어요.",
     file: "실적브리핑_IONQ_2026Q2_2026.08.08.html"
   },
   {
     ticker: "O", company: "Realty Income", quarter: "2026 Q2",
     report_date: "2026-08-07", created: "2026.08.08", verdict: "MIXED",
-    oneliner: "AFFO $1.09로 예상에 부합했고 연간 AFFO·투자($10B) 가이던스를 상향했어요. 데이터센터 JV로 AI 성장 채널을 새로 열었어요.",
+    oneliner: "AFFO $1.09로 예상에 부합했고 연간 AFFO·투자($10B) 가이던스를 상향했어요.",
     file: "실적브리핑_O_2026Q2_2026.08.08.html"
   },
   {
     ticker: "SMR", company: "NuScale Power", quarter: "2026 Q2",
     report_date: "2026-08-07", created: "2026.08.08", verdict: "MISS",
-    oneliner: "RoPower FEED 종료로 매출이 $75K까지 줄었어요. 대신 현금 $1.9B을 쌓아두고 TVA 6~8GW 계약 결과를 기다리는 이벤트 드리븐 국면이에요.",
+    oneliner: "RoPower FEED 종료로 매출이 $75K까지 줄었고, 현금 $1.9B로 TVA 6~8GW 계약 결과를 기다리고 있어요.",
     file: "실적브리핑_SMR_2026Q2_2026.08.08.html"
   },
   {
     ticker: "PLTR", company: "Palantir", quarter: "2026 Q2",
     report_date: "2026-08-05", created: "2026.08.08", verdict: "BEAT",
-    oneliner: "'AI 주권' 수요로 매출이 93% 늘며 성장이 재가속됐어요. 가이던스도 크게 올렸지만, 29% 급등으로 밸류에이션 부담은 다시 커졌어요.",
+    oneliner: "'AI 주권' 수요로 매출이 93% 늘며 성장이 재가속됐고, 연간 가이던스도 크게 올렸어요.",
     file: "실적브리핑_PLTR_2026Q2_2026.08.08.html"
   }
 ];
@@ -484,49 +485,49 @@ const MACRO_REPORTS_DB = [
     id: "JACKSON", name: "잭슨홀 심포지엄", period: "2026년 8월", category: "연준", tier: 2,
     report_date: "2026-08-28", created: "2026.08.29", verdict: "BAD", vlabel: "매파",
     surprise: { text: "인상확률 +22.1%p", cls: "up" },
-    oneliner: "워시 의장이 첫 잭슨홀 연설에서 금리 방향은 끝내 말하지 않았지만, \"여름 물가 개선이 기저 추세 개선을 뜻하지는 않는다\"며 매파 신호를 냈어요. 9월 인상 확률이 하루 만에 35.4%→57.5%로 역전됐고 2년물은 4.356%(+12bp)로 급등, S&P 500은 -0.25%로 마감했어요.",
+    oneliner: "워시 의장이 첫 잭슨홀 연설에서 매파 신호를 내며 9월 인상 확률이 하루 만에 35.4%→57.5%로 역전됐어요.",
     file: "경제지표_JACKSON_2026.08_2026.08.28.html"
   },
   {
     id: "PCE", name: "PCE 물가지수", period: "2026년 7월", category: "물가", tier: 3,
     report_date: "2026-08-26", created: "2026.08.27", verdict: "NEUT", vlabel: "정체",
     surprise: { text: "예측 +0.1%p", cls: "up" },
-    oneliner: "연준이 보는 물가가 헤드라인 3.7%·근원 3.3%로 두 달 연속 제자리였어요. 헤드라인은 예측을 0.1%p 웃돌았지만 근원이 정확히 부합해 9월 인상 확률은 36%까지 내려왔어요. 재화(-0.1%)는 내리고 서비스(+0.3%)가 밀어올리는 구도이고, 실질 소비는 0.0%로 멈췄어요.",
+    oneliner: "헤드라인 3.7%·근원 3.3%로 두 달 연속 제자리 — 근원이 예측에 부합해 9월 인상 확률은 36%까지 내려왔어요.",
     file: "경제지표_PCE_2026.07_2026.08.27.html"
   },
   {
     id: "GDP_2ND", name: "GDP 잠정치", period: "2026년 2분기", category: "성장", tier: 2,
     report_date: "2026-08-26", created: "2026.08.27", verdict: "NEUT", vlabel: "부합",
     surprise: { text: "예측 부합", cls: "flat" },
-    oneliner: "2분기 성장률은 +1.5%로 속보치에서 그대로였지만, 민간 최종수요가 3.9%→4.2%로 상향되며 민간 경제 체력이 더 좋게 드러났어요. 대신 근원 PCE 물가가 3.4%→3.6%로 오르고 기업이익이 $4,009억 급증해, 성장도 물가도 식지 않는 조합이에요.",
+    oneliner: "2분기 성장률 +1.5%로 속보치 유지, 민간 최종수요는 4.2%로 상향돼 성장도 물가도 식지 않는 조합이에요.",
     file: "경제지표_GDP_2ND_2026.2Q_2026.08.27.html"
   },
   {
     id: "FOMC_MIN", name: "FOMC 의사록", period: "2026년 7월 회의", category: "연준", tier: 2,
     report_date: "2026-08-20", created: "2026.08.20", verdict: "BAD", vlabel: "매파",
     surprise: { text: "표결 9 – 3", cls: "up" },
-    oneliner: "7월 회의 의사록이 매파적으로 나왔어요. '많은' 참석자가 물가가 내려오지 않으면 긴축이 필요하다고 봤고, '일부'는 지금 금융여건이 충분히 긴축적이지 않다고 평가했어요. 반대 3인은 모두 0.25%p 인상 주장. 다만 시장 충격은 없어 S&P 500은 +0.21%로 마감했어요.",
+    oneliner: "7월 의사록이 매파적 — '많은' 참석자가 긴축 필요성을 언급했고, 반대 3인은 모두 0.25%p 인상 주장이었어요.",
     file: "경제지표_FOMC_MIN_2026.07회의_2026.08.20.html"
   },
   {
     id: "RETAIL", name: "소매판매", period: "2026년 7월", category: "소비", tier: 2,
     report_date: "2026-08-14", created: "2026.08.14", verdict: "BAD", vlabel: "감소",
     surprise: { text: "예측 -0.7%p", cls: "down" },
-    oneliner: "7월 소매판매가 전월 대비 -0.6%로 9개월 만에 감소했어요(예측 +0.1%). 온라인 -2.2%·자동차 -1.8%가 낙폭을 주도했고, GDP 산출용 컨트롤 그룹도 -0.4%로 꺾였어요. 9월 인상 확률은 30.6%까지 내려갔어요.",
+    oneliner: "7월 소매판매 -0.6%로 9개월 만에 감소(예측 +0.1%), 컨트롤 그룹도 -0.4%로 꺾였어요.",
     file: "경제지표_RETAIL_2026.07_2026.08.14.html"
   },
   {
     id: "PPI", name: "생산자물가지수(PPI)", period: "2026년 7월", category: "물가", tier: 2,
     report_date: "2026-08-13", created: "2026.08.14", verdict: "GOOD", vlabel: "둔화",
     surprise: { text: "예측 -0.2%p", cls: "down" },
-    oneliner: "7월 도매물가가 보합(0.0%)으로 예측(+0.2%)을 밑돌았어요. 연료 하락으로 상품이 -0.7% 내렸고, YoY는 4.7%로 정점(6.0%) 대비 두 달 연속 둔화. 전날 CPI에 이어 물가 둔화가 도매 단계에서도 확인됐어요.",
+    oneliner: "7월 도매물가 보합(0.0%)으로 예측(+0.2%)을 하회, YoY 4.7%로 두 달 연속 둔화했어요.",
     file: "경제지표_PPI_2026.07_2026.08.13.html"
   },
   {
     id: "CPI", name: "소비자물가지수(CPI)", period: "2026년 7월", category: "물가", tier: 3,
     report_date: "2026-08-12", created: "2026.08.14", verdict: "GOOD", vlabel: "둔화",
     surprise: { text: "예측 부합", cls: "flat" },
-    oneliner: "7월 CPI가 전년 대비 3.4%로 두 달 연속 둔화했어요(예측 부합). 전월 대비 +0.1%, 상승분의 2/3는 주거비였고 에너지는 -1.5%로 내렸어요. 9월 금리 인상 확률이 42%로 낮아지며 주가는 오르고 국채금리는 하락했어요.",
+    oneliner: "7월 CPI 3.4%로 두 달 연속 둔화(예측 부합), 9월 인상 확률이 42%로 내려왔어요.",
     file: "경제지표_CPI_2026.07_2026.08.12.html"
   }
 ];
@@ -673,12 +674,12 @@ const EVENTS_DB = [
 ];
 // ----- 위클리 리뷰 (weekly-review 스킬이 매주 일요일 오전 갱신 · 새 항목은 맨 앞에) -----
 // verdict: UP(상승)/DOWN(하락)/MIX(혼조) · month: 필터용 "YYYY년 M월" · issues: 이슈 수 · next_count: 다음 주 주요 일정 수
-// surprise: {text:"그 주의 핵심 변수 한 줄", cls:"up|down|flat"}
+// title: 보고서 제목(줄바꿈 없이 한 줄) — 카드 본문에 표시. 카드 상단은 주차+판정 배지만 노출
 const WEEKLY_REPORTS_DB = [
   {
     week: "2026년 35주차", range: "08.24 ~ 08.29", month: "2026년 8월",
     issues: 5, next_count: 5, verdict: "MIX", vlabel: "혼조",
-    surprise: { text: "9월 인상확률 +22.1%p", cls: "up" },
+    title: "잭슨홀이 흔들고, 엔비디아가 받친 한 주였어요",
     oneliner: "NVDA가 매출 $96.2B 서프라이즈로 사상 첫 $4조 클럽에 들었지만, 잭슨홀에서 워시 의장이 매파 신호를 내며 9월 인상 확률이 35.4%→57.5%로 역전됐어요. S&P 500은 주간 +0.5%를 지켰지만 금요일에 상승분을 반납했고, 금(-3.7%)·유가(-3.8%)가 밀리는 인상 베팅 구도였어요. 다음 주 금요일 고용보고서(컨센서스 +4.5만)가 분기점이에요.",
     created: "2026.08.30", file: "위클리리뷰_2026_35주차_2026.08.30.html"
   }
@@ -1010,7 +1011,7 @@ function renderCards(){
     ? MACRO_REPORTS_DB.filter(r => active === '전체' || r.category === active)
     : WEEKLY_REPORTS_DB.filter(r => active === '전체' || r.month === active);
   if (query) rows = rows.filter(r =>
-    [r.ticker, r.company, r.name, r.id, r.period, r.quarter, r.category, r.week, r.month, r.range, r.oneliner]
+    [r.ticker, r.company, r.name, r.id, r.period, r.quarter, r.category, r.week, r.month, r.range, r.title, r.oneliner]
       .filter(Boolean).join(' ').toLowerCase().includes(query));
   document.getElementById('q-cnt').textContent = query ? `${rows.length}건` : '';
   const empty = document.getElementById('empty');
@@ -1032,8 +1033,8 @@ function renderCards(){
       ? `<div class="top"><span class="tk">${r.name}</span><span class="co">${r.period} · ${'★'.repeat(r.tier)}</span><span class="vd ${r.verdict}">${r.vlabel}</span>${sup(r)}</div>
          <div class="one">${r.oneliner}</div>
          <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`
-      : `<div class="top"><span class="tk">${r.week}</span><span class="co">${r.range} · 이슈 ${r.issues}건</span><span class="vd ${r.verdict}">${r.vlabel}</span>${sup(r)}</div>
-         <div class="one">${r.oneliner}</div>
+      : `<div class="top"><span class="tk">${r.week}</span><span class="vd ${r.verdict}">${r.vlabel}</span></div>
+         <div class="one">${r.title || r.oneliner}</div>
          <div class="meta"><span>대상 ${r.range}</span><span>발간 ${r.created}</span></div>`;
     box.appendChild(a);
   });
