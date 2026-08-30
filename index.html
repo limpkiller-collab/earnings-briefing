@@ -234,6 +234,11 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 /* 프리뷰 카드 배지 */
 .vd.PREV{background:var(--amber-bg);color:var(--amber)}
 
+/* 위클리 카드 배지 — 상승/하락은 등락 색, 혼조는 무채색 */
+.vd.UP{background:var(--green-bg);color:var(--green)}
+.vd.DOWN{background:var(--red-bg);color:var(--red)}
+.vd.MIX{background:var(--g100);color:var(--g500)}
+
 /* 보고서 검색 */
 .search{display:flex;align-items:center;gap:9px;background:var(--g100);border-radius:12px;
   padding:11px 15px;margin-bottom:12px}
@@ -284,6 +289,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 <div class="seg">
   <button type="button" id="seg-earn" class="on">📊 실적발표</button>
   <button type="button" id="seg-macro">📈 경제 지표</button>
+  <button type="button" id="seg-weekly">🗞️ 위클리</button>
 </div>
 
 <div class="stats" id="stats"></div>
@@ -333,7 +339,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <div class="disclaimer">
 본 아카이브의 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
-earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제 지표를 확인해 자동 생성·갱신합니다.
+earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제 지표를, weekly-review 스킬이 매주 일요일 오전 위클리 리뷰를 자동 생성·갱신합니다.
 </div>
 </div>
 </div>
@@ -353,7 +359,7 @@ earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.08.29";
+const LAST_UPDATED = "2026.08.30";
 
 const REPORTS_DB = [
   {
@@ -665,14 +671,20 @@ const EVENTS_DB = [
   { id: "AAPL_EVENT", company: "AAPL", short: "애플이벤트", name: "애플 아이폰 18 공개 이벤트", date: "2026-09-09", estimated: true, utc: null, note: "블룸버그 보도 기준 예상일 · 초청장 8월 말 발송 전망" },
   { id: "NVDA_GTC", company: "NVDA", short: "GTC베를린", name: "NVIDIA GTC Berlin (10/20~22)", date: "2026-10-20", estimated: true, utc: null, note: "보도 기준 · 공식 일정 재확인 필요" }
 ];
+// ----- 위클리 리뷰 (weekly-review 스킬이 매주 일요일 오전 갱신 · 새 항목은 맨 앞에) -----
+// verdict: UP(상승)/DOWN(하락)/MIX(혼조) · month: 필터용 "YYYY년 M월" · issues: 이슈 수 · next_count: 다음 주 주요 일정 수
+// surprise: {text:"그 주의 핵심 변수 한 줄", cls:"up|down|flat"}
+const WEEKLY_REPORTS_DB = [];
+
 // ===== 데이터 블록 끝 =====
 
 document.getElementById('last-updated').textContent = LAST_UPDATED;
 
 const tickers = new Set(REPORTS_DB.map(r => r.ticker));
 const macroCats = ['전체', ...new Set(MACRO_REPORTS_DB.map(r => r.category))];
+const weeklyMonths = ['전체', ...new Set(WEEKLY_REPORTS_DB.map(r => r.month))];
 let VIEW = 'earn';
-try { if (localStorage.getItem('briefView') === 'macro') VIEW = 'macro'; } catch(e) {}
+try { const sv = localStorage.getItem('briefView'); if (sv === 'macro' || sv === 'weekly') VIEW = sv; } catch(e) {}
 
 /* ===== 공통 유틸 (모든 표시는 한국시간 기준) ===== */
 const DOW = ['일','월','화','수','목','금','토'];
@@ -727,7 +739,7 @@ function renderStats(){
          <div class="bar"><i style="width:${reportedPct}%"></i></div>
        </div>
        <div class="stat"><div class="n">${UPCOMING_DB.length}</div><div class="l">모니터링 종목</div></div>`;
-  } else {
+  } else if (VIEW === 'macro') {
     const mk = `${today.getFullYear()}-${P2(today.getMonth()+1)}`;
     const tk = `${today.getFullYear()}-${P2(today.getMonth()+1)}-${P2(today.getDate())}`;
     const remain = MACRO_UPCOMING_DB.filter(u => u.date && u.date.slice(0,7) === mk && u.date >= tk).length;
@@ -735,6 +747,12 @@ function renderStats(){
       `<div class="stat"><div class="n">${MACRO_REPORTS_DB.length}</div><div class="l">보고서</div></div>
        <div class="stat"><div class="n">${remain}</div><div class="l">이번 달 남은 일정</div></div>
        <div class="stat"><div class="n">21</div><div class="l">모니터링 지표</div></div>`;
+  } else {
+    const w = WEEKLY_REPORTS_DB[0];
+    el.innerHTML =
+      `<div class="stat"><div class="n">${WEEKLY_REPORTS_DB.length}</div><div class="l">위클리 리뷰</div></div>
+       <div class="stat"><div class="n">${w ? w.issues : 0}</div><div class="l">최근 주 이슈</div></div>
+       <div class="stat"><div class="n">${w ? w.next_count : 0}</div><div class="l">다음 주 주요 일정</div></div>`;
   }
 }
 
@@ -966,7 +984,7 @@ let query = '';
 function renderFilters(){
   const el = document.getElementById('filters');
   el.innerHTML = '';
-  const opts = VIEW === 'earn' ? ['전체', ...tickers] : macroCats;
+  const opts = VIEW === 'earn' ? ['전체', ...tickers] : VIEW === 'macro' ? macroCats : weeklyMonths;
   opts.forEach(t => {
     const c = document.createElement('span');
     c.className = 'f' + (t === active ? ' on' : '');
@@ -980,15 +998,19 @@ function renderCards(){
   box.innerHTML = '';
   let rows = VIEW === 'earn'
     ? REPORTS_DB.filter(r => active === '전체' || r.ticker === active)
-    : MACRO_REPORTS_DB.filter(r => active === '전체' || r.category === active);
+    : VIEW === 'macro'
+    ? MACRO_REPORTS_DB.filter(r => active === '전체' || r.category === active)
+    : WEEKLY_REPORTS_DB.filter(r => active === '전체' || r.month === active);
   if (query) rows = rows.filter(r =>
-    [r.ticker, r.company, r.name, r.id, r.period, r.quarter, r.category, r.oneliner]
+    [r.ticker, r.company, r.name, r.id, r.period, r.quarter, r.category, r.week, r.month, r.range, r.oneliner]
       .filter(Boolean).join(' ').toLowerCase().includes(query));
   document.getElementById('q-cnt').textContent = query ? `${rows.length}건` : '';
   const empty = document.getElementById('empty');
   empty.style.display = rows.length ? 'none' : 'block';
   empty.textContent = query ? '검색 결과가 없어요'
-    : VIEW === 'earn' ? '해당 종목의 보고서가 아직 없어요' : '해당 카테고리의 보고서가 아직 없어요';
+    : VIEW === 'earn' ? '해당 종목의 보고서가 아직 없어요'
+    : VIEW === 'macro' ? '해당 카테고리의 보고서가 아직 없어요'
+    : '아직 발간된 위클리 리뷰가 없어요';
   const sup = r => r.surprise ? `<span class="sup ${r.surprise.cls}">${r.surprise.text}</span>` : '';
   rows.forEach(r => {
     const a = document.createElement('a');
@@ -998,9 +1020,13 @@ function renderCards(){
       ? `<div class="top"><span class="tk">${r.ticker}</span><span class="co">${r.company} · ${r.quarter}</span><span class="vd ${r.verdict}">${r.vlabel || r.verdict}</span>${sup(r)}</div>
          <div class="one">${r.oneliner}</div>
          <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`
-      : `<div class="top"><span class="tk">${r.name}</span><span class="co">${r.period} · ${'★'.repeat(r.tier)}</span><span class="vd ${r.verdict}">${r.vlabel}</span>${sup(r)}</div>
+      : VIEW === 'macro'
+      ? `<div class="top"><span class="tk">${r.name}</span><span class="co">${r.period} · ${'★'.repeat(r.tier)}</span><span class="vd ${r.verdict}">${r.vlabel}</span>${sup(r)}</div>
          <div class="one">${r.oneliner}</div>
-         <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`;
+         <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`
+      : `<div class="top"><span class="tk">${r.week}</span><span class="co">${r.range} · 이슈 ${r.issues}건</span><span class="vd ${r.verdict}">${r.vlabel}</span>${sup(r)}</div>
+         <div class="one">${r.oneliner}</div>
+         <div class="meta"><span>대상 ${r.range}</span><span>발간 ${r.created}</span></div>`;
     box.appendChild(a);
   });
 }
@@ -1011,13 +1037,16 @@ const HERO = {
   earn: { chip: '#보유종목 13개', h1: '분기 실적, 발표되면<br>바로 정리해 드려요',
           lead: '실적 해석부터 재무제표 분석, 어닝콜 요약, 종합 의견까지 한 번에 확인하세요.' },
   macro:{ chip: '#미국 경제 지표 21종', h1: '미국 경제 지표,<br>발표되면 바로 해석해 드려요',
-          lead: '발표 결과 해석부터 시장 반응, 연준 경로, 보유 종목 영향까지 한 번에 확인하세요.' }
+          lead: '발표 결과 해석부터 시장 반응, 연준 경로, 보유 종목 영향까지 한 번에 확인하세요.' },
+  weekly:{ chip: '#매주 일요일 오전 발간', h1: '한 주의 시장,<br>일요일 아침에 정리해 드려요',
+          lead: '기업 뉴스·실적발표·경제 지표부터 다음 주 관전 포인트까지 한 번에 확인하세요.' }
 };
 function setView(v){
   VIEW = v;
   try { localStorage.setItem('briefView', v); } catch(e) {}
   document.getElementById('seg-earn').className = v === 'earn' ? 'on' : '';
   document.getElementById('seg-macro').className = v === 'macro' ? 'on' : '';
+  document.getElementById('seg-weekly').className = v === 'weekly' ? 'on' : '';
   document.getElementById('hero-chip').textContent = HERO[v].chip;
   document.getElementById('hero-h1').innerHTML = HERO[v].h1;
   document.getElementById('hero-lead').textContent = HERO[v].lead;
@@ -1027,6 +1056,7 @@ function setView(v){
 }
 document.getElementById('seg-earn').onclick = () => setView('earn');
 document.getElementById('seg-macro').onclick = () => setView('macro');
+document.getElementById('seg-weekly').onclick = () => setView('weekly');
 setView(VIEW);
 
 /* ===== 웹푸시 구독 ===== */
