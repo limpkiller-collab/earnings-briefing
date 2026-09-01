@@ -360,7 +360,7 @@ earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.08.30";
+const LAST_UPDATED = "2026.09.01";
 
 const REPORTS_DB = [
   {
@@ -482,6 +482,13 @@ const UPCOMING_DB = [
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
   {
+    id: "REVIEW", name: "월간 결산", period: "2026년 8월", category: "결산", tier: 2,
+    report_date: "2026-08-31", created: "2026.09.01", verdict: "NEUT", vlabel: "월간",
+    surprise: { text: "지표 7건 · 실적 7곳", cls: "flat" },
+    oneliner: "물가는 두 달 연속 둔화했는데 잭슨홀 이후 9월 인상 확률이 36%→66%로 뒤집힌 달이었어요.",
+    file: "경제지표_REVIEW_2026.08_2026.09.01.html"
+  },
+  {
     id: "JACKSON", name: "잭슨홀 심포지엄", period: "2026년 8월", category: "연준", tier: 2,
     report_date: "2026-08-28", created: "2026.08.29", verdict: "BAD", vlabel: "매파",
     surprise: { text: "인상확률 +22.1%p", cls: "up" },
@@ -534,24 +541,26 @@ const MACRO_REPORTS_DB = [
 
 // 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
 const MACRO_UPCOMING_DB = [
+  { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "8월", date: "2026-09-01", estimated: false, utc: "20260901T140000Z", tier: 2, last_release: null },
+  { id: "JOLTS", name: "JOLTs 구인건수", short: "JOLTs", period: "7월", date: "2026-09-01", estimated: false, utc: "20260901T140000Z", tier: 2, last_release: null },
+  { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "8월", date: "2026-09-03", estimated: false, utc: "20260903T140000Z", tier: 2, last_release: null },
+  { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "8월", date: "2026-09-04", estimated: false, utc: "20260904T123000Z", tier: 3, last_release: "2026-08-07" },
+  { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "8월", date: "2026-09-10", estimated: false, utc: "20260910T123000Z", tier: 2, last_release: "2026-08-13" },
+  { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "8월", date: "2026-09-11", estimated: false, utc: "20260911T123000Z", tier: 3, last_release: "2026-08-12" },
   { id: "RETAIL", name: "소매판매", short: "소매판매", period: "8월", date: "2026-09-16", estimated: false, utc: "20260916T123000Z", tier: 2, last_release: "2026-08-14" },
+  { id: "FOMC", name: "FOMC 금리결정", short: "FOMC", period: "9월 회의", date: "2026-09-17", estimated: false, utc: "20260916T180000Z", tier: 3, last_release: "2026-07-30" },
   { id: "GDP_3RD", name: "GDP 확정치", short: "GDP확정", period: "2분기", date: "2026-09-30", estimated: false, utc: "20260930T123000Z", tier: 2, last_release: "2026-08-26" },
   { id: "PCE", name: "PCE 물가지수", short: "PCE", period: "8월", date: "2026-09-30", estimated: false, utc: "20260930T123000Z", tier: 3, last_release: "2026-08-26" },
-  { id: "JACKSON", name: "잭슨홀 심포지엄", short: "잭슨홀", period: "2027년", date: "2027-08-27", estimated: true, utc: null, tier: 2, last_release: "2026-08-28" },
-  { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "8월", date: "2026-09-01", estimated: true, utc: null, tier: 2, last_release: null },
-  { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "8월", date: "2026-09-03", estimated: true, utc: null, tier: 2, last_release: null },
-  { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "8월", date: "2026-09-04", estimated: true, utc: null, tier: 3, last_release: "2026-08-07" },
-  { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "8월", date: "2026-09-10", estimated: true, utc: null, tier: 3, last_release: "2026-08-12" },
-  { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "8월", date: "2026-09-11", estimated: true, utc: null, tier: 2, last_release: "2026-08-13" },
-  { id: "FOMC", name: "FOMC 금리결정", short: "FOMC", period: "9월 회의", date: "2026-09-17", estimated: true, utc: null, tier: 3, last_release: "2026-07-30" },
-  { id: "FOMC_MIN", name: "FOMC 의사록", short: "의사록", period: "9월 회의", date: "2026-10-08", estimated: true, utc: null, tier: 2, last_release: "2026-08-20" }
+  { id: "FOMC_MIN", name: "FOMC 의사록", short: "의사록", period: "9월 회의", date: "2026-10-08", estimated: true, utc: null, tier: 2, last_release: "2026-08-20" },
+  { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "3분기", date: "2026-11-25", estimated: true, utc: null, tier: 2, last_release: "2026-08-26" },
+  { id: "JACKSON", name: "잭슨홀 심포지엄", short: "잭슨홀", period: "2027년", date: "2027-08-27", estimated: true, utc: null, tier: 2, last_release: "2026-08-28" }
 ];
 
 // 다음 발표 체크포인트 (skills가 두 state.json의 watchpoints를 동기화 · 발표 가까운 순 3건 표시)
 const WATCH_DB = [
   { key: "JACKSON", name: "잭슨홀 후속 — 9월 FOMC까지", date: "2026-09-17", type: "m", items: [
-    "9월 4일 고용보고서가 인상 확률 57.5%를 굳히는지, 되돌리는지",
-    "9월 10일 CPI에서 '기저 추세'가 실제로 개선되는지 — 3% 넘게 오르는 품목 비중이 관건",
+    "9월 4일 고용보고서가 인상 확률 66%(8/31)를 굳히는지, 되돌리는지",
+    "9월 11일 CPI에서 '기저 추세'가 실제로 개선되는지 — 3% 넘게 오르는 품목 비중이 관건",
     "9월 17일 FOMC에서 2022년 이후 첫 인상이 나오는지, 점도표가 어디로 이동하는지",
     "단기물만 오르고 장기물은 안정되는 구도가 이어지는지 — 30년물 5.2% 돌파 여부"]},
   { key: "PCE", name: "PCE 물가지수 8월", date: "2026-09-30", type: "m", items: [
@@ -569,12 +578,12 @@ const WATCH_DB = [
     "온라인(무점포) -2.2%가 회복되는지 — 가장 견조하던 채널이 꺾인 게 핵심",
     "컨트롤 그룹 -0.4%가 플러스로 돌아서는지 — 3분기 GDP 소비 항목에 직결",
     "외식(+0.5%)·의류(+1.9%)의 온기가 유지되는지 — 서비스 소비까지 꺾이면 전면 위축"]},
-  { key: "CPI", name: "소비자물가지수(CPI) 8월", date: "2026-09-10", type: "m", items: [
+  { key: "CPI", name: "소비자물가지수(CPI) 8월", date: "2026-09-11", type: "m", items: [
     "8월에도 헤드라인 둔화(3.4% → 3.3% 이하)가 이어지는지",
     "주거비 상승률이 재가속하는지 — 7월엔 +0.1%로 낮았지만 헤드라인 기여 2/3",
-    "에너지 YoY +14.7%가 꺾이는지 — 헤드라인과 근원(2.5%) 격차의 주범",
-    "9월 FOMC 전 마지막 CPI — 인상 확률(42%)이 어느 쪽으로 굳어지는지"]},
-  { key: "PPI", name: "생산자물가지수(PPI) 8월", date: "2026-09-11", type: "m", items: [
+    "에너지 YoY +14.7%가 꺾이는지 — 8월 말 이란 사태로 브렌트유가 $90을 넘었어요",
+    "9월 FOMC 전 마지막 CPI — 인상 확률(8/31 기준 66%)이 어느 쪽으로 굳어지는지"]},
+  { key: "PPI", name: "생산자물가지수(PPI) 8월", date: "2026-09-10", type: "m", items: [
     "8월 MoM이 다시 플러스로 튀는지 — 관세 원가 전가 재개 여부",
     "YoY 4.7%가 3%대로 내려서는지 — 기저효과 구간 진입",
     "서비스 PPI +0.2%의 끈적함 — 상품이 내려도 서비스가 버티는지",
@@ -669,8 +678,8 @@ const VAL_DB = [
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
 const EVENTS_DB = [
-  { id: "AAPL_EVENT", company: "AAPL", short: "애플이벤트", name: "애플 아이폰 18 공개 이벤트", date: "2026-09-09", estimated: true, utc: null, note: "블룸버그 보도 기준 예상일 · 초청장 8월 말 발송 전망" },
-  { id: "NVDA_GTC", company: "NVDA", short: "GTC베를린", name: "NVIDIA GTC Berlin (10/20~22)", date: "2026-10-20", estimated: true, utc: null, note: "보도 기준 · 공식 일정 재확인 필요" }
+  { id: "AAPL_EVENT", company: "AAPL", short: "애플이벤트", name: "애플 'Surprise and shine' 이벤트 — 아이폰 18 Pro·폴더블", date: "2026-09-10", estimated: false, utc: "20260909T170000Z", note: "애플 공식 초청장(8/26 발송) 확정 · 미국 9/9 10:00 PT, 애플파크" },
+  { id: "NVDA_GTC", company: "NVDA", short: "GTC베를린", name: "NVIDIA GTC Berlin (10/20~22)", date: "2026-10-20", estimated: false, utc: null, note: "NVIDIA 공식 일정 확인 · STATION-Berlin, 젠슨 황 키노트 10/21" }
 ];
 // ----- 위클리 리뷰 (weekly-review 스킬이 매주 일요일 오전 갱신 · 새 항목은 맨 앞에) -----
 // verdict: UP(상승)/DOWN(하락)/MIX(혼조) · month: 필터용 "YYYY년 M월" · issues: 이슈 수 · next_count: 다음 주 주요 일정 수

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026년 8월 월간 결산 — 경제 지표</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 수치 2카드 (토스증권 경제지표 페이지 스타일) */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--red-bg);color:var(--red)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 발표 이력 테이블 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
+.htable tr.new td{background:var(--blue-bg)}
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.htable th{white-space:nowrap}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI 카드 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
+/* 콜아웃·인용 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 영향 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--amber-bg);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지표 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+
+/* 관전포인트 점검 (실적 보고서와 동일 클래스) */
+.wp-list{display:flex;flex-direction:column;gap:10px;margin:16px 0 20px}
+.wp{display:flex;gap:14px;background:var(--g50);border-radius:14px;padding:16px 18px}
+.wp-badge{flex:0 0 auto;align-self:flex-start;font-size:12px;font-weight:800;
+  padding:5px 12px;border-radius:20px;white-space:nowrap}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp.partial .wp-badge{background:var(--amber-bg);color:var(--amber)}
+.wp.hold .wp-badge{background:var(--g100);color:var(--g500)}
+.wp-q{font-size:15px;font-weight:700;color:var(--g900);line-height:1.5}
+.wp-a{font-size:14.5px;color:var(--g600);margin-top:4px;line-height:1.55}
+.wp-score{font-size:14px;color:var(--g500);font-weight:600;margin:-8px 0 20px}
+/* 결산 전용 — 문장형 셀 줄바꿈 허용 */
+.htable td.tx{text-align:left;white-space:normal;font-size:13.5px;color:var(--g600);min-width:150px}
+.htable th.tx{text-align:left}
+.htable td.nm{text-align:left;white-space:nowrap;font-weight:800;color:var(--g900)}
+.htable th.nm{text-align:left}
+.vb{display:inline-block;font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px;white-space:nowrap}
+.vb.good{background:var(--blue-bg);color:var(--blue)}
+.vb.bad{background:var(--red-bg);color:var(--red)}
+.vb.neut{background:var(--g100);color:var(--g500)}
+.vb.beat{background:var(--green-bg);color:var(--green)}
+.vb.miss{background:var(--red-bg);color:var(--red)}
+.vb.mixed{background:var(--g100);color:var(--g500)}
+.star{font-size:12px;color:var(--g400);font-weight:700;white-space:nowrap}
+.kpi3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0}
+.kpi3 .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi3 .k .l{font-size:12.5px;color:var(--g500);font-weight:700}
+.kpi3 .k .v{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi3 .k .d{font-size:12px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi3 .k .v .down{color:var(--blue)} .kpi3 .k .v .up{color:var(--red)}
+@media(max-width:600px){ .kpi3{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">📈</span> 경제 지표</div>
+  <a href="./index.html">← 아카이브</a>
+</div>
+<div class="body">
+
+<div class="chips">
+  <span class="chip b">#결산</span><span class="chip">#월간</span><span class="chip">#2026년 8월</span><span class="chip">#경제 지표 + 실적</span>
+</div>
+<h1>2026년 8월 월간 결산<br>경제 지표와 실적</h1>
+<div class="meta">2026년 9월 1일 작성 · 대상 기간 2026.08.01 ~ 08.31 (한국시간) · 출처 BLS·BEA·연준·CME FedWatch·CNBC</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">S&amp;P 500 8월 수익률</div>
+    <div class="num">+2.6%</div>
+    <div class="cmp">다섯 달 연속 상승 · 8/31 종가 <b>7,686.14</b></div>
+    <div class="core">나스닥 +3.9%(26,370.89) · 다우 +1.3%(53,185.90)</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">9월 FOMC 인상 확률 (8/31)</div>
+    <div class="num">66%</div>
+    <div class="cmp">월중 저점 <b>36%</b>(8/26)에서 <b class="up">+30%p</b> 급반전</div>
+    <div class="core">10년물 4.76% — 2025년 1월 이후 최고</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 8월을 세 줄로</div>
+  <p><b>물가는 식었는데 연준은 매파로 돌아섰어요.</b> CPI 3.4%·PPI 0.0%로 물가 지표는 두 달 연속 둔화했지만, 8월 말 잭슨홀에서 워시 의장이 "3% 넘게 오르는 품목 비중"을 근거로 매파 신호를 내면서 9월 인상 확률이 36%에서 66%로 뒤집혔어요.</p>
+  <p><b>소비는 처음으로 꺾였어요.</b> 7월 소매판매가 -0.6%로 9개월 만에 감소했고, GDP 직결 항목인 컨트롤 그룹도 -0.4%로 2025년 9월 이후 첫 마이너스를 냈어요. 성장·물가는 버티는데 소비만 먼저 식는 조합이에요.</p>
+  <p><b>실적은 AI 쪽이 계속 이겼어요.</b> 8월에 발표한 보유 7종목 중 4곳이 예상을 넘었고, 특히 <mark>NVDA가 매출 $96.2B(+106%)로 컨센서스를 4.4% 상회</mark>했어요. 다만 월 마지막 날 미국–이란 교전 재개로 브렌트유가 $90을 넘으며 9월 물가 경로에 새 변수가 생겼어요.</p>
+</div>
+
+<div class="sub-head">📊 8월에 발표된 경제 지표</div>
+<div class="sub-desc">보고서를 발행한 ★★★·★★ 지표 7건이에요. 판정은 시장 관점(GOOD=우호적 / BAD=비우호적 / NEUT=중립)이에요.</div>
+<div class="twrap">
+<table class="htable">
+  <thead><tr>
+    <th class="nm">발표일</th><th class="nm">지표 · 대상</th><th>발표</th><th>예측</th><th class="tx">판정</th>
+  </tr></thead>
+  <tbody>
+  <tr><td class="nm">08.12</td><td class="nm">CPI <span class="star">★★★</span><br><small>2026년 7월</small></td><td class="a">3.4%</td><td>3.4%</td><td class="tx"><span class="vb good">둔화</span> 두 달 연속 둔화, 예측 부합</td></tr>
+  <tr><td class="nm">08.13</td><td class="nm">PPI <span class="star">★★</span><br><small>2026년 7월</small></td><td class="a">0.0%</td><td>+0.2%</td><td class="tx"><span class="vb good">둔화</span> 도매물가 보합, YoY 4.7%</td></tr>
+  <tr><td class="nm">08.14</td><td class="nm">소매판매 <span class="star">★★</span><br><small>2026년 7월</small></td><td class="a down">-0.6%</td><td>+0.1%</td><td class="tx"><span class="vb bad">감소</span> 9개월 만의 감소, 컨트롤 -0.4%</td></tr>
+  <tr><td class="nm">08.20</td><td class="nm">FOMC 의사록 <span class="star">★★</span><br><small>7월 회의</small></td><td class="a">9 – 3</td><td>—</td><td class="tx"><span class="vb bad">매파</span> 반대 3인 모두 인상 주장</td></tr>
+  <tr><td class="nm">08.26</td><td class="nm">GDP 잠정치 <span class="star">★★</span><br><small>2026년 2분기</small></td><td class="a">+1.5%</td><td>+1.5%</td><td class="tx"><span class="vb neut">부합</span> 민간최종수요 4.2%로 상향</td></tr>
+  <tr><td class="nm">08.26</td><td class="nm">PCE 물가 <span class="star">★★★</span><br><small>2026년 7월</small></td><td class="a">3.7%</td><td>3.6%</td><td class="tx"><span class="vb neut">정체</span> 근원 3.3% 두 달 연속 제자리</td></tr>
+  <tr class="new"><td class="nm">08.28</td><td class="nm">잭슨홀 <span class="star">★★</span><br><small>2026년 8월</small></td><td class="a up">57.5%</td><td>35.4%</td><td class="tx"><span class="vb bad">매파</span> 워시 의장 첫 연설, 인상 확률 역전</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="g-note">판정 집계 — 우호적 2건 · 중립 2건 · 비우호적 3건. 잭슨홀 행의 '발표/예측'은 연설 직후·직전의 9월 인상 확률이에요. 8월 7일 발표된 7월 고용보고서(★★★)는 스킬 도입 전이라 보고서가 없어 표에서 제외했고, 발표 직후 인상 확률이 55.8%→35.4%로 꺾였던 건만 기록해 둬요.</div>
+
+<div class="sub-head">📈 8월 시장 요약</div>
+<div class="sub-desc">지수는 다섯 달 연속 올랐지만, 금리와 유가는 월말로 갈수록 위로 튀었어요.</div>
+<div class="kpi3">
+  <div class="k"><div class="l">S&amp;P 500</div><div class="v">7,686.14</div><div class="d">8월 <span style="color:var(--green);font-weight:800">+2.6%</span> · 월중 최고 7,816.70</div></div>
+  <div class="k"><div class="l">나스닥 종합</div><div class="v">26,370.89</div><div class="d">8월 <span style="color:var(--green);font-weight:800">+3.9%</span> · AI 반도체 주도</div></div>
+  <div class="k"><div class="l">다우</div><div class="v">53,185.90</div><div class="d">8월 <span style="color:var(--green);font-weight:800">+1.3%</span> · 5개월 연속 상승</div></div>
+  <div class="k"><div class="l">10년물 국채</div><div class="v"><span class="up">4.76%</span></div><div class="d">8/31 +4bp · 2025년 1월 이후 최고</div></div>
+  <div class="k"><div class="l">브렌트유</div><div class="v"><span class="up">$90.69</span></div><div class="d">8/31 +2.9% · 이란 사태로 $90 돌파</div></div>
+  <div class="k"><div class="l">기준금리</div><div class="v">3.50~3.75%</div><div class="d">7월 회의 동결 유지 · 9월 결정 대기</div></div>
+</div>
+<div class="callout">
+  <div class="ct">월말에 무슨 일이 있었나요</div>
+  8월 31일 미국이 이란 라라크섬의 미사일 발사대를 타격하고 이란이 역내 미군 기지에 보복하면서, 한 달 만에 교전이 재개됐어요. 브렌트유가 $90을 넘고 S&amp;P 500은 -0.33%로 마감했지만 <b>월간 상승분은 지켰어요</b>. <mark class="r">에너지 가격이 9월 CPI·PCE의 새 변수</mark>가 됐다는 점이 9월 FOMC를 앞두고 가장 중요한 변화예요.
+</div>
+
+<div class="sub-head">💼 8월 실적발표 요약</div>
+<div class="sub-desc">8월 1일~31일 사이에 실적을 발표한 보유 7종목이에요. AI 인프라 쪽이 계속 이겼어요.</div>
+<div class="kpi3">
+  <div class="k"><div class="l">예상 상회 (BEAT)</div><div class="v" style="color:var(--green)">4곳</div><div class="d">PLTR · IONQ · CRWV · NVDA</div></div>
+  <div class="k"><div class="l">혼조 (MIXED)</div><div class="v" style="color:var(--g500)">2곳</div><div class="d">AAPL · O</div></div>
+  <div class="k"><div class="l">예상 하회 (MISS)</div><div class="v" style="color:var(--red)">1곳</div><div class="d">SMR</div></div>
+</div>
+<div class="twrap">
+<table class="htable">
+  <thead><tr><th class="nm">발표일</th><th class="nm">종목 · 분기</th><th class="tx">핵심</th><th>판정</th></tr></thead>
+  <tbody>
+  <tr><td class="nm">08.27</td><td class="nm">NVIDIA <small>FY27 Q2</small></td><td class="tx">매출 $96.2B(+106%)·조정 EPS $2.22, Q3 가이던스 $108.0B으로 컨센 3.6% 상회</td><td><span class="vb beat">BEAT</span></td></tr>
+  <tr><td class="nm">08.12</td><td class="nm">CoreWeave <small>2026 Q2</small></td><td class="tx">매출 $2.58B(+112%), 수주잔고 $104B — 다만 부채비율 1,434%로 악화</td><td><span class="vb beat">BEAT</span></td></tr>
+  <tr><td class="nm">08.07</td><td class="nm">IonQ <small>2026 Q2</small></td><td class="tx">매출 $80.1M(+287%)로 컨센 21% 상회, 연간 가이던스 $280~290M로 상향</td><td><span class="vb beat">BEAT</span></td></tr>
+  <tr><td class="nm">08.07</td><td class="nm">Realty Income <small>2026 Q2</small></td><td class="tx">AFFO $1.09 부합, 연간 AFFO·투자($10B) 가이던스 상향</td><td><span class="vb mixed">MIXED</span></td></tr>
+  <tr><td class="nm">08.07</td><td class="nm">NuScale Power <small>2026 Q2</small></td><td class="tx">RoPower FEED 종료로 매출 $75K, 현금 $1.9B — TVA 6~8GW 계약 대기</td><td><span class="vb miss">MISS</span></td></tr>
+  <tr><td class="nm">08.05</td><td class="nm">Palantir <small>2026 Q2</small></td><td class="tx">매출 +93% 재가속, 'AI 주권' 수요로 연간 가이던스 대폭 상향</td><td><span class="vb beat">BEAT</span></td></tr>
+  <tr><td class="nm">08.01</td><td class="nm">Apple <small>FY26 Q3</small></td><td class="tx">매출 $109.4B(+16%)로 6월 분기 최대지만 마진 가이던스 47~48%로 하향</td><td><span class="vb mixed">MIXED</span></td></tr>
+  </tbody>
+</table>
+</div>
+<div class="g-note">판정은 각 종목 보고서의 verdict 기준이에요. 종목명을 누르면 해당 실적 보고서로 이동해요 → <a href="실적브리핑_NVDA_FY2027Q2_2026.08.27.html" style="color:var(--blue);font-weight:800;text-decoration:none">NVDA</a> · <a href="실적브리핑_CRWV_2026Q2_2026.08.12.html" style="color:var(--blue);font-weight:800;text-decoration:none">CRWV</a> · <a href="실적브리핑_IONQ_2026Q2_2026.08.08.html" style="color:var(--blue);font-weight:800;text-decoration:none">IONQ</a> · <a href="실적브리핑_O_2026Q2_2026.08.08.html" style="color:var(--blue);font-weight:800;text-decoration:none">O</a> · <a href="실적브리핑_SMR_2026Q2_2026.08.08.html" style="color:var(--blue);font-weight:800;text-decoration:none">SMR</a> · <a href="실적브리핑_PLTR_2026Q2_2026.08.08.html" style="color:var(--blue);font-weight:800;text-decoration:none">PLTR</a> · <a href="실적브리핑_AAPL_FY2026Q3_2026.08.09.html" style="color:var(--blue);font-weight:800;text-decoration:none">AAPL</a></div>
+
+<div class="sub-head">🎯 관전포인트 적중률</div>
+<div class="sub-desc">지난 분기 보고서에 적어 둔 "다음엔 이걸 보면 돼요"가 실제로 어떻게 됐는지 점검한 결과예요.</div>
+<div class="wp-score">8월에 점검한 관전포인트 <b>8개</b> — 충족 <b style="color:var(--green)">5개</b> · 부분 충족 <b style="color:var(--amber)">3개</b> · 미충족 <b>0개</b> → <b>충족률 62.5%</b>, 부분 충족까지 포함하면 <b>100%</b>가 방향은 맞았어요.</div>
+<div class="wp-list">
+  <div class="wp met"><div class="wp-badge">충족</div><div><div class="wp-q">NVDA — 매출이 가이던스 $91.0B을 넘고 서프라이즈 폭이 커지는지</div><div class="wp-a">매출 $96.221B으로 가이던스 +5.7%, 컨센서스 +4.4%. 서프라이즈가 직전 +3.6%에서 확대됐어요.</div></div></div>
+  <div class="wp met"><div class="wp-badge">충족</div><div><div class="wp-q">NVDA — 데이터센터 성장률 +92%가 유지되고 비중이 더 쏠리는지</div><div class="wp-a">데이터센터 $89.02B, YoY +116.6%로 오히려 24%p 가속. 매출 비중도 91% → 92.5%로 상승했어요.</div></div></div>
+  <div class="wp met"><div class="wp-badge">충족</div><div><div class="wp-q">NVDA — 매출총이익률이 가이던스 75% 선을 지키는지</div><div class="wp-a">GAAP·조정 모두 75.0%로 정확히 방어. 다만 Q3 74.0%·Q4 71~72%로 내려간다고 예고해 원가 전가의 한계도 함께 드러났어요.</div></div></div>
+  <div class="wp partial"><div class="wp-badge">부분 충족</div><div><div class="wp-q">NVDA — 빅테크 CapEx 계획 변화, 특히 MSFT $175B 유지 여부</div><div class="wp-a">CFO가 하이퍼스케일러 CapEx를 2026년 $800B 이상·2027년 $1.3조로 제시해 방향은 확인됐지만, 마이크로소프트 개별 계획은 언급하지 않았어요.</div></div></div>
+  <div class="wp met"><div class="wp-badge">충족</div><div><div class="wp-q">CRWV — 수주잔고가 $99.4B에서 $100B을 넘어서는지</div><div class="wp-a">$104B으로 돌파. 3분기 초 신규 계약 $25B 이상은 아직 포함 전이라고 명시했어요.</div></div></div>
+  <div class="wp met"><div class="wp-badge">충족</div><div><div class="wp-q">CRWV — 연간 CapEx 가이던스($31~35B)가 또 상향되는지</div><div class="wp-a">$35~39B으로 하단·상단 각각 $4B씩 상향. 연말 가동 전력 목표도 1.85GW 이상으로 제시했어요.</div></div></div>
+  <div class="wp partial"><div class="wp-badge">부분 충족</div><div><div class="wp-q">CRWV — Q2 매출이 연간 $12~13B 경로에 맞는지, 연말 ARR $18B 목표 유지</div><div class="wp-a">Q2 매출 $2.575B으로 필요치에 1% 미달했지만, 연간 가이던스를 $12.4~13.2B으로 올리고 ARR 목표도 $18.5~19.5B으로 상향해 경로 자체는 강해졌어요.</div></div></div>
+  <div class="wp partial"><div class="wp-badge">부분 충족</div><div><div class="wp-q">CRWV — 부채비율·이자비용이 더 늘고 순손실이 확대되는지</div><div class="wp-a">부채비율 1,068%→1,434%, 이자비용 $536M→$640M으로 악화. 반면 순손실은 -$740M→-$626M으로 줄고 영업현금흐름은 +$679M을 유지해 방향이 엇갈렸어요.</div></div></div>
+</div>
+<div class="g-note">경제 지표 보고서 7건은 모두 해당 지표의 첫 보고서라 점검할 직전 관전포인트가 없었어요. 9월부터는 CPI·PPI·소매판매·PCE의 관전포인트 점검이 결산에 함께 집계돼요.</div>
+
+<div class="sub-head">🗓️ 9월 주요 일정</div>
+<div class="sub-desc">모두 한국시간 기준이에요. 9월의 무게중심은 <b>4일 고용보고서 → 11일 CPI → 17일 새벽 FOMC</b> 3개예요.</div>
+<div class="twrap">
+<table class="htable">
+  <thead><tr><th class="nm">날짜</th><th class="nm">일정</th><th class="nm">대상</th><th class="tx">왜 중요한가요</th></tr></thead>
+  <tbody>
+  <tr><td class="nm">09.01 (화)</td><td class="nm">ISM 제조업 PMI <span class="star">★★</span></td><td class="nm">8월</td><td class="tx">관세·에너지 원가가 제조업 체감에 어떻게 반영되는지</td></tr>
+  <tr><td class="nm">09.01 (화)</td><td class="nm">JOLTs 구인건수 <span class="star">★★</span></td><td class="nm">7월</td><td class="tx">7월 고용 부진이 구인 수요 감소로 이어졌는지</td></tr>
+  <tr><td class="nm">09.03 (목)</td><td class="nm">ISM 서비스업 PMI <span class="star">★★</span></td><td class="nm">8월</td><td class="tx">소매판매가 꺾인 뒤 서비스 수요까지 식는지</td></tr>
+  <tr class="new"><td class="nm">09.04 (금)</td><td class="nm">고용보고서 <span class="star">★★★</span></td><td class="nm">8월</td><td class="tx">인상 확률 66%를 굳힐지 되돌릴지 — 7월엔 부진으로 확률이 20%p 꺾였어요</td></tr>
+  <tr><td class="nm">09.10 (목)</td><td class="nm">PPI <span class="star">★★</span></td><td class="nm">8월</td><td class="tx">보합(0.0%)이 이어지는지, 관세 원가 전가가 재개되는지</td></tr>
+  <tr class="new"><td class="nm">09.11 (금)</td><td class="nm">CPI <span class="star">★★★</span></td><td class="nm">8월</td><td class="tx">FOMC 전 마지막 물가 지표 — 3.4%의 둔화 흐름이 이어지는지</td></tr>
+  <tr><td class="nm">09.16 (수)</td><td class="nm">소매판매 <span class="star">★★</span></td><td class="nm">8월</td><td class="tx">-0.6%에서 반등하는지, 두 달 연속 감소로 가는지</td></tr>
+  <tr class="new"><td class="nm">09.17 (목 새벽)</td><td class="nm">FOMC 금리결정 + SEP <span class="star">★★★</span></td><td class="nm">9월 회의</td><td class="tx">2022년 이후 첫 인상이 나오는지, 점도표 중간값이 어디로 이동하는지</td></tr>
+  <tr><td class="nm">09.29 (화)</td><td class="nm">JOLTs 구인건수 <span class="star">★★</span></td><td class="nm">8월</td><td class="tx">고용 수요의 방향 재확인</td></tr>
+  <tr><td class="nm">09.30 (수)</td><td class="nm">GDP 확정치 <span class="star">★★</span></td><td class="nm">2분기</td><td class="tx">실질 GDP 1.5%가 GDI(2.2%) 쪽으로 상향되는지</td></tr>
+  <tr><td class="nm">09.30 (수)</td><td class="nm">PCE 물가 <span class="star">★★★</span></td><td class="nm">8월</td><td class="tx">연준이 보는 물가 — 헤드라인 3.7%·근원 3.3%가 움직이는지</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="g-note">발표 시각(한국시간) — 08:30 ET 지표는 21:30, ISM·JOLTs(10:00 ET)는 23:00, FOMC(14:00 ET)는 익일 03:00이에요. 출처는 BLS·BEA·Census·연준 공식 일정이고, 지난달 예상으로 잡아 뒀던 <b>CPI 9월 10일 → 11일</b>, <b>PPI 9월 11일 → 10일</b>은 이번에 공식 일정으로 정정했어요.</div>
+
+<div class="sub-head">🏢 9~10월 기업 일정</div>
+<div class="sub-desc">보유 종목의 실적발표 외 이벤트예요.</div>
+<div class="twrap">
+<table class="htable">
+  <thead><tr><th class="nm">날짜(KST)</th><th class="nm">기업</th><th class="tx">일정</th></tr></thead>
+  <tbody>
+  <tr class="new"><td class="nm">09.10 (목) 02:00</td><td class="nm">Apple</td><td class="tx">아이폰 18 Pro·폴더블 아이폰 공개 이벤트 'Surprise and shine' — 미국 9/9 10:00 PT, 애플파크. 8월 26일 공식 초청장 발송으로 확정됐어요</td></tr>
+  <tr><td class="nm">09.30 (수)</td><td class="nm">Micron</td><td class="tx">FY26 Q4 실적발표 — 가이던스 매출 $50B·매출총이익률 86% 달성 여부가 관건 (예상일)</td></tr>
+  <tr><td class="nm">10.20~22</td><td class="nm">NVIDIA</td><td class="tx">GTC Berlin (STATION-Berlin) — 젠슨 황 키노트 10월 21일. 유럽 AI 인프라 수요가 어느 정도인지 확인할 자리예요</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="sub-head">🔭 9월에 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">9월 4일 고용보고서가 인상 확률 66%를 굳히는지, 되돌리는지<small>7월엔 고용 부진으로 55.8% → 35.4%까지 꺾였던 전례가 있어요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">이란 사태로 튄 유가($90)가 8월 CPI·PCE에 반영되기 시작하는지<small>에너지 YoY는 7월에 이미 +14.7%로 헤드라인과 근원의 격차를 만든 주범이었어요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">9월 17일 FOMC에서 2022년 이후 첫 인상이 나오는지, 점도표가 어디로 이동하는지<small>SEP 회의라 점도표·경제전망이 함께 나와요. 직전 6월 SEP과의 이동 폭이 핵심이에요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">소매판매 -0.6%가 반등하는지 — 소비 사이클 전환인지 일시 조정인지<small>컨트롤 그룹(-0.4%)은 3분기 GDP 소비 항목에 직결돼요</small></div></div>
+</div>
+
+<div class="explain">
+  <h3>월간 결산이란?</h3>
+  <p>한 달 동안 발표된 경제 지표와 실적을 한자리에 모아 <b>흐름의 방향</b>을 확인하는 문서예요. 개별 발표는 그날의 서프라이즈에 시선이 쏠리지만, 한 달을 묶어 보면 물가·소비·고용 중 어디가 먼저 움직이는지가 드러나요.</p>
+  <p>이번 8월처럼 <b>물가 지표는 둔화하는데 연준은 매파로 돌아서는</b> 엇갈림이 나타날 때가 특히 중요해요. 지표 하나가 아니라 연준이 무엇을 근거로 판단하는지(이번엔 '3% 넘게 오르는 품목 비중')가 바뀐 것이기 때문이에요.</p>
+  <p>관전포인트 적중률은 지난 보고서에서 "다음엔 이걸 보라"고 짚었던 항목이 실제로 어떻게 됐는지를 집계한 값이에요. 예측을 맞히는 게 목적이 아니라, <b>무엇을 봐야 하는지 골라내는 눈이 맞았는지</b>를 점검하는 지표로 보면 돼요.</p>
+</div>
+
+<div class="disclaimer">
+  본 보고서는 정보 제공 목적이며 투자 권유가 아닙니다. 수치는 발표기관(BLS·BEA·Census·연준) 원문과 언론 인용치를 기준으로 하며, 이후 수정될 수 있습니다. 2년물 국채금리는 8월 31일 기준 확인된 출처를 찾지 못해 기재하지 않았습니다.
+</div>
+
+</div>
+</div>
+</body>
+</html>
