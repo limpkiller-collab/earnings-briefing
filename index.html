@@ -360,7 +360,7 @@ earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.01";
+const LAST_UPDATED = "2026.09.02";
 
 const REPORTS_DB = [
   {
@@ -482,6 +482,20 @@ const UPCOMING_DB = [
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
   {
+    id: "ISM_MFG", name: "ISM 제조업 PMI", period: "2026년 8월", category: "심리", tier: 2,
+    report_date: "2026-09-01", created: "2026.09.02", verdict: "NEUT", vlabel: "둔화",
+    surprise: { text: "예측 -0.6p", cls: "down" },
+    oneliner: "8월 PMI 54.6으로 예측(55.2)을 하회했지만 8개월 연속 확장, 가격지수는 71.1로 두 달째 제자리예요.",
+    file: "경제지표_ISM_MFG_2026.08_2026.09.01.html"
+  },
+  {
+    id: "JOLTS", name: "JOLTs 구인건수", period: "2026년 7월", category: "고용", tier: 2,
+    report_date: "2026-09-01", created: "2026.09.02", verdict: "BAD", vlabel: "냉각",
+    surprise: { text: "예측 -2.9만건", cls: "down" },
+    oneliner: "구인은 727.1만건으로 버텼지만 채용이 27.8만건 줄었고, 6월 구인은 17.7만건 하향 수정됐어요.",
+    file: "경제지표_JOLTS_2026.07_2026.09.01.html"
+  },
+  {
     id: "REVIEW", name: "월간 결산", period: "2026년 8월", category: "결산", tier: 2,
     report_date: "2026-08-31", created: "2026.09.01", verdict: "NEUT", vlabel: "월간",
     surprise: { text: "지표 7건 · 실적 7곳", cls: "flat" },
@@ -541,16 +555,16 @@ const MACRO_REPORTS_DB = [
 
 // 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
 const MACRO_UPCOMING_DB = [
-  { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "8월", date: "2026-09-01", estimated: false, utc: "20260901T140000Z", tier: 2, last_release: null },
-  { id: "JOLTS", name: "JOLTs 구인건수", short: "JOLTs", period: "7월", date: "2026-09-01", estimated: false, utc: "20260901T140000Z", tier: 2, last_release: null },
   { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "8월", date: "2026-09-03", estimated: false, utc: "20260903T140000Z", tier: 2, last_release: null },
   { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "8월", date: "2026-09-04", estimated: false, utc: "20260904T123000Z", tier: 3, last_release: "2026-08-07" },
   { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "8월", date: "2026-09-10", estimated: false, utc: "20260910T123000Z", tier: 2, last_release: "2026-08-13" },
   { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "8월", date: "2026-09-11", estimated: false, utc: "20260911T123000Z", tier: 3, last_release: "2026-08-12" },
   { id: "RETAIL", name: "소매판매", short: "소매판매", period: "8월", date: "2026-09-16", estimated: false, utc: "20260916T123000Z", tier: 2, last_release: "2026-08-14" },
   { id: "FOMC", name: "FOMC 금리결정", short: "FOMC", period: "9월 회의", date: "2026-09-17", estimated: false, utc: "20260916T180000Z", tier: 3, last_release: "2026-07-30" },
+  { id: "JOLTS", name: "JOLTs 구인건수", short: "JOLTs", period: "8월", date: "2026-09-29", estimated: false, utc: "20260929T140000Z", tier: 2, last_release: "2026-09-01" },
   { id: "GDP_3RD", name: "GDP 확정치", short: "GDP확정", period: "2분기", date: "2026-09-30", estimated: false, utc: "20260930T123000Z", tier: 2, last_release: "2026-08-26" },
   { id: "PCE", name: "PCE 물가지수", short: "PCE", period: "8월", date: "2026-09-30", estimated: false, utc: "20260930T123000Z", tier: 3, last_release: "2026-08-26" },
+  { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "9월", date: "2026-10-01", estimated: true, utc: null, tier: 2, last_release: "2026-09-01" },
   { id: "FOMC_MIN", name: "FOMC 의사록", short: "의사록", period: "9월 회의", date: "2026-10-08", estimated: true, utc: null, tier: 2, last_release: "2026-08-20" },
   { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "3분기", date: "2026-11-25", estimated: true, utc: null, tier: 2, last_release: "2026-08-26" },
   { id: "JACKSON", name: "잭슨홀 심포지엄", short: "잭슨홀", period: "2027년", date: "2027-08-27", estimated: true, utc: null, tier: 2, last_release: "2026-08-28" }
@@ -558,6 +572,16 @@ const MACRO_UPCOMING_DB = [
 
 // 다음 발표 체크포인트 (skills가 두 state.json의 watchpoints를 동기화 · 발표 가까운 순 3건 표시)
 const WATCH_DB = [
+  { key: "JOLTS", name: "JOLTs 구인건수 8월", date: "2026-09-29", type: "m", items: [
+    "채용 505.4만건이 반등하는지, 500만건 아래로 내려가는지 — 구인보다 채용이 실제 온도예요",
+    "전문·비즈니스 서비스 채용(-18.8만건)이 회복되는지 — 경기 전환기 선행 업종",
+    "7월 구인 727.1만건이 또 큰 폭으로 하향 수정되는지 — 6월은 17.7만건 깎였어요",
+    "내구재 제조 구인율 5.2%가 유지되는지 — AI·설비 투자 쪽 노동 수요 쏠림 확인"]},
+  { key: "ISM_MFG", name: "ISM 제조업 PMI 9월", date: "2026-10-01", type: "m", items: [
+    "신규주문 53.7이 반등하는지, 50선 쪽으로 더 내려가는지 — 두 달 연속 하락이면 7월이 정점",
+    "가격지수 71.1이 꺾이는지 — 24개월 연속 상승이 이어지는지",
+    "고용지수 51.2가 50 아래로 내려가는지 — 두 달 만의 위축 전환 여부",
+    "위축 구간 제조업 GDP 비중 22%가 더 커지는지 — 안쪽 온도차 확대 여부"]},
   { key: "JACKSON", name: "잭슨홀 후속 — 9월 FOMC까지", date: "2026-09-17", type: "m", items: [
     "9월 4일 고용보고서가 인상 확률 66%(8/31)를 굳히는지, 되돌리는지",
     "9월 11일 CPI에서 '기저 추세'가 실제로 개선되는지 — 3% 넘게 오르는 품목 비중이 관건",
