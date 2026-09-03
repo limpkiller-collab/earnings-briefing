@@ -1,7 +1,7 @@
 {
-  "name": "실적브리핑",
-  "short_name": "실적브리핑",
-  "description": "보유 종목 분기 실적 브리핑 아카이브",
+  "name": "마켓브리핑",
+  "short_name": "마켓브리핑",
+  "description": "보유 종목 실적·경제 지표·급등락·위클리 브리핑 아카이브",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

@@ -1,4 +1,4 @@
-/* 실적브리핑 Service Worker — 웹푸시 수신 전용 (오프라인 캐시는 사용하지 않음) */
+/* 마켓브리핑 Service Worker — 웹푸시 수신 전용 (오프라인 캐시는 사용하지 않음) */
 const FALLBACK_URL = './index.html';
 
 self.addEventListener('install', (e) => self.skipWaiting());
@@ -9,9 +9,9 @@ self.addEventListener('push', (event) => {
   try {
     data = event.data ? event.data.json() : {};
   } catch (err) {
-    data = { title: '실적브리핑', body: event.data ? event.data.text() : '새 소식이 있어요' };
+    data = { title: '마켓브리핑', body: event.data ? event.data.text() : '새 소식이 있어요' };
   }
-  const title = data.title || '실적브리핑';
+  const title = data.title || '마켓브리핑';
   const options = {
     body: data.body || '',
     icon: './icon-192.png',

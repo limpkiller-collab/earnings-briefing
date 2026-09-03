@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>실적브리핑 아카이브</title>
+<title>마켓브리핑</title>
 <link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#3182F6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="실적브리핑">
+<meta name="apple-mobile-web-app-title" content="마켓브리핑">
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
@@ -214,6 +214,44 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .wgrp li::before{content:'';position:absolute;left:4px;top:9px;width:6px;height:6px;border-radius:50%;
   background:var(--blue-bg);border:2px solid var(--blue)}
 
+/* 세그먼트 5개 — 안읽음 카운트 뱃지 */
+.seg button{position:relative;padding:10px 2px}
+.seg .nb{display:inline-grid;place-items:center;margin-left:4px;vertical-align:1px;min-width:16px;height:16px;
+  border-radius:8px;background:var(--blue);color:#fff;font-size:10px;font-weight:800;padding:0 4px;line-height:1}
+.seg .nb:empty{display:none}
+
+/* 읽음/안읽음 — 카드 좌측 파란 점 */
+.card .udot{width:7px;height:7px;border-radius:50%;background:var(--blue);flex:0 0 auto;display:none}
+.card.unread .udot{display:block}
+.card.unread{border-color:#BFDBFE}
+
+/* 급등락 카드 */
+.vd.UPM{background:var(--green-bg);color:var(--green)}
+.vd.DOWNM{background:var(--red-bg);color:var(--red)}
+.cz{font-size:11px;font-weight:800;padding:4px 9px;border-radius:20px;background:var(--g100);color:var(--g500);white-space:nowrap}
+.card.nolink{cursor:default}
+.card.nolink:hover{border-color:var(--g200);box-shadow:none;transform:none}
+
+/* 스레드 피드 */
+.feed{display:flex;flex-direction:column}
+.fday{font-size:12.5px;font-weight:800;color:var(--g500);margin:18px 0 2px;padding-left:2px}
+.fday:first-child{margin-top:0}
+.fi{display:flex;gap:12px;padding:13px 6px;border-bottom:1px solid var(--g100);text-decoration:none;color:inherit;
+  border-radius:10px;transition:.12s}
+.fi:hover{background:var(--g50)}
+.fi .fico{width:36px;height:36px;border-radius:11px;background:var(--g50);display:grid;place-items:center;font-size:17px;flex:0 0 auto}
+.fi .fb{min-width:0;flex:1}
+.fi .ft{font-size:14.5px;font-weight:800;display:flex;gap:7px;align-items:center;flex-wrap:wrap;line-height:1.4}
+.fi .ft .ftype{font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:6px;background:var(--g100);color:var(--g500)}
+.fi .ft .udot{width:7px;height:7px;border-radius:50%;background:var(--blue);flex:0 0 auto;display:none}
+.fi.unread .ft .udot{display:block}
+.fi .fo{font-size:13.5px;color:var(--g600);line-height:1.55;margin-top:2px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fi .fm{font-size:12px;color:var(--g400);font-weight:600;margin-top:4px;display:flex;gap:10px;flex-wrap:wrap}
+.readall{margin-left:auto;border:1px solid var(--g200);background:#fff;color:var(--g500);font-family:inherit;
+  font-size:12px;font-weight:700;padding:5px 11px;border-radius:20px;cursor:pointer;letter-spacing:-0.02em}
+.readall:hover{background:var(--g50);border-color:var(--g400)}
+
 /* 밸류에이션 스냅샷 */
 .vwrap{overflow-x:auto;border:1px solid var(--g200);border-radius:16px}
 .vtable{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
@@ -261,6 +299,8 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   .up-row .co{font-size:12.5px}
   .up-row .dt{font-size:13.5px}
   .gnb{padding:12px 20px}
+  .seg{padding:3px}
+  .seg button{font-size:12.5px;padding:9px 0}
   .gnb .right{gap:8px}
   .gnb .upd{font-size:11.5px}
   .nbtn{font-size:12px;padding:5px 10px}
@@ -268,6 +308,8 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 }
 @media(max-width:390px){
   .gnb .upd{display:none}
+  .seg button .ic{display:none}
+  .seg button{font-size:12px}
 }
 </style>
 </head>
@@ -275,7 +317,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 <div class="page">
 
 <div class="gnb">
-  <div class="brand"><span class="dot">📊</span> 실적브리핑</div>
+  <div class="brand"><span class="dot">📊</span> 마켓브리핑</div>
   <div class="right">
     <span class="upd">업데이트 <span id="last-updated"></span></span>
     <button type="button" class="nbtn" id="nbtn"><span class="nd-dot"></span>🔔 알림</button>
@@ -288,9 +330,11 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 <div class="lead" id="hero-lead">실적 해석부터 재무제표 분석, 어닝콜 요약, 종합 의견까지 한 번에 확인하세요.</div>
 
 <div class="seg">
-  <button type="button" id="seg-earn" class="on">📊 실적발표</button>
-  <button type="button" id="seg-macro">📈 경제 지표</button>
-  <button type="button" id="seg-weekly">🗞️ 위클리</button>
+  <button type="button" id="seg-thread"><span class="ic">🧵</span> 스레드<span class="nb" id="nb-thread"></span></button>
+  <button type="button" id="seg-earn" class="on"><span class="ic">📊</span> 실적<span class="nb" id="nb-earn"></span></button>
+  <button type="button" id="seg-macro"><span class="ic">📈</span> 지표<span class="nb" id="nb-macro"></span></button>
+  <button type="button" id="seg-movers"><span class="ic">🚨</span> 급등락<span class="nb" id="nb-movers"></span></button>
+  <button type="button" id="seg-weekly"><span class="ic">🗞️</span> 위클리<span class="nb" id="nb-weekly"></span></button>
 </div>
 
 <div class="stats" id="stats"></div>
@@ -301,7 +345,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   <div class="sec-foot">기준 2026.08.13~14 종가 · 컨센서스 출처 stockanalysis.com(SK하이닉스는 국내 증권사 평균 — 편차 큼) · O는 P/FFO · GOOGL 차년 P/E는 당해 일회성 이익 영향 주의 · 행을 누르면 최신 실적 보고서로 이동 · 실적 보고서 발행 시 해당 행이 갱신돼요</div>
 </div>
 
-<div class="sec">
+<div class="sec" id="cal-sec">
   <h2>🗓️ 경제 캘린더</h2>
 
   <div class="cal-nav">
@@ -324,14 +368,23 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   <div class="sec-foot">실적발표와 경제 지표 일정을 하나의 캘린더로 보여드려요 · 리스트는 D-12 이내 일정만 먼저 보여드려요 · 모든 시각은 한국시간 기준 · 평일 오전 9시에 자동으로 확인해 갱신해요</div>
 </div>
 
-<div class="sec">
+<div class="sec" id="watch-sec">
   <h2>👀 다음 발표 체크포인트</h2>
   <div id="watch"></div>
   <div class="sec-foot">지난 보고서에서 "다음엔 이걸 보자"고 했던 항목이에요 · 발표가 가까운 순으로 3건을 보여드려요 · 제목을 누르면 세부 항목이 펼쳐져요</div>
 </div>
 
-<div class="sec">
-  <h2>📁 지난 보고서</h2>
+<div class="sec" id="feed-sec" style="display:none">
+  <h2>🧵 전체 스레드 <button type="button" class="readall" id="readall">모두 읽음</button></h2>
+  <div class="search">🔍 <input type="search" id="fq" placeholder="종목·지표·키워드 검색"><span class="cnt" id="fq-cnt"></span></div>
+  <div class="filters" id="feed-filters"></div>
+  <div class="feed" id="feed"></div>
+  <div class="empty" id="feed-empty" style="display:none">아직 콘텐츠가 없어요</div>
+  <div class="sec-foot">실적·경제 지표·급등락·위클리를 발간 시간 역순으로 한 줄씩 보여드려요 · 파란 점은 아직 안 읽은 콘텐츠예요 · 읽음 표시는 이 기기에만 저장돼요</div>
+</div>
+
+<div class="sec" id="rep-sec">
+  <h2 id="rep-h2">📁 지난 보고서</h2>
   <div class="search">🔍 <input type="search" id="q" placeholder="종목·지표·키워드 검색"><span class="cnt" id="q-cnt"></span></div>
   <div class="filters" id="filters"></div>
   <div class="cards" id="cards"></div>
@@ -340,7 +393,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <div class="disclaimer">
 본 아카이브의 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
-earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제 지표를, weekly-review 스킬이 매주 일요일 오전 위클리 리뷰를 자동 생성·갱신합니다.
+earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실적발표·경제 지표·급등락을, weekly-review 스킬이 매주 일요일 오전 위클리 리뷰를 자동 생성·갱신합니다.
 </div>
 </div>
 </div>
@@ -352,7 +405,7 @@ earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제
     <span class="st" id="notify-title">🔔 알림 받기</span>
     <button type="button" class="sx" id="notify-close" aria-label="닫기">✕</button>
   </div>
-  <div class="sd">새 실적 보고서나 경제 지표 분석이 나오면 아이폰으로 알려드려요. 한 번만 설정하면 돼요.</div>
+  <div class="sd">새 실적 보고서·경제 지표·급등락 분석이 나오면 아이폰으로 알려드려요. 한 번만 설정하면 돼요.</div>
   <div id="notify-body"></div>
 </div>
 
@@ -360,7 +413,7 @@ earnings-briefing·macro-briefing 스킬이 평일 오전 실적발표와 경제
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.02";
+const LAST_UPDATED = "2026.09.04";
 
 const REPORTS_DB = [
   {
@@ -690,7 +743,7 @@ const VAL_DB = [
   { ticker: "MSFT", price: 496.88, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
   { ticker: "GOOGL", price: 348.25, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
   { ticker: "AAPL", price: 305.26, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "" },
-  { ticker: "PLTR", price: 179.01, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "PLTR", price: 169.46, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
   { ticker: "KO", price: 87.42, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
   { ticker: "ABBV", price: 248.76, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
   { ticker: "O", price: 62.95, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
@@ -718,6 +771,17 @@ const WEEKLY_REPORTS_DB = [
   }
 ];
 
+// ----- 급등락 분석 (movers-briefing 스킬이 평일 오전 갱신 · 새 항목은 맨 앞에) -----
+// kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
+const MOVERS_DB = [
+  {
+    asset: "PLTR", name: "Palantir", kind: "stock", date: "2026-09-03",
+    chg: -5.81, chg_label: "-5.81%", price_label: "$169.46", cause: "차익실현",
+    oneliner: "8월 48% 랠리 뒤 차익실현에 구글 DeepMind의 국방 AI 진입 우려가 겹쳤어요. 지수는 오른 날이었어요.",
+    created: "2026.09.04", file: "급등락_PLTR_2026.09.03.html"
+  }
+];
+
 // ===== 데이터 블록 끝 =====
 
 document.getElementById('last-updated').textContent = LAST_UPDATED;
@@ -725,8 +789,48 @@ document.getElementById('last-updated').textContent = LAST_UPDATED;
 const tickers = new Set(REPORTS_DB.map(r => r.ticker));
 const macroCats = ['전체', ...new Set(MACRO_REPORTS_DB.map(r => r.category))];
 const weeklyMonths = ['전체', ...new Set(WEEKLY_REPORTS_DB.map(r => r.month))];
+const moverKinds = ['전체', '주식', '금리', '환율'];
+const KIND_KO = { stock: '주식', rate: '금리', fx: '환율', market: '주식' };
 let VIEW = 'earn';
-try { const sv = localStorage.getItem('briefView'); if (sv === 'macro' || sv === 'weekly') VIEW = sv; } catch(e) {}
+try { const sv = localStorage.getItem('briefView'); if (['macro','weekly','movers','thread'].includes(sv)) VIEW = sv; } catch(e) {}
+
+/* ===== 읽음/안읽음 (이 기기 localStorage · 첫 방문 시 기존 콘텐츠는 읽음 처리) ===== */
+const READ_KEY = 'mb_read', READ_INIT = 'mb_read_init';
+const itemKey = r => r.file || `${r.asset || r.id || r.ticker}-${r.date || r.created}`;
+const ALL_ITEMS = [
+  ...REPORTS_DB.map(r => ({ type: 'earn', ico: r.verdict === 'PREV' ? '🔭' : '📊', tlabel: '실적',
+    title: `${r.ticker} · ${r.company} ${r.quarter}${r.verdict === 'PREV' ? ' 프리뷰' : ''}`,
+    badge: r.vlabel || r.verdict, bcls: r.verdict, one: r.oneliner, created: r.created, date: r.report_date, file: r.file, raw: r })),
+  ...MACRO_REPORTS_DB.map(r => ({ type: 'macro', ico: r.id.indexOf('FOMC') === 0 || r.id === 'JACKSON' ? '🏛️' : '📈', tlabel: '지표',
+    title: `${r.name} · ${r.period}`, badge: r.vlabel, bcls: r.verdict, one: r.oneliner, created: r.created, date: r.report_date, file: r.file, raw: r })),
+  ...MOVERS_DB.map(r => ({ type: 'movers', ico: '🚨', tlabel: '급등락',
+    title: `${r.asset}${r.name && r.name !== r.asset ? ' · ' + r.name : ''} ${r.chg_label}`,
+    badge: r.chg_label, bcls: r.chg >= 0 ? 'UPM' : 'DOWNM', one: r.oneliner, created: r.created, date: r.date, file: r.file, raw: r })),
+  ...WEEKLY_REPORTS_DB.map(r => ({ type: 'weekly', ico: '🗞️', tlabel: '위클리',
+    title: `위클리 리뷰 · ${r.week}`, badge: r.vlabel, bcls: r.verdict, one: r.title || r.oneliner, created: r.created, date: r.range, file: r.file, raw: r }))
+];
+ALL_ITEMS.forEach(it => { it.key = itemKey(it.raw); });
+let READ = new Set();
+try { READ = new Set(JSON.parse(localStorage.getItem(READ_KEY) || '[]')); } catch(e) {}
+try {
+  if (!localStorage.getItem(READ_INIT)) {
+    ALL_ITEMS.forEach(it => READ.add(it.key));
+    localStorage.setItem(READ_KEY, JSON.stringify([...READ]));
+    localStorage.setItem(READ_INIT, LAST_UPDATED);
+  }
+} catch(e) {}
+function saveRead(){ try { localStorage.setItem(READ_KEY, JSON.stringify([...READ])); } catch(e) {} }
+const isUnread = key => !READ.has(key);
+function markRead(key){ if (READ.has(key)) return; READ.add(key); saveRead(); renderBadges(); }
+function markAllRead(){ ALL_ITEMS.forEach(it => READ.add(it.key)); saveRead(); renderBadges(); renderCards(); renderFeed(); }
+function unreadCount(type){ return ALL_ITEMS.filter(it => (type === 'thread' || it.type === type) && isUnread(it.key)).length; }
+function renderBadges(){
+  ['thread','earn','macro','movers','weekly'].forEach(t => {
+    const n = unreadCount(t);
+    const el = document.getElementById('nb-' + t);
+    if (el) el.textContent = n ? (n > 99 ? '99+' : String(n)) : '';
+  });
+}
 
 /* ===== 공통 유틸 (모든 표시는 한국시간 기준) ===== */
 const DOW = ['일','월','화','수','목','금','토'];
@@ -772,6 +876,8 @@ const reportedPct = Math.round(reportedCnt / UPCOMING_DB.length * 1000) / 10;
 
 function renderStats(){
   const el = document.getElementById('stats');
+  el.style.display = (VIEW === 'movers' || VIEW === 'thread') ? 'none' : '';
+  if (VIEW === 'movers' || VIEW === 'thread') return;
   if (VIEW === 'earn'){
     el.innerHTML =
       `<div class="stat"><div class="n">${REPORTS_DB.length}</div><div class="l">보고서</div></div>
@@ -1026,7 +1132,7 @@ let query = '';
 function renderFilters(){
   const el = document.getElementById('filters');
   el.innerHTML = '';
-  const opts = VIEW === 'earn' ? ['전체', ...tickers] : VIEW === 'macro' ? macroCats : weeklyMonths;
+  const opts = VIEW === 'earn' ? ['전체', ...tickers] : VIEW === 'macro' ? macroCats : VIEW === 'movers' ? moverKinds : weeklyMonths;
   opts.forEach(t => {
     const c = document.createElement('span');
     c.className = 'f' + (t === active ? ' on' : '');
@@ -1042,9 +1148,11 @@ function renderCards(){
     ? REPORTS_DB.filter(r => active === '전체' || r.ticker === active)
     : VIEW === 'macro'
     ? MACRO_REPORTS_DB.filter(r => active === '전체' || r.category === active)
+    : VIEW === 'movers'
+    ? MOVERS_DB.filter(r => active === '전체' || KIND_KO[r.kind] === active)
     : WEEKLY_REPORTS_DB.filter(r => active === '전체' || r.month === active);
   if (query) rows = rows.filter(r =>
-    [r.ticker, r.company, r.name, r.id, r.period, r.quarter, r.category, r.week, r.month, r.range, r.title, r.oneliner]
+    [r.ticker, r.company, r.name, r.id, r.asset, r.cause, r.period, r.quarter, r.category, r.week, r.month, r.range, r.title, r.oneliner]
       .filter(Boolean).join(' ').toLowerCase().includes(query));
   document.getElementById('q-cnt').textContent = query ? `${rows.length}건` : '';
   const empty = document.getElementById('empty');
@@ -1052,21 +1160,28 @@ function renderCards(){
   empty.textContent = query ? '검색 결과가 없어요'
     : VIEW === 'earn' ? '해당 종목의 보고서가 아직 없어요'
     : VIEW === 'macro' ? '해당 카테고리의 보고서가 아직 없어요'
+    : VIEW === 'movers' ? '기준선(주가 ±5% · 금리 ±15bp · 환율 ±1.5%)을 넘은 급등락이 아직 없어요'
     : '아직 발간된 위클리 리뷰가 없어요';
   const sup = r => r.surprise ? `<span class="sup ${r.surprise.cls}">${r.surprise.text}</span>` : '';
   rows.forEach(r => {
     const a = document.createElement('a');
-    a.className = 'card';
-    a.href = encodeURI(r.file);
-    a.innerHTML = VIEW === 'earn'
-      ? `<div class="top"><span class="tk">${r.ticker}</span><span class="co">${r.company} · ${r.quarter}</span><span class="vd ${r.verdict}">${r.vlabel || r.verdict}</span>${sup(r)}</div>
+    const key = itemKey(r);
+    a.className = 'card' + (isUnread(key) ? ' unread' : '') + (r.file ? '' : ' nolink');
+    if (r.file) a.href = encodeURI(r.file);
+    a.onclick = () => markRead(key);
+    a.innerHTML = VIEW === 'movers'
+      ? `<div class="top"><span class="udot"></span><span class="tk">${r.asset}</span><span class="co">${r.name && r.name !== r.asset ? r.name + ' · ' : ''}${KIND_KO[r.kind] || ''} · ${r.price_label || ''}</span><span class="vd ${r.chg >= 0 ? 'UPM' : 'DOWNM'}">${r.chg_label}</span><span class="cz">${r.cause}</span></div>
+         <div class="one">${r.oneliner}</div>
+         <div class="meta"><span>발생 ${r.date}</span><span>작성 ${r.created}</span></div>`
+      : VIEW === 'earn'
+      ? `<div class="top"><span class="udot"></span><span class="tk">${r.ticker}</span><span class="co">${r.company} · ${r.quarter}</span><span class="vd ${r.verdict}">${r.vlabel || r.verdict}</span>${sup(r)}</div>
          <div class="one">${r.oneliner}</div>
          <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`
       : VIEW === 'macro'
-      ? `<div class="top"><span class="tk">${r.name}</span><span class="co">${r.period} · ${'★'.repeat(r.tier)}</span><span class="vd ${r.verdict}">${r.vlabel}</span>${sup(r)}</div>
+      ? `<div class="top"><span class="udot"></span><span class="tk">${r.name}</span><span class="co">${r.period} · ${'★'.repeat(r.tier)}</span><span class="vd ${r.verdict}">${r.vlabel}</span>${sup(r)}</div>
          <div class="one">${r.oneliner}</div>
          <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`
-      : `<div class="top"><span class="tk">${r.week}</span><span class="vd ${r.verdict}">${r.vlabel}</span></div>
+      : `<div class="top"><span class="udot"></span><span class="tk">${r.week}</span><span class="vd ${r.verdict}">${r.vlabel}</span></div>
          <div class="one">${r.title || r.oneliner}</div>
          <div class="meta"><span>대상 ${r.range}</span><span>발간 ${r.created}</span></div>`;
     box.appendChild(a);
@@ -1074,31 +1189,89 @@ function renderCards(){
 }
 document.getElementById('q').oninput = e => { query = e.target.value.trim().toLowerCase(); renderCards(); };
 
-/* ===== 실적발표 ↔ 경제 지표 토글 (경제 캘린더는 공용) ===== */
+/* ===== 스레드 피드 (4개 DB 통합 · 발간 시간 역순 · 날짜별 그룹) ===== */
+const feedTypes = ['전체', '실적', '지표', '급등락', '위클리'];
+const TYPE_KEY = { '실적': 'earn', '지표': 'macro', '급등락': 'movers', '위클리': 'weekly' };
+let feedActive = '전체', feedQuery = '';
+function renderFeed(){
+  const box = document.getElementById('feed');
+  const fl = document.getElementById('feed-filters');
+  fl.innerHTML = '';
+  feedTypes.forEach(t => {
+    const c = document.createElement('span');
+    c.className = 'f' + (t === feedActive ? ' on' : '');
+    const n = t === '전체' ? unreadCount('thread') : unreadCount(TYPE_KEY[t]);
+    c.textContent = t + (n ? ` ${n}` : '');
+    c.onclick = () => { feedActive = t; renderFeed(); };
+    fl.appendChild(c);
+  });
+  let rows = ALL_ITEMS.filter(it => feedActive === '전체' || it.type === TYPE_KEY[feedActive]);
+  if (feedQuery) rows = rows.filter(it => `${it.title} ${it.one} ${it.badge}`.toLowerCase().includes(feedQuery));
+  rows = rows.slice().sort((a, b) => a.created < b.created ? 1 : a.created > b.created ? -1 : 0);
+  document.getElementById('fq-cnt').textContent = feedQuery ? `${rows.length}건` : '';
+  document.getElementById('feed-empty').style.display = rows.length ? 'none' : 'block';
+  box.innerHTML = '';
+  let lastDay = '';
+  const dayLabel = c => {
+    const [y, m, d] = c.split('.').map(Number);
+    const dt = new Date(y, m - 1, d);
+    const diff = Math.round((T0 - dt) / 86400000);
+    const base = `${m}월 ${d}일 (${DOW[dt.getDay()]})`;
+    return diff === 0 ? `오늘 · ${base}` : diff === 1 ? `어제 · ${base}` : base;
+  };
+  rows.forEach(it => {
+    if (it.created !== lastDay){
+      lastDay = it.created;
+      const h = document.createElement('div'); h.className = 'fday'; h.textContent = dayLabel(it.created); box.appendChild(h);
+    }
+    const a = document.createElement('a');
+    a.className = 'fi' + (isUnread(it.key) ? ' unread' : '');
+    if (it.file) a.href = encodeURI(it.file);
+    a.onclick = () => markRead(it.key);
+    a.innerHTML = `<div class="fico">${it.ico}</div><div class="fb">
+      <div class="ft"><span class="udot"></span><span class="ftype">${it.tlabel}</span>${it.title}<span class="vd ${it.bcls}" style="margin-left:0">${it.badge}</span></div>
+      <div class="fo">${it.one}</div>
+      <div class="fm"><span>${it.type === 'weekly' ? '대상 ' : it.type === 'movers' ? '발생 ' : '발표 '}${it.date}</span><span>작성 ${it.created}</span></div></div>`;
+    box.appendChild(a);
+  });
+}
+document.getElementById('fq').oninput = e => { feedQuery = e.target.value.trim().toLowerCase(); renderFeed(); };
+document.getElementById('readall').onclick = () => { markAllRead(); toast('모든 콘텐츠를 읽음으로 표시했어요'); };
+
+/* ===== 세그먼트 토글 (경제 캘린더·체크포인트는 공용, 스레드는 피드만) ===== */
 const HERO = {
   earn: { chip: '#보유종목 13개', h1: '분기 실적, 발표되면<br>바로 정리해 드려요',
           lead: '실적 해석부터 재무제표 분석, 어닝콜 요약, 종합 의견까지 한 번에 확인하세요.' },
   macro:{ chip: '#미국 경제 지표 21종', h1: '미국 경제 지표,<br>발표되면 바로 해석해 드려요',
           lead: '발표 결과 해석부터 시장 반응, 연준 경로, 보유 종목 영향까지 한 번에 확인하세요.' },
   weekly:{ chip: '#매주 일요일 오전 발간', h1: '한 주의 시장,<br>일요일 아침에 정리해 드려요',
-          lead: '기업 뉴스·실적발표·경제 지표부터 다음 주 관전 포인트까지 한 번에 확인하세요.' }
+          lead: '기업 뉴스·실적발표·경제 지표부터 다음 주 관전 포인트까지 한 번에 확인하세요.' },
+  movers:{ chip: '#감시 자산 16개', h1: '크게 움직인 날,<br>왜 그랬는지 바로 풀어드려요',
+          lead: '보유 종목 주가 ±5%, 미국 국채금리 ±15bp, 원/달러 ±1.5%를 넘긴 날의 원인을 분해해 드려요.' },
+  thread:{ chip: '#전체 콘텐츠 한눈에', h1: '실적·지표·급등락·위클리,<br>한 줄씩 시간순으로 모았어요',
+          lead: '아직 읽지 않은 콘텐츠는 파란 점으로 표시돼요. 눌러서 읽으면 사라져요.' }
 };
+const VIEWS = ['thread','earn','macro','movers','weekly'];
 function setView(v){
   VIEW = v;
   try { localStorage.setItem('briefView', v); } catch(e) {}
-  document.getElementById('seg-earn').className = v === 'earn' ? 'on' : '';
-  document.getElementById('seg-macro').className = v === 'macro' ? 'on' : '';
-  document.getElementById('seg-weekly').className = v === 'weekly' ? 'on' : '';
+  VIEWS.forEach(k => { document.getElementById('seg-' + k).className = k === v ? 'on' : ''; });
   document.getElementById('hero-chip').textContent = HERO[v].chip;
   document.getElementById('hero-h1').innerHTML = HERO[v].h1;
   document.getElementById('hero-lead').textContent = HERO[v].lead;
   document.getElementById('val-sec').style.display = v === 'earn' ? '' : 'none';
+  const th = v === 'thread';
+  document.getElementById('cal-sec').style.display = th ? 'none' : '';
+  document.getElementById('watch-sec').style.display = th ? 'none' : '';
+  document.getElementById('feed-sec').style.display = th ? '' : 'none';
+  document.getElementById('rep-sec').style.display = th ? 'none' : '';
+  document.getElementById('rep-h2').textContent =
+    v === 'earn' ? '📁 지난 보고서' : v === 'macro' ? '📁 지난 보고서' : v === 'movers' ? '🚨 급등락 보고서' : '📁 지난 위클리';
   active = '전체';
-  renderStats(); renderFilters(); renderCards();
+  renderStats(); renderBadges();
+  if (th) renderFeed(); else { renderFilters(); renderCards(); }
 }
-document.getElementById('seg-earn').onclick = () => setView('earn');
-document.getElementById('seg-macro').onclick = () => setView('macro');
-document.getElementById('seg-weekly').onclick = () => setView('weekly');
+VIEWS.forEach(k => { document.getElementById('seg-' + k).onclick = () => setView(k); });
 setView(VIEW);
 
 /* ===== 웹푸시 구독 ===== */
@@ -1146,13 +1319,13 @@ function render() {
     html('<ol class="steps">' +
       '<li>사파리 하단 <b>공유</b> 버튼을 누르세요</li>' +
       '<li><b>홈 화면에 추가</b>를 선택하세요</li>' +
-      '<li>홈 화면의 <b>실적브리핑</b> 아이콘으로 다시 여세요</li>' +
+      '<li>홈 화면의 <b>마켓브리핑</b> 아이콘으로 다시 여세요</li>' +
       '<li>여기로 돌아와 <b>알림 켜기</b>를 누르면 끝이에요</li></ol>' +
       '<div class="nstat info" id="nstat">아이폰은 홈 화면에 추가한 앱에서만 알림을 켤 수 있어요.</div>');
     return;
   }
   if (Notification.permission === 'denied') {
-    html('<div class="nstat err" id="nstat">알림이 차단돼 있어요. 설정 → 알림에서 실적브리핑을 허용해 주세요.</div>');
+    html('<div class="nstat err" id="nstat">알림이 차단돼 있어요. 설정 → 알림에서 마켓브리핑을 허용해 주세요.</div>');
     return;
   }
   html('<button class="btn" id="btn-sub">알림 켜기</button>' +
