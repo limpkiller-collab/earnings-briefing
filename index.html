@@ -592,6 +592,13 @@ const UPCOMING_DB = [
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
   {
+    id: "ISM_SVC", name: "ISM 서비스업 PMI", period: "2026년 8월", category: "심리", tier: 2,
+    report_date: "2026-09-03", created: "2026.09.04", verdict: "NEUT", vlabel: "과열",
+    surprise: { text: "예측 +1.1p", cls: "up" },
+    oneliner: "8월 PMI 55.4로 예측(54.3)을 상회했지만 가격지수 72.6은 4년 만의 최고, 고용은 두 달째 위축이에요.",
+    file: "경제지표_ISM_SVC_2026.08_2026.09.03.html"
+  },
+  {
     id: "ISM_MFG", name: "ISM 제조업 PMI", period: "2026년 8월", category: "심리", tier: 2,
     report_date: "2026-09-01", created: "2026.09.02", verdict: "NEUT", vlabel: "둔화",
     surprise: { text: "예측 -0.6p", cls: "down" },
@@ -665,7 +672,6 @@ const MACRO_REPORTS_DB = [
 
 // 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
 const MACRO_UPCOMING_DB = [
-  { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "8월", date: "2026-09-03", estimated: false, utc: "20260903T140000Z", tier: 2, last_release: null },
   { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "8월", date: "2026-09-04", estimated: false, utc: "20260904T123000Z", tier: 3, last_release: "2026-08-07" },
   { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "8월", date: "2026-09-10", estimated: false, utc: "20260910T123000Z", tier: 2, last_release: "2026-08-13" },
   { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "8월", date: "2026-09-11", estimated: false, utc: "20260911T123000Z", tier: 3, last_release: "2026-08-12" },
@@ -675,6 +681,7 @@ const MACRO_UPCOMING_DB = [
   { id: "GDP_3RD", name: "GDP 확정치", short: "GDP확정", period: "2분기", date: "2026-09-30", estimated: false, utc: "20260930T123000Z", tier: 2, last_release: "2026-08-26" },
   { id: "PCE", name: "PCE 물가지수", short: "PCE", period: "8월", date: "2026-09-30", estimated: false, utc: "20260930T123000Z", tier: 3, last_release: "2026-08-26" },
   { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "9월", date: "2026-10-01", estimated: true, utc: null, tier: 2, last_release: "2026-09-01" },
+  { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "9월", date: "2026-10-05", estimated: true, utc: null, tier: 2, last_release: "2026-09-03" },
   { id: "FOMC_MIN", name: "FOMC 의사록", short: "의사록", period: "9월 회의", date: "2026-10-08", estimated: true, utc: null, tier: 2, last_release: "2026-08-20" },
   { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "3분기", date: "2026-11-25", estimated: true, utc: null, tier: 2, last_release: "2026-08-26" },
   { id: "JACKSON", name: "잭슨홀 심포지엄", short: "잭슨홀", period: "2027년", date: "2027-08-27", estimated: true, utc: null, tier: 2, last_release: "2026-08-28" }
@@ -687,6 +694,11 @@ const WATCH_DB = [
     "전문·비즈니스 서비스 채용(-18.8만건)이 회복되는지 — 경기 전환기 선행 업종",
     "7월 구인 727.1만건이 또 큰 폭으로 하향 수정되는지 — 6월은 17.7만건 깎였어요",
     "내구재 제조 구인율 5.2%가 유지되는지 — AI·설비 투자 쪽 노동 수요 쏠림 확인"]},
+  { key: "ISM_SVC", name: "ISM 서비스업 PMI 9월", date: "2026-10-05", type: "m", items: [
+    "고용지수 47.8이 50 위로 올라서는지 — 인력 감축 기업 비중이 19%→17.1%로 줄었어요",
+    "가격지수 72.6이 꺾이는지 — 여섯 달 중 다섯 번 70을 넘었어요",
+    "신규주문 60.9·사업활동 61.7이라는 다년 최고가 유지되는지",
+    "GPU·메모리가 계속 '공급 부족 품목'에 남아 있는지 — 반도체 가격 협상력과 직결"]},
   { key: "ISM_MFG", name: "ISM 제조업 PMI 9월", date: "2026-10-01", type: "m", items: [
     "신규주문 53.7이 반등하는지, 50선 쪽으로 더 내려가는지 — 두 달 연속 하락이면 7월이 정점",
     "가격지수 71.1이 꺾이는지 — 24개월 연속 상승이 이어지는지",
