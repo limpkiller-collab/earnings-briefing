@@ -1314,6 +1314,8 @@ function setView(v){
   document.getElementById('hero-h1').innerHTML = HERO[v].h1;
   document.getElementById('hero-lead').textContent = HERO[v].lead;
   const th = v === 'thread', cal = v === 'cal';
+  /* 스레드 탭은 Hero(칩·제목·설명) 없이 피드부터 시작 */
+  ['hero-chip','hero-h1','hero-lead'].forEach(id => { document.getElementById(id).style.display = th ? 'none' : ''; });
   document.getElementById('val-sec').style.display = v === 'earn' ? '' : 'none';
   document.getElementById('cal-sec').style.display = cal ? '' : 'none';
   document.getElementById('watch-sec').style.display = cal ? '' : 'none';
