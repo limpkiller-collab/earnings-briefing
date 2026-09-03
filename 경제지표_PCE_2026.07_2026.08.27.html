@@ -184,7 +184,34 @@ b{font-weight:800}
 <div class="chart-card">
   <div class="ct">항목별 전월 대비 변동률 (2026년 7월)</div>
   <div class="cs">출처: BEA 보도자료 및 세부 통계</div>
-  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-2.9</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">-1.8</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">-0.8</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">0.3</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">1.4</text><line x1="14" y1="101.2" x2="644" y2="101.2" stroke="#D1D6DB" stroke-width="1.5"/><rect x="44.5" y="101.2" width="44.1" height="150.4" rx="3.5" fill="#F04452"/><text x="66.5" y="266.6" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-2.7</text><text x="66.5" y="286" text-anchor="middle" class="cl">에너지 재화</text><rect x="149.4" y="101.2" width="44.1" height="50.1" rx="3.5" fill="#F04452"/><text x="171.5" y="166.4" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-0.9</text><text x="171.5" y="286" text-anchor="middle" class="cl">가구·내구재</text><rect x="254.4" y="101.2" width="44.1" height="5.6" rx="3.5" fill="#F04452"/><text x="276.5" y="121.8" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-0.1</text><text x="276.5" y="286" text-anchor="middle" class="cl">재화 전체</text><rect x="359.4" y="84.5" width="44.1" height="16.7" rx="3.5" fill="#3182F6"/><text x="381.5" y="78.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+0.3</text><text x="381.5" y="286" text-anchor="middle" class="cl">서비스 전체</text><rect x="464.4" y="84.5" width="44.1" height="16.7" rx="3.5" fill="#3182F6"/><text x="486.5" y="78.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+0.3</text><text x="486.5" y="286" text-anchor="middle" class="cl">주거비</text><rect x="569.5" y="34.4" width="44.1" height="66.9" rx="3.5" fill="#3182F6"/><text x="591.5" y="28.4" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+1.2</text><text x="591.5" y="286" text-anchor="middle" class="cl">금융·보험</text></svg>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}<!--rnav-css-->
+.rnav{display:flex;gap:10px;margin-top:40px}
+.rnav a{flex:1;min-width:0;border:1px solid var(--g200);border-radius:14px;padding:13px 15px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{border-color:var(--blue)}
+.rnav a.next{text-align:right}
+.rnav .rl{font-size:11.5px;color:var(--g400);font-weight:700}
+.rnav .rt{font-size:13.5px;font-weight:800;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav a.off{opacity:.45;pointer-events:none}
+<!--/rnav-css-->
+<!--dark-css-->
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  body{background:var(--bg)}
+  .page,.gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
+  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
+  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
+  svg [stroke="#fff"]{stroke:#17171C}
+  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
+  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+<!--/dark-css-->
+</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-2.9</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">-1.8</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">-0.8</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">0.3</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">1.4</text><line x1="14" y1="101.2" x2="644" y2="101.2" stroke="#D1D6DB" stroke-width="1.5"/><rect x="44.5" y="101.2" width="44.1" height="150.4" rx="3.5" fill="#F04452"/><text x="66.5" y="266.6" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-2.7</text><text x="66.5" y="286" text-anchor="middle" class="cl">에너지 재화</text><rect x="149.4" y="101.2" width="44.1" height="50.1" rx="3.5" fill="#F04452"/><text x="171.5" y="166.4" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-0.9</text><text x="171.5" y="286" text-anchor="middle" class="cl">가구·내구재</text><rect x="254.4" y="101.2" width="44.1" height="5.6" rx="3.5" fill="#F04452"/><text x="276.5" y="121.8" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-0.1</text><text x="276.5" y="286" text-anchor="middle" class="cl">재화 전체</text><rect x="359.4" y="84.5" width="44.1" height="16.7" rx="3.5" fill="#3182F6"/><text x="381.5" y="78.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+0.3</text><text x="381.5" y="286" text-anchor="middle" class="cl">서비스 전체</text><rect x="464.4" y="84.5" width="44.1" height="16.7" rx="3.5" fill="#3182F6"/><text x="486.5" y="78.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+0.3</text><text x="486.5" y="286" text-anchor="middle" class="cl">주거비</text><rect x="569.5" y="34.4" width="44.1" height="66.9" rx="3.5" fill="#3182F6"/><text x="591.5" y="28.4" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+1.2</text><text x="591.5" y="286" text-anchor="middle" class="cl">금융·보험</text></svg>
 </div>
 <p>재화 물가가 내려간 건 <b>휘발유를 포함한 에너지 재화가 -2.7%</b> 떨어진 덕이 커요. 가구·내구재도 -0.9%로 내렸어요. 반대로 <mark class="r">서비스는 +0.3%로 버텼고, 그중 금융·보험이 +1.2%로 유독 셌어요.</mark> 주거비도 +0.3% 올랐고요.</p>
 <p>이 구도가 중요한 이유는, <b>재화 물가는 관세·유가 같은 외부 요인에 따라 오르내리지만 서비스 물가는 임금과 붙어 있어 한번 오르면 잘 안 내려가기 때문</b>이에요. 헤드라인이 아니라 근원을 보는 이유가 여기 있어요.</p>
@@ -259,6 +286,9 @@ b{font-weight:800}
 <p>그래서 보통 <b>PCE가 CPI보다 낮게 나와요.</b> 이번에도 7월 CPI는 3.4%였는데 PCE는 3.7%로 오히려 높았는데, 이건 두 지표의 항목 비중이 달라서예요(PCE는 의료비 비중이 훨씬 큽니다). 연준이 "물가 목표 2%"라고 말할 때의 2%는 <mark>CPI가 아니라 이 PCE 기준</mark>이에요. 그래서 시장은 CPI보다 PCE를 더 무겁게 봐요.</p>
 <p><b>근원(Core) PCE</b>는 여기서 식품과 에너지를 뺀 값이에요. 이 둘은 날씨나 지정학 이슈로 심하게 출렁여서, 물가의 진짜 추세를 보려면 빼고 보는 게 낫다는 거예요. 연준 내부에서 가장 무겁게 취급되는 숫자가 바로 이 근원 PCE예요.</p>
 
+<!--rnav-->
+<div class="rnav"><a class="prev" href="실적브리핑_NVDA_FY2027Q2_2026.08.27.html"><div class="rl">← 더 최근</div><div class="rt">📊 NVDA · NVIDIA FY2027 Q2</div></a><a class="next" href="경제지표_GDP_2ND_2026.2Q_2026.08.27.html"><div class="rl">더 이전 →</div><div class="rt">📈 GDP 잠정치 · 2026년 2분기</div></a></div>
+<!--/rnav-->
 <div class="disclaimer">
 본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
 데이터 출처: 미국 경제분석국(BEA) 보도자료 「Personal Income and Outlays, July 2026」, CNBC, Invezz, Trading Economics, CME FedWatch · macro-briefing 스킬 자동 생성
@@ -266,5 +296,12 @@ b{font-weight:800}
 
 </div>
 </div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k=decodeURIComponent(location.pathname.split('/').pop());
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
 </body>
 </html>

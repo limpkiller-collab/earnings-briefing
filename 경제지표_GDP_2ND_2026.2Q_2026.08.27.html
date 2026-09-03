@@ -170,7 +170,34 @@ b{font-weight:800}
 <div class="chart-card">
   <div class="ct">2026년 2분기 주요 지표 (전분기 대비 연율, %)</div>
   <div class="cs">출처: BEA 「GDP (Second Estimate) and Corporate Profits, 2nd Quarter 2026」</div>
-  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-0.1</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">1.5</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">3.2</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">4.8</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">6.5</text><line x1="14" y1="254.7" x2="644" y2="254.7" stroke="#D1D6DB" stroke-width="1.5"/><rect x="40.1" y="201.9" width="37.8" height="52.8" rx="3.5" fill="#3182F6"/><text x="59.0" y="195.9" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">1.5</text><text x="59.0" y="286" text-anchor="middle" class="cl">실질GDP</text><rect x="130.1" y="177.3" width="37.8" height="77.5" rx="3.5" fill="#3182F6"/><text x="149.0" y="171.3" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">2.2</text><text x="149.0" y="286" text-anchor="middle" class="cl">실질GDI</text><rect x="220.1" y="191.3" width="37.8" height="63.4" rx="3.5" fill="#3182F6"/><text x="239.0" y="185.3" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">1.8</text><text x="239.0" y="286" text-anchor="middle" class="cl">GDP·GDI 평균</text><rect x="310.1" y="106.8" width="37.8" height="147.9" rx="3.5" fill="#3182F6"/><text x="329.0" y="100.8" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">4.2</text><text x="329.0" y="286" text-anchor="middle" class="cl">민간최종수요</text><rect x="400.1" y="50.5" width="37.8" height="204.2" rx="3.5" fill="#3182F6"/><text x="419.0" y="44.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.8</text><text x="419.0" y="286" text-anchor="middle" class="cl">국내구매물가</text><rect x="490.1" y="68.1" width="37.8" height="186.6" rx="3.5" fill="#3182F6"/><text x="509.0" y="62.1" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.3</text><text x="509.0" y="286" text-anchor="middle" class="cl">PCE물가</text><rect x="580.1" y="128.0" width="37.8" height="126.8" rx="3.5" fill="#3182F6"/><text x="599.0" y="122.0" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">3.6</text><text x="599.0" y="286" text-anchor="middle" class="cl">근원PCE물가</text></svg>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}<!--rnav-css-->
+.rnav{display:flex;gap:10px;margin-top:40px}
+.rnav a{flex:1;min-width:0;border:1px solid var(--g200);border-radius:14px;padding:13px 15px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{border-color:var(--blue)}
+.rnav a.next{text-align:right}
+.rnav .rl{font-size:11.5px;color:var(--g400);font-weight:700}
+.rnav .rt{font-size:13.5px;font-weight:800;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav a.off{opacity:.45;pointer-events:none}
+<!--/rnav-css-->
+<!--dark-css-->
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  body{background:var(--bg)}
+  .page,.gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
+  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
+  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
+  svg [stroke="#fff"]{stroke:#17171C}
+  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
+  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+<!--/dark-css-->
+</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-0.1</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">1.5</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">3.2</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">4.8</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">6.5</text><line x1="14" y1="254.7" x2="644" y2="254.7" stroke="#D1D6DB" stroke-width="1.5"/><rect x="40.1" y="201.9" width="37.8" height="52.8" rx="3.5" fill="#3182F6"/><text x="59.0" y="195.9" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">1.5</text><text x="59.0" y="286" text-anchor="middle" class="cl">실질GDP</text><rect x="130.1" y="177.3" width="37.8" height="77.5" rx="3.5" fill="#3182F6"/><text x="149.0" y="171.3" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">2.2</text><text x="149.0" y="286" text-anchor="middle" class="cl">실질GDI</text><rect x="220.1" y="191.3" width="37.8" height="63.4" rx="3.5" fill="#3182F6"/><text x="239.0" y="185.3" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">1.8</text><text x="239.0" y="286" text-anchor="middle" class="cl">GDP·GDI 평균</text><rect x="310.1" y="106.8" width="37.8" height="147.9" rx="3.5" fill="#3182F6"/><text x="329.0" y="100.8" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">4.2</text><text x="329.0" y="286" text-anchor="middle" class="cl">민간최종수요</text><rect x="400.1" y="50.5" width="37.8" height="204.2" rx="3.5" fill="#3182F6"/><text x="419.0" y="44.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.8</text><text x="419.0" y="286" text-anchor="middle" class="cl">국내구매물가</text><rect x="490.1" y="68.1" width="37.8" height="186.6" rx="3.5" fill="#3182F6"/><text x="509.0" y="62.1" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.3</text><text x="509.0" y="286" text-anchor="middle" class="cl">PCE물가</text><rect x="580.1" y="128.0" width="37.8" height="126.8" rx="3.5" fill="#3182F6"/><text x="599.0" y="122.0" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">3.6</text><text x="599.0" y="286" text-anchor="middle" class="cl">근원PCE물가</text></svg>
 </div>
 <p>왼쪽 네 개가 성장, 오른쪽 세 개가 물가예요. <b>성장은 1.5~4.2%인데 물가는 3.6~5.8%</b>로 전부 더 높아요. <mark class="r">명목으로는 8.0% 커졌는데 실질로는 1.5%밖에 안 늘었다는 뜻</mark>이고, 그 차이가 전부 물가예요.</p>
 <p>주목할 건 <b>실질 GDI(국내총소득) +2.2%</b>예요. GDP는 "얼마나 만들었나", GDI는 "얼마나 벌었나"를 다른 통계로 잰 값이라 이론상 같아야 해요. 이번엔 GDI가 GDP보다 0.7%p 높은데, <mark>보통 GDI가 높으면 나중에 GDP가 위로 수정되는 경우가 많아요.</mark> 두 값의 평균은 +1.8%예요.</p>
@@ -238,6 +265,9 @@ b{font-weight:800}
 <p>그래서 잠정치는 "새 뉴스"라기보다 <b>"속보치가 맞았는지 확인하는 자리"</b>에 가까워요. 시장 반응이 대체로 조용한 이유죠. 다만 이번처럼 <mark>헤드라인은 그대로인데 속 항목(민간수요·물가)이 크게 바뀌면 해석이 달라질 수 있어요.</mark></p>
 <p><b>연율(annual rate)</b>이라는 표현도 알아두면 좋아요. "2분기 +1.5%"는 3개월 동안 1.5% 컸다는 게 아니라, <b>이 속도가 1년 내내 이어지면 1.5% 커진다</b>는 뜻이에요. 분기 자체로는 약 0.4% 성장이었어요.</p>
 
+<!--rnav-->
+<div class="rnav"><a class="prev" href="경제지표_PCE_2026.07_2026.08.27.html"><div class="rl">← 더 최근</div><div class="rt">📈 PCE 물가지수 · 2026년 7월</div></a><a class="next" href="경제지표_FOMC_MIN_2026.07회의_2026.08.20.html"><div class="rl">더 이전 →</div><div class="rt">🏛️ FOMC 의사록 · 2026년 7월 회의</div></a></div>
+<!--/rnav-->
 <div class="disclaimer">
 본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
 데이터 출처: 미국 경제분석국(BEA) 보도자료 「GDP (Second Estimate) and Corporate Profits, 2nd Quarter 2026」, Invezz, CME FedWatch · macro-briefing 스킬 자동 생성
@@ -245,5 +275,12 @@ b{font-weight:800}
 
 </div>
 </div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k=decodeURIComponent(location.pathname.split('/').pop());
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
 </body>
 </html>

@@ -172,6 +172,33 @@ ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;heigh
   .sec-head .l1,.sec-head .l2{font-size:20px}
   p,ul.dots li{font-size:16px}
 }
+<!--rnav-css-->
+.rnav{display:flex;gap:10px;margin-top:40px}
+.rnav a{flex:1;min-width:0;border:1px solid var(--g200);border-radius:14px;padding:13px 15px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{border-color:var(--blue)}
+.rnav a.next{text-align:right}
+.rnav .rl{font-size:11.5px;color:var(--g400);font-weight:700}
+.rnav .rt{font-size:13.5px;font-weight:800;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav a.off{opacity:.45;pointer-events:none}
+<!--/rnav-css-->
+<!--dark-css-->
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  body{background:var(--bg)}
+  .page,.gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
+  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
+  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
+  svg [stroke="#fff"]{stroke:#17171C}
+  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
+  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+<!--/dark-css-->
 </style>
 </head>
 <body>
@@ -375,6 +402,9 @@ ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;heigh
 <div class="next"><div class="t">다음 실적발표</div><div class="d">2026년 11월 초 예정 <span style="font-size:13px;color:var(--g400);font-weight:600">⚠️ 확정 시 업데이트</span></div></div>
 </section>
 
+<!--rnav-->
+<div class="rnav"><a class="prev" href="실적브리핑_O_2026Q2_2026.08.08.html"><div class="rl">← 더 최근</div><div class="rt">📊 O · Realty Income 2026 Q2</div></a><a class="next" href="실적브리핑_PLTR_2026Q2_2026.08.08.html"><div class="rl">더 이전 →</div><div class="rt">📊 PLTR · Palantir 2026 Q2</div></a></div>
+<!--/rnav-->
 <div class="disclaimer">
 본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
 데이터 출처: NuScale IR, Zacks(Yahoo Finance), Investing.com, TradingKey, BigGo Finance, ts2.tech, stockanalysis.com · earnings-briefing 스킬 자동 생성
@@ -382,5 +412,12 @@ ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;heigh
 
 </div>
 </div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k=decodeURIComponent(location.pathname.split('/').pop());
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
 </body>
 </html>

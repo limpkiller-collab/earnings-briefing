@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>마켓브리핑</title>
 <link rel="manifest" href="./manifest.json">
-<meta name="theme-color" content="#3182F6">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17171C" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="마켓브리핑">
@@ -19,14 +20,31 @@
   --amber:#FF9500; --amber-bg:#FFF4E3;
   --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
   --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+  --surface:#fff; --bg:#F2F4F6; --toast:#191F28; --fon:#191F28; --fon-t:#fff;
+  color-scheme:light dark;
+}
+/* 다크 모드 — 시스템 설정 연동 (토스 다크 톤) */
+@media (prefers-color-scheme: dark){
+  :root{
+    --blue:#4593FC; --blue-bg:#1B2A44;
+    --green:#1FC48A; --green-bg:#12332A;
+    --red:#F6606C; --red-bg:#3A1E24;
+    --amber:#FFAA33; --amber-bg:#3A2C14;
+    --g900:#F2F4F6; --g700:#D5DAE0; --g600:#B0B8C1; --g500:#8B95A1; --g400:#6B7684;
+    --g200:#333A44; --g100:#262B33; --g50:#1E2228;
+    --surface:#17171C; --bg:#0F1013; --toast:#2C2C35; --fon:#F2F4F6; --fon-t:#17171C;
+  }
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--g100);color:var(--g900);
+body{background:var(--bg);color:var(--g900);
   font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
   -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
 .page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
 
 .gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  transition:transform .22s ease;will-change:transform}
+.gnb.hide{transform:translateY(-100%)}
+.gnb{
   padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
 .gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
 .gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
@@ -101,7 +119,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 /* 토스트 */
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);
-  background:var(--g900);color:#fff;font-size:13.5px;font-weight:700;padding:12px 18px;border-radius:12px;
+  background:var(--toast);color:#fff;font-size:13.5px;font-weight:700;padding:12px 18px;border-radius:12px;
   opacity:0;transition:.22s;pointer-events:none;z-index:50;max-width:88vw;text-align:center}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
@@ -110,7 +128,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .f{background:var(--g100);color:var(--g600);font-size:13.5px;font-weight:700;
   padding:8px 15px;border-radius:20px;cursor:pointer;user-select:none;transition:.12s}
 .f:hover{background:var(--g200)}
-.f.on{background:var(--g900);color:#fff}
+.f.on{background:var(--fon);color:var(--fon-t)}
 
 /* 카드 */
 .cards{display:flex;flex-direction:column;gap:12px}
@@ -186,7 +204,9 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   color:var(--g400);display:grid;place-items:center;-webkit-tap-highlight-color:transparent;transition:color .12s}
 .tabbar button svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
 .tabbar button.on{color:var(--g900)}
-.tabbar button.on svg{stroke-width:2.5}
+.tabbar button.on svg{stroke-width:2}
+.tabbar button.on svg .fl{fill:currentColor}
+.tabbar button.on svg .in{stroke:var(--surface)}
 .tabbar button:active{color:var(--g600)}
 .tabbar .nd{position:absolute;top:6px;left:calc(50% + 9px);width:8px;height:8px;border-radius:50%;background:var(--blue);
   border:2px solid #fff;display:none}
@@ -257,6 +277,12 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   font-size:12px;font-weight:700;padding:5px 11px;border-radius:20px;cursor:pointer;letter-spacing:-0.02em}
 .readall:hover{background:var(--g50);border-color:var(--g400)}
 
+/* 스레드 급등락 행 스파크라인 (20거래일) */
+.fi .spk{width:64px;height:24px;flex:0 0 auto;margin-left:auto;align-self:center}
+.fi .spk polyline{fill:none;stroke:var(--g400);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+.fi .spk circle{stroke:none}
+@media(max-width:360px){.fi .spk{display:none}}
+
 /* 밸류에이션 스냅샷 */
 .vwrap{overflow-x:auto;border:1px solid var(--g200);border-radius:16px}
 .vtable{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
@@ -311,6 +337,15 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 }
 @media(max-width:390px){
   .gnb .upd{display:none}
+}
+/* 다크 모드 — 표면색 오버라이드 (반드시 스타일 맨 끝에 둔다) */
+@media (prefers-color-scheme: dark){
+  .page,.gnb,.cal-btn,.cal .cell,.up-row,.card,.sheet,.more,.readall,#sub-json{background:var(--surface)}
+  .pill.est,.pill.mest,.pill.evest,.lg-est,.lg-mest,.lg-evest{background:var(--surface)}
+  .tabbar{background:rgba(23,23,28,.94)}
+  .tabbar .nd{border-color:var(--surface)}
+  .card:hover{box-shadow:0 4px 16px rgba(0,0,0,.35)}
+  .card.unread{border-color:#2F4A78}
 }
 </style>
 </head>
@@ -392,12 +427,12 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 </div>
 
 <nav class="tabbar" aria-label="탭 이동"><div class="in">
-  <button type="button" id="seg-thread" aria-label="스레드" title="스레드"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-earn" aria-label="실적" title="실적"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><rect x="5" y="11" width="3.6" height="7" rx="1"/><rect x="10.2" y="5" width="3.6" height="13" rx="1"/><rect x="15.4" y="8.5" width="3.6" height="9.5" rx="1"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-macro" aria-label="경제 지표" title="경제 지표"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M4 15.5 9.5 10l4 4L20 7"/><path d="M16 7h4v4"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-movers" aria-label="급등락" title="급등락"><svg viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H13z"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-weekly" aria-label="위클리" title="위클리"><svg viewBox="0 0 24 24"><path d="M4 5h14a1 1 0 0 1 1 1v11a2 2 0 0 0 2 2H5a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1z"/><path d="M19 19a2 2 0 0 0 2-2V9h-2"/><path d="M7 9h4v4H7z"/><path d="M14 9h2M14 12h2M7 16h9"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-cal" aria-label="캘린더" title="캘린더"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-thread" aria-label="스레드" title="스레드"><svg viewBox="0 0 24 24"><path class="fl" d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-earn" aria-label="실적" title="실적"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><rect class="fl" x="5" y="11" width="3.6" height="7" rx="1"/><rect class="fl" x="10.2" y="5" width="3.6" height="13" rx="1"/><rect class="fl" x="15.4" y="8.5" width="3.6" height="9.5" rx="1"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-macro" aria-label="경제 지표" title="경제 지표"><svg viewBox="0 0 24 24"><path class="fl" d="M4 15.5 9.5 10l4 4L20 7V20H4z" style="stroke:none"/><path d="M3 20h18"/><path d="M4 15.5 9.5 10l4 4L20 7"/><path d="M16 7h4v4"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-movers" aria-label="급등락" title="급등락"><svg viewBox="0 0 24 24"><path class="fl" d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H13z"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-weekly" aria-label="위클리" title="위클리"><svg viewBox="0 0 24 24"><path class="fl" d="M4 5h14a1 1 0 0 1 1 1v11a2 2 0 0 0 2 2H5a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1z"/><path d="M19 19a2 2 0 0 0 2-2V9h-2"/><path class="in" d="M7 9h4v4H7z"/><path class="in" d="M14 9h2M14 12h2M7 16h9"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-cal" aria-label="캘린더" title="캘린더"><svg viewBox="0 0 24 24"><rect class="fl" x="3" y="5" width="18" height="16" rx="2.5"/><path class="in" d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path class="in" d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></svg><span class="nd"></span></button>
 </div></nav>
 
 <div class="dim" id="notify-dim"></div>
@@ -775,11 +810,13 @@ const WEEKLY_REPORTS_DB = [
 
 // ----- 급등락 분석 (movers-briefing 스킬이 평일 오전 갱신 · 새 항목은 맨 앞에) -----
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
+// spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
   {
     asset: "PLTR", name: "Palantir", kind: "stock", date: "2026-09-03",
     chg: -5.81, chg_label: "-5.81%", price_label: "$169.46", cause: "차익실현",
     oneliner: "8월 48% 랠리 뒤 차익실현에 구글 DeepMind의 국방 AI 진입 우려가 겹쳤어요. 지수는 오른 날이었어요.",
+    spark: [158.43,155.92,172.01,175.23,174.94,171.04,179.01,174.04,172.55,171.54,175.19,173.96,179.94,175.89,172.73,177.50,185.93,186.29,186.38,169.46],
     created: "2026.09.04", file: "급등락_PLTR_2026.09.03.html"
   }
 ];
@@ -830,6 +867,11 @@ function renderBadges(){
     const b = document.getElementById('seg-' + t);
     if (b) b.classList.toggle('unread', unreadCount(t) > 0);
   });
+  /* 홈 화면 아이콘 뱃지 (iOS 16.4+ PWA · 안읽음 수) */
+  try {
+    const n = unreadCount('thread');
+    if ('setAppBadge' in navigator) (n ? navigator.setAppBadge(n) : navigator.clearAppBadge()).catch(() => {});
+  } catch(e) {}
 }
 
 /* ===== 공통 유틸 (모든 표시는 한국시간 기준) ===== */
@@ -1189,6 +1231,16 @@ function renderCards(){
 }
 document.getElementById('q').oninput = e => { query = e.target.value.trim().toLowerCase(); renderCards(); };
 
+/* 미니 스파크라인 — 마지막 점만 등락색 */
+function sparkline(v, up){
+  const W = 64, H = 24, p = 3, n = v.length;
+  const mn = Math.min(...v), mx = Math.max(...v), sp = (mx - mn) || 1;
+  const x = i => p + (W - 2*p) * i / (n - 1), y = k => p + (H - 2*p) * (1 - (k - mn) / sp);
+  const pts = v.map((k, i) => `${x(i).toFixed(1)},${y(k).toFixed(1)}`).join(' ');
+  const col = up ? 'var(--green)' : 'var(--red)';
+  return `<svg class="spk" viewBox="0 0 ${W} ${H}" aria-hidden="true"><polyline points="${pts}"/><circle cx="${x(n-1).toFixed(1)}" cy="${y(v[n-1]).toFixed(1)}" r="2.6" fill="${col}"/></svg>`;
+}
+
 /* ===== 스레드 피드 (4개 DB 통합 · 발간 시간 역순 · 날짜별 그룹) ===== */
 const feedTypes = ['전체', '실적', '지표', '급등락', '위클리'];
 const TYPE_KEY = { '실적': 'earn', '지표': 'macro', '급등락': 'movers', '위클리': 'weekly' };
@@ -1228,8 +1280,9 @@ function renderFeed(){
     a.className = 'fi' + (isUnread(it.key) ? ' unread' : '');
     if (it.file) a.href = encodeURI(it.file);
     a.onclick = () => markRead(it.key);
+    const spk = (it.type === 'movers' && it.raw.spark && it.raw.spark.length > 2) ? sparkline(it.raw.spark, it.raw.chg >= 0) : '';
     a.innerHTML = `<div class="fico">${it.ico}</div><div class="fb">
-      <div class="ft"><span class="udot"></span><span class="ftype">${it.tlabel}</span>${it.title}<span class="vd ${it.bcls}" style="margin-left:0">${it.badge}</span></div>
+      <div class="ft"><span class="udot"></span><span class="ftype">${it.tlabel}</span>${it.title}<span class="vd ${it.bcls}" style="margin-left:0">${it.badge}</span>${spk}</div>
       <div class="fo">${it.one}</div>
       <div class="fm"><span>${it.type === 'weekly' ? '대상 ' : it.type === 'movers' ? '발생 ' : '발표 '}${it.date}</span><span>작성 ${it.created}</span></div></div>`;
     box.appendChild(a);
@@ -1273,8 +1326,33 @@ function setView(v){
   if (th) renderFeed(); else if (!cal) { renderFilters(); renderCards(); }
   window.scrollTo(0, 0);
 }
-VIEWS.forEach(k => { document.getElementById('seg-' + k).onclick = () => setView(k); });
+VIEWS.forEach(k => {
+  document.getElementById('seg-' + k).onclick = () => {
+    if (VIEW === k) window.scrollTo({ top: 0, behavior: 'smooth' });   // 활성 탭 재탭 → 맨 위로
+    else setView(k);
+  };
+});
 setView(VIEW);
+
+/* ===== GNB — 아래로 스크롤하면 숨기고, 위로 올리면 다시 보여준다 ===== */
+(function(){
+  const g = document.querySelector('.gnb');
+  let last = window.scrollY, tick = false;
+  window.addEventListener('scroll', () => {
+    if (tick) return; tick = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (y > last + 6 && y > 72) g.classList.add('hide');
+      else if (y < last - 6 || y <= 72) g.classList.remove('hide');
+      last = y; tick = false;
+    });
+  }, { passive: true });
+})();
+
+/* ===== 서비스워커 상시 등록 — 오프라인 캐시(index·최근 보고서) ===== */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(() => {});
+}
 
 /* ===== 웹푸시 구독 ===== */
 const VAPID_PUBLIC_KEY = 'BNyxJGZtqpXxFwptu42kILeG_uLlOuMdwG12JJL2RX03JDKInoFt_4uw2N8kui57IfQnq8fsOBbiXIHxK0cYSaY';
