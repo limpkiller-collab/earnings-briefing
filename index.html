@@ -33,13 +33,14 @@ body{background:var(--g100);color:var(--g900);
   display:grid;place-items:center;color:#fff;font-size:11px}
 .gnb .upd{font-size:13px;color:var(--g400);font-weight:600}
 
-.body{padding:36px 28px 80px}
+.body{padding:36px 28px calc(96px + env(safe-area-inset-bottom))}
 .chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
   padding:5px 12px;border-radius:8px;margin-bottom:16px}
 h1{font-size:30px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
 .lead{font-size:16.5px;color:var(--g500);margin-bottom:26px}
 
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:40px}
+.lead{margin-bottom:30px}
 .stat{background:var(--g50);border-radius:14px;padding:16px 18px}
 .stat .n{font-size:24px;font-weight:800;letter-spacing:-0.03em;color:var(--blue)}
 .stat .l{font-size:13px;color:var(--g500);font-weight:600;margin-top:2px}
@@ -99,7 +100,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .sec-foot{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:10px;padding-left:2px;line-height:1.6}
 
 /* 토스트 */
-.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);
   background:var(--g900);color:#fff;font-size:13.5px;font-weight:700;padding:12px 18px;border-radius:12px;
   opacity:0;transition:.22s;pointer-events:none;z-index:50;max-width:88vw;text-align:center}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -176,11 +177,20 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
   font-size:12.5px;color:var(--g400);line-height:1.7}
 
-/* 실적발표 ↔ 경제 지표 토글 */
-.seg{display:flex;background:var(--g100);border-radius:13px;padding:4px;margin-bottom:26px}
-.seg button{flex:1;border:0;background:transparent;font-family:inherit;font-size:14.5px;font-weight:800;
-  color:var(--g500);padding:10px 0;border-radius:10px;cursor:pointer;transition:.15s;letter-spacing:-0.02em}
-.seg button.on{background:#fff;color:var(--g900);box-shadow:0 1px 4px rgba(25,31,40,.09)}
+/* 하단 탭바 — 심볼만, 활성 탭은 진한 선, 안읽음은 파란 점 */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.96);
+  -webkit-backdrop-filter:saturate(180%) blur(12px);backdrop-filter:saturate(180%) blur(12px);
+  border-top:1px solid var(--g200);padding:4px 0 calc(6px + env(safe-area-inset-bottom))}
+.tabbar .in{max-width:760px;margin:0 auto;display:flex}
+.tabbar button{flex:1;border:0;background:transparent;padding:9px 0 7px;cursor:pointer;position:relative;
+  color:var(--g400);display:grid;place-items:center;-webkit-tap-highlight-color:transparent;transition:color .12s}
+.tabbar button svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
+.tabbar button.on{color:var(--g900)}
+.tabbar button.on svg{stroke-width:2.5}
+.tabbar button:active{color:var(--g600)}
+.tabbar .nd{position:absolute;top:6px;left:calc(50% + 9px);width:8px;height:8px;border-radius:50%;background:var(--blue);
+  border:2px solid #fff;display:none}
+.tabbar button.unread .nd{display:block}
 
 /* 경제 지표 캘린더 칩 (주황 계열) */
 .pill.mfix{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-bg);cursor:pointer}
@@ -214,11 +224,6 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .wgrp li::before{content:'';position:absolute;left:4px;top:9px;width:6px;height:6px;border-radius:50%;
   background:var(--blue-bg);border:2px solid var(--blue)}
 
-/* 세그먼트 5개 — 안읽음 카운트 뱃지 */
-.seg button{position:relative;padding:10px 2px}
-.seg .nb{display:inline-grid;place-items:center;margin-left:4px;vertical-align:1px;min-width:16px;height:16px;
-  border-radius:8px;background:var(--blue);color:#fff;font-size:10px;font-weight:800;padding:0 4px;line-height:1}
-.seg .nb:empty{display:none}
 
 /* 읽음/안읽음 — 카드 좌측 파란 점 */
 .card .udot{width:7px;height:7px;border-radius:50%;background:var(--blue);flex:0 0 auto;display:none}
@@ -287,7 +292,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .search .cnt{font-size:12.5px;color:var(--g400);font-weight:700;white-space:nowrap}
 
 @media(max-width:600px){
-  .body{padding:28px 20px 60px}
+  .body{padding:28px 20px calc(88px + env(safe-area-inset-bottom))}
   h1{font-size:25px}
   .stats{grid-template-columns:1fr 1fr}
   .stats .stat:last-child{grid-column:span 2}
@@ -299,8 +304,6 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   .up-row .co{font-size:12.5px}
   .up-row .dt{font-size:13.5px}
   .gnb{padding:12px 20px}
-  .seg{padding:3px}
-  .seg button{font-size:12.5px;padding:9px 0}
   .gnb .right{gap:8px}
   .gnb .upd{font-size:11.5px}
   .nbtn{font-size:12px;padding:5px 10px}
@@ -308,8 +311,6 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 }
 @media(max-width:390px){
   .gnb .upd{display:none}
-  .seg button .ic{display:none}
-  .seg button{font-size:12px}
 }
 </style>
 </head>
@@ -328,14 +329,6 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 <span class="chip" id="hero-chip">#보유종목 13개</span>
 <h1 id="hero-h1">분기 실적, 발표되면<br>바로 정리해 드려요</h1>
 <div class="lead" id="hero-lead">실적 해석부터 재무제표 분석, 어닝콜 요약, 종합 의견까지 한 번에 확인하세요.</div>
-
-<div class="seg">
-  <button type="button" id="seg-thread"><span class="ic">🧵</span> 스레드<span class="nb" id="nb-thread"></span></button>
-  <button type="button" id="seg-earn" class="on"><span class="ic">📊</span> 실적<span class="nb" id="nb-earn"></span></button>
-  <button type="button" id="seg-macro"><span class="ic">📈</span> 지표<span class="nb" id="nb-macro"></span></button>
-  <button type="button" id="seg-movers"><span class="ic">🚨</span> 급등락<span class="nb" id="nb-movers"></span></button>
-  <button type="button" id="seg-weekly"><span class="ic">🗞️</span> 위클리<span class="nb" id="nb-weekly"></span></button>
-</div>
 
 <div class="stats" id="stats"></div>
 
@@ -397,6 +390,15 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 </div>
 </div>
 </div>
+
+<nav class="tabbar" aria-label="탭 이동"><div class="in">
+  <button type="button" id="seg-thread" aria-label="스레드" title="스레드"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-earn" aria-label="실적" title="실적"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><rect x="5" y="11" width="3.6" height="7" rx="1"/><rect x="10.2" y="5" width="3.6" height="13" rx="1"/><rect x="15.4" y="8.5" width="3.6" height="9.5" rx="1"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-macro" aria-label="경제 지표" title="경제 지표"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M4 15.5 9.5 10l4 4L20 7"/><path d="M16 7h4v4"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-movers" aria-label="급등락" title="급등락"><svg viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H13z"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-weekly" aria-label="위클리" title="위클리"><svg viewBox="0 0 24 24"><path d="M4 5h14a1 1 0 0 1 1 1v11a2 2 0 0 0 2 2H5a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1z"/><path d="M19 19a2 2 0 0 0 2-2V9h-2"/><path d="M7 9h4v4H7z"/><path d="M14 9h2M14 12h2M7 16h9"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-cal" aria-label="캘린더" title="캘린더"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></svg><span class="nd"></span></button>
+</div></nav>
 
 <div class="dim" id="notify-dim"></div>
 <div class="sheet" id="notify-sheet" role="dialog" aria-modal="true" aria-labelledby="notify-title">
@@ -791,8 +793,7 @@ const macroCats = ['전체', ...new Set(MACRO_REPORTS_DB.map(r => r.category))];
 const weeklyMonths = ['전체', ...new Set(WEEKLY_REPORTS_DB.map(r => r.month))];
 const moverKinds = ['전체', '주식', '금리', '환율'];
 const KIND_KO = { stock: '주식', rate: '금리', fx: '환율', market: '주식' };
-let VIEW = 'earn';
-try { const sv = localStorage.getItem('briefView'); if (['macro','weekly','movers','thread'].includes(sv)) VIEW = sv; } catch(e) {}
+let VIEW = 'thread';   // 항상 스레드로 시작
 
 /* ===== 읽음/안읽음 (이 기기 localStorage · 첫 방문 시 기존 콘텐츠는 읽음 처리) ===== */
 const READ_KEY = 'mb_read', READ_INIT = 'mb_read_init';
@@ -826,9 +827,8 @@ function markAllRead(){ ALL_ITEMS.forEach(it => READ.add(it.key)); saveRead(); r
 function unreadCount(type){ return ALL_ITEMS.filter(it => (type === 'thread' || it.type === type) && isUnread(it.key)).length; }
 function renderBadges(){
   ['thread','earn','macro','movers','weekly'].forEach(t => {
-    const n = unreadCount(t);
-    const el = document.getElementById('nb-' + t);
-    if (el) el.textContent = n ? (n > 99 ? '99+' : String(n)) : '';
+    const b = document.getElementById('seg-' + t);
+    if (b) b.classList.toggle('unread', unreadCount(t) > 0);
   });
 }
 
@@ -876,8 +876,8 @@ const reportedPct = Math.round(reportedCnt / UPCOMING_DB.length * 1000) / 10;
 
 function renderStats(){
   const el = document.getElementById('stats');
-  el.style.display = (VIEW === 'movers' || VIEW === 'thread') ? 'none' : '';
-  if (VIEW === 'movers' || VIEW === 'thread') return;
+  el.style.display = VIEW === 'earn' ? '' : 'none';   // KPI 카드는 실적 탭에서만
+  if (VIEW !== 'earn') return;
   if (VIEW === 'earn'){
     el.innerHTML =
       `<div class="stat"><div class="n">${REPORTS_DB.length}</div><div class="l">보고서</div></div>
@@ -1249,27 +1249,29 @@ const HERO = {
   movers:{ chip: '#감시 자산 16개', h1: '크게 움직인 날,<br>왜 그랬는지 바로 풀어드려요',
           lead: '보유 종목 주가 ±5%, 미국 국채금리 ±15bp, 원/달러 ±1.5%를 넘긴 날의 원인을 분해해 드려요.' },
   thread:{ chip: '#전체 콘텐츠 한눈에', h1: '실적·지표·급등락·위클리,<br>한 줄씩 시간순으로 모았어요',
-          lead: '아직 읽지 않은 콘텐츠는 파란 점으로 표시돼요. 눌러서 읽으면 사라져요.' }
+          lead: '아직 읽지 않은 콘텐츠는 파란 점으로 표시돼요. 눌러서 읽으면 사라져요.' },
+  cal:   { chip: '#실적 · 경제 지표 · 기업 이벤트', h1: '다가오는 일정,<br>한 달력에 모았어요',
+          lead: '실적발표·경제 지표·기업 이벤트 일정과 다음 발표 체크포인트를 한 곳에서 확인하세요.' }
 };
-const VIEWS = ['thread','earn','macro','movers','weekly'];
+const VIEWS = ['thread','earn','macro','movers','weekly','cal'];
 function setView(v){
   VIEW = v;
-  try { localStorage.setItem('briefView', v); } catch(e) {}
-  VIEWS.forEach(k => { document.getElementById('seg-' + k).className = k === v ? 'on' : ''; });
+  VIEWS.forEach(k => { document.getElementById('seg-' + k).classList.toggle('on', k === v); });
   document.getElementById('hero-chip').textContent = HERO[v].chip;
   document.getElementById('hero-h1').innerHTML = HERO[v].h1;
   document.getElementById('hero-lead').textContent = HERO[v].lead;
+  const th = v === 'thread', cal = v === 'cal';
   document.getElementById('val-sec').style.display = v === 'earn' ? '' : 'none';
-  const th = v === 'thread';
-  document.getElementById('cal-sec').style.display = th ? 'none' : '';
-  document.getElementById('watch-sec').style.display = th ? 'none' : '';
+  document.getElementById('cal-sec').style.display = cal ? '' : 'none';
+  document.getElementById('watch-sec').style.display = cal ? '' : 'none';
   document.getElementById('feed-sec').style.display = th ? '' : 'none';
-  document.getElementById('rep-sec').style.display = th ? 'none' : '';
+  document.getElementById('rep-sec').style.display = (th || cal) ? 'none' : '';
   document.getElementById('rep-h2').textContent =
-    v === 'earn' ? '📁 지난 보고서' : v === 'macro' ? '📁 지난 보고서' : v === 'movers' ? '🚨 급등락 보고서' : '📁 지난 위클리';
+    v === 'movers' ? '🚨 급등락 보고서' : v === 'weekly' ? '📁 지난 위클리' : '📁 지난 보고서';
   active = '전체';
   renderStats(); renderBadges();
-  if (th) renderFeed(); else { renderFilters(); renderCards(); }
+  if (th) renderFeed(); else if (!cal) { renderFilters(); renderCards(); }
+  window.scrollTo(0, 0);
 }
 VIEWS.forEach(k => { document.getElementById('seg-' + k).onclick = () => setView(k); });
 setView(VIEW);
