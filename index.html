@@ -41,11 +41,17 @@ body{background:var(--bg);color:var(--g900);
   -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
 .page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
 
-.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
-  transition:top .24s ease}
-.gnb.hide{top:-72px}
-.gnb{
+.gnb{position:fixed;top:0;left:0;right:0;z-index:30;background:#fff;border-bottom:1px solid var(--g200);
+  max-width:760px;margin:0 auto;
+  transition:transform .24s ease,opacity .2s ease;
   padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb.hide{transform:translate3d(0,-110%,0);opacity:0;pointer-events:none}
+.gnb-space{height:63px}   /* fixed GNB 자리 확보 */
+/* 스와이프 전환 — 들어오는 화면이 살짝 밀려 들어온다 */
+.body{will-change:transform}
+.body.sw-in{transition:transform .26s cubic-bezier(.22,.61,.36,1),opacity .22s ease;transform:none;opacity:1}
+.body.sw-l{transform:translate3d(28px,0,0);opacity:.55}
+.body.sw-r{transform:translate3d(-28px,0,0);opacity:.55}
 .gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
 .gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
   display:grid;place-items:center;color:#fff;font-size:11px}
@@ -54,6 +60,9 @@ body{background:var(--bg);color:var(--g900);
   cursor:pointer;display:grid;place-items:center;padding:0;-webkit-tap-highlight-color:transparent;transition:.12s}
 .gcal svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .gcal:hover{background:var(--g50)}
+.gcal{position:relative}
+.gcal .nd{position:absolute;top:-2px;right:-2px;width:9px;height:9px;border-radius:50%;background:var(--blue);border:2px solid var(--surface);display:none}
+.gcal.soon .nd{display:block}
 .gcal.on{background:var(--g900);border-color:var(--g900);color:var(--surface)}
 .gcal.on svg .fl{fill:currentColor} .gcal.on svg .in{stroke:var(--g900)}
 
@@ -340,6 +349,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   .up-row .co{font-size:12.5px}
   .up-row .dt{font-size:13.5px}
   .gnb{padding:12px 20px}
+  .gnb-space{height:59px}
   .gnb .right{gap:8px}
   .gnb .upd{font-size:11.5px}
   .nbtn{font-size:12px;padding:5px 10px}
@@ -365,11 +375,12 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 <div class="gnb">
   <div class="brand"><span class="dot">📊</span> 마켓브리핑</div>
   <div class="right">
-    <button type="button" class="gcal" id="gcal" aria-label="캘린더" title="캘린더"><svg viewBox="0 0 24 24"><rect class="fl" x="3" y="5" width="18" height="16" rx="2.5"/><path class="in" d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path class="in" d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></svg></button>
+    <button type="button" class="gcal" id="gcal" aria-label="캘린더" title="캘린더"><span class="nd"></span><svg viewBox="0 0 24 24"><rect class="fl" x="3" y="5" width="18" height="16" rx="2.5"/><path class="in" d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path class="in" d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></svg></button>
     <button type="button" class="nbtn" id="nbtn"><span class="nd-dot"></span>🔔 알림</button>
   </div>
 </div>
 
+<div class="gnb-space"></div>
 <div class="body">
 <span class="chip" id="hero-chip">#보유종목 13개</span>
 <h1 id="hero-h1">분기 실적, 발표되면<br>바로 정리해 드려요</h1>
@@ -1120,6 +1131,11 @@ if (upHidden){
 }
 
 renderCal();
+/* 캘린더 버튼 — 3일 이내(D-0~D-3) 일정이 있으면 파란 점 */
+(function(){
+  const soon = UP_ALL.some(u => { const d = showDate(u); if (!d) return false; const n = dday(d); return n >= 0 && n <= 3; });
+  document.getElementById('gcal').classList.toggle('soon', soon);
+})();
 
 /* ===== 밸류에이션 스냅샷 (실적발표 탭 전용) ===== */
 function renderVal(){
@@ -1338,6 +1354,7 @@ function setView(v){
   renderStats(); renderBadges();
   if (th) renderFeed(); else if (!cal) { renderFilters(); renderCards(); }
   window.scrollTo(0, 0);
+  if (window.mbShowGnb) window.mbShowGnb();
 }
 const TAB_VIEWS = ['thread','earn','macro','movers','weekly'];   // 하단 탭바 순서 (캘린더는 GNB 버튼)
 TAB_VIEWS.forEach(k => {
@@ -1350,6 +1367,18 @@ document.getElementById('gcal').onclick = () => {
   if (VIEW === 'cal') window.scrollTo({ top: 0, behavior: 'smooth' }); else setView('cal');
 };
 setView(VIEW);
+
+/* 스와이프 전환 애니메이션: 새 화면을 손가락 방향에서 28px 밀려 들어오게 */
+function swipeTo(view, dir){
+  const b = document.querySelector('.body');
+  b.classList.remove('sw-in', 'sw-l', 'sw-r');
+  b.classList.add(dir === 'l' ? 'sw-l' : 'sw-r');   // 시작 위치(전환 없이)
+  setView(view);
+  void b.offsetWidth;                                 // 리플로우로 시작 위치 확정
+  b.classList.add('sw-in');                           // 제자리로 슬라이드
+  b.classList.remove('sw-l', 'sw-r');
+  setTimeout(() => b.classList.remove('sw-in'), 320);
+}
 
 /* ===== 가로 스와이프로 탭 전환 (탭바 순서) — 캘린더 그리드·가로 스크롤 표 위에서는 무시 ===== */
 (function(){
@@ -1366,7 +1395,7 @@ setView(VIEW);
     const i = TAB_VIEWS.indexOf(VIEW);
     const n = dx < 0 ? i + 1 : i - 1;
     if (n < 0 || n >= TAB_VIEWS.length) return;
-    setView(TAB_VIEWS[n]);
+    swipeTo(TAB_VIEWS[n], dx < 0 ? 'l' : 'r');
   }, { passive: true });
 })();
 
@@ -1374,19 +1403,21 @@ setView(VIEW);
 (function(){
   const g = document.querySelector('.gnb');
   const sy = () => window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-  let last = sy(), tick = false;
-  function onScroll(){
-    if (tick) return; tick = true;
-    requestAnimationFrame(() => {
-      const y = sy();
-      if (y > last + 4 && y > 48) g.classList.add('hide');
-      else if (y < last - 4 || y <= 48) g.classList.remove('hide');
-      last = y; tick = false;
-    });
+  let last = sy(), acc = 0;
+  /* 스크롤 이벤트에 기대지 않고 매 프레임 위치를 비교한다 — iOS PWA에서 scroll 이벤트가 늦거나 빠지는 경우 대비 */
+  function poll(){
+    const y = sy(), d = y - last;
+    if (Math.abs(d) >= 1){
+      acc = (Math.sign(d) === Math.sign(acc)) ? acc + d : d;   // 같은 방향 누적
+      if (acc > 10 && y > 56) g.classList.add('hide');
+      else if (acc < -10 || y <= 56) g.classList.remove('hide');
+      last = y;
+    }
+    requestAnimationFrame(poll);
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  document.addEventListener('scroll', onScroll, { passive: true, capture: true });
-  window.addEventListener('touchmove', onScroll, { passive: true });
+  requestAnimationFrame(poll);
+  /* 시트 열림·탭 전환 때는 항상 보이게 */
+  window.mbShowGnb = () => { g.classList.remove('hide'); last = sy(); acc = 0; };
 })();
 
 /* ===== 서비스워커 상시 등록 — 오프라인 캐시(index·최근 보고서) ===== */
