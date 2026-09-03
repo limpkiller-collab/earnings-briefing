@@ -42,16 +42,22 @@ body{background:var(--bg);color:var(--g900);
 .page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
 
 .gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
-  transition:transform .22s ease;will-change:transform}
-.gnb.hide{transform:translateY(-100%)}
+  transition:top .24s ease}
+.gnb.hide{top:-72px}
 .gnb{
   padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
 .gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
 .gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
   display:grid;place-items:center;color:#fff;font-size:11px}
-.gnb .upd{font-size:13px;color:var(--g400);font-weight:600}
+.gnb .upd{display:none}
+.gcal{width:34px;height:34px;border-radius:50%;border:1px solid var(--g200);background:var(--surface);color:var(--g600);
+  cursor:pointer;display:grid;place-items:center;padding:0;-webkit-tap-highlight-color:transparent;transition:.12s}
+.gcal svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.gcal:hover{background:var(--g50)}
+.gcal.on{background:var(--g900);border-color:var(--g900);color:var(--surface)}
+.gcal.on svg .fl{fill:currentColor} .gcal.on svg .in{stroke:var(--g900)}
 
-.body{padding:36px 28px calc(96px + env(safe-area-inset-bottom))}
+.body{padding:36px 28px calc(112px + env(safe-area-inset-bottom))}
 .chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
   padding:5px 12px;border-radius:8px;margin-bottom:16px}
 h1{font-size:30px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
@@ -118,7 +124,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .sec-foot{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:10px;padding-left:2px;line-height:1.6}
 
 /* 토스트 */
-.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);
+.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);
   background:var(--toast);color:#fff;font-size:13.5px;font-weight:700;padding:12px 18px;border-radius:12px;
   opacity:0;transition:.22s;pointer-events:none;z-index:50;max-width:88vw;text-align:center}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -196,20 +202,24 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   font-size:12.5px;color:var(--g400);line-height:1.7}
 
 /* 하단 탭바 — 심볼만, 활성 탭은 진한 선, 안읽음은 파란 점 */
-.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.96);
-  -webkit-backdrop-filter:saturate(180%) blur(12px);backdrop-filter:saturate(180%) blur(12px);
-  border-top:1px solid var(--g200);padding:4px 0 calc(6px + env(safe-area-inset-bottom))}
-.tabbar .in{max-width:760px;margin:0 auto;display:flex}
-.tabbar button{flex:1;border:0;background:transparent;padding:9px 0 7px;cursor:pointer;position:relative;
+.tabbar{position:fixed;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom));z-index:40;pointer-events:none}
+.tabbar .in{pointer-events:auto;max-width:520px;margin:0 16px;display:flex;background:rgba(255,255,255,.92);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border:1px solid var(--g200);border-radius:26px;padding:6px 8px;box-shadow:0 8px 28px rgba(25,31,40,.14)}
+@media(min-width:552px){.tabbar .in{margin:0 auto}}
+.tabbar button{flex:1;border:0;background:transparent;padding:0;height:46px;cursor:pointer;position:relative;
   color:var(--g400);display:grid;place-items:center;-webkit-tap-highlight-color:transparent;transition:color .12s}
-.tabbar button svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
+.tabbar button::before{content:'';position:absolute;width:44px;height:38px;border-radius:14px;background:var(--g100);
+  opacity:0;transform:scale(.85);transition:.16s}
+.tabbar button.on::before{opacity:1;transform:scale(1)}
+.tabbar button svg{position:relative;width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
 .tabbar button.on{color:var(--g900)}
 .tabbar button.on svg{stroke-width:2}
 .tabbar button.on svg .fl{fill:currentColor}
-.tabbar button.on svg .in{stroke:var(--surface)}
+.tabbar button.on svg .in{stroke:var(--g100)}
 .tabbar button:active{color:var(--g600)}
-.tabbar .nd{position:absolute;top:6px;left:calc(50% + 9px);width:8px;height:8px;border-radius:50%;background:var(--blue);
-  border:2px solid #fff;display:none}
+.tabbar .nd{position:absolute;top:5px;left:calc(50% + 9px);width:8px;height:8px;border-radius:50%;background:var(--blue);
+  border:2px solid #fff;display:none;z-index:1}
 .tabbar button.unread .nd{display:block}
 
 /* 경제 지표 캘린더 칩 (주황 계열) */
@@ -318,7 +328,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .search .cnt{font-size:12.5px;color:var(--g400);font-weight:700;white-space:nowrap}
 
 @media(max-width:600px){
-  .body{padding:28px 20px calc(88px + env(safe-area-inset-bottom))}
+  .body{padding:28px 20px calc(104px + env(safe-area-inset-bottom))}
   h1{font-size:25px}
   .stats{grid-template-columns:1fr 1fr}
   .stats .stat:last-child{grid-column:span 2}
@@ -342,7 +352,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 @media (prefers-color-scheme: dark){
   .page,.gnb,.cal-btn,.cal .cell,.up-row,.card,.sheet,.more,.readall,#sub-json{background:var(--surface)}
   .pill.est,.pill.mest,.pill.evest,.lg-est,.lg-mest,.lg-evest{background:var(--surface)}
-  .tabbar{background:rgba(23,23,28,.94)}
+  .tabbar .in{background:rgba(30,34,40,.92);box-shadow:0 8px 28px rgba(0,0,0,.45)}
   .tabbar .nd{border-color:var(--surface)}
   .card:hover{box-shadow:0 4px 16px rgba(0,0,0,.35)}
   .card.unread{border-color:#2F4A78}
@@ -355,7 +365,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 <div class="gnb">
   <div class="brand"><span class="dot">📊</span> 마켓브리핑</div>
   <div class="right">
-    <span class="upd">업데이트 <span id="last-updated"></span></span>
+    <button type="button" class="gcal" id="gcal" aria-label="캘린더" title="캘린더"><svg viewBox="0 0 24 24"><rect class="fl" x="3" y="5" width="18" height="16" rx="2.5"/><path class="in" d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path class="in" d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></svg></button>
     <button type="button" class="nbtn" id="nbtn"><span class="nd-dot"></span>🔔 알림</button>
   </div>
 </div>
@@ -432,7 +442,6 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
   <button type="button" id="seg-macro" aria-label="경제 지표" title="경제 지표"><svg viewBox="0 0 24 24"><path class="fl" d="M4 15.5 9.5 10l4 4L20 7V20H4z" style="stroke:none"/><path d="M3 20h18"/><path d="M4 15.5 9.5 10l4 4L20 7"/><path d="M16 7h4v4"/></svg><span class="nd"></span></button>
   <button type="button" id="seg-movers" aria-label="급등락" title="급등락"><svg viewBox="0 0 24 24"><path class="fl" d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H13z"/></svg><span class="nd"></span></button>
   <button type="button" id="seg-weekly" aria-label="위클리" title="위클리"><svg viewBox="0 0 24 24"><path class="fl" d="M4 5h14a1 1 0 0 1 1 1v11a2 2 0 0 0 2 2H5a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1z"/><path d="M19 19a2 2 0 0 0 2-2V9h-2"/><path class="in" d="M7 9h4v4H7z"/><path class="in" d="M14 9h2M14 12h2M7 16h9"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-cal" aria-label="캘린더" title="캘린더"><svg viewBox="0 0 24 24"><rect class="fl" x="3" y="5" width="18" height="16" rx="2.5"/><path class="in" d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path class="in" d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></svg><span class="nd"></span></button>
 </div></nav>
 
 <div class="dim" id="notify-dim"></div>
@@ -823,7 +832,8 @@ const MOVERS_DB = [
 
 // ===== 데이터 블록 끝 =====
 
-document.getElementById('last-updated').textContent = LAST_UPDATED;
+/* 업데이트 일자는 캘린더 탭 하단 문구에만 표시 */
+(function(){ const f = document.querySelector('#cal-sec .sec-foot'); if (f) f.textContent = f.textContent + ' · 마지막 업데이트 ' + LAST_UPDATED; })();
 
 const tickers = new Set(REPORTS_DB.map(r => r.ticker));
 const macroCats = ['전체', ...new Set(MACRO_REPORTS_DB.map(r => r.category))];
@@ -1309,7 +1319,8 @@ const HERO = {
 const VIEWS = ['thread','earn','macro','movers','weekly','cal'];
 function setView(v){
   VIEW = v;
-  VIEWS.forEach(k => { document.getElementById('seg-' + k).classList.toggle('on', k === v); });
+  VIEWS.filter(k => k !== 'cal').forEach(k => { document.getElementById('seg-' + k).classList.toggle('on', k === v); });
+  document.getElementById('gcal').classList.toggle('on', v === 'cal');
   document.getElementById('hero-chip').textContent = HERO[v].chip;
   document.getElementById('hero-h1').innerHTML = HERO[v].h1;
   document.getElementById('hero-lead').textContent = HERO[v].lead;
@@ -1328,27 +1339,54 @@ function setView(v){
   if (th) renderFeed(); else if (!cal) { renderFilters(); renderCards(); }
   window.scrollTo(0, 0);
 }
-VIEWS.forEach(k => {
+const TAB_VIEWS = ['thread','earn','macro','movers','weekly'];   // 하단 탭바 순서 (캘린더는 GNB 버튼)
+TAB_VIEWS.forEach(k => {
   document.getElementById('seg-' + k).onclick = () => {
     if (VIEW === k) window.scrollTo({ top: 0, behavior: 'smooth' });   // 활성 탭 재탭 → 맨 위로
     else setView(k);
   };
 });
+document.getElementById('gcal').onclick = () => {
+  if (VIEW === 'cal') window.scrollTo({ top: 0, behavior: 'smooth' }); else setView('cal');
+};
 setView(VIEW);
+
+/* ===== 가로 스와이프로 탭 전환 (탭바 순서) — 캘린더 그리드·가로 스크롤 표 위에서는 무시 ===== */
+(function(){
+  let sx = 0, sy = 0, st = 0, ok = false;
+  document.addEventListener('touchstart', e => {
+    const t = e.touches[0]; sx = t.clientX; sy = t.clientY; st = Date.now();
+    ok = !e.target.closest('.cal, .vwrap, .twrap, .sheet, input, textarea');
+  }, { passive: true });
+  document.addEventListener('touchend', e => {
+    if (!ok) return;
+    const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+    if (Date.now() - st > 600 || Math.abs(dx) < 64 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
+    if (VIEW === 'cal') return;
+    const i = TAB_VIEWS.indexOf(VIEW);
+    const n = dx < 0 ? i + 1 : i - 1;
+    if (n < 0 || n >= TAB_VIEWS.length) return;
+    setView(TAB_VIEWS[n]);
+  }, { passive: true });
+})();
 
 /* ===== GNB — 아래로 스크롤하면 숨기고, 위로 올리면 다시 보여준다 ===== */
 (function(){
   const g = document.querySelector('.gnb');
-  let last = window.scrollY, tick = false;
-  window.addEventListener('scroll', () => {
+  const sy = () => window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  let last = sy(), tick = false;
+  function onScroll(){
     if (tick) return; tick = true;
     requestAnimationFrame(() => {
-      const y = window.scrollY;
-      if (y > last + 6 && y > 72) g.classList.add('hide');
-      else if (y < last - 6 || y <= 72) g.classList.remove('hide');
+      const y = sy();
+      if (y > last + 4 && y > 48) g.classList.add('hide');
+      else if (y < last - 4 || y <= 48) g.classList.remove('hide');
       last = y; tick = false;
     });
-  }, { passive: true });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  document.addEventListener('scroll', onScroll, { passive: true, capture: true });
+  window.addEventListener('touchmove', onScroll, { passive: true });
 })();
 
 /* ===== 서비스워커 상시 등록 — 오프라인 캐시(index·최근 보고서) ===== */
