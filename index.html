@@ -1513,7 +1513,7 @@ function swipeTo(view, dir){
   let sx = 0, sy = 0, st = 0, ok = false;
   document.addEventListener('touchstart', e => {
     const t = e.touches[0]; sx = t.clientX; sy = t.clientY; st = Date.now();
-    ok = !e.target.closest('.cal, .vwrap, .twrap, .sheet, input, textarea');
+    ok = !e.target.closest('.cal, .vwrap, .twrap, .sheet, input, textarea, .filters, .frow, .tabbar');   /* v2.13: 필터 칩 가로 스크롤·탭바 위에서는 탭 스와이프 무시 */
   }, { passive: true });
   document.addEventListener('touchend', e => {
     if (!ok) return;
