@@ -231,7 +231,9 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .row.unread .udot{display:block}
 .row .mid{flex:1;min-width:0}
 .row .t{display:flex;align-items:baseline;gap:6px;font-size:16px;font-weight:700;line-height:1.3;letter-spacing:-.02em}
+.row .t .tt{white-space:nowrap;flex:0 0 auto}
 .row .t small{font-size:12.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.row .t small .ftype{font-size:10px;font-weight:800;padding:1px 6px;border-radius:5px;background:var(--g100);color:var(--g500);margin-right:5px;vertical-align:1px}
 .row .o{font-size:13px;color:var(--g500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;line-height:1.5}
 .row .rt{text-align:right;flex:0 0 auto}
 .row .rt .v{font-size:15px;font-weight:800;line-height:1.3}
@@ -314,7 +316,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 /* 스레드 피드 */
 .feed{display:flex;flex-direction:column}
-.fday{font-size:12.5px;font-weight:800;color:var(--g500);margin:18px 0 2px;padding-left:2px}
+.fday{font-size:12.5px;font-weight:700;color:var(--g400);margin:14px 0 2px;padding-left:2px}
 .fday:first-child{margin-top:0}
 .fi{display:flex;gap:12px;padding:13px 6px;border-bottom:1px solid var(--g100);text-decoration:none;color:inherit;
   border-radius:10px;transition:.12s}
@@ -1324,19 +1326,19 @@ function renderCards(){
     const rt = (cls, label, date) => `<div class="rt"><div class="v tx ${cls}">${label}</div><div class="d">${date}</div></div>`;
     a.innerHTML = VIEW === 'movers'
       ? `<span class="udot"></span>${avatar(r.asset)}
-         <div class="mid"><div class="t">${r.asset}<small>${r.name && r.name !== r.asset ? r.name + ' · ' : ''}${r.cause}</small></div><div class="o">${r.oneliner}</div></div>
+         <div class="mid"><div class="t"><span class="tt">${r.asset}</span><small>${r.name && r.name !== r.asset ? r.name + ' · ' : ''}${r.cause}</small></div><div class="o">${r.oneliner}</div></div>
          ${r.spark ? `<div class="rt sp"><div class="v">${sparkline(r.spark, r.chg >= 0, true)}</div><div class="d"><span class="tx ${r.chg >= 0 ? 'UPM' : 'DOWNM'}">${r.chg_label}</span> · ${MD(r.date)}</div></div>`
                    : rt(r.chg >= 0 ? 'UPM' : 'DOWNM', r.chg_label, MD(r.date))}`
       : VIEW === 'earn'
       ? `<span class="udot"></span>${avatar(r.ticker)}
-         <div class="mid"><div class="t">${r.ticker}<small>${r.company} · ${r.quarter}</small></div><div class="o">${r.oneliner}</div></div>
+         <div class="mid"><div class="t"><span class="tt">${r.ticker}</span><small>${r.company} · ${r.quarter}</small></div><div class="o">${r.oneliner}</div></div>
          ${rt(r.verdict, r.vlabel || VLABEL[r.verdict] || r.verdict, MD(r.report_date))}`
       : VIEW === 'macro'
       ? `<span class="udot"></span>${avatar(r.id)}
-         <div class="mid"><div class="t">${r.name}<small>${r.period} · ${'★'.repeat(r.tier)}</small></div><div class="o">${r.oneliner}</div></div>
+         <div class="mid"><div class="t"><span class="tt">${r.name}</span><small>${r.period} · ${'★'.repeat(r.tier)}</small></div><div class="o">${r.oneliner}</div></div>
          ${rt(r.verdict, r.vlabel, MD(r.report_date))}`
       : `<span class="udot"></span>${avatar('WEEK', 'W' + (r.week.match(/(\d+)주차/) || [,''])[1])}
-         <div class="mid"><div class="t">${r.week}<small>${r.range}</small></div><div class="o">${r.title || r.oneliner}</div></div>
+         <div class="mid"><div class="t"><span class="tt">${r.week}</span><small>${r.range}</small></div><div class="o">${r.title || r.oneliner}</div></div>
          ${rt(r.verdict, r.vlabel, r.created.slice(5).replace('.', '/'))}`;
     box.appendChild(a);
   });
@@ -1386,20 +1388,28 @@ function renderFeed(){
     const base = `${m}월 ${d}일 (${DOW[dt.getDay()]})`;
     return diff === 0 ? `오늘 · ${base}` : diff === 1 ? `어제 · ${base}` : base;
   };
+  /* v2.9 스레드 행 = 보고서 리스트와 같은 .row 골격 (로고 · 제목/부제 · 한줄평 1줄 · 우측 판정/날짜, 급등락은 추이 그래프) */
   rows.forEach(it => {
     if (it.created !== lastDay){
       lastDay = it.created;
       const h = document.createElement('div'); h.className = 'fday'; h.textContent = dayLabel(it.created); box.appendChild(h);
     }
+    const r = it.raw;
     const a = document.createElement('a');
-    a.className = 'fi' + (isUnread(it.key) ? ' unread' : '');
+    a.className = 'row' + (isUnread(it.key) ? ' unread' : '') + (it.file ? '' : ' nolink');
     if (it.file) a.href = encodeURI(it.file);
     a.onclick = () => markRead(it.key);
-    const spk = (it.type === 'movers' && it.raw.spark && it.raw.spark.length > 2) ? sparkline(it.raw.spark, it.raw.chg >= 0) : '';
-    a.innerHTML = `<div class="fico">${it.ico}</div><div class="fb">
-      <div class="ft"><span class="udot"></span><span class="ftype">${it.tlabel}</span>${it.title}<span class="vd ${it.bcls}" style="margin-left:0">${it.badge}</span>${spk}</div>
-      <div class="fo">${it.one}</div>
-      <div class="fm"><span>${it.type === 'weekly' ? '대상 ' : it.type === 'movers' ? '발생 ' : '발표 '}${it.date}</span><span>작성 ${it.created}</span></div></div>`;
+    const type = `<span class="ftype">${it.tlabel}</span>`;
+    const rt = (cls, label, date) => `<div class="rt"><div class="v tx ${cls}">${label}</div><div class="d">${date}</div></div>`;
+    const head = it.type === 'earn'   ? [avatar(r.ticker), r.ticker, `${r.company} · ${r.quarter}${r.verdict === 'PREV' ? ' 프리뷰' : ''}`, rt(r.verdict, r.vlabel || VLABEL[r.verdict] || r.verdict, MD(r.report_date))]
+               : it.type === 'macro'  ? [avatar(r.id), r.name, `${r.period} · ${'★'.repeat(r.tier)}`, rt(r.verdict, r.vlabel, MD(r.report_date))]
+               : it.type === 'movers' ? [avatar(r.asset), r.asset, `${r.name && r.name !== r.asset ? r.name + ' · ' : ''}${r.cause}`,
+                   r.spark && r.spark.length > 2
+                     ? `<div class="rt sp"><div class="v">${sparkline(r.spark, r.chg >= 0, true)}</div><div class="d"><span class="tx ${r.chg >= 0 ? 'UPM' : 'DOWNM'}">${r.chg_label}</span> · ${MD(r.date)}</div></div>`
+                     : rt(r.chg >= 0 ? 'UPM' : 'DOWNM', r.chg_label, MD(r.date))]
+               : [avatar('WEEK', 'W' + (r.week.match(/(\d+)주차/) || [,''])[1]), r.week, r.range, rt(r.verdict, r.vlabel, r.created.slice(5).replace('.', '/'))];
+    a.innerHTML = `<span class="udot"></span>${head[0]}
+      <div class="mid"><div class="t"><span class="tt">${head[1]}</span><small>${type}${head[2]}</small></div><div class="o">${it.one}</div></div>${head[3]}`;
     box.appendChild(a);
   });
 }
