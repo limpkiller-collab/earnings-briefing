@@ -807,19 +807,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 219.55, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 949.83, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
-  { ticker: "MSFT", price: 496.88, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
-  { ticker: "GOOGL", price: 348.25, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
-  { ticker: "AAPL", price: 305.26, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "" },
-  { ticker: "PLTR", price: 169.46, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
-  { ticker: "KO", price: 87.42, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
-  { ticker: "ABBV", price: 248.76, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
-  { ticker: "O", price: 62.95, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
-  { ticker: "CRWV", price: 106.29, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 44.98, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
-  { ticker: "SMR", price: 9.85, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
-  { ticker: "000660", price: 1593000, tgt: 3317917, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 228.41, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 958.16, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
+  { ticker: "MSFT", price: 510.12, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
+  { ticker: "GOOGL", price: 342.48, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
+  { ticker: "AAPL", price: 328.21, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "" },
+  { ticker: "PLTR", price: 182.53, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "KO", price: 88.81, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
+  { ticker: "ABBV", price: 260.21, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
+  { ticker: "O", price: 61.74, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
+  { ticker: "CRWV", price: 84.56, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 39.02, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 9.75, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "000660", price: 1596000, tgt: 3317917, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -845,9 +845,23 @@ const WEEKLY_REPORTS_DB = [
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
   {
+    asset: "CRWV", name: "CoreWeave", kind: "stock", date: "2026-09-03",
+    chg: 4.49, chg_label: "+4.49%", price_label: "$84.56", cause: "금리 하락",
+    oneliner: "월러 이사의 동결 시사로 금리가 내리자, 차입 $51.6B의 고베타 종목이 지수의 3배로 뛰었어요.",
+    spark: [90.67,88.19,90.32,107.73,106.29,105.26,106.00,93.17,90.87,89.76,87.85,86.25,88.04,88.01,86.80,84.23,84.89,81.85,80.93,84.56],
+    created: "2026.09.04", file: "급등락_CRWV_2026.09.03.html"
+  },
+  {
+    asset: "IONQ", name: "IonQ", kind: "stock", date: "2026-09-03",
+    chg: 3.67, chg_label: "+3.67%", price_label: "$39.02", cause: "업종 동반",
+    oneliner: "양자 3사가 함께 올랐어요. 9월 8일 투자자의 날 기대가 붙어 IONQ가 가장 크게 반등했어요.",
+    spark: [44.43,42.53,43.44,45.20,44.98,46.26,46.84,44.12,43.36,41.53,44.86,41.06,42.05,40.03,42.46,39.20,39.31,37.78,37.64,39.02],
+    created: "2026.09.04", file: "급등락_IONQ_2026.09.03.html"
+  },
+  {
     asset: "PLTR", name: "Palantir", kind: "stock", date: "2026-09-03",
     chg: -5.81, chg_label: "-5.81%", price_label: "$169.46", cause: "차익실현",
-    oneliner: "8월 48% 랠리 뒤 차익실현에 구글 DeepMind의 국방 AI 진입 우려가 겹쳤어요. 지수는 오른 날이었어요.",
+    oneliner: "8월 48% 랠리 뒤 차익실현 하락. 다음 날 PwC 제휴 확대로 +7.71% 되돌렸어요(📎 후속 반영).",
     spark: [158.43,155.92,172.01,175.23,174.94,171.04,179.01,174.04,172.55,171.54,175.19,173.96,179.94,175.89,172.73,177.50,185.93,186.29,186.38,169.46],
     created: "2026.09.04", file: "급등락_PLTR_2026.09.03.html"
   }
