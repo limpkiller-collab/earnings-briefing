@@ -166,12 +166,13 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 /* 알림 — GNB 버튼 + 바텀시트 */
 .gnb .right{display:flex;align-items:center;gap:10px}
-.nbtn{display:inline-flex;align-items:center;gap:5px;background:var(--g50);border:1px solid var(--g200);
-  color:var(--g600);font-family:inherit;font-size:12.5px;font-weight:700;letter-spacing:-0.02em;
-  padding:6px 12px;border-radius:20px;cursor:pointer;transition:.12s;white-space:nowrap}
-.nbtn:hover{background:var(--g100);border-color:var(--g400)}
-.nbtn.on{background:var(--green-bg);border-color:var(--green-bg);color:var(--green)}
-.nbtn .nd-dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:none}
+.nbtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--g200);background:var(--surface);color:var(--g600);
+  cursor:pointer;display:grid;place-items:center;padding:0;position:relative;-webkit-tap-highlight-color:transparent;transition:.12s}   /* v2.10 원형 아이콘 */
+.nbtn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nbtn:hover{background:var(--g50)}
+.nbtn.on{color:var(--green)}
+.nbtn.on svg .fl{fill:var(--green-bg)}
+.nbtn .nd-dot{position:absolute;top:-2px;right:-2px;width:9px;height:9px;border-radius:50%;background:var(--green);border:2px solid var(--surface);display:none}
 .nbtn.on .nd-dot{display:block}
 
 .dim{position:fixed;inset:0;background:rgba(25,31,40,.45);opacity:0;visibility:hidden;
@@ -232,6 +233,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .row .mid{flex:1;min-width:0}
 .row .t{display:flex;align-items:baseline;gap:6px;font-size:16px;font-weight:700;line-height:1.3;letter-spacing:-.02em}
 .row .t .tt{white-space:nowrap;flex:0 0 auto}
+.row .t .t3{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue);margin-left:5px;vertical-align:3px}   /* v2.10: ★★★ 지표만 파란 점 */
 .row .t small{font-size:12.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 .row .t small .ftype{font-size:10px;font-weight:800;padding:1px 6px;border-radius:5px;background:var(--g100);color:var(--g500);margin-right:5px;vertical-align:1px}
 .row .o{font-size:13px;color:var(--g500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;line-height:1.5}
@@ -367,8 +369,13 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .vd.MIX{background:var(--g100);color:var(--g500)}
 
 /* 보고서 검색 */
-.search{display:flex;align-items:center;gap:9px;background:var(--g100);border-radius:12px;
-  padding:11px 15px;margin-bottom:12px}
+.search{display:none;align-items:center;gap:9px;background:var(--g100);border-radius:12px;
+  padding:11px 15px;margin-bottom:12px}   /* v2.10: 기본 접힘, 돋보기 탭하면 .open */
+.search.open{display:flex}
+.fsrch{position:sticky;right:28px;flex:0 0 auto;margin-left:auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--g200);background:var(--surface);color:var(--g600);display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:-10px 0 10px var(--surface)}
+.fsrch svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.fsrch.on{background:var(--g900);border-color:var(--g900);color:var(--surface)}
+@media(max-width:600px){.fsrch{right:20px}}
 .search input{flex:1;border:0;background:transparent;font-family:inherit;font-size:14.5px;
   outline:none;color:var(--g900);letter-spacing:-0.02em}
 .search input::placeholder{color:var(--g400)}
@@ -388,7 +395,6 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   .gnb-space{height:59px}
   .gnb .right{gap:8px}
   .gnb .upd{font-size:11.5px}
-  .nbtn{font-size:12px;padding:5px 10px}
   .sheet{padding:10px 20px calc(24px + env(safe-area-inset-bottom))}
 }
 @media(max-width:390px){
@@ -412,7 +418,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   <div class="brand"><span class="dot">📊</span> 마켓브리핑</div>
   <div class="right">
     <button type="button" class="gcal" id="gcal" aria-label="캘린더" title="캘린더"><span class="nd"></span><svg viewBox="0 0 24 24"><rect class="fl" x="3" y="5" width="18" height="16" rx="2.5"/><path class="in" d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path class="in" d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></svg></button>
-    <button type="button" class="nbtn" id="nbtn"><span class="nd-dot"></span>🔔 알림</button>
+    <button type="button" class="nbtn" id="nbtn" aria-label="알림" title="알림"><span class="nd-dot"></span><svg viewBox="0 0 24 24"><path class="fl" d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.6 2H4.4z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></button>
   </div>
 </div>
 
@@ -461,8 +467,8 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <div class="sec" id="feed-sec" style="display:none">
   <h2>🧵 전체 스레드 <button type="button" class="readall" id="readall">모두 읽음</button></h2>
-  <div class="search">🔍 <input type="search" id="fq" placeholder="종목·지표·키워드 검색"><span class="cnt" id="fq-cnt"></span></div>
   <div class="filters" id="feed-filters"></div>
+  <div class="search" id="fq-box">🔍 <input type="search" id="fq" placeholder="종목·지표·키워드 검색"><span class="cnt" id="fq-cnt"></span></div>
   <div class="feed" id="feed"></div>
   <div class="empty" id="feed-empty" style="display:none">아직 콘텐츠가 없어요</div>
   <div class="sec-foot">실적·경제 지표·급등락·위클리를 발간 시간 역순으로 한 줄씩 보여드려요 · 파란 점은 아직 안 읽은 콘텐츠예요 · 읽음 표시는 이 기기에만 저장돼요</div>
@@ -470,8 +476,8 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <div class="sec" id="rep-sec">
   <h2 id="rep-h2">📁 지난 보고서</h2>
-  <div class="search">🔍 <input type="search" id="q" placeholder="종목·지표·키워드 검색"><span class="cnt" id="q-cnt"></span></div>
   <div class="filters" id="filters"></div>
+  <div class="search" id="q-box">🔍 <input type="search" id="q" placeholder="종목·지표·키워드 검색"><span class="cnt" id="q-cnt"></span></div>
   <div class="cards" id="cards"></div>
   <div class="empty" id="empty" style="display:none">해당 종목의 보고서가 아직 없어요</div>
 </div>
@@ -1288,6 +1294,16 @@ function renderFilters(){
     c.onclick = () => { active = t; renderFilters(); renderCards(); };
     el.appendChild(c);
   });
+  el.appendChild(searchToggle('q-box', 'q'));
+}
+/* v2.10 검색 토글 — 필터 칩 행 오른쪽 끝 고정, 검색어가 있으면 열린 상태 유지 */
+function searchToggle(boxId, inputId){
+  const box = document.getElementById(boxId), inp = document.getElementById(inputId);
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'fsrch' + (box.classList.contains('open') ? ' on' : '');
+  b.setAttribute('aria-label', '검색'); b.title = '검색';
+  b.innerHTML = '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>';
+  b.onclick = () => { const o = box.classList.toggle('open'); b.classList.toggle('on', o); if (o) inp.focus(); else if (inp.value) { inp.value = ''; inp.dispatchEvent(new Event('input')); } };
+  return b;
 }
 function renderCards(){
   const box = document.getElementById('cards');
@@ -1335,7 +1351,7 @@ function renderCards(){
          ${rt(r.verdict, r.vlabel || VLABEL[r.verdict] || r.verdict, MD(r.report_date))}`
       : VIEW === 'macro'
       ? `<span class="udot"></span>${avatar(r.id)}
-         <div class="mid"><div class="t"><span class="tt">${r.name}</span><small>${r.period} · ${'★'.repeat(r.tier)}</small></div><div class="o">${r.oneliner}</div></div>
+         <div class="mid"><div class="t"><span class="tt">${r.name}${r.tier >= 3 ? '<i class="t3" title="핵심 지표"></i>' : ''}</span><small>${r.period}</small></div><div class="o">${r.oneliner}</div></div>
          ${rt(r.verdict, r.vlabel, MD(r.report_date))}`
       : `<span class="udot"></span>${avatar('WEEK', 'W' + (r.week.match(/(\d+)주차/) || [,''])[1])}
          <div class="mid"><div class="t"><span class="tt">${r.week}</span><small>${r.range}</small></div><div class="o">${r.title || r.oneliner}</div></div>
@@ -1374,6 +1390,7 @@ function renderFeed(){
     c.onclick = () => { feedActive = t; renderFeed(); };
     fl.appendChild(c);
   });
+  fl.appendChild(searchToggle('fq-box', 'fq'));
   let rows = ALL_ITEMS.filter(it => feedActive === '전체' || it.type === TYPE_KEY[feedActive]);
   if (feedQuery) rows = rows.filter(it => `${it.title} ${it.one} ${it.badge}`.toLowerCase().includes(feedQuery));
   rows = rows.slice().sort((a, b) => a.created < b.created ? 1 : a.created > b.created ? -1 : 0);
@@ -1402,7 +1419,7 @@ function renderFeed(){
     const type = `<span class="ftype">${it.tlabel}</span>`;
     const rt = (cls, label, date) => `<div class="rt"><div class="v tx ${cls}">${label}</div><div class="d">${date}</div></div>`;
     const head = it.type === 'earn'   ? [avatar(r.ticker), r.ticker, `${r.company} · ${r.quarter}${r.verdict === 'PREV' ? ' 프리뷰' : ''}`, rt(r.verdict, r.vlabel || VLABEL[r.verdict] || r.verdict, MD(r.report_date))]
-               : it.type === 'macro'  ? [avatar(r.id), r.name, `${r.period} · ${'★'.repeat(r.tier)}`, rt(r.verdict, r.vlabel, MD(r.report_date))]
+               : it.type === 'macro'  ? [avatar(r.id), r.name + (r.tier >= 3 ? '<i class="t3" title="핵심 지표"></i>' : ''), r.period, rt(r.verdict, r.vlabel, MD(r.report_date))]
                : it.type === 'movers' ? [avatar(r.asset), r.asset, `${r.name && r.name !== r.asset ? r.name + ' · ' : ''}${r.cause}`,
                    r.spark && r.spark.length > 2
                      ? `<div class="rt sp"><div class="v">${sparkline(r.spark, r.chg >= 0, true)}</div><div class="d"><span class="tx ${r.chg >= 0 ? 'UPM' : 'DOWNM'}">${r.chg_label}</span> · ${MD(r.date)}</div></div>`
@@ -1613,7 +1630,7 @@ async function subscribe() {
 
 function showSub(sub, msg) {
   nBtn.classList.add('on');
-  nBtn.innerHTML = '<span class="nd-dot"></span>🔔 알림 켜짐';
+  nBtn.setAttribute('aria-label', '알림 켜짐'); nBtn.title = '알림 켜짐';   /* v2.10: 아이콘 유지, 초록 점으로 상태 표시 */
   const ta = document.getElementById('sub-json');
   ta.value = JSON.stringify(sub.toJSON());
   ta.style.display = 'block';
