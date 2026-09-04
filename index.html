@@ -372,10 +372,13 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .search{display:none;align-items:center;gap:9px;background:var(--g100);border-radius:12px;
   padding:11px 15px;margin-bottom:12px}   /* v2.10: 기본 접힘, 돋보기 탭하면 .open */
 .search.open{display:flex}
-.fsrch{position:sticky;right:28px;flex:0 0 auto;margin-left:auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--g200);background:var(--surface);color:var(--g600);display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:-10px 0 10px var(--surface)}
+.frow{display:flex;align-items:center;gap:8px;margin-bottom:12px}   /* v2.12: 칩 스크롤 영역과 검색 버튼 분리(겹침 수정) */
+.frow .filters{flex:1;min-width:0;margin:0 0 0 -28px;padding:2px 24px 2px 28px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent)}
+.frow .fx{flex:0 0 auto}
+.fsrch{width:34px;height:34px;border-radius:50%;border:1px solid var(--g200);background:var(--surface);color:var(--g600);display:grid;place-items:center;cursor:pointer;padding:0;position:relative;z-index:1}
 .fsrch svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
 .fsrch.on{background:var(--g900);border-color:var(--g900);color:var(--surface)}
-@media(max-width:600px){.fsrch{right:20px}}
+@media(max-width:600px){.frow .filters{margin:0 0 0 -20px;padding:2px 24px 2px 20px}}
 .search input{flex:1;border:0;background:transparent;font-family:inherit;font-size:14.5px;
   outline:none;color:var(--g900);letter-spacing:-0.02em}
 .search input::placeholder{color:var(--g400)}
@@ -467,7 +470,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <div class="sec" id="feed-sec" style="display:none">
   <h2>🧵 전체 스레드 <button type="button" class="readall" id="readall">모두 읽음</button></h2>
-  <div class="filters" id="feed-filters"></div>
+  <div class="frow"><div class="filters" id="feed-filters"></div><div class="fx" id="feed-filters-x"></div></div>
   <div class="search" id="fq-box">🔍 <input type="search" id="fq" placeholder="종목·지표·키워드 검색"><span class="cnt" id="fq-cnt"></span></div>
   <div class="feed" id="feed"></div>
   <div class="empty" id="feed-empty" style="display:none">아직 콘텐츠가 없어요</div>
@@ -476,7 +479,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <div class="sec" id="rep-sec">
   <h2 id="rep-h2">📁 지난 보고서</h2>
-  <div class="filters" id="filters"></div>
+  <div class="frow"><div class="filters" id="filters"></div><div class="fx" id="filters-x"></div></div>
   <div class="search" id="q-box">🔍 <input type="search" id="q" placeholder="종목·지표·키워드 검색"><span class="cnt" id="q-cnt"></span></div>
   <div class="cards" id="cards"></div>
   <div class="empty" id="empty" style="display:none">해당 종목의 보고서가 아직 없어요</div>
@@ -1301,7 +1304,8 @@ function renderFilters(){
     c.onclick = () => { active = t; renderFilters(); renderCards(); };
     el.appendChild(c);
   });
-  el.appendChild(searchToggle('q-box', 'q'));
+  const fx = document.getElementById('filters-x'); fx.innerHTML = ''; fx.appendChild(searchToggle('q-box', 'q'));
+  const onq = el.querySelector('.f.on'); if (onq) el.scrollLeft = Math.max(0, onq.offsetLeft - el.clientWidth / 2 + onq.offsetWidth / 2);   /* 활성 칩이 페이드/버튼에 가리지 않게 */
 }
 /* v2.10 검색 토글 — 필터 칩 행 오른쪽 끝 고정, 검색어가 있으면 열린 상태 유지 */
 function searchToggle(boxId, inputId){
@@ -1397,7 +1401,8 @@ function renderFeed(){
     c.onclick = () => { feedActive = t; renderFeed(); };
     fl.appendChild(c);
   });
-  fl.appendChild(searchToggle('fq-box', 'fq'));
+  const ffx = document.getElementById('feed-filters-x'); ffx.innerHTML = ''; ffx.appendChild(searchToggle('fq-box', 'fq'));
+  const onf = fl.querySelector('.f.on'); if (onf) fl.scrollLeft = Math.max(0, onf.offsetLeft - fl.clientWidth / 2 + onf.offsetWidth / 2);
   let rows = ALL_ITEMS.filter(it => feedActive === '전체' || it.type === TYPE_KEY[feedActive]);
   if (feedQuery) rows = rows.filter(it => `${it.title} ${it.one} ${it.badge}`.toLowerCase().includes(feedQuery));
   rows = rows.slice().sort((a, b) => a.created < b.created ? 1 : a.created > b.created ? -1 : 0);
