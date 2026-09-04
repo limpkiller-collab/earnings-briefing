@@ -173,13 +173,23 @@ ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;heigh
   p,ul.dots li{font-size:16px}
 }
 /*<!--rnav-css-->*/
-.rnav{display:flex;gap:10px;margin-top:40px}
-.rnav a{flex:1;min-width:0;border:1px solid var(--g200);border-radius:14px;padding:13px 15px;text-decoration:none;color:inherit;transition:.12s}
-.rnav a:hover{border-color:var(--blue)}
-.rnav a.next{text-align:right}
-.rnav .rl{font-size:11.5px;color:var(--g400);font-weight:700}
-.rnav .rt{font-size:13.5px;font-weight:800;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
 .rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
 /*<!--/rnav-css-->*/
 /*<!--dark-css-->*/
 :root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
@@ -419,7 +429,7 @@ ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;heigh
 </section>
 
 <!--rnav-->
-<div class="rnav"><a class="prev" href="실적브리핑_CRWV_2026Q1_2026.08.09.html"><div class="rl">← 더 최근</div><div class="rt">📊 CRWV · CoreWeave 2026 Q1</div></a><a class="next" href="실적브리핑_KO_2026Q2_2026.08.09.html"><div class="rl">더 이전 →</div><div class="rt">📊 KO · Coca-Cola 2026 Q2</div></a></div>
+<div class="rnav"><a class="prev" href="실적브리핑_CRWV_2026Q1_2026.08.09.html"><span class="av"><img src="logos/CRWV.png" alt=""></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">CRWV</div><div class="rs"><span class="tx MIXED">혼조</span> · CoreWeave · 2026 Q1</div></div></a><a class="next" href="실적브리핑_KO_2026Q2_2026.08.09.html"><span class="av"><img src="logos/KO.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">KO</div><div class="rs"><span class="tx BEAT">상회</span> · Coca-Cola · 2026 Q2</div></div></a></div>
 <!--/rnav-->
 <div class="disclaimer">
 본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>

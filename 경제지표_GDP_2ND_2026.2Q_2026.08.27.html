@@ -171,13 +171,23 @@ b{font-weight:800}
   <div class="ct">2026년 2분기 주요 지표 (전분기 대비 연율, %)</div>
   <div class="cs">출처: BEA 「GDP (Second Estimate) and Corporate Profits, 2nd Quarter 2026」</div>
   <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}/*<!--rnav-css-->*/
-.rnav{display:flex;gap:10px;margin-top:40px}
-.rnav a{flex:1;min-width:0;border:1px solid var(--g200);border-radius:14px;padding:13px 15px;text-decoration:none;color:inherit;transition:.12s}
-.rnav a:hover{border-color:var(--blue)}
-.rnav a.next{text-align:right}
-.rnav .rl{font-size:11.5px;color:var(--g400);font-weight:700}
-.rnav .rt{font-size:13.5px;font-weight:800;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
 .rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
 /*<!--/rnav-css-->*/
 /*<!--dark-css-->*/
 :root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
@@ -266,7 +276,7 @@ b{font-weight:800}
 <p><b>연율(annual rate)</b>이라는 표현도 알아두면 좋아요. "2분기 +1.5%"는 3개월 동안 1.5% 컸다는 게 아니라, <b>이 속도가 1년 내내 이어지면 1.5% 커진다</b>는 뜻이에요. 분기 자체로는 약 0.4% 성장이었어요.</p>
 
 <!--rnav-->
-<div class="rnav"><a class="prev" href="경제지표_PCE_2026.07_2026.08.27.html"><div class="rl">← 더 최근</div><div class="rt">📈 PCE 물가지수 · 2026년 7월</div></a><a class="next" href="경제지표_FOMC_MIN_2026.07회의_2026.08.20.html"><div class="rl">더 이전 →</div><div class="rt">🏛️ FOMC 의사록 · 2026년 7월 회의</div></a></div>
+<div class="rnav"><a class="prev" href="경제지표_PCE_2026.07_2026.08.27.html"><span class="av"><img src="logos/PCE.png" alt=""></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">PCE 물가지수</div><div class="rs"><span class="tx NEUT">정체</span> · 2026년 7월</div></div></a><a class="next" href="경제지표_FOMC_MIN_2026.07회의_2026.08.20.html"><span class="av"><img src="logos/FOMC_MIN.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">FOMC 의사록</div><div class="rs"><span class="tx BAD">매파</span> · 2026년 7월 회의</div></div></a></div>
 <!--/rnav-->
 <div class="disclaimer">
 본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
