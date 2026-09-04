@@ -68,23 +68,23 @@ body{background:var(--bg);color:var(--g900);
 
 .body{padding:36px 28px calc(112px + env(safe-area-inset-bottom))}
 .chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
-  padding:5px 12px;border-radius:8px;margin-bottom:16px}
-h1{font-size:30px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
-.lead{font-size:16.5px;color:var(--g500);margin-bottom:26px}
+  padding:4px 10px;border-radius:8px;margin-bottom:10px;font-size:12px}
+h1{font-size:22px;font-weight:800;line-height:1.35;letter-spacing:-0.03em;margin-bottom:4px;text-wrap:balance}   /* v2.8 hero 축소 */
+.lead{font-size:13.5px;color:var(--g500);margin-bottom:18px}
 
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:40px}
-.lead{margin-bottom:30px}
-.stat{background:var(--g50);border-radius:14px;padding:16px 18px}
-.stat .n{font-size:24px;font-weight:800;letter-spacing:-0.03em;color:var(--blue)}
-.stat .l{font-size:13px;color:var(--g500);font-weight:600;margin-top:2px}
+.stats{display:flex;margin:0 0 32px;border-top:1px solid var(--g200);border-bottom:1px solid var(--g200)}   /* v2.8 KPI 1행 스트립 */
+.stat{flex:1;padding:12px 8px;text-align:center;border-left:1px solid var(--g200)}
+.stat:first-child{border-left:0}
+.stat .n{font-size:20px;font-weight:800;letter-spacing:-0.03em;color:var(--g900);line-height:1.2;font-variant-numeric:tabular-nums}
+.stat .l{font-size:11.5px;color:var(--g500);font-weight:600;margin-top:2px}
 
 h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display:flex;align-items:center;gap:7px}
 .sec{margin-bottom:44px}
 
 /* KPI 진행 바 */
-.stat .bar{height:4px;border-radius:4px;background:var(--g200);margin-top:9px;overflow:hidden}
+.stat .bar{height:3px;border-radius:4px;background:var(--g200);margin:7px auto 0;overflow:hidden;max-width:96px}
 .stat .bar i{display:block;height:100%;background:var(--blue);border-radius:4px}
-.stat .n small{font-size:15px;font-weight:700;color:var(--g400);letter-spacing:-0.02em}
+.stat .n small{font-size:12px;font-weight:600;color:var(--g400);letter-spacing:-0.02em}
 
 /* 캘린더 */
 .cal-nav{display:flex;align-items:center;gap:8px;margin-bottom:12px}
@@ -210,6 +210,41 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
   font-size:12.5px;color:var(--g400);line-height:1.7}
 
+/* ===== v2.7 보고서 리스트 — 토스증권형 행 (카드 → 행) ===== */
+.filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:2px 28px;margin:0 -28px 12px;-webkit-overflow-scrolling:touch}
+.filters::-webkit-scrollbar{display:none}
+.filters .f{flex:0 0 auto;white-space:nowrap}
+@media(max-width:600px){.filters{padding:2px 20px;margin:0 -20px 12px}}
+.cards{gap:0}
+.rgrp{font-size:12.5px;font-weight:700;color:var(--g400);margin:14px 0 2px;letter-spacing:.01em}
+.rgrp:first-child{margin-top:4px}
+.row{display:flex;align-items:center;gap:13px;padding:13px 0;position:relative;text-decoration:none;color:inherit;
+  border-radius:12px;-webkit-tap-highlight-color:transparent}
+.row:active{background:var(--g50)}
+.row.nolink{cursor:default}
+.row .av{width:44px;height:44px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;overflow:hidden;
+  background:#fff;border:1px solid var(--g200);font-size:12.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.row .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.row .av.mono{background:var(--avc,var(--g600));border-color:transparent}
+.row .av.mono.s4{font-size:10.5px;letter-spacing:-.05em}
+.row .udot{position:absolute;left:34px;top:13px;width:10px;height:10px;border-radius:50%;background:var(--blue);border:2px solid var(--surface);display:none;z-index:1}
+.row.unread .udot{display:block}
+.row .mid{flex:1;min-width:0}
+.row .t{display:flex;align-items:baseline;gap:6px;font-size:16px;font-weight:700;line-height:1.3;letter-spacing:-.02em}
+.row .t small{font-size:12.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.row .o{font-size:13px;color:var(--g500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;line-height:1.5}
+.row .rt{text-align:right;flex:0 0 auto}
+.row .rt .v{font-size:15px;font-weight:800;line-height:1.3}
+.row .rt .d{font-size:12px;color:var(--g400);font-weight:600;font-variant-numeric:tabular-nums}
+.row .rt.sp .v{line-height:0;display:flex;justify-content:flex-end}
+.row .rt.sp .d{margin-top:3px}
+.tx.BEAT,.tx.GOOD,.tx.UPM,.tx.UP{color:var(--green)}
+.tx.MISS,.tx.BAD,.tx.DOWNM,.tx.DOWN{color:var(--red)}
+.tx.MIXED,.tx.NEUT,.tx.MIX{color:var(--amber)}
+.tx.PREV{color:var(--blue)}
+.spk.big{width:84px;height:30px}
+.spk.big polyline{fill:none;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+
 /* 하단 탭바 — 심볼만, 활성 탭은 진한 선, 안읽음은 파란 점 */
 .tabbar{position:fixed;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom));z-index:40;pointer-events:none}
 .tabbar .in{pointer-events:auto;max-width:520px;margin:0 16px;display:flex;background:rgba(255,255,255,.92);
@@ -223,9 +258,10 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .tabbar button.on::before{opacity:1;transform:scale(1)}
 .tabbar button svg{position:relative;width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
 .tabbar button.on{color:var(--g900)}
-.tabbar button.on svg{stroke-width:2}
+.tabbar button.on svg{stroke:none}                      /* 활성: 획을 끄고 면만 채움 (v2.6 아이콘 뭉개짐 수정) */
 .tabbar button.on svg .fl{fill:currentColor}
-.tabbar button.on svg .in{stroke:var(--g100)}
+.tabbar button.on svg .in{stroke:var(--g100);stroke-width:1.9;fill:none}   /* 절개선 = 활성 배경색 */
+.tabbar button.on svg .keep{stroke:currentColor;stroke-width:2}           /* 항상 획으로 남는 선(그래프 추세선·신문 접힘) */
 .tabbar button:active{color:var(--g600)}
 .tabbar .nd{position:absolute;top:5px;left:calc(50% + 9px);width:8px;height:8px;border-radius:50%;background:var(--blue);
   border:2px solid #fff;display:none;z-index:1}
@@ -338,9 +374,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 @media(max-width:600px){
   .body{padding:28px 20px calc(104px + env(safe-area-inset-bottom))}
-  h1{font-size:25px}
-  .stats{grid-template-columns:1fr 1fr}
-  .stats .stat:last-child{grid-column:span 2}
+  h1{font-size:21px}
   .cal .cell{min-height:66px;padding:5px 3px}
   .pill{font-size:9.5px;padding:2px 3px}
   .cal-ttl{font-size:14px}
@@ -383,7 +417,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 <div class="gnb-space"></div>
 <div class="body">
 <span class="chip" id="hero-chip">#보유종목 13개</span>
-<h1 id="hero-h1">분기 실적, 발표되면<br>바로 정리해 드려요</h1>
+<h1 id="hero-h1">분기 실적, 발표되면 바로 정리해 드려요</h1>
 <div class="lead" id="hero-lead">실적 해석부터 재무제표 분석, 어닝콜 요약, 종합 의견까지 한 번에 확인하세요.</div>
 
 <div class="stats" id="stats"></div>
@@ -448,11 +482,11 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 </div>
 
 <nav class="tabbar" aria-label="탭 이동"><div class="in">
-  <button type="button" id="seg-thread" aria-label="스레드" title="스레드"><svg viewBox="0 0 24 24"><path class="fl" d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-earn" aria-label="실적" title="실적"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><rect class="fl" x="5" y="11" width="3.6" height="7" rx="1"/><rect class="fl" x="10.2" y="5" width="3.6" height="13" rx="1"/><rect class="fl" x="15.4" y="8.5" width="3.6" height="9.5" rx="1"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-macro" aria-label="경제 지표" title="경제 지표"><svg viewBox="0 0 24 24"><path class="fl" d="M4 15.5 9.5 10l4 4L20 7V20H4z" style="stroke:none"/><path d="M3 20h18"/><path d="M4 15.5 9.5 10l4 4L20 7"/><path d="M16 7h4v4"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-movers" aria-label="급등락" title="급등락"><svg viewBox="0 0 24 24"><path class="fl" d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H13z"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-weekly" aria-label="위클리" title="위클리"><svg viewBox="0 0 24 24"><path class="fl" d="M4 5h14a1 1 0 0 1 1 1v11a2 2 0 0 0 2 2H5a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1z"/><path d="M19 19a2 2 0 0 0 2-2V9h-2"/><path class="in" d="M7 9h4v4H7z"/><path class="in" d="M14 9h2M14 12h2M7 16h9"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-thread" aria-label="스레드" title="스레드"><svg viewBox="0 0 24 24"><path class="fl" d="M3.5 10.6 12 3.5l8.5 7.1V20a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1z"/><path class="in" d="M10 21v-6h4v6"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-earn" aria-label="실적" title="실적"><svg viewBox="0 0 24 24"><rect class="fl" x="3.5" y="12" width="4.4" height="8" rx="1.2"/><rect class="fl" x="9.8" y="4" width="4.4" height="16" rx="1.2"/><rect class="fl" x="16.1" y="8.5" width="4.4" height="11.5" rx="1.2"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-macro" aria-label="경제 지표" title="경제 지표"><svg viewBox="0 0 24 24"><path class="fl" d="M3.5 20V15.2l5.8-5.6 4.1 3.9L20.5 7v13z"/><path class="keep" d="M3.5 15.2l5.8-5.6 4.1 3.9L20.5 7"/><path class="keep" d="M16.5 7h4v4"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-movers" aria-label="급등락" title="급등락"><svg viewBox="0 0 24 24"><path class="fl" d="M13.5 2.5 4.5 13.5h6.2l-1.2 8 9-11.5h-6.2z"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-weekly" aria-label="위클리" title="위클리"><svg viewBox="0 0 24 24"><path class="fl" d="M4 4.5h13.5a1 1 0 0 1 1 1V17a3 3 0 0 0 3 3H5.5a2.5 2.5 0 0 1-2.5-2.5v-12a1 1 0 0 1 1-1z"/><path class="keep" d="M18.5 9h2.5v8.5a2.5 2.5 0 0 1-2.5 2.5"/><path class="in" d="M7 8.5h4.5V13H7z"/><path class="in" d="M14 9h1.5M14 12.5h1.5M7 16h8.5"/></svg><span class="nd"></span></button>
 </div></nav>
 
 <div class="dim" id="notify-dim"></div>
@@ -876,6 +910,24 @@ const tickers = new Set(REPORTS_DB.map(r => r.ticker));
 const macroCats = ['전체', ...new Set(MACRO_REPORTS_DB.map(r => r.category))];
 const weeklyMonths = ['전체', ...new Set(WEEKLY_REPORTS_DB.map(r => r.month))];
 const moverKinds = ['전체', '주식', '금리', '환율'];
+/* 로고: logos/{키}.png 우선 → 없으면 사이트 파비콘 → 모노그램 */
+const LOGO = { NVDA:'nvidia.com', AAPL:'apple.com', MSFT:'microsoft.com', GOOGL:'google.com', O:'realtyincome.com', ABBV:'abbvie.com',
+  PLTR:'palantir.com', CRWV:'coreweave.com', IONQ:'ionq.com', SMR:'nuscalepower.com', MU:'micron.com', KO:'coca-colacompany.com',   /* 000660: 파비콘 16px뿐이라 모노그램 */
+  ISM_SVC:'ismworld.org', ISM_MFG:'ismworld.org', JOLTS:'bls.gov', NFP:'bls.gov', CPI:'bls.gov', PPI:'bls.gov', PCE:'bea.gov', GDP_2ND:'bea.gov', GDP_3RD:'bea.gov',
+  RETAIL:'census.gov', FOMC:'federalreserve.gov', FOMC_MIN:'federalreserve.gov', JACKSON:'federalreserve.gov' };
+const MSHORT = { ISM_SVC:'ISM', ISM_MFG:'ISM', JOLTS:'JOLT', REVIEW:'월간', JACKSON:'JH', PCE:'PCE', GDP_2ND:'GDP', GDP_3RD:'GDP', CPI:'CPI', PPI:'PPI', RETAIL:'소매', FOMC_MIN:'FOMC', FOMC:'FOMC', NFP:'고용' };
+const AVC = { NVDA:'#76B900', AAPL:'#555B66', MSFT:'#0E7CD3', GOOGL:'#EA4335', O:'#8B6F47', ABBV:'#071D49', PLTR:'#191F28', CRWV:'#2E6BE6',
+  IONQ:'#5B4FE9', SMR:'#0F8A6F', MU:'#1B4FD8', KO:'#F40009', '000660':'#E2231A' };
+function avatar(key, label){
+  const m = label || MSHORT[key] || (key === '000660' ? 'SK' : String(key).slice(0, 2));
+  const mono = `<span class="av mono${m.length >= 4 ? ' s4' : ''}" style="--avc:${AVC[key] || 'var(--g600)'}">${m}</span>`;
+  const d = LOGO[key];
+  if (!d) return mono;
+  const fav = `https://www.google.com/s2/favicons?domain=${d}&sz=128`;
+  return `<span class="av" data-fb="${mono.replace(/"/g, '&quot;')}"><img src="logos/${key}.png" alt="" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='${fav}'}else{const p=this.parentNode;p.outerHTML=p.dataset.fb}"></span>`;
+}
+const MD = s => { const [y, m, d] = s.split(/[-.]/).map(Number); return `${m}월 ${d}일`; };
+const VLABEL = { BEAT: '상회', MISS: '하회', MIXED: '혼조', PREV: '프리뷰' };
 const KIND_KO = { stock: '주식', rate: '금리', fx: '환율', market: '주식' };
 let VIEW = 'thread';   // 항상 스레드로 시작
 
@@ -975,7 +1027,7 @@ function renderStats(){
          <div class="l">${SEASON.label} 발표</div>
          <div class="bar"><i style="width:${reportedPct}%"></i></div>
        </div>
-       <div class="stat"><div class="n">${UPCOMING_DB.length}</div><div class="l">모니터링 종목</div></div>`;
+       <div class="stat"><div class="n">${UPCOMING_DB.length - reportedCnt}</div><div class="l">발표 대기</div></div>`;   /* v2.8: '모니터링 13'은 hero 칩과 중복 → 발표 대기 수로 */
   } else if (VIEW === 'macro') {
     const mk = `${today.getFullYear()}-${P2(today.getMonth()+1)}`;
     const tk = `${today.getFullYear()}-${P2(today.getMonth()+1)}-${P2(today.getDate())}`;
@@ -1257,40 +1309,51 @@ function renderCards(){
     : VIEW === 'movers' ? '기준선(주가 ±3% · 금리 ±15bp · 환율 ±1.5%)을 넘은 급등락이 아직 없어요'
     : '아직 발간된 위클리 리뷰가 없어요';
   const sup = r => r.surprise ? `<span class="sup ${r.surprise.cls}">${r.surprise.text}</span>` : '';
+  /* v2.7 토스증권형 행: 작성 월 그룹 헤더 + [로고] 제목·부제 / 한줄평 1줄 + 우측 판정·날짜 (급등락은 20거래일 추이 그래프) */
+  let lastG = '';
   rows.forEach(r => {
+    if (VIEW !== 'weekly') {
+      const g = `${r.created.slice(0, 4)}년 ${Number(r.created.split('.')[1])}월 작성`;
+      if (g !== lastG) { const h = document.createElement('div'); h.className = 'rgrp'; h.textContent = g; box.appendChild(h); lastG = g; }
+    }
     const a = document.createElement('a');
     const key = itemKey(r);
-    a.className = 'card' + (isUnread(key) ? ' unread' : '') + (r.file ? '' : ' nolink');
+    a.className = 'row' + (isUnread(key) ? ' unread' : '') + (r.file ? '' : ' nolink');
     if (r.file) a.href = encodeURI(r.file);
     a.onclick = () => markRead(key);
+    const rt = (cls, label, date) => `<div class="rt"><div class="v tx ${cls}">${label}</div><div class="d">${date}</div></div>`;
     a.innerHTML = VIEW === 'movers'
-      ? `<div class="top"><span class="udot"></span><span class="tk">${r.asset}</span><span class="co">${r.name && r.name !== r.asset ? r.name + ' · ' : ''}${KIND_KO[r.kind] || ''} · ${r.price_label || ''}</span><span class="vd ${r.chg >= 0 ? 'UPM' : 'DOWNM'}">${r.chg_label}</span><span class="cz">${r.cause}</span></div>
-         <div class="one">${r.oneliner}</div>
-         <div class="meta"><span>발생 ${r.date}</span><span>작성 ${r.created}</span></div>`
+      ? `<span class="udot"></span>${avatar(r.asset)}
+         <div class="mid"><div class="t">${r.asset}<small>${r.name && r.name !== r.asset ? r.name + ' · ' : ''}${r.cause}</small></div><div class="o">${r.oneliner}</div></div>
+         ${r.spark ? `<div class="rt sp"><div class="v">${sparkline(r.spark, r.chg >= 0, true)}</div><div class="d"><span class="tx ${r.chg >= 0 ? 'UPM' : 'DOWNM'}">${r.chg_label}</span> · ${MD(r.date)}</div></div>`
+                   : rt(r.chg >= 0 ? 'UPM' : 'DOWNM', r.chg_label, MD(r.date))}`
       : VIEW === 'earn'
-      ? `<div class="top"><span class="udot"></span><span class="tk">${r.ticker}</span><span class="co">${r.company} · ${r.quarter}</span><span class="vd ${r.verdict}">${r.vlabel || r.verdict}</span>${sup(r)}</div>
-         <div class="one">${r.oneliner}</div>
-         <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`
+      ? `<span class="udot"></span>${avatar(r.ticker)}
+         <div class="mid"><div class="t">${r.ticker}<small>${r.company} · ${r.quarter}</small></div><div class="o">${r.oneliner}</div></div>
+         ${rt(r.verdict, r.vlabel || VLABEL[r.verdict] || r.verdict, MD(r.report_date))}`
       : VIEW === 'macro'
-      ? `<div class="top"><span class="udot"></span><span class="tk">${r.name}</span><span class="co">${r.period} · ${'★'.repeat(r.tier)}</span><span class="vd ${r.verdict}">${r.vlabel}</span>${sup(r)}</div>
-         <div class="one">${r.oneliner}</div>
-         <div class="meta"><span>발표 ${r.report_date}</span><span>작성 ${r.created}</span></div>`
-      : `<div class="top"><span class="udot"></span><span class="tk">${r.week}</span><span class="vd ${r.verdict}">${r.vlabel}</span></div>
-         <div class="one">${r.title || r.oneliner}</div>
-         <div class="meta"><span>대상 ${r.range}</span><span>발간 ${r.created}</span></div>`;
+      ? `<span class="udot"></span>${avatar(r.id)}
+         <div class="mid"><div class="t">${r.name}<small>${r.period} · ${'★'.repeat(r.tier)}</small></div><div class="o">${r.oneliner}</div></div>
+         ${rt(r.verdict, r.vlabel, MD(r.report_date))}`
+      : `<span class="udot"></span>${avatar('WEEK', 'W' + (r.week.match(/(\d+)주차/) || [,''])[1])}
+         <div class="mid"><div class="t">${r.week}<small>${r.range}</small></div><div class="o">${r.title || r.oneliner}</div></div>
+         ${rt(r.verdict, r.vlabel, r.created.slice(5).replace('.', '/'))}`;
     box.appendChild(a);
   });
 }
 document.getElementById('q').oninput = e => { query = e.target.value.trim().toLowerCase(); renderCards(); };
 
 /* 미니 스파크라인 — 마지막 점만 등락색 */
-function sparkline(v, up){
-  const W = 64, H = 24, p = 3, n = v.length;
+function sparkline(v, up, big){
+  const W = big ? 84 : 64, H = big ? 30 : 24, p = 3, n = v.length;
   const mn = Math.min(...v), mx = Math.max(...v), sp = (mx - mn) || 1;
   const x = i => p + (W - 2*p) * i / (n - 1), y = k => p + (H - 2*p) * (1 - (k - mn) / sp);
   const pts = v.map((k, i) => `${x(i).toFixed(1)},${y(k).toFixed(1)}`).join(' ');
   const col = up ? 'var(--green)' : 'var(--red)';
-  return `<svg class="spk" viewBox="0 0 ${W} ${H}" aria-hidden="true"><polyline points="${pts}"/><circle cx="${x(n-1).toFixed(1)}" cy="${y(v[n-1]).toFixed(1)}" r="2.6" fill="${col}"/></svg>`;
+  if (!big) return `<svg class="spk" viewBox="0 0 ${W} ${H}" aria-hidden="true"><polyline points="${pts}"/><circle cx="${x(n-1).toFixed(1)}" cy="${y(v[n-1]).toFixed(1)}" r="2.6" fill="${col}"/></svg>`;
+  /* 리스트용 큰 버전: 등락색 선 + 옅은 면 + 시작가 점선 */
+  const base = (H - p).toFixed(1), y0 = y(v[0]).toFixed(1);
+  return `<svg class="spk big" viewBox="0 0 ${W} ${H}" aria-label="20거래일 추이"><line x1="${p}" y1="${y0}" x2="${W-p}" y2="${y0}" stroke="var(--g300, #B0B8C1)" stroke-width="1" stroke-dasharray="2 3"/><polygon points="${x(0).toFixed(1)},${base} ${pts} ${x(n-1).toFixed(1)},${base}" fill="${col}" opacity=".10"/><polyline points="${pts}" style="stroke:${col}"/><circle cx="${x(n-1).toFixed(1)}" cy="${y(v[n-1]).toFixed(1)}" r="2.6" fill="${col}"/></svg>`;
 }
 
 /* ===== 스레드 피드 (4개 DB 통합 · 발간 시간 역순 · 날짜별 그룹) ===== */
@@ -1364,7 +1427,7 @@ function setView(v){
   VIEWS.filter(k => k !== 'cal').forEach(k => { document.getElementById('seg-' + k).classList.toggle('on', k === v); });
   document.getElementById('gcal').classList.toggle('on', v === 'cal');
   document.getElementById('hero-chip').textContent = HERO[v].chip;
-  document.getElementById('hero-h1').innerHTML = HERO[v].h1;
+  document.getElementById('hero-h1').innerHTML = HERO[v].h1.replace(/<br\s*\/?>/g, ' ');   /* v2.8: 제목 1줄 */
   document.getElementById('hero-lead').textContent = HERO[v].lead;
   const th = v === 'thread', cal = v === 'cal';
   /* 스레드 탭은 Hero(칩·제목·설명) 없이 피드부터 시작 */

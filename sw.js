@@ -2,10 +2,10 @@
    캐시 전략: 같은 출처의 GET(index·보고서·아이콘·manifest)과 Pretendard 폰트 CSS를
    캐시에서 먼저 응답하고 뒤에서 최신본으로 갱신한다. 보고서는 최근 40개까지만 보관.
    CACHE 이름을 바꾸면 이전 캐시는 activate 때 지워진다. */
-const CACHE = 'mb-cache-v2';
+const CACHE = 'mb-cache-v3';   // v2.8: logos/ 추가로 상한 상향
 const FALLBACK_URL = './index.html';
 const PRECACHE = ['./index.html', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
-const MAX_ENTRIES = 60;
+const MAX_ENTRIES = 100;
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(PRECACHE)).catch(() => {}));
