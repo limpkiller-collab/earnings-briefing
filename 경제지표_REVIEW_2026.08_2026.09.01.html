@@ -210,6 +210,7 @@ b{font-weight:800}
   .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
   .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
   .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
   .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
   .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
   .htable:has(td.w) tr.new td{background:transparent}
@@ -261,13 +262,13 @@ b{font-weight:800}
     <th class="nm">발표일</th><th class="nm">지표 · 대상</th><th>발표</th><th>예측</th><th class="tx">판정</th>
   </tr></thead>
   <tbody>
-  <tr><td class="nm">08.12</td><td class="nm">CPI <span class="star">★★★</span><br><small>2026년 7월</small></td><td class="a">3.4%</td><td>3.4%</td><td class="tx"><span class="vb good">둔화</span> 두 달 연속 둔화, 예측 부합</td></tr>
-  <tr><td class="nm">08.13</td><td class="nm">PPI <span class="star">★★</span><br><small>2026년 7월</small></td><td class="a">0.0%</td><td>+0.2%</td><td class="tx"><span class="vb good">둔화</span> 도매물가 보합, YoY 4.7%</td></tr>
-  <tr><td class="nm">08.14</td><td class="nm">소매판매 <span class="star">★★</span><br><small>2026년 7월</small></td><td class="a down">-0.6%</td><td>+0.1%</td><td class="tx"><span class="vb bad">감소</span> 9개월 만의 감소, 컨트롤 -0.4%</td></tr>
-  <tr><td class="nm">08.20</td><td class="nm">FOMC 의사록 <span class="star">★★</span><br><small>7월 회의</small></td><td class="a">9 – 3</td><td>—</td><td class="tx"><span class="vb bad">매파</span> 반대 3인 모두 인상 주장</td></tr>
-  <tr><td class="nm">08.26</td><td class="nm">GDP 잠정치 <span class="star">★★</span><br><small>2026년 2분기</small></td><td class="a">+1.5%</td><td>+1.5%</td><td class="tx"><span class="vb neut">부합</span> 민간최종수요 4.2%로 상향</td></tr>
-  <tr><td class="nm">08.26</td><td class="nm">PCE 물가 <span class="star">★★★</span><br><small>2026년 7월</small></td><td class="a">3.7%</td><td>3.6%</td><td class="tx"><span class="vb neut">정체</span> 근원 3.3% 두 달 연속 제자리</td></tr>
-  <tr class="new"><td class="nm">08.28</td><td class="nm">잭슨홀 <span class="star">★★</span><br><small>2026년 8월</small></td><td class="a up">57.5%</td><td>35.4%</td><td class="tx"><span class="vb bad">매파</span> 워시 의장 첫 연설, 인상 확률 역전</td></tr>
+  <tr><td class="nm">08.12</td><td class="nm" data-h="지표 · 대상">CPI <span class="star">★★★</span><br><small>2026년 7월</small></td><td class="a" data-h="발표">3.4%</td><td data-h="예측">3.4%</td><td class="w tx"><span class="vb good">둔화</span> 두 달 연속 둔화, 예측 부합</td></tr>
+  <tr><td class="nm">08.13</td><td class="nm" data-h="지표 · 대상">PPI <span class="star">★★</span><br><small>2026년 7월</small></td><td class="a" data-h="발표">0.0%</td><td data-h="예측">+0.2%</td><td class="w tx"><span class="vb good">둔화</span> 도매물가 보합, YoY 4.7%</td></tr>
+  <tr><td class="nm">08.14</td><td class="nm" data-h="지표 · 대상">소매판매 <span class="star">★★</span><br><small>2026년 7월</small></td><td class="a down" data-h="발표">-0.6%</td><td data-h="예측">+0.1%</td><td class="w tx"><span class="vb bad">감소</span> 9개월 만의 감소, 컨트롤 -0.4%</td></tr>
+  <tr><td class="nm">08.20</td><td class="nm" data-h="지표 · 대상">FOMC 의사록 <span class="star">★★</span><br><small>7월 회의</small></td><td class="a" data-h="발표">9 – 3</td><td data-h="예측">—</td><td class="w tx"><span class="vb bad">매파</span> 반대 3인 모두 인상 주장</td></tr>
+  <tr><td class="nm">08.26</td><td class="nm" data-h="지표 · 대상">GDP 잠정치 <span class="star">★★</span><br><small>2026년 2분기</small></td><td class="a" data-h="발표">+1.5%</td><td data-h="예측">+1.5%</td><td class="w tx"><span class="vb neut">부합</span> 민간최종수요 4.2%로 상향</td></tr>
+  <tr><td class="nm">08.26</td><td class="nm" data-h="지표 · 대상">PCE 물가 <span class="star">★★★</span><br><small>2026년 7월</small></td><td class="a" data-h="발표">3.7%</td><td data-h="예측">3.6%</td><td class="w tx"><span class="vb neut">정체</span> 근원 3.3% 두 달 연속 제자리</td></tr>
+  <tr class="new"><td class="nm">08.28</td><td class="nm" data-h="지표 · 대상">잭슨홀 <span class="star">★★</span><br><small>2026년 8월</small></td><td class="a up" data-h="발표">57.5%</td><td data-h="예측">35.4%</td><td class="w tx"><span class="vb bad">매파</span> 워시 의장 첫 연설, 인상 확률 역전</td></tr>
   </tbody>
 </table>
 </div>
@@ -299,13 +300,13 @@ b{font-weight:800}
 <table class="htable">
   <thead><tr><th class="nm">발표일</th><th class="nm">종목 · 분기</th><th class="tx">핵심</th><th>판정</th></tr></thead>
   <tbody>
-  <tr><td class="nm">08.27</td><td class="nm">NVIDIA <small>FY27 Q2</small></td><td class="tx">매출 $96.2B(+106%)·조정 EPS $2.22, Q3 가이던스 $108.0B으로 컨센 3.6% 상회</td><td><span class="vb beat">BEAT</span></td></tr>
-  <tr><td class="nm">08.12</td><td class="nm">CoreWeave <small>2026 Q2</small></td><td class="tx">매출 $2.58B(+112%), 수주잔고 $104B — 다만 부채비율 1,434%로 악화</td><td><span class="vb beat">BEAT</span></td></tr>
-  <tr><td class="nm">08.07</td><td class="nm">IonQ <small>2026 Q2</small></td><td class="tx">매출 $80.1M(+287%)로 컨센 21% 상회, 연간 가이던스 $280~290M로 상향</td><td><span class="vb beat">BEAT</span></td></tr>
-  <tr><td class="nm">08.07</td><td class="nm">Realty Income <small>2026 Q2</small></td><td class="tx">AFFO $1.09 부합, 연간 AFFO·투자($10B) 가이던스 상향</td><td><span class="vb mixed">MIXED</span></td></tr>
-  <tr><td class="nm">08.07</td><td class="nm">NuScale Power <small>2026 Q2</small></td><td class="tx">RoPower FEED 종료로 매출 $75K, 현금 $1.9B — TVA 6~8GW 계약 대기</td><td><span class="vb miss">MISS</span></td></tr>
-  <tr><td class="nm">08.05</td><td class="nm">Palantir <small>2026 Q2</small></td><td class="tx">매출 +93% 재가속, 'AI 주권' 수요로 연간 가이던스 대폭 상향</td><td><span class="vb beat">BEAT</span></td></tr>
-  <tr><td class="nm">08.01</td><td class="nm">Apple <small>FY26 Q3</small></td><td class="tx">매출 $109.4B(+16%)로 6월 분기 최대지만 마진 가이던스 47~48%로 하향</td><td><span class="vb mixed">MIXED</span></td></tr>
+  <tr><td class="nm">08.27</td><td class="w nm">NVIDIA <small>FY27 Q2</small></td><td class="w tx">매출 $96.2B(+106%)·조정 EPS $2.22, Q3 가이던스 $108.0B으로 컨센 3.6% 상회</td><td data-h="판정"><span class="vb beat">BEAT</span></td></tr>
+  <tr><td class="nm">08.12</td><td class="w nm">CoreWeave <small>2026 Q2</small></td><td class="w tx">매출 $2.58B(+112%), 수주잔고 $104B — 다만 부채비율 1,434%로 악화</td><td data-h="판정"><span class="vb beat">BEAT</span></td></tr>
+  <tr><td class="nm">08.07</td><td class="w nm">IonQ <small>2026 Q2</small></td><td class="w tx">매출 $80.1M(+287%)로 컨센 21% 상회, 연간 가이던스 $280~290M로 상향</td><td data-h="판정"><span class="vb beat">BEAT</span></td></tr>
+  <tr><td class="nm">08.07</td><td class="w nm">Realty Income <small>2026 Q2</small></td><td class="w tx">AFFO $1.09 부합, 연간 AFFO·투자($10B) 가이던스 상향</td><td data-h="판정"><span class="vb mixed">MIXED</span></td></tr>
+  <tr><td class="nm">08.07</td><td class="w nm">NuScale Power <small>2026 Q2</small></td><td class="w tx">RoPower FEED 종료로 매출 $75K, 현금 $1.9B — TVA 6~8GW 계약 대기</td><td data-h="판정"><span class="vb miss">MISS</span></td></tr>
+  <tr><td class="nm">08.05</td><td class="w nm">Palantir <small>2026 Q2</small></td><td class="w tx">매출 +93% 재가속, 'AI 주권' 수요로 연간 가이던스 대폭 상향</td><td data-h="판정"><span class="vb beat">BEAT</span></td></tr>
+  <tr><td class="nm">08.01</td><td class="w nm">Apple <small>FY26 Q3</small></td><td class="w tx">매출 $109.4B(+16%)로 6월 분기 최대지만 마진 가이던스 47~48%로 하향</td><td data-h="판정"><span class="vb mixed">MIXED</span></td></tr>
   </tbody>
 </table>
 </div>
@@ -332,17 +333,17 @@ b{font-weight:800}
 <table class="htable">
   <thead><tr><th class="nm">날짜</th><th class="nm">일정</th><th class="nm">대상</th><th class="tx">왜 중요한가요</th></tr></thead>
   <tbody>
-  <tr><td class="nm">09.01 (화)</td><td class="nm">ISM 제조업 PMI <span class="star">★★</span></td><td class="nm">8월</td><td class="tx">관세·에너지 원가가 제조업 체감에 어떻게 반영되는지</td></tr>
-  <tr><td class="nm">09.01 (화)</td><td class="nm">JOLTs 구인건수 <span class="star">★★</span></td><td class="nm">7월</td><td class="tx">7월 고용 부진이 구인 수요 감소로 이어졌는지</td></tr>
-  <tr><td class="nm">09.03 (목)</td><td class="nm">ISM 서비스업 PMI <span class="star">★★</span></td><td class="nm">8월</td><td class="tx">소매판매가 꺾인 뒤 서비스 수요까지 식는지</td></tr>
-  <tr class="new"><td class="nm">09.04 (금)</td><td class="nm">고용보고서 <span class="star">★★★</span></td><td class="nm">8월</td><td class="tx">인상 확률 66%를 굳힐지 되돌릴지 — 7월엔 부진으로 확률이 20%p 꺾였어요</td></tr>
-  <tr><td class="nm">09.10 (목)</td><td class="nm">PPI <span class="star">★★</span></td><td class="nm">8월</td><td class="tx">보합(0.0%)이 이어지는지, 관세 원가 전가가 재개되는지</td></tr>
-  <tr class="new"><td class="nm">09.11 (금)</td><td class="nm">CPI <span class="star">★★★</span></td><td class="nm">8월</td><td class="tx">FOMC 전 마지막 물가 지표 — 3.4%의 둔화 흐름이 이어지는지</td></tr>
-  <tr><td class="nm">09.16 (수)</td><td class="nm">소매판매 <span class="star">★★</span></td><td class="nm">8월</td><td class="tx">-0.6%에서 반등하는지, 두 달 연속 감소로 가는지</td></tr>
-  <tr class="new"><td class="nm">09.17 (목 새벽)</td><td class="nm">FOMC 금리결정 + SEP <span class="star">★★★</span></td><td class="nm">9월 회의</td><td class="tx">2022년 이후 첫 인상이 나오는지, 점도표 중간값이 어디로 이동하는지</td></tr>
-  <tr><td class="nm">09.29 (화)</td><td class="nm">JOLTs 구인건수 <span class="star">★★</span></td><td class="nm">8월</td><td class="tx">고용 수요의 방향 재확인</td></tr>
-  <tr><td class="nm">09.30 (수)</td><td class="nm">GDP 확정치 <span class="star">★★</span></td><td class="nm">2분기</td><td class="tx">실질 GDP 1.5%가 GDI(2.2%) 쪽으로 상향되는지</td></tr>
-  <tr><td class="nm">09.30 (수)</td><td class="nm">PCE 물가 <span class="star">★★★</span></td><td class="nm">8월</td><td class="tx">연준이 보는 물가 — 헤드라인 3.7%·근원 3.3%가 움직이는지</td></tr>
+  <tr><td class="nm">09.01 (화)</td><td class="nm" data-h="일정">ISM 제조업 PMI <span class="star">★★</span></td><td class="nm" data-h="대상">8월</td><td class="w tx">관세·에너지 원가가 제조업 체감에 어떻게 반영되는지</td></tr>
+  <tr><td class="nm">09.01 (화)</td><td class="nm" data-h="일정">JOLTs 구인건수 <span class="star">★★</span></td><td class="nm" data-h="대상">7월</td><td class="w tx">7월 고용 부진이 구인 수요 감소로 이어졌는지</td></tr>
+  <tr><td class="nm">09.03 (목)</td><td class="nm" data-h="일정">ISM 서비스업 PMI <span class="star">★★</span></td><td class="nm" data-h="대상">8월</td><td class="w tx">소매판매가 꺾인 뒤 서비스 수요까지 식는지</td></tr>
+  <tr class="new"><td class="nm">09.04 (금)</td><td class="nm" data-h="일정">고용보고서 <span class="star">★★★</span></td><td class="nm" data-h="대상">8월</td><td class="w tx">인상 확률 66%를 굳힐지 되돌릴지 — 7월엔 부진으로 확률이 20%p 꺾였어요</td></tr>
+  <tr><td class="nm">09.10 (목)</td><td class="nm" data-h="일정">PPI <span class="star">★★</span></td><td class="nm" data-h="대상">8월</td><td class="w tx">보합(0.0%)이 이어지는지, 관세 원가 전가가 재개되는지</td></tr>
+  <tr class="new"><td class="nm">09.11 (금)</td><td class="nm" data-h="일정">CPI <span class="star">★★★</span></td><td class="nm" data-h="대상">8월</td><td class="w tx">FOMC 전 마지막 물가 지표 — 3.4%의 둔화 흐름이 이어지는지</td></tr>
+  <tr><td class="nm">09.16 (수)</td><td class="nm" data-h="일정">소매판매 <span class="star">★★</span></td><td class="nm" data-h="대상">8월</td><td class="w tx">-0.6%에서 반등하는지, 두 달 연속 감소로 가는지</td></tr>
+  <tr class="new"><td class="nm">09.17 (목 새벽)</td><td class="nm" data-h="일정">FOMC 금리결정 + SEP <span class="star">★★★</span></td><td class="nm" data-h="대상">9월 회의</td><td class="w tx">2022년 이후 첫 인상이 나오는지, 점도표 중간값이 어디로 이동하는지</td></tr>
+  <tr><td class="nm">09.29 (화)</td><td class="nm" data-h="일정">JOLTs 구인건수 <span class="star">★★</span></td><td class="nm" data-h="대상">8월</td><td class="w tx">고용 수요의 방향 재확인</td></tr>
+  <tr><td class="nm">09.30 (수)</td><td class="nm" data-h="일정">GDP 확정치 <span class="star">★★</span></td><td class="nm" data-h="대상">2분기</td><td class="w tx">실질 GDP 1.5%가 GDI(2.2%) 쪽으로 상향되는지</td></tr>
+  <tr><td class="nm">09.30 (수)</td><td class="nm" data-h="일정">PCE 물가 <span class="star">★★★</span></td><td class="nm" data-h="대상">8월</td><td class="w tx">연준이 보는 물가 — 헤드라인 3.7%·근원 3.3%가 움직이는지</td></tr>
   </tbody>
 </table>
 </div>
@@ -354,9 +355,9 @@ b{font-weight:800}
 <table class="htable">
   <thead><tr><th class="nm">날짜(KST)</th><th class="nm">기업</th><th class="tx">일정</th></tr></thead>
   <tbody>
-  <tr class="new"><td class="nm">09.10 (목) 02:00</td><td class="nm">Apple</td><td class="tx">아이폰 18 Pro·폴더블 아이폰 공개 이벤트 'Surprise and shine' — 미국 9/9 10:00 PT, 애플파크. 8월 26일 공식 초청장 발송으로 확정됐어요</td></tr>
-  <tr><td class="nm">09.30 (수)</td><td class="nm">Micron</td><td class="tx">FY26 Q4 실적발표 — 가이던스 매출 $50B·매출총이익률 86% 달성 여부가 관건 (예상일)</td></tr>
-  <tr><td class="nm">10.20~22</td><td class="nm">NVIDIA</td><td class="tx">GTC Berlin (STATION-Berlin) — 젠슨 황 키노트 10월 21일. 유럽 AI 인프라 수요가 어느 정도인지 확인할 자리예요</td></tr>
+  <tr class="new"><td class="nm">09.10 (목) 02:00</td><td class="nm" data-h="기업">Apple</td><td class="w tx">아이폰 18 Pro·폴더블 아이폰 공개 이벤트 'Surprise and shine' — 미국 9/9 10:00 PT, 애플파크. 8월 26일 공식 초청장 발송으로 확정됐어요</td></tr>
+  <tr><td class="nm">09.30 (수)</td><td class="nm" data-h="기업">Micron</td><td class="w tx">FY26 Q4 실적발표 — 가이던스 매출 $50B·매출총이익률 86% 달성 여부가 관건 (예상일)</td></tr>
+  <tr><td class="nm">10.20~22</td><td class="nm" data-h="기업">NVIDIA</td><td class="w tx">GTC Berlin (STATION-Berlin) — 젠슨 황 키노트 10월 21일. 유럽 AI 인프라 수요가 어느 정도인지 확인할 자리예요</td></tr>
   </tbody>
 </table>
 </div>

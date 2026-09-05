@@ -226,6 +226,7 @@ b{font-weight:800}
   .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
   .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
   .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
   .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
   .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
   .htable:has(td.w) tr.new td{background:transparent}
@@ -263,13 +264,13 @@ b{font-weight:800}
 <div class="sub-desc">실업률은 그대로인데, 참가율과 시간당 임금에서 신호가 갈려요.</div>
 <div class="twrap"><table class="htable">
   <tr><th>항목</th><th>8월</th><th>변화</th><th class="w">해석</th></tr>
-  <tr><td>실업률</td><td class="a">4.1%</td><td>보합</td><td class="w">실업자 700만명 · 1년 전과도 큰 차이 없음</td></tr>
-  <tr><td>경제활동참가율</td><td class="a">61.6%</td><td class="up">소폭 상승</td><td class="w">1월 대비로는 -0.5%p — 사람이 노동시장을 떠난 효과가 실업률을 낮게 유지</td></tr>
-  <tr><td>고용률(고용/인구)</td><td class="a">59.1%</td><td>보합</td><td class="w">1월 이후로도 큰 변화 없음</td></tr>
-  <tr><td>시간당 평균임금</td><td class="a">$37.75</td><td class="up">+0.3% (YoY +3.1%)</td><td class="w">물가(3.4%)보다 낮아 실질임금은 아직 마이너스권</td></tr>
-  <tr><td>주당 평균근로시간</td><td class="a">34.4시간</td><td class="up">+0.1시간</td><td class="w">제조업은 40.5시간(+0.1) · 초과근무 3.1시간 유지</td></tr>
-  <tr><td>장기실업자(27주 이상)</td><td class="a">190만명</td><td>보합</td><td class="w">전체 실업자의 27.0% — 한 번 실직하면 오래 걸리는 구조</td></tr>
-  <tr><td>경제적 이유 시간제</td><td class="a">440만명</td><td class="down">-41.4만명</td><td class="w">풀타임을 원하는데 시간제로 일하는 사람이 크게 줄어든 건 긍정 신호</td></tr>
+  <tr><td>실업률</td><td class="a" data-h="8월">4.1%</td><td data-h="변화">보합</td><td class="w">실업자 700만명 · 1년 전과도 큰 차이 없음</td></tr>
+  <tr><td>경제활동참가율</td><td class="a" data-h="8월">61.6%</td><td class="up" data-h="변화">소폭 상승</td><td class="w">1월 대비로는 -0.5%p — 사람이 노동시장을 떠난 효과가 실업률을 낮게 유지</td></tr>
+  <tr><td>고용률(고용/인구)</td><td class="a" data-h="8월">59.1%</td><td data-h="변화">보합</td><td class="w">1월 이후로도 큰 변화 없음</td></tr>
+  <tr><td>시간당 평균임금</td><td class="a" data-h="8월">$37.75</td><td class="up" data-h="변화">+0.3% (YoY +3.1%)</td><td class="w">물가(3.4%)보다 낮아 실질임금은 아직 마이너스권</td></tr>
+  <tr><td>주당 평균근로시간</td><td class="a" data-h="8월">34.4시간</td><td class="up" data-h="변화">+0.1시간</td><td class="w">제조업은 40.5시간(+0.1) · 초과근무 3.1시간 유지</td></tr>
+  <tr><td>장기실업자(27주 이상)</td><td class="a" data-h="8월">190만명</td><td data-h="변화">보합</td><td class="w">전체 실업자의 27.0% — 한 번 실직하면 오래 걸리는 구조</td></tr>
+  <tr><td>경제적 이유 시간제</td><td class="a" data-h="8월">440만명</td><td class="down" data-h="변화">-41.4만명</td><td class="w">풀타임을 원하는데 시간제로 일하는 사람이 크게 줄어든 건 긍정 신호</td></tr>
 </table></div>
 <div class="g-note">인종·연령별로는 아시아계 3.2%(하락), 10대 14.1%(상승), 성인남성 4.0%, 성인여성 3.5%, 백인 3.7%, 흑인 6.0%, 히스패닉 4.8%예요. 한편 CNBC는 8월 증가분 16.2만명 중 약 98%인 15.8만명이 여성이었다고 보도했어요. ⚠️ 이 성별 분해 수치는 BLS 보도자료 본문에 직접 실린 항목이 아니라 언론 집계예요.</div>
 

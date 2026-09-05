@@ -182,11 +182,11 @@ b{font-weight:800}
 <div class="sub-desc">연준 의사록은 인원수 대신 '많은·몇몇·일부' 같은 표현으로 강도를 나타내요.</div>
 <div class="twrap"><table class="htable">
   <tr><th>표현</th><th>대략 규모</th><th>내용</th></tr>
-  <tr class="new"><td>Many (많은)</td><td>과반에 근접</td><td class="wrap">물가가 내려오지 않으면 <b>정책 긴축이 필요</b>할 것</td></tr>
-  <tr><td>Many (많은)</td><td>과반에 근접</td><td class="wrap">2% 초과 물가가 <b>수년째 이어지면</b> 기대 인플레이션과 임금·가격 결정에 영향을 줄 수 있음</td></tr>
-  <tr><td>Several (몇몇)</td><td>3~5명 안팎</td><td class="wrap">이번 회의에서 <b>0.25%p 인상을 선호</b> — 가격 상승이 광범위하다고 판단</td></tr>
-  <tr><td>Some (일부)</td><td>2~4명 안팎</td><td class="wrap">현재 <b>금융여건이 충분히 긴축적이지 않을 수</b> 있음</td></tr>
-  <tr><td>A few (소수)</td><td>2~3명</td><td class="wrap">지금 올려두면 <b>나중에 더 가파른 인상</b>을 피할 수 있음</td></tr>
+  <tr class="new"><td>Many (많은)</td><td data-h="대략 규모">과반에 근접</td><td class="w wrap">물가가 내려오지 않으면 <b>정책 긴축이 필요</b>할 것</td></tr>
+  <tr><td>Many (많은)</td><td data-h="대략 규모">과반에 근접</td><td class="w wrap">2% 초과 물가가 <b>수년째 이어지면</b> 기대 인플레이션과 임금·가격 결정에 영향을 줄 수 있음</td></tr>
+  <tr><td>Several (몇몇)</td><td data-h="대략 규모">3~5명 안팎</td><td class="w wrap">이번 회의에서 <b>0.25%p 인상을 선호</b> — 가격 상승이 광범위하다고 판단</td></tr>
+  <tr><td>Some (일부)</td><td data-h="대략 규모">2~4명 안팎</td><td class="w wrap">현재 <b>금융여건이 충분히 긴축적이지 않을 수</b> 있음</td></tr>
+  <tr><td>A few (소수)</td><td data-h="대략 규모">2~3명</td><td class="w wrap">지금 올려두면 <b>나중에 더 가파른 인상</b>을 피할 수 있음</td></tr>
 </table></div>
 <div class="g-note">표현별 인원수는 연준이 공식 정의한 값이 아니라 시장의 관행적 해석이에요. 정확한 인원은 공개되지 않아요.</div>
 
@@ -263,6 +263,7 @@ b{font-weight:800}
   .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
   .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
   .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
   .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
   .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
   .htable:has(td.w) tr.new td{background:transparent}

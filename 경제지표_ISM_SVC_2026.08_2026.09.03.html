@@ -224,6 +224,7 @@ b{font-weight:800}
   .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
   .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
   .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
   .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
   .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
   .htable:has(td.w) tr.new td{background:transparent}
@@ -236,12 +237,12 @@ b{font-weight:800}
 <div class="sub-desc">예측 상회는 빨강, 하회는 파랑으로 표시해요.</div>
 <div class="twrap"><table class="htable">
   <tr><th>발표일 (대상월)</th><th>발표</th><th>예측</th><th>이전</th><th>비고</th></tr>
-  <tr class="new"><td>2026.09.03 (8월)</td><td class="a up">55.4</td><td>54.3</td><td>54.1</td><td style="white-space:normal">26개월 연속 확장, 신규주문 3년반 최고</td></tr>
-  <tr><td>2026.08.05 (7월)</td><td class="a down">54.1</td><td>54.6</td><td>54.0</td><td style="white-space:normal">예측 하회</td></tr>
-  <tr><td>2026.07.06 (6월)</td><td class="a">54.0</td><td>—</td><td>54.5</td><td style="white-space:normal">소폭 둔화</td></tr>
-  <tr><td>2026.06 (5월)</td><td class="a">54.5</td><td>—</td><td>53.6</td><td style="white-space:normal">반등</td></tr>
-  <tr><td>2026.05 (4월)</td><td class="a">53.6</td><td>—</td><td>54.0</td><td style="white-space:normal">연중 최저</td></tr>
-  <tr><td>2026.04 (3월)</td><td class="a">54.0</td><td>—</td><td>56.1</td><td style="white-space:normal">2월 고점에서 하락</td></tr>
+  <tr class="new"><td>2026.09.03 (8월)</td><td class="a up" data-h="발표">55.4</td><td data-h="예측">54.3</td><td data-h="이전">54.1</td><td style="white-space:normal" class="w">26개월 연속 확장, 신규주문 3년반 최고</td></tr>
+  <tr><td>2026.08.05 (7월)</td><td class="a down" data-h="발표">54.1</td><td data-h="예측">54.6</td><td data-h="이전">54.0</td><td style="white-space:normal" class="w">예측 하회</td></tr>
+  <tr><td>2026.07.06 (6월)</td><td class="a" data-h="발표">54.0</td><td data-h="예측">—</td><td data-h="이전">54.5</td><td style="white-space:normal" class="w">소폭 둔화</td></tr>
+  <tr><td>2026.06 (5월)</td><td class="a" data-h="발표">54.5</td><td data-h="예측">—</td><td data-h="이전">53.6</td><td style="white-space:normal" class="w">반등</td></tr>
+  <tr><td>2026.05 (4월)</td><td class="a" data-h="발표">53.6</td><td data-h="예측">—</td><td data-h="이전">54.0</td><td style="white-space:normal" class="w">연중 최저</td></tr>
+  <tr><td>2026.04 (3월)</td><td class="a" data-h="발표">54.0</td><td data-h="예측">—</td><td data-h="이전">56.1</td><td style="white-space:normal" class="w">2월 고점에서 하락</td></tr>
 </table></div>
 <div class="g-note">예측치가 확인되지 않은 회차는 —로 비워뒀어요. 8월 컨센서스는 출처에 따라 54.2~54.3으로 갈리는데, 어느 쪽이든 발표치가 상회예요. ISM 지수는 사후 수정이 없고, 사업활동·신규주문·고용·가격만 계절조정 대상이에요.</div>
 
@@ -249,17 +250,17 @@ b{font-weight:800}
 <div class="sub-desc">서비스업 PMI는 사업활동·신규주문·고용·공급자배송 네 지수를 같은 비중으로 묶어 만들어요.</div>
 <div class="twrap"><table class="htable">
   <tr><th>지수</th><th>8월</th><th>7월</th><th>변화</th><th>상태</th></tr>
-  <tr class="new"><td style="white-space:normal">서비스업 PMI</td><td class="a up">55.4</td><td>54.1</td><td class="up">+1.3</td><td style="white-space:normal">확장 26개월째</td></tr>
-  <tr><td style="white-space:normal">사업활동</td><td class="a up">61.7</td><td>59.1</td><td class="up">+2.6</td><td style="white-space:normal">2022년 11월 이후 최고</td></tr>
-  <tr><td style="white-space:normal">신규주문</td><td class="a up">60.9</td><td>57.2</td><td class="up">+3.7</td><td style="white-space:normal">2023년 2월 이후 최고</td></tr>
-  <tr><td style="white-space:normal">고용</td><td class="a down">47.8</td><td>47.4</td><td class="up">+0.4</td><td style="white-space:normal">위축 2개월째</td></tr>
-  <tr><td style="white-space:normal">공급자배송</td><td class="a down">51.3</td><td>52.8</td><td class="down">-1.5</td><td style="white-space:normal">지연 21개월째(역방향 지수)</td></tr>
-  <tr><td style="white-space:normal">재고</td><td class="a up">56.7</td><td>51.4</td><td class="up">+5.3</td><td style="white-space:normal">확장 7개월째</td></tr>
-  <tr><td style="white-space:normal">가격</td><td class="a up">72.6</td><td>70.3</td><td class="up">+2.3</td><td style="white-space:normal">상승 111개월째 · 2022년 8월 이후 최고</td></tr>
-  <tr><td style="white-space:normal">수주잔고</td><td class="a up">55.6</td><td>50.9</td><td class="up">+4.7</td><td style="white-space:normal">확장 7개월째</td></tr>
-  <tr><td style="white-space:normal">신규 수출주문</td><td class="a up">56.3</td><td>52.0</td><td class="up">+4.3</td><td style="white-space:normal">확장 3개월째</td></tr>
-  <tr><td style="white-space:normal">수입</td><td class="a up">56.3</td><td>51.8</td><td class="up">+4.5</td><td style="white-space:normal">확장 2개월째</td></tr>
-  <tr><td style="white-space:normal">재고심리</td><td class="a">54.1</td><td>52.5</td><td class="up">+1.6</td><td style="white-space:normal">'너무 높음' 40개월째</td></tr>
+  <tr class="new"><td style="white-space:normal">서비스업 PMI</td><td class="a up" data-h="8월">55.4</td><td data-h="7월">54.1</td><td class="up" data-h="변화">+1.3</td><td style="white-space:normal" class="w">확장 26개월째</td></tr>
+  <tr><td style="white-space:normal">사업활동</td><td class="a up" data-h="8월">61.7</td><td data-h="7월">59.1</td><td class="up" data-h="변화">+2.6</td><td style="white-space:normal" class="w">2022년 11월 이후 최고</td></tr>
+  <tr><td style="white-space:normal">신규주문</td><td class="a up" data-h="8월">60.9</td><td data-h="7월">57.2</td><td class="up" data-h="변화">+3.7</td><td style="white-space:normal" class="w">2023년 2월 이후 최고</td></tr>
+  <tr><td style="white-space:normal">고용</td><td class="a down" data-h="8월">47.8</td><td data-h="7월">47.4</td><td class="up" data-h="변화">+0.4</td><td style="white-space:normal" class="w">위축 2개월째</td></tr>
+  <tr><td style="white-space:normal">공급자배송</td><td class="a down" data-h="8월">51.3</td><td data-h="7월">52.8</td><td class="down" data-h="변화">-1.5</td><td style="white-space:normal" class="w">지연 21개월째(역방향 지수)</td></tr>
+  <tr><td style="white-space:normal">재고</td><td class="a up" data-h="8월">56.7</td><td data-h="7월">51.4</td><td class="up" data-h="변화">+5.3</td><td style="white-space:normal" class="w">확장 7개월째</td></tr>
+  <tr><td style="white-space:normal">가격</td><td class="a up" data-h="8월">72.6</td><td data-h="7월">70.3</td><td class="up" data-h="변화">+2.3</td><td style="white-space:normal" class="w">상승 111개월째 · 2022년 8월 이후 최고</td></tr>
+  <tr><td style="white-space:normal">수주잔고</td><td class="a up" data-h="8월">55.6</td><td data-h="7월">50.9</td><td class="up" data-h="변화">+4.7</td><td style="white-space:normal" class="w">확장 7개월째</td></tr>
+  <tr><td style="white-space:normal">신규 수출주문</td><td class="a up" data-h="8월">56.3</td><td data-h="7월">52.0</td><td class="up" data-h="변화">+4.3</td><td style="white-space:normal" class="w">확장 3개월째</td></tr>
+  <tr><td style="white-space:normal">수입</td><td class="a up" data-h="8월">56.3</td><td data-h="7월">51.8</td><td class="up" data-h="변화">+4.5</td><td style="white-space:normal" class="w">확장 2개월째</td></tr>
+  <tr><td style="white-space:normal">재고심리</td><td class="a" data-h="8월">54.1</td><td data-h="7월">52.5</td><td class="up" data-h="변화">+1.6</td><td style="white-space:normal" class="w">'너무 높음' 40개월째</td></tr>
 </table></div>
 <div class="g-note">공급자배송은 방향이 뒤집힌 지수예요. 50 위면 '배송이 느려짐'을 뜻해요. 8월엔 51.3으로 넉 달 연속 내려와, 공급망 병목 자체는 완화되는 쪽이에요.</div>
 

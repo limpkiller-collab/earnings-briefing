@@ -170,6 +170,7 @@ ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;heigh
   .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
   .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
   .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
   .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
   .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
   .htable:has(td.w) tr.new td{background:transparent}

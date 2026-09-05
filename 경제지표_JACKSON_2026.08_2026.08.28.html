@@ -172,10 +172,10 @@ b{font-weight:800}
 <div class="sub-desc">본인이 서두에 "이건 아웃라인이지 포워드 가이던스가 아니다"라고 농담처럼 밝혔어요.</div>
 <div class="twrap"><table class="htable">
   <tr><th>파트</th><th>주제</th><th>핵심</th></tr>
-  <tr><td>1</td><td>AI와 경제</td><td class="wrap">AI를 <b>새로운 생산요소</b>로 규정 · 생산성·고용·시장구조에 대한 질문을 <b>태스크포스</b>에 맡김. 단, <b>현재 정책 결정에는 영향 없음</b>을 명시</td></tr>
-  <tr class="new"><td>2</td><td>포워드 가이던스</td><td class="wrap">위기 때 도입한 관행이 <b>"너무 오래 머물렀다"</b> · 반응함수 제시도 거부. 시장과 연준이 서로를 비추는 <b>'거울의 방(hall of mirrors)'</b> 문제를 경계</td></tr>
-  <tr><td>3</td><td>7가지 정책 원칙</td><td class="wrap">추세 우선 · 공급측 불확실성 인정 · <b>PCE 2% 목표는 고정</b> · 이중책무는 상충하지 않음 · 단기금리가 주된 수단 · <b>통화량도 본다</b> · 조용한 연준</td></tr>
-  <tr><td>4</td><td>경제 평가</td><td class="wrap">성장·고용은 <b>인상적으로 견조</b>, 물가는 <b>여전히 문제</b>. "지금 연준의 주된 초점은 물가에 있어야 한다"</td></tr>
+  <tr><td>1</td><td data-h="주제">AI와 경제</td><td class="w wrap">AI를 <b>새로운 생산요소</b>로 규정 · 생산성·고용·시장구조에 대한 질문을 <b>태스크포스</b>에 맡김. 단, <b>현재 정책 결정에는 영향 없음</b>을 명시</td></tr>
+  <tr class="new"><td>2</td><td data-h="주제">포워드 가이던스</td><td class="w wrap">위기 때 도입한 관행이 <b>"너무 오래 머물렀다"</b> · 반응함수 제시도 거부. 시장과 연준이 서로를 비추는 <b>'거울의 방(hall of mirrors)'</b> 문제를 경계</td></tr>
+  <tr><td>3</td><td data-h="주제">7가지 정책 원칙</td><td class="w wrap">추세 우선 · 공급측 불확실성 인정 · <b>PCE 2% 목표는 고정</b> · 이중책무는 상충하지 않음 · 단기금리가 주된 수단 · <b>통화량도 본다</b> · 조용한 연준</td></tr>
+  <tr><td>4</td><td data-h="주제">경제 평가</td><td class="w wrap">성장·고용은 <b>인상적으로 견조</b>, 물가는 <b>여전히 문제</b>. "지금 연준의 주된 초점은 물가에 있어야 한다"</td></tr>
 </table></div>
 
 <div class="sub-head">📉 시장은 이렇게 읽었어요</div>
@@ -255,6 +255,7 @@ b{font-weight:800}
   .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
   .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
   .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
   .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
   .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
   .htable:has(td.w) tr.new td{background:transparent}
@@ -274,12 +275,12 @@ b{font-weight:800}
 <div class="sub-desc">물가를 걱정하면서 경제는 강하다고 본 게 매파로 읽힌 두 번째 이유예요.</div>
 <div class="twrap"><table class="htable">
   <tr><th>항목</th><th>수치</th><th>워시 의장의 평가</th></tr>
-  <tr class="new"><td>설비·무형자산 투자</td><td class="a up">+9%</td><td class="wrap">4분기 누적 증가율 · <b>2021년 이후 최고</b> · 올해 증가분의 절반 이상이 <b>AI 빌드아웃</b></td></tr>
-  <tr><td>S&amp;P 500 기업이익</td><td class="a up">+20%↑</td><td class="wrap">지난 1년 · 이익률도 역사적으로 높은 수준 · 주식 변동성은 낮음</td></tr>
-  <tr><td>민간 최종수요(PDFP)</td><td class="a">약 +3%</td><td class="wrap">올해 들어 · "GDP보다 신호가 더 강한 지표"</td></tr>
-  <tr><td>실질 소비지출</td><td class="a">+2%↑</td><td class="wrap">최근 4분기 · 여러 충격에도 견조</td></tr>
-  <tr><td>실업률</td><td class="a">4.1%</td><td class="wrap">역사적으로 낮음 · 2년째 큰 변화 없음 · <b>"완전고용에 부합"</b></td></tr>
-  <tr><td>신용 스프레드</td><td class="a">역사적 저점권</td><td class="wrap">회사채·레버리지론 모두 · C&amp;I 대출 기준도 완화적</td></tr>
+  <tr class="new"><td>설비·무형자산 투자</td><td class="a up" data-h="수치">+9%</td><td class="w wrap">4분기 누적 증가율 · <b>2021년 이후 최고</b> · 올해 증가분의 절반 이상이 <b>AI 빌드아웃</b></td></tr>
+  <tr><td>S&amp;P 500 기업이익</td><td class="a up" data-h="수치">+20%↑</td><td class="w wrap">지난 1년 · 이익률도 역사적으로 높은 수준 · 주식 변동성은 낮음</td></tr>
+  <tr><td>민간 최종수요(PDFP)</td><td class="a" data-h="수치">약 +3%</td><td class="w wrap">올해 들어 · "GDP보다 신호가 더 강한 지표"</td></tr>
+  <tr><td>실질 소비지출</td><td class="a" data-h="수치">+2%↑</td><td class="w wrap">최근 4분기 · 여러 충격에도 견조</td></tr>
+  <tr><td>실업률</td><td class="a" data-h="수치">4.1%</td><td class="w wrap">역사적으로 낮음 · 2년째 큰 변화 없음 · <b>"완전고용에 부합"</b></td></tr>
+  <tr><td>신용 스프레드</td><td class="a" data-h="수치">역사적 저점권</td><td class="w wrap">회사채·레버리지론 모두 · C&amp;I 대출 기준도 완화적</td></tr>
 </table></div>
 <div class="callout"><div class="ct">한 줄 결론</div>워시 의장은 <mark class="r">"전반적인 금융여건을 긴축적이라고 표현하기는 어렵다"</mark>고 말했어요. 이건 7월 FOMC 의사록에서 '일부(some)' 참석자가 지적했던 문장과 정확히 같은 논리예요 — 이제 <b>의장 본인이 그 자리에 섰다</b>는 게 달라진 점이에요. 다만 주택·농업은 압박을 받고 있다고 따로 짚었어요.</div>
 

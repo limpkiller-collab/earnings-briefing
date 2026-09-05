@@ -232,6 +232,7 @@ b{font-weight:800}
   .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
   .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
   .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
   .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
   .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
   .htable:has(td.w) tr.new td{background:transparent}
@@ -257,11 +258,11 @@ b{font-weight:800}
 <div class="twrap"><table class="htable">
 <thead><tr><th>항목</th><th>6월</th><th>7월</th><th>해석</th></tr></thead>
 <tbody>
-<tr><td>개인소득</td><td>+0.2%</td><td class="up">+0.4%</td><td style="white-space:normal">급여·정부이전소득·배당소득이 함께 늘었어요</td></tr>
-<tr><td>가처분소득</td><td>+0.2%</td><td class="up">+0.5%</td><td style="white-space:normal">세후 소득이 더 빠르게 늘었어요</td></tr>
-<tr><td>명목 소비지출</td><td>+0.3%</td><td>+0.2%</td><td style="white-space:normal">서비스 +$862억, 재화 -$499억</td></tr>
-<tr class="hl"><td>실질 소비지출</td><td>+0.4%</td><td class="down">0.0%</td><td style="white-space:normal">물가를 빼면 <b>사실상 제자리</b>였어요</td></tr>
-<tr><td>저축률</td><td>—</td><td>3.0%</td><td style="white-space:normal">저축액 $7,120억</td></tr>
+<tr><td>개인소득</td><td data-h="6월">+0.2%</td><td class="up" data-h="7월">+0.4%</td><td style="white-space:normal" class="w">급여·정부이전소득·배당소득이 함께 늘었어요</td></tr>
+<tr><td>가처분소득</td><td data-h="6월">+0.2%</td><td class="up" data-h="7월">+0.5%</td><td style="white-space:normal" class="w">세후 소득이 더 빠르게 늘었어요</td></tr>
+<tr><td>명목 소비지출</td><td data-h="6월">+0.3%</td><td data-h="7월">+0.2%</td><td style="white-space:normal" class="w">서비스 +$862억, 재화 -$499억</td></tr>
+<tr class="hl"><td>실질 소비지출</td><td data-h="6월">+0.4%</td><td class="down" data-h="7월">0.0%</td><td style="white-space:normal" class="w">물가를 빼면 <b>사실상 제자리</b>였어요</td></tr>
+<tr><td>저축률</td><td data-h="6월">—</td><td data-h="7월">3.0%</td><td style="white-space:normal" class="w">저축액 $7,120억</td></tr>
 </tbody>
 </table></div>
 <p>여기가 이번 보고서에서 가장 눈여겨볼 대목이에요. <mark class="r">소득은 +0.4~0.5%로 잘 늘었는데 실질 소비는 0.0%로 멈췄어요.</mark> 돈이 없어서가 아니라 <b>안 쓰기 시작했다</b>는 신호일 수 있어요. 저축률 3.0%는 역사적으로 낮은 수준이라 여유가 큰 것도 아니고요.</p>
@@ -271,10 +272,10 @@ b{font-weight:800}
 <div class="twrap"><table class="htable">
 <thead><tr><th>항목</th><th>발표 후</th><th>비고</th></tr></thead>
 <tbody>
-<tr><td>주가</td><td class="down">지수 소폭 하락</td><td style="white-space:normal">헤드라인 상회에 선물이 밀렸어요</td></tr>
-<tr><td>10년물 국채금리</td><td class="up">4.65% 내외</td><td style="white-space:normal">10년·30년물은 2007년 이후 최고 구간</td></tr>
-<tr class="hl"><td>9월 인상 확률</td><td class="down">36%</td><td style="white-space:normal">이달 초 약 67% → 36%로 크게 하락</td></tr>
-<tr><td>기준금리</td><td>3.50~3.75%</td><td style="white-space:normal">2025년 12월부터 동결 유지</td></tr>
+<tr><td>주가</td><td class="down" data-h="발표 후">지수 소폭 하락</td><td style="white-space:normal" class="w">헤드라인 상회에 선물이 밀렸어요</td></tr>
+<tr><td>10년물 국채금리</td><td class="up" data-h="발표 후">4.65% 내외</td><td style="white-space:normal" class="w">10년·30년물은 2007년 이후 최고 구간</td></tr>
+<tr class="hl"><td>9월 인상 확률</td><td class="down" data-h="발표 후">36%</td><td style="white-space:normal" class="w">이달 초 약 67% → 36%로 크게 하락</td></tr>
+<tr><td>기준금리</td><td data-h="발표 후">3.50~3.75%</td><td style="white-space:normal" class="w">2025년 12월부터 동결 유지</td></tr>
 </tbody>
 </table></div>
 <div class="callout">헤드라인은 예상을 넘었지만 <b>근원이 정확히 부합</b>하면서 시장은 "연준이 9월에 움직일 이유는 아직 없다"로 읽었어요. 인상 시점의 무게중심은 <b>9월에서 12월로</b> 옮겨갔어요. 다만 장기금리가 2007년 이후 최고 수준이라, 물가가 아니라 <mark class="r">재정·국채 수급이 금리를 밀어올리는 흐름</mark>은 그대로예요.</div>
