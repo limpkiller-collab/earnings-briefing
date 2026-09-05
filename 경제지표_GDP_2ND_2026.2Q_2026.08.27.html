@@ -207,6 +207,22 @@ b{font-weight:800}
   svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
 }
 /*<!--/dark-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
 </style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-0.1</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">1.5</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">3.2</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">4.8</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">6.5</text><line x1="14" y1="254.7" x2="644" y2="254.7" stroke="#D1D6DB" stroke-width="1.5"/><rect x="40.1" y="201.9" width="37.8" height="52.8" rx="3.5" fill="#3182F6"/><text x="59.0" y="195.9" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">1.5</text><text x="59.0" y="286" text-anchor="middle" class="cl">실질GDP</text><rect x="130.1" y="177.3" width="37.8" height="77.5" rx="3.5" fill="#3182F6"/><text x="149.0" y="171.3" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">2.2</text><text x="149.0" y="286" text-anchor="middle" class="cl">실질GDI</text><rect x="220.1" y="191.3" width="37.8" height="63.4" rx="3.5" fill="#3182F6"/><text x="239.0" y="185.3" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">1.8</text><text x="239.0" y="286" text-anchor="middle" class="cl">GDP·GDI 평균</text><rect x="310.1" y="106.8" width="37.8" height="147.9" rx="3.5" fill="#3182F6"/><text x="329.0" y="100.8" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">4.2</text><text x="329.0" y="286" text-anchor="middle" class="cl">민간최종수요</text><rect x="400.1" y="50.5" width="37.8" height="204.2" rx="3.5" fill="#3182F6"/><text x="419.0" y="44.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.8</text><text x="419.0" y="286" text-anchor="middle" class="cl">국내구매물가</text><rect x="490.1" y="68.1" width="37.8" height="186.6" rx="3.5" fill="#3182F6"/><text x="509.0" y="62.1" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.3</text><text x="509.0" y="286" text-anchor="middle" class="cl">PCE물가</text><rect x="580.1" y="128.0" width="37.8" height="126.8" rx="3.5" fill="#3182F6"/><text x="599.0" y="122.0" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">3.6</text><text x="599.0" y="286" text-anchor="middle" class="cl">근원PCE물가</text></svg>
 </div>
 <p>왼쪽 네 개가 성장, 오른쪽 세 개가 물가예요. <b>성장은 1.5~4.2%인데 물가는 3.6~5.8%</b>로 전부 더 높아요. <mark class="r">명목으로는 8.0% 커졌는데 실질로는 1.5%밖에 안 늘었다는 뜻</mark>이고, 그 차이가 전부 물가예요.</p>

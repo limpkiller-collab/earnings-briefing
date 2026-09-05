@@ -213,6 +213,22 @@ b{font-weight:800}
   svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
 }
 /*<!--/dark-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
 </style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-0.6</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">-0.2</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">0.1</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">0.4</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">0.8</text><line x1="14" y1="161.0" x2="644" y2="161.0" stroke="#D1D6DB" stroke-width="1.5"/><rect x="53.0" y="53.0" width="37.8" height="108.0" rx="3.5" fill="#C9DEFB"/><text x="71.8" y="47.0" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+0.6</text><rect x="94.8" y="89.0" width="37.8" height="72.0" rx="3.5" fill="#E5E8EB"/><text x="113.7" y="83.0" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">+0.4</text><text x="92.8" y="286" text-anchor="middle" class="cl">26.4</text><rect x="210.4" y="71.0" width="37.8" height="90.0" rx="3.5" fill="#C9DEFB"/><text x="229.3" y="65.0" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+0.5</text><rect x="252.2" y="125.0" width="37.8" height="36.0" rx="3.5" fill="#E5E8EB"/><text x="271.1" y="119.0" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">+0.2</text><text x="250.2" y="286" text-anchor="middle" class="cl">26.5</text><rect x="367.9" y="161.0" width="37.8" height="72.0" rx="3.5" fill="#F8C7CC"/><text x="386.8" y="248.0" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-0.4</text><rect x="409.8" y="161.0" width="37.8" height="1.5" rx="3.5" fill="#E5E8EB"/><text x="428.6" y="155.0" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">+0.0</text><text x="407.8" y="286" text-anchor="middle" class="cl">26.6</text><rect x="525.5" y="143.0" width="37.8" height="18.0" rx="3.5" fill="#3182F6"/><text x="544.4" y="137.0" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+0.1</text><rect x="567.2" y="125.0" width="37.8" height="36.0" rx="3.5" fill="#C9DEFB"/><text x="586.1" y="119.0" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">+0.2</text><text x="565.2" y="286" text-anchor="middle" class="cl">26.7</text></svg>
   <div class="legend"><span><i style="background:#3182F6"></i>헤드라인 MoM</span><span><i style="background:#C9DEFB"></i>근원 MoM</span><span><i style="background:#F04452"></i>하락 월</span></div>
 </div>

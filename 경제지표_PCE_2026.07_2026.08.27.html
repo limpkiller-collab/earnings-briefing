@@ -221,6 +221,22 @@ b{font-weight:800}
   svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
 }
 /*<!--/dark-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
 </style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-2.9</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">-1.8</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">-0.8</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">0.3</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">1.4</text><line x1="14" y1="101.2" x2="644" y2="101.2" stroke="#D1D6DB" stroke-width="1.5"/><rect x="44.5" y="101.2" width="44.1" height="150.4" rx="3.5" fill="#F04452"/><text x="66.5" y="266.6" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-2.7</text><text x="66.5" y="286" text-anchor="middle" class="cl">에너지 재화</text><rect x="149.4" y="101.2" width="44.1" height="50.1" rx="3.5" fill="#F04452"/><text x="171.5" y="166.4" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-0.9</text><text x="171.5" y="286" text-anchor="middle" class="cl">가구·내구재</text><rect x="254.4" y="101.2" width="44.1" height="5.6" rx="3.5" fill="#F04452"/><text x="276.5" y="121.8" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-0.1</text><text x="276.5" y="286" text-anchor="middle" class="cl">재화 전체</text><rect x="359.4" y="84.5" width="44.1" height="16.7" rx="3.5" fill="#3182F6"/><text x="381.5" y="78.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+0.3</text><text x="381.5" y="286" text-anchor="middle" class="cl">서비스 전체</text><rect x="464.4" y="84.5" width="44.1" height="16.7" rx="3.5" fill="#3182F6"/><text x="486.5" y="78.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+0.3</text><text x="486.5" y="286" text-anchor="middle" class="cl">주거비</text><rect x="569.5" y="34.4" width="44.1" height="66.9" rx="3.5" fill="#3182F6"/><text x="591.5" y="28.4" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+1.2</text><text x="591.5" y="286" text-anchor="middle" class="cl">금융·보험</text></svg>
 </div>
 <p>재화 물가가 내려간 건 <b>휘발유를 포함한 에너지 재화가 -2.7%</b> 떨어진 덕이 커요. 가구·내구재도 -0.9%로 내렸어요. 반대로 <mark class="r">서비스는 +0.3%로 버텼고, 그중 금융·보험이 +1.2%로 유독 셌어요.</mark> 주거비도 +0.3% 올랐고요.</p>
