@@ -515,7 +515,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.04";
+const LAST_UPDATED = "2026.09.05";
 
 const REPORTS_DB = [
   {
@@ -637,6 +637,13 @@ const UPCOMING_DB = [
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
   {
+    id: "NFP", name: "고용보고서(NFP)", period: "2026년 8월", category: "고용", tier: 3,
+    report_date: "2026-09-04", created: "2026.09.05", verdict: "BAD", vlabel: "과열",
+    surprise: { text: "예측 +10.9만", cls: "up" },
+    oneliner: "8월 고용이 16.2만명으로 예측의 세 배였고 6·7월도 5.5만명 상향돼, 9월 인상 확률이 60%로 뛰었어요.",
+    file: "경제지표_NFP_2026.08_2026.09.04.html"
+  },
+  {
     id: "ISM_SVC", name: "ISM 서비스업 PMI", period: "2026년 8월", category: "심리", tier: 2,
     report_date: "2026-09-03", created: "2026.09.04", verdict: "NEUT", vlabel: "과열",
     surprise: { text: "예측 +1.1p", cls: "up" },
@@ -717,7 +724,6 @@ const MACRO_REPORTS_DB = [
 
 // 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
 const MACRO_UPCOMING_DB = [
-  { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "8월", date: "2026-09-04", estimated: false, utc: "20260904T123000Z", tier: 3, last_release: "2026-08-07" },
   { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "8월", date: "2026-09-10", estimated: false, utc: "20260910T123000Z", tier: 2, last_release: "2026-08-13" },
   { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "8월", date: "2026-09-11", estimated: false, utc: "20260911T123000Z", tier: 3, last_release: "2026-08-12" },
   { id: "RETAIL", name: "소매판매", short: "소매판매", period: "8월", date: "2026-09-16", estimated: false, utc: "20260916T123000Z", tier: 2, last_release: "2026-08-14" },
@@ -726,6 +732,7 @@ const MACRO_UPCOMING_DB = [
   { id: "GDP_3RD", name: "GDP 확정치", short: "GDP확정", period: "2분기", date: "2026-09-30", estimated: false, utc: "20260930T123000Z", tier: 2, last_release: "2026-08-26" },
   { id: "PCE", name: "PCE 물가지수", short: "PCE", period: "8월", date: "2026-09-30", estimated: false, utc: "20260930T123000Z", tier: 3, last_release: "2026-08-26" },
   { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "9월", date: "2026-10-01", estimated: true, utc: null, tier: 2, last_release: "2026-09-01" },
+  { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "9월", date: "2026-10-02", estimated: false, utc: "20261002T123000Z", tier: 3, last_release: "2026-09-04" },
   { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "9월", date: "2026-10-05", estimated: true, utc: null, tier: 2, last_release: "2026-09-03" },
   { id: "FOMC_MIN", name: "FOMC 의사록", short: "의사록", period: "9월 회의", date: "2026-10-08", estimated: true, utc: null, tier: 2, last_release: "2026-08-20" },
   { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "3분기", date: "2026-11-25", estimated: true, utc: null, tier: 2, last_release: "2026-08-26" },
@@ -734,6 +741,11 @@ const MACRO_UPCOMING_DB = [
 
 // 다음 발표 체크포인트 (skills가 두 state.json의 watchpoints를 동기화 · 발표 가까운 순 3건 표시)
 const WATCH_DB = [
+  { key: "NFP", name: "고용보고서(NFP) 9월", date: "2026-10-02", type: "m", items: [
+    "9월 고용(10/2)에서 8월 +16.2만이 하향 수정되는지 — 최근 3개월 수정폭이 -4.4만~+4.4만으로 컸어요",
+    "정보산업 감소(-2.3만)가 이어지는지 — AI 투자와 AI 관련 고용이 계속 반대로 가는지",
+    "헬스케어가 12개월 평균(+3.2만)으로 회복되는지 — 지난 1년 미국 고용의 버팀목이었어요",
+    "시간당임금 YoY 3.1%가 3% 아래로 내려가는지 — 실질임금 마이너스가 길어지면 소비가 먼저 꺾여요"]},
   { key: "JOLTS", name: "JOLTs 구인건수 8월", date: "2026-09-29", type: "m", items: [
     "채용 505.4만건이 반등하는지, 500만건 아래로 내려가는지 — 구인보다 채용이 실제 온도예요",
     "전문·비즈니스 서비스 채용(-18.8만건)이 회복되는지 — 경기 전환기 선행 업종",
@@ -750,7 +762,7 @@ const WATCH_DB = [
     "고용지수 51.2가 50 아래로 내려가는지 — 두 달 만의 위축 전환 여부",
     "위축 구간 제조업 GDP 비중 22%가 더 커지는지 — 안쪽 온도차 확대 여부"]},
   { key: "JACKSON", name: "잭슨홀 후속 — 9월 FOMC까지", date: "2026-09-17", type: "m", items: [
-    "9월 4일 고용보고서가 인상 확률 66%(8/31)를 굳히는지, 되돌리는지",
+    "9월 4일 고용보고서 → +16.2만(예측 +5.3만)으로 인상 확률이 49%→58~60%로 반등했어요",
     "9월 11일 CPI에서 '기저 추세'가 실제로 개선되는지 — 3% 넘게 오르는 품목 비중이 관건",
     "9월 17일 FOMC에서 2022년 이후 첫 인상이 나오는지, 점도표가 어디로 이동하는지",
     "단기물만 오르고 장기물은 안정되는 구도가 이어지는지 — 30년물 5.2% 돌파 여부"]},
@@ -852,19 +864,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 228.41, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 958.16, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
-  { ticker: "MSFT", price: 510.12, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
-  { ticker: "GOOGL", price: 342.48, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
-  { ticker: "AAPL", price: 328.21, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "" },
-  { ticker: "PLTR", price: 182.53, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
-  { ticker: "KO", price: 88.81, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
-  { ticker: "ABBV", price: 260.21, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
-  { ticker: "O", price: 61.74, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
-  { ticker: "CRWV", price: 84.56, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 39.02, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
-  { ticker: "SMR", price: 9.75, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
-  { ticker: "000660", price: 1596000, tgt: 3317917, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 230.36, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 1016.59, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
+  { ticker: "MSFT", price: 499.70, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
+  { ticker: "GOOGL", price: 338.46, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
+  { ticker: "AAPL", price: 319.97, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "" },
+  { ticker: "PLTR", price: 174.33, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "KO", price: 88.07, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
+  { ticker: "ABBV", price: 256.46, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
+  { ticker: "O", price: 61.25, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
+  { ticker: "CRWV", price: 89.36, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 39.52, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 9.70, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "000660", price: 1647000, tgt: 3317917, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -890,16 +902,30 @@ const WEEKLY_REPORTS_DB = [
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
   {
+    asset: "MU", name: "Micron", kind: "stock", date: "2026-09-05",
+    chg: 6.10, chg_label: "+6.10%", price_label: "$1,016.59", cause: "메모리 강세",
+    oneliner: "낸드 가격 급등에 메모리가 통째로 올랐어요. 샌디스크 +11.9%로 마이크론보다 더 뛰었어요.",
+    spark: [861.00,868.52,911.29,949.83,971.66,1011.75,940.76,937.11,974.33,966.78,910.43,932.97,938.40,935.39,932.86,958.73,933.44,956.08,958.16,1016.59],
+    created: "2026.09.05", file: "급등락_MU_2026.09.05.html"
+  },
+  {
+    asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-09-04",
+    chg: 3.20, chg_label: "+3.20%", price_label: "1,647,000원", cause: "금리 하락",
+    oneliner: "월러 이사의 동결 시사가 이월돼 외국인이 5,272억원 샀어요. 장중 +5.5%에서 밀렸어요.",
+    spark: [1422000,1420000,1425000,1504000,1593000,1645000,1662000,1500000,1691000,1730000,1671000,1678000,1688000,1730000,1653000,1674000,1693000,1613000,1596000,1647000],
+    created: "2026.09.05", file: "급등락_000660_2026.09.04.html"
+  },
+  {
     asset: "PLTR", name: "Palantir", kind: "stock", date: "2026-09-04",
     chg: 7.71, chg_label: "+7.71%", price_label: "$182.53", cause: "제휴 확대",
-    oneliner: "PwC US와 제휴를 확대하자 이틀치 낙폭을 하루에 되돌렸어요. 소프트웨어 업종도 함께 올랐어요.",
+    oneliner: "PwC 제휴 확대로 이틀치 낙폭을 되돌렸지만, 다음 날 고용 서프라이즈에 -4.49%를 반납했어요.",
     spark: [172.01,175.23,174.94,171.04,179.01,174.04,172.55,171.54,175.19,173.96,179.94,175.89,172.73,177.50,185.93,186.29,186.38,179.92,169.46,182.53],
     created: "2026.09.04", file: "급등락_PLTR_2026.09.04.html"
   },
   {
     asset: "CRWV", name: "CoreWeave", kind: "stock", date: "2026-09-04",
     chg: 4.49, chg_label: "+4.49%", price_label: "$84.56", cause: "금리 하락",
-    oneliner: "월러 이사의 동결 시사로 금리가 내리자, 차입 $51.6B의 고베타 종목이 지수의 3배로 뛰었어요.",
+    oneliner: "월러 이사의 동결 시사로 금리가 내리자 지수의 3배로 뛰었고, 다음 날에도 +5.68% 이어갔어요.",
     spark: [90.67,88.19,90.32,107.73,106.29,105.26,106.00,93.17,90.87,89.76,87.85,86.25,88.04,88.01,86.80,84.23,84.89,81.85,80.93,84.56],
     created: "2026.09.04", file: "급등락_CRWV_2026.09.04.html"
   },
