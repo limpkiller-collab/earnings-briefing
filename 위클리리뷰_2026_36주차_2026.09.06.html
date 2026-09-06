@@ -313,16 +313,73 @@ ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;heigh
 <p class="foot-note">※ 9.4 확률은 출처별로 58.0~60.4%로 갈려 범위로 표기했어요. 9.3 수치도 일부 집계에서는 54.6%로 잡혀요.</p>
 
 <div class="sub-head">💵 금리는 올랐다가 되돌렸지만, 장기물은 여전히 높아요</div>
-<table>
-<thead><tr><th>구분</th><th>8.28 (금)</th><th>주중 고점</th><th>9.4 (금)</th><th>주간 변화</th></tr></thead>
-<tbody>
-<tr><td>미 2년물</td><td>4.34%</td><td>4.39%</td><td>4.37%</td><td class="neg">+3bp</td></tr>
-<tr class="hl"><td>미 10년물</td><td>4.73%</td><td>4.79%</td><td>4.78%</td><td class="neg">+5bp</td></tr>
-<tr><td>미 30년물</td><td>5.22%</td><td>5.27%</td><td>5.25%*</td><td class="neg">+3bp*</td></tr>
-</tbody>
-</table>
-<p class="foot-note">※ 연준 H.15 국채 만기수익률(CMT) 기준 · 주중 고점은 9.1~9.2 종가예요. *30년물의 9.4 종가는 아직 H.15에 공개되지 않아 9.3 종가를 넣었어요.</p>
-<p>지난주가 <b>단기물만 튀는 베어 플래트닝</b>이었다면, 이번 주는 <b>커브 전체가 위로 올라간 주</b>였어요. 10년물이 수요일 장중 4.818%로 2023년 11월 이후 최고를 찍었고, 30년물도 5.27%까지 올랐어요. 연준 기대만으로는 설명이 안 되는 움직임이라 <mark>물가와 국채 발행 부담, 그리고 되살아나는 기간 프리미엄이 함께 거론됐어요.</mark> 다음 주 미 재무부의 장기물 바이백이 시작된다는 점도 채권 수급에서 챙겨볼 대목이에요.</p>
+<div class="chart">
+  <div class="ct">만기별 금리, 전주 금요일 대비 변화 (bp)</div>
+  <span class="cs">8.28 (금) 종가를 0으로 놓았어요 · 연준 H.15 국채 만기수익률(CMT) 기준</span>
+  <svg viewBox="0 0 700 262" xmlns="http://www.w3.org/2000/svg">
+    <line x1="70" y1="63"  x2="650" y2="63"  stroke="#EDEFF2" stroke-width="1"/>
+    <line x1="70" y1="109" x2="650" y2="109" stroke="#EDEFF2" stroke-width="1"/>
+    <line x1="70" y1="154" x2="650" y2="154" stroke="#EDEFF2" stroke-width="1"/>
+    <line x1="70" y1="200" x2="650" y2="200" stroke="#D1D6DB" stroke-width="1.5"/>
+    <text x="62" y="67"  text-anchor="end" class="cl">+6</text>
+    <text x="62" y="113" text-anchor="end" class="cl">+4</text>
+    <text x="62" y="158" text-anchor="end" class="cl">+2</text>
+    <text x="62" y="204" text-anchor="end" class="cl">0</text>
+    <polyline points="80,200 188,200 296,86 404,86 512,200 620,131" fill="none" stroke="#C9DEFB" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <polyline points="80,200 188,131 296,86 404,86 512,131" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <polyline points="512,131 620,131" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-dasharray="4 4" stroke-linecap="round"/>
+    <polyline points="80,200 188,154 296,63 404,63 512,109 620,86" fill="none" stroke="#3182F6" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="296" cy="63" r="4.5" fill="#fff" stroke="#3182F6" stroke-width="3"/>
+    <circle cx="404" cy="63" r="4.5" fill="#fff" stroke="#3182F6" stroke-width="3"/>
+    <circle cx="512" cy="109" r="4.5" fill="#fff" stroke="#3182F6" stroke-width="3"/>
+    <circle cx="620" cy="86" r="5.5" fill="#3182F6" stroke="#3182F6" stroke-width="3"/>
+    <text x="350" y="49" text-anchor="middle" class="cl">화·수 주중 고점 +6bp</text>
+    <text x="512" y="97" text-anchor="middle" class="cl">월러 발언</text>
+    <text x="620" y="72" text-anchor="middle" class="cv" fill="#3182F6">+5bp</text>
+    <text x="80"  y="228" text-anchor="middle" class="s-lab">8.28 금</text>
+    <text x="188" y="228" text-anchor="middle" class="s-lab">8.31 월</text>
+    <text x="296" y="228" text-anchor="middle" class="s-lab">9.1 화</text>
+    <text x="404" y="228" text-anchor="middle" class="s-lab">9.2 수</text>
+    <text x="512" y="228" text-anchor="middle" class="s-lab">9.3 목</text>
+    <text x="620" y="228" text-anchor="middle" class="s-lab">9.4 금</text>
+  </svg>
+  <div class="legend"><span><span class="ln" style="background:#C9DEFB"></span>2년물</span><span><span class="ln" style="background:#3182F6"></span>10년물</span><span><span class="ln" style="background:#8B95A1"></span>30년물</span></div>
+</div>
+<p>주중 흐름만 떼어 보면 세 만기가 똑같은 모양이에요. 화·수에 나란히 고점을 찍고, 목요일 월러 발언에 <b>10년물이 +6bp에서 +4bp로</b> 밀렸다가 금요일 고용 서프라이즈에 다시 올라왔어요. 되돌림은 하루짜리였던 셈이에요.</p>
+
+<div class="chart">
+  <div class="ct">만기별 금리 일별 추이 (%)</div>
+  <span class="cs">8.28 ~ 9.4 종가 · 연준 H.15 국채 만기수익률(CMT) 기준</span>
+  <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg">
+    <line x1="60" y1="68"  x2="560" y2="68"  stroke="#EDEFF2" stroke-width="1"/>
+    <line x1="60" y1="130" x2="560" y2="130" stroke="#EDEFF2" stroke-width="1"/>
+    <line x1="60" y1="192" x2="560" y2="192" stroke="#EDEFF2" stroke-width="1"/>
+    <text x="52" y="72"  text-anchor="end" class="cl">5.2</text>
+    <text x="52" y="134" text-anchor="end" class="cl">4.8</text>
+    <text x="52" y="196" text-anchor="end" class="cl">4.4</text>
+    <polyline points="70,65 168,61 266,57 364,57 462,61" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <polyline points="462,61 560,61" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-dasharray="4 4" stroke-linecap="round"/>
+    <polyline points="70,141 168,138 266,132 364,132 462,135 560,133" fill="none" stroke="#3182F6" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+    <polyline points="70,201 168,201 266,193 364,193 462,201 560,197" fill="none" stroke="#C9DEFB" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="560" cy="61"  r="4" fill="#4E5968"/>
+    <circle cx="560" cy="133" r="5" fill="#3182F6"/>
+    <circle cx="560" cy="197" r="4" fill="#C9DEFB"/>
+    <text x="572" y="58"  class="cl">30년물</text>
+    <text x="572" y="71"  class="cv">5.25%</text>
+    <text x="572" y="130" class="cl" fill="#3182F6">10년물</text>
+    <text x="572" y="143" class="cv" fill="#3182F6">4.78%</text>
+    <text x="572" y="194" class="cl">2년물</text>
+    <text x="572" y="207" class="cv">4.37%</text>
+    <text x="70"  y="228" text-anchor="middle" class="s-lab">8.28</text>
+    <text x="168" y="228" text-anchor="middle" class="s-lab">8.31</text>
+    <text x="266" y="228" text-anchor="middle" class="s-lab">9.1</text>
+    <text x="364" y="228" text-anchor="middle" class="s-lab">9.2</text>
+    <text x="462" y="228" text-anchor="middle" class="s-lab">9.3</text>
+    <text x="560" y="228" text-anchor="middle" class="s-lab">9.4</text>
+  </svg>
+</div>
+<p class="foot-note">※ 점선은 30년물의 9.4 종가가 아직 H.15에 공개되지 않아 9.3 종가(5.25%)를 이어 그린 구간이에요. 첫 번째 차트에서 2년물과 30년물은 9.1·9.2·9.4에 변화폭이 같아 선이 겹쳐 보여요.</p>
+<p>레벨을 놓고 보면 되돌림은 거의 흔적이 없어요. <b>주간으로는 2년물 +3bp·10년물 +5bp·30년물 +3bp</b>로 세 만기가 모두 위예요. 지난주가 <b>단기물만 튀는 베어 플래트닝</b>이었다면, 이번 주는 커브가 통째로 평행이동한 셈이죠. 10년물이 수요일 장중 4.818%로 2023년 11월 이후 최고를 찍었고, 30년물도 5.27%까지 올랐어요. 연준 기대만으로는 설명이 안 되는 움직임이라 <mark>물가와 국채 발행 부담, 그리고 되살아나는 기간 프리미엄이 함께 거론됐어요.</mark> 다음 주 미 재무부의 장기물 바이백이 시작된다는 점도 채권 수급에서 챙겨볼 대목이에요.</p>
 
 <div class="callout"><span class="cap">한 문장 요약</span>금리 기대가 66% → 49% → 58%로 왕복한 한 주 — 지수는 제자리였지만 유가(+9.5%)와 메모리가 그 안에서 크게 움직였고, 이제 9월 11일 CPI 하나가 남았어요.</div>
 </section>
