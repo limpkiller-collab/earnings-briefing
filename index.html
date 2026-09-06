@@ -515,7 +515,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.05";
+const LAST_UPDATED = "2026.09.06";
 
 const REPORTS_DB = [
   {
@@ -888,6 +888,13 @@ const EVENTS_DB = [
 // verdict: UP(상승)/DOWN(하락)/MIX(혼조) · month: 필터용 "YYYY년 M월" · issues: 이슈 수 · next_count: 다음 주 주요 일정 수
 // title: 보고서 제목(줄바꿈 없이 한 줄) — 카드 본문에 표시. 카드 상단은 주차+판정 배지만 노출
 const WEEKLY_REPORTS_DB = [
+  {
+    week: "2026년 36주차", range: "08.31 ~ 09.05", month: "2026년 9월",
+    issues: 7, next_count: 5, verdict: "MIX", vlabel: "혼조",
+    title: "월러가 낮추고, 고용이 다시 올린 한 주였어요",
+    oneliner: "9월 인상 확률이 잭슨홀 여진으로 66%까지 올랐다가 월러 이사의 동결 시사에 49.4%로 내려앉았고, 8월 고용이 예측의 세 배(+16.2만)로 나오자 58~60%로 되돌아왔어요. S&P 500은 주간 +0.09%로 제자리였지만 호르무즈 리스크에 WTI가 +9.51% 뛰었고, 낸드 가격 급등으로 MU가 +8.98%, 소프트웨어 매도에 PLTR가 -6.42%로 갈렸어요. 9월 11일 CPI가 FOMC 전 마지막 관문이에요.",
+    created: "2026.09.06", file: "위클리리뷰_2026_36주차_2026.09.06.html"
+  },
   {
     week: "2026년 35주차", range: "08.24 ~ 08.29", month: "2026년 8월",
     issues: 5, next_count: 5, verdict: "MIX", vlabel: "혼조",
