@@ -498,6 +498,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
   <button type="button" id="seg-macro" aria-label="경제 지표" title="경제 지표"><svg viewBox="0 0 24 24"><path class="fl" d="M3.5 20V15.2l5.8-5.6 4.1 3.9L20.5 7v13z"/><path class="keep" d="M3.5 15.2l5.8-5.6 4.1 3.9L20.5 7"/><path class="keep" d="M16.5 7h4v4"/></svg><span class="nd"></span></button>
   <button type="button" id="seg-movers" aria-label="급등락" title="급등락"><svg viewBox="0 0 24 24"><path class="fl" d="M13.5 2.5 4.5 13.5h6.2l-1.2 8 9-11.5h-6.2z"/></svg><span class="nd"></span></button>
   <button type="button" id="seg-weekly" aria-label="위클리" title="위클리"><svg viewBox="0 0 24 24"><path class="fl" d="M4 4.5h13.5a1 1 0 0 1 1 1V17a3 3 0 0 0 3 3H5.5a2.5 2.5 0 0 1-2.5-2.5v-12a1 1 0 0 1 1-1z"/><path class="keep" d="M18.5 9h2.5v8.5a2.5 2.5 0 0 1-2.5 2.5"/><path class="in" d="M7 8.5h4.5V13H7z"/><path class="in" d="M14 9h1.5M14 12.5h1.5M7 16h8.5"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-monthly" aria-label="월간리뷰" title="월간리뷰"><svg viewBox="0 0 24 24"><rect class="fl" x="3.5" y="5" width="17" height="15.5" rx="2.2"/><path class="in" d="M3.5 10h17"/><path class="in" d="M8 3v4M16 3v4"/><rect class="in" x="7.5" y="13" width="3" height="3" rx=".6"/></svg><span class="nd"></span></button>
 </div></nav>
 
 <div class="dim" id="notify-dim"></div>
@@ -515,7 +516,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.06";
+const LAST_UPDATED = "2026.09.06";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
 
 const REPORTS_DB = [
   {
@@ -904,6 +905,19 @@ const WEEKLY_REPORTS_DB = [
   }
 ];
 
+// ----- 월간리뷰 (monthly-review 스킬이 매월 1일 갱신 · 새 항목은 맨 앞에) -----
+// 🔒 본문은 monthly/{id}.enc.json 에 AES-256-GCM 암호화 저장, monthly.html?id= 뷰어가 비밀번호로 복호화한다.
+//   이 배열에는 공개해도 되는 것만 둔다: id(YYYY-MM_invest|asset) · kind · month("YYYY년 M월") · verdict/vlabel · created · file.
+//   한줄평(oneliner)은 여기 쓰지 말 것 — monthly/index.enc.json 에 암호화해 두면 잠금 해제된 기기에서만 채워진다.
+const MONTHLY_DB = [
+  { id: "2026-08_invest", kind: "invest", month: "2026년 8월", verdict: "MIX", vlabel: "혼조", created: "2026.09.06", file: "monthly.html?id=2026-08_invest" },
+  { id: "2026-08_asset",  kind: "asset",  month: "2026년 8월", verdict: "GOOD", vlabel: "좋음", created: "2026.09.06", file: "monthly.html?id=2026-08_asset" }
+];
+const MONTHLY_KIND = { invest: '투자', asset: '가계·자산' };
+const monthlyTitle = r => `${r.month.split(' ')[1]} ${MONTHLY_KIND[r.kind] || r.kind} 월간리뷰`;
+const MONTHLY_LOCKED = '🔒 비밀번호로 잠긴 보고서예요 · 열어서 확인하세요';
+const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONTHLY_LOCKED;
+
 // ----- 급등락 분석 (movers-briefing 스킬이 평일 오전 갱신 · 새 항목은 맨 앞에) -----
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
@@ -960,6 +974,7 @@ const MOVERS_DB = [
 const tickers = new Set(REPORTS_DB.map(r => r.ticker));
 const macroCats = ['전체', ...new Set(MACRO_REPORTS_DB.map(r => r.category))];
 const weeklyMonths = ['전체', ...new Set(WEEKLY_REPORTS_DB.map(r => r.month))];
+const monthlyMonths = ['전체', ...new Set(MONTHLY_DB.map(r => r.month))];
 const moverKinds = ['전체', '주식', '금리', '환율'];
 /* 로고: logos/{키}.png 우선 → 없으면 사이트 파비콘 → 모노그램 */
 const LOGO = { NVDA:'nvidia.com', AAPL:'apple.com', MSFT:'microsoft.com', GOOGL:'google.com', O:'realtyincome.com', ABBV:'abbvie.com',
@@ -968,7 +983,7 @@ const LOGO = { NVDA:'nvidia.com', AAPL:'apple.com', MSFT:'microsoft.com', GOOGL:
   RETAIL:'census.gov', FOMC:'federalreserve.gov', FOMC_MIN:'federalreserve.gov', JACKSON:'federalreserve.gov' };
 const MSHORT = { ISM_SVC:'ISM', ISM_MFG:'ISM', JOLTS:'JOLT', REVIEW:'월간', JACKSON:'JH', PCE:'PCE', GDP_2ND:'GDP', GDP_3RD:'GDP', CPI:'CPI', PPI:'PPI', RETAIL:'소매', FOMC_MIN:'FOMC', FOMC:'FOMC', NFP:'고용' };
 const AVC = { NVDA:'#76B900', AAPL:'#555B66', MSFT:'#0E7CD3', GOOGL:'#EA4335', O:'#8B6F47', ABBV:'#071D49', PLTR:'#191F28', CRWV:'#2E6BE6',
-  IONQ:'#5B4FE9', SMR:'#0F8A6F', MU:'#1B4FD8', KO:'#F40009', '000660':'#E2231A' };
+  IONQ:'#5B4FE9', SMR:'#0F8A6F', MU:'#1B4FD8', KO:'#F40009', '000660':'#E2231A', MONTH:'#3182F6' };
 function avatar(key, label){
   const m = label || MSHORT[key] || (key === '000660' ? 'SK' : String(key).slice(0, 2));
   const mono = `<span class="av mono${m.length >= 4 ? ' s4' : ''}" style="--avc:${AVC[key] || 'var(--g600)'}">${m}</span>`;
@@ -995,7 +1010,9 @@ const ALL_ITEMS = [
     title: `${r.asset}${r.name && r.name !== r.asset ? ' · ' + r.name : ''} ${r.chg_label}`,
     badge: r.chg_label, bcls: r.chg >= 0 ? 'UPM' : 'DOWNM', one: r.oneliner, created: r.created, date: r.date, file: r.file, raw: r })),
   ...WEEKLY_REPORTS_DB.map(r => ({ type: 'weekly', ico: '🗞️', tlabel: '위클리',
-    title: `위클리 리뷰 · ${r.week}`, badge: r.vlabel, bcls: r.verdict, one: r.title || r.oneliner, created: r.created, date: r.range, file: r.file, raw: r }))
+    title: `위클리 리뷰 · ${r.week}`, badge: r.vlabel, bcls: r.verdict, one: r.title || r.oneliner, created: r.created, date: r.range, file: r.file, raw: r })),
+  ...MONTHLY_DB.map(r => ({ type: 'monthly', ico: '🗓️', tlabel: '월간',
+    title: monthlyTitle(r), badge: r.vlabel, bcls: r.verdict, get one(){ return monthlyOne(r); }, created: r.created, date: r.month, file: r.file, raw: r }))
 ];
 ALL_ITEMS.forEach(it => { it.key = itemKey(it.raw); });
 let READ = new Set();
@@ -1013,7 +1030,7 @@ function markRead(key){ if (READ.has(key)) return; READ.add(key); saveRead(); re
 function markAllRead(){ ALL_ITEMS.forEach(it => READ.add(it.key)); saveRead(); renderBadges(); renderCards(); renderFeed(); }
 function unreadCount(type){ return ALL_ITEMS.filter(it => (type === 'thread' || it.type === type) && isUnread(it.key)).length; }
 function renderBadges(){
-  ['thread','earn','macro','movers','weekly'].forEach(t => {
+  ['thread','earn','macro','movers','weekly','monthly'].forEach(t => {
     const b = document.getElementById('seg-' + t);
     if (b) b.classList.toggle('unread', unreadCount(t) > 0);
   });
@@ -1329,7 +1346,7 @@ let query = '';
 function renderFilters(){
   const el = document.getElementById('filters');
   el.innerHTML = '';
-  const opts = VIEW === 'earn' ? ['전체', ...tickers] : VIEW === 'macro' ? macroCats : VIEW === 'movers' ? moverKinds : weeklyMonths;
+  const opts = VIEW === 'earn' ? ['전체', ...tickers] : VIEW === 'macro' ? macroCats : VIEW === 'movers' ? moverKinds : VIEW === 'monthly' ? monthlyMonths : weeklyMonths;
   opts.forEach(t => {
     const c = document.createElement('span');
     c.className = 'f' + (t === active ? ' on' : '');
@@ -1358,9 +1375,11 @@ function renderCards(){
     ? MACRO_REPORTS_DB.filter(r => active === '전체' || r.category === active)
     : VIEW === 'movers'
     ? MOVERS_DB.filter(r => active === '전체' || KIND_KO[r.kind] === active)
+    : VIEW === 'monthly'
+    ? MONTHLY_DB.filter(r => active === '전체' || r.month === active)
     : WEEKLY_REPORTS_DB.filter(r => active === '전체' || r.month === active);
   if (query) rows = rows.filter(r =>
-    [r.ticker, r.company, r.name, r.id, r.asset, r.cause, r.period, r.quarter, r.category, r.week, r.month, r.range, r.title, r.oneliner]
+    [r.ticker, r.company, r.name, r.id, r.asset, r.cause, r.period, r.quarter, r.category, r.week, r.month, r.range, r.title, r.oneliner, r.kind && MONTHLY_KIND[r.kind]]
       .filter(Boolean).join(' ').toLowerCase().includes(query));
   document.getElementById('q-cnt').textContent = query ? `${rows.length}건` : '';
   const empty = document.getElementById('empty');
@@ -1369,12 +1388,13 @@ function renderCards(){
     : VIEW === 'earn' ? '해당 종목의 보고서가 아직 없어요'
     : VIEW === 'macro' ? '해당 카테고리의 보고서가 아직 없어요'
     : VIEW === 'movers' ? '기준선(주가 ±3% · 금리 ±15bp · 환율 ±1.5%)을 넘은 급등락이 아직 없어요'
+    : VIEW === 'monthly' ? '아직 발간된 월간리뷰가 없어요'
     : '아직 발간된 위클리 리뷰가 없어요';
   const sup = r => r.surprise ? `<span class="sup ${r.surprise.cls}">${r.surprise.text}</span>` : '';
   /* v2.7 토스증권형 행: 작성 월 그룹 헤더 + [로고] 제목·부제 / 한줄평 1줄 + 우측 판정·날짜 (급등락은 20거래일 추이 그래프) */
   let lastG = '';
   rows.forEach(r => {
-    if (VIEW !== 'weekly') {
+    if (VIEW !== 'weekly' && VIEW !== 'monthly') {
       const g = `${r.created.slice(0, 4)}년 ${Number(r.created.split('.')[1])}월 작성`;
       if (g !== lastG) { const h = document.createElement('div'); h.className = 'rgrp'; h.textContent = g; box.appendChild(h); lastG = g; }
     }
@@ -1397,6 +1417,10 @@ function renderCards(){
       ? `<span class="udot"></span>${avatar(r.id)}
          <div class="mid"><div class="t"><span class="tt">${r.name}${r.tier >= 3 ? '<i class="t3" title="핵심 지표"></i>' : ''}</span><small>${r.period}</small></div><div class="o">${r.oneliner}</div></div>
          ${rt(r.verdict, r.vlabel, MD(r.report_date))}`
+      : VIEW === 'monthly'
+      ? `<span class="udot"></span>${avatar('MONTH', r.kind === 'asset' ? '가계' : '투자')}
+         <div class="mid"><div class="t"><span class="tt">${monthlyTitle(r)}</span><small>${r.month} · 🔒 암호화</small></div><div class="o">${monthlyOne(r)}</div></div>
+         ${rt(r.verdict, r.vlabel, r.created.slice(5).replace('.', '/'))}`
       : `<span class="udot"></span>${avatar('WEEK', 'W' + (r.week.match(/(\d+)주차/) || [,''])[1])}
          <div class="mid"><div class="t"><span class="tt">${r.week}</span><small>${r.range}</small></div><div class="o">${r.title || r.oneliner}</div></div>
          ${rt(r.verdict, r.vlabel, r.created.slice(5).replace('.', '/'))}`;
@@ -1419,8 +1443,8 @@ function sparkline(v, up, big){
 }
 
 /* ===== 스레드 피드 (4개 DB 통합 · 발간 시간 역순 · 날짜별 그룹) ===== */
-const feedTypes = ['전체', '실적', '지표', '급등락', '위클리'];
-const TYPE_KEY = { '실적': 'earn', '지표': 'macro', '급등락': 'movers', '위클리': 'weekly' };
+const feedTypes = ['전체', '실적', '지표', '급등락', '위클리', '월간'];
+const TYPE_KEY = { '실적': 'earn', '지표': 'macro', '급등락': 'movers', '위클리': 'weekly', '월간': 'monthly' };
 let feedActive = '전체', feedQuery = '';
 function renderFeed(){
   const box = document.getElementById('feed');
@@ -1469,6 +1493,7 @@ function renderFeed(){
                    r.spark && r.spark.length > 2
                      ? `<div class="rt sp"><div class="v">${sparkline(r.spark, r.chg >= 0, true)}</div><div class="d"><span class="tx ${r.chg >= 0 ? 'UPM' : 'DOWNM'}">${r.chg_label}</span> · ${MD(r.date)}</div></div>`
                      : rt(r.chg >= 0 ? 'UPM' : 'DOWNM', r.chg_label, MD(r.date))]
+               : it.type === 'monthly' ? [avatar('MONTH', r.kind === 'asset' ? '가계' : '투자'), monthlyTitle(r), `${r.month} · 🔒`, rt(r.verdict, r.vlabel, r.created.slice(5).replace('.', '/'))]
                : [avatar('WEEK', 'W' + (r.week.match(/(\d+)주차/) || [,''])[1]), r.week, r.range, rt(r.verdict, r.vlabel, r.created.slice(5).replace('.', '/'))];
     a.innerHTML = `<span class="udot"></span>${head[0]}
       <div class="mid"><div class="t"><span class="tt">${head[1]}</span><small>${type}${head[2]}</small></div><div class="o">${it.one}</div></div>${head[3]}`;
@@ -1486,6 +1511,8 @@ const HERO = {
           lead: '발표 결과 해석부터 시장 반응, 연준 경로, 보유 종목 영향까지 한 번에 확인하세요.' },
   weekly:{ chip: '#매주 일요일 오전 발간', h1: '한 주의 시장,<br>일요일 아침에 정리해 드려요',
           lead: '기업 뉴스·실적발표·경제 지표부터 다음 주 관전 포인트까지 한 번에 확인하세요.' },
+  monthly:{ chip: '#매월 1일 발간 · 🔒 암호화', h1: '한 달의 투자와 가계,<br>월초에 돌아봐 드려요',
+          lead: '매수·매도 기록과 수익률, 자산배분, 수입·지출·저축률까지 전월을 정리해요. 비밀번호로 잠겨 있어요.' },
   movers:{ chip: '#감시 자산 16개', h1: '크게 움직인 날,<br>왜 그랬는지 바로 풀어드려요',
           lead: '보유 종목 주가 ±3%, 미국 국채금리 ±15bp, 원/달러 ±1.5%를 넘긴 날의 원인을 분해해 드려요.' },
   thread:{ chip: '#전체 콘텐츠 한눈에', h1: '실적·지표·급등락·위클리,<br>한 줄씩 시간순으로 모았어요',
@@ -1493,7 +1520,7 @@ const HERO = {
   cal:   { chip: '#실적 · 경제 지표 · 기업 이벤트', h1: '다가오는 일정,<br>한 달력에 모았어요',
           lead: '실적발표·경제 지표·기업 이벤트 일정과 다음 발표 체크포인트를 한 곳에서 확인하세요.' }
 };
-const VIEWS = ['thread','earn','macro','movers','weekly','cal'];
+const VIEWS = ['thread','earn','macro','movers','weekly','monthly','cal'];
 function setView(v){
   VIEW = v;
   VIEWS.filter(k => k !== 'cal').forEach(k => { document.getElementById('seg-' + k).classList.toggle('on', k === v); });
@@ -1510,14 +1537,14 @@ function setView(v){
   document.getElementById('feed-sec').style.display = th ? '' : 'none';
   document.getElementById('rep-sec').style.display = (th || cal) ? 'none' : '';
   document.getElementById('rep-h2').textContent =
-    v === 'movers' ? '🚨 급등락 보고서' : v === 'weekly' ? '📁 지난 위클리' : '📁 지난 보고서';
+    v === 'movers' ? '🚨 급등락 보고서' : v === 'weekly' ? '📁 지난 위클리' : v === 'monthly' ? '🗓️ 지난 월간리뷰' : '📁 지난 보고서';
   active = '전체';
   renderStats(); renderBadges();
   if (th) renderFeed(); else if (!cal) { renderFilters(); renderCards(); }
   window.scrollTo(0, 0);
   if (window.mbShowGnb) window.mbShowGnb();
 }
-const TAB_VIEWS = ['thread','earn','macro','movers','weekly'];   // 하단 탭바 순서 (캘린더는 GNB 버튼)
+const TAB_VIEWS = ['thread','earn','macro','movers','weekly','monthly'];   // 하단 탭바 순서 (캘린더는 GNB 버튼) · v2.16 월간 추가
 TAB_VIEWS.forEach(k => {
   document.getElementById('seg-' + k).onclick = () => {
     if (VIEW === k) window.scrollTo({ top: 0, behavior: 'smooth' });   // 활성 탭 재탭 → 맨 위로
@@ -1527,7 +1554,22 @@ TAB_VIEWS.forEach(k => {
 document.getElementById('gcal').onclick = () => {
   if (VIEW === 'cal') window.scrollTo({ top: 0, behavior: 'smooth' }); else setView('cal');
 };
-setView(VIEW);
+setView(location.hash === '#monthly' ? 'monthly' : VIEW);
+
+/* ===== v2.16 월간리뷰 한줄평 — 잠금 해제된 기기(localStorage에 복호화 키)에서만 monthly/index.enc.json을 풀어 채운다 ===== */
+(async function(){
+  if (!MONTHLY_DB.length || !window.crypto || !crypto.subtle) return;
+  try {
+    const r = await fetch('monthly/index.enc.json', { cache: 'no-cache' }); if (!r.ok) return;
+    const j = await r.json();
+    const raw = localStorage.getItem('mb_mr_key:' + j.salt); if (!raw) return;
+    const b = s => { const bin = atob(s), u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u; };
+    const key = await crypto.subtle.importKey('raw', b(raw), { name: 'AES-GCM' }, false, ['decrypt']);
+    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b(j.iv) }, key, b(j.ct));
+    window.MONTHLY_ONE = JSON.parse(new TextDecoder().decode(pt));
+    if (VIEW === 'monthly') renderCards(); else if (VIEW === 'thread') renderFeed();
+  } catch(e) {}
+})();
 
 /* 스와이프 전환 애니메이션: 새 화면을 손가락 방향에서 28px 밀려 들어오게 */
 function swipeTo(view, dir){
