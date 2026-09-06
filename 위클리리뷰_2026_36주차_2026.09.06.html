@@ -399,46 +399,58 @@ ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;heigh
   <div class="l2">메모리가 끌고 소프트웨어가 밀렸어요</div>
 </div>
 
-<p>13개 보유 종목 중 이번 주에 <b>주간 등락률을 종가로 확인할 수 있는 종목</b>만 추렸어요. 아래 다섯 종목은 대시보드 급등락 보고서의 종가 데이터(8.28 종가 → 9.4 종가)로 계산한 값이에요.</p>
+<p>이번 주부터 <b>보유 13개 종목 전부의 주간 등락률</b>을 싣습니다. 8.28(금) 종가와 9.4(금) 종가를 각 종목 시세 히스토리에서 직접 받아 계산했어요. SK하이닉스만 한국장 종가 기준이에요.</p>
 
 <div class="chart">
-  <div class="ct">이슈 종목 주간 등락률 (%)</div>
-  <span class="cs">8.28 (금) 종가 → 9.4 (금) 종가 · SK하이닉스는 한국장 기준이에요</span>
-  <svg viewBox="0 0 700 206" xmlns="http://www.w3.org/2000/svg">
-    <line x1="350" y1="14" x2="350" y2="192" stroke="#D1D6DB" stroke-width="1.5"/>
+  <div class="ct">주간 등락률 상·하위 3종목 (%)</div>
+  <span class="cs">8.28 (금) 종가 → 9.4 (금) 종가 · 전체 13종목은 아래 표에 있어요</span>
+  <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg">
+    <line x1="350" y1="14" x2="350" y2="236" stroke="#D1D6DB" stroke-width="1.5"/>
     <text x="150" y="46" text-anchor="end" class="s-lab">MU</text>
-    <rect x="350" y="30" width="180" height="24" fill="#00B26B" rx="6"/>
-    <text x="538" y="47" class="cv" fill="#00B26B">+8.98%</text>
+    <rect x="350" y="30" width="240" height="24" fill="#00B26B" rx="6"/>
+    <text x="598" y="47" class="cv" fill="#00B26B">+8.98%</text>
     <text x="150" y="80" text-anchor="end" class="s-lab">CRWV</text>
-    <rect x="350" y="64" width="122" height="24" fill="#00B26B" rx="6"/>
-    <text x="480" y="81" class="cv" fill="#00B26B">+6.09%</text>
-    <text x="150" y="114" text-anchor="end" class="s-lab">IONQ</text>
-    <rect x="350" y="98" width="16" height="24" fill="#00B26B" rx="6"/>
-    <text x="374" y="115" class="cv" fill="#00B26B">+0.82%</text>
-    <text x="150" y="148" text-anchor="end" class="s-lab">SK하이닉스</text>
-    <rect x="343" y="132" width="7" height="24" fill="#F04452" rx="3"/>
-    <text x="335" y="149" text-anchor="end" class="cv" fill="#F04452">-0.36%</text>
-    <text x="150" y="182" text-anchor="end" class="s-lab">PLTR</text>
-    <rect x="222" y="166" width="128" height="24" fill="#F04452" rx="6"/>
-    <text x="214" y="183" text-anchor="end" class="cv" fill="#F04452">-6.42%</text>
+    <rect x="350" y="64" width="163" height="24" fill="#00B26B" rx="6"/>
+    <text x="521" y="81" class="cv" fill="#00B26B">+6.09%</text>
+    <text x="150" y="114" text-anchor="end" class="s-lab">NVDA</text>
+    <rect x="350" y="98" width="157" height="24" fill="#00B26B" rx="6"/>
+    <text x="515" y="115" class="cv" fill="#00B26B">+5.89%</text>
+    <text x="150" y="148" text-anchor="end" class="s-lab">GOOGL</text>
+    <rect x="287" y="132" width="63" height="24" fill="#F04452" rx="6"/>
+    <text x="279" y="149" text-anchor="end" class="cv" fill="#F04452">-2.35%</text>
+    <text x="150" y="182" text-anchor="end" class="s-lab">MSFT</text>
+    <rect x="278" y="166" width="72" height="24" fill="#F04452" rx="6"/>
+    <text x="270" y="183" text-anchor="end" class="cv" fill="#F04452">-2.69%</text>
+    <text x="150" y="216" text-anchor="end" class="s-lab">PLTR</text>
+    <rect x="178" y="200" width="172" height="24" fill="#F04452" rx="6"/>
+    <text x="170" y="217" text-anchor="end" class="cv" fill="#F04452">-6.42%</text>
   </svg>
-  <div class="legend"><span><span class="d" style="background:#00B26B"></span>상승</span><span><span class="d" style="background:#F04452"></span>하락</span></div>
+  <div class="legend"><span><span class="d" style="background:#00B26B"></span>상승 상위 3</span><span><span class="d" style="background:#F04452"></span>하락 하위 3</span></div>
 </div>
 
 <table>
-<thead><tr><th>종목</th><th>주간 등락</th><th style="text-align:left">무슨 일이 있었나요</th></tr></thead>
+<thead><tr><th>종목</th><th>주간</th><th style="text-align:left">무슨 일이 있었나요</th></tr></thead>
 <tbody>
-<tr class="hl"><td>MU</td><td class="pos">+8.98%</td><td style="text-align:left">낸드 가격 급등에 메모리 업종 동반 강세 · 9.4 하루만 +6.10%, 20거래일 신고가($1,016.59)</td></tr>
-<tr><td>CRWV</td><td class="pos">+6.09%</td><td style="text-align:left">월러 발언에 +4.49%, 고용 발표일에도 +5.68% · $89.36로 마감</td></tr>
-<tr><td>IONQ</td><td class="pos">+0.82%</td><td style="text-align:left">양자 3사 동반 반등(9.3 +3.67%) 후 되돌림 · 9.8 투자자의 날 대기</td></tr>
-<tr><td>SK하이닉스</td><td class="neg">-0.36%</td><td style="text-align:left">주 초반 낙폭을 9.4 +3.20%(외국인 5,272억원 순매수)로 겨우 만회 · 미국 메모리 랠리는 9.7 반영 몫</td></tr>
-<tr><td>PLTR</td><td class="neg">-6.42%</td><td style="text-align:left">차익실현 -5.81% → PwC 제휴로 +7.71% 반등 → 고용 서프라이즈에 -4.49% · 한 주 내내 롤러코스터</td></tr>
+<tr class="hl"><td>MU</td><td class="pos">+8.98%</td><td style="text-align:left">낸드 가격 2분기 +55% 집계에 메모리 업종 동반 강세 · 9.4 하루 +6.10%로 20거래일 신고가</td></tr>
+<tr><td>CRWV</td><td class="pos">+6.09%</td><td style="text-align:left">월러 발언에 +4.49%, 고용 발표일에도 +5.68% · 금리보다 '반도체 자산'으로 분류돼 움직였어요</td></tr>
+<tr><td>NVDA</td><td class="pos">+5.89%</td><td style="text-align:left">허깅페이스 $12.9B 인수 발표 · $230.36으로 5월 14일 사상 최고가($235.74)에 근접</td></tr>
+<tr><td>SMR</td><td class="pos">+4.41%</td><td style="text-align:left">9.2~9.3 이틀간 +5.9%로 원자력주 반등 · 주 후반엔 상승분 일부 반납</td></tr>
+<tr><td>IONQ</td><td class="pos">+0.82%</td><td style="text-align:left">9.3 +3.67%로 양자 3사 동반 반등 후 되돌림 · 9.8 투자자의 날 대기</td></tr>
+<tr><td>ABBV</td><td class="pos">+0.38%</td><td style="text-align:left">CERVINO 3상 성공·아포지 인수 완료(9.3)로 올랐지만 9.4 -1.44%로 되돌렸어요</td></tr>
+<tr><td>AAPL</td><td class="pos">+0.08%</td><td style="text-align:left">9.10 이벤트 대기 · 폴더블 생산 차질 보도에 9.4 -2.51%로 주간 상승분을 거의 반납</td></tr>
+<tr><td>SK하이닉스</td><td class="neg">-0.36%</td><td style="text-align:left">9.2 -4.73%(AI 메모리 리스크 부각)를 9.4 +3.20%로 만회 · 미국 메모리 랠리는 9.7 반영 몫</td></tr>
+<tr><td>O</td><td class="neg">-1.18%</td><td style="text-align:left">10년물이 4.78%까지 오르며 리츠 압박 · 바클레이스가 목표주가를 $67→$65로 하향</td></tr>
+<tr><td>KO</td><td class="neg">-1.77%</td><td style="text-align:left">금리 상승 구간에서 배당주 매력이 눌렸어요 · 8.31 -1.10%, 9.4 -0.83%</td></tr>
+<tr><td>GOOGL</td><td class="neg">-2.35%</td><td style="text-align:left">고용 서프라이즈에 빅테크가 함께 조정 · 9.4 -1.11%</td></tr>
+<tr><td>MSFT</td><td class="neg">-2.69%</td><td style="text-align:left">금리 상승기에 메가캡이 자금 유출 창구가 됐어요 · 9.4 -2.04%</td></tr>
+<tr><td>PLTR</td><td class="neg">-6.42%</td><td style="text-align:left">차익실현 -5.81% → PwC 제휴로 +7.71% → 고용 서프라이즈에 -4.49% · 한 주 내내 롤러코스터</td></tr>
 </tbody>
 </table>
-<p class="foot-note">※ NVDA는 9.4 종가 $230.36으로 5월 14일 사상 최고가($235.74)에 근접했고, 허깅페이스 인수를 발표했어요(주간 등락률은 전주 종가를 확정하지 못해 표기하지 않았어요). ABBV·SMR은 주간 단위로 확인된 특이 이슈가 없었어요.</p>
+<p class="foot-note">※ 종가는 각 종목 시세 히스토리(stockanalysis.com)의 마감 확정 행 기준이에요. SK하이닉스는 한국장 종가라 미국 금요일 장 흐름이 다음 거래일로 넘어가요.</p>
 
+<p>13개를 한 줄로 세우면 <b>상승 7·하락 6으로 정확히 반반</b>이에요. 지수가 제자리였던 이유가 여기서 그대로 보여요. 다만 갈린 기준이 업종이 아니라 <mark>'금리에 얼마나 민감한가'와 '메모리 가격에 얼마나 연결돼 있나' 두 축</mark>이었어요. 메모리 축(MU +8.98%)이 가장 크게 올랐고, 금리 축의 끝(PLTR -6.42%)이 가장 크게 빠졌어요.</p>
 <p>고용 발표일 하루만 떼어 보면 구도가 더 선명해요. <b>MU +6.10%·NVDA +0.84%로 반도체는 올랐고, AAPL -2.51%·MSFT -2.04%·GOOGL -1.11%로 빅테크는 지수보다 크게 밀렸어요.</b> 배당·리츠 쪽도 O -0.79%, KO -0.83%로 약했고요. 같은 지표를 놓고 <mark>"금리가 오른다"로 읽은 자산은 팔리고, "경기가 강하니 AI 투자가 안 줄어든다"로 읽은 자산은 사들인</mark> 하루였어요.</p>
-<p>정리하면 이번 주 포트폴리오의 축은 <b>메모리 가격(MU·SK하이닉스)과 금리 민감도(PLTR·O)</b> 둘로 갈렸어요. 다만 CRWV가 금리 상승일에도 오른 걸 보면, AI 인프라는 아직 '금리 자산'보다 '반도체 자산'으로 분류돼 있어요. 이 분류는 영원하지 않아요 — CRWV는 분기 이자비용이 영업이익의 몇 배인 구조라, 인상이 실제로 단행되면 결국 실적으로 부담이 돌아와요. <b>9월 17일 FOMC가 그 분류를 시험하는 자리</b>가 될 거예요.</p>
+<p>눈에 띄는 건 <b>CRWV(+6.09%)가 금리 상승 주에도 올랐다</b>는 점이에요. AI 인프라가 아직 '금리 자산'보다 '반도체 자산'으로 분류돼 있다는 뜻인데, 이 분류는 영원하지 않아요 — CRWV는 분기 이자비용이 영업이익의 몇 배인 구조라, 인상이 실제로 단행되면 결국 실적으로 부담이 돌아와요. <b>9월 17일 FOMC가 그 분류를 시험하는 자리</b>가 될 거예요.</p>
 </section>
 
 <!-- ④ -->
