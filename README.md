@@ -9,6 +9,7 @@
 - **위클리 리뷰**: 매주 일요일 한 주 정리 + 다음 주 관전 포인트
 - **자동화**: Claude `earnings-briefing` · `macro-briefing` · `movers-briefing` 스킬이 평일 09시, `weekly-review` 스킬이 일요일 09시에 실행되며, 변경분은 스크립트로 push합니다
 - **읽음/안읽음**: 탭 뱃지와 파란 점은 브라우저(기기)별 localStorage에만 저장됩니다
+- **폴더 구조**(2026-09-08~): 보고서는 종류별 폴더에 있습니다 — `실적브리핑/`(실적프리뷰 포함) · `경제지표/` · `급등락/` · `위클리리뷰/` · `monthly/`(암호문). 루트에는 `index.html`·`monthly.html`·`sw.js`·`manifest.json`·아이콘·`logos/`만 둡니다
 
 > 본 저장소의 보고서는 정보 제공 목적이며 투자 권유가 아닙니다.
 

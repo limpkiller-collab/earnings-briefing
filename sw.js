@@ -2,7 +2,7 @@
    캐시 전략: 같은 출처의 GET(index·보고서·아이콘·manifest)과 Pretendard 폰트 CSS를
    캐시에서 먼저 응답하고 뒤에서 최신본으로 갱신한다. 보고서는 최근 40개까지만 보관.
    CACHE 이름을 바꾸면 이전 캐시는 activate 때 지워진다. */
-const CACHE = 'mb-cache-v4';   // v2.16: 월간리뷰(monthly.html·monthly/*.enc.json) 추가
+const CACHE = 'mb-cache-v5';   // v2.17: 보고서 종류별 폴더화(실적브리핑/·경제지표/·급등락/·위클리리뷰/) — 구 경로 캐시 폐기
 const FALLBACK_URL = './index.html';
 const PRECACHE = ['./index.html', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 const MAX_ENTRIES = 100;
