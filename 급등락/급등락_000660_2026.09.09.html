@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>급등락 분석 — SK하이닉스(000660) 2026.09.09 +3.51%</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 2카드 */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .num.down{color:var(--red)} .hcard .num.up{color:var(--green)}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--red)} .hcard .cmp .up{color:var(--green)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--blue-bg);color:var(--blue)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 표 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200);white-space:nowrap}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable td.tx{white-space:normal;text-align:left;font-weight:500;color:var(--g600);font-size:13px;line-height:1.55}
+.htable .up{color:var(--green)} .htable .down{color:var(--red)}
+.htable tr.new td{background:var(--blue-bg)}
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--red)} .kpi .k .v .up{color:var(--green)}
+/* 원인 4분면 (급등락 전용) — 주원인만 블루, 나머지 무채색 */
+.cause-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.cause{border-radius:14px;padding:15px 17px;background:var(--g50);border:1px solid var(--g100)}
+.cause.main{background:var(--blue-bg);border-color:var(--blue-bg)}
+.cause.none{opacity:.55}
+.cause .ch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+.cause .cn{font-size:14px;font-weight:800;color:var(--g900)}
+.cause .cb{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px;background:var(--g100);color:var(--g500);white-space:nowrap}
+.cause.main .cb{background:var(--blue);color:#fff}
+.cause p{font-size:13.5px;color:var(--g700);line-height:1.6}
+.cause .src{font-size:12px;color:var(--g400);font-weight:600;margin-top:6px}
+/* 콜아웃 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 파급 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--g50);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지난번 체크포인트 점검 (같은 자산 재발 시) */
+.wp-list{margin:12px 0}
+.wp{display:flex;gap:12px;padding:12px 4px;border-bottom:1px solid var(--g100)}
+.wp-badge{flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;background:var(--g100);color:var(--g500);height:fit-content;margin-top:2px}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp-q{font-size:14.5px;font-weight:700;color:var(--g900)} .wp-a{font-size:13.5px;color:var(--g600);margin-top:2px}
+/* 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .cause-grid{grid-template-columns:1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+
+/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  body{background:var(--bg)}
+  .page,.gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
+  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
+  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
+  svg [stroke="#fff"]{stroke:#17171C}
+  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
+  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+/*<!--/dark-css-->*/
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">🚨</span> 급등락 분석</div>
+  <a href="../index.html">← 아카이브</a>
+</div>
+<div class="body">
+
+<div class="chips">
+  <span class="chip b">#SK하이닉스</span><span class="chip">#주가 +3.51%</span><span class="chip">#40조 자사주 소각</span><span class="chip">#외국인 4일 2.2조</span>
+</div>
+<h1>SK하이닉스 +3.5%<br>회사가 자기 주식을 사고 있어요</h1>
+<div class="meta">2026년 9월 9일(수) 한국장 마감 · 출처 stockanalysis.com(종가·거래량) · 파이낸셜뉴스 · 머니투데이 · 세계일보 · 아시아경제</div>
+
+<div class="callout">
+  <div class="ct">✅ 지난번엔 이걸 보자고 했죠 — 4개 중 2개가 판가름 났어요</div>
+  <div class="twrap">
+  <table class="htable">
+    <thead><tr><th>관전 포인트</th><th>결과</th></tr></thead>
+    <tbody>
+      <tr class="new"><td class="tx">① 1,783,000원이 지지선이 되는지, 하루 만에 되돌리는지</td><td class="w tx"><b>지지선이 됐어요.</b> 9/8 1,793,000원(<b class="up">+0.56%</b>) → 9/9 <b>1,856,000원</b>(<b class="up">+3.51%</b>)로 이틀 연속 위에서 마감</td></tr>
+      <tr class="new"><td class="tx">② 외국인 순매수 1조3,714억원이 이어지는지</td><td class="w tx"><b>이어졌어요.</b> 9/4~9/9 4거래일 외국인 코스피 순매수 <b>4조1,231억원</b> 중 SK하이닉스만 <b>2조1,733억원</b></td></tr>
+      <tr><td class="tx">③ '아스트라'발 메모리 수요 기대가 실제 가격·계약으로 확인되는지</td><td class="w tx">⚠️ <b>아직 부분적이에요.</b> 오픈AI가 AI 칩 수요에 낙관적이라는 보도는 있었지만, D램·낸드 고정가나 HBM4 공급계약 수치는 확인하지 못했어요</td></tr>
+      <tr><td class="tx">④ 마이크론 HBM 캐파 2배 확대가 공식 발표로 확인되는지</td><td class="w tx">아직이에요 — <b>9월 30일</b> 마이크론 FY26 Q4 실적발표에서 확인해요</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">종가 (9/9)</div>
+    <div class="num up">1,856,000원</div>
+    <div class="cmp">전일 1,793,000원 대비 <b class="up">+3.51%</b> · 장중 <b class="up">+5.02%</b>(1,883,000원)까지 갔어요</div>
+    <div class="core">최근 20거래일 <b>최고 종가</b>예요 — 다만 7월 초 고점(2,650,000원)까지는 아직 멀어요</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">시장과 비교</div>
+    <div class="num">지수의 2.5배</div>
+    <div class="cmp">코스피 <b class="up">+1.40%</b>(7,051.64) · 코스닥 <b class="up">+2.28%</b> · 그런데 삼성전자는 <b>0.00%</b>(269,500원)</div>
+    <div class="core">거래량 352만 주 — 20일 평균(381만)의 <b>0.93배</b>로 오히려 적었어요</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p><b>이날 주가를 밀어올린 건 회사가 사고 있는 자기 주식이에요.</b> SK하이닉스는 <b>8월 20일부터 11월 19일까지 40조원</b>어치 자사주를 사서 전량 소각하기로 했어요. 국내 상장사 소각 사례 중 역대 최대 규모예요.</p>
+  <p><b>외국인이 돌아온 것도 컸어요.</b> 9월 4일부터 9일까지 4거래일 동안 코스피에서 <b>4조1,231억원</b>을 순매수했는데, SK하이닉스 한 종목에만 <b>2조1,733억원</b>이 몰렸어요. 같은 기간 코스피는 6,579.48 → 7,051.64로 <b>+7.18%</b> 올랐고요.</p>
+  <p><mark>눈여겨볼 대목은 삼성전자가 보합(269,500원)이었다는 점이에요.</mark> 반도체가 통째로 오른 날이 아니라, <b>SK하이닉스에만</b> 돈이 붙은 날이었어요. 업종 훈풍과 종목 선별은 다르게 봐야 해요.</p>
+</div>
+
+<div class="sub-head">📉 무슨 일이 있었나</div>
+<div class="sub-desc">8월 19일 저점(1,500,000원) 이후 계단식으로 올라와 20거래일 최고 종가를 새로 썼어요.</div>
+
+<div class="chart-card">
+  <div class="ct">최근 20거래일 종가</div>
+  <div class="cs">8/12 ~ 9/9 · 초록 점이 이번 급등일 · 회색 점은 직전 종가(1,793,000원)</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="638" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="264.0" class="ax">1,435,920</text><line x1="14" y1="201.5" x2="638" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="205.5" class="ax">1,556,960</text><line x1="14" y1="143.0" x2="638" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="147.0" class="ax">1,678,000</text><line x1="14" y1="84.5" x2="638" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="88.5" class="ax">1,799,040</text><line x1="14" y1="26.0" x2="638" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="30.0" class="ax">1,920,080</text><polygon points="14.0,260 14.0,227.1 46.8,184.1 79.7,158.9 112.5,150.7 145.4,229.0 178.2,136.7 211.1,117.9 243.9,146.4 276.7,143.0 309.6,138.2 342.4,117.9 375.3,155.1 408.1,144.9 440.9,135.8 473.8,174.4 506.6,182.6 539.5,158.0 572.3,92.3 605.2,87.4 638.0,57.0 638.0,260" fill="#F2F4F6" opacity="0.85"/><polyline points="14.0,227.1 46.8,184.1 79.7,158.9 112.5,150.7 145.4,229.0 178.2,136.7 211.1,117.9 243.9,146.4 276.7,143.0 309.6,138.2 342.4,117.9 375.3,155.1 408.1,144.9 440.9,135.8 473.8,174.4 506.6,182.6 539.5,158.0 572.3,92.3 605.2,87.4 638.0,57.0" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="605.2" cy="87.4" r="4" fill="#fff" stroke="#8B95A1" stroke-width="2.5"/><text x="605.2" y="76.4" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">1,793,000</text><line x1="638.0" y1="57.0" x2="638.0" y2="260" stroke="#00B26B" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/><circle cx="638.0" cy="57.0" r="5.5" fill="#fff" stroke="#00B26B" stroke-width="3"/><text x="630.0" y="44.0" text-anchor="end" class="cv" style="fill:#00B26B">1,856,000 (+3.51%)</text><text x="14.0" y="286" text-anchor="middle" class="cl">8.12</text><text x="112.5" y="286" text-anchor="middle" class="cl">8.18</text><text x="211.1" y="286" text-anchor="middle" class="cl">8.21</text><text x="309.6" y="286" text-anchor="middle" class="cl">8.26</text><text x="408.1" y="286" text-anchor="middle" class="cl">8.31</text><text x="506.6" y="286" text-anchor="middle" class="cl">9.3</text><text x="605.2" y="286" text-anchor="middle" class="cl">9.8</text><text x="638.0" y="286" text-anchor="middle" class="cl">9.9</text></svg>
+</div>
+<div class="kpi">
+  <div class="k"><div class="l">20거래일 등락</div><div class="v"><span class="up">+23.4%</span></div><div class="d">8/12 1,504,000원 → 9/9 1,856,000원</div></div>
+  <div class="k"><div class="l">20거래일 저점 대비</div><div class="v"><span class="up">+23.7%</span></div><div class="d">저점 1,500,000원(8/19) · 고점이 곧 이번 종가예요</div></div>
+  <div class="k"><div class="l">일간 상승률</div><div class="v"><span class="up">+3.51%</span></div><div class="d">9/7 +8.26% 이후 사흘 만에 다시 3%대</div></div>
+  <div class="k"><div class="l">거래량</div><div class="v">352만 주</div><div class="d">20일 평균(381만)의 0.93배 — 평균보다 적었어요</div></div>
+</div>
+<p class="body-p">거래량을 꼭 보세요. <mark>평균보다 적은 거래량(0.93배)으로 +3.5%가 났어요.</mark> 보통 큰 상승에는 거래량이 함께 붙는데, 이날은 그렇지 않았어요. <b>팔려는 물량이 얇아졌다</b>는 뜻이에요. 회사가 매일 자기 주식을 사들이고 외국인이 4일 연속 담는 상황에서, 시장에 나와 있는 매도 물량 자체가 줄어든 거예요. 이런 구간에서는 적은 매수로도 가격이 크게 움직여요.</p>
+
+<div class="sub-head">🔍 왜 움직였나</div>
+<div class="sub-desc">네 가지 후보를 놓고 근거를 따져봤어요. 주원인 하나만 파란색으로 표시했어요.</div>
+
+<div class="cause-grid">
+  <div class="cause main">
+    <div class="ch"><span class="cn">수급·밸류에이션</span><span class="cb">주원인</span></div>
+    <p>사는 쪽이 <b>두 갈래로 두터워졌어요</b>. ① 자사주 매입 주체인 <b>기타법인</b>이 전기전자 업종에서 <b>1조7,400억원</b>을 순매수했고, ② 외국인이 9/4~9/9 나흘간 SK하이닉스를 <b>2조1,733억원</b> 사들였어요. 같은 기간 삼성전자 순매수는 9,981억원으로 절반 이하였어요. <b>파는 쪽은 얇고 사는 쪽은 둘</b>인 구도예요.</p>
+    <div class="src">근거 · 파이낸셜뉴스 9/9(외국인 수급) · 중앙이코노미뉴스(기타법인 순매수) · 한국거래소 집계 인용 보도</div>
+  </div>
+  <div class="cause">
+    <div class="ch"><span class="cn">회사 뉴스</span><span class="cb">보조 원인</span></div>
+    <p>당일 새 공시는 없었지만, <b>8월 20일부터 집행 중인 40조원 자사주 취득·전량 소각</b>이 배경에 계속 깔려 있어요(취득 기간 8/20~11/19). 발표는 지났어도 <b>매일 실제로 주식을 사고 있다</b>는 점이 다른 재료와 다른 부분이에요 — 뉴스는 하루면 소화되지만 매입은 석 달 내내 이어져요.</p>
+    <div class="src">근거 · 아시아경제 8/20(40조 자사주 소각 발표) · 취득 기간 8/20~11/19</div>
+  </div>
+  <div class="cause">
+    <div class="ch"><span class="cn">매크로·금리</span><span class="cb">보조 원인</span></div>
+    <p>원/달러가 <b>1,336.1원</b>으로 9.5원(<b>-0.71%</b>) 내렸어요. 원화가 강해지면 외국인 입장에서 환차익이 붙어 한국 주식을 담기 좋아져요. 이날 외국인 순매수와 방향이 맞아떨어져요. 다만 <b>환율이 원인이라기보다 같은 흐름의 다른 얼굴</b>에 가까워요 — 외국인이 사면 원화가 강해지니까요.</p>
+    <div class="src">근거 · 머니투데이·아시아경제 9/9(서울 외환시장 오후 3시30분 기준)</div>
+  </div>
+  <div class="cause none">
+    <div class="ch"><span class="cn">경쟁·업종</span><span class="cb">판단 보류</span></div>
+    <p><b>업종 동반으로 보기 어려워요.</b> 삼성전자가 <b>보합(0.00%)</b>으로 장중 상승분을 모두 반납했거든요. 전날 미국장도 S&amp;P500 <b>-0.58%</b>·나스닥 <b>-0.32%</b>로 우호적이지 않았고요. AI 메모리 공급이 타이트하다는 서사는 여러 보도에 나오지만, <b>이날 움직임을 설명할 새 가격·계약 수치는 확인하지 못했어요.</b></p>
+    <div class="src">근거 · 세계일보 9/9(삼성전자 상승분 반납) · 9/8 미국 지수 종가 · ⚠️ 메모리 가격 지표 미확인</div>
+  </div>
+</div>
+
+<p class="body-p">정리하면 <mark>수요가 늘어서가 아니라 공급이 줄어서 오른 날</mark>이에요. 회사가 40조원을 들여 자기 주식을 사서 없애고 있고, 외국인이 나흘 연속 2조원 넘게 담았어요. 그 결과 거래량이 평균 이하인데도 가격은 3.5% 올랐어요. 이런 상승은 <b>뉴스로 만든 상승보다 오래가는 편</b>이지만, 대신 <b>수급이 멈추면 근거도 함께 사라져요</b>. 그래서 아래 관전 포인트는 전부 "수급이 이어지는가"에 맞춰져 있어요.</p>
+
+<div class="chart-card">
+  <div class="ct">같은 날 관련 자산은 어땠나</div>
+  <div class="cs">9/9 한국장 마감 기준 · 파란 막대가 SK하이닉스 · 미국 지수는 직전 마감(9/8)</div>
+  <svg viewBox="0 0 700 244" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="201.4" y1="14" x2="201.4" y2="224" stroke="#D1D6DB" stroke-width="1.5"/><rect x="201.4" y="20" width="384.8" height="22" rx="4" fill="#3182F6"/><text x="74" y="36" text-anchor="end" class="cv" style="fill:#191F28;font-size:12.5px">SK하이닉스</text><text x="592.2" y="36" text-anchor="start" class="cv" style="fill:#3182F6;font-size:12px">+3.5%</text><rect x="201.4" y="54" width="250.0" height="22" rx="4" fill="#BDEBD3"/><text x="74" y="70" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">코스닥</text><text x="457.3" y="70" text-anchor="start" class="cv" style="fill:#00B26B;font-size:12px">+2.3%</text><rect x="201.4" y="88" width="153.5" height="22" rx="4" fill="#BDEBD3"/><text x="74" y="104" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">코스피</text><text x="360.9" y="104" text-anchor="start" class="cv" style="fill:#00B26B;font-size:12px">+1.4%</text><rect x="201.4" y="122" width="1.5" height="22" rx="4" fill="#BDEBD3"/><text x="74" y="138" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">삼성전자</text><text x="207.4" y="138" text-anchor="start" class="cv" style="fill:#00B26B;font-size:12px">+0.0%</text><rect x="166.3" y="156" width="35.1" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="172" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">나스닥(9/8)</text><text x="160.3" y="172" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-0.3%</text><rect x="137.8" y="190" width="63.6" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="206" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">S&amp;P500(9/8)</text><text x="131.8" y="206" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-0.6%</text></svg>
+  <div class="legend"><span><i style="background:#3182F6"></i>SK하이닉스</span><span><i style="background:#BDEBD3"></i>상승</span><span><i style="background:#F8C7CC"></i>하락</span></div>
+</div>
+
+<div class="sub-head">📐 밸류에이션은 어떻게 바뀌었나</div>
+<div class="sub-desc">컨센서스 편차가 워낙 커서 P/E보다 목표주가와의 거리로 봤어요.</div>
+<div class="kpi">
+  <div class="k"><div class="l">목표주가 평균 대비</div><div class="v"><span class="down">-44.1%</span></div><div class="d">평균 3,317,917원 ⚠ 증권사별 편차가 매우 커요</div></div>
+  <div class="k"><div class="l">20거래일 위치</div><div class="v">최고 종가</div><div class="d">저점 1,500,000원(8/19) · 이번 종가가 곧 20일 고점</div></div>
+  <div class="k"><div class="l">7월 고점 대비</div><div class="v"><span class="down">-30.0%</span></div><div class="d">6/30 2,650,000원 · 7월 급락 이후 회복 구간이에요</div></div>
+  <div class="k"><div class="l">자사주 프로그램</div><div class="v">40조원</div><div class="d">8/20~11/19 취득 후 전량 소각 · 국내 최대 규모</div></div>
+</div>
+<p class="body-p">이 종목의 밸류에이션을 볼 때 주의할 점은 <b>목표주가 평균을 그대로 믿기 어렵다</b>는 거예요. 증권사마다 메모리 사이클을 보는 시각이 극단적으로 갈려서 편차가 크거든요. 그보다 확실한 숫자는 <b>40조원</b>이에요 — <mark>회사가 실제 현금으로 사서 없애겠다고 밝힌 금액이고, 이미 집행 중이에요.</mark> 발행주식 수가 줄면 같은 이익이라도 주당 이익은 올라가요. 실적 내용은 <a href="../실적브리핑/실적브리핑_000660_2026Q2_2026.08.09.html">2026년 2분기 실적 보고서</a>에서 다뤘어요.</p>
+
+<div class="sub-head">💼 보유 종목 파급</div>
+<div class="sub-desc">같은 이유로 움직일 수 있는 종목을 그룹별로 정리했어요.</div>
+
+<div class="stock-g">
+  <div class="sg-t">AI 메모리 <span class="tks">MU</span> <span class="badge pos">우호</span></div>
+  <p>같은 날 미국장에서 <a href="../실적브리핑/실적브리핑_MU_FY2026Q3_2026.08.09.html">마이크론이 +2.75%</a>($1,027.77)로 올랐어요. <b>메모리 가격이 최대 60% 뛸 수 있다</b>는 전망 보도가 나온 날이에요. SK하이닉스와 마이크론은 같은 사이클을 공유하니, <mark>9월 30일 마이크론 FY26 Q4 실적이 두 종목 공통의 분기점이에요.</mark> <a href="급등락_MU_2026.09.05.html">9/4 마이크론 +6.10% 분석</a>도 함께 보면 흐름이 이어져요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">AI 반도체·클라우드 <span class="tks">NVDA · CRWV</span> <span class="badge neu">중립</span></div>
+  <p>같은 날 미국장에서 <a href="../실적브리핑/실적브리핑_NVDA_FY2027Q2_2026.08.27.html">엔비디아 -0.91%</a>, <a href="급등락_CRWV_2026.09.09.html">코어위브 -4.90%</a>였어요. 한국 메모리가 오르는 동안 미국 AI 인프라는 되돌림 중이었다는 뜻이에요. <b>같은 AI 투자 사이클 안에서도 메모리와 GPU·클라우드의 사이클 위치가 다르다</b>는 걸 보여줘요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">환율 노출 <span class="tks">전체 미국 주식</span> <span class="badge neg">비우호</span></div>
+  <p>원/달러가 1,336.1원으로 <b>0.71% 내렸어요</b>. 원화가 강해지면 <b>달러로 갖고 있는 미국 주식의 원화 환산 가치는 그만큼 줄어요.</b> 미국 주식 12종목을 보유한 입장에서는 이날 주가 하락에 환손실이 더해진 셈이에요. 반대로 SK하이닉스는 환율 영향 없이 온전히 +3.5%였고요.</p>
+</div>
+
+<div class="sub-head">👀 이 다음엔 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">외국인 순매수가 5거래일째 이어지는지<small>9/4~9/9 나흘간 2조1,733억원이었어요. 끊기는 순간 이번 상승의 절반은 근거를 잃어요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">삼성전자가 같이 오르기 시작하는지<small>9/9엔 보합(269,500원)이었어요. 삼성전자가 따라 오르면 업종 동반, 계속 갈리면 종목 선별이에요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">1,856,000원이 지지선이 되는지<small>거래량이 평균 이하로 만든 고점이라 되돌림이 쉬워요. 1,783,000원(9/7 종가) 아래로 내려가면 되돌림 국면이에요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">9월 30일 마이크론 실적에서 HBM 캐파·메모리 가격이 확인되는지<small>직전 실행에서 이월된 항목이에요. 메모리 가격 +60% 전망이 회사 숫자로 뒷받침되는지가 핵심이에요</small></div></div>
+</div>
+<div class="wp-preview">📌 SK하이닉스가 다시 ±3% 움직이면, 위 항목이 어떻게 됐는지 <b>먼저 점검</b>하고 새 원인을 분석해 드릴게요.</div>
+
+<div class="sub-head">📚 이런 움직임을 어떻게 봐야 하나</div>
+<div class="explain">
+  <h3>자사주 소각은 '사는 힘'과 '줄어드는 공급' 두 가지로 작동해요</h3>
+  <p>자사주 매입과 소각은 사실 두 단계예요. 먼저 <b>회사가 시장에서 자기 주식을 사요</b>. 이건 그냥 큰 매수자가 하나 더 생긴 것과 같아요 — 매일 정해진 금액만큼, 주가가 오르든 내리든 사들이니까 하방을 받쳐주는 역할을 해요.</p>
+  <p>다음이 <b>소각</b>이에요. 산 주식을 없애면 발행주식 수가 영구히 줄어요. 회사가 버는 돈이 같아도 나눠 가질 주식이 적어지니 <b>주당 이익이 올라가요.</b> 배당과 달리 세금이 붙지 않고, 효과가 한 번으로 끝나지 않고 남는다는 게 차이예요. 40조원이라는 규모가 주목받는 이유가 여기 있어요.</p>
+  <p>다만 <mark>주의할 점도 분명해요.</mark> 첫째, 매입은 <b>기간이 정해져 있어요</b> — 11월 19일이면 끝나요. 그때까지 실적이 받쳐주지 못하면 받침대가 사라진 뒤 원래 자리로 돌아갈 수 있어요. 둘째, <b>자사주를 살 돈은 설비투자에 쓸 수도 있던 돈</b>이에요. 메모리처럼 캐파 경쟁이 치열한 산업에서 이 선택이 옳았는지는 다음 사이클에서야 답이 나와요. 지금 주가가 반영하는 건 <b>수급</b>이고, 결국 검증하는 건 <b>실적</b>이에요.</p>
+</div>
+
+<!--rnav-->
+<div class="rnav"><a class="prev" href="급등락_IONQ_2026.09.10.html"><span class="av"><img src="../logos/IONQ.png" alt=""></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">IONQ</div><div class="rs"><span class="tx DOWNM">-5.76%</span> · IonQ · 목표가 하향</div></div></a><a class="next" href="급등락_SMR_2026.09.09.html"><span class="av"><img src="../logos/SMR.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">SMR</div><div class="rs"><span class="tx UPM">+15.26%</span> · NuScale · 원자력 반등</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: stockanalysis.com(종가·거래량 20거래일), 파이낸셜뉴스·머니투데이·세계일보·중앙이코노미뉴스(수급·종가), 아시아경제(자사주 소각), 한국거래소 집계 인용 보도 · movers-briefing 스킬이 자동 생성했습니다.
+</div>
+</div>
+</div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="급등락/급등락_000660_2026.09.09.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+</body>
+</html>
