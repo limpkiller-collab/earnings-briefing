@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경제 지표 — 생산자물가지수(PPI) 2026년 8월</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 수치 2카드 */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--red-bg);color:var(--red)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 발표 이력 테이블 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable td.w{white-space:normal;text-align:left;font-weight:600;color:var(--g600);font-size:13px}
+.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
+.htable tr.new td{background:var(--blue-bg)}
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.htable th{white-space:nowrap}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI 카드 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
+/* 콜아웃·인용 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+.quote{border-left:3px solid var(--g200);padding:2px 0 2px 14px;margin:16px 0;font-size:15px;
+  color:var(--g600);line-height:1.75}
+.quote small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:5px}
+/* 보유 종목 영향 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 지난번 체크포인트 점검 */
+.wp-list{margin:12px 0}
+.wp{display:flex;gap:12px;padding:12px 4px;border-bottom:1px solid var(--g100)}
+.wp-badge{flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;background:var(--g100);color:var(--g500);height:fit-content;margin-top:2px}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp.partial .wp-badge{background:var(--amber-bg);color:var(--amber)}
+.wp-q{font-size:14.5px;font-weight:700;color:var(--g900)} .wp-a{font-size:13.5px;color:var(--g600);margin-top:2px}
+/* 관전포인트 */
+.wp-preview{background:var(--g50);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지표 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  body{background:var(--bg)}
+  .page,.gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
+  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
+  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
+  svg [stroke="#fff"]{stroke:#17171C}
+  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
+  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+/*<!--/dark-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">📈</span> 경제 지표</div>
+  <a href="../index.html">← 아카이브</a>
+</div>
+<div class="body">
+<div class="chips">
+  <span class="chip b">#물가</span><span class="chip">#매달 발표</span><span class="chip">#★★</span><span class="chip">#전월 대비 · 전년 대비</span>
+</div>
+<h1>생산자물가지수(PPI)<br>2026년 8월</h1>
+<div class="meta">2026년 9월 10일 21:30 발표 (한국시간) · 출처 미국 노동통계국(BLS) 보도자료 USDL 26-1495 · 컨센서스 다우존스</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">전월 대비 (MoM)</div>
+    <div class="num">+0.4%</div>
+    <div class="cmp">예측(+0.4%)에 <b class="flat">부합</b> · 지난달 <b class="up">+0.3%p</b> 가속(7월 +0.1%)</div>
+    <div class="core">근원(식품·에너지 제외) +0.2% — 예측(+0.3%)을 하회</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">전년 대비 (YoY)</div>
+    <div class="num">5.4%</div>
+    <div class="cmp">예측(5.3%)보다 <b class="up">+0.1%p 상회</b> · 지난달보다 <b class="up">+0.6%p</b> 재가속</div>
+    <div class="core">근원(식품·에너지 제외) YoY 4.6% · 거래서비스까지 제외 시 4.7%</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p>미국 8월 도매물가가 <b>+0.4%</b>로 예측에 딱 맞았지만, 연간으로는 <b>4.8% → 5.4%</b>로 다시 올라갔어요. 두 달간의 둔화가 한 달 만에 되돌려졌어요.</p>
+  <p>범인은 하나예요. <b>디젤유가 한 달에 24.1% 뛰면서</b> 에너지가 +4.2%, 상품이 +1.1% 올랐어요. 반대로 서비스는 +0.1%, 근원은 +0.2%로 <b>오히려 식었어요</b>.</p>
+  <p><mark class="r">지표 자체는 무해했는데, 같은 날 유가가 배럴당 $100을 넘고 10년물이 4.95%까지 오르면서 시장은 매파적으로 읽었어요.</mark> 9월 FOMC 인상 확률은 74%까지 올라갔어요.</p>
+</div>
+
+<div class="sub-head">✅ 지난번엔 이걸 보자고 했죠</div>
+<div class="sub-desc">7월 PPI 보고서(8월 13일)에서 확인하기로 한 네 가지를 먼저 점검했어요.</div>
+<div class="wp-list">
+  <div class="wp partial"><span class="wp-badge">절반만</span><div><div class="wp-q">8월 MoM이 다시 플러스로 튀는지 — 관세 원가 전가 재개 여부</div><div class="wp-a">숫자는 튀었어요. <b>+0.4%</b>로 기준선(+0.3%)을 넘겨 둔화 추세에 제동이 걸렸죠. 다만 <b>원인은 관세가 아니라 에너지</b>였어요. 관세가 먼저 닿는 구간인 상품(식품·에너지 제외)은 +0.4%로 다섯 달째 +0.2~0.7% 박스 안이고, 수입 관련 항목이 튀었다는 흔적은 없어요.</div></div></div>
+  <div class="wp miss"><span class="wp-badge">반대로 갔어요</span><div><div class="wp-q">YoY 4.7%가 3%대로 내려서는지 — 기저효과 구간 진입</div><div class="wp-a">기저효과는 오히려 반대로 작동했어요. 1년 전(2025년 8월) PPI가 <b>-0.2%</b>로 낮았던 탓에, 이번에 +0.4%가 나오자 연간 상승률이 <b>4.8% → 5.4%</b>로 뛰었어요. 7월치도 4.7%에서 4.8%로 상향 수정됐어요.</div></div></div>
+  <div class="wp miss"><span class="wp-badge">구도가 뒤집혔어요</span><div><div class="wp-q">서비스 PPI +0.2%의 끈적함 — 상품이 내려도 서비스가 버티는지</div><div class="wp-a">버티지 않았어요. 서비스는 <b>+0.1%</b>로 더 내려왔고, 거래서비스는 <b>-0.2%</b>로 마이너스였어요. 지난달과 정반대로 <b>상품(+1.1%)이 올리고 서비스가 누르는</b> 구도가 됐어요. 근원 물가 둔화가 막힌 건 아니라는 뜻이라, 방향만 보면 나쁘지 않은 소식이에요.</div></div></div>
+  <div class="wp met"><span class="wp-badge">일회성이었어요</span><div><div class="wp-q">건설비 급등(+2.2%)이 일회성인지 추세인지 — AI CapEx 원가 영향</div><div class="wp-a">8월 최종수요 건설은 <b>0.0%</b>로 완전히 멈췄어요(민간 설비투자용 0.0% · 정부용 0.0%). 7월 +2.2%는 한 달짜리 점프였다는 게 확인됐어요. 데이터센터 신축 원가 압력은 일단 진정된 셈이에요.</div></div></div>
+</div>
+
+<div class="sub-head">📈 도매물가 추이</div>
+<div class="sub-desc">6월 -0.1% → 7월 +0.1% → 8월 +0.4%. 봄철 급등(월 +1%대) 수준은 아니지만 방향이 위로 돌았어요.</div>
+
+<div class="chart-card">
+  <div class="ct">PPI 최종수요 전월 대비</div>
+  <div class="cs">2026년 1월 ~ 8월 · 4~7월은 이번 발표에서 반영된 수정치</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-0.3</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">0.1</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">0.5</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">0.9</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">1.4</text><polygon points="14.0,260 14.0,129.2 104.0,143.0 194.0,101.7 284.0,60.4 374.0,143.0 464.0,225.6 554.0,198.1 644.0,156.8 644.0,260" fill="#F2F4F6" opacity="0.85"/><polyline points="14.0,129.2 104.0,143.0 194.0,101.7 284.0,60.4 374.0,143.0 464.0,225.6 554.0,198.1 644.0,156.8" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><line x1="644.0" y1="156.8" x2="644.0" y2="260" stroke="#3182F6" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/><circle cx="644.0" cy="156.8" r="8.5" fill="none" stroke="#8B95A1" stroke-width="2" stroke-dasharray="3.5,3"/><text x="631.0" y="182.8" text-anchor="end" class="cv" style="fill:#8B95A1;font-size:11.5px">예측 +0.4%</text><circle cx="644.0" cy="156.8" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/><text x="634.0" y="143.8" text-anchor="end" class="cv" style="fill:#3182F6">발표 +0.4%</text><text x="14.0" y="286" text-anchor="middle" class="cl">26.1</text><text x="194.0" y="286" text-anchor="middle" class="cl">26.3</text><text x="374.0" y="286" text-anchor="middle" class="cl">26.5</text><text x="554.0" y="286" text-anchor="middle" class="cl">26.7</text><text x="644.0" y="286" text-anchor="middle" class="cl">26.8</text></svg>
+  <div class="legend"><span><i style="background:#3182F6"></i>발표치(실선 점)</span><span><i style="background:#8B95A1;border-radius:50%"></i>예측치(점선 원) — 이번엔 두 값이 같아 겹쳐 보여요</span></div>
+</div>
+<div class="chart-card">
+  <div class="ct">PPI 최종수요 전년 대비</div>
+  <div class="cs">최근 5개월 · 7월 4.8%를 저점으로 한 달 만에 반등</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-0.1</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">1.5</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">3.2</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">4.9</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">6.6</text><line x1="14" y1="254.8" x2="644" y2="254.8" stroke="#D1D6DB" stroke-width="1.5"/><rect x="50.5" y="57.4" width="52.9" height="197.4" rx="3.5" fill="#C9DEFB"/><text x="77.0" y="51.4" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.7</text><text x="77.0" y="286" text-anchor="middle" class="cl">26.4</text><rect x="176.5" y="50.5" width="52.9" height="204.3" rx="3.5" fill="#C9DEFB"/><text x="203.0" y="44.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.9</text><text x="203.0" y="286" text-anchor="middle" class="cl">26.5</text><rect x="302.5" y="60.9" width="52.9" height="193.9" rx="3.5" fill="#C9DEFB"/><text x="329.0" y="54.9" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.6</text><text x="329.0" y="286" text-anchor="middle" class="cl">26.6</text><rect x="428.5" y="88.6" width="52.9" height="166.2" rx="3.5" fill="#C9DEFB"/><text x="455.0" y="82.6" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">4.8</text><text x="455.0" y="286" text-anchor="middle" class="cl">26.7</text><rect x="554.5" y="67.8" width="52.9" height="187.0" rx="3.5" fill="#3182F6"/><text x="581.0" y="61.8" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">5.4</text><text x="581.0" y="286" text-anchor="middle" class="cl">26.8</text></svg>
+</div>
+
+<div class="sub-head">🗓️ 발표 이력</div>
+<div class="sub-desc">예측 상회는 빨강, 하회는 파랑으로 표시해요.</div>
+<div class="twrap"><table class="htable">
+  <tr><th>발표일 (대상월)</th><th>MoM 발표</th><th>예측</th><th>YoY 발표</th><th>이전(YoY)</th></tr>
+  <tr class="new"><td>2026.09.10 (8월)</td><td class="a">+0.4%</td><td>+0.4%</td><td class="a up">5.4%</td><td>4.8%</td></tr>
+  <tr><td>2026.08.13 (7월)</td><td class="a down">0.0%</td><td>+0.2%</td><td class="a">4.7%</td><td>5.5%</td></tr>
+  <tr><td>2026.07.15 (6월)</td><td class="a down">-0.3%</td><td>0.0%</td><td class="a down">5.5%</td><td>6.0%</td></tr>
+  <tr><td>2026.06.11 (5월)</td><td class="a">+1.1%</td><td>—</td><td class="a">6.5%</td><td>6.0%</td></tr>
+  <tr><td>2026.05.13 (4월)</td><td class="a up">+1.4%</td><td>+0.5%</td><td class="a up">6.0%</td><td>—</td></tr>
+</table></div>
+<div class="g-note">각 행은 <b>발표 당시의 속보치</b>예요. 이번 발표에서 4~7월이 수정됐어요 — MoM은 4월 +1.1%·5월 +0.5%·6월 -0.1%·7월 +0.1%, YoY는 7월 4.7%→4.8%예요. 차트는 수정 반영치를 씁니다. 5월분 MoM 예측치는 확인되지 않아 비워뒀어요.</div>
+
+<div class="sub-head">🔍 무엇이 도매물가를 움직였나</div>
+<div class="sub-desc">상승분의 4분의 3 이상이 에너지 한 항목에서 나왔어요.</div>
+<div class="kpi">
+  <div class="k"><div class="l">최종수요 상품</div><div class="v"><span class="up">+1.1%</span></div><div class="d">MoM · 두 달 연속 하락 뒤 반등 · YoY 7.7%</div></div>
+  <div class="k"><div class="l">최종수요 에너지</div><div class="v"><span class="up">+4.2%</span></div><div class="d">MoM · 상품 상승분의 4분의 3 이상 · YoY 24.4%</div></div>
+  <div class="k"><div class="l">최종수요 서비스</div><div class="v">+0.1%</div><div class="d">MoM · 세 달 연속 상승이지만 폭은 축소 · YoY 4.5%</div></div>
+  <div class="k"><div class="l">근원 (식품·에너지 제외)</div><div class="v"><span class="down">+0.2%</span></div><div class="d">MoM · 예측(+0.3%) 하회 · YoY 4.6%</div></div>
+</div>
+<div class="twrap"><table class="htable">
+  <tr><th>항목</th><th>8월 MoM</th><th>7월 MoM</th><th>해석</th></tr>
+  <tr><td>디젤유</td><td class="a up" data-h="8월 MoM">+24.1%</td><td data-h="7월 MoM">—</td><td class="w" data-h="해석">상품 상승분의 3분의 1 이상을 혼자 설명해요. 중동 공급 우려로 정제마진이 벌어진 결과예요.</td></tr>
+  <tr><td>최종수요 에너지</td><td class="a up" data-h="8월 MoM">+4.2%</td><td data-h="7월 MoM">-1.8%</td><td class="w" data-h="해석">가솔린·항공유·가정용 난방유도 함께 올랐어요. 주택용 전력은 -0.5%로 유일하게 내렸어요.</td></tr>
+  <tr><td>운송·창고 서비스</td><td class="a up" data-h="8월 MoM">+2.3%</td><td data-h="7월 MoM">-1.1%</td><td class="w" data-h="해석">화물 트럭운송 +2.0%. 연료비가 운임에 바로 전가되는 경로예요.</td></tr>
+  <tr><td>거래(유통) 서비스</td><td class="a down" data-h="8월 MoM">-0.2%</td><td data-h="7월 MoM">-0.1%</td><td class="w" data-h="해석">연료·윤활유 소매 마진이 -11.3%. 주유소가 원가 상승을 소비자 가격에 다 못 넘겼다는 뜻이에요.</td></tr>
+  <tr><td>기타 서비스<br><span style="font-weight:600;color:var(--g400)">(거래·운송·창고 제외)</span></td><td class="a" data-h="8월 MoM">0.0%</td><td data-h="7월 MoM">+0.5%</td><td class="w" data-h="해석">서비스 물가의 가장 끈적한 부분이 완전히 멈췄어요. 이번 달의 가장 우호적인 숫자예요.</td></tr>
+  <tr><td>최종수요 건설</td><td class="a" data-h="8월 MoM">0.0%</td><td data-h="7월 MoM">+2.2%</td><td class="w" data-h="해석">7월 급등이 일회성으로 확인됐어요. AI 데이터센터 신축 원가 압력은 일단 진정.</td></tr>
+  <tr><td>중간재 가공품</td><td class="a up" data-h="8월 MoM">+1.8%</td><td data-h="7월 MoM">-0.4%</td><td class="w" data-h="해석">YoY +11.5%. 상승분의 80% 이상이 가공 에너지(+7.3%). 인쇄회로조립품 가격도 올랐어요.</td></tr>
+  <tr><td>중간재 미가공품</td><td class="a up" data-h="8월 MoM">+1.1%</td><td data-h="7월 MoM">+0.7%</td><td class="w" data-h="해석">YoY +12.8%. 비철 스크랩 +3.7%, 원유 상승. 반대로 도축용 소는 -6.4%.</td></tr>
+</table></div>
+<p class="body-p">구조를 나눠 보면 이번 PPI는 <b>에너지 하나짜리 이벤트</b>예요. 에너지를 빼면 근원은 +0.2%, 서비스는 +0.1%, 건설은 0.0%로 <mark>물가의 끈적한 부분은 오히려 한 달 더 식었어요</mark>. 문제는 연준이 보는 것이 "왜 올랐나"보다 "얼마나 올랐나"인 구간이고, <b>에너지가 공급 충격으로 오르는 국면은 통화정책이 손쓸 수 없다</b>는 점이에요. 중간재 에너지가 +7.3%까지 뛴 건 다음 달 최종수요로 전가될 여지가 남았다는 신호예요.</p>
+
+<div class="sub-head">🏛️ 시장 반응과 연준 경로</div>
+<div class="sub-desc">지표는 무해했지만, 같은 날 유가와 금리가 판을 바꿨어요.</div>
+<p class="body-p">발표 직후 국채가 팔리고 주식선물이 밀렸어요. 미국 서부텍사스유(WTI)가 <b>배럴당 $102.48(+6.7%)</b>, 브렌트유가 <b>$107.63(+5.9%)</b>로 마감하며 $100선을 넘었고, 이란과의 분쟁이 7개월째로 들어가면서 "전쟁이 예상보다 길어진다"는 인식이 굳어졌어요. 10년물 국채금리는 <b>4.95%</b>로 2023년 11월 이후 최고를 찍었고, 국채 곡선 전 구간이 52주 신고가를 냈어요.</p>
+<div class="twrap"><table class="htable">
+  <tr><th>자산</th><th>9월 10일</th><th>전일</th><th>변화</th></tr>
+  <tr><td>S&amp;P 500</td><td class="a">7,591.70</td><td>7,636.46</td><td class="down">-0.58%</td></tr>
+  <tr><td>나스닥</td><td class="a">26,081.72</td><td>26,253.34</td><td class="down">-0.65%</td></tr>
+  <tr><td>다우</td><td class="a">52,064.10</td><td>52,381.02</td><td class="down">-0.60%</td></tr>
+  <tr><td>필라델피아 반도체(SOX)</td><td class="a">—</td><td>—</td><td class="down">-2.70%</td></tr>
+  <tr><td>미국 10년물</td><td class="a">4.95%</td><td>4.83%</td><td class="up">+12bp</td></tr>
+  <tr><td>미국 2년물</td><td class="a">4.56%</td><td>4.43%</td><td class="up">+13bp</td></tr>
+  <tr><td>미국 30년물</td><td class="a">5.37%</td><td>5.28%</td><td class="up">+9bp</td></tr>
+  <tr><td>WTI 원유</td><td class="a">$102.48</td><td>—</td><td class="up">+6.70%</td></tr>
+</table></div>
+<div class="g-note">금리는 미 재무부 일별 국채수익률곡선(CMT) 확정치, 지수는 종가 기준. SOX는 지수 레벨이 확인되지 않아 등락률만 적었어요.</div>
+<p class="body-p">기준금리는 여전히 <b>3.50~3.75%</b>지만, 시장의 시선은 완전히 인상 쪽으로 기울었어요. CME 페드워치 기준 <mark class="r">9월 16일(한국시간 9/17 새벽) FOMC에서 0.25%p 인상 확률이 74%</mark>예요. 8월 말 잭슨홀 직후 57.5%, 9월 3일 49.4%였던 확률이 고용 서프라이즈와 유가 급등을 거쳐 4분의 3까지 올라온 거예요.</p>
+<div class="quote">"PPI 자체는 '인상이냐 동결이냐'를 가리는 데 결론을 주지 못했어요. 그런데 WTI가 다시 $100을 넘고 국채금리가 신고가를 낸 건 내일 CPI를 앞둔 투자자들의 판돈을 확실히 키웠습니다."<small>스티븐 콜트먼 · 21Shares 매크로 헤드</small></div>
+<div class="callout"><div class="ct">한 줄 결론</div>도매물가는 예측대로였지만 연간 상승률이 5.4%로 되올라갔어요. 정작 시장을 움직인 건 PPI가 아니라 <b>$100 유가와 4.95% 10년물</b>이었고, 남은 변수는 오늘 밤(한국시간 9/11 21:30)의 8월 CPI 하나예요.</div>
+
+<div class="sub-head">💼 보유 종목 영향</div>
+<div class="sub-desc">PPI는 기업 원가의 선행 지표지만, 이번엔 금리 경로가 더 크게 작동했어요.</div>
+
+<div class="stock-g">
+  <div class="sg-t">금리민감 성장주 <span class="tks">PLTR · IONQ · SMR · CRWV</span> <span class="badge neg">비우호적</span></div>
+  <p>10년물이 4.95%까지 오른 날 가장 크게 밀렸어요. 같은 날 <a href="../실적브리핑/실적브리핑_CRWV_2026Q2_2026.08.12.html">CRWV</a> <b>-6.13%</b>, <a href="../실적브리핑/실적브리핑_SMR_2026Q2_2026.08.08.html">SMR</a> <b>-5.55%</b>, <a href="../실적브리핑/실적브리핑_IONQ_2026Q2_2026.08.08.html">IONQ</a> <b>-3.41%</b>, <a href="../실적브리핑/실적브리핑_PLTR_2026Q2_2026.08.08.html">PLTR</a> -2.16%였죠. <mark class="r">이익이 먼 미래에 있는 회사일수록 할인율 상승의 타격이 커요.</mark> 특히 CRWV는 차입으로 데이터센터를 짓는 구조라 금리 상승이 밸류에이션과 이자비용에 이중으로 닿아요. 9월 17일 새벽 FOMC가 이 그룹의 최대 변수예요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">반도체·메모리 <span class="tks">NVDA · MU · SK하이닉스</span> <span class="badge neg">비우호적</span></div>
+  <p>SOX가 -2.7%로 지수보다 네 배 넘게 빠졌고 <a href="../실적브리핑/실적브리핑_MU_FY2026Q3_2026.08.09.html">MU</a>는 <b>-4.90%</b>였어요. 원가 쪽에서도 좋지 않아요 — 중간재 가공품이 +1.8% 오르면서 <b>인쇄회로조립품·기판·모듈 가격이 상승 항목으로 지목</b>됐고, 가공 에너지는 +7.3%였어요. 팹과 데이터센터는 전력 집약 산업이라 에너지 도매가 상승은 직접적인 비용이에요. 다만 <a href="../실적브리핑/실적브리핑_000660_2026Q2_2026.08.09.html">SK하이닉스</a>는 9월 10일 한국장에서 1,853,000원(-0.16%)으로 거의 움직이지 않았어요 — 미국장 마감 전에 장을 닫았기 때문이라, 이 충격은 9월 11일 한국장 몫이에요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">빅테크 <span class="tks">AAPL · MSFT · GOOGL</span> <span class="badge neu">중립</span></div>
+  <p>현금흐름이 지금 나오는 회사들은 금리 상승에 상대적으로 둔감해요. <a href="../실적브리핑/실적브리핑_MSFT_FY2026Q4_2026.08.09.html">MSFT</a> +0.16%, <a href="../실적브리핑/실적브리핑_GOOGL_2026Q2_2026.08.09.html">GOOGL</a> +0.59%로 지수와 반대로 버텼고, <a href="../실적브리핑/실적브리핑_AAPL_FY2026Q3_2026.08.09.html">AAPL</a>은 전날 폴더블 아이폰 공개 재료로 <b>+3.56%</b> 올랐어요. 건설 PPI가 0.0%로 멈춘 것도 CapEx를 크게 쓰는 이 그룹엔 우호적인 세부 항목이에요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">배당·방어 <span class="tks">O · KO · ABBV</span> <span class="badge neu">혼재</span></div>
+  <p>리츠인 <a href="../실적브리핑/실적브리핑_O_2026Q2_2026.08.08.html">O</a>는 10년물에 직접 연동돼 -0.90%로 밀렸어요. 반면 <a href="../실적브리핑/실적브리핑_KO_2026Q2_2026.08.09.html">KO</a>(+0.32%)는 식품 도매가가 +0.1%로 잠잠해 원가 부담이 작고, ABBV(+1.63%)는 오히려 <b>병원 입원진료 가격이 상승 항목에 오른</b> 헬스케어 가격 환경 덕에 지수와 반대로 올랐어요. 유가 상승 국면에서 방어주가 상대적으로 선호되는 흐름이에요.</p>
+</div>
+
+<div class="sub-head">👀 다음 발표에선 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">9월 에너지가 한 번 더 튀는지 — 중간재 가공 에너지 +7.3%가 최종수요로 넘어오는지<small>디젤 +24.1%는 한 달 점프였지만, 유가가 $100 위에 머무르면 9월에도 같은 그림이 반복돼요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">근원(식품·에너지 제외) +0.2%가 유지되는지<small>여기가 0.2% 아래로 더 내려오면 "에너지만의 문제"라는 해석이 확실해져요. +0.4% 이상이면 광범위한 재가속이에요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">기타 서비스 0.0%가 다시 플러스로 돌아서는지<small>거래·운송·창고를 뺀 서비스가 멈춘 건 두 달 만이에요. 여기가 끈적함의 본체라 방향이 중요해요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">YoY 5.4%가 6%대로 더 올라가는지 — 기저가 낮은 구간이 이어져요<small>2025년 9~12월 PPI가 월 +0.1~0.6%로 높지 않았어서, 가을에도 연간 상승률이 쉽게 내려오지 않아요</small></div></div>
+</div>
+<div class="wp-preview">📌 다음 보고서에서는 위 4가지가 실제로 어떻게 됐는지 <b>하나씩 점검</b>해서 보여드릴게요.</div>
+
+<div class="next-box">🗓️ 다음 발표 — 2026년 10월 15일 (목) 21:30 <span class="est">BLS 공식 일정 · 9월분</span></div>
+
+<div class="sub-head">📚 생산자물가지수(PPI)란?</div>
+<div class="explain">
+  <h3>소비자물가의 '파이프라인'이 되는 도매 물가예요</h3>
+  <p>국내 생산자가 판매하는 상품·서비스·건설의 가격 변동을 측정하는 지표예요. 미국 노동통계국(BLS)이 매달 발표하고, 최종수요(Final demand) 지수가 헤드라인이에요.</p>
+  <p>생산자가 받는 가격이 오르면 시차를 두고 소비자 가격에 전가되는 경우가 많아서 <b>CPI를 미리 보여주는 선행 지표</b>로 쓰여요. 이번처럼 에너지가 원인일 때는 중간재(가공품) 지수를 함께 봐야 해요 — 중간재가 먼저 오르고 최종수요가 뒤따르는 순서이기 때문이에요.</p>
+  <p>연준이 중시하는 PCE 물가지수는 CPI와 PPI의 세부 항목을 재료로 산출돼요. 다만 8월 PCE는 <b>9월 FOMC(9/16) 이후인 9월 30일</b>에 나오기 때문에, 이번 회의에서 연준이 볼 수 있는 물가 자료는 PPI와 CPI뿐이에요.</p>
+</div>
+
+<!--rnav-->
+<div class="rnav"><a class="prev off"><span class="av"></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">가장 최근 보고서예요</div></div></a><a class="next" href="../급등락/급등락_AAPL_2026.09.11.html"><span class="av"><img src="../logos/AAPL.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">AAPL</div><div class="rs"><span class="tx UPM">+3.56%</span> · Apple · 제품 발표</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: 미국 노동통계국(BLS) 보도자료 USDL 26-1495(2026.09.10), 미 재무부 일별 국채수익률곡선, CME 페드워치, CNBC·Invezz·TheStreet 보도 · macro-briefing 스킬이 자동 생성했습니다.
+</div>
+</div>
+</div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="경제지표/경제지표_PPI_2026.08_2026.09.10.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+</body>
+</html>

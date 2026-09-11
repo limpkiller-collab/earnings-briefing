@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>급등락 분석 — Apple(AAPL) +3.56% 2026.09.11</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 2카드 */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .num.down{color:var(--red)} .hcard .num.up{color:var(--green)}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--red)} .hcard .cmp .up{color:var(--green)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--blue-bg);color:var(--blue)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 표 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200);white-space:nowrap}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable td.tx{white-space:normal;text-align:left;font-weight:500;color:var(--g600);font-size:13px;line-height:1.55}
+.htable .up{color:var(--green)} .htable .down{color:var(--red)}
+.htable tr.new td{background:var(--blue-bg)}
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--red)} .kpi .k .v .up{color:var(--green)}
+/* 원인 4분면 (급등락 전용) — 주원인만 블루, 나머지 무채색 */
+.cause-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.cause{border-radius:14px;padding:15px 17px;background:var(--g50);border:1px solid var(--g100)}
+.cause.main{background:var(--blue-bg);border-color:var(--blue-bg)}
+.cause.none{opacity:.55}
+.cause .ch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+.cause .cn{font-size:14px;font-weight:800;color:var(--g900)}
+.cause .cb{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px;background:var(--g100);color:var(--g500);white-space:nowrap}
+.cause.main .cb{background:var(--blue);color:#fff}
+.cause p{font-size:13.5px;color:var(--g700);line-height:1.6}
+.cause .src{font-size:12px;color:var(--g400);font-weight:600;margin-top:6px}
+/* 콜아웃 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 파급 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--g50);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지난번 체크포인트 점검 (같은 자산 재발 시) */
+.wp-list{margin:12px 0}
+.wp{display:flex;gap:12px;padding:12px 4px;border-bottom:1px solid var(--g100)}
+.wp-badge{flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;background:var(--g100);color:var(--g500);height:fit-content;margin-top:2px}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp-q{font-size:14.5px;font-weight:700;color:var(--g900)} .wp-a{font-size:13.5px;color:var(--g600);margin-top:2px}
+/* 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .cause-grid{grid-template-columns:1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  body{background:var(--bg)}
+  .page,.gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
+  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
+  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
+  svg [stroke="#fff"]{stroke:#17171C}
+  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
+  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+/*<!--/dark-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">🚨</span> 급등락 분석</div>
+  <a href="../index.html">← 아카이브</a>
+</div>
+<div class="body">
+
+<div class="chips">
+  <span class="chip b">#AAPL</span><span class="chip">#주가 +3.56%</span><span class="chip">#폴더블 아이폰 공개</span><span class="chip">#지수 -0.58%인 날</span>
+</div>
+<h1>애플만 +3.6% 올랐어요<br>접히는 아이폰이 나왔거든요</h1>
+<div class="meta">2026년 9월 10일(미국 현지) 장 마감 · 한국시간 9월 11일 새벽 · 출처 stockanalysis.com(종가·거래량) · Investing.com · CNBC · 미 재무부(금리)</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">종가 (9/10)</div>
+    <div class="num up">$326.57</div>
+    <div class="cmp">전일 $315.34 대비 <b class="up">+3.56%</b>($+11.23) · 20거래일 저점 $305.26(8/13) 대비 <b class="up">+6.98%</b></div>
+    <div class="core">20거래일 최고 종가 $328.21(9/3)에 <b>0.50% 차이</b>로 붙었어요</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">시장과 비교</div>
+    <div class="num">혼자 올랐어요</div>
+    <div class="cmp">S&amp;P500 <b class="down">-0.58%</b> · 나스닥 <b class="down">-0.65%</b> · SOX <b class="down">-2.70%</b> · 그런데 AAPL <b class="up">+3.56%</b></div>
+    <div class="core">거래량 6,937만 주 — 20일 평균(4,183만)의 <b>1.66배</b></div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p><b>전날 저녁 제품 발표가 원인이에요.</b> 9월 9일 애플파크에서 열린 '서프라이즈 앤 샤인' 이벤트에서 <b>첫 폴더블 아이폰 'Duo'</b>가 공개됐어요. 가격은 <b>$1,999</b>부터예요.</p>
+  <p>월가 반응이 주가를 밀었어요. 씨티는 매수 의견과 목표가 $365를 유지하며 <b>"애플워치·에어팟 이후 가장 큰 신규 하드웨어 카테고리"</b>라고 평가했어요. 존 터너스 신임 CEO의 <b>첫 신제품</b>이라는 의미도 붙었죠.</p>
+  <p><mark>지수가 빠진 날 혼자 3.6% 오른 건 이 상승이 매크로가 아니라 종목 재료라는 뜻이에요.</mark> 다만 월가 의견은 갈렸어요 — 마진 부담과 12월 분기 가이던스(10월 말)까지는 주가가 안 움직일 수 있다는 지적도 나왔어요.</p>
+</div>
+
+<div class="sub-head">📉 무슨 일이 있었나</div>
+<div class="sub-desc">8월 중순 $305에서 한 달 내내 계단식으로 올라, 9월 3일 고점을 다시 시험하는 자리예요.</div>
+
+<div class="chart-card">
+  <div class="ct">최근 20거래일 종가</div>
+  <div class="cs">8/13 ~ 9/10 · 초록 점이 이번 급등일($326.57) · 회색 점은 직전 종가($315.34)</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="638" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="264.0" class="ax">$301</text><line x1="14" y1="201.5" x2="638" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="205.5" class="ax">$309</text><line x1="14" y1="143.0" x2="638" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="147.0" class="ax">$317</text><line x1="14" y1="84.5" x2="638" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="88.5" class="ax">$325</text><line x1="14" y1="26.0" x2="638" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="30.0" class="ax">$332</text><polygon points="14.0,260 14.0,229.0 46.8,224.0 79.7,226.6 112.5,193.3 145.4,142.3 178.2,183.7 211.1,198.4 243.9,190.9 276.7,194.2 309.6,167.6 342.4,159.2 375.3,120.8 408.1,142.1 440.9,80.1 473.8,81.3 506.6,57.0 539.5,118.7 572.3,146.9 605.2,153.5 638.0,69.3 638.0,260" fill="#F2F4F6" opacity="0.85"/><polyline points="14.0,229.0 46.8,224.0 79.7,226.6 112.5,193.3 145.4,142.3 178.2,183.7 211.1,198.4 243.9,190.9 276.7,194.2 309.6,167.6 342.4,159.2 375.3,120.8 408.1,142.1 440.9,80.1 473.8,81.3 506.6,57.0 539.5,118.7 572.3,146.9 605.2,153.5 638.0,69.3" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="605.2" cy="153.5" r="4" fill="#fff" stroke="#8B95A1" stroke-width="2.5"/><text x="605.2" y="142.5" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">$315</text><line x1="638.0" y1="69.3" x2="638.0" y2="260" stroke="#00B26B" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/><circle cx="638.0" cy="69.3" r="5.5" fill="#fff" stroke="#00B26B" stroke-width="3"/><text x="630.0" y="56.3" text-anchor="end" class="cv" style="fill:#00B26B">$327 (+3.56%)</text><text x="14.0" y="286" text-anchor="middle" class="cl">8.13</text><text x="112.5" y="286" text-anchor="middle" class="cl">8.18</text><text x="211.1" y="286" text-anchor="middle" class="cl">8.21</text><text x="309.6" y="286" text-anchor="middle" class="cl">8.26</text><text x="408.1" y="286" text-anchor="middle" class="cl">8.31</text><text x="506.6" y="286" text-anchor="middle" class="cl">9.3</text><text x="605.2" y="286" text-anchor="middle" class="cl">9.9</text><text x="638.0" y="286" text-anchor="middle" class="cl">9.10</text></svg>
+</div>
+<p class="body-p">이벤트를 앞둔 <b>9월 4일부터 9일까지는 오히려 내렸어요</b>($328.21 → $315.34, -3.92%). 발표 직전 기대가 선반영된 뒤 차익실현이 나온 전형적인 패턴이고, 발표 내용이 확인된 다음 날 한 번에 되돌린 거예요. <mark>이벤트 전 3일간 빠진 폭(-3.92%)과 이번 상승(+3.56%)이 거의 같은 크기</mark>라, 아직 '새 고점'은 아니에요.</p>
+
+<div class="chart-card">
+  <div class="ct">9월 10일 당일 등락률 비교</div>
+  <div class="cs">빅테크 2개 + 지수 2개 + 필라델피아 반도체지수 · 애플만 진한 색</div>
+  <svg viewBox="0 0 700 244" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="331.2" y1="14" x2="331.2" y2="224" stroke="#D1D6DB" stroke-width="1.5"/><rect x="331.2" y="20" width="255.0" height="22" rx="4" fill="#3182F6"/><text x="74" y="36" text-anchor="end" class="cv" style="fill:#191F28;font-size:12.5px">AAPL</text><text x="592.2" y="36" text-anchor="start" class="cv" style="fill:#3182F6;font-size:12px">+3.6%</text><rect x="331.2" y="54" width="42.3" height="22" rx="4" fill="#BDEBD3"/><text x="74" y="70" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">GOOGL</text><text x="379.5" y="70" text-anchor="start" class="cv" style="fill:#00B26B;font-size:12px">+0.6%</text><rect x="331.2" y="88" width="11.5" height="22" rx="4" fill="#BDEBD3"/><text x="74" y="104" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">MSFT</text><text x="348.7" y="104" text-anchor="start" class="cv" style="fill:#00B26B;font-size:12px">+0.2%</text><rect x="289.7" y="122" width="41.5" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="138" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">S&amp;P500</text><text x="283.7" y="138" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-0.6%</text><rect x="284.6" y="156" width="46.6" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="172" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">나스닥</text><text x="278.6" y="172" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-0.7%</text><rect x="137.8" y="190" width="193.4" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="206" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">SOX</text><text x="131.8" y="206" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-2.7%</text></svg>
+</div>
+<p class="body-p">같은 날 <b>GOOGL +0.59%·MSFT +0.16%</b>로 대형 현금흐름 기업들은 지수를 이겼고, <b>SOX는 -2.70%</b>로 크게 빠졌어요. 금리가 오르는 날(10년물 4.95%, +12bp)엔 <b>지금 돈을 버는 회사와 나중에 벌 회사가 갈린다</b>는 구도가 그대로 나타났어요. 애플은 그중에서도 자체 재료까지 있었던 종목이에요.</p>
+
+<div class="sub-head">🔍 왜 움직였나</div>
+<div class="sub-desc">이번엔 네 분면 중 '회사 뉴스'가 명확한 주원인이에요.</div>
+<div class="cause-grid">
+  <div class="cause main">
+    <div class="ch"><div class="cn">회사 뉴스</div><div class="cb">주원인</div></div>
+    <p>9월 9일 애플 이벤트에서 <b>폴더블 아이폰 'Duo'($1,999부터)</b>와 아이폰 18 Pro, 추가 AI 기능이 공개됐어요. 애플의 <b>10년 만의 최대 아이폰 리디자인</b>이고, 존 터너스 신임 CEO 체제의 첫 제품 발표예요. 다음 날 장에서 오전부터 상승해 <b>+3.56%</b>로 마감했어요.</p>
+    <div class="src">근거: CNBC 이벤트 라이브 보도(9/9) · Investing.com "Why is Apple stock rallying today"(9/10)</div>
+  </div>
+  <div class="cause">
+    <div class="ch"><div class="cn">수급·밸류에이션</div><div class="cb">보조 원인</div></div>
+    <p>씨티가 <b>매수·목표가 $365</b>를 유지하며 Duo를 "애플워치·에어팟 이후 최대 신규 하드웨어 카테고리"로 평가했어요(⚠️ 목표가는 매체에 따라 $365·$370로 엇갈려 확인됩니다). 거래량은 20일 평균의 <b>1.66배</b>였고, 기관이 대형주 비중을 되쌓는 흐름이라는 해석도 나왔어요.</p>
+    <div class="src">근거: Investing.com·Yahoo Finance 애널리스트 반응 종합 · stockanalysis.com 거래량</div>
+  </div>
+  <div class="cause">
+    <div class="ch"><div class="cn">경쟁·업종</div><div class="cb">무관에 가까움</div></div>
+    <p>빅테크가 함께 오른 정도는 GOOGL +0.59%·MSFT +0.16%로 미미했고, 반도체는 <b>SOX -2.70%</b>로 반대 방향이었어요. <b>폴더블 경쟁사(삼성 등) 관련 당일 재료는 확인되지 않았어요</b>. 업종 동반이 아니라 <b>단독 상승</b>이에요.</p>
+    <div class="src">근거: 당일 등락률 비교 · 관련 업종 뉴스 미확인</div>
+  </div>
+  <div class="cause none">
+    <div class="ch"><div class="cn">매크로·금리</div><div class="cb">역풍</div></div>
+    <p>이날 매크로는 <b>오히려 반대로 작동했어요</b>. WTI가 $102.48(+6.70%)로 $100선을 넘고 10년물이 4.95%(+12bp)로 2023년 11월 이후 최고를 찍으면서 지수는 4거래일 연속 하락했어요. <b>그 역풍을 뚫고 오른 상승</b>이라는 점이 이번 움직임의 질을 말해줘요.</p>
+    <div class="src">근거: 미 재무부 CMT · TheStreet·Invezz 9/10 보도</div>
+  </div>
+</div>
+<p class="body-p">다만 강세 일변도는 아니에요. 월가 의견은 <b>갈렸어요</b>. Duo가 아이폰의 평균판매단가(ASP)를 끌어올린다는 쪽과, <mark class="r">$1,999짜리 폴더블은 초기 수율·부품 원가 탓에 오히려 매출총이익률을 누른다</mark>는 쪽이 맞섰어요. 씨티조차 "12월 분기 가이던스가 나오는 10월 말까지는 주가가 잘 안 움직일 수 있다"고 단서를 달았죠. <a href="../실적브리핑/실적브리핑_AAPL_FY2026Q3_2026.08.09.html">FY26 3분기 실적 보고서</a>에서 짚은 관전 포인트가 <b>"매출총이익률 가이던스 47~48%를 지키는지"</b>였던 것과 정확히 겹치는 지점이에요.</p>
+
+<div class="sub-head">📐 밸류에이션은 어떻게 바뀌었나</div>
+<div class="sub-desc">이번 상승으로 주가가 애널리스트 평균 목표가를 넘어섰어요.</div>
+<div class="kpi">
+  <div class="k"><div class="l">Fwd P/E (FY26)</div><div class="v">37.11배</div><div class="d">$326.57 ÷ 조정 EPS 컨센 $8.80 · 전일 35.83배</div></div>
+  <div class="k"><div class="l">Fwd P/E (FY27)</div><div class="v">34.34배</div><div class="d">$326.57 ÷ 조정 EPS 컨센 $9.51</div></div>
+  <div class="k"><div class="l">목표가 평균 대비</div><div class="v"><span class="up">+1.33%</span></div><div class="d">$326.57 vs $322.28 — 평균을 넘어섰어요</div></div>
+  <div class="k"><div class="l">씨티 목표가</div><div class="v">$365</div><div class="d">현재가 대비 +11.77% · 매수 의견 유지</div></div>
+</div>
+<p class="body-p">주가가 애널리스트 평균 목표가($322.28)를 <b>넘어섰다는 게 이번 상승의 핵심 변화</b>예요. 보통 두 가지 중 하나가 따라와요 — <b>목표가가 올라오거나, 주가가 내려오거나</b>. 씨티처럼 $365를 들고 있는 곳이 있으니 평균은 올라갈 여지가 크지만, 그 상향이 실제로 나오는지 확인이 필요해요. <mark>Fwd P/E 37배는 애플의 역사적 밴드 상단에 가까운 자리</mark>라, 지금부터의 상승은 멀티플보다 <b>Duo가 실제로 얼마나 팔리는지</b>에 달려 있어요.</p>
+
+<div class="sub-head">💼 보유 종목 파급</div>
+<div class="sub-desc">애플 폴더블은 부품 쪽으로 파급이 있어요.</div>
+<div class="stock-g">
+  <div class="sg-t">MU · SK하이닉스 <span class="tks">메모리</span> <span class="badge pos">중장기 우호 · 당일 무관</span></div>
+  <p>폴더블은 화면이 두 개 몫이고 온디바이스 AI 기능이 늘어나는 만큼 <b>탑재 메모리 용량이 커져요</b>. 중장기로는 <a href="../실적브리핑/실적브리핑_MU_FY2026Q3_2026.08.09.html">MU</a>·<a href="../실적브리핑/실적브리핑_000660_2026Q2_2026.08.09.html">SK하이닉스</a>의 모바일 D램 수요에 우호적이에요. 다만 <b>당일에는 전혀 반영되지 않았어요</b> — MU는 같은 날 -4.90%, 메모리 업종이 통째로 빠졌거든요(<a href="급등락_MARKET_2026.09.11.html">같은 날 급등락 보고서</a>). 반대로 애플 입장에서는 메모리 가격 상승이 원가 부담이라, 이 관계는 <b>서로 반대편</b>이에요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">MSFT · GOOGL <span class="tks">빅테크</span> <span class="badge neu">중립</span></div>
+  <p>같은 날 소폭 상승(+0.16%·+0.59%)했지만 애플 재료의 직접 수혜는 아니에요. 다만 <b>금리 상승 국면에서 현금흐름이 확실한 대형주로 돈이 몰리는 흐름</b>은 세 종목이 공유해요. 이날 지수가 빠지는 동안 셋 다 플러스였던 게 그 증거예요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">AAPL 자신 <span class="tks">다음 확인 지점</span> <span class="badge neu">10월 30일</span></div>
+  <p>다음 실적발표는 <b>2026년 10월 30일(예상)</b>이에요. Duo의 초기 판매와 12월 분기 가이던스, 그리고 <b>매출총이익률</b>이 한 번에 나오는 자리라 이번 상승의 진짜 채점은 그때예요.</p>
+</div>
+
+<div class="sub-head">👀 이 다음엔 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">20거래일 최고 종가 $328.21(9/3)을 넘어서는지<small>이번 종가 $326.57로 0.50% 차이예요. 넘으면 '기대 선반영 되돌림'이 아니라 '재평가'로 성격이 바뀌어요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">애널리스트 평균 목표가가 $322.28에서 올라오는지<small>주가가 이미 평균을 넘었어요. 상향이 안 따라오면 주가 쪽이 조정받을 차례예요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">Duo 초기 판매·예약 관련 수치가 나오는지<small>발표 후 첫 주말 예약, 리드타임, 생산량 상향 보도가 있는지. 폴더블은 초기 수율이 관건이에요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">10월 30일 실적에서 매출총이익률 가이던스 47~48%가 지켜지는지<small>실적 보고서 관전 포인트와 동일해요 — $1,999 폴더블의 원가가 마진을 누르는지가 여기서 확인돼요</small></div></div>
+</div>
+
+<div class="sub-head">📚 이런 움직임을 어떻게 봐야 하나</div>
+<div class="explain">
+  <h3>제품 발표는 '발표일'이 아니라 '다음 날'에 반영되는 경우가 많아요</h3>
+  <p>애플 이벤트는 미국 시간 9월 9일 오전에 열렸고, 주가는 <b>그날이 아니라 다음 날</b> 3.56% 올랐어요. 발표 당일은 정보가 쏟아지는 중이라 판단이 어렵고, 애널리스트 노트가 나오는 건 보통 다음 날 개장 전이기 때문이에요. 그래서 제품 발표 이벤트는 <b>발표 직전 며칠(기대 반영) → 발표일(혼조) → 다음 날(평가 반영)</b>의 3단 구조로 보는 게 실제에 가까워요.</p>
+  <p>이번처럼 <b>지수가 빠지는 날 혼자 오른 상승</b>은 원인 판별이 쉬워서 좋아요. 매크로가 우호적인 날의 상승은 종목 재료인지 시장 상승분인지 섞이지만, 역풍을 뚫고 오른 건 종목 재료라는 게 거의 확실해지니까요. 반대로 말하면 <b>매크로가 진정되면 그 위에 추가 상승 여력이 남아 있다</b>는 뜻도 돼요.</p>
+  <p>다만 제품 발표 상승은 <b>검증 구간이 길어요</b>. 실제 판매와 마진은 두 달쯤 뒤 실적에서 확인되고, 그 사이에 기대가 한 번 식는 경우가 흔해요. 씨티가 "12월 분기 가이던스까지는 주가가 잘 안 움직일 수 있다"고 단서를 달았던 게 그 얘기예요.</p>
+</div>
+
+<!--rnav-->
+<div class="rnav"><a class="prev" href="../경제지표/경제지표_PPI_2026.08_2026.09.10.html"><span class="av"><img src="../logos/PPI.png" alt=""></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">생산자물가지수(PPI)</div><div class="rs"><span class="tx BAD">재가속</span> · 2026년 8월</div></div></a><a class="next" href="급등락_MARKET_2026.09.11.html"><span class="av"><img src="../logos/CRWV.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">CRWV</div><div class="rs"><span class="tx DOWNM">-6.13%</span> · CoreWeave · 금리·유가</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: stockanalysis.com(종가·거래량·20거래일 이력), CNBC 애플 이벤트 보도(2026.09.09), Investing.com·Yahoo Finance 애널리스트 반응, 미 재무부 일별 국채수익률곡선 · movers-briefing 스킬이 자동 생성했습니다.
+</div>
+</div>
+
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="급등락/급등락_AAPL_2026.09.11.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+</div>
+</body>
+</html>
