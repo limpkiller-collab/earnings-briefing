@@ -516,7 +516,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.11";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
+const LAST_UPDATED = "2026.09.12";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
 
 const REPORTS_DB = [
   {
@@ -638,6 +638,13 @@ const UPCOMING_DB = [
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
   {
+    id: "CPI", name: "소비자물가지수(CPI)", period: "2026년 8월", category: "물가", tier: 3,
+    report_date: "2026-09-11", created: "2026.09.12", verdict: "BAD", vlabel: "인상",
+    surprise: { text: "예측 부합", cls: "flat" },
+    oneliner: "헤드라인 3.4%·MoM +0.4%는 예측 그대로였지만 근원 MoM이 +0.3%로 상회했어요. 9월 인상 확률 87%.",
+    file: "경제지표/경제지표_CPI_2026.08_2026.09.11.html"
+  },
+  {
     id: "PPI", name: "생산자물가지수(PPI)", period: "2026년 8월", category: "물가", tier: 2,
     report_date: "2026-09-10", created: "2026.09.11", verdict: "BAD", vlabel: "재가속",
     surprise: { text: "예측 부합", cls: "flat" },
@@ -732,7 +739,7 @@ const MACRO_REPORTS_DB = [
 
 // 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
 const MACRO_UPCOMING_DB = [
-  { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "8월", date: "2026-09-11", estimated: false, utc: "20260911T123000Z", tier: 3, last_release: "2026-08-12" },
+  
   { id: "RETAIL", name: "소매판매", short: "소매판매", period: "8월", date: "2026-09-16", estimated: false, utc: "20260916T123000Z", tier: 2, last_release: "2026-08-14" },
   { id: "FOMC", name: "FOMC 금리결정", short: "FOMC", period: "9월 회의", date: "2026-09-17", estimated: false, utc: "20260916T180000Z", tier: 3, last_release: "2026-07-30" },
   { id: "JOLTS", name: "JOLTs 구인건수", short: "JOLTs", period: "8월", date: "2026-09-29", estimated: false, utc: "20260929T140000Z", tier: 2, last_release: "2026-09-01" },
@@ -742,6 +749,7 @@ const MACRO_UPCOMING_DB = [
   { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "9월", date: "2026-10-02", estimated: false, utc: "20261002T123000Z", tier: 3, last_release: "2026-09-04" },
   { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "9월", date: "2026-10-05", estimated: true, utc: null, tier: 2, last_release: "2026-09-03" },
   { id: "FOMC_MIN", name: "FOMC 의사록", short: "의사록", period: "9월 회의", date: "2026-10-08", estimated: true, utc: null, tier: 2, last_release: "2026-08-20" },
+  { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "9월", date: "2026-10-14", estimated: false, utc: "20261014T123000Z", tier: 3, last_release: "2026-09-11" },
   { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "9월", date: "2026-10-15", estimated: false, utc: "20261015T123000Z", tier: 2, last_release: "2026-09-10" },
   { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "3분기", date: "2026-11-25", estimated: true, utc: null, tier: 2, last_release: "2026-08-26" },
   { id: "JACKSON", name: "잭슨홀 심포지엄", short: "잭슨홀", period: "2027년", date: "2027-08-27", estimated: true, utc: null, tier: 2, last_release: "2026-08-28" }
@@ -789,11 +797,11 @@ const WATCH_DB = [
     "온라인(무점포) -2.2%가 회복되는지 — 가장 견조하던 채널이 꺾인 게 핵심",
     "컨트롤 그룹 -0.4%가 플러스로 돌아서는지 — 3분기 GDP 소비 항목에 직결",
     "외식(+0.5%)·의류(+1.9%)의 온기가 유지되는지 — 서비스 소비까지 꺾이면 전면 위축"]},
-  { key: "CPI", name: "소비자물가지수(CPI) 8월", date: "2026-09-11", type: "m", items: [
-    "8월에도 헤드라인 둔화(3.4% → 3.3% 이하)가 이어지는지",
-    "주거비 상승률이 재가속하는지 — 7월엔 +0.1%로 낮았지만 헤드라인 기여 2/3",
-    "에너지 YoY +14.7%가 꺾이는지 — 8월 말 이란 사태로 브렌트유가 $90을 넘었어요",
-    "9월 FOMC 전 마지막 CPI — 인상 확률(8/31 기준 66%)이 어느 쪽으로 굳어지는지"]},
+  { key: "CPI", name: "소비자물가지수(CPI) 9월", date: "2026-10-14", type: "m", items: [
+    "근원 MoM +0.3%가 다시 +0.2% 이하로 내려오는지 — 연간 근원은 2.4%로 내려왔는데 월간만 올라갔어요",
+    "에너지 YoY +16.3%가 드디어 꺾이는지 — 가솔린이 1년 새 +27.4%예요",
+    "주거비 +0.3%가 다시 +0.1~0.2%로 낮아지는지 — 8월 상승은 외박 숙박비 +2.4% 되돌림이 컸어요",
+    "9월 FOMC 인상 이후 점도표가 연내 몇 회를 가리키는지 — 채권시장은 이미 2회를 반영했어요"]},
   { key: "PPI", name: "생산자물가지수(PPI) 9월", date: "2026-10-15", type: "m", items: [
     "9월 에너지가 한 번 더 튀는지 — 중간재 가공 에너지 +7.3%가 최종수요로 넘어오는지",
     "근원(식품·에너지 제외) +0.2%가 유지되는지 — +0.4% 이상이면 광범위한 재가속",
@@ -872,19 +880,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 218.36, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 977.41, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
-  { ticker: "MSFT", price: 492.44, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
-  { ticker: "GOOGL", price: 332.60, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
-  { ticker: "AAPL", price: 326.57, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
-  { ticker: "PLTR", price: 165.86, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
-  { ticker: "KO", price: 87.83, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
-  { ticker: "ABBV", price: 255.00, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
-  { ticker: "O", price: 59.57, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
-  { ticker: "CRWV", price: 89.12, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 36.84, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
-  { ticker: "SMR", price: 10.21, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
-  { ticker: "000660", price: 1853000, tgt: 3317917, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 218.29, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 975.26, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
+  { ticker: "MSFT", price: 495.63, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
+  { ticker: "GOOGL", price: 338.50, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
+  { ticker: "AAPL", price: 332.27, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
+  { ticker: "PLTR", price: 167.23, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "KO", price: 88.29, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
+  { ticker: "ABBV", price: 257.12, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
+  { ticker: "O", price: 59.50, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
+  { ticker: "CRWV", price: 88.99, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 36.75, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 8.61, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "000660", price: 1812000, tgt: 3317917, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -929,6 +937,13 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
+  {
+    asset: "SMR", name: "NuScale", kind: "stock", date: "2026-09-12",
+    chg: -15.67, chg_label: "-15.67%", price_label: "$8.61", cause: "매도 하향",
+    oneliner: "UBS가 중립→매도, 목표가 $6로 내렸어요. 지수가 오른 날 혼자 15.7% 빠졌어요.",
+    spark: [9.39,9.19,8.64,9.29,9.07,9.40,9.05,9.81,9.27,9.74,9.29,9.27,9.21,9.56,9.75,9.70,11.18,10.81,10.21,8.61],
+    created: "2026.09.12", file: "급등락/급등락_SMR_2026.09.12.html"
+  },
   {
     asset: "AAPL", name: "Apple", kind: "stock", date: "2026-09-11",
     chg: 3.56, chg_label: "+3.56%", price_label: "$326.57", cause: "제품 발표",

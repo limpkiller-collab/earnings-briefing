@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>급등락 분석 — NuScale Power(SMR) 2026.09.11</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 2카드 */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .num.down{color:var(--red)} .hcard .num.up{color:var(--green)}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--red)} .hcard .cmp .up{color:var(--green)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--blue-bg);color:var(--blue)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 표 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200);white-space:nowrap}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable td.tx{white-space:normal;text-align:left;font-weight:500;color:var(--g600);font-size:13px;line-height:1.55}
+.htable .up{color:var(--green)} .htable .down{color:var(--red)}
+.htable tr.new td{background:var(--blue-bg)}
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--red)} .kpi .k .v .up{color:var(--green)}
+/* 원인 4분면 (급등락 전용) — 주원인만 블루, 나머지 무채색 */
+.cause-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.cause{border-radius:14px;padding:15px 17px;background:var(--g50);border:1px solid var(--g100)}
+.cause.main{background:var(--blue-bg);border-color:var(--blue-bg)}
+.cause.none{opacity:.55}
+.cause .ch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+.cause .cn{font-size:14px;font-weight:800;color:var(--g900)}
+.cause .cb{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px;background:var(--g100);color:var(--g500);white-space:nowrap}
+.cause.main .cb{background:var(--blue);color:#fff}
+.cause p{font-size:13.5px;color:var(--g700);line-height:1.6}
+.cause .src{font-size:12px;color:var(--g400);font-weight:600;margin-top:6px}
+/* 콜아웃 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 파급 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--g50);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지난번 체크포인트 점검 (같은 자산 재발 시) */
+.wp-list{margin:12px 0}
+.wp{display:flex;gap:12px;padding:12px 4px;border-bottom:1px solid var(--g100)}
+.wp-badge{flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;background:var(--g100);color:var(--g500);height:fit-content;margin-top:2px}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp-q{font-size:14.5px;font-weight:700;color:var(--g900)} .wp-a{font-size:13.5px;color:var(--g600);margin-top:2px}
+/* 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .cause-grid{grid-template-columns:1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  body{background:var(--bg)}
+  .page,.gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
+  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
+  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
+  svg [stroke="#fff"]{stroke:#17171C}
+  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
+  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+/*<!--/dark-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">🚨</span> 급등락 분석</div>
+  <a href="../index.html">← 아카이브</a>
+</div>
+<div class="body">
+
+<div class="chips">
+  <span class="chip b">#SMR</span><span class="chip">#UBS 매도 하향</span><span class="chip">#목표가 $6</span><span class="chip">#거래량 2.5배</span><span class="chip">#20거래일 최저</span>
+</div>
+<h1>뉴스케일이 하루에 15.7% 빠졌어요<br>UBS가 '매도'로 두 단계 내렸거든요</h1>
+<div class="meta">2026년 9월 11일(미국 현지) 장 마감 · 한국시간 9월 12일 새벽 · 출처 stockanalysis.com(종가·거래량) · 24/7 Wall St. · Schaeffer's · Benzinga</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">NuScale Power (SMR) 종가</div>
+    <div class="num down">$8.61</div>
+    <div class="cmp">전일 $10.21 대비 <b class="down">-15.67%</b> · 하루 <b class="down">-$1.60</b></div>
+    <div class="core">거래량 <b>9,175만 주</b> — 20일 평균(3,640만)의 <b>2.5배</b></div>
+  </div>
+  <div class="hcard">
+    <div class="hl">촉발한 것</div>
+    <div class="num">UBS 매도</div>
+    <div class="cmp">중립 → <b class="down">매도</b> · 목표가 <b class="down">$6</b> (종가 대비 -30%)</div>
+    <div class="core">같은 SMR 개발사 <b>OKLO도 -9.18%</b> · 다만 우라늄 ETF(URA)는 -1.91%에 그쳤어요</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p><b>회사 발표는 없었어요.</b> UBS의 존 윈덤 애널리스트가 투자의견을 <b>중립에서 매도로</b> 내리고 목표가를 <b>$6</b>로 제시한 게 전부예요. 근거는 세 가지 — 5년이 넘는 착공 일정, 확정 고객 계약의 부재, 향후 3년 누적 <b>$7억</b>의 현금 소진이에요.</p>
+  <p>시장 전체는 오히려 좋았어요. S&amp;P500이 <b>+0.86%</b>로 4거래일 연속 하락을 끊은 날이거든요. <mark class="r">지수가 오른 날 15.7% 빠졌다는 건 매크로가 아니라 종목 이야기라는 뜻</mark>이에요.</p>
+  <p>사흘 전 +15.26%로 튀었던 걸 <b>이틀 만에 전부 반납하고 더 내려갔어요</b>. 종가 $8.61은 20거래일 최저(직전 $8.64, 8/18)를 새로 쓴 값이고, 52주 최저 $7.21과의 거리는 이제 19%뿐이에요.</p>
+</div>
+
+<div class="sub-head">✅ 지난번엔 이걸 보자고 했죠</div>
+<div class="sub-desc">어제 발행한 급등락 보고서(9/10 세션)에서 SMR에 대해 확인하기로 한 4가지를 점검했어요.</div>
+<div class="wp-list">
+  <div class="wp miss"><span class="wp-badge">깨졌어요</span><div><div class="wp-q">박스 상단이던 $9.89 위를 계속 지키는지 (9/10 종가 $10.21)</div><div class="wp-a">지키지 못했어요. <b>$8.61</b>로 박스 상단은 물론 20거래일 저점 $8.64(8/18)까지 한 번에 깨고 내려갔어요. 8월 중순부터 한 달 넘게 이어지던 $8.6~9.8 박스의 <b>아래쪽이 뚫린</b> 셈이에요.</div></div></div>
+  <div class="wp met"><span class="wp-badge">갈라졌어요</span><div><div class="wp-q">파이퍼샌들러의 원자력 섹터 분화 커버리지가 종목별 차별화로 이어지는지 (9/10엔 SMR·OKLO·XE 셋 다 -5%)</div><div class="wp-a">하루 만에 갈라졌어요. SMR <b>-15.67%</b> vs OKLO <b>-9.18%</b>, 그리고 원자력 유틸리티는 <b>CEG -0.43% · VST +0.90%</b>로 거의 움직이지 않았어요. UBS도 "경쟁 개발사들이 뉴스케일보다 착공에 먼저 도달한다"며 <b>같은 SMR 안에서 우열을 갈랐</b>고요. 섹터 일괄 매매에서 종목 선별로 넘어가는 국면이에요.</div></div></div>
+  <div class="wp partial"><span class="wp-badge">아직이에요</span><div><div class="wp-q">ENTRA1-TVA 최종 PPA(6~8GW)가 실제로 체결되는지</div><div class="wp-a">아직 발표가 없어요. 오히려 이번 하향의 핵심 근거가 <b>"확정 고객 계약이 없다"</b>였어요. 회사가 다음 촉매로 지목한 TVA 프로그램과 루마니아 RoPower 계약이 그대로 미결 상태라, 이 항목은 <b>다음으로 이월</b>할게요.</div></div></div>
+  <div class="wp partial"><span class="wp-badge">확인 못 했어요</span><div><div class="wp-q">$750M 주식 매각 프로그램이 희석으로 이어지는지 (발행주식수 3.65억주)</div><div class="wp-a">이번 하락과 직접 연결된 공시는 확인되지 않았어요. 다만 같은 날 <b>OKLO가 10억 달러 규모 ATM 증자 프로그램</b>을 새로 개설했다는 보도가 나오며 함께 빠진 걸 보면, <mark>SMR 개발사 전반에 '증자 = 희석' 경계가 깔려 있는 국면</mark>이에요. ⚠️ 뉴스케일의 집행 규모는 미확인이라 이월합니다.</div></div></div>
+</div>
+
+<div class="sub-head">📉 무슨 일이 있었나</div>
+<div class="sub-desc">사흘 전 급등분을 전부 반납하고 20거래일 최저로 내려갔어요.</div>
+
+<div class="chart-card">
+  <div class="ct">최근 20거래일 종가</div>
+  <div class="cs">2026년 8월 14일 ~ 9월 11일 (미국 현지 기준)</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="638" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="264.0" class="ax">$8.15</text><line x1="14" y1="201.5" x2="638" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="205.5" class="ax">$9.02</text><line x1="14" y1="143.0" x2="638" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="147.0" class="ax">$9.89</text><line x1="14" y1="84.5" x2="638" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="88.5" class="ax">$10.77</text><line x1="14" y1="26.0" x2="638" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="30.0" class="ax">$11.64</text><polygon points="14.0,260 14.0,176.8 46.8,190.2 79.7,227.0 112.5,183.5 145.4,198.2 178.2,176.1 211.1,199.6 243.9,148.7 276.7,184.8 309.6,153.4 342.4,183.5 375.3,184.8 408.1,188.9 440.9,165.4 473.8,152.7 506.6,156.1 539.5,57.0 572.3,81.7 605.2,121.9 638.0,229.0 638.0,260" fill="#F2F4F6" opacity="0.85"/><polyline points="14.0,176.8 46.8,190.2 79.7,227.0 112.5,183.5 145.4,198.2 178.2,176.1 211.1,199.6 243.9,148.7 276.7,184.8 309.6,153.4 342.4,183.5 375.3,184.8 408.1,188.9 440.9,165.4 473.8,152.7 506.6,156.1 539.5,57.0 572.3,81.7 605.2,121.9 638.0,229.0" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="605.2" cy="121.9" r="4" fill="#fff" stroke="#8B95A1" stroke-width="2.5"/><text x="605.2" y="110.9" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">$10.21</text><line x1="638.0" y1="229.0" x2="638.0" y2="260" stroke="#F04452" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/><circle cx="638.0" cy="229.0" r="5.5" fill="#fff" stroke="#F04452" stroke-width="3"/><text x="630.0" y="251.0" text-anchor="end" class="cv" style="fill:#F04452">$8.61 (-15.67%)</text><text x="14.0" y="286" text-anchor="middle" class="cl">8.14</text><text x="112.5" y="286" text-anchor="middle" class="cl">8.19</text><text x="211.1" y="286" text-anchor="middle" class="cl">8.24</text><text x="309.6" y="286" text-anchor="middle" class="cl">8.27</text><text x="408.1" y="286" text-anchor="middle" class="cl">9.1</text><text x="506.6" y="286" text-anchor="middle" class="cl">9.4</text><text x="605.2" y="286" text-anchor="middle" class="cl">9.10</text><text x="638.0" y="286" text-anchor="middle" class="cl">9.11</text></svg>
+</div>
+<div class="chart-card">
+  <div class="ct">거래량</div>
+  <div class="cs">20일 평균 3,640만 주 · 이날 9,175만 주(2.5배)</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="638" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="264.0" class="ax">0M</text><line x1="14" y1="182.0" x2="638" y2="182.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="186.0" class="ax">35M</text><line x1="14" y1="104.0" x2="638" y2="104.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="108.0" class="ax">70M</text><line x1="14" y1="26.0" x2="638" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="30.0" class="ax">106M</text><rect x="20.2" y="181.3" width="18.7" height="78.7" rx="3" fill="#E5E8EB"/><text x="29.6" y="286" text-anchor="middle" class="cl">8.14</text><rect x="51.4" y="208.4" width="18.7" height="51.6" rx="3" fill="#E5E8EB"/><rect x="82.6" y="193.1" width="18.7" height="66.9" rx="3" fill="#E5E8EB"/><rect x="113.8" y="180.4" width="18.7" height="79.6" rx="3" fill="#E5E8EB"/><text x="123.2" y="286" text-anchor="middle" class="cl">8.19</text><rect x="145.0" y="189.5" width="18.7" height="70.5" rx="3" fill="#E5E8EB"/><rect x="176.2" y="178.2" width="18.7" height="81.8" rx="3" fill="#E5E8EB"/><rect x="207.4" y="157.8" width="18.7" height="102.2" rx="3" fill="#E5E8EB"/><text x="216.8" y="286" text-anchor="middle" class="cl">8.24</text><rect x="238.6" y="137.4" width="18.7" height="122.6" rx="3" fill="#E5E8EB"/><rect x="269.8" y="146.3" width="18.7" height="113.7" rx="3" fill="#E5E8EB"/><rect x="301.0" y="176.2" width="18.7" height="83.8" rx="3" fill="#E5E8EB"/><text x="310.4" y="286" text-anchor="middle" class="cl">8.27</text><rect x="332.2" y="176.7" width="18.7" height="83.3" rx="3" fill="#E5E8EB"/><rect x="363.4" y="208.8" width="18.7" height="51.2" rx="3" fill="#E5E8EB"/><rect x="394.6" y="221.2" width="18.7" height="38.8" rx="3" fill="#E5E8EB"/><text x="404.0" y="286" text-anchor="middle" class="cl">9.1</text><rect x="425.8" y="199.3" width="18.7" height="60.7" rx="3" fill="#E5E8EB"/><rect x="457.0" y="196.6" width="18.7" height="63.4" rx="3" fill="#E5E8EB"/><rect x="488.2" y="218.8" width="18.7" height="41.2" rx="3" fill="#E5E8EB"/><text x="497.6" y="286" text-anchor="middle" class="cl">9.4</text><rect x="519.4" y="141.2" width="18.7" height="118.8" rx="3" fill="#E5E8EB"/><rect x="550.6" y="209.9" width="18.7" height="50.1" rx="3" fill="#E5E8EB"/><rect x="581.8" y="209.2" width="18.7" height="50.8" rx="3" fill="#E5E8EB"/><text x="591.2" y="286" text-anchor="middle" class="cl">9.10</text><rect x="613.0" y="56.5" width="18.7" height="203.5" rx="3" fill="#F04452"/><text x="622.4" y="50.5" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">91.8M</text><text x="622.4" y="286" text-anchor="middle" class="cl">9.11</text><line x1="14" y1="179.3" x2="638" y2="179.3" stroke="#8B95A1" stroke-width="1.5" stroke-dasharray="6,4"/><text x="17" y="173.3" class="cl" style="fill:#8B95A1">20일 평균 36.4M · 이날 91.8M(2.5배)</text></svg>
+</div>
+<p class="body-p">9월 8일 <b>+15.26%</b>(원자력 반등) → 9일 -3.31% → 10일 -5.55%(파이퍼샌들러 섹터 분화) → 11일 <b>-15.67%</b>. 나흘 만에 $11.18에서 $8.61로 <b>-23.0%</b>예요. 거래량이 평균의 2.5배로 터졌다는 건 보유자 교체가 실제로 일어났다는 뜻이라, 단순 눌림목으로 보기는 어려워요.</p>
+
+<div class="sub-head">🔍 왜 움직였나</div>
+<div class="sub-desc">네 갈래로 나눠 보면 원인이 한 곳에 몰려 있어요.</div>
+<div class="cause-grid">
+  <div class="cause main">
+    <div class="ch"><div class="cn">수급·밸류에이션</div><div class="cb">주원인</div></div>
+    <p>UBS 존 윈덤이 <b>중립 → 매도</b>로 두 단계 내리고 목표가를 <b>$6</b>로 제시했어요. 종가 대비 -30% 수준이라 컨센서스 목표가($12.90)와의 간극이 커요. 하루 거래량이 평균의 2.5배로 터진 것도 기관 포지션 정리에 부합해요.</p>
+    <div class="src">출처 24/7 Wall St.·Benzinga·Schaeffer's (2026.09.11)</div>
+  </div>
+  <div class="cause">
+    <div class="ch"><div class="cn">경쟁·업종</div><div class="cb">보조 원인</div></div>
+    <p>같은 SMR 개발사 <b>OKLO -9.18%</b>가 동반 하락했어요(자체 촉매인 $1B ATM 증자 개설). 반면 우라늄 ETF <b>URA -1.91%</b>, 원자력 유틸리티 <b>CEG -0.43% · VST +0.90%</b>로 원자력 테마 전체는 멀쩡했어요. <b>'개발 단계 회사'에만 매도가 몰린</b> 구도예요.</p>
+    <div class="src">출처 stockanalysis.com 당일 종가</div>
+  </div>
+  <div class="cause none">
+    <div class="ch"><div class="cn">회사 뉴스</div><div class="cb">무관</div></div>
+    <p>당일 뉴스케일의 실적·계약·공시·경영진 발표는 확인되지 않았어요. UBS가 인용한 숫자(착공 5년+, 3년 누적 현금소진 $7억)도 <b>회사 발표가 아니라 UBS 자체 모델</b>이에요.</p>
+    <div class="src">2분기 실적: 매출 $75,000 · 현금·투자 $1.9B</div>
+  </div>
+  <div class="cause none">
+    <div class="ch"><div class="cn">매크로·금리</div><div class="cb">무관(오히려 반대)</div></div>
+    <p>이날 S&amp;P500 <b>+0.86%</b>, 나스닥 <b>+0.96%</b>로 4거래일 연속 하락이 끊겼어요. 10년물은 4.96%(+1bp)로 사실상 제자리. <b>매크로는 우호적이었는데도</b> 15.7% 빠진 거예요.</p>
+    <div class="src">출처 미 재무부 CMT · 종가 기준</div>
+  </div>
+</div>
+
+<div class="chart-card">
+  <div class="ct">관련 자산 당일 등락 비교</div>
+  <div class="cs">2026년 9월 11일 정규장 종가 기준</div>
+  <svg viewBox="0 0 700 244" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="561.8" y1="14" x2="561.8" y2="224" stroke="#D1D6DB" stroke-width="1.5"/><rect x="137.8" y="20" width="424.0" height="22" rx="4" fill="#3182F6"/><text x="74" y="36" text-anchor="end" class="cv" style="fill:#191F28;font-size:12.5px">SMR</text><text x="131.8" y="36" text-anchor="end" class="cv" style="fill:#3182F6;font-size:12px">-15.7%</text><rect x="313.4" y="54" width="248.4" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="70" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">OKLO</text><text x="307.4" y="70" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-9.2%</text><rect x="510.2" y="88" width="51.7" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="104" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">URA</text><text x="504.2" y="104" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-1.9%</text><rect x="550.2" y="122" width="11.6" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="138" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">CEG</text><text x="544.2" y="138" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-0.4%</text><rect x="561.8" y="156" width="24.4" height="22" rx="4" fill="#BDEBD3"/><text x="74" y="172" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">VST</text><text x="592.2" y="172" text-anchor="start" class="cv" style="fill:#00B26B;font-size:12px">+0.9%</text><rect x="561.8" y="190" width="23.3" height="22" rx="4" fill="#BDEBD3"/><text x="74" y="206" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">S&amp;P500</text><text x="591.1" y="206" text-anchor="start" class="cv" style="fill:#00B26B;font-size:12px">+0.9%</text></svg>
+</div>
+
+<p class="body-p">UBS 논리의 핵심은 <b>"기술이 아니라 시간"</b>이에요. 뉴스케일은 미국에서 유일하게 NRC 표준설계인증을 받은 SMR 회사고, 기존 공급망에서 조달 가능한 저농축 우라늄을 쓰며, 60여 곳 공급업체 중 절반 이상과 공급계약을 이미 맺었다고 밝혀 왔어요. 그런데 UBS는 <mark class="r">첫 프로젝트 착공이 2028년에나 시작되고 그때까지 3년간 $7억을 태운다고 봤어요</mark>. 인증은 있는데 <b>돈을 넣어줄 고객이 아직 서명을 안 했다</b>는 게 이번 하향의 전부예요.</p>
+
+<p class="body-p">회사 쪽 반박은 유동성이에요. 2분기 말 현금·투자가 <b>$19억</b>으로, UBS가 걱정한 3년 현금 소진액의 두 배를 넘어요. 다만 이 현금은 <b>시가총액의 절반을 훌쩍 넘는</b> 규모예요(발행주식 3.65억주 ⚠️ 보도 기준 × $8.61 ≈ $31억). 시장이 사업 가치를 거의 매기지 않고 있다는 뜻이기도 해요.</p>
+
+<div class="sub-head">📐 밸류에이션은 어떻게 바뀌었나</div>
+<div class="sub-desc">적자 기업이라 P/E는 의미가 없어요. 목표가와 현금 대비로 봤어요.</div>
+<div class="kpi">
+  <div class="k"><div class="l">애널리스트 평균 목표가</div><div class="v">$12.90</div><div class="d">종가 대비 <b>+49.8%</b> — UBS $6와 편차가 커요</div></div>
+  <div class="k"><div class="l">UBS 신규 목표가</div><div class="v"><span class="down">$6.00</span></div><div class="d">종가 대비 <b>-30.3%</b> · 중립 → 매도</div></div>
+  <div class="k"><div class="l">20거래일 고점 대비</div><div class="v"><span class="down">-23.0%</span></div><div class="d">$11.18(9/8) → $8.61 · 나흘 만이에요</div></div>
+  <div class="k"><div class="l">52주 최저 대비</div><div class="v">+19.4%</div><div class="d">52주 최저 $7.21 ⚠️ 보도 기준</div></div>
+</div>
+<div class="g-note">평균 목표가는 대시보드 밸류에이션 위젯 기준이며, 이번 UBS 하향은 아직 반영 전이에요. FY26 주당순이익 컨센서스는 -$0.48로 적자라 P/E는 산출하지 않았어요.</div>
+
+<div class="sub-head">💼 보유 종목 파급</div>
+<div class="sub-desc">같은 원인으로 움직일 수 있는 종목을 정리했어요.</div>
+
+<div class="stock-g">
+  <div class="sg-t">직접 영향 <span class="tks">SMR</span> <span class="badge neg">비우호적</span></div>
+  <p>목표가 편차가 <b>$6 ~ $12.90</b>으로 두 배 넘게 벌어졌어요. 이런 구간에서는 주가가 뉴스 하나에 크게 흔들려요. 방향을 되돌릴 수 있는 건 <mark>TVA·ENTRA1 최종 PPA 체결 하나</mark>인데, 이건 11월 6일(예상) 3분기 실적의 핵심 체크포인트이기도 해요 — <a href="../실적브리핑/실적브리핑_SMR_2026Q2_2026.08.08.html">2분기 보고서</a>에서도 같은 항목을 봤었죠.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">같은 결의 종목 <span class="tks">IONQ · CRWV</span> <span class="badge neu">간접·주의</span></div>
+  <p>"기술은 있는데 매출이 아직"이라는 구조를 공유해요. 이번 주만 해도 <a href="../실적브리핑/실적브리핑_IONQ_2026Q2_2026.08.08.html">IONQ</a>가 미즈호 목표가 하향($61→$52)에 이틀 연속 빠졌어요. <b>애널리스트 한 곳의 하향이 두 자릿수 하락으로 번지는 국면</b>이라, 목표가 변경 뉴스를 이전보다 무겁게 볼 필요가 있어요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">전력 수요 쪽 <span class="tks">NVDA · CRWV · MSFT</span> <span class="badge neu">중립</span></div>
+  <p>SMR 개발 지연은 <b>데이터센터 전력 확보 일정</b>이 그만큼 늦어진다는 뜻이지만, 2028년 이후 이야기라 지금 실적에는 닿지 않아요. 다만 8월 CPI에서 에너지가 YoY <b>+16.3%</b>로 더 올라간 걸 함께 보면, 전력비용 부담은 당분간 기존 발전원 가격에 묶여 있어요 — <a href="../경제지표/경제지표_CPI_2026.08_2026.09.11.html">8월 CPI 보고서</a>에서 자세히 다뤘어요.</p>
+</div>
+
+<div class="sub-head">👀 이 다음엔 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">52주 최저 $7.21을 시험하는지<small>20거래일 저점 $8.64는 이미 깨졌어요. 박스가 무너진 뒤 다음 지지선은 52주 저점뿐이에요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">다른 증권사가 UBS를 따라 목표가를 내리는지<small>평균 $12.90과 UBS $6의 간극이 좁혀지는 방향이면 추세, 홀로 튄 의견이면 과민반응이었다는 뜻이에요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">TVA·ENTRA1 최종 PPA 또는 루마니아 RoPower 계약이 체결되는지<small>UBS 하향의 핵심 근거가 '확정 고객 없음'이라, 서명 하나가 논리를 통째로 흔들어요 (이월)</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">OKLO와 다시 같은 방향으로 붙는지, 계속 벌어지는지<small>9/11엔 -15.67% vs -9.18%로 갈렸어요. 격차가 유지되면 '섹터'가 아니라 '뉴스케일'의 문제라는 확인이에요</small></div></div>
+</div>
+<div class="wp-preview">📌 다음에 이 자산이 다시 기준선(±3%)을 넘으면 위 4가지를 <b>하나씩 점검</b>해서 보여드릴게요.</div>
+
+<div class="sub-head">📚 이런 움직임을 어떻게 봐야 하나</div>
+<div class="explain">
+  <h3>매출이 없는 회사의 주가는 '이야기의 시점'으로 움직여요</h3>
+  <p>뉴스케일의 분기 매출은 <b>$75,000</b>이에요. 회사 규모를 생각하면 사실상 0이죠. 이런 회사의 주가는 지금 버는 돈이 아니라 <b>"언제부터 벌기 시작하느냐"</b>에 대한 시장의 합의로 정해져요. 그래서 실적 발표보다 애널리스트의 일정 추정 변경이 주가를 더 크게 흔들 수 있어요 — 이번이 정확히 그 경우예요.</p>
+  <p>다만 하루 15%가 움직였다고 회사의 무엇이 15% 나빠진 건 아니에요. 바뀐 건 UBS 한 곳의 모델이고, 확정 인증도 현금 $19억도 그대로예요. 이런 국면에서 판단 기준은 <b>다른 증권사가 따라오는지</b>와 <b>회사가 계약으로 반박하는지</b> 두 가지예요. 둘 다 앞으로 몇 주 안에 확인할 수 있어요.</p>
+</div>
+
+<!--rnav-->
+<div class="rnav"><a class="prev" href="../경제지표/경제지표_CPI_2026.08_2026.09.11.html"><span class="av"><img src="../logos/CPI.png" alt=""></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">소비자물가지수(CPI)</div><div class="rs"><span class="tx BAD">인상</span> · 2026년 8월</div></div></a><a class="next" href="../경제지표/경제지표_PPI_2026.08_2026.09.10.html"><span class="av"><img src="../logos/PPI.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">생산자물가지수(PPI)</div><div class="rs"><span class="tx BAD">재가속</span> · 2026년 8월</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: stockanalysis.com(종가·거래량·20거래일 시계열), 24/7 Wall St.·Benzinga·Schaeffer's Investment Research 보도(2026.09.11), 미 재무부 일일 국채금리(CMT) · movers-briefing 스킬이 자동 생성했습니다.
+</div>
+</div>
+</div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="급등락/급등락_SMR_2026.09.12.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+</body>
+</html>
