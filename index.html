@@ -516,7 +516,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.12";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
+const LAST_UPDATED = "2026.09.13";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
 
 const REPORTS_DB = [
   {
@@ -904,6 +904,13 @@ const EVENTS_DB = [
 // verdict: UP(상승)/DOWN(하락)/MIX(혼조) · month: 필터용 "YYYY년 M월" · issues: 이슈 수 · next_count: 다음 주 주요 일정 수
 // title: 보고서 제목(줄바꿈 없이 한 줄) — 카드 본문에 표시. 카드 상단은 주차+판정 배지만 노출
 const WEEKLY_REPORTS_DB = [
+  {
+    week: "2026년 37주차", range: "09.07 ~ 09.12", month: "2026년 9월",
+    issues: 6, next_count: 5, verdict: "DOWN", vlabel: "하락",
+    title: "유가가 $100을 넘고, CPI가 인상을 굳힌 한 주였어요",
+    oneliner: "WTI가 주간 +10.17%로 배럴당 $100을 넘고, 8월 CPI 근원이 월간 +0.3%(예측 +0.2%)로 나오면서 9월 인상 확률이 69%→87%로 굳었어요. S&P 500은 주간 -0.80%로 4거래일 중 3일을 내렸고, 2년물이 +26bp 오르는 베어 플래트닝에 SMR(-11.24%)·IONQ(-7.01%)·NVDA(-5.24%) 같은 고밸류가 눌렸어요. SK하이닉스만 자사주 소각과 메모리 랠리 반영으로 +10.02%였고요. 9월 17일 새벽 FOMC가 남았어요.",
+    created: "2026.09.13", file: "위클리리뷰/위클리리뷰_2026_37주차_2026.09.13.html"
+  },
   {
     week: "2026년 36주차", range: "08.31 ~ 09.05", month: "2026년 9월",
     issues: 7, next_count: 5, verdict: "MIX", vlabel: "혼조",
