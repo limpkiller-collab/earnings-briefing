@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경제 지표 — FOMC 금리결정 2026년 9월 회의</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 수치 2카드 (토스증권 경제지표 페이지 스타일) */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--red-bg);color:var(--red)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 발표 이력 테이블 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
+.htable tr.new td{background:var(--blue-bg)}
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.htable th{white-space:nowrap}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI 카드 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
+/* 콜아웃·인용 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 영향 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--amber-bg);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지표 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+.quote{background:var(--g50);border-left:3px solid var(--blue);border-radius:0 12px 12px 0;
+  padding:15px 19px;margin:14px 0;font-size:14.5px;color:var(--g700);line-height:1.75}
+.quote .who{display:block;font-size:12.5px;color:var(--g400);font-weight:700;margin-top:7px}
+.wp{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.wp .tag{flex:0 0 58px;font-size:11.5px;font-weight:800;padding:3px 0;border-radius:8px;
+  text-align:center;height:24px;line-height:18px;margin-top:2px}
+.wp.met .tag{background:var(--green-bg);color:var(--green)}
+.wp.miss .tag{background:var(--red-bg);color:var(--red)}
+.wp.partial .tag{background:var(--amber-bg);color:var(--amber)}
+.wp.hold .tag{background:var(--g100);color:var(--g500)}
+.wp .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.wp .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  body{background:var(--bg)}
+  .page,.gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
+  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
+  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
+  svg [stroke="#fff"]{stroke:#17171C}
+  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
+  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+/*<!--/dark-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">📈</span> 경제 지표</div>
+  <a href="../index.html">← 아카이브</a>
+</div>
+<div class="body">
+<div class="chips"><span class="chip b">#연준</span><span class="chip">#연 8회</span><span class="chip">#★★★</span><span class="chip">#금리결정 · 점도표</span></div>
+<h1>FOMC 금리결정<br>2026년 9월 회의</h1>
+<div class="meta">2026년 9월 17일 03:00 발표 (한국시간) · 미국 9월 16일 14:00 ET · 출처 연방준비제도 성명서·경제전망요약(SEP)·기자회견</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">결정 — 기준금리 목표범위</div>
+    <div class="num">3.75~4.00%</div>
+    <div class="cmp"><b class="up">0.25%p 인상</b> · 표결 <b>12 대 0 만장일치</b></div>
+    <div class="core">2023년 7월 이후 3년 2개월 만의 첫 인상 · 7월 회의는 9-3 동결이었어요</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">점도표 — 2026년말 중간값</div>
+    <div class="num">4.1%</div>
+    <div class="cmp">6월 <b>3.8%</b>에서 <b class="up">0.3%p 상향</b> — 연내 한 번 더</div>
+    <div class="core">18명 중 16명이 추가 인상 1회 이상, 그중 4명은 2회 · 2명만 이번이 마지막</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p>연준이 <b>3년 2개월 만에 금리를 올렸어요</b>. 3.75~4.00%로 0.25%p 인상, 반대표 없이 12대 0이었어요. 7월 회의에서 세 명이 인상을 주장하며 갈렸던 걸 생각하면 이번엔 완전히 한 방향으로 모인 셈이에요.</p>
+  <p>정작 시장을 흔든 건 인상 자체가 아니라 <b>점도표</b>였어요. 인상은 이미 90% 넘게 반영돼 있었거든요. 2026년말 중간값이 3.8%→4.1%, <mark class="r">2027년말은 3.6%→4.1%로 0.5%p나 올라갔어요</mark>. 연내 한 번 더 올린 뒤 내년 내내 그 수준을 유지한다는 그림이에요.</p>
+  <p>발표 직후엔 주가가 오르고 금리가 내렸는데, 기자회견에서 워시 의장이 "물가가 너무 오래, 너무 높았다"고 말하자 뒤집혔어요. 다우 -1.21%, 2년물 금리는 4.74%로 7bp 뛰었어요.</p>
+</div>
+
+<div class="sub-head">🏛️ 기준금리 경로</div>
+<div class="sub-desc">2025년 말까지 세 번 내린 뒤 여덟 달을 쉬었고, 이번에 방향을 틀었어요.</div>
+<div class="chart-card">
+  <div class="ct">기준금리 목표범위 추이</div>
+  <div class="cs">2025년 7월 회의 ~ 2026년 9월 회의 · 밴드는 0.25%p 목표범위</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">3.20</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">3.60</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">4.00</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">4.40</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">4.80</text><rect x="14.0" y="69.9" width="63.0" height="36.6" fill="#F2F4F6"/><rect x="77.0" y="106.4" width="63.0" height="36.6" fill="#F2F4F6"/><rect x="140.0" y="143.0" width="63.0" height="36.6" fill="#F2F4F6"/><rect x="203.0" y="179.6" width="63.0" height="36.6" fill="#F2F4F6"/><rect x="266.0" y="179.6" width="63.0" height="36.6" fill="#F2F4F6"/><rect x="329.0" y="179.6" width="63.0" height="36.6" fill="#F2F4F6"/><rect x="392.0" y="179.6" width="63.0" height="36.6" fill="#F2F4F6"/><rect x="455.0" y="179.6" width="63.0" height="36.6" fill="#F2F4F6"/><rect x="518.0" y="179.6" width="63.0" height="36.6" fill="#F2F4F6"/><rect x="581.0" y="143.0" width="63.0" height="36.6" fill="#C9DEFB"/><polyline points="14.0,69.9 77.0,69.9 77.0,106.4 140.0,106.4 140.0,143.0 203.0,143.0 203.0,179.6 266.0,179.6 266.0,179.6 329.0,179.6 329.0,179.6 392.0,179.6 392.0,179.6 455.0,179.6 455.0,179.6 518.0,179.6 518.0,179.6 581.0,179.6 581.0,143.0 644.0,143.0" fill="none" stroke="#3182F6" stroke-width="2.5" stroke-linejoin="round"/><polyline points="14.0,106.4 77.0,106.4 77.0,143.0 140.0,143.0 140.0,179.6 203.0,179.6 203.0,216.1 266.0,216.1 266.0,216.1 329.0,216.1 329.0,216.1 392.0,216.1 392.0,216.1 455.0,216.1 455.0,216.1 518.0,216.1 518.0,216.1 581.0,216.1 581.0,179.6 644.0,179.6" fill="none" stroke="#3182F6" stroke-width="1.5" opacity="0.45" stroke-linejoin="round"/><text x="612.5" y="132.0" text-anchor="middle" class="cv" style="fill:#3182F6">3.75~4.00%</text><text x="45.5" y="286" text-anchor="middle" class="cl">25.7</text><text x="108.5" y="286" text-anchor="middle" class="cl">25.9</text><text x="171.5" y="286" text-anchor="middle" class="cl">25.10</text><text x="234.5" y="286" text-anchor="middle" class="cl">25.12</text><text x="297.5" y="286" text-anchor="middle" class="cl">26.1</text><text x="360.5" y="286" text-anchor="middle" class="cl">26.3</text><text x="423.5" y="286" text-anchor="middle" class="cl">26.4</text><text x="486.5" y="286" text-anchor="middle" class="cl">26.6</text><text x="549.5" y="286" text-anchor="middle" class="cl">26.7</text><text x="612.5" y="286" text-anchor="middle" class="cl">26.9</text></svg>
+</div>
+
+<div class="sub-head">🔵 점도표 — 이번 발표의 핵심</div>
+<div class="sub-desc">점 하나가 참석자 한 명의 '적정 금리' 판단이에요. 중요한 건 분포 자체보다 <b>직전 대비 이동</b>이에요.</div>
+<div class="chart-card">
+  <div class="ct">FOMC 참석자별 연말 적정 기준금리</div>
+  <div class="cs">각 열 왼쪽 = 2026년 6월 SEP, 오른쪽 = 이번 9월 SEP · 가로선은 중간값</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="246.0" x2="644" y2="246.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="250.0" class="ax">2.67</text><line x1="14" y1="191.0" x2="644" y2="191.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="195.0" class="ax">3.15</text><line x1="14" y1="136.0" x2="644" y2="136.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="140.0" class="ax">3.62</text><line x1="14" y1="81.0" x2="644" y2="81.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="85.0" class="ax">4.10</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">4.58</text><line x1="171.5" y1="26" x2="171.5" y2="246.0" stroke="#EDEFF2" stroke-width="1"/><line x1="329.0" y1="26" x2="329.0" y2="246.0" stroke="#EDEFF2" stroke-width="1"/><line x1="486.5" y1="26" x2="486.5" y2="246.0" stroke="#EDEFF2" stroke-width="1"/><line x1="14" y1="107.1" x2="644" y2="107.1" stroke="#8B95A1" stroke-width="1.5" stroke-dasharray="5,4"/><text x="17.0" y="122.1" text-anchor="start" class="cl" style="fill:#4E5968" stroke="#fff" stroke-width="3.5" paint-order="stroke" stroke-linejoin="round">현재 3.875%</text><circle cx="58.1" cy="49.2" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="40.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="49.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="58.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="67.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="76.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="49.1" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="58.1" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="67.1" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="26.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="35.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="44.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="53.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="62.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="71.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="80.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="89.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="58.1" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><line x1="23.7" y1="115.7" x2="92.5" y2="115.7" stroke="#8B95A1" stroke-width="2" stroke-dasharray="4,3"/><circle cx="113.9" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="122.9" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="131.9" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="140.9" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="77.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="86.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="95.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="104.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="113.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="122.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="131.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="140.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="149.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="158.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="167.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="176.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="122.9" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="131.9" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><line x1="93.0" y1="81.0" x2="161.8" y2="81.0" stroke="#4E5968" stroke-width="2.5"/><text x="92.8" y="276" text-anchor="middle" class="cl">2026</text><text x="92.8" y="293" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">3.8 → 4.1%</text><circle cx="215.6" cy="49.2" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="211.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="220.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="197.6" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="206.6" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="215.6" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="224.6" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="233.6" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="211.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="220.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="206.6" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="215.6" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="224.6" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="202.1" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="211.1" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="220.1" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="229.1" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="215.6" cy="222.8" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><line x1="181.2" y1="138.9" x2="250.0" y2="138.9" stroke="#8B95A1" stroke-width="2" stroke-dasharray="4,3"/><circle cx="253.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="262.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="271.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="280.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="289.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="298.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="307.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="316.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="262.4" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="271.4" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="280.4" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="289.4" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="298.4" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="307.4" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="275.9" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="284.9" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="293.9" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="284.9" cy="193.9" r="4.0" fill="#3182F6" opacity="0.85"/><line x1="250.5" y1="81.0" x2="319.3" y2="81.0" stroke="#4E5968" stroke-width="2.5"/><text x="250.2" y="276" text-anchor="middle" class="cl">2027</text><text x="250.2" y="293" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">3.6 → 4.1%</text><circle cx="364.1" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="373.1" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="382.1" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="355.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="364.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="373.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="382.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="391.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="368.6" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="377.6" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="350.6" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="359.6" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="368.6" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="377.6" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="386.6" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="395.6" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="373.1" cy="222.8" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><line x1="338.7" y1="162.1" x2="407.5" y2="162.1" stroke="#8B95A1" stroke-width="2" stroke-dasharray="4,3"/><circle cx="428.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="437.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="446.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="455.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="424.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="433.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="442.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="451.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="460.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="433.4" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="442.4" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="451.4" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="442.4" cy="164.9" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="428.9" cy="193.9" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="437.9" cy="193.9" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="446.9" cy="193.9" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="455.9" cy="193.9" r="4.0" fill="#3182F6" opacity="0.85"/><line x1="408.0" y1="104.2" x2="476.8" y2="104.2" stroke="#4E5968" stroke-width="2.5"/><text x="407.8" y="276" text-anchor="middle" class="cl">2028</text><text x="407.8" y="293" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">3.4 → 3.9%</text><circle cx="530.6" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="530.6" cy="121.5" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="530.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="530.6" cy="150.5" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="526.1" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="535.1" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="530.6" cy="179.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="526.1" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="535.1" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="503.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="512.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="521.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="530.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="539.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="548.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="557.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="526.1" cy="222.8" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="535.1" cy="222.8" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><line x1="496.2" y1="196.8" x2="565.0" y2="196.8" stroke="#8B95A1" stroke-width="2" stroke-dasharray="4,3"/><circle cx="595.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="604.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="599.9" cy="121.5" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="595.4" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="604.4" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="595.4" cy="150.5" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="604.4" cy="150.5" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="599.9" cy="164.9" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="595.4" cy="179.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="604.4" cy="179.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="599.9" cy="193.9" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="577.4" cy="208.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="586.4" cy="208.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="595.4" cy="208.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="604.4" cy="208.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="613.4" cy="208.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="622.4" cy="208.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="599.9" cy="222.8" r="4.0" fill="#3182F6" opacity="0.85"/><line x1="565.5" y1="185.2" x2="634.3" y2="185.2" stroke="#4E5968" stroke-width="2.5"/><text x="565.2" y="276" text-anchor="middle" class="cl">장기</text><text x="565.2" y="293" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">3.1 → 3.2%</text></svg>
+  <div class="legend">
+    <span><i style="background:#fff;border:2px solid #B0B8C1;border-radius:50%"></i>직전 6월 SEP</span>
+    <span><i style="background:#3182F6;border-radius:50%"></i>현재(3.875%) 이하</span>
+    <span><i style="background:#F04452;border-radius:50%"></i>추가 인상</span>
+  </div>
+</div>
+<div class="g-note">9월 회의엔 18명이 전망을 제출했어요(2028·2029년 열은 17명). 워시 의장은 취임 이후 점을 제출하지 않고 있어요. 2029년 중간값은 3.6%, 장기 중립금리는 3.2%로 6월(3.1%)보다 소폭 올라갔어요.</div>
+
+<p class="body-p">숫자를 하나씩 보면 이래요. <b>2026년</b>: 4.375% 4명 · 4.125% 12명 · 3.875% 2명. 지금이 3.875%이니 <mark class="r">16명이 연내 최소 한 번 더 올려야 한다고 본 거예요</mark>. <b>2027년</b>은 4.375%가 8명으로 가장 많은데, 동시에 3.625% 이하를 적어낸 사람도 4명이라 의견이 크게 갈렸어요. 2028년부터는 인하 쪽으로 기울고, 2029년 중간값은 3.6%예요. 요약하면 <b>"올해와 내년은 더 조이고, 그 뒤에 천천히 되돌린다"</b>는 경로예요.</p>
+
+<div class="sub-head">📊 경제 전망(SEP)은 어떻게 바뀌었나</div>
+<div class="sub-desc">성장은 좋아졌고 실업률은 낮아졌는데, 물가 전망도 같이 올라갔어요.</div>
+<div class="chart-card" style="border:0;padding:0">
+<div class="kpi">
+<div class="k"><div class="l">2026 실질 GDP 성장률</div><div class="v"><span class="down">2.3%</span></div><div class="d">2026년 6월 2.2% → +0.1%p 상향</div></div>
+<div class="k"><div class="l">2026 실업률</div><div class="v"><span class="down">4.1%</span></div><div class="d">2026년 6월 4.3% → -0.2%p 하향</div></div>
+<div class="k"><div class="l">2026 PCE 물가</div><div class="v"><span class="up">3.7%</span></div><div class="d">2026년 6월 3.6% → +0.1%p 상향</div></div>
+<div class="k"><div class="l">2026 근원 PCE 물가</div><div class="v"><span class="up">3.4%</span></div><div class="d">2026년 6월 3.3% → +0.1%p 상향</div></div>
+</div>
+</div>
+<div class="g-note">2026년 4분기 전년 대비 기준 · 괄호 안은 2026년 6월 SEP 대비 변화예요. 색은 방향이 아니라 의미 기준(물가·실업률 상향 = 빨강, 성장 상향 = 파랑)이에요.</div>
+<div class="kpi">
+<div class="k"><div class="l">2027 실질 GDP 성장률</div><div class="v"><span class="down">2.4%</span></div><div class="d">2026년 6월 2.3% → +0.1%p 상향</div></div>
+<div class="k"><div class="l">2027 실업률</div><div class="v"><span class="down">4.1%</span></div><div class="d">2026년 6월 4.3% → -0.2%p 하향</div></div>
+<div class="k"><div class="l">2027 PCE 물가</div><div class="v"><span class="flat">2.3%</span></div><div class="d">2026년 6월 2.3% → 동일</div></div>
+<div class="k"><div class="l">2027 근원 PCE 물가</div><div class="v"><span class="flat">2.5%</span></div><div class="d">2026년 6월 2.5% → 동일</div></div>
+</div>
+<p class="body-p">이번 전망의 성격이 여기 다 들어 있어요. <b>실업률 전망을 4.3%에서 4.1%로 0.2%p나 내렸어요</b>. 고용이 걱정되지 않으니 물가에 집중할 여유가 생겼다는 뜻이죠. 반대로 <mark class="r">2026년 PCE 물가는 3.6%→3.7%, 근원은 3.3%→3.4%로 올라갔어요</mark>. 연준이 목표 2%에 닿는 시점으로 보는 해는 <b>2029년</b>이에요. 성장·고용·물가 세 가지가 모두 "더 조여도 된다"를 가리킨 셈이에요.</p>
+
+<div class="sub-head">📄 성명서는 무엇이 달라졌나</div>
+<div class="sub-desc">문장이 눈에 띄게 짧아졌고, 앞으로의 방향을 약속하는 문구는 없어요.</div>
+<div class="quote">
+  "위원회는 연방기금금리 목표범위를 0.25%p 인상해 3.75~4.00%로 하기로 결정했다. … 경제활동은 견조한 속도로 확장하고 있다. … 물가는 여전히 높다. 오늘의 정책 결정은 위원회의 2% 목표로 더 이른 시점에 복귀하는 것을 뒷받침할 것이다. <b>위원회는 물가 안정을 이뤄낼 것이다.</b>"
+  <span class="who">— 2026년 9월 16일 FOMC 성명서(12-0 승인)</span>
+</div>
+<p class="body-p">성명서에는 <b>포워드 가이던스가 없어요</b>. "향후 회의에서 어떻게 하겠다"는 문장이 통째로 빠져 있죠. 대신 "물가 안정을 이뤄낼 것"이라는 선언형 문장이 들어갔어요. 잭슨홀에서 워시 의장이 "우리는 특정 결정이 아니라 규율에 헌신한다"고 했던 것과 같은 결이에요. 시장 입장에선 <mark class="r">다음 행동을 성명서가 아니라 점도표와 지표로 역산해야 한다</mark>는 뜻이라, 회의마다 변동성이 커질 수 있어요.</p>
+<div class="quote">
+  "기저 물가가 우리 목표를 향해 분명하게, 충분한 속도로 움직이고 있다는 확신이 있어야 합니다. 오늘 FOMC는 그 기준이 충족되지 않았다고 판단했습니다."<br>
+  "경제가 강하고, 물가는 여전히 높고, 중동 긴장까지 있습니다. 이 세 가지가 오늘의 확고한 만장일치로 이어졌습니다."
+  <span class="who">— 케빈 워시 연준 의장, 9월 16일 기자회견</span>
+</div>
+<p class="body-p">유가 얘기도 나왔어요. 워시 의장은 <b>"연준이 유가 같은 특정 품목의 가격 충격을 혼자 막을 수는 없다"</b>면서도, <b>"상대가격 변화가 광범위하게 번지고 2차·3차 파급효과를 내지 않도록 하는 것은 우리가 할 수 있고 할 일"</b>이라고 했어요. 연준이 보통은 유가발 물가를 "지나쳐 보는데" 이번엔 그러지 않는 이유를 설명한 대목이에요. 이란 사태가 일곱 달째 이어지면서 기대 인플레이션이 고착될 위험을 더 크게 본 거죠.</p>
+
+<div class="sub-head">🗓️ 최근 FOMC 결정</div>
+<div class="sub-desc">여덟 달 동안 이어진 동결이 이번에 끝났어요.</div>
+<div class="twrap"><table class="htable">
+  <tr><th>회의</th><th>결정</th><th>목표범위</th><th>표결</th><th>비고</th></tr>
+  <tr class="new"><td>2026년 9월 (15~16일)</td><td class="a up" data-h="결정">0.25%p 인상</td><td data-h="목표범위">3.75~4.00%</td><td data-h="표결">12-0</td><td class="w">SEP 회의 · 2023년 7월 이후 첫 인상</td></tr>
+  <tr><td>2026년 7월 (28~29일)</td><td class="a" data-h="결정">동결</td><td data-h="목표범위">3.50~3.75%</td><td data-h="표결">9-3</td><td class="w">해맥·카시카리·로건 위원이 인상 선호로 반대</td></tr>
+  <tr><td>2026년 6월 (16~17일)</td><td class="a" data-h="결정">동결</td><td data-h="목표범위">3.50~3.75%</td><td data-h="표결">—</td><td class="w">SEP 회의 · 2026년말 중간값 3.8%</td></tr>
+  <tr><td>2026년 4월 (28~29일)</td><td class="a" data-h="결정">동결</td><td data-h="목표범위">3.50~3.75%</td><td data-h="표결">—</td><td class="w"></td></tr>
+  <tr><td>2026년 3월 (17~18일)</td><td class="a" data-h="결정">동결</td><td data-h="목표범위">3.50~3.75%</td><td data-h="표결">—</td><td class="w">SEP 회의 · 2026년말 중간값 3.4%</td></tr>
+  <tr><td>2026년 1월 (27~28일)</td><td class="a" data-h="결정">동결</td><td data-h="목표범위">3.50~3.75%</td><td data-h="표결">—</td><td class="w">2025년 12월 인하 이후 동결 시작</td></tr>
+</table></div>
+<div class="g-note">표결 구성은 확인된 회의만 적었어요. 목표범위는 위 계단 차트와 같은 출처(연준 성명서)예요.</div>
+
+<div class="sub-head">📈 시장 반응</div>
+<div class="sub-desc">인상은 이미 반영돼 있었고, 기자회견이 방향을 결정했어요.</div>
+<div class="kpi">
+  <div class="k"><div class="l">다우</div><div class="v"><span class="up">-1.21%</span></div><div class="d">51,461.90 · -631.21p</div></div>
+  <div class="k"><div class="l">S&amp;P 500</div><div class="v"><span class="up">-0.45%</span></div><div class="d">7,551.81 · 발표 직후엔 상승했다 반전</div></div>
+  <div class="k"><div class="l">나스닥</div><div class="v"><span class="up">-0.01%</span></div><div class="d">25,978.42 · 사실상 보합으로 버텼어요</div></div>
+  <div class="k"><div class="l">미 국채 2년물</div><div class="v"><span class="up">4.74%</span></div><div class="d">전일 4.67% → +7bp · 정책금리 민감 구간</div></div>
+</div>
+<div class="chart-card">
+  <div class="ct">미 국채 2년물·10년물</div>
+  <div class="cs">2026년 9월 · 미 재무부 CMT 종가 · 점선이 9월 FOMC 결정일</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">4.24</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">4.46</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">4.67</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">4.89</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">5.11</text><polyline points="14.0,112.1 77.0,112.1 140.0,117.4 203.0,114.8 266.0,109.4 329.0,101.3 392.0,69.0 455.0,66.3 518.0,63.7 581.0,55.6 644.0,52.9" fill="none" stroke="#F04452" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="644.0" cy="52.9" r="5" fill="#fff" stroke="#F04452" stroke-width="3"/><text x="634.0" y="39.9" text-anchor="end" class="cv" style="fill:#F04452">10Y 5.01%</text><polyline points="14.0,219.7 77.0,219.7 140.0,233.1 203.0,225.0 266.0,219.7 329.0,208.9 392.0,173.9 455.0,155.1 518.0,149.7 581.0,144.3 644.0,125.5" fill="none" stroke="#3182F6" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="644.0" cy="125.5" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/><text x="634.0" y="147.5" text-anchor="end" class="cv" style="fill:#3182F6">2Y 4.74%</text><line x1="644.0" y1="26" x2="644.0" y2="260" stroke="#8B95A1" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/><text x="644.0" y="18" text-anchor="middle" class="cl" style="fill:#4E5968">9월 FOMC</text><text x="14.0" y="286" text-anchor="middle" class="cl">9.1</text><text x="140.0" y="286" text-anchor="middle" class="cl">9.3</text><text x="266.0" y="286" text-anchor="middle" class="cl">9.8</text><text x="392.0" y="286" text-anchor="middle" class="cl">9.10</text><text x="518.0" y="286" text-anchor="middle" class="cl">9.14</text><text x="644.0" y="286" text-anchor="middle" class="cl">9.16</text></svg>
+  <div class="legend"><span><i style="background:#3182F6"></i>2년물</span><span><i style="background:#F04452"></i>10년물</span></div>
+</div>
+<p class="body-p">금리 움직임의 모양이 중요해요. 결정 직후 한때는 금리가 내렸어요 — "연준이 물가를 잡겠다니 장기 물가 위험은 줄었다"는 반응이었죠. 하지만 3시 30분 기준 종가로 보면 <b>2년물 +7bp(4.74%), 10년물 +1bp(5.01%)</b>로 <mark class="r">단기물만 크게 올라 곡선이 납작해졌어요</mark>. 10년-2년 금리차는 33bp에서 27bp로 좁아졌어요. 전형적인 '긴축을 더 하겠다'는 가격이에요.</p>
+<p class="body-p">체감 금리도 이미 올라 있어요. 30년 고정 모기지는 <b>7.19%</b>로, 8월 28일 잭슨홀 연설 이후에만 38bp, 1년 전보다는 1%p 넘게 뛰었어요(Mortgage News Daily 기준).</p>
+<div class="callout"><div class="ct">한 줄 결론</div>인상은 예고편이었고, 본편은 "내년까지 4%대를 유지한다"는 점도표예요. 금리가 떨어지길 기다리는 자산은 시간표를 1년 뒤로 미뤄 잡아야 해요.</div>
+
+<div class="sub-head">💼 보유 종목 영향</div>
+<div class="sub-desc">할인율이 올라가는 구간이라 종목별 체력 차이가 그대로 드러나요.</div>
+<div class="stock-g">
+  <div class="sg-t">금리민감 성장주 <span class="tks">PLTR · IONQ · SMR · CRWV</span> <span class="badge neg">부정적</span></div>
+  <p>이익이 먼 미래에 몰려 있을수록 할인율 상승이 아프게 작용해요. 특히 <a href="../실적브리핑/실적브리핑_CRWV_2026Q2_2026.08.12.html">CRWV</a>는 총차입금이 리스 포함 51.6억 달러대가 아니라 <b>$51.6B</b>이고 분기 이자비용 가이던스가 $860~940M이라, 조달금리가 이 경로대로 유지되면 <mark class="r">차환 비용이 직접 늘어나요</mark>. <a href="../실적브리핑/실적브리핑_IONQ_2026Q2_2026.08.07.html">IONQ</a>·<a href="../실적브리핑/실적브리핑_SMR_2026Q2_2026.08.07.html">SMR</a>은 아직 현금을 태우는 단계라 증자 조건이 나빠질 수 있어요. <a href="../실적브리핑/실적브리핑_PLTR_2026Q2_2026.08.05.html">PLTR</a>은 현금흐름이 나오는 쪽이지만 밸류에이션 배수가 높아 금리엔 여전히 민감해요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">배당·리츠 <span class="tks">O · KO · ABBV</span> <span class="badge neg">O는 특히 주의</span></div>
+  <p><a href="../실적브리핑/실적브리핑_O_2026Q2_2026.08.07.html">O</a>가 가장 직접적이에요. 리츠는 배당수익률이 국채금리와 경쟁하는데, <b>10년물이 5%를 넘은 상태</b>에서 연준이 더 올리겠다고 한 거니까요. 게다가 연간 $10B 투자 계획의 조달 비용도 같이 올라가요. <a href="../실적브리핑/실적브리핑_KO_2026Q2_2026.07.28.html">KO</a>·<a href="../실적브리핑/실적브리핑_ABBV_2026Q2_2026.07.31.html">ABBV</a>는 현금흐름이 안정적이라 충격은 덜하지만, 채권 대비 매력이 줄어드는 건 같아요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">반도체 <span class="tks">NVDA · MU · SK하이닉스</span> <span class="badge neu">간접적</span></div>
+  <p>이 그룹의 수요는 기업 AI 투자에서 나오기 때문에 정책금리와의 거리가 멀어요. 다만 연결고리가 하나 있어요 — <mark>AI 데이터센터 투자의 상당 부분이 차입으로 조달</mark>되고 있다는 점이에요. 금리가 내년까지 4%대에 머물면 하이퍼스케일러와 네오클라우드의 설비투자 속도에 제동이 걸릴 수 있어요. <a href="../실적브리핑/실적프리뷰_NVDA_FY2027Q2_2026.08.14.html">NVDA</a>의 수주잔고와 <a href="../실적브리핑/실적브리핑_MU_FY2026Q3_2026.06.26.html">MU</a>의 9월 30일 실적에서 고객 CapEx 코멘트를 확인해 볼 만해요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">빅테크 <span class="tks">AAPL · MSFT · GOOGL</span> <span class="badge neu">영향 제한적</span></div>
+  <p>현금이 많고 이익이 지금 나오는 기업들이라 금리 민감도가 가장 낮아요. 실제로 이날 나스닥이 -0.01%로 버틴 것도 이 그룹 덕이에요. 다만 실업률 전망을 낮춰 잡았다는 건 <b>고용이 견조하다</b>는 뜻이고, 이는 광고(<a href="../실적브리핑/실적브리핑_GOOGL_2026Q2_2026.07.24.html">GOOGL</a>)와 소비(<a href="../실적브리핑/실적브리핑_AAPL_FY2026Q3_2026.08.09.html">AAPL</a>)에는 오히려 우호적인 배경이에요.</p>
+</div>
+
+<div class="sub-head">👀 다음 회의에선 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">10월 29일 새벽 회의에서 연내 두 번째 인상이 실제로 나오는지<small>점도표는 18명 중 16명이 한 번 더를 가리켰어요. 10월에 할지 12월에 할지가 남은 질문이에요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">9월 30일 PCE(8월분)가 연준 전망 3.7%를 넘는지<small>연준이 보는 물가는 CPI가 아니라 PCE예요. 7월 3.7%·근원 3.3%에서 더 오르면 10월 인상 명분이 굳어져요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">2년물 4.74%가 5%를 향해 더 오르는지, 10년-2년 27bp가 역전으로 가는지<small>곡선이 역전되면 시장이 "과잉 긴축 → 경기 둔화"를 가격에 넣기 시작했다는 신호예요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">12월 SEP에서 2027년 분포(인상 8 · 동결 6 · 인하 4)가 좁혀지는지<small>2027년은 위원들 사이에서 가장 크게 갈린 해예요. 이 분열이 어느 쪽으로 정리되는지가 내년 금리 경로를 결정해요</small></div></div>
+</div>
+<div class="wp-preview">📌 다음 보고서에서는 위 4가지가 실제로 어떻게 됐는지 <b>하나씩 점검</b>해서 보여드릴게요.</div>
+
+<div class="next-box">🗓️ 다음 FOMC — 2026년 10월 29일 (목) 03:00 <span class="est">확정 · 10/27~28 회의 · SEP 없음</span></div>
+
+<div class="sub-head">📚 점도표란?</div>
+<div class="explain">
+  <h3>FOMC 참석자 각자가 생각하는 '적정 금리'를 점으로 찍은 그림이에요</h3>
+  <p>연준은 1년에 네 번(3·6·9·12월 회의) 경제전망요약(SEP)을 함께 내놓는데, 그 안에 들어 있는 게 점도표예요. 참석자 한 명이 점 하나를 찍고, 연도별로 "그해 말에 금리가 이 정도면 적당하다"고 보는 수준을 표시해요. 누가 어느 점인지는 공개하지 않아요.</p>
+  <p>중요한 건 <b>점의 절대 위치가 아니라 직전 SEP 대비 이동</b>이에요. 이번처럼 2026년 중간값이 3.8%에서 4.1%로 올라가면, 같은 회의에서 금리를 올린 것보다 이 이동이 시장에 더 큰 영향을 줘요. 이미 결정된 한 번보다 앞으로 몇 번이 남았는지가 자산 가격을 움직이니까요.</p>
+  <p>다만 점도표는 <b>약속이 아니라 그 시점의 판단</b>이에요. 경제 상황이 바뀌면 다음 SEP에서 점도 같이 움직여요. 실제로 올해 3월 중간값은 3.4%, 6월엔 3.8%, 이번엔 4.1%로 계속 올라왔어요.</p>
+</div>
+
+<!--rnav-->
+<div class="rnav"><a class="prev off"><span class="av"></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">가장 최근 보고서예요</div></div></a><a class="next" href="경제지표_RETAIL_2026.08_2026.09.16.html"><span class="av"><img src="../logos/RETAIL.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">소매판매</div><div class="rs"><span class="tx NEUT">견조</span> · 2026년 8월</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: 연방준비제도 FOMC 성명서(2026.09.16)·경제전망요약(SEP, fomcprojtabl20260916)·기자회견, 미 재무부 국채수익률곡선(CMT), CNBC·Yahoo Finance 보도 · macro-briefing 스킬이 자동 생성했습니다.
+</div>
+</div>
+</div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="경제지표/경제지표_FOMC_2026.09회의_2026.09.17.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+</body>
+</html>
