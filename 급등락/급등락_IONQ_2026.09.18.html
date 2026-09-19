@@ -202,6 +202,18 @@ b{font-weight:800}
   .htable:has(td.w) tr.new td{background:transparent}
 }
 /*<!--/mtab-css-->*/
+/* 📎 후속 블록 (같은 자산이 3거래일 안에 다시 기준선을 넘었을 때) */
+.fu{background:var(--g50);border-radius:16px;padding:18px 20px;margin:0 0 28px}
+.fu .fh{font-size:14px;font-weight:800;color:var(--g700);margin-bottom:10px}
+.fu .fr{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-top:1px solid var(--g200);flex-wrap:wrap}
+.fu .fr:first-of-type{border-top:0}
+.fu .fa{font-size:14px;font-weight:800;flex:0 0 96px}
+.fu .fc{font-size:15px;font-weight:800;flex:0 0 72px;text-align:right}
+.fu .fc.up{color:var(--green)} .fu .fc.down{color:var(--red)}
+.fu .ft{font-size:13.5px;color:var(--g600);font-weight:600;flex:1 1 200px;line-height:1.6}
+.fu .fd{font-size:12px;color:var(--g400);font-weight:700}
+
+
 </style>
 </head>
 <body>
@@ -238,6 +250,18 @@ b{font-weight:800}
   <p><b>양자 3종목이 나란히 8~9% 올랐어요.</b> 아이온큐 +9.50%, D-Wave +8.73%, Rigetti +8.11%로 폭이 거의 같았어요. 한 종목의 일이 아니라 <b>섹터 전체에 돈이 들어온 날</b>이에요.</p>
   <p>촉매는 업계 공통이었어요. 엔비디아가 <b>양자 AI 모델을 오픈소스로 공개</b>했고, 같은 날 IBM의 자회사 Anderon이 상무부 CHIPS 자금 <b>$10억</b>을 확정해 뉴욕 올버니에 300mm 양자 웨이퍼 시설을 짓는다는 소식이 나왔어요.</p>
   <p>아이온큐 자신도 발표가 있었어요 — 시놉시스와 함께 <b>자동차·제트엔진 시뮬레이션 같은 CAE 작업을 양자 알고리즘으로 최대 14.6% 가속</b>했다는 결과요. <mark>다만 옆 종목이 8%씩 오른 날이라, 이 발표만으로 +9.5%를 전부 설명하긴 어려워요.</mark></p>
+</div>
+
+<div class="fu">
+  <div class="fh">📎 후속 — 이 보고서 이후 같은 자산이 다시 기준선을 넘었어요</div>
+  <div class="fr">
+    <span class="fa">IonQ <span class="fd">9/19(KST)</span></span>
+    <span class="fc down">-3.00%</span>
+    <span class="ft">$39.13 · 전날 +9.50%의 <b>3분의 1을 하루 만에 반납</b>했어요. 장중 저가 $37.77까지 밀렸고 종가는 정확히 기준선(-3.0%)이에요. 이날 아이온큐의 자체 발표는 없었고, 미국 2년물이 4.743%로 +5bp 오르며 2024년 7월 이후 최고를 기록한 가운데 <b>수익 없는 고베타 성장주에서 차익실현</b>이 나온 것으로 보여요. ⚠️ D-Wave·Rigetti의 9/18 종가는 확인하지 못해 <b>섹터 동조 여부는 판단 보류</b>예요. 9월 8일 고점 $40.47은 다시 멀어졌어요(-3.3%).</span>
+  </div>
+  <div class="fr" style="border-top:1px solid var(--g200)">
+    <span class="ft" style="flex:1 1 100%;color:var(--g400);font-size:12.5px">같은 자산이 직전 보고서 발행 후 3거래일 안에 다시 기준선(±3%)을 넘으면 새 보고서를 만들지 않고 여기에 덧붙여요. 9월 18일(미국) 세션에서는 SMR(-8.52%)도 같은 방식으로 처리했고, MU(+3.92%)·SK하이닉스(+6.42%)는 3거래일이 지나 <b>각각 별도 보고서</b>로 만들었어요. 금리·환율은 이날도 미달이었어요 — 2년물 4.743%(+5bp), 10년물 5% 부근, 원/달러 1,383.3원(+0.08%).</span>
+  </div>
 </div>
 
 <div class="sub-head">✅ 지난번엔 이걸 보자고 했죠</div>
@@ -347,7 +371,7 @@ b{font-weight:800}
 </div>
 
 <!--rnav-->
-<div class="rnav"><a class="prev off"><span class="av"></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">가장 최근 보고서예요</div></div></a><a class="next" href="급등락_SMR_2026.09.18.html"><span class="av"><img src="../logos/SMR.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">SMR</div><div class="rs"><span class="tx UPM">+8.92%</span> · NuScale · 하원 법안 통과</div></div></a></div>
+<div class="rnav"><a class="prev" href="급등락_000660_2026.09.18.html"><span class="av mono">SK</span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">000660</div><div class="rs"><span class="tx UPM">+6.42%</span> · SK하이닉스 · 메모리 정점론 반박</div></div></a><a class="next" href="급등락_SMR_2026.09.18.html"><span class="av"><img src="../logos/SMR.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">SMR</div><div class="rs"><span class="tx UPM">+8.92%</span> · NuScale · 하원 법안 통과</div></div></a></div>
 <!--/rnav-->
 <div class="disclaimer">
 본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
