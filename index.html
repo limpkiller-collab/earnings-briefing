@@ -516,7 +516,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.19";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
+const LAST_UPDATED = "2026.09.20";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
 
 const REPORTS_DB = [
   {
@@ -918,6 +918,13 @@ const EVENTS_DB = [
 // verdict: UP(상승)/DOWN(하락)/MIX(혼조) · month: 필터용 "YYYY년 M월" · issues: 이슈 수 · next_count: 다음 주 주요 일정 수
 // title: 보고서 제목(줄바꿈 없이 한 줄) — 카드 본문에 표시. 카드 상단은 주차+판정 배지만 노출
 const WEEKLY_REPORTS_DB = [
+  {
+    week: "2026년 38주차", range: "09.14 ~ 09.19", month: "2026년 9월",
+    issues: 6, next_count: 6, verdict: "MIX", vlabel: "혼조",
+    title: "연준이 3년 만에 올렸고, 시장은 이틀 만에 되돌린 한 주였어요",
+    oneliner: "연준이 3년 2개월 만에 0.25%p를 올려 3.75~4.00%로 갔고(12-0 만장일치), 점도표 2026년말 중간값이 3.8%→4.1%로 올라 연내 한 번 더를 시사했어요. 그런데 주가를 만든 건 인상이 아니라 월요일 AI 속도조절론과 목·금 유가·금리 진정이었어요 — S&P 500 주간 -0.08%, 나스닥 +0.72%, 다우 -1.69%의 혼조. 2년물만 +13bp(4.756%) 오르고 30년물은 -3bp로 커브가 더 납작해졌고, 보유 종목은 메모리 반등에 상승 8·하락 5로 뒤집혔어요.",
+    created: "2026.09.20", file: "위클리리뷰/위클리리뷰_2026_38주차_2026.09.20.html"
+  },
   {
     week: "2026년 37주차", range: "09.07 ~ 09.12", month: "2026년 9월",
     issues: 6, next_count: 5, verdict: "DOWN", vlabel: "하락",
