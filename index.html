@@ -516,7 +516,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.22";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
+const LAST_UPDATED = "2026.09.23";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
 
 const REPORTS_DB = [
   {
@@ -895,7 +895,7 @@ const WATCH_DB = [
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
   { ticker: "NVDA", price: 227.38, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 1043.96, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
+  { ticker: "MU", price: 1096.16, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
   { ticker: "MSFT", price: 501.61, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
   { ticker: "GOOGL", price: 354.97, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
   { ticker: "AAPL", price: 338.98, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
@@ -966,6 +966,13 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
   {
+    asset: "USDKRW", name: "원/달러", kind: "fx", date: "2026-09-22",
+    chg: -1.65, chg_label: "-1.65%", price_label: "1,358.2원", cause: "추석 네고",
+    oneliner: "추석 연휴 앞두고 수출기업 달러 매도가 몰렸어요. 달러인덱스는 오히려 상승했어요.",
+    spark: [1385.16,1381.76,1377.32,1367.35,1373.49,1358.60,1356.66,1344.55,1345.01,1340.05,1340.03,1349.89,1341.59,1347.57,1362.32,1377.26,1380.69,1386.19,1374.89,1352.95],
+    created: "2026.09.23", file: "급등락/급등락_USDKRW_2026.09.22.html"
+  },
+  {
     asset: "SMR", name: "NuScale", kind: "stock", date: "2026-09-22",
     chg: 6.29, chg_label: "+6.29%", price_label: "$8.79", cause: "위험선호 반등",
     oneliner: "20거래일 최저 종가 다음 날 원자력 섹터가 통째로 되돌렸어요. 자체 발표는 없었어요.",
@@ -996,7 +1003,7 @@ const MOVERS_DB = [
   {
     asset: "MU", name: "Micron", kind: "stock", date: "2026-09-19",
     chg: 3.92, chg_label: "+3.92%", price_label: "$1,015.80", cause: "메모리 재평가",
-    oneliner: "RBC가 '선행 P/E 6.5배'를 짚었고 샌디스크 S&P100 편입에 메모리가 통째로 올랐어요.",
+    oneliner: "RBC가 '선행 P/E 6.5배'를 짚은 날 올랐어요. 📎 9/23 +5.00%($1,096.16) — 20일 최고 종가.",
     spark: [966.78,910.43,932.97,938.40,935.39,932.86,958.73,933.44,956.08,958.16,1016.59,1000.26,1027.77,977.41,975.26,924.03,927.60,926.55,977.50,1015.80],
     created: "2026.09.19", file: "급등락/급등락_MU_2026.09.19.html"
   },
@@ -1193,9 +1200,9 @@ const LOGO = { NVDA:'nvidia.com', AAPL:'apple.com', MSFT:'microsoft.com', GOOGL:
   PLTR:'palantir.com', CRWV:'coreweave.com', IONQ:'ionq.com', SMR:'nuscalepower.com', MU:'micron.com', KO:'coca-colacompany.com',   /* 000660: 파비콘 16px뿐이라 모노그램 */
   ISM_SVC:'ismworld.org', ISM_MFG:'ismworld.org', JOLTS:'bls.gov', NFP:'bls.gov', CPI:'bls.gov', PPI:'bls.gov', PCE:'bea.gov', GDP_2ND:'bea.gov', GDP_3RD:'bea.gov',
   RETAIL:'census.gov', FOMC:'federalreserve.gov', FOMC_MIN:'federalreserve.gov', JACKSON:'federalreserve.gov' };
-const MSHORT = { ISM_SVC:'ISM', ISM_MFG:'ISM', JOLTS:'JOLT', REVIEW:'월간', JACKSON:'JH', PCE:'PCE', GDP_2ND:'GDP', GDP_3RD:'GDP', CPI:'CPI', PPI:'PPI', RETAIL:'소매', FOMC_MIN:'FOMC', FOMC:'FOMC', NFP:'고용' };
+const MSHORT = { USDKRW:'환율', ISM_SVC:'ISM', ISM_MFG:'ISM', JOLTS:'JOLT', REVIEW:'월간', JACKSON:'JH', PCE:'PCE', GDP_2ND:'GDP', GDP_3RD:'GDP', CPI:'CPI', PPI:'PPI', RETAIL:'소매', FOMC_MIN:'FOMC', FOMC:'FOMC', NFP:'고용' };
 const AVC = { NVDA:'#76B900', AAPL:'#555B66', MSFT:'#0E7CD3', GOOGL:'#EA4335', O:'#8B6F47', ABBV:'#071D49', PLTR:'#191F28', CRWV:'#2E6BE6',
-  IONQ:'#5B4FE9', SMR:'#0F8A6F', MU:'#1B4FD8', KO:'#F40009', '000660':'#E2231A', MONTH:'#3182F6' };
+  IONQ:'#5B4FE9', SMR:'#0F8A6F', MU:'#1B4FD8', KO:'#F40009', '000660':'#E2231A', USDKRW:'#4E5968', MONTH:'#3182F6' };
 function avatar(key, label){
   const m = label || MSHORT[key] || (key === '000660' ? 'SK' : String(key).slice(0, 2));
   const mono = `<span class="av mono${m.length >= 4 ? ' s4' : ''}" style="--avc:${AVC[key] || 'var(--g600)'}">${m}</span>`;
