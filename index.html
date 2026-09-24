@@ -516,7 +516,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.23";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
+const LAST_UPDATED = "2026.09.24";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
 
 const REPORTS_DB = [
   {
@@ -894,19 +894,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 227.38, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 1096.16, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
-  { ticker: "MSFT", price: 501.61, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
-  { ticker: "GOOGL", price: 354.97, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
-  { ticker: "AAPL", price: 338.98, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
-  { ticker: "PLTR", price: 183.07, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
-  { ticker: "KO", price: 87.12, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
-  { ticker: "ABBV", price: 264.48, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
-  { ticker: "O", price: 56.65, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
-  { ticker: "CRWV", price: 85.43, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 40.51, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
-  { ticker: "SMR", price: 8.79, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
-  { ticker: "000660", price: 1857000, tgt: 3317917, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 225.66, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 1071.88, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
+  { ticker: "MSFT", price: 500.59, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
+  { ticker: "GOOGL", price: 337.83, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
+  { ticker: "AAPL", price: 337.02, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
+  { ticker: "PLTR", price: 191.77, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "KO", price: 88.09, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
+  { ticker: "ABBV", price: 265.08, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
+  { ticker: "O", price: 55.61, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
+  { ticker: "CRWV", price: 86.90, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 42.54, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 8.68, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "000660", price: 1862000, tgt: 3317917, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -966,6 +966,13 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
   {
+    asset: "GOOGL", name: "Alphabet", kind: "stock", date: "2026-09-24",
+    chg: -3.80, chg_label: "-3.80%", price_label: "$337.83", cause: "빅테크 로테이션",
+    oneliner: "OpenAI·Anthropic이 모델 값을 내린 날, 메타는 오르고 알파벳만 빠졌어요.",
+    spark: [342.00,340.65,346.59,339.35,335.02,337.12,342.48,338.46,338.36,330.65,332.60,338.50,349.39,344.98,342.87,347.33,349.54,354.97,351.16,337.83],
+    created: "2026.09.24", file: "급등락/급등락_GOOGL_2026.09.24.html"
+  },
+  {
     asset: "USDKRW", name: "원/달러", kind: "fx", date: "2026-09-22",
     chg: -1.65, chg_label: "-1.65%", price_label: "1,358.2원", cause: "추석 네고",
     oneliner: "추석 연휴 앞두고 수출기업 달러 매도가 몰렸어요. 달러인덱스는 오히려 상승했어요.",
@@ -989,14 +996,14 @@ const MOVERS_DB = [
   {
     asset: "IONQ", name: "IonQ", kind: "stock", date: "2026-09-22",
     chg: 3.53, chg_label: "+3.53%", price_label: "$40.51", cause: "위험선호 반등",
-    oneliner: "9월 8일 종가 $40.47을 0.10% 차이로 넘겼어요. 거래량은 평균의 0.76배뿐이에요.",
+    oneliner: "9월 8일 종가 $40.47을 0.10% 차이로 넘겼어요. 📎 9/24 +4.42%($42.54) — 실시간 오류정정 디코더.",
     spark: [41.06,42.05,40.03,42.46,39.20,39.31,37.78,37.64,39.02,39.52,40.47,38.14,36.84,36.75,37.50,37.05,36.84,40.34,39.13,40.51],
     created: "2026.09.22", file: "급등락/급등락_MARKET_2026.09.22.html"
   },
   {
     asset: "PLTR", name: "Palantir", kind: "stock", date: "2026-09-22",
     chg: 3.06, chg_label: "+3.06%", price_label: "$183.07", cause: "위험선호 반등",
-    oneliner: "UBS의 AI 최선호주 재선정에 올랐지만, 평균 목표가까지 3.60%밖에 안 남았어요.",
+    oneliner: "UBS의 AI 최선호주 재선정에 올랐어요. 📎 9/24 +3.67%($191.77) — FAA 계약 실주에도 8월 고점 돌파.",
     spark: [175.89,172.73,177.50,185.93,186.29,186.38,179.92,169.46,182.53,174.33,170.30,169.53,165.86,167.23,173.31,172.56,174.34,176.24,177.64,183.07],
     created: "2026.09.22", file: "급등락/급등락_MARKET_2026.09.22.html"
   },
