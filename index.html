@@ -516,7 +516,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.24";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
+const LAST_UPDATED = "2026.09.26";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
 
 const REPORTS_DB = [
   {
@@ -894,18 +894,18 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 225.66, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 1071.88, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
-  { ticker: "MSFT", price: 500.59, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
-  { ticker: "GOOGL", price: 337.83, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
-  { ticker: "AAPL", price: 337.02, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
-  { ticker: "PLTR", price: 191.77, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
-  { ticker: "KO", price: 88.09, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
-  { ticker: "ABBV", price: 265.08, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
-  { ticker: "O", price: 55.61, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
-  { ticker: "CRWV", price: 86.90, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 42.54, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
-  { ticker: "SMR", price: 8.68, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "NVDA", price: 225.07, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 1082.28, tgt: 1502, eps_cur: 73.39, eps_next: 154.89, note: "FY26 8월 마감" },
+  { ticker: "MSFT", price: 516.17, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
+  { ticker: "GOOGL", price: 343.84, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
+  { ticker: "AAPL", price: 341.07, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
+  { ticker: "PLTR", price: 189.67, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "KO", price: 87.81, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
+  { ticker: "ABBV", price: 264.34, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
+  { ticker: "O", price: 55.54, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
+  { ticker: "CRWV", price: 87.61, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 45.48, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 8.42, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
   { ticker: "000660", price: 1862000, tgt: 3317917, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
 ];
 
@@ -966,6 +966,13 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
   {
+    asset: "MSFT", name: "Microsoft", kind: "stock", date: "2026-09-26",
+    chg: 3.66, chg_label: "+3.66%", price_label: "$516.17", cause: "코파일럿 개편",
+    oneliner: "코파일럿을 기업용으로 다시 만들었어요. 올해 +7%로 뒤처졌던 자리라 반응이 컸어요.",
+    spark: [513.53,507.29,501.02,496.82,510.12,499.70,493.95,491.65,492.44,495.63,505.41,497.12,490.30,497.75,493.78,501.61,498.00,500.59,497.93,516.17],
+    created: "2026.09.26", file: "급등락/급등락_MSFT_2026.09.26.html"
+  },
+  {
     asset: "GOOGL", name: "Alphabet", kind: "stock", date: "2026-09-24",
     chg: -3.80, chg_label: "-3.80%", price_label: "$337.83", cause: "빅테크 로테이션",
     oneliner: "OpenAI·Anthropic이 모델 값을 내린 날, 메타는 오르고 알파벳만 빠졌어요.",
@@ -989,14 +996,14 @@ const MOVERS_DB = [
   {
     asset: "CRWV", name: "CoreWeave", kind: "stock", date: "2026-09-22",
     chg: 5.00, chg_label: "+5.00%", price_label: "$85.43", cause: "위험선호 반등",
-    oneliner: "로스차일드가 매도·목표가 $54로 개시한 날 5% 올랐어요. 거래량은 평균의 1.48배.",
+    oneliner: "로스차일드가 매도·$54로 개시한 날 5% 올랐어요. 📎 9/25 +3.72%($90.13) — JP모건 상향.",
     spark: [86.25,88.04,88.01,86.80,84.23,84.89,81.85,80.93,84.56,89.36,99.83,94.94,89.12,88.99,82.98,80.92,83.35,79.88,81.36,85.43],
     created: "2026.09.22", file: "급등락/급등락_MARKET_2026.09.22.html"
   },
   {
     asset: "IONQ", name: "IonQ", kind: "stock", date: "2026-09-22",
     chg: 3.53, chg_label: "+3.53%", price_label: "$40.51", cause: "위험선호 반등",
-    oneliner: "9월 8일 종가 $40.47을 0.10% 차이로 넘겼어요. 📎 9/24 +4.42%($42.54) — 실시간 오류정정 디코더.",
+    oneliner: "9월 8일 종가 $40.47을 넘겼어요. 📎 9/25 +5.74%($44.98) — 엔비디아 양자센터 첫 설치 시스템.",
     spark: [41.06,42.05,40.03,42.46,39.20,39.31,37.78,37.64,39.02,39.52,40.47,38.14,36.84,36.75,37.50,37.05,36.84,40.34,39.13,40.51],
     created: "2026.09.22", file: "급등락/급등락_MARKET_2026.09.22.html"
   },
