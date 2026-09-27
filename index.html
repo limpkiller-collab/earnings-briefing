@@ -516,7 +516,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.26";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
+const LAST_UPDATED = "2026.09.27";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
 
 const REPORTS_DB = [
   {
@@ -619,7 +619,7 @@ const REPORTS_DB = [
 //                 화면은 항상 KST로 보여주고, 캘린더 일정은 이 값으로 만들어 해외에서도 현지시간 자동 변환된다.
 //   last_report : 직전 실제 발표일 (state.json의 last_report_date) — KPI '이번 분기 발표 n/13' 계산에 쓴다
 const UPCOMING_DB = [
-  { ticker: "MU", name: "Micron", date: "2026-09-30", estimated: true, when: null, utc: null, last_report: "2026-06-26" },
+  { ticker: "MU", name: "Micron", date: "2026-10-01", estimated: false, when: "amc", utc: "20260930T203000Z", last_report: "2026-06-26" },
   { ticker: "KO", name: "Coca-Cola", date: "2026-10-21", estimated: true, when: null, utc: null, last_report: "2026-07-28" },
   { ticker: "000660", name: "SK하이닉스", short: "하이닉스", date: "2026-10-28", estimated: true, when: null, utc: null, last_report: "2026-07-29" },
   { ticker: "MSFT", name: "Microsoft", date: "2026-10-29", estimated: true, when: null, utc: null, last_report: "2026-07-31" },
@@ -821,7 +821,7 @@ const WATCH_DB = [
     "근원(식품·에너지 제외) +0.2%가 유지되는지 — +0.4% 이상이면 광범위한 재가속",
     "기타 서비스 0.0%가 다시 플러스로 돌아서는지 — 끈적함의 본체예요",
     "YoY 5.4%가 6%대로 더 올라가는지 — 기저가 낮은 구간이 가을까지 이어져요"]},
-  { key: "MU", name: "Micron FY26 Q4 실적", date: "2026-09-30", type: "e", items: [
+  { key: "MU", name: "Micron FY26 Q4 실적", date: "2026-10-01", type: "e", items: [
     "FY26 Q4 매출이 가이던스 $50B을 달성하는지 — 컨센서스보다 14.7% 높게 잡은 전망을 지키는지",
     "매출총이익률이 가이던스 86%에 도달하는지, 아니면 정점을 지나 꺾이는지",
     "장기계약 비중 — '매출의 절반 이상'이 실제 수치로 확인되는지",
