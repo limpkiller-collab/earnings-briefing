@@ -516,7 +516,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.28";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
+const LAST_UPDATED = "2026.09.29";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
 
 const REPORTS_DB = [
   {
@@ -900,19 +900,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 225.07, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 1082.28, tgt: 1515, eps_cur: 73.57, eps_next: 156.53, note: "FY26 8월 마감" },
-  { ticker: "MSFT", price: 516.17, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
-  { ticker: "GOOGL", price: 343.84, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
-  { ticker: "AAPL", price: 341.07, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
-  { ticker: "PLTR", price: 189.67, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
-  { ticker: "KO", price: 87.81, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
-  { ticker: "ABBV", price: 264.34, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
+  { ticker: "NVDA", price: 228.86, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 1053.98, tgt: 1515, eps_cur: 73.57, eps_next: 156.53, note: "FY26 8월 마감" },
+  { ticker: "MSFT", price: 509.22, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
+  { ticker: "GOOGL", price: 342.75, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
+  { ticker: "AAPL", price: 338.40, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
+  { ticker: "PLTR", price: 187.48, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "KO", price: 87.18, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
+  { ticker: "ABBV", price: 266.28, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
   { ticker: "O", price: 55.54, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
-  { ticker: "CRWV", price: 87.61, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 45.48, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
-  { ticker: "SMR", price: 8.42, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
-  { ticker: "000660", price: 1862000, tgt: 3317917, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
+  { ticker: "CRWV", price: 85.07, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 44.58, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 7.91, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "000660", price: 1768000, tgt: 3317917, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -978,6 +978,20 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
+  {
+    asset: "SMR", name: "NuScale Power", kind: "stock", date: "2026-09-29",
+    chg: -6.06, chg_label: "-6.06%", price_label: "$7.91", cause: "금리 급등",
+    oneliner: "새 악재 없이 20거래일 최저 종가를 다시 썼어요. 금리 급등에 원자력이 함께 빠졌어요.",
+    spark: [9.27,9.21,9.56,9.75,9.70,11.18,10.81,10.21,8.61,8.51,8.43,8.30,9.04,8.27,8.79,8.89,8.68,8.47,8.42,7.91],
+    created: "2026.09.29", file: "급등락/급등락_SMR_2026.09.29.html"
+  },
+  {
+    asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-09-28",
+    chg: -5.05, chg_label: "-5.05%", price_label: "1,768,000원", cause: "메모리 수요 재평가",
+    oneliner: "연휴 나흘치 악재가 하루에 반영됐어요. 외국인이 1조 7,275억원을 순매도했어요.",
+    spark: [1653000,1674000,1693000,1613000,1596000,1647000,1783000,1793000,1856000,1853000,1812000,1697000,1690000,1759000,1745000,1857000,1868000,1840000,1862000,1768000],
+    created: "2026.09.28", file: "급등락/급등락_000660_2026.09.28.html"
+  },
   {
     asset: "MSFT", name: "Microsoft", kind: "stock", date: "2026-09-26",
     chg: 3.66, chg_label: "+3.66%", price_label: "$516.17", cause: "코파일럿 개편",
