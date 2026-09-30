@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경제 지표 — JOLTs 구인건수 2026년 8월</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 수치 2카드 */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--red-bg);color:var(--red)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 발표 이력 테이블 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable td.w{white-space:normal;text-align:left;font-weight:600;color:var(--g600);font-size:13px}
+.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
+.htable tr.new td{background:var(--blue-bg)}
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.htable th{white-space:nowrap}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI 카드 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
+/* 콜아웃·인용 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+.quote{border-left:3px solid var(--g200);padding:2px 0 2px 14px;margin:16px 0;font-size:15px;
+  color:var(--g600);line-height:1.75}
+.quote small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:5px}
+/* 보유 종목 영향 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 지난번 체크포인트 점검 */
+.wp-list{margin:12px 0}
+.wp{display:flex;gap:12px;padding:12px 4px;border-bottom:1px solid var(--g100)}
+.wp-badge{flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;background:var(--g100);color:var(--g500);height:fit-content;margin-top:2px}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp.partial .wp-badge{background:var(--amber-bg);color:var(--amber)}
+.wp-q{font-size:14.5px;font-weight:700;color:var(--g900)} .wp-a{font-size:13.5px;color:var(--g600);margin-top:2px}
+/* 관전포인트 */
+.wp-preview{background:var(--g50);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지표 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  body{background:var(--bg)}
+  .page,.gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
+  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
+  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
+  svg [stroke="#fff"]{stroke:#17171C}
+  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
+  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+/*<!--/dark-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">📈</span> 경제 지표</div>
+  <a href="../index.html">← 아카이브</a>
+</div>
+<div class="body">
+<div class="chips">
+  <span class="chip b">#고용</span><span class="chip">#매달 발표</span><span class="chip">#★★</span><span class="chip">#구인 · 채용 · 이직</span>
+</div>
+<h1>JOLTs 구인건수<br>2026년 8월</h1>
+<div class="meta">2026년 9월 29일 23:00 발표 (한국시간) · 출처 미국 노동통계국(BLS) JOLTs 8월 보도자료·Table 1 · 컨센서스 언론 종합</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">구인건수</div>
+    <div class="num">707.9만</div>
+    <div class="cmp">예측(722.5만)보다 <b class="down">14.6만건 하회</b> · 구인율 4.3%</div>
+    <div class="core">7월이 727.1만 → <b>733.5만으로 6.4만건 상향 수정</b>돼, 실제 감소 폭은 25.6만건</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">채용건수</div>
+    <div class="num">519.2만</div>
+    <div class="cmp">7월(수정 514.6만)보다 <b class="up">4.6만건 증가</b> · 채용률 3.3%</div>
+    <div class="core">해고 164.1만건(1.0%)으로 <b>2025년 3월 이후 최저</b> · 퇴직 306.6만건(1.9%)</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p>구인건수는 <b>707.9만건</b>으로 예측(722.5만)을 14.6만건 밑돌았어요. <mark class="r">3월 이후 다섯 달 만의 최저치</mark>이고, 7월이 733.5만으로 상향 수정된 걸 반영하면 한 달에 25.6만건이 사라진 셈이에요.</p>
+  <p>그런데 속을 보면 그렇게 나쁘지 않아요. <b>채용은 4.6만건 늘어 519.2만건</b>, <b>해고는 6.1만건 줄어 164.1만건</b>(2025년 3월 이후 최저)이에요. 채용에서 총이직을 뺀 값이 <b>+12.2만건</b>으로 4월 이후 가장 큰데, 이건 실제 고용이 늘고 있다는 뜻이에요. 구인 감소분도 <mark>1~9인 소규모 사업장 한 곳에서만 33.5만건</mark>이 빠져 나왔어요.</p>
+  <p>구인 1건당 실업자는 <b>1.00배</b>까지 내려왔어요(2022년 정점 2.04배). 그래도 시장은 조용했어요 — 10년물이 5.263%로 4bp 더 오르고 <b>10월 인상 확률은 68%</b>를 유지했어요. 물가와 유가가 여전히 운전석에 앉아 있다는 얘기예요.</p>
+</div>
+
+<div class="sub-head">✅ 지난번 관전포인트 점검</div>
+<div class="sub-desc">7월 보고서에서 "이걸 보자"고 했던 네 가지를 이번 발표로 확인했어요.</div>
+<div class="wp-list">
+  <div class="wp met"><span class="wp-badge">반등했어요</span><div><div class="wp-q">채용 505.4만건이 반등하는지, 500만건 아래로 내려가는지</div><div class="wp-a">반등했어요. <b>519.2만건</b>으로 올라서며 채용률도 3.2%→<b>3.3%</b>가 됐어요. 7월 수치 자체도 505.4만 → <b>514.6만으로 9.2만건 상향</b>됐으니, 7월의 '채용 급감'은 상당 부분 속보치의 과장이었어요. 500만건 하회 우려는 빗나갔어요.</div></div></div>
+  <div class="wp"><span class="wp-badge">판단 보류</span><div><div class="wp-q">전문·비즈니스 서비스 채용(-18.8만건)이 회복되는지</div><div class="wp-a">⚠️ 확인하지 못했어요. BLS 보도자료는 "<b>모든 업종에서 채용은 큰 변화가 없었다</b>"고만 밝혔고, 업종별 채용 표(Table 2)는 실행 시점에 8월 값이 올라와 있지 않았어요. 참고로 같은 업종의 <b>구인</b>은 130.5만 → 118.6만으로 11.9만건 줄어, 수요 쪽은 오히려 더 식었어요.</div></div></div>
+  <div class="wp miss"><span class="wp-badge">반대로 갔어요</span><div><div class="wp-q">7월 구인 727.1만건이 또 큰 폭으로 하향 수정되는지</div><div class="wp-a">하향이 아니라 <b>상향</b>이었어요. 727.1만 → <b>733.5만(+6.4만건)</b>이고, 채용(+9.2만)·총이직(+5.6만)도 함께 올라갔어요. 6월에 17.7만건이 깎였던 것과 방향이 반대라, JOLTs 수정은 한쪽으로 치우친 게 아니라 <b>양방향으로 크다</b>고 보는 게 맞아요.</div></div></div>
+  <div class="wp miss"><span class="wp-badge">못 지켰어요</span><div><div class="wp-q">내구재 제조 구인율 5.2%가 유지되는지</div><div class="wp-a">못 지켰어요. 구인건수는 42.3만 → <b>38.0만(-4.3만건)</b>, 구인율은 5.1% → <b>4.6%</b>로 내려왔어요(7월 속보치 42.9만·5.2%는 42.3만·5.1%로 수정됐어요). <mark class="r">"노동 수요가 AI·설비 투자 쪽으로 쏠린다"던 지난달 신호가 한 달 만에 되돌려진 셈</mark>이에요.</div></div></div>
+</div>
+
+<div class="sub-head">📉 구인건수 추이</div>
+<div class="sub-desc">4~5월 750만대 고점에서 넉 달 연속 내려와 700만선에 닿았어요.</div>
+
+<div class="chart-card">
+  <div class="ct">미국 구인건수(JOLTs)</div>
+  <div class="cs">2025년 12월 ~ 2026년 8월 · 단위 백만 건 · 예측치는 회색 점선 원</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">6.3</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">6.7</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">7.1</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">7.5</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">7.8</text><polygon points="14.0,260 14.0,221.9 92.8,116.7 171.5,165.2 250.2,170.5 329.0,64.1 407.8,71.4 486.5,125.5 565.2,102.2 644.0,141.2 644.0,260" fill="#F2F4F6" opacity="0.85"/><polyline points="14.0,221.9 92.8,116.7 171.5,165.2 250.2,170.5 329.0,64.1 407.8,71.4 486.5,125.5 565.2,102.2 644.0,141.2" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><line x1="644.0" y1="141.2" x2="644.0" y2="260" stroke="#3182F6" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/><circle cx="644.0" cy="119.0" r="8.5" fill="none" stroke="#8B95A1" stroke-width="2" stroke-dasharray="3.5,3"/><text x="631.0" y="123.0" text-anchor="end" class="cv" style="fill:#8B95A1;font-size:11.5px">예측 723만</text><circle cx="644.0" cy="141.2" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/><text x="634.0" y="128.2" text-anchor="end" class="cv" style="fill:#3182F6">발표 708만</text><text x="14.0" y="286" text-anchor="middle" class="cl">25.12</text><text x="171.5" y="286" text-anchor="middle" class="cl">26.2</text><text x="329.0" y="286" text-anchor="middle" class="cl">26.4</text><text x="486.5" y="286" text-anchor="middle" class="cl">26.6</text><text x="644.0" y="286" text-anchor="middle" class="cl">26.8</text></svg>
+</div>
+<div class="chart-card">
+  <div class="ct">8월 업종별 구인건수 전월 대비</div>
+  <div class="cs">단위 천 건 · 증가는 파랑, 감소는 빨강 · BLS Table 1(7월은 수정치 기준)</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-119.2</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">-72.3</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">-25.4</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">21.5</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">68.3</text><line x1="14" y1="111.3" x2="644" y2="111.3" stroke="#D1D6DB" stroke-width="1.5"/><rect x="40.1" y="35.1" width="37.8" height="76.1" rx="3.5" fill="#3182F6"/><text x="59.0" y="29.1" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+61.0</text><text x="59.0" y="286" text-anchor="middle" class="cl">레저·숙박</text><rect x="130.1" y="55.1" width="37.8" height="56.2" rx="3.5" fill="#3182F6"/><text x="149.0" y="49.1" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+45.0</text><text x="149.0" y="286" text-anchor="middle" class="cl">정보</text><rect x="220.1" y="57.6" width="37.8" height="53.7" rx="3.5" fill="#3182F6"/><text x="239.0" y="51.6" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+43.0</text><text x="239.0" y="286" text-anchor="middle" class="cl">도소매·운수</text><rect x="310.1" y="111.3" width="37.8" height="53.7" rx="3.5" fill="#F04452"/><text x="329.0" y="179.9" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-43.0</text><text x="329.0" y="286" text-anchor="middle" class="cl">내구재제조</text><rect x="400.1" y="111.3" width="37.8" height="59.9" rx="3.5" fill="#F04452"/><text x="419.0" y="186.2" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-48.0</text><text x="419.0" y="286" text-anchor="middle" class="cl">건설</text><rect x="490.1" y="111.3" width="37.8" height="126.1" rx="3.5" fill="#F04452"/><text x="509.0" y="252.3" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-101.0</text><text x="509.0" y="286" text-anchor="middle" class="cl">교육·헬스</text><rect x="580.1" y="111.3" width="37.8" height="148.5" rx="3.5" fill="#F04452"/><text x="599.0" y="274.8" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-119.0</text><text x="599.0" y="286" text-anchor="middle" class="cl">전문·비즈니스</text></svg>
+</div>
+
+<div class="sub-head">🗓️ 발표 이력</div>
+<div class="sub-desc">JOLTs는 수정 폭이 큰 지표예요. 아래 '발표'는 그때그때의 속보치 기준이에요.</div>
+<div class="twrap"><table class="htable">
+  <tr><th>발표일 (대상월)</th><th>발표</th><th>예측</th><th>이전(발표 당시)</th><th>현재 수정치</th></tr>
+  <tr class="new"><td>2026.09.29 (8월)</td><td class="a down">707.9만</td><td>722.5만</td><td>727.1만</td><td>707.9만</td></tr>
+  <tr><td>2026.09.01 (7월)</td><td class="a down">727.1만</td><td>730.0만</td><td>735.9만</td><td>733.5만</td></tr>
+  <tr><td>2026.08.04 (6월)</td><td class="a">735.9만</td><td>—</td><td>753.7만</td><td>718.2만</td></tr>
+  <tr><td>2026.07.07 (5월)</td><td class="a">759.4만</td><td>—</td><td>758.5만</td><td>753.7만</td></tr>
+  <tr><td>2026.06.02 (4월)</td><td class="a up">761.8만</td><td>—</td><td>688.7만</td><td>758.5만</td></tr>
+  <tr><td>2026.05.05 (3월)</td><td class="a">686.6만</td><td>—</td><td>692.2만</td><td>688.7만</td></tr>
+</table></div>
+<div class="g-note">8월·7월의 '현재 수정치'는 이번 8월 보도자료 기준이고, 6월 이전은 직전 보고서 시점의 FRED 계절조정 계열(JTSJOL) 값이에요. 과거 회차의 예측치는 교차 확인되지 않아 비워뒀어요. 위 추이 차트는 모두 최신 수정치 기준이라 표의 속보치와 다를 수 있어요.</div>
+
+<div class="sub-head">🔍 구인은 줄었는데 채용·해고는 개선됐어요</div>
+<div class="sub-desc">네 가지 흐름(구인·채용·퇴직·해고)이 이번엔 서로 다른 방향을 가리켰어요.</div>
+<div class="twrap"><table class="htable">
+  <tr><th>항목</th><th>8월</th><th>7월(수정)</th><th>전월비</th><th>비율</th></tr>
+  <tr class="new"><td style="white-space:normal">구인 (Job openings)</td><td class="a down">707.9만</td><td>733.5만</td><td class="up">-25.6만</td><td>4.3%</td></tr>
+  <tr><td style="white-space:normal">채용 (Hires)</td><td class="a">519.2만</td><td>514.6만</td><td class="down">+4.6만</td><td>3.3%</td></tr>
+  <tr><td style="white-space:normal">총 이직 (Separations)</td><td class="a">507.0만</td><td>512.8만</td><td class="down">-5.8만</td><td>3.2%</td></tr>
+  <tr><td style="white-space:normal">자발적 퇴직 (Quits)</td><td class="a">306.6만</td><td>—</td><td class="up">-2.3만</td><td>1.9%</td></tr>
+  <tr><td style="white-space:normal">해고 (Layoffs)</td><td class="a">164.1만</td><td>—</td><td class="down">-6.1만</td><td>1.0%</td></tr>
+</table></div>
+<div class="g-note">퇴직·해고의 7월 수정 수준은 이번 실행 시점에 공개 표에서 확인하지 못해 비워뒀고, 전월비는 보도 기준이에요. 색은 <b>노동시장에 우호적인 방향을 파랑</b>으로 표시했어요 — 구인 감소는 빨강, 채용 증가·해고 감소는 파랑이에요.</div>
+
+<div class="twrap"><table class="htable">
+  <tr><th>업종</th><th>8월 구인</th><th>7월(수정)</th><th>전월비</th><th>구인율</th></tr>
+  <tr class="new"><td style="white-space:normal">전문·비즈니스 서비스</td><td class="a">118.6만</td><td>130.5만</td><td class="up">-11.9만</td><td>5.0%</td></tr>
+  <tr><td style="white-space:normal">민간 교육·헬스케어</td><td class="a">148.4만</td><td>158.5만</td><td class="up">-10.1만</td><td>5.0%</td></tr>
+  <tr><td style="white-space:normal">건설</td><td class="a">25.1만</td><td>29.9만</td><td class="up">-4.8만</td><td>2.9%</td></tr>
+  <tr><td style="white-space:normal">기타 서비스</td><td class="a">23.8만</td><td>28.3만</td><td class="up">-4.5만</td><td>3.8%</td></tr>
+  <tr><td style="white-space:normal">내구재 제조</td><td class="a">38.0만</td><td>42.3만</td><td class="up">-4.3만</td><td>4.6%</td></tr>
+  <tr><td style="white-space:normal">정부 (연방+주·지방)</td><td class="a">73.1만</td><td>77.3만</td><td class="up">-4.2만</td><td>3.0%</td></tr>
+  <tr><td style="white-space:normal">레저·숙박</td><td class="a">82.9만</td><td>76.8만</td><td class="down">+6.1만</td><td>4.7%</td></tr>
+  <tr><td style="white-space:normal">정보 (Information)</td><td class="a">12.3만</td><td>7.8만</td><td class="down">+4.5만</td><td>4.3%</td></tr>
+  <tr><td style="white-space:normal">도소매·운수·유틸리티</td><td class="a">128.7만</td><td>124.4만</td><td class="down">+4.3만</td><td>4.3%</td></tr>
+  <tr><td style="white-space:normal">금융</td><td class="a">40.3만</td><td>39.9만</td><td class="down">+0.4만</td><td>4.2%</td></tr>
+</table></div>
+<div class="g-note">BLS 보도자료 본문은 "<b>구인은 모든 업종에서 큰 변화가 없었다</b>"고 표현했어요 — 통계적으로 유의한 업종별 변화는 없었다는 뜻이니, 위 증감은 흐름을 보는 참고치로 읽어야 해요. 이직 쪽에서는 도매 퇴직 -3.4만건, 주·지방정부 교육 총이직 -3.0만건(퇴직 -2.1만건), 비내구재 제조 퇴직 +2.8만건, 사립 교육서비스 퇴직 +1.3만건이 명시됐어요.</div>
+
+<div class="kpi">
+  <div class="k"><div class="l">1~9인 사업장 구인</div><div class="v"><span class="up">-33.5만</span></div><div class="d">구인율 6.0% → 4.3% · 이번 감소의 대부분</div></div>
+  <div class="k"><div class="l">구인 1건당 실업자</div><div class="v">1.00배</div><div class="d">2022년 정점 2.04배 · 2020년 1월은 1.21배</div></div>
+  <div class="k"><div class="l">해고건수</div><div class="v"><span class="down">164.1만</span></div><div class="d">-6.1만건 · 2025년 3월 이후 최저</div></div>
+  <div class="k"><div class="l">채용 − 총이직</div><div class="v"><span class="down">+12.2만</span></div><div class="d">고용 순증 대리지표 · 4월 이후 최대</div></div>
+</div>
+<p class="body-p">이번 보고서는 <b>헤드라인과 내용이 엇갈린</b> 경우예요. 표면적으로는 구인이 25.6만건 빠져 3월 이후 최저인데, 감소의 대부분이 <mark>종업원 1~9인 사업장(-33.5만건, 구인율 6.0%→4.3%)</mark>에서 나왔어요. 소규모 사업장은 표본이 작아 변동이 크고, 관세·비용 부담에 가장 먼저 공고를 내리는 쪽이기도 해요. 반대로 중·대형 사업장의 구인은 이 정도로 무너지지 않았어요.</p>
+<p class="body-p">한편 <b>해고가 164.1만건(1.0%)으로 2025년 3월 이후 최저</b>라는 점은 분명한 개선이에요. 퇴직률 1.9%도 여전히 낮아, 근로자가 옮길 자신이 없는 상태는 계속되고 있어요. <b>'저채용·저해고(low hire, low fire)'</b> 구도가 유지되는데, 이번엔 채용이 조금 올라오고 해고가 더 내려가 <b>고용 순증 대리지표가 +12.2만건</b>까지 회복됐어요. <mark>10월 2일 9월 고용보고서(컨센서스 +9.0만건)가 이 개선이 실물 고용으로 확인되는지를 가릴 자리</mark>예요.</p>
+
+<div class="sub-head">🏛️ 시장 반응과 연준 경로</div>
+<div class="sub-desc">고용 수요가 식었는데도 금리는 올랐어요. 연준이 보는 건 지금 물가예요.</div>
+<div class="kpi">
+  <div class="k"><div class="l">10월 인상 확률</div><div class="v"><span class="up">68%</span></div><div class="d">12월까지 인상 확률 95% · CME FedWatch</div></div>
+  <div class="k"><div class="l">미 국채 10년물</div><div class="v"><span class="up">5.263%</span></div><div class="d">+4bp · 2007년 6월 이후 최고 영역</div></div>
+  <div class="k"><div class="l">미 국채 2년물</div><div class="v"><span class="up">4.934%</span></div><div class="d">+1bp · 30년물 5.61%(+4.7bp)</div></div>
+  <div class="k"><div class="l">S&amp;P 500</div><div class="v"><span class="up">-0.16%</span></div><div class="d">7,671 · 나스닥 -0.09%, 다우 -0.25%</div></div>
+</div>
+<p class="body-p">구인이 예측을 크게 밑돌았는데도 <b>10월 인상 확률은 68%</b>로 거의 움직이지 않았어요. 9월 16일 연준이 2023년 이후 처음으로 금리를 올려 <b>3.75~4.00%</b>로 가져간 뒤, 9월 SEP의 2026년말 중간값이 <b>4.1%</b>(연내 한 차례 더 인상)로 찍혀 있기 때문이에요. 노동시장 한 달 데이터로는 그 경로가 흔들리지 않았어요.</p>
+<p class="body-p">그날 채권시장을 움직인 건 고용이 아니라 <b>재정·물가</b>였어요. 30년물이 5.61%로 2002년 이후 최고를 다시 썼고, 달러지수는 101.50으로 0.3% 올랐어요. 반대로 WTI는 $89.38로 3.48% 빠졌는데, 유가 하락이 물가 기대를 눌렀음에도 장기금리는 내려오지 않았어요. <mark class="r">지금은 고용 둔화가 금리 인하 기대로 번역되지 않는 국면</mark>이에요.</p>
+<div class="callout"><div class="ct">한 줄 결론</div>구인은 700만선까지 내려왔지만 해고가 2025년 3월 이후 최저로 줄어, 노동시장은 아직 '식는 중'이지 '꺾이는 중'은 아니에요. <b>10월 2일 9월 고용보고서</b>와 <b>9월 30일 PCE 물가</b>가 10월 FOMC의 무게추를 정할 거예요.</div>
+
+<div class="sub-head">💼 보유 종목 영향</div>
+<div class="sub-desc">고용 수요가 식었는데 금리는 올랐어요 — 이 조합이 그룹별로 다르게 작동해요.</div>
+
+<div class="stock-g">
+  <div class="sg-t">반도체·AI 인프라 <span class="tks">NVDA · MU · SK하이닉스 · CRWV</span> <span class="badge neu">중립 (신호 되돌림)</span></div>
+  <p>지난달 이 그룹의 근거였던 <b>내구재 제조 구인율 5.1%</b>가 <mark class="r">4.6%로 내려오고 구인건수도 4.3만건 줄었어요</mark>. 노동 수요가 AI·설비 투자로 쏠린다는 신호가 한 달 만에 약해진 셈이에요. 다만 설비투자 사이클은 고용보다 자본지출이 먼저 움직이니, 구인 한 달치로 수요를 부정하기는 이르고, 확인은 결국 실적 쪽이에요 — <a href="../실적브리핑/실적프리뷰_MU_FY2026Q4_2026.09.28.html">MU가 9월 30일 FY26 Q4</a>를 발표하고, <a href="../실적브리핑/실적브리핑_NVDA_FY2027Q2_2026.08.27.html">NVDA</a>·<a href="../실적브리핑/실적브리핑_000660_2026Q2_2026.08.09.html">SK하이닉스</a>가 말해온 수요 강세가 그대로인지가 먼저예요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">빅테크 <span class="tks">AAPL · MSFT · GOOGL</span> <span class="badge neu">중립</span></div>
+  <p>정보(Information) 업종 구인이 <b>7.8만 → 12.3만건</b>으로 늘고 구인율도 2.8%→<b>4.3%</b>로 전체 평균까지 올라왔어요. 다만 1년 전 15.7만건에는 아직 못 미쳐, 테크 채용이 정상화됐다고 보긴 어려워요. 채용이 억제된 상태는 <a href="../실적브리핑/실적브리핑_MSFT_FY2026Q4_2026.08.09.html">MSFT</a>·<a href="../실적브리핑/실적브리핑_GOOGL_2026Q2_2026.08.09.html">GOOGL</a>의 영업이익률엔 오히려 유리하고, 고용이 완만하게 유지되는 편이 <a href="../실적브리핑/실적브리핑_AAPL_FY2026Q3_2026.08.09.html">AAPL</a>의 신제품 수요엔 낫다는 점에서 상쇄예요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">금리민감 성장주 <span class="tks">PLTR · IONQ · SMR · CRWV</span> <span class="badge neg">비우호적</span></div>
+  <p>내용상 고용 수요 둔화는 금리 인하 재료인데, 이날 <b>10년물은 5.263%로 4bp 더 올랐고 10월 인상 확률은 68%</b>로 버텼어요. 할인율이 내려오지 않으니 이 그룹엔 역풍이 이어져요. 다만 <a href="../실적브리핑/실적브리핑_PLTR_2026Q2_2026.08.08.html">PLTR</a>처럼 인건비 절감 수요와 맞물리는 소프트웨어는, 기업이 사람 대신 시스템을 택하는 이 국면에서 수요 논리로 작동할 여지가 있어요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">배당·방어 <span class="tks">O · KO · ABBV</span> <span class="badge neg">주의 (O)</span></div>
+  <p>10년물 5.263%·30년물 5.61%는 <a href="../실적브리핑/실적브리핑_O_2026Q2_2026.08.08.html">O</a>에 계속 직접적인 역풍이에요. 리츠 밸류에이션은 장기금리와 반대로 움직이니까요. 지난달 전 업종 최고였던 <b>민간 교육·헬스케어 구인이 10.1만건 줄어</b> 구인율 5.4%→5.0%가 된 점은, ABBV가 속한 산업의 전방 수요가 한 풀 꺾였다는 배경 정보로 볼 수 있어요. <a href="../실적브리핑/실적브리핑_KO_2026Q2_2026.08.09.html">KO</a>는 고용이 급격히 무너지지 않는 한 영향이 제한적이에요.</p>
+</div>
+
+<div class="sub-head">👀 다음 발표에선 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">구인 707.9만건이 700만 아래로 내려가는지<small>구인 1건당 실업자 1.00배가 1배 아래로 깨지면, 2021년 이후 처음으로 '구직자가 더 많은' 시장이 돼요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">1~9인 사업장 구인 -33.5만건이 되돌려지는지<small>이번 감소의 대부분이라 여기서 반등하면 8월 약세는 소규모 표본 변동이었던 셈이에요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">해고 164.1만건(2025년 3월 이후 최저)이 유지되는지<small>'저해고'가 깨지는 순간이 둔화에서 침체로 넘어가는 지점이에요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">전문·비즈니스 서비스 구인 118.6만건이 더 줄어드는지<small>경기 전환기에 가장 먼저 반응하는 선행 업종이에요. 두 달 연속 감소면 경고로 봐야 해요</small></div></div>
+</div>
+<div class="wp-preview">📌 다음 보고서에서는 위 4가지가 실제로 어떻게 됐는지 <b>하나씩 점검</b>해서 보여드릴게요.</div>
+
+<div class="next-box">🗓️ 다음 발표 — 2026년 11월 4일 (수) 00:00 <span class="est">확정 · 9월분 (10월 발표 없음)</span></div>
+
+<div class="sub-head">📚 JOLTs란?</div>
+<div class="explain">
+  <h3>'빈 자리'와 '사람의 이동'을 함께 보여주는 고용 지표예요</h3>
+  <p>미국 노동통계국(BLS)이 약 1만 6천 개 사업체를 설문해 매달 발표하는 <b>구인·이직 보고서</b>예요. 월말 기준으로 비어 있는 일자리(구인), 그 달에 실제로 채워진 자리(채용), 그리고 회사를 떠난 사람(자발적 퇴직·해고)을 함께 집계해요.</p>
+  <p>고용보고서(NFP)가 '순증가'만 보여준다면, JOLTs는 <b>그 뒤에서 얼마나 많은 자리가 열리고 닫혔는지</b>를 보여줘요. 특히 <b>퇴직률(quits rate)</b>은 근로자가 더 좋은 자리로 옮길 자신이 있는지를 나타내 노동시장 강도의 체온계로 쓰여요. <b>구인 1건당 실업자 수</b>도 연준이 자주 인용하는 수급 지표예요.</p>
+  <p>단점은 <b>한 달 늦게 나오고 수정 폭이 크다</b>는 점이에요. 이번엔 7월 구인이 6.4만건 상향됐고, 직전엔 6월이 17.7만건 하향됐어요. 그래서 한 달 숫자보다 3개월 흐름으로 읽는 게 안전해요. 발표는 미국 동부시간 오전 10시(한국시간 23시, 서머타임 해제 기간엔 24시)예요.</p>
+</div>
+
+<!--rnav-->
+<div class="rnav"><a class="prev off"><span class="av"></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">가장 최근 보고서예요</div></div></a><a class="next" href="../급등락/급등락_SMR_2026.09.29.html"><span class="av"><img src="../logos/SMR.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">SMR</div><div class="rs"><span class="tx DOWNM">-6.06%</span> · NuScale Power · 금리 급등</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: 미국 노동통계국(BLS) JOLTs 2026년 8월 보도자료·Table 1(2026.09.29), CME FedWatch, 미 연준 H.15·9월 SEP, Yahoo Finance·investingLive·TheStreet Pro·Macro4Micro·Investrade 보도 · macro-briefing 스킬이 자동 생성했습니다.
+</div>
+</div>
+</div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="경제지표/경제지표_JOLTS_2026.08_2026.09.29.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+</body>
+</html>

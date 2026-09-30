@@ -516,7 +516,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.09.29";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
+const LAST_UPDATED = "2026.09.30";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
 
 const REPORTS_DB = [
   {
@@ -644,6 +644,13 @@ const UPCOMING_DB = [
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
   {
+    id: "JOLTS", name: "JOLTs 구인건수", period: "2026년 8월", category: "고용", tier: 2,
+    report_date: "2026-09-29", created: "2026.09.30", verdict: "NEUT", vlabel: "둔화",
+    surprise: { text: "예측 -14.6만건", cls: "down" },
+    oneliner: "구인 707.9만건으로 3월 이후 최저. 다만 해고는 2025년 3월 이후 최저로 줄어 감소는 소규모 사업장에 쏠렸어요.",
+    file: "경제지표/경제지표_JOLTS_2026.08_2026.09.29.html"
+  },
+  {
     id: "FOMC", name: "FOMC 금리결정", period: "2026년 9월 회의", category: "연준", tier: 3,
     report_date: "2026-09-17", created: "2026.09.17", verdict: "BAD", vlabel: "인상",
     surprise: { text: "점도표 +0.3%p", cls: "up" },
@@ -760,7 +767,6 @@ const MACRO_REPORTS_DB = [
 // 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
 const MACRO_UPCOMING_DB = [
   
-  { id: "JOLTS", name: "JOLTs 구인건수", short: "JOLTs", period: "8월", date: "2026-09-29", estimated: false, utc: "20260929T140000Z", tier: 2, last_release: "2026-09-01" },
   { id: "GDP_3RD", name: "GDP 확정치", short: "GDP확정", period: "2분기", date: "2026-09-30", estimated: false, utc: "20260930T123000Z", tier: 2, last_release: "2026-08-26" },
   { id: "PCE", name: "PCE 물가지수", short: "PCE", period: "8월", date: "2026-09-30", estimated: false, utc: "20260930T123000Z", tier: 3, last_release: "2026-08-26" },
   { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "9월", date: "2026-10-01", estimated: true, utc: null, tier: 2, last_release: "2026-09-01" },
@@ -771,6 +777,7 @@ const MACRO_UPCOMING_DB = [
   { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "9월", date: "2026-10-15", estimated: false, utc: "20261015T123000Z", tier: 2, last_release: "2026-09-10" },
   { id: "RETAIL", name: "소매판매", short: "소매판매", period: "9월", date: "2026-10-15", estimated: false, utc: "20261015T123000Z", tier: 2, last_release: "2026-09-16" },
   { id: "FOMC", name: "FOMC 금리결정", short: "FOMC", period: "10월 회의", date: "2026-10-29", estimated: false, utc: "20261028T180000Z", tier: 3, last_release: "2026-09-17" },
+  { id: "JOLTS", name: "JOLTs 구인건수", short: "JOLTs", period: "9월", date: "2026-11-04", estimated: false, utc: "20261103T150000Z", tier: 2, last_release: "2026-09-29" },
   { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "3분기", date: "2026-11-25", estimated: true, utc: null, tier: 2, last_release: "2026-08-26" },
   { id: "JACKSON", name: "잭슨홀 심포지엄", short: "잭슨홀", period: "2027년", date: "2027-08-27", estimated: true, utc: null, tier: 2, last_release: "2026-08-28" }
 ];
@@ -782,11 +789,11 @@ const WATCH_DB = [
     "정보산업 감소(-2.3만)가 이어지는지 — AI 투자와 AI 관련 고용이 계속 반대로 가는지",
     "헬스케어가 12개월 평균(+3.2만)으로 회복되는지 — 지난 1년 미국 고용의 버팀목이었어요",
     "시간당임금 YoY 3.1%가 3% 아래로 내려가는지 — 실질임금 마이너스가 길어지면 소비가 먼저 꺾여요"]},
-  { key: "JOLTS", name: "JOLTs 구인건수 8월", date: "2026-09-29", type: "m", items: [
-    "채용 505.4만건이 반등하는지, 500만건 아래로 내려가는지 — 구인보다 채용이 실제 온도예요",
-    "전문·비즈니스 서비스 채용(-18.8만건)이 회복되는지 — 경기 전환기 선행 업종",
-    "7월 구인 727.1만건이 또 큰 폭으로 하향 수정되는지 — 6월은 17.7만건 깎였어요",
-    "내구재 제조 구인율 5.2%가 유지되는지 — AI·설비 투자 쪽 노동 수요 쏠림 확인"]},
+  { key: "JOLTS", name: "JOLTs 구인건수 9월", date: "2026-11-04", type: "m", items: [
+    "구인 707.9만건이 700만 아래로 내려가는지 — 구인 1건당 실업자 1.00배가 1배 아래로 깨지는지",
+    "1~9인 사업장 구인 -33.5만건이 되돌려지는지 — 이번 감소의 대부분이 여기서 나왔어요",
+    "해고 164.1만건(2025년 3월 이후 최저)이 유지되는지 — 저해고가 깨지면 국면 전환이에요",
+    "전문·비즈니스 서비스 구인 118.6만건이 더 줄어드는지 — 경기 전환기 선행 업종"]},
   { key: "ISM_SVC", name: "ISM 서비스업 PMI 9월", date: "2026-10-05", type: "m", items: [
     "고용지수 47.8이 50 위로 올라서는지 — 인력 감축 기업 비중이 19%→17.1%로 줄었어요",
     "가격지수 72.6이 꺾이는지 — 여섯 달 중 다섯 번 70을 넘었어요",
