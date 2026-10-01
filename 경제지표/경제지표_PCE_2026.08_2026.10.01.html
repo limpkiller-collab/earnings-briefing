@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCE 물가지수 2026년 8월 — 경제 지표</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 수치 2카드 (토스증권 경제지표 페이지 스타일) */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--red-bg);color:var(--red)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 발표 이력 테이블 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
+.htable tr.new td{background:var(--blue-bg)}
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.htable th{white-space:nowrap}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI 카드 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
+/* 콜아웃·인용 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 영향 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--amber-bg);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지표 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+.wp-list{display:flex;flex-direction:column;gap:10px;margin:14px 0}.wp{display:flex;gap:10px;align-items:flex-start;background:var(--g50,#F9FAFB);border-radius:12px;padding:13px 14px}.wp-badge{flex:0 0 auto;font-size:11.5px;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--g100);color:var(--g500)}.wp.met .wp-badge{background:#E3F4EA;color:#00B26B}.wp.miss .wp-badge{background:#FEECEE;color:#F04452}.wp.partial .wp-badge{background:var(--g100);color:var(--g600)}.wp.hold .wp-badge{background:var(--g100);color:var(--g400)}.wp-q{font-size:14px;font-weight:700;color:var(--g900);line-height:1.5}.wp-a{font-size:13.5px;color:var(--g600);line-height:1.6;margin-top:4px}.wp-score{font-size:13px;font-weight:700;color:var(--g500);text-align:right;margin:2px 0 16px}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">📈</span> 경제 지표</div>
+  <a href="../index.html">← 아카이브</a>
+</div>
+<div class="body">
+
+<div class="chips">
+  <span class="chip b">#물가</span><span class="chip">#매달 발표</span><span class="chip">#★★★</span><span class="chip">#산출방법 개편</span>
+</div>
+<h1>PCE 물가지수<br>2026년 8월</h1>
+<div class="meta">2026년 9월 30일 21:30 발표 (한국시간) · 출처 미국 경제분석국(BEA) 「Personal Income and Outlays, August 2026」 · 컨센서스 FXStreet·언론 집계</div>
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">헤드라인 전년 대비 (YoY)</div>
+    <div class="num">3.4%</div>
+    <div class="cmp">예측보다 <b class="down">-0.3%p</b> · 지난달과 <b class="flat">같아요 (3.4%)</b></div>
+    <div class="core">전월 대비 +0.3% — 예측(+0.4%)보다 0.1%p 낮아요</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">근원(Core) 전년 대비</div>
+    <div class="num">3.0%</div>
+    <div class="cmp">예측보다 <b class="down">-0.3%p</b> · 지난달과 <b class="flat">같아요 (3.0%)</b></div>
+    <div class="core">전월 대비 +0.2% — 예측(+0.3%)보다 0.1%p 낮아요</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p>헤드라인 <b>3.4%</b>, 근원 <b>3.0%</b>로 둘 다 예측을 0.3%p씩 밑돌았어요. 숫자만 보면 <b>물가가 확실히 꺾인 것처럼 보여요.</b></p>
+  <p>그런데 이번엔 단서가 붙어요. <mark class="r">BEA가 물가지수 산출 방법 자체를 바꿨고, 수정이 2021년 1월까지 소급됐어요.</mark> 지난달 발표된 7월 근원도 3.3%에서 3.0%로 다시 쓰였어요. 즉 "둔화"의 상당 부분이 통계 개편 효과예요.</p>
+  <p>시장은 일단 완화로 받아들였어요. <mark>10월 인상 확률이 하루 만에 51%에서 37%로 내려왔어요.</mark> 다만 장기금리는 거꾸로 올라 10년물이 2002년 이후 최고치를 찍었어요.</p>
+</div>
+
+<div class="sub-head">🔴 먼저 알아야 할 것 — BEA가 계산 방법을 바꿨어요</div>
+<div class="sub-desc">이번 발표는 숫자를 읽기 전에 이 이야기를 먼저 해야 해요. 그러지 않으면 "물가가 잡혔다"고 잘못 읽게 돼요.</div>
+<p>BEA는 이번 발표와 함께 <b>PCE 물가지수의 산출 방법을 세 항목에서 바꿨어요.</b></p>
+<ul class="dots">
+<li><b>포트폴리오 운용·투자자문 서비스</b> — 기존에는 업계 고용자 수를 바탕으로 가격을 추정했는데, 이제 <b>실제 수수료 데이터</b>를 쓰기로 했어요</li>
+<li><b>법률 서비스</b> — CPI 쪽 수치와 계속 어긋나던 문제를 바로잡았어요</li>
+<li><b>컴퓨터 소프트웨어·액세서리</b> — 가격 흐름이 전혀 다른 품목들이 하나로 묶여 있던 복합지수를 분리했어요</li>
+</ul>
+<p>문제는 <mark class="r">이 세 항목이 바로 2026년 상반기 근원 PCE 상승을 주도했던 항목들이라는 점</mark>이에요. 측정 방식이 바뀌자 상반기 물가 경로가 전반적으로 낮게 다시 쓰였어요. 수정 범위가 <b>2021년 1월까지 소급</b>돼서, 팬데믹 이후 인플레이션의 기록 자체가 다시 쓰인 셈이에요.</p>
+<p>골드만삭스와 JP모건은 이 변경이 근원 PCE를 <b>0.1~0.2%p</b> 낮출 것으로 봤는데, 실제 효과는 그보다 컸어요. 7월 근원 YoY가 3.3%에서 <b>3.0%</b>로 0.3%p 내려 다시 쓰인 게 그 증거예요. 그래서 이번 "예측 대비 0.3%p 하회"를 읽을 때는 <b>실제 물가 모멘텀 둔화와 통계 개편 효과를 분리해서 봐야 해요.</b> 애널리스트들의 예측은 옛 방식 기준이었으니까요.</p>
+<div class="callout">정리하면 이렇게 봐요. <b>물가가 생각보다 낮다는 건 사실</b>이지만, 그 이유의 큰 부분은 <b>지난 몇 달 동안 물가가 과대 측정되고 있었다</b>는 쪽이에요. 앞으로의 둔화 속도를 약속하는 숫자는 아니에요.</div>
+
+<div class="sub-head">🏦 연준 전망과 비교하면</div>
+<div class="sub-desc">연준이 보는 물가는 CPI가 아니라 이 PCE예요. 9월 FOMC의 SEP에서 제시한 2026년말 전망과 지금 실제치를 나란히 놓고 봐요.</div>
+<div class="kpi"><div class="k"><div class="l">2026년 8월 실제 PCE 물가</div><div class="v"><span class="down">3.4%</span></div><div class="d">연준 PCE 물가 전망보다 <b>0.3%p 낮아요</b></div></div><div class="k"><div class="l">연준 2026년말 PCE 물가 전망</div><div class="v">3.7%</div><div class="d">2026년 9월 SEP 중간값 · 4분기 전년비 기준</div></div></div>
+<p>지난 보고서(7월분)에서는 실제치가 연준 전망보다 <b>0.1%p 위</b>에 있었어요. 이번엔 <mark>0.3%p 아래로 내려왔어요.</mark> 두 달 만에 0.4%p가 뒤바뀐 건데, 그중 상당 부분이 산출방법 개편 때문이라는 점을 기억해야 해요.</p>
+<p>그래도 연준 입장에서 의미는 있어요. 9월 SEP의 2026년말 정책금리 중간값은 <b>4.1%</b>인데 현재 목표범위가 3.75~4.00%예요. <b>연내 한 차례 더 인상</b>을 가리키고 있는 셈인데, 물가가 전망보다 낮게 나오면 그 명분이 약해져요.</p>
+
+<div class="sub-head">📈 물가 추이</div>
+<div class="sub-desc">7월에 +0.1%까지 낮아졌다가 8월에 +0.3%로 다시 올라왔어요. 전년 대비로는 3.4%에서 제자리예요.</div>
+
+<div class="chart-card">
+  <div class="ct">헤드라인 PCE 전년 대비 추이</div>
+  <div class="cs">2026년 5월 ~ 8월 · 빨간 점선은 연준 2026년말 전망(3.7%) · ⚠️ 26.7은 이번 개편으로 수정된 값이고, 26.5~26.6은 개편 전 기준이라 직접 비교에 주의가 필요해요</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">3.1</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">3.4</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">3.5</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">3.8</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">4.0</text><line x1="14" y1="99.1" x2="644" y2="99.1" stroke="#F04452" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.75"/><text x="17" y="92.1" class="cv" stroke="#fff" stroke-width="3.5" paint-order="stroke" stroke-linejoin="round" style="fill:#F04452;font-size:11.5px">연준 2026년말 PCE 전망 3.7%</text><polygon points="14.0,260 14.0,99.1 224.0,99.1 434.0,186.9 644.0,186.9 644.0,260" fill="#F2F4F6" opacity="0.85"/><polyline points="14.0,99.1 224.0,99.1 434.0,186.9 644.0,186.9" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><line x1="644.0" y1="186.9" x2="644.0" y2="260" stroke="#3182F6" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/><circle cx="644.0" cy="99.1" r="8.5" fill="none" stroke="#8B95A1" stroke-width="2" stroke-dasharray="3.5,3"/><text x="631.0" y="103.1" text-anchor="end" class="cv" style="fill:#8B95A1;font-size:11.5px">예측 3.7%</text><circle cx="644.0" cy="186.9" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/><text x="634.0" y="173.9" text-anchor="end" class="cv" style="fill:#3182F6">발표 3.4%</text><text x="14.0" y="286" text-anchor="middle" class="cl">26.5</text><text x="434.0" y="286" text-anchor="middle" class="cl">26.7</text><text x="644.0" y="286" text-anchor="middle" class="cl">26.8</text></svg>
+</div>
+
+<div class="chart-card">
+  <div class="ct">헤드라인·근원 전월 대비 변동률</div>
+  <div class="cs">파랑 = 헤드라인, 연한 파랑 = 근원 · 26.7은 개편 반영 수정치(헤드라인 +0.2%→+0.1%, 근원 +0.2%→+0.1%)</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  body{background:var(--bg)}
+  .page,.gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
+  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
+  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
+  svg [stroke="#fff"]{stroke:#17171C}
+  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
+  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+/*<!--/dark-css-->*/
+</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-0.2</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">-0.0</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">0.2</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">0.4</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">0.6</text><line x1="14" y1="186.9" x2="644" y2="186.9" stroke="#D1D6DB" stroke-width="1.5"/><rect x="53.0" y="69.9" width="37.8" height="117.0" rx="3.5" fill="#C9DEFB"/><text x="71.8" y="63.9" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+0.4</text><rect x="94.8" y="99.1" width="37.8" height="87.8" rx="3.5" fill="#E5E8EB"/><text x="113.7" y="93.1" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">+0.3</text><text x="92.8" y="286" text-anchor="middle" class="cl">26.5</text><rect x="210.4" y="186.9" width="37.8" height="29.2" rx="3.5" fill="#F8C7CC"/><text x="229.3" y="231.1" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-0.1</text><rect x="252.2" y="157.6" width="37.8" height="29.2" rx="3.5" fill="#E5E8EB"/><text x="271.1" y="151.6" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">+0.1</text><text x="250.2" y="286" text-anchor="middle" class="cl">26.6</text><rect x="367.9" y="157.6" width="37.8" height="29.2" rx="3.5" fill="#C9DEFB"/><text x="386.8" y="151.6" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+0.1</text><rect x="409.8" y="157.6" width="37.8" height="29.2" rx="3.5" fill="#E5E8EB"/><text x="428.6" y="151.6" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">+0.1</text><text x="407.8" y="286" text-anchor="middle" class="cl">26.7</text><rect x="525.5" y="99.1" width="37.8" height="87.8" rx="3.5" fill="#3182F6"/><text x="544.4" y="93.1" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+0.3</text><rect x="567.2" y="128.4" width="37.8" height="58.5" rx="3.5" fill="#C9DEFB"/><text x="586.1" y="122.4" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">+0.2</text><text x="565.2" y="286" text-anchor="middle" class="cl">26.8</text></svg>
+</div>
+<p>전월 대비로 보면 <b>7월 +0.1% → 8월 +0.3%</b>로 오히려 가속했어요. 근원도 +0.1%에서 +0.2%로 올랐고요. <mark class="r">전년 대비가 제자리인 건 1년 전 기저가 높았기 때문이고, 최근 모멘텀 자체는 7월보다 강해졌어요.</mark> 숫자 하나만 보면 놓치는 대목이에요.</p>
+
+<div class="sub-head">📋 발표 이력</div>
+<div class="twrap"><table class="htable">
+<thead><tr><th>발표일</th><th>대상월</th><th>헤드라인 YoY</th><th>예측</th><th>헤드라인 MoM</th><th>근원 YoY</th></tr></thead>
+<tbody>
+<tr class="new"><td>2026.09.30</td><td>8월</td><td class="down">3.4%</td><td>3.7%</td><td class="up">+0.3%</td><td class="down">3.0%</td></tr>
+<tr><td>2026.08.26</td><td>7월</td><td class="down">3.4%</td><td>3.6%</td><td class="down">+0.1%</td><td class="down">3.0%</td></tr>
+<tr><td>2026.07.30</td><td>6월</td><td>3.7%</td><td>—</td><td class="flat">-0.1%</td><td class="down">3.3%</td></tr>
+<tr><td>2026.06.25</td><td>5월</td><td>—</td><td>—</td><td class="down">+0.4%</td><td>3.4%</td></tr>
+</tbody>
+</table></div>
+<p class="fn">※ 7월 행은 <b>이번 개편으로 수정된 값</b>이에요(발표 당시 헤드라인 3.7%·MoM +0.2%·근원 3.3%). 6월·5월 행은 개편 전 발표 당시 기준이라 현행 기준과 다를 수 있어요. 빨강 = 예측 상회 또는 전월 대비 가속, 파랑 = 하회 또는 둔화.</p>
+
+<div class="sub-head">💵 소득과 소비는 어땠나</div>
+<div class="twrap"><table class="htable">
+<thead><tr><th>항목</th><th>7월</th><th>8월</th><th>해석</th></tr></thead>
+<tbody>
+<tr><td>개인소득</td><td data-h="7월">+0.3%</td><td class="down" data-h="8월">+0.2%</td><td class="w">예측(+0.4%)을 밑돌았어요 · 금액으로 +$666억</td></tr>
+<tr><td>가처분소득</td><td data-h="7월">+0.4%</td><td data-h="8월">+0.3%</td><td class="w">세후 소득 증가폭이 소폭 줄었어요 · +$686억</td></tr>
+<tr class="hl"><td>명목 소비지출</td><td data-h="7월">+0.1%</td><td class="up" data-h="8월">+0.9%</td><td class="w">예측(+0.8%)을 넘겼어요 · <b>+$1,908억</b>으로 급반등</td></tr>
+<tr class="hl"><td>실질 소비지출</td><td data-h="7월">+0.1%</td><td class="up" data-h="8월">+0.6%</td><td class="w">물가를 빼고도 <b>+0.6%</b> — 지난달 우려했던 소비 둔화가 뒤집혔어요</td></tr>
+<tr><td>저축률</td><td data-h="7월">—</td><td data-h="8월">4.1%</td><td class="w">7월 3.0%대에서 올라왔어요</td></tr>
+</tbody>
+</table></div>
+<p>지난 보고서에서 가장 걱정했던 대목이 뒤집혔어요. <mark>실질 소비가 0.0%(7월 당시 발표 기준)에서 +0.6%로 튀어올랐어요.</mark> 소득 증가(+0.2%)보다 소비 증가(+0.9%)가 훨씬 컸는데, 저축률이 4.1%로 올라간 걸 보면 저축을 깨서 쓴 건 아니에요 — 수정된 통계에서 소득 기반 자체가 달라진 영향이 있어요.</p>
+<p>중요한 건 방향이에요. <b>물가는 낮게 다시 쓰였고, 소비는 강했어요.</b> 연준이 가장 반기는 조합(물가 둔화 + 성장 유지)처럼 보이지만, <mark class="r">같은 날 발표된 Q2 GDP 확정치가 2.2%로 0.7%p 상향됐고 ADP 민간고용도 +9.0만으로 예상을 넘겼어요.</mark> 경제가 식지 않고 있다는 증거가 함께 나온 거예요.</p>
+
+<div class="sub-head">📉 시장 반응과 연준 경로</div>
+<div class="twrap"><table class="htable">
+<thead><tr><th>항목</th><th>발표 후</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>S&amp;P 500</td><td class="down" data-h="종가">7,652.00 (-0.25%)</td><td class="w">상승 출발했다가 장 막판 금리 재상승에 밀렸어요</td></tr>
+<tr><td>나스닥</td><td class="up" data-h="종가">26,861.06 (+0.24%)</td><td class="w">9월 월간 +1.9%로 3대 지수 중 유일하게 올랐어요</td></tr>
+<tr class="hl"><td>10년물 국채금리</td><td class="up" data-h="종가">약 5.29%</td><td class="w">장중 5.304% — <b>2002년 5월 이후 최고</b>, 2007년 전고점 돌파</td></tr>
+<tr><td>2년물 국채금리</td><td class="up" data-h="종가">약 4.90%</td><td class="w">2024년 5월 이후 최고 수준</td></tr>
+<tr class="hl"><td>10월 FOMC 인상 확률</td><td class="down" data-h="발표 후">약 37%</td><td class="w">전일 51% → 37%로 하락 (CME FedWatch)</td></tr>
+<tr><td>기준금리</td><td data-h="현재">3.75~4.00%</td><td class="w">9월 16일 25bp 인상 후 현 수준</td></tr>
+</tbody>
+</table></div>
+<div class="callout">물가가 예측을 밑돌면서 <b>10월 인상 확률이 반 토막</b>이 났어요. 뉴욕 연은 윌리엄스 총재가 <b>"서두를 필요 없고, 정보를 더 모을 시간이 있다"</b>고 말한 것도 겹쳤어요. 다만 그는 <mark class="r">"연말에 한 차례 추가 인상이 적절할 수 있다"</mark>고도 했어요. 인상이 취소된 게 아니라 <b>10월에서 12월로 미뤄진</b> 거예요.</div>
+<p>더 눈여겨볼 건 <b>장기금리가 거꾸로 올라갔다는 점</b>이에요. 물가가 낮게 나왔는데 10년물이 2002년 이후 최고치를 찍었어요. 3분기 전체로 10년물은 약 +87bp 올라 1994년 1분기 이후 가장 큰 분기 상승폭이었어요. <mark class="r">물가가 아니라 재정·국채 수급이 장기금리를 밀어올리는 흐름</mark>이 이어지고 있다는 뜻이에요. 밸류에이션의 실제 기준은 정책금리가 아니라 이 장기금리예요.</p>
+<p>다음 FOMC는 <b>10월 28~29일</b>(결과는 한국시간 10월 30일 새벽)이에요. 그 전에 10월 2일 고용보고서와 10월 14일 CPI가 나와요.</p>
+
+<div class="sub-head">✅ 지난 발표 관전포인트 점검</div>
+<div class="wp-list">
+  <div class="wp met"><div class="wp-badge">충족</div><div>
+    <div class="wp-q">헤드라인 3.7%가 세 달 연속 제자리인지, 드디어 3.6% 이하로 내려서는지</div>
+    <div class="wp-a">3.4%로 내려섰어요. 다만 7월 수치 자체가 3.7%→3.4%로 다시 쓰였으니, <b>실제로는 "내려선" 게 아니라 "원래 그 수준이었던 것으로 밝혀진"</b> 쪽에 가까워요.</div></div></div>
+  <div class="wp met"><div class="wp-badge">충족</div><div>
+    <div class="wp-q">근원 3.3%가 흔들리는지 — 두 달 연속 예측 부합이 이어질지</div>
+    <div class="wp-a">근원 3.0%로 예측(3.3%)을 0.3%p 하회했어요. 두 달 연속 예측 부합 기록은 깨졌고, 방향은 아래쪽이었어요. MoM은 +0.2%로 직전 기준과 같았어요.</div></div></div>
+  <div class="wp partial"><div class="wp-badge">부분 충족</div><div>
+    <div class="wp-q">서비스 물가 +0.3%가 꺾이는지, 금융·보험 +1.2%가 일회성이었는지</div>
+    <div class="wp-a">금융·보험 쪽은 답이 나왔어요. BEA가 <b>포트폴리오 운용·투자자문 서비스의 측정 방식을 고용자 수 추정에서 실제 수수료 데이터로 바꿨고</b>, 이 항목이 상반기 상승을 주도한 항목이었어요. 즉 <b>실제 물가 상승이라기보다 측정 문제</b>였던 쪽이에요. 다만 8월 서비스 물가 MoM 개별 수치는 확인하지 못해 완전 판정은 보류해요.</div></div></div>
+  <div class="wp miss"><div class="wp-badge">미충족</div><div>
+    <div class="wp-q">실질 소비 0.0%가 마이너스로 내려가는지 — 소비 사이클 전환의 결정적 신호</div>
+    <div class="wp-a">마이너스로 가지 않았어요. 오히려 <b>+0.6%</b>로 크게 반등했고 저축률도 3.0%대에서 4.1%로 올랐어요. 소비 사이클 전환 신호는 나타나지 않았어요.</div></div></div>
+</div>
+<div class="wp-score">4개 중 2개 충족 · 1개 부분 충족 · 1개 미충족</div>
+
+<div class="sub-head">💼 보유 종목 영향</div>
+<div class="stock-g">
+  <div class="sg-t">금리 민감 성장주 <span class="tks">PLTR · IONQ · SMR · CRWV</span></div>
+  <p>10월 인상 확률이 37%로 내려온 건 이 그룹에 우호적이에요. 그런데 <mark class="r">정작 할인율 기준인 10년물이 5.29%로 2002년 이후 최고치</mark>라 효과가 거의 상쇄됐어요. 지난 보고서(10년물 4.65%)와 비교하면 두 달 만에 <b>60bp 넘게</b> 올라간 거예요. "정책금리 인상은 미뤄졌지만 장기 할인율은 계속 오르는" 최악의 조합이 이어지고 있어요. <a href="../실적브리핑/실적브리핑_CRWV_2026Q2_2026.08.12.html">CoreWeave</a>처럼 차입 비중이 큰 곳은 특히 직결돼요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">반도체 <span class="tks">NVDA · MU · SK하이닉스</span></div>
+  <p>이 그룹은 물가 지표보다 AI 수요 사이클이 압도적으로 크게 작용해요. 마침 같은 날 <a href="../실적브리핑/실적브리핑_MU_FY2026Q4_2026.10.01.html">마이크론</a>이 분기 매출 $54.2B·마진 87%로 사상 최대 실적을 발표하고 다음 분기 $61.5B을 제시했어요. <mark>소프트웨어·컴퓨터 액세서리 가격 측정 방식이 바뀐 게 이번 개편의 한 축이었는데, 메모리 가격은 거꾸로 계속 오르는 중</mark>이에요. <a href="../실적브리핑/실적브리핑_NVDA_FY2027Q2_2026.08.27.html">엔비디아</a>에는 원가 부담, 마이크론·SK하이닉스에는 이익으로 작용하는 구도가 그대로예요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">빅테크 <span class="tks">AAPL · MSFT · GOOGL</span></div>
+  <p>실질 소비가 +0.6%로 반등한 건 <a href="../실적브리핑/실적브리핑_AAPL_FY2026Q3_2026.08.09.html">애플</a>에 좋은 소식이에요. 지난달 재화 소비 둔화를 걱정했는데 명목 소비가 +$1,908억 늘면서 뒤집혔어요. 다만 메모리 가격 상승에 따른 원가 압박은 그대로예요. <a href="../실적브리핑/실적브리핑_MSFT_FY2026Q4_2026.08.09.html">마이크로소프트</a>·<a href="../실적브리핑/실적브리핑_GOOGL_2026Q2_2026.08.09.html">알파벳</a>은 기업 IT 지출 기반이라 소비자 물가의 직접 영향은 작지만, <b>장기금리 5.3%는 모든 성장주의 밸류에이션 상한을 누르는 변수</b>예요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">배당·방어 <span class="tks">O · KO · ABBV</span></div>
+  <p><a href="../실적브리핑/실적브리핑_O_2026Q2_2026.08.08.html">리얼티인컴</a>이 이번에도 가장 불리해요. 리츠는 장기금리와 정면 경쟁하는데 10년물 5.29%는 <mark class="r">리츠 배당수익률 매력을 정면으로 깎는 수준</mark>이에요. 지난 보고서 때 4.65%였던 걸 생각하면 상황이 더 나빠졌어요. <a href="../실적브리핑/실적브리핑_KO_2026Q2_2026.08.09.html">코카콜라</a>는 실질 소비 반등이 물량 성장에 긍정적이에요. ABBV는 의료 서비스 물가 국면에서 상대적으로 안정적인 편이에요.</p>
+</div>
+
+<div class="sub-head">👀 다음 발표에선 이걸 보면 돼요</div>
+<ul class="dots">
+<li>개편된 기준으로 근원 3.0%가 더 내려가는지 — 개편 효과가 아닌 <b>실제 둔화</b>가 확인되는지</li>
+<li>전월 대비 가속(7월 +0.1% → 8월 +0.3%)이 9월에도 이어지는지 — 전년 대비보다 이게 더 중요해요</li>
+<li>실질 소비 +0.6%가 유지되는지, 저축률 4.1%가 다시 내려가는지</li>
+<li>10월 FOMC(10/29) 결과와 12월 인상 전망 — 윌리엄스가 말한 "연말 한 차례"가 유효한지</li>
+</ul>
+<p class="fn">※ 다음 발표: 2026년 10월 30일 예정 (한국시간 밤) — 9월분. ⚠️ BEA 공식 일정 확인 전 추정일이에요.</p>
+
+<div class="sub-head">📚 PCE 물가지수란?</div>
+<p><b>PCE(개인소비지출) 물가지수</b>는 미국 사람들이 실제로 돈을 쓴 모든 재화·서비스의 가격을 모아 만든 지표예요. CPI와 뭐가 다르냐면, <b>CPI는 "정해진 장바구니"의 가격만 보는 반면 PCE는 장바구니 자체가 바뀌는 것까지 반영</b>해요. 소고기가 비싸지면 사람들이 돼지고기로 갈아타는데, PCE는 그 이동까지 계산에 넣는 거예요.</p>
+<p>연준이 "물가 목표 2%"라고 말할 때의 2%는 <mark>CPI가 아니라 이 PCE 기준</mark>이에요. 그래서 시장은 CPI보다 PCE를 더 무겁게 봐요. <b>근원(Core) PCE</b>는 여기서 식품과 에너지를 뺀 값으로, 연준 내부에서 가장 무겁게 취급되는 숫자예요.</p>
+<p>이번처럼 <b>산출 방법이 바뀌는 일</b>은 드물지만 중요해요. PCE는 개별 품목 가격을 직접 조사하지 않고 CPI·생산자물가·업계 통계 등을 조합해 만들기 때문에, 그 조합 방식이 바뀌면 지수 전체가 다시 쓰여요. <mark>이번처럼 2021년까지 소급 수정되면 "작년보다 얼마 올랐나"라는 비교 자체가 새 기준으로 다시 계산돼요.</mark> 그래서 발표 전 컨센서스(옛 기준)와 실제치(새 기준)를 비교한 "서프라이즈"는 평소보다 해석에 주의가 필요해요.</p>
+
+<!--rnav-->
+<div class="rnav"><a class="prev" href="../실적브리핑/실적브리핑_MU_FY2026Q4_2026.10.01.html"><span class="av"><img src="../logos/MU.png" alt=""></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">MU</div><div class="rs"><span class="tx BEAT">상회</span> · Micron · FY2026 Q4</div></div></a><a class="next" href="경제지표_GDP_3RD_2026.2Q_2026.10.01.html"><span class="av"><img src="../logos/GDP_3RD.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">GDP 확정치</div><div class="rs"><span class="tx NEUT">상향</span> · 2026년 2분기</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+데이터 출처: 미국 경제분석국(BEA) 보도자료 「Personal Income and Outlays, August 2026」, FXStreet, CME FedWatch, 미 재무부 일일 금리, 언론 집계 · macro-briefing 스킬 자동 생성
+</div>
+
+</div>
+</div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="경제지표/경제지표_PCE_2026.08_2026.10.01.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+</body>
+</html>
