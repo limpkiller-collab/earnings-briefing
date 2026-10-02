@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCE 물가지수 2026년 8월 — 경제 지표</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 수치 2카드 (토스증권 경제지표 페이지 스타일) */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--red-bg);color:var(--red)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 발표 이력 테이블 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
+.htable tr.new td{background:var(--blue-bg)}
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.htable th{white-space:nowrap}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI 카드 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
+/* 콜아웃·인용 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 영향 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--amber-bg);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지표 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+.wp-list{display:flex;flex-direction:column;gap:10px;margin:14px 0}.wp{display:flex;gap:10px;align-items:flex-start;background:var(--g50,#F9FAFB);border-radius:12px;padding:13px 14px}.wp-badge{flex:0 0 auto;font-size:11.5px;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--g100);color:var(--g500)}.wp.met .wp-badge{background:#E3F4EA;color:#00B26B}.wp.miss .wp-badge{background:#FEECEE;color:#F04452}.wp.partial .wp-badge{background:var(--g100);color:var(--g600)}.wp.hold .wp-badge{background:var(--g100);color:var(--g400)}.wp-q{font-size:14px;font-weight:700;color:var(--g900);line-height:1.5}.wp-a{font-size:13.5px;color:var(--g600);line-height:1.6;margin-top:4px}.wp-score{font-size:13px;font-weight:700;color:var(--g500);text-align:right;margin:2px 0 16px}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">📈</span> 경제 지표</div>
+  <a href="../index.html">← 아카이브</a>
+</div>
+<div class="body">
+
+<div class="chips">
+  <span class="chip b">#심리</span><span class="chip">#매달 발표</span><span class="chip">#★★</span><span class="chip">#확산지수 · 50 기준</span>
+</div>
+<h1>ISM 제조업 PMI<br>2026년 9월</h1>
+<div class="meta">2026년 10월 1일 23:00 발표 (한국시간) · 출처 미국 공급관리협회(ISM) 「September 2026 Manufacturing ISM Report On Business」 · 컨센서스 FXStreet</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">제조업 PMI</div>
+    <div class="num">54.5</div>
+    <div class="cmp">예측(55.0)보다 <b class="down">0.5p 하회</b> · 지난달 54.6에서 <b class="flat">0.1p 하락</b></div>
+    <div class="core">사실상 제자리예요 · <b>9개월 연속</b> 50 상회, 전체 경제는 23개월 연속 확장</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">가격 지수</div>
+    <div class="num">77.9</div>
+    <div class="cmp">지난달 71.1에서 <b class="up">6.8p 급등</b> — 11개 세부지수 중 최대 상승폭</div>
+    <div class="core"><b>24개월 연속</b> 상승 · 두 달 제자리였던 원가 압력이 다시 세졌어요</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p>9월 PMI는 <b>54.5</b>로 8월(54.6)과 사실상 같아요. 예측(55.0)은 0.5p 밑돌았지만, <b>아홉 달 연속 확장</b> 구간은 유지했어요. 헤드라인만 보면 "변화 없음"이에요.</p>
+  <p>속은 8월과 정반대예요. 지난달 꺾였던 수요 선행지표가 한 달 만에 되돌아왔어요. <mark>신규주문 55.3(+1.6p)·수주잔고 56.4(+4.6p)·고용 52.7(+1.5p)</mark>이 함께 올랐고, 대신 생산이 56.7(-1.6p)로 쉬어가고 재고는 48.6으로 <b>위축 전환</b>했어요. 주문은 쌓이는데 생산이 못 따라가고 재고까지 줄어드는 그림이에요.</p>
+  <p>문제는 가격이에요. <mark class="r">가격 지수가 77.9로 6.8p 뛰었어요.</mark> 응답자 부정 코멘트에서 가격 변동성이 46%, 관세가 34%, 이란 사태가 30% 언급됐어요. 다만 시장은 이 지표에 크게 반응하지 않았어요 — 같은 날 10년물은 5.248%로 5bp 내렸고 S&amp;P 500은 0.20% 올랐어요.</p>
+</div>
+
+<div class="sub-head">✅ 지난번 관전포인트 점검</div>
+<div class="sub-desc">8월 보고서에서 "다음 발표에선 이걸 보자"고 했던 4가지를 수치로 확인했어요.</div>
+<div class="wp-list">
+  <div class="wp met"><div class="wp-badge">충족</div><div>
+    <div class="wp-q">신규주문 53.7이 반등하는지, 50선 쪽으로 더 내려가는지</div>
+    <div class="wp-a">반등했어요. <b>55.3(+1.6p)</b>으로 확장 9개월째예요. 두 달 연속 하락은 없었으니 "7월 55.6이 정점"이라는 해석은 일단 보류예요. 다만 7월 고점(56.7)은 아직 넘지 못했어요. ⚠️ 신규주문 7월 수치는 8월 보도자료 기준 56.7이에요.</div></div></div>
+  <div class="wp miss"><div class="wp-badge">미충족</div><div>
+    <div class="wp-q">가격 지수 71.1이 꺾이는지 — 24개월 연속 상승이 이어지는지</div>
+    <div class="wp-a">꺾이지 않았어요. 오히려 <b>77.9로 6.8p 급등</b>해 ISM 표현대로 "24개월 연속" 상승이 됐어요. 이번 발표에서 가장 나쁜 숫자예요.</div></div></div>
+  <div class="wp miss"><div class="wp-badge">미충족</div><div>
+    <div class="wp-q">고용 지수 51.2가 50 아래로 내려가는지</div>
+    <div class="wp-a">내려가지 않았어요. <b>52.7(+1.5p)</b>로 올라 확장 3개월째예요. 걱정했던 방향과 반대로 움직인, 이번 발표에서 가장 좋은 숫자예요. 같은 날 다음날 발표된 9월 고용보고서의 제조업 고용 +9천명과도 방향이 맞아요.</div></div></div>
+  <div class="wp miss"><div class="wp-badge">미충족</div><div>
+    <div class="wp-q">위축 구간 제조업 GDP 비중 22%가 더 커지는지</div>
+    <div class="wp-a">커지지 않았어요. ISM은 "9월에 섹터 GDP의 <b>2%</b>가 위축했고, 8월은 22%였다"고 밝혔어요. 한 달 만에 20%p 축소예요. 다만 'PMI 45 이하 깊은 위축' 비중은 <b>2%로 그대로</b>라, <b>위축한 업종은 전부 깊은 위축</b>이라는 뜻이에요.</div></div></div>
+</div>
+<div class="wp-score">4개 중 1개 충족 · 3개 미충족</div>
+
+<div class="sub-head">📉 ISM 제조업 PMI 추이</div>
+<div class="sub-desc">1월에 50선을 회복한 뒤 아홉 달 연속 확장이에요. 7월 고점 이후 두 달째 옆걸음이에요.</div>
+
+<div class="chart-card">
+  <div class="ct">ISM 제조업 PMI</div>
+  <div class="cs">2026년 1월 ~ 9월 · 50 위면 확장, 아래면 위축 · 예측치는 회색 점선 원</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">52.1</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">53.1</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">54.0</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">54.9</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">55.9</text><polygon points="14.0,260 14.0,231.5 92.8,244.2 171.5,225.2 250.2,225.2 329.0,143.0 407.8,187.3 486.5,41.8 565.2,105.1 644.0,111.4 644.0,260" fill="#F2F4F6" opacity="0.85"/><polyline points="14.0,231.5 92.8,244.2 171.5,225.2 250.2,225.2 329.0,143.0 407.8,187.3 486.5,41.8 565.2,105.1 644.0,111.4" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><line x1="644.0" y1="111.4" x2="644.0" y2="260" stroke="#3182F6" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/><circle cx="644.0" cy="79.8" r="8.5" fill="none" stroke="#8B95A1" stroke-width="2" stroke-dasharray="3.5,3"/><text x="631.0" y="83.8" text-anchor="end" class="cv" style="fill:#8B95A1;font-size:11.5px">예측 55.0</text><circle cx="644.0" cy="111.4" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/><text x="634.0" y="98.4" text-anchor="end" class="cv" style="fill:#3182F6">발표 54.5</text><text x="14.0" y="286" text-anchor="middle" class="cl">26.1</text><text x="171.5" y="286" text-anchor="middle" class="cl">26.3</text><text x="329.0" y="286" text-anchor="middle" class="cl">26.5</text><text x="486.5" y="286" text-anchor="middle" class="cl">26.7</text><text x="644.0" y="286" text-anchor="middle" class="cl">26.9</text></svg>
+</div>
+<div class="chart-card">
+  <div class="ct">9월 세부지수 전월 대비 변화</div>
+  <div class="cs">단위 %p · 상승은 파랑, 하락은 빨강</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  body{background:var(--bg)}
+  .page,.gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
+  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
+  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
+  svg [stroke="#fff"]{stroke:#17171C}
+  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
+  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+/*<!--/dark-css-->*/
+</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-1.8</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">0.6</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">2.9</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">5.3</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">7.6</text><line x1="14" y1="216.3" x2="644" y2="216.3" stroke="#D1D6DB" stroke-width="1.5"/><rect x="44.5" y="46.4" width="44.1" height="169.9" rx="3.5" fill="#3182F6"/><text x="66.5" y="40.4" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+6.8</text><text x="66.5" y="286" text-anchor="middle" class="cl">가격</text><rect x="149.4" y="101.4" width="44.1" height="114.9" rx="3.5" fill="#3182F6"/><text x="171.5" y="95.4" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+4.6</text><text x="171.5" y="286" text-anchor="middle" class="cl">수주잔고</text><rect x="254.4" y="176.3" width="44.1" height="40.0" rx="3.5" fill="#3182F6"/><text x="276.5" y="170.3" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+1.6</text><text x="276.5" y="286" text-anchor="middle" class="cl">신규주문</text><rect x="359.4" y="178.8" width="44.1" height="37.5" rx="3.5" fill="#3182F6"/><text x="381.5" y="172.8" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+1.5</text><text x="381.5" y="286" text-anchor="middle" class="cl">고용</text><rect x="464.4" y="216.3" width="44.1" height="7.5" rx="3.5" fill="#F04452"/><text x="486.5" y="238.8" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-0.3</text><text x="486.5" y="286" text-anchor="middle" class="cl">공급자배송</text><rect x="569.5" y="216.3" width="44.1" height="40.0" rx="3.5" fill="#F04452"/><text x="591.5" y="271.3" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-1.6</text><text x="591.5" y="286" text-anchor="middle" class="cl">생산</text></svg>
+</div>
+
+<div class="sub-head">🗓️ 발표 이력</div>
+<div class="sub-desc">예측 상회는 빨강, 하회는 파랑으로 표시해요.</div>
+<div class="twrap"><table class="htable">
+  <tr><th>발표일 (대상월)</th><th>발표</th><th>예측</th><th>이전</th><th>비고</th></tr>
+  <tr class="new"><td>2026.10.01 (9월)</td><td class="a down" data-h="발표">54.5</td><td data-h="예측">55.0</td><td data-h="이전">54.6</td><td class="w">9개월 연속 확장 · 신규주문 반등, 가격 급등</td></tr>
+  <tr><td>2026.09.01 (8월)</td><td class="a down" data-h="발표">54.6</td><td data-h="예측">55.2</td><td data-h="이전">55.6</td><td class="w">확장 속도 둔화</td></tr>
+  <tr><td>2026.08.03 (7월)</td><td class="a up" data-h="발표">55.6</td><td data-h="예측">54.0</td><td data-h="이전">53.3</td><td class="w">2022년 5월 이후 최고</td></tr>
+  <tr><td>2026.07.01 (6월)</td><td class="a down" data-h="발표">53.3</td><td data-h="예측">54.0</td><td data-h="이전">54.0</td><td class="w">예측 하회</td></tr>
+  <tr><td>2026.06.01 (5월)</td><td class="a up" data-h="발표">54.0</td><td data-h="예측">53.0</td><td data-h="이전">52.7</td><td class="w">예측 상회</td></tr>
+  <tr><td>2026.05.01 (4월)</td><td class="a" data-h="발표">52.7</td><td data-h="예측">—</td><td data-h="이전">52.7</td><td class="w">3월과 동일 · 예측치 확인 불가</td></tr>
+</table></div>
+<div class="g-note">ISM 지수는 사후 수정이 없어요. 신규주문·생산·고용·재고만 계절조정 대상이에요.</div>
+
+<div class="sub-head">🔍 세부지수 — 주문은 늘고, 생산과 재고는 줄었어요</div>
+<div class="sub-desc">PMI는 신규주문·생산·고용·공급자배송·재고 다섯 지수를 같은 비중으로 묶어 만들어요.</div>
+<div class="twrap"><table class="htable">
+  <tr><th>지수</th><th>9월</th><th>8월</th><th>변화</th><th>상태</th></tr>
+  <tr class="new"><td>제조업 PMI</td><td class="a down" data-h="9월">54.5</td><td data-h="8월">54.6</td><td class="down" data-h="변화">-0.1</td><td class="w">확장 9개월째, 속도는 거의 그대로</td></tr>
+  <tr><td>신규주문</td><td class="a up" data-h="9월">55.3</td><td data-h="8월">53.7</td><td class="up" data-h="변화">+1.6</td><td class="w">확장 9개월째 · 속도 가속</td></tr>
+  <tr><td>생산</td><td class="a down" data-h="9월">56.7</td><td data-h="8월">58.3</td><td class="down" data-h="변화">-1.6</td><td class="w">확장 11개월째 · 속도 둔화</td></tr>
+  <tr><td>고용</td><td class="a up" data-h="9월">52.7</td><td data-h="8월">51.2</td><td class="up" data-h="변화">+1.5</td><td class="w">확장 3개월째 · 속도 가속</td></tr>
+  <tr><td>공급자배송</td><td class="a down" data-h="9월">59.0</td><td data-h="8월">59.3</td><td class="down" data-h="변화">-0.3</td><td class="w">지연 10개월째(역방향 지수) · 지연 속도는 소폭 완화</td></tr>
+  <tr><td>재고</td><td class="a down" data-h="9월">48.6</td><td data-h="8월">50.6</td><td class="down" data-h="변화">-2.0</td><td class="w"><b>위축 전환</b> — 3개월 확장 뒤 꺾였어요</td></tr>
+  <tr><td>고객 재고</td><td class="a" data-h="9월">41.6</td><td data-h="8월">42.8</td><td class="down" data-h="변화">-1.2</td><td class="w">'너무 낮음' 유지 · 더 낮아졌어요</td></tr>
+  <tr><td>가격</td><td class="a up" data-h="9월">77.9</td><td data-h="8월">71.1</td><td class="up" data-h="변화">+6.8</td><td class="w">상승 24개월째 · 이번 달 최대 상승폭</td></tr>
+  <tr><td>수주잔고</td><td class="a up" data-h="9월">56.4</td><td data-h="8월">51.8</td><td class="up" data-h="변화">+4.6</td><td class="w">확장 9개월째 · 상승폭 2위</td></tr>
+  <tr><td>신규 수출주문</td><td class="a down" data-h="9월">50.9</td><td data-h="8월">53.2</td><td class="down" data-h="변화">-2.3</td><td class="w">확장 유지 · 50선에 바짝 붙었어요</td></tr>
+  <tr><td>수입</td><td class="a down" data-h="9월">51.0</td><td data-h="8월">52.5</td><td class="down" data-h="변화">-1.5</td><td class="w">확장 유지 · 둔화</td></tr>
+</table></div>
+<div class="g-note">공급자배송은 유일하게 방향이 뒤집힌 지수예요. 50 위면 '배송이 느려짐'을 뜻하고, 수요가 좋아 공급망이 밀릴 때도 올라가요. 고객 재고는 낮을수록 향후 주문 여력이 크다는 뜻이라 보통 호재로 읽어요.</div>
+
+<div class="kpi">
+  <div class="k"><div class="l">가격 지수</div><div class="v"><span class="up">77.9</span></div><div class="d">+6.8p · 24개월 연속 원가 상승</div></div>
+  <div class="k"><div class="l">GDP 환산</div><div class="v">연 2.4%</div><div class="d">ISM이 PMI 54.5에 대응한다고 밝힌 실질 성장률</div></div>
+  <div class="k"><div class="l">성장 업종</div><div class="v">12 : 2</div><div class="d">위축은 인쇄·관련지원, 섬유제품 둘뿐</div></div>
+  <div class="k"><div class="l">부정 코멘트</div><div class="v"><span class="up">60%</span></div><div class="d">긍정 40% · 긍정:부정 1 대 1.6</div></div>
+</div>
+<p class="body-p">숫자 뒤의 이야기는 <b>'주문은 들어오는데 못 만든다'</b>로 요약돼요. 기계 업종 응답자는 <mark class="r">"주문이 또 두 배가 됐고, 공급망 리드타임과 가격 압력이 겹쳐 공장 수주잔고가 거의 두 배로 늘었다"</mark>고 했어요. 실제로 수주잔고가 4.6p 뛰고 생산이 1.6p 내려간 조합이 이 말과 맞아떨어져요. 컴퓨터·전자제품 업종에서는 <b>"미국 관세 체계가 부담이고 중국 밖 대체 공급처를 찾는 중, 부품·자재 부족이 계속 영향을 준다"</b>는 응답이 나왔어요.</p>
+<p class="body-p">부정 코멘트의 주제 분포도 함께 보면 좋아요. <b>가격 변동성 46% · 관세 34% · 이란 사태 30% · 리드타임 21%</b>로, 8월(가격 57%·리드타임 46%·이란 30%·관세 29%)과 비교하면 <mark>관세 언급이 늘고 리드타임 언급이 줄었어요</mark>. 공급망 자체의 병목은 조금 풀렸지만 비용 쪽 부담은 남아 있다는 뜻이에요.</p>
+
+<div class="sub-head">🏛️ 시장 반응과 연준 경로</div>
+<div class="sub-desc">이 지표보다 하루 뒤 나온 고용보고서가 판을 바꿨어요.</div>
+<div class="kpi">
+  <div class="k"><div class="l">미 국채 10년물 (10/1)</div><div class="v"><span class="down">5.248%</span></div><div class="d">-5bp · 장중에는 20여 년 만의 최고를 찍었어요</div></div>
+  <div class="k"><div class="l">미 국채 30년물 (10/1)</div><div class="v">5.66%</div><div class="d">장기 구간은 여전히 높은 수준</div></div>
+  <div class="k"><div class="l">S&amp;P 500 (10/1)</div><div class="v"><span class="up">+0.20%</span></div><div class="d">7,666 · 나스닥 +0.04%, 다우 +0.04%</div></div>
+  <div class="k"><div class="l">10월 FOMC 동결 확률</div><div class="v"><span class="down">84%</span></div><div class="d">10/2 고용보고서 발표 직후 기준</div></div>
+</div>
+<p class="body-p">8월 때와 달리 이번엔 PMI가 시장을 흔들지 못했어요. 10월 1일 미국 증시는 소폭 상승 마감했고, 금리는 내렸어요. 반도체(SOX)와 소프트웨어가 지수를 끌었는데, 이건 PMI보다 <b>전날 밤 마이크론 실적</b>의 영향이에요. 은행·리츠·주택건설은 장기금리 부담에 약했어요.</p>
+<p class="body-p">연준 경로를 실제로 바꾼 건 다음 날이에요. <mark>10월 2일 9월 고용보고서가 신규고용 +2.9만(예측 +8.4만)으로 크게 밑돌면서, 10월 인상 기대가 사실상 사라졌어요</mark>(동결 확률 84%). 다만 가격 지수 77.9가 보여주는 원가 압력은 12월 인상 논쟁에 그대로 남아요 — 골드만삭스자산운용은 "12월 추가 인상이 기본 시나리오"라고 밝혔어요.</p>
+<div class="callout"><div class="ct">한 줄 결론</div>제조업은 아홉 달째 확장이고 수요 선행지표는 되돌아왔어요. 하지만 <b>가격 지수 77.9</b>는 "성장은 괜찮은데 물가가 문제"라는 구도를 더 선명하게 만들었어요. 10월 14일 CPI가 다음 분기점이에요.</div>
+
+<div class="sub-head">💼 보유 종목 영향</div>
+<div class="sub-desc">제조업 온도보다 '부품 가격'과 '금리'가 더 중요한 통로예요.</div>
+
+<div class="stock-g">
+  <div class="sg-t">반도체·AI 인프라 <span class="tks">NVDA · MU · SK하이닉스 · CRWV</span> <span class="badge pos">우호적</span></div>
+  <p>컴퓨터·전자제품은 9월에도 성장 12개 업종에 들었고, 응답자들은 여전히 <mark>부품·자재 부족과 리드타임</mark>을 호소했어요. 수요가 강해서 생기는 병목이라 부품을 파는 쪽엔 유리한 구도예요. 같은 날 밤 <a href="../실적브리핑/실적브리핑_MU_FY2026Q4_2026.10.01.html">MU</a>가 FY27 Q1 매출 가이던스를 컨센서스보다 8.3% 높게 제시하면서 이 해석에 힘이 실렸고, 다음 날 SK하이닉스가 3.21% 올랐어요. <a href="../실적브리핑/실적브리핑_NVDA_FY2027Q2_2026.08.27.html">NVDA</a>는 리드타임이 공급 제약으로 작용할 수 있다는 점을 함께 봐야 해요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">금리민감 성장주 <span class="tks">PLTR · IONQ · SMR · CRWV</span> <span class="badge pos">조건부 우호</span></div>
+  <p>10월 1일에 금리가 내리고, 다음 날 고용 부진으로 10월 인상 기대가 사라진 조합은 이 그룹에 우호적이에요. 다만 가격 지수 77.9가 가리키는 원가 압력이 12월 인상 논거로 남아 있어서, 안도 랠리의 수명은 10월 14일 CPI에 달려 있어요. <a href="../실적브리핑/실적브리핑_CRWV_2026Q2_2026.08.12.html">CRWV</a>는 총차입금 규모 때문에 금리 레벨이 손익에 직접 붙는 구조라 민감도가 가장 큽니다.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">빅테크 <span class="tks">AAPL · MSFT · GOOGL</span> <span class="badge neu">영향 제한적</span></div>
+  <p>제조업 심리와의 연결고리는 약해요. 다만 <a href="../실적브리핑/실적브리핑_AAPL_FY2026Q3_2026.08.09.html">AAPL</a>은 메모리·전자부품 가격 상승이 원가로 들어오는 쪽이에요. 가격 지수가 다시 뛴 만큼 다음 분기 매출총이익률 방어가 관전 포인트예요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">배당·방어 <span class="tks">O · KO · ABBV</span> <span class="badge neu">중립</span></div>
+  <p>리츠는 10년물과 직접 비교되는 자산이라 10월 1일의 금리 하락(-5bp)은 <a href="../실적브리핑/실적브리핑_O_2026Q2_2026.08.08.html">O</a>에 숨통이에요. 다만 5.2%대 레벨 자체는 여전히 역풍이고, 실제로 당일 리츠 업종은 약했어요. <a href="../실적브리핑/실적브리핑_KO_2026Q2_2026.08.09.html">KO</a>가 속한 식음료·담배 업종은 9월에도 성장 업종에 들었고 경기 민감도가 낮아 영향은 작아요.</p>
+</div>
+
+<div class="sub-head">👀 다음 발표에선 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">가격 지수 77.9가 더 오르는지 — 80선에 닿는지<small>한 달에 6.8p는 큰 폭이에요. 두 달 연속 오르면 "관세·원자재 비용의 2차 전가"가 시작됐다는 해석이 굳어져요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">신규주문 55.3이 7월 고점 56.7을 넘는지<small>넘으면 7월이 정점이라는 가설이 깨져요. 다시 53선으로 내려가면 9월 반등은 일시적이었다는 뜻이에요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">수주잔고 56.4와 생산 56.7의 간격이 좁혀지는지<small>주문은 쌓이는데 못 만드는 상태가 풀리는지를 보는 지표예요. 생산이 올라오면 병목 완화, 수주잔고만 더 오르면 병목 심화예요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">재고 48.6 위축이 이어지는지<small>고객 재고도 41.6까지 낮아진 상태예요. 양쪽이 같이 비어 있으면 향후 주문 여력은 커지지만, 공급망 긴장도 함께 올라가요</small></div></div>
+</div>
+<div class="wp-preview">📌 다음 보고서에서는 위 4가지가 실제로 어떻게 됐는지 <b>하나씩 점검</b>해서 보여드릴게요.</div>
+
+<div class="next-box">🗓️ 다음 발표 — 2026년 11월 2일 (월) 23:00 <span class="est">추정 · 10월분 · 서머타임 해제 전</span></div>
+
+<div class="sub-head">📚 ISM 제조업 PMI란?</div>
+<div class="explain">
+  <h3>공장 구매담당자에게 "지난달보다 나아졌나요"를 묻는 설문이에요</h3>
+  <p>미국 공급관리협회(ISM)가 전국 제조업체의 구매·공급 책임자에게 매달 설문을 돌려 만드는 확산지수예요. 신규주문·생산·고용·공급자배송·재고 다섯 항목의 답변을 '좋아짐 / 같음 / 나빠짐'으로 받아 같은 비중으로 묶어요.</p>
+  <p>50이 기준선이에요. <b>50 위면 지난달보다 좋아졌다는 응답이 더 많다</b>는 뜻이고, 아래면 반대예요. 중요한 건 '수준'이 아니라 '방향'이라는 점이에요. 54.5는 절대 규모가 커졌다는 게 아니라, 좋아졌다고 답한 비중이 나빠졌다는 비중보다 많다는 의미예요.</p>
+  <p>제조업은 미국 GDP의 10%대지만, 경기 전환점을 가장 먼저 보여주기 때문에 시장이 크게 반응해요. ISM은 PMI 47.5 위면 경제 전체가 확장 중인 것으로 봐요. 발표는 매달 첫 영업일 미국 동부시간 10시(한국시간 23시, 서머타임 해제 기간엔 24시)예요.</p>
+</div>
+
+<!--rnav-->
+<!--rnav-->
+<div class="rnav"><a class="prev" href="경제지표_NFP_2026.09_2026.10.02.html"><span class="av"><img src="../logos/NFP.png" alt=""></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">고용보고서(NFP)</div><div class="rs"><span class="tx GOOD">둔화</span> · 2026년 9월</div></div></a><a class="next" href="../급등락/급등락_000660_2026.10.01.html"><span class="av mono">SK</span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">000660</div><div class="rs"><span class="tx UPM">+3.21%</span> · SK하이닉스 · 업종 동반 상승</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: 미국 공급관리협회(ISM) 2026년 9월 제조업 PMI 보도자료(PR Newswire 배포 전문), FXStreet, Investrade 시장 리뷰, Investing.com 국채금리 과거 데이터, CNBC·Yahoo Finance 보도 · macro-briefing 스킬이 자동 생성했습니다.
+</div>
+</div>
+</div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="경제지표/경제지표_ISM_MFG_2026.09_2026.10.01.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+</body>
+</html>
