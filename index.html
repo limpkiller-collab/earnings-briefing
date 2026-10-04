@@ -1023,6 +1023,8 @@ const WEEKLY_REPORTS_DB = [
 //   이 배열에는 공개해도 되는 것만 둔다: id(YYYY-MM_invest|asset) · kind · month("YYYY년 M월") · verdict/vlabel · created · file.
 //   한줄평(oneliner)은 여기 쓰지 말 것 — monthly/index.enc.json 에 암호화해 두면 잠금 해제된 기기에서만 채워진다.
 const MONTHLY_DB = [
+  { id: "2026-09_invest", kind: "invest", month: "2026년 9월", verdict: "MIX", vlabel: "혼조", created: "2026.10.04", file: "monthly.html?id=2026-09_invest" },
+  { id: "2026-09_asset",  kind: "asset",  month: "2026년 9월", verdict: "GOOD", vlabel: "좋음", created: "2026.10.04", file: "monthly.html?id=2026-09_asset" },
   { id: "2026-08_invest", kind: "invest", month: "2026년 8월", verdict: "MIX", vlabel: "혼조", created: "2026.09.06", file: "monthly.html?id=2026-08_invest" },
   { id: "2026-08_asset",  kind: "asset",  month: "2026년 8월", verdict: "GOOD", vlabel: "좋음", created: "2026.09.06", file: "monthly.html?id=2026-08_asset" }
 ];
