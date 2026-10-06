@@ -516,7 +516,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.10.04";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
+const LAST_UPDATED = "2026.10.07";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
 
 const REPORTS_DB = [
   {
@@ -649,6 +649,13 @@ const UPCOMING_DB = [
 // ----- 경제 지표 (macro-briefing 스킬이 갱신) -----
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
+  {
+    id: "ISM_SVC", name: "ISM 서비스업 PMI", period: "2026년 9월", category: "심리", tier: 2,
+    report_date: "2026-10-05", created: "2026.10.07", verdict: "NEUT", vlabel: "혼조",
+    surprise: { text: "예측 -0.3p", cls: "down" },
+    oneliner: "PMI 54.9로 소폭 둔화. 고용은 석 달 만에 50선을 되찾았지만 가격이 74.0으로 4년 최고예요.",
+    file: "경제지표/경제지표_ISM_SVC_2026.09_2026.10.05.html"
+  },
   {
     id: "NFP", name: "고용보고서(NFP)", period: "2026년 9월", category: "고용", tier: 3,
     report_date: "2026-10-02", created: "2026.10.02", verdict: "GOOD", vlabel: "둔화",
@@ -807,7 +814,6 @@ const MACRO_REPORTS_DB = [
 
 // 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
 const MACRO_UPCOMING_DB = [
-  { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "9월", date: "2026-10-05", estimated: true, utc: null, tier: 2, last_release: "2026-09-03" },
   { id: "FOMC_MIN", name: "FOMC 의사록", short: "의사록", period: "9월 회의", date: "2026-10-08", estimated: true, utc: null, tier: 2, last_release: "2026-08-20" },
   { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "9월", date: "2026-10-14", estimated: false, utc: "20261014T123000Z", tier: 3, last_release: "2026-09-11" },
   { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "9월", date: "2026-10-15", estimated: false, utc: "20261015T123000Z", tier: 2, last_release: "2026-09-10" },
@@ -817,6 +823,7 @@ const MACRO_UPCOMING_DB = [
   { id: "GDP_ADV", name: "GDP 속보치", short: "GDP속보", period: "3분기", date: "2026-10-29", estimated: false, utc: "20261029T123000Z", tier: 3, last_release: "2026-07-30" },
   { id: "PCE", name: "PCE 물가지수", short: "PCE", period: "9월", date: "2026-10-29", estimated: false, utc: "20261029T123000Z", tier: 3, last_release: "2026-09-30" },
   { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "10월", date: "2026-11-02", estimated: true, utc: null, tier: 2, last_release: "2026-10-01" },
+  { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "10월", date: "2026-11-04", estimated: true, utc: null, tier: 2, last_release: "2026-10-05" },
   { id: "JOLTS", name: "JOLTs 구인건수", short: "JOLTs", period: "9월", date: "2026-11-04", estimated: false, utc: "20261103T150000Z", tier: 2, last_release: "2026-09-29" },
   { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "10월", date: "2026-11-06", estimated: false, utc: "20261106T133000Z", tier: 3, last_release: "2026-10-02" },
   { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "3분기", date: "2026-11-25", estimated: false, utc: "20261125T133000Z", tier: 2, last_release: "2026-08-26" },
@@ -836,11 +843,11 @@ const WATCH_DB = [
     "1~9인 사업장 구인 -33.5만건이 되돌려지는지 — 이번 감소의 대부분이 여기서 나왔어요",
     "해고 164.1만건(2025년 3월 이후 최저)이 유지되는지 — 저해고가 깨지면 국면 전환이에요",
     "전문·비즈니스 서비스 구인 118.6만건이 더 줄어드는지 — 경기 전환기 선행 업종"]},
-  { key: "ISM_SVC", name: "ISM 서비스업 PMI 9월", date: "2026-10-05", type: "m", items: [
-    "고용지수 47.8이 50 위로 올라서는지 — 인력 감축 기업 비중이 19%→17.1%로 줄었어요",
-    "가격지수 72.6이 꺾이는지 — 여섯 달 중 다섯 번 70을 넘었어요",
-    "신규주문 60.9·사업활동 61.7이라는 다년 최고가 유지되는지",
-    "GPU·메모리가 계속 '공급 부족 품목'에 남아 있는지 — 반도체 가격 협상력과 직결"]},
+  { key: "ISM_SVC", name: "ISM 서비스업 PMI 10월", date: "2026-11-04", type: "m", items: [
+    "가격 지수 74.0이 75를 넘는지 — 넘으면 2022년 6월 이후 최고 구간이에요",
+    "고용 50.1이 두 달 연속 50 위를 지키는지 — 한 달짜리 반등인지 추세 전환인지",
+    "신규수출주문 46.9가 50선으로 되돌아오는지 — 한 달에 9.4p 낙폭은 이례적이에요",
+    "사업활동 56.5와 신규주문 59.8의 간격이 좁혀지는지 — 주문은 들어오는데 활동이 못 따라가요"]},
   { key: "ISM_MFG", name: "ISM 제조업 PMI 10월", date: "2026-11-02", type: "m", items: [
     "가격 지수 77.9가 더 오르는지 — 80선에 닿으면 관세·원자재 비용의 2차 전가 신호예요",
     "신규주문 55.3이 7월 고점 56.7을 넘는지 — 넘으면 '7월이 정점' 가설이 깨져요",
@@ -961,7 +968,7 @@ const VAL_DB = [
   { ticker: "CRWV", price: 88.57, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
   { ticker: "IONQ", price: 43.99, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
   { ticker: "SMR", price: 7.79, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
-  { ticker: "000660", price: 1833000, tgt: 3202944, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
+  { ticker: "000660", price: 1773000, tgt: 3141025, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1037,6 +1044,13 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
+  {
+    asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-10-06",
+    chg: -3.69, chg_label: "-3.69%", price_label: "1,773,000원", cause: "수급",
+    oneliner: "외국인이 전기·전자에서 1.5조원 순매도. 자사주 매입 종료 경계감에 반도체만 빠졌어요.",
+    spark: [1647000,1783000,1793000,1856000,1853000,1812000,1697000,1690000,1759000,1745000,1857000,1868000,1840000,1862000,1768000,1765000,1776000,1833000,1841000,1773000],
+    created: "2026.10.07", file: "급등락/급등락_000660_2026.10.06.html"
+  },
   {
     asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-10-01",
     chg: 3.21, chg_label: "+3.21%", price_label: "1,833,000원", cause: "업종 동반 상승",
