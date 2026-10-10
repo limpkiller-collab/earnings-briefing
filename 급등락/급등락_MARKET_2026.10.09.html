@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>급등락 분석 — AI 인프라 4종목 2026.10.09 -4.6~-7.8%</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 2카드 */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .num.down{color:var(--red)} .hcard .num.up{color:var(--green)}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--red)} .hcard .cmp .up{color:var(--green)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--blue-bg);color:var(--blue)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 표 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200);white-space:nowrap}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable td.tx{white-space:normal;text-align:left;font-weight:500;color:var(--g600);font-size:13px;line-height:1.55}
+.htable .up{color:var(--green)} .htable .down{color:var(--red)}
+.htable tr.new td{background:var(--blue-bg)}
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--red)} .kpi .k .v .up{color:var(--green)}
+/* 원인 4분면 (급등락 전용) — 주원인만 블루, 나머지 무채색 */
+.cause-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.cause{border-radius:14px;padding:15px 17px;background:var(--g50);border:1px solid var(--g100)}
+.cause.main{background:var(--blue-bg);border-color:var(--blue-bg)}
+.cause.none{opacity:.55}
+.cause .ch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+.cause .cn{font-size:14px;font-weight:800;color:var(--g900)}
+.cause .cb{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px;background:var(--g100);color:var(--g500);white-space:nowrap}
+.cause.main .cb{background:var(--blue);color:#fff}
+.cause p{font-size:13.5px;color:var(--g700);line-height:1.6}
+.cause .src{font-size:12px;color:var(--g400);font-weight:600;margin-top:6px}
+/* 콜아웃 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 파급 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--g50);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지난번 체크포인트 점검 (같은 자산 재발 시) */
+.wp-list{margin:12px 0}
+.wp{display:flex;gap:12px;padding:12px 4px;border-bottom:1px solid var(--g100)}
+.wp-badge{flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;background:var(--g100);color:var(--g500);height:fit-content;margin-top:2px}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp-q{font-size:14.5px;font-weight:700;color:var(--g900)} .wp-a{font-size:13.5px;color:var(--g600);margin-top:2px}
+/* 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .cause-grid{grid-template-columns:1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+/* 📎 후속 블록 (같은 자산이 3거래일 안에 다시 기준선을 넘었을 때) */
+.fu{background:var(--g50);border-radius:16px;padding:18px 20px;margin:0 0 28px}
+.fu .fh{font-size:14px;font-weight:800;color:var(--g700);margin-bottom:10px}
+.fu .fr{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-top:1px solid var(--g200);flex-wrap:wrap}
+.fu .fr:first-of-type{border-top:0}
+.fu .fa{font-size:14px;font-weight:800;flex:0 0 96px}
+.fu .fc{font-size:15px;font-weight:800;flex:0 0 72px;text-align:right}
+.fu .fc.up{color:var(--green)} .fu .fc.down{color:var(--red)}
+.fu .ft{font-size:13.5px;color:var(--g600);font-weight:600;flex:1 1 200px;line-height:1.6}
+.fu .fd{font-size:12px;color:var(--g400);font-weight:700}
+/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  body{background:var(--bg)}
+  .page,.gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
+  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
+  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
+  svg [stroke="#fff"]{stroke:#17171C}
+  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
+  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+/*<!--/dark-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">🚨</span> 급등락 분석</div>
+  <a href="../index.html">← 아카이브</a>
+</div>
+<div class="body">
+
+<div class="chips">
+  <span class="chip b">#MARKET</span><span class="chip">#AI 인프라 4종목</span><span class="chip">#SOX -3.4%</span><span class="chip">#OpenAI 매출 보도</span><span class="chip">#CRWV -7.77%</span>
+</div>
+<h1>네 종목이 같은 날 4~8% 빠졌어요<br>각자의 악재가 아니라 "AI를 무엇으로 회수하나"였어요</h1>
+<div class="meta">2026년 10월 8일(미국 현지) 장 마감 · 한국시간 10월 9일 새벽 · 출처 S&amp;P Global(종가·거래량, stockanalysis.com 경유) · Financial Times · Reuters · WSJ · CNBC · 24/7 Wall St. · 미 재무부 CMT</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">보유 4종목 동반 하락</div>
+    <div class="num down">-4.6 ~ -7.8%</div>
+    <div class="cmp">CRWV <b class="down">-7.77%</b> · MU <b class="down">-4.79%</b> · IONQ <b class="down">-4.57%</b> · SMR <b class="down">-4.56%</b></div>
+    <div class="core">같은 날 필라델피아 반도체지수(SOX)는 <b>-3.4%</b>, 나스닥은 <b>-1.25%</b> · 다우는 오히려 <b class="up">+0.1%</b>였어요</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">이날의 방아쇠</div>
+    <div class="num">OpenAI 매출</div>
+    <div class="cmp">파이낸셜타임스: 연환산 매출 약 <b>500억 달러</b> — 앞서 알려진 <b>680억 달러</b>보다 <b class="down">200억 달러</b> 적음</div>
+    <div class="core">⚠️ 네 종목 모두 <b>당일 회사 고유 악재는 확인되지 않았어요</b> — AI 투자 회수 의심이 업종을 눌렀어요</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p><b>네 종목에서 각자 터진 일은 없어요.</b> 공통 원인 하나예요 — 파이낸셜타임스가 <mark class="r">OpenAI의 연환산 매출이 약 500억 달러로, 한 달 전 알려진 680억 달러보다 200억 달러 적다</mark>고 보도했고, 'AI에 쏟는 돈을 무엇으로 회수하나'라는 질문이 다시 켜졌어요. CNBC에 따르면 앞서의 680억 달러에는 파트너사 총매출이 섞여 있었다는 설명이 나왔지만, 장중엔 통하지 않았어요.</p>
+  <p>중요한 건 <b>어디가 빠지고 어디가 안 빠졌냐</b>예요. 네비우스 -6%, 오라클 -5.5%, 브로드컴 -4.4%로 <b>빌려서 설비를 짓는 쪽</b>이 몰매를 맞았는데, 클라우드 소프트웨어 ETF(SKYY)는 <b>-0.9%</b>, QQQ는 <b>-1%</b>에 그쳤어요. <mark>클라우드 수요가 꺾인 게 아니라, 그 수요를 부채로 선투자한 재무구조가 다시 평가된 하루</mark>예요.</p>
+  <p>그래서 이날은 '금리 급등일'이 아니에요 — 오히려 10년물은 <b>5.22%(-6bp)</b>, 2년물은 <b>4.75%(-2bp)</b>로 내렸어요. 대신 중동 긴장과 미국 감산으로 <b>유가가 튀어</b> 물가·추가 인상 우려가 보태졌고, 돈은 기술주에서 빠져 채권과 경기방어로 옮겨갔어요. 다우가 홀로 오른 이유예요.</p>
+</div>
+
+<div class="sub-head">✅ 지난번엔 이걸 보자고 했죠</div>
+<div class="sub-desc">네 종목의 직전 급등락 보고서(CRWV·IONQ 9/25 · MU 9/23 · SMR 9/29)에 남겨둔 항목을 함께 점검했어요.</div>
+<div class="wp-list">
+  <div class="wp met"><span class="wp-badge">충족</span><div><div class="wp-q">CoreWeave — 9/17 저점 $79.88을 다시 시험하는지</div><div class="wp-a">시험했어요. 10월 8일 종가 <b>$81.58</b>로 저점 위 <b>2.13%</b>까지 내려왔어요. 10월 6일 <b>$91.72</b>(20거래일 최고 종가)에서 이틀 만에 <b>-11.06%</b>를 반납한 거예요. 다음 날(10/9)엔 $82.08로 소폭 반등하며 일단 저점을 지켰어요.</div></div></div>
+  <div class="wp miss"><span class="wp-badge">미충족</span><div><div class="wp-q">IonQ — $45.48 위에서 신고점을 이어가는지</div><div class="wp-a">이어가지 못했어요. 10월 7~8일 이틀간 <b>-4.50%·-4.57%</b>로 밀려 10월 9일 종가는 <b>$39.89</b>예요. 9/25 고점 $45.48 대비 <b>-12.3%</b>이고, 40달러 선도 장중에 내줬어요.</div></div></div>
+  <div class="wp met"><span class="wp-badge">충족</span><div><div class="wp-q">NuScale — 52주 최저 $7.21을 종가로 깨는지</div><div class="wp-a">깼어요. 10월 9일 종가가 <b>$7.20</b>이에요. 9/29 보고서에 적어둔 52주 최저 $7.21을 1센트 밑돌아, <b>2026년 저점 자체를 새로 쓴 자리</b>예요. 10월 6일 +4.43%로 반등했던 걸 7~8일에 -4.36%·-4.56%로 모두 되돌렸어요.</div></div></div>
+  <div class="wp miss"><span class="wp-badge">미충족</span><div><div class="wp-q">Micron — 20거래일 최고 종가 $1,096.16을 지키는지</div><div class="wp-a">지키지 못했어요. 10월 7일 D.A.데이비드슨의 목표가 상향(＄2,100→<b>$3,000</b>)에 <b>+4.06%</b>로 $1,088까지 올랐는데, 바로 다음 날 <b>-4.79%</b>로 <b>$1,035.84</b>까지 되밀렸어요. 직전 최고 종가 대비 <b>-5.5%</b>예요. <b>리레이팅과 의심이 이틀 사이에 붙은</b> 모양이에요.</div></div></div>
+  <div class="wp partial"><span class="wp-badge">부분 충족</span><div><div class="wp-q">미 10년물 5.24%가 더 오르는지 — SMR은 사실상 금리의 함수예요</div><div class="wp-a">장중으로는 10월 6일 <b>5.347%</b>까지 더 올랐지만, 마감 기준(미 재무부 CMT)으로는 10/5 5.31% → 10/6 5.27% → 10/7 5.28% → 10/8 <b>5.22%</b> → 10/9 5.24%로 <b>제자리</b>였어요. 그런데도 SMR이 52주 최저를 깼다는 건, 이번 하락은 금리만으로 설명되지 않는다는 뜻이에요.</div></div></div>
+</div>
+<div class="wp-score">5개 중 2개 충족 · 1개 부분 충족 · 2개 미충족</div>
+
+<div class="sub-head">📉 무슨 일이 있었나</div>
+<div class="sub-desc">가장 많이 빠진 CoreWeave의 20거래일 흐름이에요. 10월 6일 고점에서 이틀 만에 11% 반납했어요.</div>
+
+<div class="chart-card">
+  <div class="ct">CoreWeave 최근 20거래일 종가</div>
+  <div class="cs">9/14 ~ 10/9 · 빨간 점이 이번 급락일(10/8) · 10/6 $91.72가 20거래일 최고 종가였어요</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="638" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="264.0" class="ax">$77.75</text><line x1="14" y1="201.5" x2="638" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="205.5" class="ax">$81.77</text><line x1="14" y1="143.0" x2="638" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="147.0" class="ax">$85.80</text><line x1="14" y1="84.5" x2="638" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="88.5" class="ax">$89.83</text><line x1="14" y1="26.0" x2="638" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="30.0" class="ax">$93.85</text><polygon points="14.0,260 14.0,184.0 46.8,213.9 79.7,178.6 112.5,229.0 145.4,207.5 178.2,148.4 211.1,129.0 243.9,127.0 276.7,80.1 309.6,117.0 342.4,153.6 375.3,141.1 408.1,123.8 440.9,102.7 473.8,87.5 506.6,119.9 539.5,57.0 572.3,104.5 605.2,204.3 638.0,197.1 638.0,260" fill="#F2F4F6" opacity="0.85"/><polyline points="14.0,184.0 46.8,213.9 79.7,178.6 112.5,229.0 145.4,207.5 178.2,148.4 211.1,129.0 243.9,127.0 276.7,80.1 309.6,117.0 342.4,153.6 375.3,141.1 408.1,123.8 440.9,102.7 473.8,87.5 506.6,119.9 539.5,57.0 572.3,104.5 605.2,204.3 638.0,197.1" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="572.3" cy="104.5" r="4" fill="#fff" stroke="#8B95A1" stroke-width="2.5"/><text x="572.3" y="93.5" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">$88.45</text><line x1="605.2" y1="204.3" x2="605.2" y2="260" stroke="#F04452" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/><circle cx="605.2" cy="204.3" r="5.5" fill="#fff" stroke="#F04452" stroke-width="3"/><text x="597.2" y="226.3" text-anchor="end" class="cv" style="fill:#F04452">$81.58 (-7.77%)</text><text x="14.0" y="286" text-anchor="middle" class="cl">9.14</text><text x="112.5" y="286" text-anchor="middle" class="cl">9.17</text><text x="211.1" y="286" text-anchor="middle" class="cl">9.22</text><text x="309.6" y="286" text-anchor="middle" class="cl">9.25</text><text x="408.1" y="286" text-anchor="middle" class="cl">9.30</text><text x="506.6" y="286" text-anchor="middle" class="cl">10.5</text><text x="605.2" y="286" text-anchor="middle" class="cl">10.8</text><text x="638.0" y="286" text-anchor="middle" class="cl">10.9</text></svg>
+</div>
+<div class="kpi">
+  <div class="k"><div class="l">CRWV 20거래일 고점 대비</div><div class="v"><span class="down">-11.1%</span></div><div class="d">$91.72(10/6) 대비 · <b>이틀</b> 만이에요</div></div>
+  <div class="k"><div class="l">CRWV 거래량</div><div class="v">4,187만 주</div><div class="d">20일 평균(3,025만)의 <b>1.38배</b> · 파는 쪽이 몰렸어요</div></div>
+  <div class="k"><div class="l">SMR 종가</div><div class="v"><span class="down">$7.32</span></div><div class="d">다음 날 $7.20으로 <b>52주 최저 경신</b></div></div>
+  <div class="k"><div class="l">MU 종가</div><div class="v"><span class="down">$1,035.84</span></div><div class="d">거래량 2,891만 주 · 전날 상향분을 되돌렸어요</div></div>
+</div>
+<p class="body-p">거래량이 성격을 말해줘요. CoreWeave는 평균의 <b>1.38배</b>, NuScale은 <b>4,304만 주</b>, IonQ는 <b>2,274만 주</b>가 거래됐어요. 9월 17~18일 CoreWeave가 7,955만·6,637만 주로 터졌던 투매와 비교하면 아직 절반 수준이에요. <mark>즉 '팔 사람이 다 팔았다'기보다 <b>포지션 조정이 시작된 하루</b>에 가까워요.</mark> 그리고 다음 날 네 종목 중 셋이 반등(CRWV +0.61% · IONQ +1.12%)했지만 SMR은 -1.64%로 더 빠졌어요.</p>
+
+<div class="sub-head">🔍 왜 움직였나</div>
+<div class="sub-desc">네 가지 후보를 놓고 근거를 따져봤어요. 주원인 하나만 파란색으로 표시했어요.</div>
+
+<div class="cause-grid">
+  <div class="cause main">
+    <div class="ch"><span class="cn">경쟁·업종</span><span class="cb">주원인</span></div>
+    <p><b>AI 인프라 투자의 회수 가능성이 한꺼번에 재평가됐어요.</b> 파이낸셜타임스가 OpenAI의 연환산 매출을 약 <b>500억 달러</b>로 보도했는데, 이는 9월에 널리 인용된 <b>680억 달러</b>보다 <b>200억 달러</b> 적어요. OpenAI는 이 그룹의 최대 수요처라서, '고객의 매출'이 깎이면 '공급자의 수주잔고'가 먼저 의심받아요. 같은 날 네비우스 <b class="down">-6%</b>($221.84), 오라클 <b class="down">-5.5%</b>($136.46), 브로드컴 <b class="down">-4.4%</b>였고 SOX는 <b class="down">-3.4%</b>였어요. 비트코인 채굴 기업들도 AI 전환 기대가 흔들리며 함께 빠졌어요.</p>
+    <div class="src">근거 · Financial Times 10/8 · CNBC 10/8 라이브 · Reuters 10/8 · 24/7 Wall St. 10/8 — 네 종목 모두 <b>개별 공시·악재 없음</b>, 업종 전체가 같은 방향으로 움직였어요</div>
+  </div>
+  <div class="cause">
+    <div class="ch"><span class="cn">수급·밸류에이션</span><span class="cb">보조 원인</span></div>
+    <p>직전 이틀이 강했다는 게 낙폭을 키웠어요. 10월 6일 네비우스가 인퍼런스 계약으로 <b>+9%</b>, CRWV가 <b>+4.95%</b>, 오라클이 <b>+3%</b> 올랐고, SMR도 같은 날 <b>+4.43%</b>였어요(구글–컨스텔레이션에너지 <b>3,590MW</b> 전력계약에 컨스텔레이션이 +12.3% 급등한 날이에요). <b>이틀 만에 올라온 자리에서 팔 이유가 생긴</b> 거예요. 마이크론은 하루 전 D.A.데이비드슨의 목표가 <b>$3,000</b> 상향으로 +4.06% 올랐던 걸 그대로 반납했어요. CRWV 거래량은 평균의 1.38배였어요.</p>
+    <div class="src">근거 · stockanalysis.com 종가·거래량 · 24/7 Wall St. 10/6 · Reuters 10/6 · Seeking Alpha(D.A.데이비드슨 목표가) 10/7</div>
+  </div>
+  <div class="cause">
+    <div class="ch"><span class="cn">매크로·금리</span><span class="cb">보조 원인</span></div>
+    <p>⚠️ <b>'금리 급등' 설명은 이날엔 맞지 않아요.</b> 미 재무부 CMT 기준 10년물은 <b>5.22%(-6bp)</b>, 2년물은 <b>4.75%(-2bp)</b>로 오히려 내렸어요. 대신 작동한 건 <b>유가</b>예요 — 중동 긴장이 튀고 미국 감산 소식이 겹쳐 유가가 급등하면서 물가·추가 인상 우려가 되살아났어요. 10월 7일 공개된 <a href="../경제지표/경제지표_FOMC_MIN_2026.09회의_2026.10.08.html">9월 FOMC 의사록</a>은 '대부분 참석자가 연내 한 번 더'를 적었지만, 시장 반응은 거의 없었어요. 에너지주는 올랐고 다우는 <b class="up">+0.1%</b>였어요.</p>
+    <div class="src">근거 · 미 재무부 일별 CMT 10/8 · Reuters·WSJ 10/8 · 연준 의사록 원문(9/15~16 회의)</div>
+  </div>
+  <div class="cause none">
+    <div class="ch"><span class="cn">회사 뉴스</span><span class="cb">무관</span></div>
+    <p>네 종목 모두 <b>10월 8일자 개별 공시·악재가 확인되지 않았어요.</b> CoreWeave 관련 보도는 모두 OpenAI 매출 보도와 부채 구조를 다룬 것이고, 회사가 낸 자료는 없었어요. IonQ·NuScale·Micron도 당일 발표가 없어요. 오히려 <b>직전에 있던 뉴스는 전부 호재</b>였어요 — 마이크론 목표가 $3,000 상향(10/7), AMD의 2027년 공급 확대 발언과 마벨 2028년 매출 전망 상향(10/6). <b>뉴스가 아니라 가격이 움직인 하루</b>예요.</p>
+    <div class="src">근거 · 각 사 IR·주요 통신 10/8 확인 · 호재는 Reuters 10/6·Seeking Alpha 10/7</div>
+  </div>
+</div>
+
+<div class="chart-card">
+  <div class="ct">관련 자산 당일 등락 (미국 10/8)</div>
+  <div class="cs">파란 막대가 CoreWeave · 지수보다 'AI를 부채로 짓는 쪽'이 훨씬 많이 빠졌어요</div>
+  <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="580.5" y1="14" x2="580.5" y2="360" stroke="#D1D6DB" stroke-width="1.5"/><rect x="580.5" y="20" width="5.7" height="22" rx="4" fill="#BDEBD3"/><text x="74" y="36" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">다우</text><text x="592.2" y="36" text-anchor="start" class="cv" style="fill:#00B26B;font-size:12px">+0.1%</text><rect x="553.7" y="54" width="26.8" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="70" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">S&P500</text><text x="547.7" y="70" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-0.5%</text><rect x="509.3" y="88" width="71.2" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="104" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">나스닥</text><text x="503.3" y="104" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-1.2%</text><rect x="386.8" y="122" width="193.7" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="138" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">SOX 반도체</text><text x="380.8" y="138" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-3.4%</text><rect x="329.8" y="156" width="250.7" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="172" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">AVGO</text><text x="323.8" y="172" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-4.4%</text><rect x="320.7" y="190" width="259.8" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="206" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">SMR</text><text x="314.7" y="206" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-4.6%</text><rect x="320.1" y="224" width="260.4" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="240" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">IONQ</text><text x="314.1" y="240" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-4.6%</text><rect x="307.6" y="258" width="272.9" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="274" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">MU</text><text x="301.6" y="274" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-4.8%</text><rect x="267.1" y="292" width="313.4" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="308" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">ORCL</text><text x="261.1" y="308" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-5.5%</text><rect x="137.8" y="326" width="442.7" height="22" rx="4" fill="#3182F6"/><text x="74" y="342" text-anchor="end" class="cv" style="fill:#191F28;font-size:12.5px">CRWV</text><text x="131.8" y="342" text-anchor="end" class="cv" style="fill:#3182F6;font-size:12px">-7.8%</text></svg>
+</div>
+<div class="g-note">다우 51,231.64(+0.10%) · S&amp;P500 7,765.36(-0.47%) · 나스닥 27,193.34(-1.25%) · SOX -3.4%. 미 재무부 CMT 10/8 2년물 4.75%(-2bp)·10년물 5.22%(-6bp). 네비우스·오라클·브로드컴 등락률은 24/7 Wall St.·Reuters 보도 인용치(소수점 반영 범위 다름)이고, 보유 4종목은 stockanalysis.com(S&amp;P Global) 종가 기준이에요.</div>
+
+<div class="sub-head">📐 밸류에이션은 어떻게 바뀌었나</div>
+<div class="sub-desc">CRWV·IONQ·SMR은 적자라 P/E가 없어요. 목표가 괴리로 봤어요.</div>
+<div class="kpi">
+  <div class="k"><div class="l">CRWV 목표가 평균 대비</div><div class="v"><span class="up">+75.6%</span></div><div class="d">평균 $143.26 · 종가 $81.58 · 괴리가 더 벌어졌어요</div></div>
+  <div class="k"><div class="l">MU Forward P/E</div><div class="v">6.6배</div><div class="d">$1,035.84 ÷ FY27E EPS $156.53 · 목표가 $1,521까지 <b>+46.8%</b></div></div>
+  <div class="k"><div class="l">IONQ 목표가 평균 대비</div><div class="v"><span class="up">+71.6%</span></div><div class="d">평균 $67.68 · 종가 $39.45</div></div>
+  <div class="k"><div class="l">SMR 목표가 평균 대비</div><div class="v"><span class="up">+79.2%</span></div><div class="d">평균 $12.90 · 10/9 종가 $7.20(52주 최저)</div></div>
+</div>
+<p class="body-p">목표가가 현재가보다 70~80% 위에 있다는 건 위안이 되기 어려워요. <b>애널리스트들이 아직 목표가를 내리지 않았을 뿐</b>이라는 해석도 가능하고, CoreWeave는 실제로 로스차일드 레드번 매도 <b>$54</b>와 JP모건 Overweight <b>$125</b>가 공존하는 상태예요. 반대로 마이크론은 <mark>Forward P/E가 6.6배</mark>로, 같은 '반도체 하락'에 묶여 빠졌지만 이익이 실제로 나오는 회사라는 점이 달라요. 가치의 근거가 '지금 버는 돈'인지 '2030년대의 현금흐름'인지가 이번 하락의 낙폭 순서를 거의 그대로 설명해요.</p>
+
+<div class="sub-head">💼 보유 종목 파급</div>
+<div class="sub-desc">같은 원인으로 움직일 수 있는 나머지 종목들이에요.</div>
+<div class="stock-g">
+  <div class="sg-t">엔비디아 <span class="tks">NVDA</span> <span class="badge neg">비우호</span></div>
+  <p>10월 8일 <b class="down">-2.94%</b>($230.48)로 기준선(±3%) 바로 아래였어요. SOX -3.4%보다는 덜 빠졌지만, <b>AI 설비투자가 둔화되면 가장 큰 숫자가 걸려 있는 회사</b>예요. <a href="../실적브리핑/실적브리핑_NVDA_FY2027Q2_2026.08.27.html">FY27 Q2 실적</a>에서 제시한 수주잔고와 FY2028 매출 +70% 전망이 11월 26일(예상) 실적에서 재확인되는지가 이 의심의 결론을 가릅니다.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">SK하이닉스 <span class="tks">000660</span> <span class="badge neg">비우호</span></div>
+  <p>국내 증시는 10월 9일 한글날로 휴장이었어요. 그 전 10월 7~8일에 각각 <b class="down">-2.82%·-2.44%</b>로 이틀 연속 밀려 종가 <b>1,681,000원</b>이고, 10월 6일 <b>-3.69%</b>까지 합치면 <b>사흘간 -8.8%</b>예요. <a href="../급등락/급등락_000660_2026.10.06.html">10/6 보고서</a>에서 짚은 외국인 전기·전자 순매도와 자사주 매입 종료 경계가 아직 풀리지 않은 상태에서 미국 쪽 AI 의심이 더해졌어요. <a href="../실적브리핑/실적브리핑_000660_2026Q2_2026.08.09.html">3분기 실적은 10월 28일</a>이에요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">팔란티어 <span class="tks">PLTR</span> <span class="badge pos">우호</span></div>
+  <p>같은 날 <b class="up">+2.40%</b>로 <b>혼자 거꾸로</b> 갔어요. 골드만삭스가 당일 중립→매수로 올리며 목표가 $230을 제시했기 때문이에요. 다음 날엔 바클레이즈 Overweight $265가 붙어 <b class="up">+5.17%</b>로 사상 최고 종가($209.05)를 썼어요(<a href="../급등락/급등락_PLTR_2026.10.10.html">10/10 보고서</a>). <mark>'AI 인프라에 돈을 쓰는 쪽'이 빠지고 '그 위에서 소프트웨어를 파는 쪽'이 오른 날</mark>이에요.</p>
+</div>
+<div class="stock-g">
+  <div class="sg-t">빅테크·배당 <span class="tks">AAPL · MSFT · GOOGL · O · KO · ABBV</span> <span class="badge neu">중립~우호</span></div>
+  <p>영향이 거의 없었어요. <a href="../실적브리핑/실적브리핑_AAPL_FY2026Q3_2026.08.09.html">애플</a> +1.11%, <a href="../실적브리핑/실적브리핑_MSFT_FY2026Q4_2026.08.09.html">마이크로소프트</a> -1.35%, <a href="../실적브리핑/실적브리핑_GOOGL_2026Q2_2026.08.09.html">알파벳</a> -0.63%였고, 금리가 내린 덕에 <a href="../실적브리핑/실적브리핑_O_2026Q2_2026.08.08.html">리얼티인컴</a> +1.54%, <a href="../실적브리핑/실적브리핑_KO_2026Q2_2026.08.09.html">코카콜라</a> +2.27%, 애브비 +0.39%로 올랐어요. 자기 현금으로 투자하는 회사와 빌려서 투자하는 회사가 갈린 구도가 이 그룹에서 가장 분명했어요.</p>
+</div>
+
+<div class="sub-head">👀 이 다음엔 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">OpenAI 매출 수치가 정정·보강되는지<small>CNBC는 기존 680억 달러에 파트너 총매출이 섞였다는 설명을 전했어요 · OpenAI나 주요 고객사의 공식 수치·반박이 나오면 이 하락의 근거 자체가 바뀌어요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">CoreWeave가 9/17 저점 $79.88을 종가로 깨는지<small>10/8 $81.58로 2.13%만 남았고 10/9엔 $82.08로 버텼어요 · 깨면 9월 저점 구간 재진입이고, 지키면 이중바닥이에요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">NuScale이 $7.20 아래에서 더 내려가는지<small>52주 최저를 새로 쓴 자리예요 · 11월 6일(예상) 3분기 실적까지 확정된 고객 약정 발표가 없으면 반등 재료가 없어요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">SKYY·QQQ와 네오클라우드의 낙폭 차이가 좁혀지는지<small>10/8엔 CRWV -7.8% vs SKYY -0.9%로 8배 넘게 벌어졌어요 · 이 간격이 줄면 조달비용 우려가 식은 신호, 유지되면 구조적 디스카운트예요</small></div></div>
+</div>
+<div class="next-box">📅 다음 확인 자리 — <b>10월 14일 9월 CPI</b> · <b>10월 29일 FOMC</b> <span class="est">CRWV 3분기 실적 11/11(예상) · IONQ 11/5 · SMR 11/6 · MU 12/17</span></div>
+
+<div class="sub-head">📚 이런 움직임을 어떻게 봐야 하나</div>
+<div class="explain">
+  <h3>같은 테마 안에서도 '누구 돈으로 짓나'가 갈라요</h3>
+  <p>이번 하루는 AI 테마 전체가 무너진 게 아니에요. 클라우드 소프트웨어 ETF가 -0.9%인데 네오클라우드가 -6~8% 빠졌다는 건, 시장이 <b>AI 수요</b>와 <b>AI 설비를 조달하는 방식</b>을 따로 매긴다는 뜻이에요. 계약 매출은 몇 년에 걸쳐 들어오는데 이자는 지금 당장 나가는 구조라, 금리와 신용 스프레드가 조금만 움직여도 주가가 크게 흔들려요.</p>
+  <p>그래서 이 그룹을 볼 때는 뉴스보다 <b>조달 조건</b>을 먼저 보는 게 실용적이에요 — 신규 회사채·크레딧 스프레드, 계약 단가와 기여마진 공시, 그리고 고객 집중도예요. CoreWeave처럼 최대 고객 한 곳의 매출 보도만으로 8% 빠지는 건, 분산이 덜 됐다는 신호이기도 해요.</p>
+  <p>반대로 같은 날 묶여 빠진 마이크론은 성격이 달라요. Forward P/E 6.6배에 실제 이익이 나는 회사라, <b>업종 연좌제로 빠진 쪽</b>에 가깝습니다. 한 바구니에 담긴 종목들이 같은 이유로 움직일 때, <b>어떤 종목이 그 이유에 실제로 해당되는지</b>를 따져보는 게 이런 날의 유일한 실익이에요.</p>
+</div>
+
+<!--rnav-->
+<div class="rnav"><a class="prev" href="급등락_PLTR_2026.10.10.html"><span class="av"><img src="../logos/PLTR.png" alt=""></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">PLTR</div><div class="rs"><span class="tx UPM">+5.17%</span> · Palantir · 등급 상향</div></div></a><a class="next" href="../경제지표/경제지표_ISM_SVC_2026.09_2026.10.05.html"><span class="av"><img src="../logos/ISM_SVC.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">ISM 서비스업 PMI</div><div class="rs"><span class="tx NEUT">혼조</span> · 2026년 9월</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+  본 보고서는 정보 제공 목적이며 투자 권유가 아닙니다. 종가·거래량은 stockanalysis.com(S&amp;P Global) 기준이고, 국채금리는 미 재무부 일별 CMT 확정치입니다. 지수·비보유 종목 등락률과 OpenAI 매출 관련 내용은 Financial Times·Reuters·WSJ·CNBC·24/7 Wall St. 보도 인용치로, 출처 간 소수점 표기가 다를 수 있습니다. 목표주가·EPS는 대시보드 밸류에이션 데이터 기준이며 갱신 시점에 따라 차이가 있을 수 있습니다.
+</div>
+
+</div>
+</div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="급등락/급등락_MARKET_2026.10.09.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+</body>
+</html>
