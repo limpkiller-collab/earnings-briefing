@@ -1421,9 +1421,17 @@ try {
     localStorage.setItem(READ_INIT, LAST_UPDATED);
   }
 } catch(e) {}
-function saveRead(){ try { localStorage.setItem(READ_KEY, JSON.stringify([...READ])); } catch(e) {} }
+/* v2.18 (2026-10-11) 읽음 동기화 — 보고서 페이지(readmark)·다른 탭이 남긴 기록을 메모리의 예전 목록으로 덮어쓰지 않도록
+   저장 직전에 저장소와 합치고, 화면 복귀(뒤로가기 bfcache·앱 전환·다른 탭 변경) 때 다시 읽어 점·뱃지를 갱신한다 */
+function loadRead(){ try { JSON.parse(localStorage.getItem(READ_KEY) || '[]').forEach(k => READ.add(k)); } catch(e) {} }
+function saveRead(){ loadRead(); try { localStorage.setItem(READ_KEY, JSON.stringify([...READ])); } catch(e) {} }
 const isUnread = key => !READ.has(key);
-function markRead(key){ if (READ.has(key)) return; READ.add(key); saveRead(); renderBadges(); }
+function paintRead(){ document.querySelectorAll('a.row.unread[data-key]').forEach(a => { if (READ.has(a.dataset.key)) a.classList.remove('unread'); }); renderBadges(); }
+function markRead(key){ READ.add(key); saveRead(); paintRead(); }
+function syncRead(){ loadRead(); paintRead(); }
+window.addEventListener('pageshow', syncRead);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') syncRead(); });
+window.addEventListener('storage', e => { if (e.key === READ_KEY) syncRead(); });
 function markAllRead(){ ALL_ITEMS.forEach(it => READ.add(it.key)); saveRead(); renderBadges(); renderCards(); renderFeed(); }
 function unreadCount(type){ return ALL_ITEMS.filter(it => (type === 'thread' || it.type === type) && isUnread(it.key)).length; }
 function renderBadges(){
@@ -1798,6 +1806,7 @@ function renderCards(){
     const a = document.createElement('a');
     const key = itemKey(r);
     a.className = 'row' + (isUnread(key) ? ' unread' : '') + (r.file ? '' : ' nolink');
+    a.dataset.key = key;
     if (r.file) a.href = encodeURI(r.file);
     a.onclick = () => markRead(key);
     const rt = (cls, label, date) => `<div class="rt"><div class="v tx ${cls}">${label}</div><div class="d">${date}</div></div>`;
@@ -1880,6 +1889,7 @@ function renderFeed(){
     const r = it.raw;
     const a = document.createElement('a');
     a.className = 'row' + (isUnread(it.key) ? ' unread' : '') + (it.file ? '' : ' nolink');
+    a.dataset.key = it.key;
     if (it.file) a.href = encodeURI(it.file);
     a.onclick = () => markRead(it.key);
     const type = `<span class="ftype">${it.tlabel}</span>`;

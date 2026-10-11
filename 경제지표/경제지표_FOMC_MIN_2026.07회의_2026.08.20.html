@@ -269,6 +269,95 @@ b{font-weight:800}
   .htable:has(td.w) tr.new td{background:transparent}
 }
 /*<!--/mtab-css-->*/
+/*<!--rd-css-->*/
+body{word-break:keep-all;overflow-wrap:break-word}
+h1,.sec-head .l1,.sec-head .l2,.sub-head{text-wrap:balance}
+p,li,.tlx,.wp-a,.witem .tx{text-wrap:pretty}
+.body p,.body-p{line-height:1.85}
+.body>p,section>p,p.body-p{margin-bottom:22px}
+p.rd-s{margin-top:-6px}
+section{padding-top:56px}
+.sub-head{margin-top:40px}
+mark{padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* 가로 스크롤 카드 */
+.hs{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:10px!important;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:stretch;list-style:none;
+  margin-top:14px!important;margin-bottom:0!important;padding-top:2px;padding-bottom:4px;grid-template-columns:none!important;background:none!important;border-radius:0!important}
+.hs::-webkit-scrollbar{display:none}
+.hs>.hs-i{flex:0 0 var(--hs-w,min(calc(100vw - 76px),318px))!important;min-width:0;scroll-snap-align:start;margin:0!important;
+  background:var(--g50);border:1px solid var(--g100);border-radius:16px;padding:18px 18px 16px!important;
+  display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.7;color:var(--g700);white-space:normal}
+.hs>.hs-i::before{display:none!important}
+.hs.wide>.hs-i{--hs-w:min(calc(100vw - 64px),356px)}
+.hs-i .rd-h{display:block;font-size:15.5px;font-weight:800;line-height:1.45;color:var(--g900)}
+.hs-i .rd-x{display:block;font-size:14px;color:var(--g600);line-height:1.7}
+.hs-i .rd-no{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);font-size:12.5px;font-weight:800}
+/* 카드 종류별 보정 */
+.hs>.tli{flex-direction:column}
+.hs>.tli .tld{flex:none;text-align:left;display:flex;align-items:baseline;gap:6px}
+.hs>.tli .tlt{font-size:15.5px;line-height:1.45}
+.hs>.tli .tlx{font-size:14px;line-height:1.7}
+.hs>.wp{flex-direction:column}
+.hs>.wp .wp-badge{align-self:flex-start;margin:0}
+.hs>.wp .wp-q{font-size:15px;line-height:1.5}
+.hs>.wp .wp-a{font-size:14px;line-height:1.7;margin-top:4px}
+.hs>.witem{flex-direction:column;border-bottom:1px solid var(--g100)}
+.hs>.witem .tx{font-size:15px;font-weight:700;color:var(--g900)}
+.hs>.witem .tx small{font-size:13.5px;font-weight:500;color:var(--g500);line-height:1.65;margin-top:6px}
+.hs>.cause.main{background:var(--blue-bg);border-color:transparent}
+.hs>.cause p{font-size:14px;line-height:1.7}
+.hs>.wgrp{background:var(--surface,#fff);border:1px solid var(--g200)}
+.hs>.wgrp .wh{flex-wrap:wrap;line-height:1.45}
+.hs>.wgrp .wh .wd{margin-left:0;flex-basis:100%;font-weight:600;color:var(--g400)}
+.hs>.wgrp ul{gap:10px}
+.hs>.stock-g{background:var(--surface,#fff);border:1px solid var(--g200)}
+.wgrp.rd-flat{border:0;padding:0;margin:28px 0 8px;background:none}
+.wgrp.rd-flat>.wh{font-size:17px}
+/* 카운터·버튼 */
+.hs-nav{display:flex;align-items:center;gap:10px;margin:10px 0 18px;font-size:12.5px;font-weight:700;color:var(--g400)}
+.hs-nav .bar{flex:1;height:3px;border-radius:2px;background:var(--g100);overflow:hidden}
+.hs-nav .bar i{display:block;height:100%;background:var(--g400);border-radius:2px;transition:width .15s}
+.hs-nav .cnt{font-variant-numeric:tabular-nums;white-space:nowrap}
+.hs-nav .cnt b{color:var(--g900)}
+.hs-nav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--g200);background:var(--surface,#fff);color:var(--g600);
+  font-size:15px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+.hs-nav button:disabled{opacity:.35;cursor:default}
+.hs-nav .hint{white-space:nowrap}
+@media(hover:none){.hs-nav button{display:none}}
+@media(max-width:600px){section{padding-top:48px}.body>p,section>p,p.body-p{margin-bottom:20px}}
+/* ④ 긴 카드 접기·펼치기 */
+.hs>.hs-i.rd-clamp{max-height:var(--rd-clamp,300px);overflow:hidden;position:relative;padding-bottom:44px!important}
+.hs>.hs-i.rd-clamp.rd-open{max-height:none}
+.hs.rd-has-open{align-items:flex-start}
+.rd-more{position:absolute;left:0;right:0;bottom:0;height:64px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;
+  border:0;cursor:pointer;font:inherit;font-size:13px;font-weight:800;color:var(--blue);border-radius:0 0 16px 16px;
+  background:linear-gradient(to bottom,transparent,var(--rd-card,var(--g50)) 55%)}
+.hs-i.rd-open .rd-more{height:auto;padding:10px 0 12px;background:none}
+.hs>.wgrp,.hs>.stock-g{--rd-card:var(--surface,#fff)}
+.hs>.cause.main{--rd-card:var(--blue-bg)}
+/* ⑤ 목차 칩 + 읽기 진행 바 */
+.rd-toc{position:sticky;top:var(--rd-gnb,57px);z-index:9;background:var(--surface,#fff);border-bottom:1px solid var(--g100)}
+.rd-toc .rd-prog{position:absolute;left:0;top:0;height:2px;background:var(--blue);width:0;transition:width .1s linear}
+.rd-toc .rd-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:9px 28px}
+.rd-toc .rd-chips::-webkit-scrollbar{display:none}
+.rd-toc a{flex:0 0 auto;font-size:13px;font-weight:700;color:var(--g500);background:var(--g100);border-radius:20px;padding:6px 12px;text-decoration:none;white-space:nowrap;transition:.15s}
+.rd-toc a.on{background:var(--blue);color:#fff}
+.rd-anchor{scroll-margin-top:calc(var(--rd-gnb,57px) + 64px)}
+/* ⑥ 출처 접기 */
+.source-note.rd-src{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.rd-src-btn{border:0;background:var(--g100);color:var(--g500);font:inherit;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:8px;cursor:pointer}
+.source-note.rd-src .rd-src-body{display:none}
+.source-note.rd-src.rd-open .rd-src-body{display:block}
+/* ⑦ 모바일 KPI 2열 */
+@media(max-width:600px){
+  .rd-toc .rd-chips{padding:9px 20px}
+  .kpis{grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .kpis .kpi{padding:13px 14px}
+  .kpis .kpi .l{font-size:12px}
+  .kpis .kpi .v{font-size:20px}
+  .kpis .kpi .d{font-size:11.5px;line-height:1.45}
+}
+/*<!--/rd-css-->*/
 </style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">3.95</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">4.17</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">4.40</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">4.62</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">4.85</text><polyline points="14.0,135.2 104.0,132.6 194.0,96.2 284.0,88.4 374.0,52.0 464.0,83.2 554.0,65.0 644.0,62.4" fill="none" stroke="#F04452" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="644.0" cy="62.4" r="5" fill="#fff" stroke="#F04452" stroke-width="3"/><text x="634.0" y="49.4" text-anchor="end" class="cv" style="fill:#F04452">10Y 4.71%</text><polyline points="14.0,234.0 104.0,210.6 194.0,200.2 284.0,179.4 374.0,174.2 464.0,195.0 554.0,189.8 644.0,197.6" fill="none" stroke="#3182F6" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="644.0" cy="197.6" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/><text x="634.0" y="219.6" text-anchor="end" class="cv" style="fill:#3182F6">2Y 4.19%</text><line x1="284.0" y1="26" x2="284.0" y2="260" stroke="#8B95A1" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/><text x="284.0" y="18" text-anchor="middle" class="cl" style="fill:#4E5968">7월 FOMC</text><text x="14.0" y="286" text-anchor="middle" class="cl">6.16</text><text x="194.0" y="286" text-anchor="middle" class="cl">7.14</text><text x="374.0" y="286" text-anchor="middle" class="cl">7.31</text><text x="554.0" y="286" text-anchor="middle" class="cl">8.11</text><text x="644.0" y="286" text-anchor="middle" class="cl">8.18</text></svg>
   <div class="legend"><span><i style="background:#3182F6"></i>2년물</span><span><i style="background:#F04452"></i>10년물</span><span>점선 = 7월 FOMC</span></div>
 </div>
@@ -342,5 +431,170 @@ try{const k="경제지표/경제지표_FOMC_MIN_2026.07회의_2026.08.20.html";
 const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
 </script>
 <!--/readmark-->
+<!--rd-js-->
+<script>
+/* 가독성 레이어 v2.18 — 긴 문단 분리 + 나열형 블록 가로 스크롤 카드 */
+(function(){
+if(window.__rd)return;window.__rd=1;
+var Q=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+var kids=function(el){return Array.prototype.slice.call(el.children);};
+/* ① 긴 문단 분리 — 최상위 텍스트 노드의 문장 경계에서만 자른다(굵게·형광펜 안은 건드리지 않음) */
+function splitP(p){
+  if(p.closest('.hs,.cause,.hcard,.callout,.explain,.disclaimer,.kpi,.memo,.chart'))return;
+  if(p.textContent.length<200)return;
+  var groups=[[]],acc=0;
+  Array.prototype.slice.call(p.childNodes).forEach(function(n){
+    if(n.nodeType!==3){groups[groups.length-1].push(n);acc+=(n.textContent||'').length;return;}
+    var parts=n.textContent.replace(/([요다]\.)\s+(?=\S)/g,'$1\u0000').split('\u0000');
+    parts.forEach(function(t,i){
+      if(i>0&&acc>=120){groups.push([]);acc=0;}
+      else if(i>0){groups[groups.length-1].push(document.createTextNode(' '));}
+      groups[groups.length-1].push(document.createTextNode(t));acc+=t.length;
+    });
+  });
+  if(groups.length<2)return;
+  var last=groups[groups.length-1],len=last.reduce(function(a,n){return a+(n.textContent||'').length;},0);
+  if(len<40){groups.pop();var prev=groups[groups.length-1];prev.push(document.createTextNode(' '));last.forEach(function(n){prev.push(n);});}
+  if(groups.length<2)return;
+  groups.forEach(function(g,i){
+    var q=i===0?p:p.cloneNode(false);
+    if(i===0){while(p.firstChild)p.removeChild(p.firstChild);}else{q.classList.add('rd-s');}
+    g.forEach(function(n){q.appendChild(n);});
+    if(i>0){var ref=groups.__last||p;ref.parentNode.insertBefore(q,ref.nextSibling);groups.__last=q;}
+  });
+}
+Q('.body p, p.body-p').forEach(splitP);
+/* li "굵은 제목 — 설명" → 카드 제목/본문 */
+function liCard(li){
+  var f=li.firstChild;while(f&&f.nodeType===3&&!f.textContent.trim())f=f.nextSibling;
+  if(!f||f.nodeType!==1||f.tagName!=='B')return;
+  var nx=f.nextSibling;if(!nx||nx.nodeType!==3||!/^\s*[—–-]\s*/.test(nx.textContent))return;
+  nx.textContent=nx.textContent.replace(/^\s*[—–-]\s*/,'');
+  var h=document.createElement('span');h.className='rd-h';li.insertBefore(h,f);h.appendChild(f);
+  var x=document.createElement('span');x.className='rd-x';
+  while(h.nextSibling)x.appendChild(h.nextSibling);li.appendChild(x);
+}
+/* ③ 가로 스크롤 카드 */
+var all=[];
+function mk(box,items,wide){
+  if(items.length<2)return;
+  box.classList.add('hs');if(wide)box.classList.add('wide');
+  items.forEach(function(it){it.classList.add('hs-i');});
+  var nav=document.createElement('div');nav.className='hs-nav';
+  nav.innerHTML='<span class="cnt"><b>1</b> / '+items.length+'</span><span class="bar"><i></i></span><span class="hint">옆으로 넘겨보세요</span><button type="button" aria-label="이전">‹</button><button type="button" aria-label="다음">›</button>';
+  box.parentNode.insertBefore(nav,box.nextSibling);
+  var b=nav.querySelectorAll('button'),cnt=nav.querySelector('.cnt b'),bar=nav.querySelector('.bar i'),hint=nav.querySelector('.hint');
+  var step=function(){return items[0].getBoundingClientRect().width+10;};
+  function upd(){
+    var max=box.scrollWidth-box.clientWidth,i=Math.round(box.scrollLeft/step());
+    if(box.scrollLeft>=max-4)i=items.length-1;
+    var vis=Math.max(1,Math.floor((box.clientWidth+10)/step()));
+    cnt.textContent=Math.min(items.length,i+1);
+    bar.style.width=(max>0?Math.min(100,(box.scrollLeft+box.clientWidth)/box.scrollWidth*100):100)+'%';
+    b[0].disabled=box.scrollLeft<=4;b[1].disabled=box.scrollLeft>=max-4;
+    if(box.scrollLeft>8)hint.style.display='none';
+    nav.style.display=max>4?'':'none';
+  }
+  b[0].onclick=function(){box.scrollBy({left:-step(),behavior:'smooth'});};
+  b[1].onclick=function(){box.scrollBy({left:step(),behavior:'smooth'});};
+  box.addEventListener('scroll',upd,{passive:true});
+  all.push({box:box,upd:upd});
+}
+function wrapRun(run){ /* 연속 형제들을 div.hs로 묶는다 */
+  var w=document.createElement('div');run[0].parentNode.insertBefore(w,run[0]);
+  run.forEach(function(e){w.appendChild(e);});return w;
+}
+function runs(sel){ /* 같은 부모 아래 연속된 sel 형제 묶음 */
+  var out=[],seen=new Set();
+  Q(sel).forEach(function(e){
+    if(seen.has(e)||e.closest('.hs'))return;var r=[e];seen.add(e);var n=e.nextElementSibling;
+    while(n&&n.matches(sel)){r.push(n);seen.add(n);n=n.nextElementSibling;}
+    out.push(r);
+  });return out;
+}
+runs('.wgrp').forEach(function(r){
+  if(r.length>=2){mk(wrapRun(r),r,true);return;}
+  var g=r[0],ul=g.querySelector(':scope>ul');if(!ul)return;var li=kids(ul).filter(function(e){return e.tagName==='LI';});
+  if(li.length<5)return;g.classList.add('rd-flat');li.forEach(liCard);mk(ul,li);
+});
+Q('.tl').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('tli');});if(k.length>=3)mk(b,k,true);});
+Q('.cause-grid').forEach(function(b){var k=kids(b);if(k.length>=3)mk(b,k,true);});
+Q('.wp-list').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('wp');});if(k.length>=3)mk(b,k);});
+Q('.wlist').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('witem');});if(k.length>=3)mk(b,k);});
+runs('.stock-g').forEach(function(r){if(r.length>=2)mk(wrapRun(r),r,true);});
+Q('ul.dots').forEach(function(ul){
+  if(ul.closest('.hs'))return;var li=kids(ul);if(li.length<4)return;
+  var avg=li.reduce(function(a,e){return a+e.textContent.length;},0)/li.length;if(avg<50)return;
+  li.forEach(liCard);mk(ul,li);
+});
+/* 카드 줄을 화면 가장자리까지 넓힌다(본문 여백만큼 bleed) */
+function bleed(){
+  var pg=document.querySelector('.page')||document.body,pr=pg.getBoundingClientRect();
+  all.forEach(function(o){
+    var s=o.box.style;s.marginLeft=s.marginRight=s.paddingLeft=s.paddingRight='';
+    var r=o.box.getBoundingClientRect(),l=Math.max(0,Math.round(r.left-pr.left)),rr=Math.max(0,Math.round(pr.right-r.right));
+    s.setProperty('margin-left',-l+'px','important');s.setProperty('margin-right',-rr+'px','important');
+    s.setProperty('padding-left',l+'px','important');s.setProperty('padding-right',rr+'px','important');s.scrollPaddingLeft=l+'px';
+    o.upd();
+  });
+}
+/* ④ 긴 카드 접기 — 카드가 340px을 넘으면 300px까지만 보여주고 「더보기」 */
+function clamp(){
+  all.forEach(function(o){
+    o.box.style.alignItems='flex-start';  /* 늘어난 높이가 아니라 원래 높이로 판단 */
+    var cs=kids(o.box);var hs=cs.map(function(c){return c.scrollHeight;});
+    o.box.style.alignItems='';
+    cs.forEach(function(c,ix){
+      if(!c.classList.contains('hs-i')||c.querySelector(':scope>.rd-more'))return;
+      if(hs[ix]<=340)return;
+      c.classList.add('rd-clamp');
+      var b=document.createElement('button');b.type='button';b.className='rd-more';b.textContent='더보기 ⌄';
+      b.onclick=function(e){e.preventDefault();var op=c.classList.toggle('rd-open');b.textContent=op?'접기 ⌃':'더보기 ⌄';
+        o.box.classList.toggle('rd-has-open',!!o.box.querySelector('.rd-open'));o.upd();};
+      c.appendChild(b);
+    });
+  });
+}
+/* ⑥ 출처 접기 */
+Q('.source-note').forEach(function(s){
+  if(s.classList.contains('rd-src'))return;
+  var body=document.createElement('div');body.className='rd-src-body';
+  while(s.firstChild)body.appendChild(s.firstChild);
+  var b=document.createElement('button');b.type='button';b.className='rd-src-btn';b.textContent='출처 보기 ›';
+  b.onclick=function(){var op=s.classList.toggle('rd-open');b.textContent=op?'출처 접기 ‹':'출처 보기 ›';};
+  s.classList.add('rd-src');s.appendChild(b);s.appendChild(body);
+});
+/* ⑤ 목차 칩 + 읽기 진행 바 — .sec-head가 3개 이상이면 그것, 아니면 .sub-head(3~12개) */
+(function(){
+  var gnb=document.querySelector('.gnb');if(!gnb)return;
+  var hs=Q('.sec-head');var label=function(h){var l=h.querySelector('.l1');return (l||h).textContent;};
+  if(hs.length<3){hs=Q('.body .sub-head').filter(function(h){return !h.closest('.hs');});if(hs.length<3||hs.length>12)return;}
+  var toc=document.createElement('nav');toc.className='rd-toc';toc.setAttribute('aria-label','목차');
+  toc.innerHTML='<div class="rd-prog"></div><div class="rd-chips"></div>';
+  var chips=toc.querySelector('.rd-chips'),prog=toc.querySelector('.rd-prog'),links=[];
+  hs.forEach(function(h,i){
+    var t=label(h).replace(/^[^\p{L}\p{N}①-⑳]+/u,'').replace(/[,，\s]+$/,'').trim();
+    var tgt=h.closest('section')||h;if(!tgt.id)tgt.id='rd-s'+i;tgt.classList.add('rd-anchor');
+    var a=document.createElement('a');a.href='#'+tgt.id;a.textContent=t;chips.appendChild(a);links.push([a,tgt]);
+  });
+  gnb.parentNode.insertBefore(toc,gnb.nextSibling);
+  var setH=function(){document.documentElement.style.setProperty('--rd-gnb',gnb.offsetHeight+'px');};setH();addEventListener('resize',setH);
+  var cur=-1;
+  function onScroll(){
+    var de=document.documentElement,max=de.scrollHeight-innerHeight;
+    prog.style.width=(max>0?Math.min(100,scrollY/max*100):0)+'%';
+    var line=gnb.offsetHeight+toc.offsetHeight+24,k=-1;
+    links.forEach(function(p,i){if(p[1].getBoundingClientRect().top<=line)k=i;});
+    if(k!==cur){cur=k;links.forEach(function(p,i){p[0].classList.toggle('on',i===k);});
+      if(k>=0){var a=links[k][0];chips.scrollTo({left:a.offsetLeft-chips.clientWidth/2+a.offsetWidth/2,behavior:'smooth'});}}
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+function layout(){bleed();clamp();}
+layout();addEventListener('resize',bleed);addEventListener('load',layout);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout);
+})();
+</script>
+<!--/rd-js-->
 </body>
 </html>
