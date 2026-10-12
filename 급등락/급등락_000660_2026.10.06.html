@@ -137,6 +137,16 @@ b{font-weight:800}
 .next-box .est{font-size:12px;color:var(--g400);font-weight:600}
 .disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
   font-size:12.5px;color:var(--g400);line-height:1.7}
+/* 📎 후속 블록 (같은 자산이 3거래일 안에 다시 기준선을 넘었을 때) */
+.fu{background:var(--g50);border-radius:16px;padding:18px 20px;margin:0 0 28px}
+.fu .fh{font-size:14px;font-weight:800;color:var(--g700);margin-bottom:10px}
+.fu .fr{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-top:1px solid var(--g200);flex-wrap:wrap}
+.fu .fr:first-of-type{border-top:0}
+.fu .fa{font-size:14px;font-weight:800;flex:0 0 96px}
+.fu .fc{font-size:15px;font-weight:800;flex:0 0 72px;text-align:right}
+.fu .fc.up{color:var(--green)} .fu .fc.down{color:var(--red)}
+.fu .ft{font-size:13.5px;color:var(--g600);font-weight:600;flex:1 1 200px;line-height:1.6}
+.fu .fd{font-size:12px;color:var(--g400);font-weight:700}
 @media(max-width:600px){
   .body{padding:28px 20px 60px}
   h1{font-size:24px}
@@ -184,6 +194,21 @@ b{font-weight:800}
   <p>연휴(10/3~10/5) 뒤 첫 거래일이었어요. 그 사이 미국 반도체는 올랐는데 — <mark class="r">필라델피아 반도체지수가 휴장 기간 2.40% 올랐고 NVDA도 +2.12%였는데, 정작 SK하이닉스는 -3.69%로 빠졌어요.</mark> 업황 재료로는 설명이 안 되는 날이에요.</p>
   <p>원인은 수급 한 곳에 모여요. 외국인이 코스피에서 <b>1조 7,507억원</b>을 팔았고 그중 <b>1조 5,402억원</b>이 전기·전자 업종이었어요. 배경으로는 <b>삼성전자·SK하이닉스의 자사주 매입 종료 임박</b>이 지목됐어요. 두 회사 합산 약 55조원 규모의 매입이 올해 코스피를 떠받쳐 왔는데, 삼성전자는 10월 초, SK하이닉스는 10월 중순에 끝나요.</p>
   <p>지수는 코스피 -0.89%(6,941.39)인데 <b>코스닥은 +2.98%</b>(919.92)로 올랐어요. 시장 전체가 빠진 게 아니라 <mark>대형 반도체 두 종목에서만 돈이 빠진 날</mark>이에요. 삼성전자는 -1.45%였으니, 같은 재료에도 SK하이닉스가 2.5배 더 맞았어요.</p>
+</div>
+
+<div class="fu">
+  <div class="fh">📎 후속 — 이 보고서 이후 같은 자산이 다시 기준선을 넘었어요</div>
+  <div class="fr">
+    <span class="fa">SK하이닉스 <span class="fd">10/12</span></span>
+    <span class="fc down">-4.52%</span>
+    <span class="ft">1,605,000원(-76,000원) · <b>장중 저가에서 그대로 마감</b>했어요(시가 1,640,000원·고가 1,653,000원). 이 보고서 이후 10/7 -2.82%, 10/8 -2.44%에 이어 <b>4거래일 연속 하락</b>이고, 9월 21일 고점 1,868,000원 대비 <b>-14.1%</b>예요. 아래 관전포인트 3번(9월 28일 저점 1,768,000원)은 이미 10/7 종가 1,723,000원에서 깨졌고, 이번에 그 저점보다 <b>-9.2%</b> 더 내려갔어요. 거래량은 252만 주로 20일 평균(305만 주)의 <b>0.83배</b> — 투매라기보다 매수세가 비어 있던 하락이에요.</span>
+  </div>
+  <div class="fr">
+    <span class="ft" style="flex:1 1 100%">이번엔 <b>반도체만이 아니라 시장 전체가 빠진 날</b>이에요. 코스피 <b class="down">-3.65%</b>(6,384.24, 8월 11일 이후 처음 6,400선 아래)·코스닥 <b class="down">-4.83%</b>(849.19), 삼성전자 <b class="down">-4.39%</b>(250,500원)·SK스퀘어 -6.29%·삼성전기 -3.82%. <mark>외국인이 코스피에서 2조 186억원을 순매도했고, 그중 SK하이닉스만 1조원을 넘었어요</mark>(개인 +1조 4,674억·기관 -1,107억). 관전포인트 2번(외국인 1조원대 순매도가 이어지는지)은 <b>이어진 쪽</b>으로 판정돼요. 원인으로는 미국 AI 기업 매출 전망에 대한 의구심, 높은 미 장기금리, 중국 메모리 업체 점유율 확대 우려가 함께 거론됐어요 — 삼성전자 3분기 잠정실적(매출 195조·영업이익 107.4조원)과 10월 1~10일 반도체 수출 +170.1%라는 좋은 숫자에도 꺾이지 않았어요. 원/달러는 1,335.0원(-7.0원, 일부 보도 1,335.1원·-7.7원)으로 원화가 오히려 강해져, <b>환율보다 위험 회피 매도</b>가 주된 힘이었어요.</span>
+  </div>
+  <div class="fr">
+    <span class="ft" style="flex:1 1 100%;color:var(--g400);font-size:12.5px">같은 자산이 직전 보고서 발행 후 3거래일 안에 다시 기준선(±3%)을 넘으면 새 보고서를 만들지 않고 여기에 덧붙여요. 이 보고서(10/6 세션) 이후 SK하이닉스는 10/7 -2.82%, 10/8 -2.44%(10/9 한글날 휴장), 10/12 -4.52%로 <b>3거래일째에 기준선을 다시 넘었어요</b>. 방향(하락)과 성격(외국인 매도)이 이 보고서와 같아 후속으로 묶었어요. 3분기 실적은 <b>10월 28일(예상)</b>이에요. 출처: 10월 12일 마감 시황(뉴스핌·비즈니스코리아·코리아타임스)·stockanalysis.com(KRX:000660). ⚠️ 중국 CXMT 관련 재료는 일부 보도에서만 언급돼 원인으로 판정하지 않았어요.</span>
+  </div>
 </div>
 
 <div class="sub-head">✅ 지난번엔 이걸 보자고 했죠</div>
