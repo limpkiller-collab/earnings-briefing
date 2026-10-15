@@ -970,18 +970,18 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 229.28, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 953.19, tgt: 1521, eps_cur: 156.53, eps_next: null, note: "⚠ FY27E 상향 반영 전" },
+  { ticker: "NVDA", price: 221.30, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 914.13, tgt: 1521, eps_cur: 156.53, eps_next: null, note: "⚠ FY27E 상향 반영 전" },
   { ticker: "MSFT", price: 535.07, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
   { ticker: "GOOGL", price: 351.66, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
   { ticker: "AAPL", price: 336.64, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
-  { ticker: "PLTR", price: 209.05, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "PLTR", price: 200.97, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
   { ticker: "KO", price: 88.05, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
-  { ticker: "ABBV", price: 276.47, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
+  { ticker: "ABBV", price: 283.48, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
   { ticker: "O", price: 54.18, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
-  { ticker: "CRWV", price: 77.81, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 34.73, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
-  { ticker: "SMR", price: 6.49, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "CRWV", price: 65.78, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 31.42, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 5.83, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
   { ticker: "000660", price: 1443000, tgt: 3141025, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
 ];
 
@@ -1065,6 +1065,34 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
+  {
+    asset: "CRWV", name: "CoreWeave", kind: "stock", date: "2026-10-15",
+    chg: -15.46, chg_label: "-15.46%", price_label: "$65.78", cause: "신용 우려",
+    oneliner: "2032년 만기 회사채 수익률이 15%까지 뛰자 주가가 따라갔어요. 거래량 평균의 3.5배.",
+    spark: [79.88,81.36,85.43,86.76,86.90,90.13,87.59,85.07,85.93,87.12,88.57,89.62,87.39,91.72,88.45,81.58,82.08,80.26,77.81,65.78],
+    created: "2026.10.15", file: "급등락/급등락_CRWV_2026.10.15.html"
+  },
+  {
+    asset: "IONQ", name: "IonQ", kind: "stock", date: "2026-10-15",
+    chg: -9.53, chg_label: "-9.53%", price_label: "$31.42", cause: "유상증자",
+    oneliner: "20억 달러 증자에 7년 워런트 1억 주가 덤. 이틀 전 인수에 이은 두 번째 희석이에요.",
+    spark: [40.34,39.13,40.51,40.74,42.54,44.98,45.48,44.58,43.91,43.86,43.99,43.77,42.97,43.29,41.34,39.45,39.89,36.27,34.73,31.42],
+    created: "2026.10.15", file: "급등락/급등락_IONQ_2026.10.15.html"
+  },
+  {
+    asset: "MARKET", name: "CPI 쇼크 4종목", kind: "market", date: "2026-10-15",
+    chg: -10.17, chg_label: "SMR -10.17%", price_label: "SOX -4.3%", cause: "CPI 쇼크",
+    oneliner: "9월 CPI 3.7%에 10월 인상 우려. SMR -10.17%·MU -4.08%·PLTR -3.69%·NVDA -3.16%.",
+    spark: [9.04,8.27,8.79,8.89,8.68,8.47,8.42,7.91,7.76,7.90,7.79,7.75,7.68,8.02,7.67,7.32,7.20,6.70,6.49,5.83],
+    created: "2026.10.15", file: "급등락/급등락_MARKET_2026.10.15.html"
+  },
+  {
+    asset: "ABBV", name: "AbbVie", kind: "stock", date: "2026-10-15",
+    chg: 3.32, chg_label: "+3.32%", price_label: "$283.48", cause: "방어주 순환",
+    oneliner: "회사 뉴스 없이 헬스케어(+2.44%)로 돈이 옮겨온 날. 20거래일 최고 종가예요.",
+    spark: [264.02,263.96,264.48,265.21,265.08,265.12,264.34,266.28,263.29,261.59,259.93,262.82,265.76,266.69,271.36,272.42,276.47,281.12,274.36,283.48],
+    created: "2026.10.15", file: null
+  },
   {
     asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-10-13",
     chg: -10.09, chg_label: "-10.09%", price_label: "1,443,000원", cause: "중국 추격",
