@@ -984,19 +984,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 217.23, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 931.24, tgt: 1521, eps_cur: 156.53, eps_next: null, note: "⚠ FY27E 상향 반영 전" },
-  { ticker: "MSFT", price: 539.44, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
-  { ticker: "GOOGL", price: 349.22, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
-  { ticker: "AAPL", price: 342.00, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
-  { ticker: "PLTR", price: 200.50, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
-  { ticker: "KO", price: 92.00, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
-  { ticker: "ABBV", price: 283.40, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
-  { ticker: "O", price: 55.55, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
-  { ticker: "CRWV", price: 69.69, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 34.35, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
-  { ticker: "SMR", price: 6.15, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
-  { ticker: "000660", price: 1262000, tgt: 3141025, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 214.13, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 878.84, tgt: 1521, eps_cur: 156.53, eps_next: null, note: "⚠ FY27E 상향 반영 전" },
+  { ticker: "MSFT", price: 529.05, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
+  { ticker: "GOOGL", price: 340.59, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
+  { ticker: "AAPL", price: 343.46, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
+  { ticker: "PLTR", price: 186.03, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "KO", price: 93.90, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
+  { ticker: "ABBV", price: 285.42, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
+  { ticker: "O", price: 56.08, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
+  { ticker: "CRWV", price: 61.39, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 31.28, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 5.83, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "000660", price: 1272000, tgt: 3141025, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1080,6 +1080,13 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
   {
+    asset: "MARKET", name: "AI 신용 5종목", kind: "market", date: "2026-10-17",
+    chg: -11.91, chg_label: "CRWV -11.91%", price_label: "SOX -3.83%", cause: "AI 신용 우려",
+    oneliner: "금리는 내렸는데 헤지펀드 AI 디레버리징에 5종목이 5~12% 빠졌어요.",
+    spark: [85.43,86.76,86.90,90.13,87.59,85.07,85.93,87.12,88.57,89.62,87.39,91.72,88.45,81.58,82.08,80.26,77.81,65.78,69.69,61.39],
+    created: "2026.10.17", file: "급등락/급등락_MARKET_2026.10.17.html"
+  },
+  {
     asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-10-15",
     chg: -11.06, chg_label: "-11.06%", price_label: "1,262,000원", cause: "금리 쇼크",
     oneliner: "미 9월 CPI 3.7% 충격이 하루 늦게 왔어요. 코스피 -7.57%·서킷브레이커 발동.",
@@ -1089,21 +1096,21 @@ const MOVERS_DB = [
   {
     asset: "CRWV", name: "CoreWeave", kind: "stock", date: "2026-10-15",
     chg: -15.46, chg_label: "-15.46%", price_label: "$65.78", cause: "신용 우려",
-    oneliner: "회사채 수익률 15%에 주가가 따라갔어요. 📎 10/16 +5.94%로 되돌림(채권은 여전히 16%).",
+    oneliner: "회사채 수익률 15%에 주가가 따라갔어요. 📎 10/17 -11.91%, 주간 -25%로 악화.",
     spark: [79.88,81.36,85.43,86.76,86.90,90.13,87.59,85.07,85.93,87.12,88.57,89.62,87.39,91.72,88.45,81.58,82.08,80.26,77.81,65.78],
     created: "2026.10.15", file: "급등락/급등락_CRWV_2026.10.15.html"
   },
   {
     asset: "IONQ", name: "IonQ", kind: "stock", date: "2026-10-15",
     chg: -9.53, chg_label: "-9.53%", price_label: "$31.42", cause: "유상증자",
-    oneliner: "20억 달러 증자에 워런트 1억 주가 덤. 📎 10/16 +9.33%로 금리 반전에 되돌림.",
+    oneliner: "20억 달러 증자에 워런트 1억 주가 덤. 📎 10/17 -8.94%로 반등분 전부 반납.",
     spark: [40.34,39.13,40.51,40.74,42.54,44.98,45.48,44.58,43.91,43.86,43.99,43.77,42.97,43.29,41.34,39.45,39.89,36.27,34.73,31.42],
     created: "2026.10.15", file: "급등락/급등락_IONQ_2026.10.15.html"
   },
   {
     asset: "MARKET", name: "CPI 쇼크 4종목", kind: "market", date: "2026-10-15",
     chg: -10.17, chg_label: "SMR -10.17%", price_label: "SOX -4.3%", cause: "CPI 쇼크",
-    oneliner: "9월 CPI 3.7% 쇼크로 4종목 동반 하락. 📎 10/16 금리 -9bp에 SMR·IONQ·CRWV 반등.",
+    oneliner: "9월 CPI 3.7% 쇼크로 4종목 동반 하락. 📎 10/17 재급락 — 이번엔 금리 아닌 수급.",
     spark: [9.04,8.27,8.79,8.89,8.68,8.47,8.42,7.91,7.76,7.90,7.79,7.75,7.68,8.02,7.67,7.32,7.20,6.70,6.49,5.83],
     created: "2026.10.15", file: "급등락/급등락_MARKET_2026.10.15.html"
   },
