@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>경제 지표 — FOMC 금리결정 2026년 9월 회의</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<!--theme--><script>try{var t=localStorage.getItem('mb-theme');if(t=='light'||t=='dark')document.documentElement.dataset.theme=t}catch(e){}</script><!--/theme-->
 <style>
 :root{
   --blue:#3182F6; --blue-bg:#E8F3FF;
@@ -162,20 +163,45 @@ b{font-weight:800}
 /*<!--dark-css-->*/
 :root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
 @media (prefers-color-scheme: dark){
-  :root{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+  :root:not([data-theme="light"]){--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
     --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
     --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
-  body{background:var(--bg)}
-  .page,.gnb{background:var(--surface)}
+  :where(:root:not([data-theme="light"])) body{background:var(--bg)}
+  :where(:root:not([data-theme="light"])) .page,:where(:root:not([data-theme="light"])) .gnb{background:var(--surface)}
   /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
-  svg .cl,svg .ax{fill:#8B95A1} svg .cv{fill:#D5DAE0}
-  svg [stroke="#EDEFF2"]{stroke:#2A2F36} svg [stroke="#D1D6DB"]{stroke:#3A414B}
-  svg [stroke="#4E5968"]{stroke:#B0B8C1} svg [fill="#F2F4F6"]{fill:#1F2329}
-  svg [fill="#E5E8EB"]{fill:#333A44} svg [fill="#fff"]{fill:#17171C}
-  svg [stroke="#fff"]{stroke:#17171C}
-  svg [fill="#333D4B"],svg [fill="#191F28"],svg [fill="#4E5968"]{fill:#D5DAE0}
-  svg [stroke="#191F28"],svg [stroke="#333D4B"]{stroke:#B0B8C1}
+  :where(:root:not([data-theme="light"])) svg .cl,:where(:root:not([data-theme="light"])) svg .ax{fill:#8B95A1}
+  :where(:root:not([data-theme="light"])) svg .cv{fill:#D5DAE0}
+  :where(:root:not([data-theme="light"])) svg [stroke="#EDEFF2"]{stroke:#2A2F36}
+  :where(:root:not([data-theme="light"])) svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  :where(:root:not([data-theme="light"])) svg [stroke="#4E5968"]{stroke:#B0B8C1}
+  :where(:root:not([data-theme="light"])) svg [fill="#F2F4F6"]{fill:#1F2329}
+  :where(:root:not([data-theme="light"])) svg [fill="#E5E8EB"]{fill:#333A44}
+  :where(:root:not([data-theme="light"])) svg [fill="#fff"]{fill:#17171C}
+  :where(:root:not([data-theme="light"])) svg [stroke="#fff"]{stroke:#17171C}
+  :where(:root:not([data-theme="light"])) svg [fill="#333D4B"],:where(:root:not([data-theme="light"])) svg [fill="#191F28"],:where(:root:not([data-theme="light"])) svg [fill="#4E5968"]{fill:#D5DAE0}
+  :where(:root:not([data-theme="light"])) svg [stroke="#191F28"],:where(:root:not([data-theme="light"])) svg [stroke="#333D4B"]{stroke:#B0B8C1}
 }
+:root[data-theme="dark"]{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  :where(:root[data-theme="dark"]) body{background:var(--bg)}
+  :where(:root[data-theme="dark"]) .page,:where(:root[data-theme="dark"]) .gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  :where(:root[data-theme="dark"]) svg .cl,:where(:root[data-theme="dark"]) svg .ax{fill:#8B95A1}
+  :where(:root[data-theme="dark"]) svg .cv{fill:#D5DAE0}
+  :where(:root[data-theme="dark"]) svg [stroke="#EDEFF2"]{stroke:#2A2F36}
+  :where(:root[data-theme="dark"]) svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  :where(:root[data-theme="dark"]) svg [stroke="#4E5968"]{stroke:#B0B8C1}
+  :where(:root[data-theme="dark"]) svg [fill="#F2F4F6"]{fill:#1F2329}
+  :where(:root[data-theme="dark"]) svg [fill="#E5E8EB"]{fill:#333A44}
+  :where(:root[data-theme="dark"]) svg [fill="#fff"]{fill:#17171C}
+  :where(:root[data-theme="dark"]) svg [stroke="#fff"]{stroke:#17171C}
+  :where(:root[data-theme="dark"]) svg [fill="#333D4B"],:where(:root[data-theme="dark"]) svg [fill="#191F28"],:where(:root[data-theme="dark"]) svg [fill="#4E5968"]{fill:#D5DAE0}
+  :where(:root[data-theme="dark"]) svg [stroke="#191F28"],:where(:root[data-theme="dark"]) svg [stroke="#333D4B"]{stroke:#B0B8C1}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+/*theme-scoped*/
+
 /*<!--/dark-css-->*/
 /*<!--mtab-css-->*/
 @media(max-width:600px){
