@@ -516,7 +516,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.10.17";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
+const LAST_UPDATED = "2026.10.18";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
 
 const REPORTS_DB = [
   {
@@ -631,14 +631,14 @@ const REPORTS_DB = [
 //                 화면은 항상 KST로 보여주고, 캘린더 일정은 이 값으로 만들어 해외에서도 현지시간 자동 변환된다.
 //   last_report : 직전 실제 발표일 (state.json의 last_report_date) — KPI '이번 분기 발표 n/13' 계산에 쓴다
 const UPCOMING_DB = [
-  { ticker: "KO", name: "Coca-Cola", date: "2026-10-21", estimated: true, when: null, utc: null, last_report: "2026-07-28" },
-  { ticker: "000660", name: "SK하이닉스", short: "하이닉스", date: "2026-10-28", estimated: true, when: null, utc: null, last_report: "2026-07-29" },
-  { ticker: "MSFT", name: "Microsoft", date: "2026-10-29", estimated: true, when: null, utc: null, last_report: "2026-07-31" },
-  { ticker: "GOOGL", name: "Alphabet", date: "2026-10-29", estimated: true, when: null, utc: null, last_report: "2026-07-24" },
-  { ticker: "AAPL", name: "Apple", date: "2026-10-30", estimated: true, when: null, utc: null, last_report: "2026-08-01" },
-  { ticker: "ABBV", name: "AbbVie", date: "2026-10-31", estimated: true, when: null, utc: null, last_report: "2026-07-31" },
+  { ticker: "KO", name: "Coca-Cola", date: "2026-10-27", estimated: false, when: "bmo", utc: "20261027T123000Z", last_report: "2026-07-28" },
+  { ticker: "000660", name: "SK하이닉스", short: "하이닉스", date: "2026-10-28", estimated: false, when: null, utc: null, last_report: "2026-07-29" },
+  { ticker: "MSFT", name: "Microsoft", date: "2026-10-29", estimated: false, when: "amc", utc: "20261028T213000Z", last_report: "2026-07-31" },
+  { ticker: "GOOGL", name: "Alphabet", date: "2026-10-29", estimated: false, when: "amc", utc: "20261028T203000Z", last_report: "2026-07-24" },
+  { ticker: "ABBV", name: "AbbVie", date: "2026-10-30", estimated: false, when: "bmo", utc: "20261030T130000Z", last_report: "2026-07-31" },
+  { ticker: "AAPL", name: "Apple", date: "2026-11-03", estimated: false, when: "amc", utc: "20261102T220000Z", last_report: "2026-08-01" },
+  { ticker: "O", name: "Realty Income", date: "2026-11-03", estimated: false, when: "amc", utc: "20261102T220000Z", last_report: "2026-08-07" },
   { ticker: "PLTR", name: "Palantir", date: "2026-11-04", estimated: true, when: null, utc: null, last_report: "2026-08-05" },
-  { ticker: "O", name: "Realty Income", date: "2026-11-04", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
   { ticker: "IONQ", name: "IonQ", date: "2026-11-05", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
   { ticker: "SMR", name: "NuScale Power", date: "2026-11-06", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
   { ticker: "CRWV", name: "CoreWeave", date: "2026-11-11", estimated: true, when: null, utc: null, last_report: "2026-08-12" },
