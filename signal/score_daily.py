@@ -142,16 +142,16 @@ def main():
         hy_peak = max(x for x in HY[max(0, i - 59):i + 1] if x is not None) if HY[i] is not None else None
         ret20 = px[i] / px[i - 20] - 1 if i >= 20 else None
         sig = [
-            dict(key="hy", label="하이일드 스프레드", cond="≥ 400bp", w=3, value=HY[i] * 100 if HY[i] is not None else None, unit="bp",
+            dict(key="hy", label="하이일드 스프레드", cond="400bp 이상", w=3, value=HY[i] * 100 if HY[i] is not None else None, unit="bp",
                  on=HY[i] is not None and HY[i] >= 4.0, gap=(400 - HY[i] * 100) if HY[i] is not None else None),
-            dict(key="hy_turn", label="HY 스프레드 반전", cond="60일 고점(≥400bp) 대비 -50bp", w=3,
+            dict(key="hy_turn", label="하이일드 스프레드 반전", cond="60일 고점에서 50bp 축소", w=3,
                  value=(hy_peak - HY[i]) * 100 if HY[i] is not None else None, unit="bp 축소",
                  on=HY[i] is not None and hy_peak >= 4.0 and HY[i] <= hy_peak - 0.5, gap=None, confirm=True),
-            dict(key="dd", label="고점 대비 하락", cond="≤ -8%", w=2, value=DD[i] * 100, unit="%", on=DD[i] <= -0.08, gap=(DD[i] * 100 + 8)),
-            dict(key="drsi", label="일봉 RSI(14)", cond="≤ 35", w=2, value=DRSI[i], unit="", on=DRSI[i] is not None and DRSI[i] <= 35, gap=(DRSI[i] - 35) if DRSI[i] else None),
-            dict(key="fg", label="공포·탐욕 지수", cond="≤ 15", w=2, value=FG[i], unit="", on=FG[i] is not None and FG[i] <= 15, gap=(FG[i] - 15) if FG[i] is not None else None),
-            dict(key="wrsi", label="주봉 RSI(14)", cond="≤ 40", w=1, value=WRSI[i], unit="", on=WRSI[i] is not None and WRSI[i] <= 40, gap=(WRSI[i] - 40) if WRSI[i] else None),
-            dict(key="ret20", label="20일 수익률", cond="≤ -10%", w=1, value=ret20 * 100 if ret20 is not None else None, unit="%", on=ret20 is not None and ret20 <= -0.10, gap=(ret20 * 100 + 10) if ret20 is not None else None),
+            dict(key="dd", label="고점 대비 하락", cond="-8% 이하", w=2, value=DD[i] * 100, unit="%", on=DD[i] <= -0.08, gap=(DD[i] * 100 + 8)),
+            dict(key="drsi", label="일봉 RSI(14)", cond="35 이하", w=2, value=DRSI[i], unit="", on=DRSI[i] is not None and DRSI[i] <= 35, gap=(DRSI[i] - 35) if DRSI[i] else None),
+            dict(key="fg", label="공포·탐욕 지수", cond="15 이하", w=2, value=FG[i], unit="", on=FG[i] is not None and FG[i] <= 15, gap=(FG[i] - 15) if FG[i] is not None else None),
+            dict(key="wrsi", label="주봉 RSI(14)", cond="40 이하", w=1, value=WRSI[i], unit="", on=WRSI[i] is not None and WRSI[i] <= 40, gap=(WRSI[i] - 40) if WRSI[i] else None),
+            dict(key="ret20", label="20일 수익률", cond="-10% 이하", w=1, value=ret20 * 100 if ret20 is not None else None, unit="%", on=ret20 is not None and ret20 <= -0.10, gap=(ret20 * 100 + 10) if ret20 is not None else None),
         ]
         # VIX 30 복귀(확인 신호, 점수 0 — 3차 매수 트리거용)
         vix_cross = False
@@ -166,10 +166,13 @@ def main():
     sig, score, vix_cross = eval_day(i)
     tier = 0 if score < T1 else 1 if score < T2 else 2
     confirm = vix_cross or any(s["on"] for s in sig if s.get("confirm"))
-    hist = []
-    for j in range(max(0, n - 130), n):
+    hist = []   # 최근 1년(≈260거래일) 지표별 추이 — 대시보드 모달 차트용
+    r1 = lambda v: round(v, 1) if v is not None else None
+    for j in range(max(0, n - 262), n):
         s_, sc_, _ = eval_day(j)
-        hist.append(dict(date=dates[j], px=round(px[j], 2), score=sc_, fg=round(FG[j], 1) if FG[j] is not None else None))
+        val = {x["key"]: x["value"] for x in s_}
+        hist.append(dict(date=dates[j], px=round(px[j], 2), score=sc_, hy=r1(val["hy"]), hy_turn=r1(val["hy_turn"]), dd=r1(val["dd"]),
+                         drsi=r1(val["drsi"]), fg=r1(val["fg"]), wrsi=r1(val["wrsi"]), ret20=r1(val["ret20"])))
     for s in sig:
         for k in ("value", "gap"):
             if s[k] is not None: s[k] = round(s[k], 1)
