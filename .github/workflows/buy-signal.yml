@@ -1,0 +1,62 @@
+name: buy-signal
+
+# 매수 시그널 점수(v2) 일일 계산 → signal/score.json 갱신 → 구간 진입 시 웹푸시
+# 미국장 마감(ET 16:00) 후 FRED 반영을 기다려 KST 07:30(화~토)에 실행. UTC 22:30 월~금.
+on:
+  schedule:
+    - cron: "30 22 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: buy-signal
+  cancel-in-progress: false
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 점수 계산
+        id: score
+        run: |
+          python3 signal/score_daily.py | tee /tmp/score.log
+          line=$(grep '^PUSH' /tmp/score.log | tail -1 || true)
+          if [ -n "$line" ]; then
+            echo "push=1" >> "$GITHUB_OUTPUT"
+            echo "title=$(echo "$line" | cut -f2)" >> "$GITHUB_OUTPUT"
+            echo "body=$(echo "$line" | cut -f3)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 결과 커밋
+        run: |
+          git config user.name "buy-signal-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add signal/score.json signal/state.json signal/cache.json
+          if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
+          git commit -m "auto: 매수 시그널 점수 갱신 $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
+          git push
+
+      - uses: actions/setup-node@v4
+        if: steps.score.outputs.push == '1'
+        with:
+          node-version: "20"
+
+      - name: 웹푸시
+        if: steps.score.outputs.push == '1'
+        env:
+          VAPID_PUBLIC: ${{ secrets.VAPID_PUBLIC }}
+          VAPID_PRIVATE: ${{ secrets.VAPID_PRIVATE }}
+          VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
+          PUSH_SUBSCRIPTIONS: ${{ secrets.PUSH_SUBSCRIPTIONS }}
+        run: |
+          npm install --no-save web-push@3.6.7 >/dev/null 2>&1
+          node signal/push.js "${{ steps.score.outputs.title }}" "${{ steps.score.outputs.body }}"

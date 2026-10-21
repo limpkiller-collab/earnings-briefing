@@ -143,6 +143,43 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .hm{font-size:12.5px;color:var(--g400);font-weight:600}
 .sec-foot{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:10px;padding-left:2px;line-height:1.6}
 
+/* ===== v2.19 매수 시그널 탭 ===== */
+.sg-head{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.sg-gauge{--p:0;--c:var(--g400);width:108px;height:108px;border-radius:50%;flex:none;
+  background:conic-gradient(var(--c) calc(var(--p)*1%),var(--g200) 0);display:grid;place-items:center}
+.sg-ring{width:86px;height:86px;border-radius:50%;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.sg-n{font-size:34px;font-weight:800;letter-spacing:-0.04em;color:var(--g900);font-variant-numeric:tabular-nums}
+.sg-max{font-size:11.5px;font-weight:600;color:var(--g400);margin-top:4px}
+.sg-tier{font-size:19px;font-weight:800;letter-spacing:-0.02em;color:var(--g900);line-height:1.3;word-break:keep-all}
+.sg-sub{font-size:13px;color:var(--g500);font-weight:600;margin-top:5px;line-height:1.55;word-break:keep-all}
+.sg-guide{background:var(--g50);border:1px solid var(--g200);border-radius:14px;padding:14px 16px;font-size:14px;line-height:1.65;color:var(--g700);
+  margin-bottom:34px;word-break:keep-all}
+.sg-guide b{color:var(--g900)}
+.sg-steps{display:grid;gap:8px;margin-bottom:34px}
+.sg-step{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:start;padding:12px 14px;border-radius:14px;border:1px solid var(--g200);background:var(--surface)}
+.sg-step.on{border-color:var(--blue);background:var(--blue-bg)}
+.sg-step.done{opacity:.6}
+.sg-step .sp{font-size:12px;font-weight:800;color:var(--blue);line-height:1.25;letter-spacing:-0.01em}
+.sg-step .sp small{display:block;font-size:11px;color:var(--g500);font-weight:700;margin-top:2px}
+.sg-step .st{font-size:14px;font-weight:700;color:var(--g900);line-height:1.4;word-break:keep-all}
+.sg-step .sd{font-size:12.5px;color:var(--g500);font-weight:600;margin-top:3px;line-height:1.55;word-break:keep-all}
+.sg-list{display:grid;gap:6px;margin-bottom:34px}
+.sg-row{display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:center;padding:11px 12px;border-radius:12px;background:var(--g50)}
+.sg-row.on{background:var(--green-bg)}
+.sg-row .w{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--g200);color:var(--g600)}
+.sg-row.on .w{background:var(--green);color:#fff}
+.sg-row .nm{font-size:13.5px;font-weight:700;color:var(--g900);line-height:1.3}
+.sg-row .cd{font-size:11.5px;font-weight:600;color:var(--g500);margin-top:2px}
+.sg-row .vl{text-align:right;font-size:13.5px;font-weight:800;color:var(--g900);font-variant-numeric:tabular-nums;white-space:nowrap}
+.sg-row .gp{display:block;font-size:11px;font-weight:600;color:var(--g400);margin-top:2px}
+.sg-row.on .gp{color:var(--green)}
+.sg-chart{height:120px;display:flex;align-items:flex-end;gap:1px;padding:0 2px;border-bottom:1px solid var(--g200);position:relative;margin-bottom:28px}
+.sg-chart i{flex:1;min-width:1px;background:var(--g200);border-radius:2px 2px 0 0;min-height:2px}
+.sg-chart i.s1{background:var(--blue);opacity:.45}.sg-chart i.s2{background:var(--blue)}.sg-chart i.s3{background:var(--red)}
+.sg-chart .ax{position:absolute;left:0;right:0;bottom:-18px;display:flex;justify-content:space-between;font-size:11px;color:var(--g400);font-weight:600}
+.sg-chart .ln{position:absolute;left:0;right:0;border-top:1px dashed var(--g200);pointer-events:none}
+.sg-chart .ln span{position:absolute;right:0;top:-15px;font-size:10.5px;color:var(--g400);font-weight:700}
+
 /* 토스트 */
 .toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);
   background:var(--toast);color:#fff;font-size:13.5px;font-weight:700;padding:12px 18px;border-radius:12px;
@@ -506,6 +543,24 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   <div class="sec-foot">실적·경제 지표·급등락·위클리를 발간 시간 역순으로 한 줄씩 보여드려요 · 파란 점은 아직 안 읽은 콘텐츠예요 · 읽음 표시는 이 기기에만 저장돼요</div>
 </div>
 
+<div class="sec" id="signal-sec" style="display:none">
+  <div class="sg-head">
+    <div class="sg-gauge" id="sg-gauge"><div class="sg-ring"><span class="sg-n" id="sg-n">–</span><span class="sg-max">/ 14</span></div></div>
+    <div class="sg-state">
+      <div class="sg-tier" id="sg-tier">점수를 불러오는 중…</div>
+      <div class="sg-sub" id="sg-sub"></div>
+    </div>
+  </div>
+  <div class="sg-guide" id="sg-guide"></div>
+  <h2>🧭 매수 가이드</h2>
+  <div class="sg-steps" id="sg-steps"></div>
+  <h2>📋 신호 체크리스트</h2>
+  <div class="sg-list" id="sg-list"></div>
+  <h2>📈 최근 점수 흐름</h2>
+  <div class="sg-chart" id="sg-chart"></div>
+  <div class="sec-foot" id="sg-foot"></div>
+</div>
+
 <div class="sec" id="rep-sec">
   <h2 id="rep-h2">📁 지난 보고서</h2>
   <div class="frow"><div class="filters" id="filters"></div><div class="fx" id="filters-x"></div></div>
@@ -528,6 +583,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
   <button type="button" id="seg-movers" aria-label="급등락" title="급등락"><svg viewBox="0 0 24 24"><path class="fl" d="M13.5 2.5 4.5 13.5h6.2l-1.2 8 9-11.5h-6.2z"/></svg><span class="nd"></span></button>
   <button type="button" id="seg-weekly" aria-label="위클리" title="위클리"><svg viewBox="0 0 24 24"><path class="fl" d="M4 4.5h13.5a1 1 0 0 1 1 1V17a3 3 0 0 0 3 3H5.5a2.5 2.5 0 0 1-2.5-2.5v-12a1 1 0 0 1 1-1z"/><path class="keep" d="M18.5 9h2.5v8.5a2.5 2.5 0 0 1-2.5 2.5"/><path class="in" d="M7 8.5h4.5V13H7z"/><path class="in" d="M14 9h1.5M14 12.5h1.5M7 16h8.5"/></svg><span class="nd"></span></button>
   <button type="button" id="seg-monthly" aria-label="월간리뷰" title="월간리뷰"><svg viewBox="0 0 24 24"><rect class="fl" x="3.5" y="5" width="17" height="15.5" rx="2.2"/><path class="in" d="M3.5 10h17"/><path class="in" d="M8 3v4M16 3v4"/><rect class="in" x="7.5" y="13" width="3" height="3" rx=".6"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-signal" aria-label="매수 시그널" title="매수 시그널"><svg viewBox="0 0 24 24"><circle class="fl" cx="12" cy="12" r="8.5"/><circle class="in" cx="12" cy="12" r="4.5"/><circle class="keep" cx="12" cy="12" r="1.2"/><path class="keep" d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg><span class="nd"></span></button>
 </div></nav>
 
 <div class="dim" id="notify-dim"></div>
@@ -545,7 +601,7 @@ earnings-briefing·macro-briefing·movers-briefing 스킬이 평일 오전 실�
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.10.21";   // v2.16: 월간리뷰 탭(🔒 암호화 보고서) 추가
+const LAST_UPDATED = "2026.10.22";   // v2.19: 매수 시그널 탭 추가
 
 const REPORTS_DB = [
   {
@@ -2038,9 +2094,72 @@ const HERO = {
   thread:{ chip: '#전체 콘텐츠 한눈에', h1: '실적·지표·급등락·위클리,<br>한 줄씩 시간순으로 모았어요',
           lead: '아직 읽지 않은 콘텐츠는 파란 점으로 표시돼요. 눌러서 읽으면 사라져요.' },
   cal:   { chip: '#실적 · 경제 지표 · 기업 이벤트', h1: '다가오는 일정,<br>한 달력에 모았어요',
-          lead: '실적발표·경제 지표·기업 이벤트 일정과 다음 발표 체크포인트를 한 곳에서 확인하세요.' }
+          lead: '실적발표·경제 지표·기업 이벤트 일정과 다음 발표 체크포인트를 한 곳에서 확인하세요.' },
+  signal:{ chip: '#S&P 500 · 매일 아침 자동 갱신', h1: '지금 사도 될까,<br>7개 신호로 점수를 매겨요',
+          lead: '하이일드 스프레드·고점 대비 하락·RSI·공포탐욕 지수를 합산해 14점 만점으로 매수 구간을 알려드려요. 4점·8점 진입 시 알림이 와요.' }
 };
-const VIEWS = ['thread','earn','macro','movers','weekly','monthly','cal'];
+const VIEWS = ['thread','earn','macro','movers','weekly','monthly','signal','cal'];
+
+/* ===== v2.19 매수 시그널 탭 — signal/score.json(GitHub Actions가 매일 갱신)을 읽어 그린다 ===== */
+const SG_STEPS = [
+  { k: 1, p: '1차', amt: '1/3', t: '4점 이상이 되면 계획 금액의 1/3', d: '고점 대비 -8%에 RSI 과매도가 겹치는 정도. 2022·2023·2025년 모두 여기서 첫 분할을 넣었을 때 3개월 승률 86%였어요.' },
+  { k: 2, p: '2차', amt: '1/3', t: '8점 이상이 되면 또 1/3', d: '하이일드 스프레드가 400bp를 넘거나 공포탐욕 15 이하가 함께 켜지는 패닉 구간. 과거 19일뿐이었고 3개월 승률 100%였어요.' },
+  { k: 3, p: '3차', amt: '1/3', t: '바닥 확인 신호가 켜지면 나머지', d: '1차 매수 뒤 VIX가 30 아래로 돌아오거나 스프레드가 고점에서 50bp 좁혀질 때. "떨어지는 칼날"을 피하는 마지막 분할이에요.' },
+];
+function renderSignal(d){
+  const sc = d.score, t1 = d.t1, t2 = d.t2, mx = d.max;
+  const g = document.getElementById('sg-gauge');
+  g.style.setProperty('--p', Math.round(sc / mx * 100));
+  g.style.setProperty('--c', sc >= t2 ? 'var(--red)' : sc >= t1 ? 'var(--blue)' : sc > 0 ? 'var(--amber)' : 'var(--g400)');
+  document.getElementById('sg-n').textContent = sc;
+  const tierTxt = sc >= t2 ? '🔴 2차 매수 구간' : sc >= t1 ? '🔵 1차 매수 구간' : sc > 0 ? '🟡 신호 일부 점등 · 대기' : '⚪ 매수 구간 아님 · 대기';
+  document.getElementById('sg-tier').textContent = tierTxt;
+  const stale = d.stale && d.stale.length ? ` · ⚠️ ${d.stale.map(k => ({spx:'S&P',vix:'VIX',hy:'HY',fg:'F&G'})[k]).join('·')} 캐시값` : '';
+  document.getElementById('sg-sub').textContent = `${d.asof.replace(/-/g,'.')} 종가 기준 · S&P 500 ${Number(d.px).toLocaleString()} (고점 대비 ${d.dd}%)${stale}`;
+  const on = d.signals.filter(s => s.on);
+  const off = d.signals.filter(s => !s.on && s.gap != null).sort((a,b) => Math.abs(a.gap)/(a.unit==='bp'?40:1) - Math.abs(b.gap)/(b.unit==='bp'?40:1));
+  const nearest = off[0];
+  let guide;
+  if (sc >= t2) guide = `<b>패닉 구간이에요.</b> 아직 2차까지 넣지 않았다면 지금 1/3을 추가하고, 이후엔 바닥 확인 신호(VIX 30 복귀·스프레드 반전)만 기다리세요. 켜진 신호: ${on.map(s=>s.label).join(' · ')}.`;
+  else if (sc >= t1) guide = `<b>1차 매수 구간이에요.</b> 계획 금액의 1/3을 넣고, 8점이 되면 2차를 준비하세요. 지금은 ${on.map(s=>s.label).join(' · ')}이(가) 켜져 있어요.`;
+  else if (sc > 0) guide = `<b>신호가 일부 켜졌지만 아직 4점 미만이에요.</b> 켜진 신호: ${on.map(s=>s.label).join(' · ')}. 이 단계에서 서두르면 하락 초입을 잡기 쉬워요(2점짜리 날의 1개월 뒤 평균은 마이너스였어요). 다음 신호는 ${nearest ? nearest.label + '(' + sgGap(nearest) + ')' : '—'}이 가장 가까워요.`;
+  else guide = `<b>지금은 매수 신호가 없어요.</b> 평소대로 정기 적립만 하고, 4점이 되면 알림이 와요. 가장 가까운 신호는 ${nearest ? nearest.label + ' — ' + sgGap(nearest) : '—'}예요.`;
+  if (d.confirm && sc >= t1) guide += ` <b>바닥 확인 신호가 켜져 있어요</b> — 1차를 넣었다면 3차(나머지)를 검토할 때예요.`;
+  document.getElementById('sg-guide').innerHTML = guide;
+  document.getElementById('sg-steps').innerHTML = SG_STEPS.map(s => {
+    const active = (s.k === 1 && sc >= t1 && sc < t2) || (s.k === 2 && sc >= t2) || (s.k === 3 && d.confirm && sc >= t1);
+    const done = (s.k === 1 && sc >= t2);
+    return `<div class="sg-step${active ? ' on' : ''}${done ? ' done' : ''}"><div class="sp">${s.p}<small>${s.amt}</small></div><div><div class="st">${s.t}</div><div class="sd">${s.d}</div></div></div>`;
+  }).join('');
+  document.getElementById('sg-list').innerHTML = d.signals.map(s => {
+    const v = s.value == null ? '–' : (s.unit === '%' ? (s.value > 0 ? '+' : '') + s.value + '%' : s.unit === 'bp' ? s.value + 'bp' : s.unit ? s.value + s.unit : s.value);
+    return `<div class="sg-row${s.on ? ' on' : ''}"><div class="w">${s.w}</div><div><div class="nm">${s.label}</div><div class="cd">${s.cond}${s.confirm ? ' · 확인 신호' : ''}</div></div><div class="vl">${v}<span class="gp">${s.on ? '✓ 충족' : sgGap(s)}</span></div></div>`;
+  }).join('');
+  const h = d.history || [];
+  const mxh = Math.max(mx, 1);
+  document.getElementById('sg-chart').innerHTML =
+    `<div class="ln" style="bottom:${t1/mxh*100}%"><span>1차 ${t1}점</span></div><div class="ln" style="bottom:${t2/mxh*100}%"><span>2차 ${t2}점</span></div>` +
+    h.map(x => `<i class="${x.score >= t2 ? 's3' : x.score >= t1 ? 's2' : x.score > 0 ? 's1' : ''}" style="height:${Math.max(2, x.score / mxh * 100)}%" title="${x.date} ${x.score}점 · S&P ${x.px}"></i>`).join('') +
+    `<div class="ax"><span>${h.length ? h[0].date.slice(2).replace(/-/g,'.') : ''}</span><span>최근 ${h.length}거래일</span><span>${h.length ? h[h.length-1].date.slice(2).replace(/-/g,'.') : ''}</span></div>`;
+  document.getElementById('sg-foot').textContent =
+    `갱신 ${d.generated} · 데이터 FRED(S&P 500·VIX·ICE BofA HY OAS)·CNN Fear&Greed · 배점은 2022~2026년 두 구간 교차검증으로 정했고 과거 성과가 미래를 보장하지 않아요 · 분할 비율 1/3은 예시이며 본인 계획에 맞게 조정하세요 · 투자 자문이 아니에요`;
+}
+function sgGap(s){
+  if (s.gap == null) return '';
+  const a = Math.abs(s.gap);
+  if (s.key === 'hy') return `${a.toFixed(0)}bp 남음`;
+  if (s.key === 'dd' || s.key === 'ret20') return `${a.toFixed(1)}%p 더 하락 시`;
+  if (s.key === 'drsi' || s.key === 'wrsi' || s.key === 'fg') return `${a.toFixed(0)} 더 내려야`;
+  return '';
+}
+let SG_LOADED = false;
+function loadSignal(){
+  if (SG_LOADED) return;
+  fetch('signal/score.json?t=' + Date.now(), { cache: 'no-store' }).then(r => r.json()).then(d => { SG_LOADED = true; renderSignal(d); }).catch(() => {
+    document.getElementById('sg-tier').textContent = '점수를 불러오지 못했어요';
+    document.getElementById('sg-sub').textContent = '네트워크를 확인하고 다시 열어 주세요.';
+  });
+}
 function setView(v){
   VIEW = v;
   VIEWS.filter(k => k !== 'cal').forEach(k => { document.getElementById('seg-' + k).classList.toggle('on', k === v); });
@@ -2055,7 +2174,10 @@ function setView(v){
   document.getElementById('cal-sec').style.display = cal ? '' : 'none';
   document.getElementById('watch-sec').style.display = cal ? '' : 'none';
   document.getElementById('feed-sec').style.display = th ? '' : 'none';
-  document.getElementById('rep-sec').style.display = (th || cal) ? 'none' : '';
+  const sg = v === 'signal';
+  document.getElementById('signal-sec').style.display = sg ? '' : 'none';
+  if (sg) loadSignal();
+  document.getElementById('rep-sec').style.display = (th || cal || sg) ? 'none' : '';
   document.getElementById('rep-h2').textContent =
     v === 'movers' ? '🚨 급등락 보고서' : v === 'weekly' ? '📁 지난 위클리' : v === 'monthly' ? '🗓️ 지난 월간리뷰' : '📁 지난 보고서';
   active = '전체';
@@ -2064,7 +2186,7 @@ function setView(v){
   window.scrollTo(0, 0);
   if (window.mbShowGnb) window.mbShowGnb();
 }
-const TAB_VIEWS = ['thread','earn','macro','movers','weekly','monthly'];   // 하단 탭바 순서 (캘린더는 GNB 버튼) · v2.16 월간 추가
+const TAB_VIEWS = ['thread','earn','macro','movers','weekly','monthly','signal'];   // 하단 탭바 순서 (캘린더는 GNB 버튼) · v2.16 월간 · v2.19 시그널 추가
 TAB_VIEWS.forEach(k => {
   document.getElementById('seg-' + k).onclick = () => {
     if (VIEW === k) window.scrollTo({ top: 0, behavior: 'smooth' });   // 활성 탭 재탭 → 맨 위로
@@ -2074,8 +2196,11 @@ TAB_VIEWS.forEach(k => {
 document.getElementById('gcal').onclick = () => {
   if (VIEW === 'cal') window.scrollTo({ top: 0, behavior: 'smooth' }); else setView('cal');
 };
-setView(location.hash === '#monthly' ? 'monthly' : VIEW);
-window.addEventListener('hashchange', () => { if (location.hash === '#monthly' && VIEW !== 'monthly') setView('monthly'); });   /* v2.16: 같은 문서에서 해시만 바뀔 때 */
+setView(location.hash === '#monthly' ? 'monthly' : location.hash === '#signal' ? 'signal' : VIEW);
+window.addEventListener('hashchange', () => {   /* v2.16: 같은 문서에서 해시만 바뀔 때 · v2.19 #signal */
+  if (location.hash === '#monthly' && VIEW !== 'monthly') setView('monthly');
+  if (location.hash === '#signal' && VIEW !== 'signal') setView('signal');
+});
 
 /* ===== v2.16 월간리뷰 한줄평 — 잠금 해제된 기기(localStorage에 복호화 키)에서만 monthly/index.enc.json을 풀어 채운다 ===== */
 (async function(){

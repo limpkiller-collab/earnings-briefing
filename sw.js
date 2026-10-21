@@ -21,6 +21,7 @@ self.addEventListener('activate', (e) => {
 function cacheable(req) {
   if (req.method !== 'GET') return false;
   const u = new URL(req.url);
+  if (u.pathname.includes('/signal/')) return false;   /* v2.19: 매수 시그널 점수는 항상 네트워크에서 */
   if (u.origin === self.location.origin) return true;
   return u.hostname === 'cdn.jsdelivr.net' && u.pathname.includes('pretendard');
 }
