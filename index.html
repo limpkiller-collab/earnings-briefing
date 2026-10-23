@@ -644,7 +644,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.10.22";   // v2.19: 매수 시그널 탭 추가
+const LAST_UPDATED = "2026.10.23";   // v2.19: 매수 시그널 탭 추가
 
 const REPORTS_DB = [
   {
@@ -1112,19 +1112,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 221.97, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 913.67, tgt: 1521, eps_cur: 156.53, eps_next: null, note: "⚠ FY27E 상향 반영 전" },
-  { ticker: "MSFT", price: 532.95, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
-  { ticker: "GOOGL", price: 334.76, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
-  { ticker: "AAPL", price: 343.99, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
-  { ticker: "PLTR", price: 201.72, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
-  { ticker: "KO", price: 92.68, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
-  { ticker: "ABBV", price: 284.80, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
-  { ticker: "O", price: 55.35, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
-  { ticker: "CRWV", price: 61.82, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 32.28, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
-  { ticker: "SMR", price: 5.50, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
-  { ticker: "000660", price: 1294000, tgt: 3141025, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 212.21, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 856.49, tgt: 1521, eps_cur: 156.53, eps_next: null, note: "⚠ FY27E 상향 반영 전" },
+  { ticker: "MSFT", price: 521.08, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
+  { ticker: "GOOGL", price: 324.22, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
+  { ticker: "AAPL", price: 348.22, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
+  { ticker: "PLTR", price: 196.19, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "KO", price: 95.34, tgt: 94.70, eps_cur: 3.30, eps_next: 3.53, note: "" },
+  { ticker: "ABBV", price: 285.19, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
+  { ticker: "O", price: 57.06, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
+  { ticker: "CRWV", price: 55.60, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 31.16, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 5.38, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "000660", price: 1223000, tgt: 3141025, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1215,9 +1215,37 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
   {
+    asset: "MARKET", name: "AI 설비투자 5종목", kind: "market", date: "2026-10-23",
+    chg: -10.06, chg_label: "CRWV -10.06%", price_label: "SOX -6.72%", cause: "AI 설비투자 의심",
+    oneliner: "메타 현금흐름이 마이너스로 돌아서자 반도체 30종목이 전원 빠졌어요.",
+    spark: [87.59,85.07,85.93,87.12,88.57,89.62,87.39,91.72,88.45,81.58,82.08,80.26,77.81,65.78,69.69,61.39,61.12,62.13,61.82,55.6],
+    created: "2026.10.23", file: "급등락/급등락_MARKET_2026.10.23.html"
+  },
+  {
+    asset: "US10Y", name: "미국 10년물", kind: "rate", date: "2026-10-23",
+    chg: -17, chg_label: "-17bp", price_label: "4.96%", cause: "안전자산 수요",
+    oneliner: "AI 주식에서 빠진 돈이 국채로 왔어요. 2023년 3월 이후 최대 낙폭이에요.",
+    spark: [5.18,5.17,5.24,5.26,5.29,5.24,5.28,5.31,5.27,5.28,5.22,5.24,5.21,5.19,5.1,5.09,5.15,5.12,5.13,4.96],
+    created: "2026.10.23", file: "급등락/급등락_US10Y_2026.10.23.html"
+  },
+  {
+    asset: "US2Y", name: "미국 2년물", kind: "rate", date: "2026-10-23",
+    chg: -16, chg_label: "-16bp", price_label: "4.65%", cause: "안전자산 수요",
+    oneliner: "10년물과 같은 폭으로 내려 커브 기울기는 31bp 그대로예요.",
+    spark: [4.87,4.81,4.92,4.89,4.88,4.78,4.83,4.84,4.79,4.77,4.75,4.8,4.79,4.82,4.77,4.74,4.77,4.79,4.81,4.65],
+    created: "2026.10.23", file: "급등락/급등락_US10Y_2026.10.23.html"
+  },
+  {
+    asset: "O", name: "Realty Income", kind: "stock", date: "2026-10-23",
+    chg: 3.09, chg_label: "+3.09%", price_label: "$57.06", cause: "금리 하락",
+    oneliner: "10년물이 17bp 내리자 20거래일 최고 종가를 썼어요. 거래량은 평균 미달이에요.",
+    spark: [55.54,55.35,55.14,54.3,53.53,54.13,53.77,54.25,53.35,54.17,54.18,54.7,54.99,55.17,55.55,56.08,55.51,56.34,55.35,57.06],
+    created: "2026.10.23", file: "급등락/급등락_O_2026.10.23.html"
+  },
+  {
     asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-10-21",
     chg: 5.81, chg_label: "+5.81%", price_label: "1,294,000원", cause: "AI 수요 확인",
-    oneliner: "슈퍼마이크로·스페이스X의 AI 매출에 외국인이 한 달 만에 돌아왔어요.",
+    oneliner: "슈퍼마이크로 AI 매출에 외국인이 돌아왔어요. 📎 10/22 -5.49%로 전부 반납.",
     spark: [1857000,1868000,1840000,1862000,1768000,1765000,1776000,1833000,1841000,1773000,1723000,1681000,1605000,1443000,1419000,1262000,1272000,1277000,1223000,1294000],
     created: "2026.10.22", file: "급등락/급등락_000660_2026.10.21.html"
   },
