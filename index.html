@@ -644,9 +644,15 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.10.24";   // v2.19: 매수 시그널 탭 추가
+const LAST_UPDATED = "2026.10.25";   // v2.19: 매수 시그널 탭 추가
 
 const REPORTS_DB = [
+  {
+    ticker: "000660", company: "SK하이닉스", quarter: "2026 Q3",
+    report_date: "2026-10-28", created: "2026.10.25", verdict: "PREV", vlabel: "프리뷰",
+    oneliner: "발표 D-3 프리뷰 — 컨센서스 매출 98.2조·영업이익 77.0조이고, 두 분기 연속 하회 여부와 추가 주주환원 규모가 쟁점이에요.",
+    file: "실적브리핑/실적프리뷰_000660_2026Q3_2026.10.25.html"
+  },
   {
     ticker: "KO", company: "Coca-Cola", quarter: "2026 Q3",
     report_date: "2026-10-27", created: "2026.10.24", verdict: "PREV", vlabel: "프리뷰",
@@ -1130,7 +1136,7 @@ const VAL_DB = [
   { ticker: "CRWV", price: 54.24, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
   { ticker: "IONQ", price: 31.27, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
   { ticker: "SMR", price: 5.38, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
-  { ticker: "000660", price: 1277000, tgt: 3141025, eps_cur: null, eps_next: null, note: "컨센 편차 큼" }
+  { ticker: "000660", price: 1277000, tgt: 3141025, eps_cur: 355219, eps_next: 470320, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
