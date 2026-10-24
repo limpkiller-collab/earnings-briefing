@@ -15,7 +15,9 @@ import csv, io, json, os, sys, time, datetime as dt, urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "score.json")
 STATE = os.path.join(HERE, "state.json")
-UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+# FRED는 브라우저 UA 요청을 봇으로 보고 응답을 끊는다(2026-10 확인) → 기본은 단순 UA, CNN만 브라우저 UA
+UA = {"User-Agent": "buy-signal/1.0 (python-urllib; github-actions)"}
+BROWSER_UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
 T1, T2, MAXW = 4, 8, 14
 
 
@@ -49,7 +51,7 @@ def fred(series):
 
 
 def yahoo(symbol):
-    d = json.loads(get(f"https://query1.finance.yahoo.com/v8/finance/chart/{urllib.request.quote(symbol)}?range=2y&interval=1d"))
+    d = json.loads(get(f"https://query1.finance.yahoo.com/v8/finance/chart/{urllib.request.quote(symbol)}?range=2y&interval=1d", BROWSER_UA))
     r = d["chart"]["result"][0]; ts = r["timestamp"]; cl = r["indicators"]["quote"][0]["close"]
     out = {}
     for t, c in zip(ts, cl):
@@ -60,7 +62,7 @@ def yahoo(symbol):
 
 def cnn_fg():
     txt = get("https://production.dataviz.cnn.io/index/fearandgreed/graphdata/2024-01-01",
-              {"Accept": "application/json", "Referer": "https://www.cnn.com/markets/fear-and-greed", "Origin": "https://www.cnn.com"})
+              {**BROWSER_UA, "Accept": "application/json", "Referer": "https://www.cnn.com/markets/fear-and-greed", "Origin": "https://www.cnn.com"})
     d = json.loads(txt)
     hist = {dt.datetime.fromtimestamp(p["x"] / 1000, dt.timezone.utc).strftime("%Y-%m-%d"): p["y"] for p in d["fear_and_greed_historical"]["data"]}
     return hist, d["fear_and_greed"]["score"]
