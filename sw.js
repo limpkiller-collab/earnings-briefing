@@ -6,6 +6,9 @@ const CACHE = 'mb-cache-v6';   // v2.18: 보고서 가독성 레이어(rd-css/rd
 const FALLBACK_URL = './index.html';
 const PRECACHE = ['./index.html', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 const MAX_ENTRIES = 100;
+/* 홈 화면 아이콘 뱃지 — 앱이 닫혀 있어도 푸시가 오면 +1. 기준값은 대시보드가 열릴 때 안읽음 수로 덮어쓴다 */
+const BADGE_CACHE = 'mb-badge';
+const BADGE_KEY = './__badge';
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(PRECACHE)).catch(() => {}));
@@ -13,7 +16,7 @@ self.addEventListener('install', (e) => {
 });
 self.addEventListener('activate', (e) => {
   e.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+    caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE && k !== BADGE_CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
@@ -67,6 +70,15 @@ self.addEventListener('fetch', (event) => {
   })());
 });
 
+async function bumpBadge() {
+  if (!('setAppBadge' in self.navigator)) return;
+  const c = await caches.open(BADGE_CACHE);
+  const r = await c.match(BADGE_KEY);
+  const n = (r ? parseInt(await r.text(), 10) || 0 : 0) + 1;
+  await c.put(BADGE_KEY, new Response(String(n)));
+  await self.navigator.setAppBadge(n);
+}
+
 self.addEventListener('push', (event) => {
   let data = {};
   try {
@@ -83,7 +95,10 @@ self.addEventListener('push', (event) => {
     tag: data.tag || 'earnings-briefing',
     renotify: true,
   };
-  event.waitUntil(self.registration.showNotification(title, options));
+  event.waitUntil(Promise.all([
+    self.registration.showNotification(title, options),
+    data.nobadge ? null : bumpBadge().catch(() => {}),   /* 매수 시그널 평소 알림은 뱃지 제외 */
+  ]));
 });
 
 self.addEventListener('notificationclick', (event) => {

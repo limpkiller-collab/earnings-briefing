@@ -1709,6 +1709,8 @@ function renderBadges(){
   try {
     const n = unreadCount('thread');
     if ('setAppBadge' in navigator) (n ? navigator.setAppBadge(n) : navigator.clearAppBadge()).catch(() => {});
+    /* sw.js가 푸시 수신 때 이 값에 +1 해서 뱃지를 올린다 */
+    if ('caches' in window) caches.open('mb-badge').then(c => c.put('./__badge', new Response(String(n)))).catch(() => {});
   } catch(e) {}
 }
 

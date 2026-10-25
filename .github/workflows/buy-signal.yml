@@ -33,6 +33,7 @@ jobs:
             echo "push=1" >> "$GITHUB_OUTPUT"
             echo "title=$(echo "$line" | cut -f2)" >> "$GITHUB_OUTPUT"
             echo "body=$(echo "$line" | cut -f3)" >> "$GITHUB_OUTPUT"
+            echo "badge=$(echo "$line" | cut -f4)" >> "$GITHUB_OUTPUT"
           fi
 
       - name: 결과 커밋
@@ -59,4 +60,4 @@ jobs:
           PUSH_SUBSCRIPTIONS: ${{ secrets.PUSH_SUBSCRIPTIONS }}
         run: |
           npm install --no-save web-push@3.6.7 >/dev/null 2>&1
-          node signal/push.js "${{ steps.score.outputs.title }}" "${{ steps.score.outputs.body }}"
+          node signal/push.js "${{ steps.score.outputs.title }}" "${{ steps.score.outputs.body }}" "${{ steps.score.outputs.badge }}"

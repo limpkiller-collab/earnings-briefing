@@ -3,7 +3,7 @@
 
 데이터: FRED(SP500·VIXCLS·BAMLH0A0HYM2) + CNN Fear&Greed.
 출력: signal/score.json (대시보드가 읽음), signal/state.json (푸시 중복 방지).
-종료코드 0. 푸시가 필요하면 stdout 마지막 줄에 'PUSH\t제목\t본문' 을 찍는다.
+종료코드 0. 푸시가 필요하면 stdout 마지막 줄에 'PUSH\t제목\t본문\tbadge|nobadge' 를 찍는다.
 
 배점(2022~26 두 구간 교차검증, 만점 14):
   HY OAS ≥ 400bp 3 · HY 반전(60일 고점-50bp) 3 · 고점대비 ≤-8% 2 · 일봉 RSI ≤35 2
@@ -186,21 +186,31 @@ def main():
         signals=sig, history=hist, stale=stale, errors=errors)
     json.dump(out, open(OUT, "w"), ensure_ascii=False, indent=1)
 
-    # 푸시 판단: 구간(tier)이 올라갔거나, 1차 이상에서 확인 신호가 새로 켜졌을 때만
+    # 푸시: 매일 재산정 결과를 점수와 함께 보낸다. 구간 상승·확인 신호 신규 점등은 제목에서 강조
     st = json.load(open(STATE)) if os.path.exists(STATE) else {}
-    prev_tier, prev_conf = st.get("tier", 0), st.get("confirm", False)
+    prev_tier, prev_conf, prev_score = st.get("tier", 0), st.get("confirm", False), st.get("score")
     on_names = " · ".join(f"{s['label']} {s['value']}{s['unit']}" for s in sig if s["on"])
-    push = None
+    tier_name = ["관망", "1차 매수 구간", "2차 매수 구간"][tier]
+    if prev_score is None or prev_score == score:
+        delta = "직전과 같음"
+    else:
+        delta = f"직전 {prev_score}점 {'▲' if score > prev_score else '▼'}{abs(score - prev_score)}"
+    # 평소 알림은 아이콘 뱃지를 올리지 않는다(PUSH 4번째 칸 nobadge → sw.js가 뱃지 생략)
+    badge = "badge"
     if tier > prev_tier:
-        title = f"🎯 매수 시그널 {score}점 — {'1차' if tier == 1 else '2차'} 매수 구간 진입"
-        push = (title, on_names or "신호 집계", )
+        title = f"🎯 매수 시그널 {score}/{MAXW}점 — {'1차' if tier == 1 else '2차'} 매수 구간 진입"
     elif tier >= 1 and confirm and not prev_conf:
-        push = (f"✅ 바닥 확인 신호 — 3차 매수 검토 ({score}점)", on_names)
+        title = f"✅ 바닥 확인 신호 — 3차 매수 검토 ({score}/{MAXW}점)"
+    else:
+        title = f"🎯 매수 시그널 {score}/{MAXW}점 · {tier_name}"
+        badge = "nobadge"
+    body = f"{dates[i][5:].replace('-', '/')} 종가 기준 · {delta} · 1차 {T1}점 / 2차 {T2}점" + (f" · 켜진 신호: {on_names}" if on_names else "")
+    push = (title, body, badge)
     json.dump(dict(tier=tier, confirm=confirm, score=score, asof=dates[i]), open(STATE, "w"))
     print(f"{dates[i]} S&P {px[i]:.0f} DD {DD[i]*100:.1f}% F&G {FG[i]} VIX {VIX[i]} HY {out['hy_bp']}bp → 점수 {score}/{MAXW} (구간 {tier}, 확인 {confirm})")
     for e in errors: print("WARN", e, file=sys.stderr)
     if push:
-        print("PUSH\t" + push[0] + "\t" + push[1])
+        print("PUSH\t" + "\t".join(push))
 
 
 if __name__ == "__main__":
