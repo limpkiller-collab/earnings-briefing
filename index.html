@@ -644,9 +644,27 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.10.25";   // v2.19: 매수 시그널 탭 추가
+const LAST_UPDATED = "2026.10.27";   // v2.19: 매수 시그널 탭 추가
 
 const REPORTS_DB = [
+  {
+    ticker: "MSFT", company: "Microsoft", quarter: "FY2027 Q1",
+    report_date: "2026-10-29", created: "2026.10.27", verdict: "PREV", vlabel: "프리뷰",
+    oneliner: "발표 D-2 프리뷰 — 컨센서스 매출 $90.63B은 가이던스 안쪽이고, Azure 45% 사수가 쟁점이에요.",
+    file: "실적브리핑/실적프리뷰_MSFT_FY2027Q1_2026.10.27.html"
+  },
+  {
+    ticker: "GOOGL", company: "Alphabet", quarter: "2026 Q3",
+    report_date: "2026-10-29", created: "2026.10.27", verdict: "PREV", vlabel: "프리뷰",
+    oneliner: "발표 D-2 프리뷰 — 매출 +25%는 기정사실이고, CapEx $195~205B이 또 오르는지가 관건이에요.",
+    file: "실적브리핑/실적프리뷰_GOOGL_2026Q3_2026.10.27.html"
+  },
+  {
+    ticker: "ABBV", company: "AbbVie", quarter: "2026 Q3",
+    report_date: "2026-10-30", created: "2026.10.27", verdict: "PREV", vlabel: "프리뷰",
+    oneliner: "발표 D-3 프리뷰 — 회사가 10/6에 3분기 EPS 가이던스를 스스로 낮췄고, 목표가 평균이 현재가와 같아요.",
+    file: "실적브리핑/실적프리뷰_ABBV_2026Q3_2026.10.27.html"
+  },
   {
     ticker: "000660", company: "SK하이닉스", quarter: "2026 Q3",
     report_date: "2026-10-28", created: "2026.10.25", verdict: "PREV", vlabel: "프리뷰",
@@ -1061,7 +1079,7 @@ const WATCH_DB = [
     "10월 14일 9월 CPI가 '대부분이 한 번 더'라는 문장을 지켜주는지 — 근원 MoM 0.3% 이상이면 10월 인상이 되살아나요",
     "유가 급등이 에너지 밖 물가까지 밀어올리는지 — 무살렘 총재는 \"에너지만의 문제는 아니다\"라고 했어요",
     "10년물 5.2%대가 굳는지, 10년-2년 44bp가 더 좁혀지는지 — 8/18의 52bp에서 이미 좁아졌어요"]},
-  { key: "KO", name: "Coca-Cola 2026 Q3 실적", date: "2026-10-21", type: "e", items: [
+  { key: "KO", name: "Coca-Cola 2026 Q3 실적", date: "2026-10-27", type: "e", items: [
     "물량 성장(+5%)이 유지되는지 — 월드컵 효과가 빠진 뒤에도 플러스인지",
     "연간 유기적 성장 +5%, 비교 기준 EPS +9~10% 가이던스 경로를 지키는지",
     "환율 순풍(3%포인트)이 줄거나 역풍으로 바뀌는지",
@@ -1081,7 +1099,7 @@ const WATCH_DB = [
     "FCF가 마이너스(-$5.9B)에서 회복되는지",
     "클라우드 성장률 +82%와 백로그 $514B이 유지·확대되는지",
     "영업이익률이 34.0%에서 더 내려가는지"]},
-  { key: "AAPL", name: "Apple FY26 Q4 실적", date: "2026-10-30", type: "e", items: [
+  { key: "AAPL", name: "Apple FY26 Q4 실적", date: "2026-11-03", type: "e", items: [
     "매출총이익률이 가이던스 47~48%를 지키는지 — 메모리 원가 전가가 되는지",
     "9월 분기 매출 성장률이 가이던스 +9~11% 상단을 넘는지",
     "서비스 매출이 다시 컨센서스를 상회하는지 — 두 자릿수 성장 유지",
@@ -1091,7 +1109,7 @@ const WATCH_DB = [
     "미국 상업 성장률(+149%)이 유지되는지, 상업이 정부를 언제 추월하는지",
     "Sovereignty 부트캠프가 실제 대형 계약으로 얼마나 이어지는지",
     "파트너 생태계 확장 전략이 구체화되는지"]},
-  { key: "O", name: "Realty Income 2026 Q3 실적", date: "2026-11-04", type: "e", items: [
+  { key: "O", name: "Realty Income 2026 Q3 실적", date: "2026-11-03", type: "e", items: [
     "연간 투자 $10B 목표의 진행 속도 — 누적 투자액이 연간 페이스에 맞는지",
     "데이터센터 JV의 투자 집행 — $1.4B 집행 진척과 추가 자산 편입",
     "AFFO 가이던스 상단($4.45) 경로 — Q3 AFFO/주가 $1.11 수준을 넘는지",
@@ -1126,12 +1144,12 @@ const WATCH_DB = [
 const VAL_DB = [
   { ticker: "NVDA", price: 210.96, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
   { ticker: "MU", price: 877.55, tgt: 1521, eps_cur: 156.53, eps_next: null, note: "⚠ FY27E 상향 반영 전" },
-  { ticker: "MSFT", price: 524.51, tgt: 569.56, eps_cur: 19.70, eps_next: 23.55, note: "" },
-  { ticker: "GOOGL", price: 320.21, tgt: 428.04, eps_cur: 20.58, eps_next: 14.74, note: "⚠ 일회성" },
+  { ticker: "MSFT", price: 524.51, tgt: 603.24, eps_cur: 19.76, eps_next: 23.69, note: "" },
+  { ticker: "GOOGL", price: 320.21, tgt: 429.12, eps_cur: 11.89, eps_next: 15.36, note: "" },
   { ticker: "AAPL", price: 347.73, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
   { ticker: "PLTR", price: 196.75, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
   { ticker: "KO", price: 92.71, tgt: 94.74, eps_cur: 3.30, eps_next: 3.52, note: "" },
-  { ticker: "ABBV", price: 285.64, tgt: 275.39, eps_cur: 14.01, eps_next: 16.28, note: "" },
+  { ticker: "ABBV", price: 285.64, tgt: 284.79, eps_cur: 13.96, eps_next: 16.20, note: "" },
   { ticker: "O", price: 56.89, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
   { ticker: "CRWV", price: 54.24, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
   { ticker: "IONQ", price: 31.27, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
