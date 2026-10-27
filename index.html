@@ -644,9 +644,15 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.10.27";   // v2.19: 매수 시그널 탭 추가
+const LAST_UPDATED = "2026.10.28";   // v2.19: 매수 시그널 탭 추가
 
 const REPORTS_DB = [
+  {
+    ticker: "KO", company: "Coca-Cola", quarter: "2026 Q3",
+    report_date: "2026-10-27", created: "2026.10.28", verdict: "BEAT",
+    oneliner: "물량 +5%가 두 분기째 — EPS $0.91로 예상 상회, 연간 가이던스를 또 올렸어요.",
+    file: "실적브리핑/실적브리핑_KO_2026Q3_2026.10.28.html"
+  },
   {
     ticker: "MSFT", company: "Microsoft", quarter: "FY2027 Q1",
     report_date: "2026-10-29", created: "2026.10.27", verdict: "PREV", vlabel: "프리뷰",
@@ -789,7 +795,6 @@ const REPORTS_DB = [
 //                 화면은 항상 KST로 보여주고, 캘린더 일정은 이 값으로 만들어 해외에서도 현지시간 자동 변환된다.
 //   last_report : 직전 실제 발표일 (state.json의 last_report_date) — KPI '이번 분기 발표 n/13' 계산에 쓴다
 const UPCOMING_DB = [
-  { ticker: "KO", name: "Coca-Cola", date: "2026-10-27", estimated: false, when: "bmo", utc: "20261027T123000Z", last_report: "2026-07-28" },
   { ticker: "000660", name: "SK하이닉스", short: "하이닉스", date: "2026-10-28", estimated: false, when: null, utc: null, last_report: "2026-07-29" },
   { ticker: "MSFT", name: "Microsoft", date: "2026-10-29", estimated: false, when: "amc", utc: "20261028T213000Z", last_report: "2026-07-31" },
   { ticker: "GOOGL", name: "Alphabet", date: "2026-10-29", estimated: false, when: "amc", utc: "20261028T203000Z", last_report: "2026-07-24" },
@@ -801,7 +806,8 @@ const UPCOMING_DB = [
   { ticker: "SMR", name: "NuScale Power", date: "2026-11-06", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
   { ticker: "CRWV", name: "CoreWeave", date: "2026-11-11", estimated: true, when: null, utc: null, last_report: "2026-08-12" },
   { ticker: "NVDA", name: "NVIDIA", date: "2026-11-26", estimated: true, when: null, utc: null, last_report: "2026-08-27" },
-  { ticker: "MU", name: "Micron", date: "2026-12-17", estimated: true, when: null, utc: null, last_report: "2026-10-01" }
+  { ticker: "MU", name: "Micron", date: "2026-12-17", estimated: true, when: null, utc: null, last_report: "2026-10-01" },
+  { ticker: "KO", name: "Coca-Cola", date: "2027-02-09", estimated: true, when: null, utc: null, last_report: "2026-10-27" }
 ];
 
 // ----- 경제 지표 (macro-briefing 스킬이 갱신) -----
@@ -1079,11 +1085,11 @@ const WATCH_DB = [
     "10월 14일 9월 CPI가 '대부분이 한 번 더'라는 문장을 지켜주는지 — 근원 MoM 0.3% 이상이면 10월 인상이 되살아나요",
     "유가 급등이 에너지 밖 물가까지 밀어올리는지 — 무살렘 총재는 \"에너지만의 문제는 아니다\"라고 했어요",
     "10년물 5.2%대가 굳는지, 10년-2년 44bp가 더 좁혀지는지 — 8/18의 52bp에서 이미 좁아졌어요"]},
-  { key: "KO", name: "Coca-Cola 2026 Q3 실적", date: "2026-10-27", type: "e", items: [
-    "물량 성장(+5%)이 유지되는지 — 월드컵 효과가 빠진 뒤에도 플러스인지",
-    "연간 유기적 성장 +5%, 비교 기준 EPS +9~10% 가이던스 경로를 지키는지",
-    "환율 순풍(3%포인트)이 줄거나 역풍으로 바뀌는지",
-    "영업이익률 34.9% 수준이 유지되는지, IRS 세금 분쟁에 진전이 있는지"]},
+  { key: "KO", name: "Coca-Cola 2026 Q4 실적", date: "2027-02-09", type: "e", items: [
+    "아프리카 보틀링 매각이 4분기에 실제로 종결되는지 — 매출 -4%p·EPS -3%p 영향이 가이던스대로 나오는지",
+    "물량이 장기 알고리즘(2~3%)으로 수렴하는지 — 특히 북미 0%가 플러스로 돌아서는지",
+    "믹스 역풍 -3%포인트가 완화되는지 — 기초 가격 +4%p 중 실제로 남는 부분이 늘어나는지",
+    "2027년 첫 가이던스 수준 — 유기적 성장률·EPS 성장률이 컨센서스(매출 +0.2%·EPS +4.7%)보다 높은지"]},
   { key: "000660", name: "SK하이닉스 2026 Q3 실적", date: "2026-10-28", type: "e", items: [
     "3분기 영업이익이 컨센서스를 다시 밑도는지 — 두 분기 연속 하회면 사이클 논쟁이 커져요",
     "D램 출하량 가이던스 +10% 달성 여부, 하반기 메모리 가격 방향",
@@ -1148,7 +1154,7 @@ const VAL_DB = [
   { ticker: "GOOGL", price: 320.21, tgt: 429.12, eps_cur: 11.89, eps_next: 15.36, note: "" },
   { ticker: "AAPL", price: 347.73, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
   { ticker: "PLTR", price: 196.75, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
-  { ticker: "KO", price: 92.71, tgt: 94.74, eps_cur: 3.30, eps_next: 3.52, note: "" },
+  { ticker: "KO", price: 92.48, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "⚠ 10/27 장중" },
   { ticker: "ABBV", price: 285.64, tgt: 284.79, eps_cur: 13.96, eps_next: 16.20, note: "" },
   { ticker: "O", price: 56.89, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
   { ticker: "CRWV", price: 54.24, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
