@@ -648,6 +648,12 @@ const LAST_UPDATED = "2026.10.28";   // v2.19: 매수 시그널 탭 추가
 
 const REPORTS_DB = [
   {
+    ticker: "000660", company: "SK하이닉스", quarter: "2026 Q3",
+    report_date: "2026-10-28", created: "2026.10.28", verdict: "MIXED",
+    oneliner: "분기 매출 첫 100조·영업이익률 80%인데 순이익은 전분기보다 58% 줄었어요.",
+    file: "실적브리핑/실적브리핑_000660_2026Q3_2026.10.28.html"
+  },
+  {
     ticker: "KO", company: "Coca-Cola", quarter: "2026 Q3",
     report_date: "2026-10-27", created: "2026.10.28", verdict: "BEAT",
     oneliner: "물량 +5%가 두 분기째 — EPS $0.91로 예상 상회, 연간 가이던스를 또 올렸어요.",
@@ -795,7 +801,6 @@ const REPORTS_DB = [
 //                 화면은 항상 KST로 보여주고, 캘린더 일정은 이 값으로 만들어 해외에서도 현지시간 자동 변환된다.
 //   last_report : 직전 실제 발표일 (state.json의 last_report_date) — KPI '이번 분기 발표 n/13' 계산에 쓴다
 const UPCOMING_DB = [
-  { ticker: "000660", name: "SK하이닉스", short: "하이닉스", date: "2026-10-28", estimated: false, when: null, utc: null, last_report: "2026-07-29" },
   { ticker: "MSFT", name: "Microsoft", date: "2026-10-29", estimated: false, when: "amc", utc: "20261028T213000Z", last_report: "2026-07-31" },
   { ticker: "GOOGL", name: "Alphabet", date: "2026-10-29", estimated: false, when: "amc", utc: "20261028T203000Z", last_report: "2026-07-24" },
   { ticker: "ABBV", name: "AbbVie", date: "2026-10-30", estimated: false, when: "bmo", utc: "20261030T130000Z", last_report: "2026-07-31" },
@@ -807,6 +812,7 @@ const UPCOMING_DB = [
   { ticker: "CRWV", name: "CoreWeave", date: "2026-11-11", estimated: true, when: null, utc: null, last_report: "2026-08-12" },
   { ticker: "NVDA", name: "NVIDIA", date: "2026-11-26", estimated: true, when: null, utc: null, last_report: "2026-08-27" },
   { ticker: "MU", name: "Micron", date: "2026-12-17", estimated: true, when: null, utc: null, last_report: "2026-10-01" },
+  { ticker: "000660", name: "SK하이닉스", short: "하이닉스", date: "2027-01-27", estimated: true, when: null, utc: null, last_report: "2026-10-28" },
   { ticker: "KO", name: "Coca-Cola", date: "2027-02-09", estimated: true, when: null, utc: null, last_report: "2026-10-27" }
 ];
 
@@ -1090,11 +1096,12 @@ const WATCH_DB = [
     "물량이 장기 알고리즘(2~3%)으로 수렴하는지 — 특히 북미 0%가 플러스로 돌아서는지",
     "믹스 역풍 -3%포인트가 완화되는지 — 기초 가격 +4%p 중 실제로 남는 부분이 늘어나는지",
     "2027년 첫 가이던스 수준 — 유기적 성장률·EPS 성장률이 컨센서스(매출 +0.2%·EPS +4.7%)보다 높은지"]},
-  { key: "000660", name: "SK하이닉스 2026 Q3 실적", date: "2026-10-28", type: "e", items: [
-    "3분기 영업이익이 컨센서스를 다시 밑도는지 — 두 분기 연속 하회면 사이클 논쟁이 커져요",
-    "D램 출하량 가이던스 +10% 달성 여부, 하반기 메모리 가격 방향",
-    "추가 주주환원 방안이 3분기 중 실제로 확정·발표되는지",
-    "HBM4 양산 확대 속도와 공급 계약 세부(물량·가격)가 공개되는지"]},
+  { key: "000660", name: "SK하이닉스 2026 Q4 실적", date: "2027-01-27", type: "e", items: [
+    "영업이익 83.3조와 순이익 39.8조 사이 43.6조 괴리의 정체 — 분기보고서에서 법인세·영업외손익이 분해되는지",
+    "4분기 매출이 시장 예상 113.3조를 넘는지 — 회사 가이던스가 없으니 이 숫자가 평가선이에요",
+    "HBM4가 4분기에 실제로 HBM3E를 출하량·매출 모두에서 앞지르는지",
+    "내년 투자 금액 — \"올해보다 크게 증가\"가 숫자로 나오는지",
+    "LTA 50%의 가격 구조가 4분기 영업이익률 80%를 지켜주는지"]},
   { key: "MSFT", name: "Microsoft FY27 Q1 실적", date: "2026-10-29", type: "e", items: [
     "Azure 성장률이 가이던스 +45%를 지키는지 — 용량 제약이 성장률을 깎지 않는지",
     "FY27 Q1 매출이 가이던스 상단($90.95B)을 넘는지",
@@ -1148,19 +1155,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 210.96, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 877.55, tgt: 1521, eps_cur: 156.53, eps_next: null, note: "⚠ FY27E 상향 반영 전" },
-  { ticker: "MSFT", price: 524.51, tgt: 603.24, eps_cur: 19.76, eps_next: 23.69, note: "" },
-  { ticker: "GOOGL", price: 320.21, tgt: 429.12, eps_cur: 11.89, eps_next: 15.36, note: "" },
-  { ticker: "AAPL", price: 347.73, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
-  { ticker: "PLTR", price: 196.75, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
-  { ticker: "KO", price: 92.48, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "⚠ 10/27 장중" },
-  { ticker: "ABBV", price: 285.64, tgt: 284.79, eps_cur: 13.96, eps_next: 16.20, note: "" },
-  { ticker: "O", price: 56.89, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
-  { ticker: "CRWV", price: 54.24, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 31.27, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
-  { ticker: "SMR", price: 5.38, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
-  { ticker: "000660", price: 1277000, tgt: 3141025, eps_cur: 355219, eps_next: 470320, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 217.94, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 928.76, tgt: 1521, eps_cur: 156.53, eps_next: null, note: "⚠ FY27E 상향 반영 전" },
+  { ticker: "MSFT", price: 531.33, tgt: 603.24, eps_cur: 19.76, eps_next: 23.69, note: "" },
+  { ticker: "GOOGL", price: 320.58, tgt: 429.12, eps_cur: 11.89, eps_next: 15.36, note: "" },
+  { ticker: "AAPL", price: 347.10, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
+  { ticker: "PLTR", price: 198.73, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "KO", price: 91.18, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
+  { ticker: "ABBV", price: 286.39, tgt: 284.79, eps_cur: 13.96, eps_next: 16.20, note: "" },
+  { ticker: "O", price: 56.82, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
+  { ticker: "CRWV", price: 59.57, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 32.95, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 5.70, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "000660", price: 1341000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1257,6 +1264,13 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
+  {
+    asset: "MARKET", name: "AI 인프라 3종목", kind: "market", date: "2026-10-28",
+    chg: 8.16, chg_label: "SMR +8.16%", price_label: "나스닥 +1.18%", cause: "매도 공백",
+    oneliner: "앤트로픽 IPO 신청에 세 종목이 7~8% 올랐는데 거래량은 평균 아래였어요.",
+    spark: [87.12,88.57,89.62,87.39,91.72,88.45,81.58,82.08,80.26,77.81,65.78,69.69,61.39,61.12,62.13,61.82,55.60,54.24,55.19,59.57],
+    created: "2026.10.28", file: "급등락/급등락_MARKET_2026.10.28.html"
+  },
   {
     asset: "MARKET", name: "AI 설비투자 5종목", kind: "market", date: "2026-10-23",
     chg: -10.06, chg_label: "CRWV -10.06%", price_label: "SOX -6.72%", cause: "AI 설비투자 의심",
