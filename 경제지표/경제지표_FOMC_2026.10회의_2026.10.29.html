@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOMC 금리결정 2026년 10월 회의 — 경제 지표</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<!--theme--><script>try{var t=localStorage.getItem('mb-theme');if(t=='light'||t=='dark')document.documentElement.dataset.theme=t}catch(e){}</script><!--/theme-->
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 수치 2카드 */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--red-bg);color:var(--red)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 발표 이력 테이블 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable td.w{white-space:normal;text-align:left;font-weight:600;color:var(--g600);font-size:13px}
+.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
+.htable tr.new td{background:var(--blue-bg)}
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.htable th{white-space:nowrap}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI 카드 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
+/* 콜아웃·인용 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+.quote{border-left:3px solid var(--g200);padding:2px 0 2px 14px;margin:16px 0;font-size:15px;
+  color:var(--g600);line-height:1.75}
+.quote small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:5px}
+/* 보유 종목 영향 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 지난번 체크포인트 점검 */
+.wp-list{margin:12px 0}
+.wp{display:flex;gap:12px;padding:12px 4px;border-bottom:1px solid var(--g100)}
+.wp-badge{flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;background:var(--g100);color:var(--g500);height:fit-content;margin-top:2px}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp.partial .wp-badge{background:var(--amber-bg);color:var(--amber)}
+.wp-q{font-size:14.5px;font-weight:700;color:var(--g900)} .wp-a{font-size:13.5px;color:var(--g600);margin-top:2px}
+/* 관전포인트 */
+.wp-preview{background:var(--g50);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지표 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  :where(:root:not([data-theme="light"])) body{background:var(--bg)}
+  :where(:root:not([data-theme="light"])) .page,:where(:root:not([data-theme="light"])) .gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  :where(:root:not([data-theme="light"])) svg .cl,:where(:root:not([data-theme="light"])) svg .ax{fill:#8B95A1}
+  :where(:root:not([data-theme="light"])) svg .cv{fill:#D5DAE0}
+  :where(:root:not([data-theme="light"])) svg [stroke="#EDEFF2"]{stroke:#2A2F36}
+  :where(:root:not([data-theme="light"])) svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  :where(:root:not([data-theme="light"])) svg [stroke="#4E5968"]{stroke:#B0B8C1}
+  :where(:root:not([data-theme="light"])) svg [fill="#F2F4F6"]{fill:#1F2329}
+  :where(:root:not([data-theme="light"])) svg [fill="#E5E8EB"]{fill:#333A44}
+  :where(:root:not([data-theme="light"])) svg [fill="#fff"]{fill:#17171C}
+  :where(:root:not([data-theme="light"])) svg [stroke="#fff"]{stroke:#17171C}
+  :where(:root:not([data-theme="light"])) svg [fill="#333D4B"],:where(:root:not([data-theme="light"])) svg [fill="#191F28"],:where(:root:not([data-theme="light"])) svg [fill="#4E5968"]{fill:#D5DAE0}
+  :where(:root:not([data-theme="light"])) svg [stroke="#191F28"],:where(:root:not([data-theme="light"])) svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+:root[data-theme="dark"]{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  :where(:root[data-theme="dark"]) body{background:var(--bg)}
+  :where(:root[data-theme="dark"]) .page,:where(:root[data-theme="dark"]) .gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  :where(:root[data-theme="dark"]) svg .cl,:where(:root[data-theme="dark"]) svg .ax{fill:#8B95A1}
+  :where(:root[data-theme="dark"]) svg .cv{fill:#D5DAE0}
+  :where(:root[data-theme="dark"]) svg [stroke="#EDEFF2"]{stroke:#2A2F36}
+  :where(:root[data-theme="dark"]) svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  :where(:root[data-theme="dark"]) svg [stroke="#4E5968"]{stroke:#B0B8C1}
+  :where(:root[data-theme="dark"]) svg [fill="#F2F4F6"]{fill:#1F2329}
+  :where(:root[data-theme="dark"]) svg [fill="#E5E8EB"]{fill:#333A44}
+  :where(:root[data-theme="dark"]) svg [fill="#fff"]{fill:#17171C}
+  :where(:root[data-theme="dark"]) svg [stroke="#fff"]{stroke:#17171C}
+  :where(:root[data-theme="dark"]) svg [fill="#333D4B"],:where(:root[data-theme="dark"]) svg [fill="#191F28"],:where(:root[data-theme="dark"]) svg [fill="#4E5968"]{fill:#D5DAE0}
+  :where(:root[data-theme="dark"]) svg [stroke="#191F28"],:where(:root[data-theme="dark"]) svg [stroke="#333D4B"]{stroke:#B0B8C1}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+/*theme-scoped*/
+
+/*<!--/dark-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+/* v2 시안: 결과/이유 줄 분리 · 종목 카드 */
+.rr{display:block;font-size:14.5px;color:var(--g700);line-height:1.7}
+.rr+.rr{margin-top:7px}
+.cause .rr{font-size:13.5px}
+.stock-g .rr{font-size:14.5px}
+.v2sum{background:var(--blue-bg);border-radius:14px;padding:17px 20px;margin:18px 0 8px;font-size:15px;line-height:1.7;color:var(--g900);font-weight:600}
+.v2sum .cap{display:block;font-size:12.5px;font-weight:700;color:var(--blue);margin-bottom:5px}
+.stock-g.v2{border:1px solid var(--g200);border-radius:16px;padding:16px 18px;margin-bottom:10px;background:var(--surface,#fff)}
+.stock-g.v2 .skh{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.stock-g.v2 .skh .tk{font-size:16px;font-weight:800}
+.stock-g.v2 .skh .pct{font-size:15px;font-weight:800}
+.stock-g.v2 .skh .pct.pos{color:var(--green)} .stock-g.v2 .skh .pct.neg{color:var(--red)}
+.stock-g.v2 .skh .px{margin-left:auto;font-size:12.5px;color:var(--g400);font-weight:600;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">📈</span> 경제 지표</div>
+  <a href="../index.html">← 아카이브</a>
+</div>
+<div class="body">
+<div class="chips">
+  <span class="chip b">#연준</span><span class="chip">#연 8회</span><span class="chip">#★★★</span><span class="chip">#SEP 없는 회의</span>
+</div>
+<h1>FOMC 금리결정<br>2026년 10월 회의</h1>
+<div class="meta">2026년 10월 29일 03:00 결정 발표 (한국시간) · 연방공개시장위원회(FOMC) 10월 27~28일 회의 · 경제전망(SEP) 없는 회의</div>
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">정책금리 목표범위</div>
+    <div class="num">3.75~4.00%</div>
+    <div class="cmp">시장 예상(동결 확률 93%)과 <b>부합</b> · 9월 0.25%p 인상 뒤 <b>첫 동결</b></div>
+    <div class="core">표결 10-2 · 리사 쿡 이사와 베스 해맥 클리블랜드 연은 총재가 0.25%p 인상을 주장하며 반대</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">12월 인상 확률 (CME 페드워치)</div>
+    <div class="num">86.0%</div>
+    <div class="cmp">전일(78.3%)보다 <b class="up">+7.7%p</b> 상승 · 10월 21일(94.8%)보다 <b class="down">-8.8%p</b></div>
+    <div class="core">동결했지만 시장은 12월 9일 회의에서의 인상을 여전히 기본 시나리오로 봐요</div>
+  </div>
+</div>
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p>연준이 기준금리를 <b>3.75~4.00%</b>로 동결했어요. 9월에 3년 2개월 만의 인상을 한 뒤 한 번 쉰 거예요. 다만 12명 투표위원 중 <b>2명이 0.25%p 인상을 주장하며 반대</b>했고, 성명서는 경제활동 판단을 "견고한(solid)"에서 <b>"강한 속도로 확장(expanding at a strong pace)"</b>으로 올렸어요.</p>
+  <p>쉬는 이유는 "더 보고 판단하겠다"예요. 성명서에 <b>"더 많은 정보가 쌓이면 위원회가 물가를 2% 목표로 적시에 되돌리는 데 적절한 정책 스탠스를 판단하는 데 도움이 될 것"</b>이라는 문장이 새로 들어갔어요. 반대로 9월 인상을 설명했던 문장은 빠졌어요. 물가는 여전히 "높은 수준(elevated)"이라는 표현을 유지했고, <mark class="r">근원 PCE가 9월에도 3%를 넘을 것으로 예상되는 상황</mark>이에요.</p>
+  <p>시장은 담담했어요. S&amp;P 500은 <b>+0.28%</b>로 사흘 연속 올랐고, 2년물은 <b>4.70%</b>로 4bp 내려갔는데 10년물은 <b>5.02%</b>로 2bp 올라 커브가 벌어졌어요. 금리 선물은 12월 인상 확률을 하루 만에 78%에서 <b>86%</b>로 올렸어요. 동결이 완화 신호로 읽히지 않았다는 뜻이에요.</p>
+</div>
+<div class="sub-head">✅ 지난번엔 이걸 보자고 했죠</div>
+<div class="sub-desc">9월 회의 보고서(9월 17일)에서 확인하기로 한 네 가지를 먼저 점검했어요.</div>
+<div class="wp-list">
+  <div class="wp miss"><span class="wp-badge">인상은 없었어요</span><div><div class="wp-q">연내 두 번째 인상이 10월 회의에서 나오는지 — 점도표는 18명 중 16명이 추가 인상 1회 이상을 가리켰어요</div><div class="wp-a">나오지 않았어요. <b>3.75~4.00% 동결</b>이에요. 점도표 신호와 실제 결정이 갈린 건 "언제"의 문제였어요. 다만 반대표 2명과 "강한 속도" 상향 표현을 함께 보면 <mark>인상 의지가 사라진 게 아니라 12월로 미뤄졌다</mark>고 읽는 게 맞아요. 11월 3일 중간선거를 앞두고 있었다는 점도 배경으로 지적돼요.</div></div></div>
+  <div class="wp miss"><span class="wp-badge">밑돌았어요</span><div><div class="wp-q">9월 30일 PCE(8월분)가 연준 전망 3.7%를 넘는지 — 연준이 보는 물가는 CPI가 아니라 PCE예요</div><div class="wp-a">넘지 않았어요. 8월 헤드라인 PCE는 <b>3.4%</b>, 근원은 <b>3.0%</b>로 각각 연준 9월 SEP 2026년말 전망(3.7%·3.4%)을 0.3%p·0.4%p 밑돌았어요. BEA의 산출방법 개편으로 7월 수치까지 소급 하향된 영향이 섞여 있어요. 이번 동결의 근거 중 하나예요.</div></div></div>
+  <div class="wp miss"><span class="wp-badge">오르지 않았어요</span><div><div class="wp-q">2년물 4.74%가 5%를 향해 더 오르는지, 10년-2년 27bp가 역전으로 가는지</div><div class="wp-a">반대로 내려갔어요. 미 재무부 CMT 기준 2년물은 9월 16일 4.74% → 10월 27일 <b>4.70%</b>, 10월 28일에도 4.70%(-4bp)예요. 10년물은 5.02%로 10-2년 스프레드가 <b>약 32bp</b>로 오히려 벌어졌어요. 역전 우려는 당장 비켜갔어요.</div></div></div>
+  <div class="wp hold"><span class="wp-badge">12월에 확인해요</span><div><div class="wp-q">12월 SEP에서 2027년 분포(인상 8 · 동결 6 · 인하 4)가 좁혀지는지</div><div class="wp-a">이번 회의는 <b>SEP이 없는 회의</b>라 점도표가 갱신되지 않았어요. 2027년 중간값 4.1%와 분열된 분포는 9월 수치가 그대로예요. 다음 확인 자리는 <b>12월 9일 회의</b>예요.</div></div></div>
+</div>
+<div class="v2sum"><span class="cap">한 문장 요약</span>네 가지 중 셋은 "예상과 반대"로 왔어요. 인상도, 물가 상회도, 금리 상승도 없었는데 <b>12월 인상 확률만 86%로 올라갔어요</b>.</div>
+<div class="sub-head">📈 기준금리와 국채금리</div>
+<div class="sub-desc">9월 인상 한 번으로 올라간 금리가 그 자리에 머물렀고, 시장금리는 10월 중순부터 내려왔어요.</div>
+<div class="chart-card">
+  <div class="ct">기준금리 목표범위 추이</div>
+  <div class="cs">2025년 9월 ~ 2026년 10월 회의 · 목표범위 상단 기준</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">3.20</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">3.54</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">3.88</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">4.21</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">4.55</text><rect x="14.0" y="78.0" width="63.0" height="43.3" fill="#F2F4F6"/><rect x="77.0" y="121.3" width="63.0" height="43.3" fill="#F2F4F6"/><rect x="140.0" y="164.7" width="63.0" height="43.3" fill="#F2F4F6"/><rect x="203.0" y="164.7" width="63.0" height="43.3" fill="#F2F4F6"/><rect x="266.0" y="164.7" width="63.0" height="43.3" fill="#F2F4F6"/><rect x="329.0" y="164.7" width="63.0" height="43.3" fill="#F2F4F6"/><rect x="392.0" y="164.7" width="63.0" height="43.3" fill="#F2F4F6"/><rect x="455.0" y="164.7" width="63.0" height="43.3" fill="#F2F4F6"/><rect x="518.0" y="121.3" width="63.0" height="43.3" fill="#F2F4F6"/><rect x="581.0" y="121.3" width="63.0" height="43.3" fill="#C9DEFB"/><polyline points="14.0,78.0 77.0,78.0 77.0,121.3 140.0,121.3 140.0,164.7 203.0,164.7 203.0,164.7 266.0,164.7 266.0,164.7 329.0,164.7 329.0,164.7 392.0,164.7 392.0,164.7 455.0,164.7 455.0,164.7 518.0,164.7 518.0,121.3 581.0,121.3 581.0,121.3 644.0,121.3" fill="none" stroke="#3182F6" stroke-width="2.5" stroke-linejoin="round"/><polyline points="14.0,121.3 77.0,121.3 77.0,164.7 140.0,164.7 140.0,208.0 203.0,208.0 203.0,208.0 266.0,208.0 266.0,208.0 329.0,208.0 329.0,208.0 392.0,208.0 392.0,208.0 455.0,208.0 455.0,208.0 518.0,208.0 518.0,164.7 581.0,164.7 581.0,164.7 644.0,164.7" fill="none" stroke="#3182F6" stroke-width="1.5" opacity="0.45" stroke-linejoin="round"/><text x="612.5" y="110.3" text-anchor="middle" class="cv" style="fill:#3182F6">3.75~4.00%</text><text x="45.5" y="286" text-anchor="middle" class="cl">25.9</text><text x="108.5" y="286" text-anchor="middle" class="cl">25.10</text><text x="171.5" y="286" text-anchor="middle" class="cl">25.12</text><text x="234.5" y="286" text-anchor="middle" class="cl">26.1</text><text x="297.5" y="286" text-anchor="middle" class="cl">26.3</text><text x="360.5" y="286" text-anchor="middle" class="cl">26.4</text><text x="423.5" y="286" text-anchor="middle" class="cl">26.6</text><text x="486.5" y="286" text-anchor="middle" class="cl">26.7</text><text x="549.5" y="286" text-anchor="middle" class="cl">26.9</text><text x="612.5" y="286" text-anchor="middle" class="cl">26.10</text></svg>
+</div>
+<p class="body-p">연준은 2025년 7월 4.25~4.50%에서 세 차례 내려 3.50~3.75%까지 왔고, 2026년 1월부터 7월까지 네 번 연속 동결한 뒤 <b>9월에 0.25%p 올려</b> 3.75~4.00%가 됐어요. 이번 10월 회의는 그 수준을 유지한 거예요. 인하 사이클을 끝내고 되감기를 시작한 뒤 첫 "쉬는 회의"라는 점이 이번 결정의 성격이에요.</p>
+<div class="chart-card">
+  <div class="ct">미국 2년물·10년물 국채금리</div>
+  <div class="cs">2026년 10월 19일 ~ 28일 · 10월 28일은 장중 종가 기준</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">4.55</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">4.73</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">4.90</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">5.08</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">5.25</text><polyline points="14.0,59.4 104.0,69.5 194.0,66.1 284.0,122.9 374.0,109.6 464.0,109.6 554.0,112.9 644.0,102.9" fill="none" stroke="#F04452" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="644.0" cy="102.9" r="5" fill="#fff" stroke="#F04452" stroke-width="3"/><text x="634.0" y="89.9" text-anchor="end" class="cv" style="fill:#F04452">10Y 5.02%</text><polyline points="14.0,186.5 104.0,179.8 194.0,173.1 284.0,226.6 374.0,213.2 464.0,216.5 554.0,209.9 644.0,209.9" fill="none" stroke="#3182F6" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="644.0" cy="209.9" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/><text x="634.0" y="231.9" text-anchor="end" class="cv" style="fill:#3182F6">2Y 4.70%</text><text x="14.0" y="286" text-anchor="middle" class="cl">10.19</text><text x="194.0" y="286" text-anchor="middle" class="cl">10.21</text><text x="374.0" y="286" text-anchor="middle" class="cl">10.23</text><text x="554.0" y="286" text-anchor="middle" class="cl">10.27</text><text x="644.0" y="286" text-anchor="middle" class="cl">10.28</text></svg>
+  <div class="legend"><span><i style="background:#3182F6"></i>2년물</span><span><i style="background:#4E5968"></i>10년물</span></div>
+</div>
+<p class="body-p">10월 22일이 분기점이었어요. 2년물이 4.81%에서 <b>4.65%</b>로, 10년물이 5.13%에서 <b>4.96%</b>로 하루에 16~17bp 급락했어요. AI 인프라 기업들의 자금조달 우려로 위험자산에서 빠진 돈이 국채로 몰린 날이에요. 그 뒤로는 2년물이 4.65~4.70%, 10년물이 4.96~5.02%에서 횡보했고, FOMC 당일에도 큰 변화는 없었어요. <mark>정책금리 전망(2년물)은 내려가는데 장기금리(10년물)는 5% 위에 붙어 있다는 조합</mark>이 지금의 채권시장이에요.</p>
+<div class="chart-card">
+  <div class="ct">점도표 — 2026년 9월 SEP (이번 회의는 SEP 없음)</div>
+  <div class="cs">회색 빈 원 = 2026년 6월 SEP · 색 점 = 2026년 9월 SEP · 기준선은 현재 목표범위 중간값 3.875%</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}/*<!--rd-css-->*/
+body{word-break:keep-all;overflow-wrap:break-word}
+h1,.sec-head .l1,.sec-head .l2,.sub-head{text-wrap:balance}
+p,li,.tlx,.wp-a,.witem .tx{text-wrap:pretty}
+.body p,.body-p{line-height:1.85}
+.body>p,section>p,p.body-p{margin-bottom:22px}
+p.rd-s{margin-top:-6px}
+section{padding-top:56px}
+.sub-head{margin-top:40px}
+mark{padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* 가로 스크롤 카드 */
+.hs{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:10px!important;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:stretch;list-style:none;
+  margin-top:14px!important;margin-bottom:0!important;padding-top:2px;padding-bottom:4px;grid-template-columns:none!important;background:none!important;border-radius:0!important}
+.hs::-webkit-scrollbar{display:none}
+.hs>.hs-i{flex:0 0 var(--hs-w,min(calc(100vw - 76px),318px))!important;min-width:0;scroll-snap-align:start;margin:0!important;
+  background:var(--g50);border:1px solid var(--g100);border-radius:16px;padding:18px 18px 16px!important;
+  display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.7;color:var(--g700);white-space:normal}
+.hs>.hs-i::before{display:none!important}
+.hs.wide>.hs-i{--hs-w:min(calc(100vw - 64px),356px)}
+.hs-i .rd-h{display:block;font-size:15.5px;font-weight:800;line-height:1.45;color:var(--g900)}
+.hs-i .rd-x{display:block;font-size:14px;color:var(--g600);line-height:1.7}
+.hs-i .rd-no{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);font-size:12.5px;font-weight:800}
+/* 카드 종류별 보정 */
+.hs>.tli{flex-direction:column}
+.hs>.tli .tld{flex:none;text-align:left;display:flex;align-items:baseline;gap:6px}
+.hs>.tli .tlt{font-size:15.5px;line-height:1.45}
+.hs>.tli .tlx{font-size:14px;line-height:1.7}
+.hs>.wp{flex-direction:column}
+.hs>.wp .wp-badge{align-self:flex-start;margin:0}
+.hs>.wp .wp-q{font-size:15px;line-height:1.5}
+.hs>.wp .wp-a{font-size:14px;line-height:1.7;margin-top:4px}
+.hs>.witem{flex-direction:column;border-bottom:1px solid var(--g100)}
+.hs>.witem .tx{font-size:15px;font-weight:700;color:var(--g900)}
+.hs>.witem .tx small{font-size:13.5px;font-weight:500;color:var(--g500);line-height:1.65;margin-top:6px}
+.hs>.cause.main{background:var(--blue-bg);border-color:transparent}
+.hs>.cause p{font-size:14px;line-height:1.7}
+.hs>.wgrp{background:var(--surface,#fff);border:1px solid var(--g200)}
+.hs>.wgrp .wh{flex-wrap:wrap;line-height:1.45}
+.hs>.wgrp .wh .wd{margin-left:0;flex-basis:100%;font-weight:600;color:var(--g400)}
+.hs>.wgrp ul{gap:10px}
+.hs>.stock-g{background:var(--surface,#fff);border:1px solid var(--g200)}
+.wgrp.rd-flat{border:0;padding:0;margin:28px 0 8px;background:none}
+.wgrp.rd-flat>.wh{font-size:17px}
+/* 카운터·버튼 */
+.hs-nav{display:flex;align-items:center;gap:10px;margin:10px 0 18px;font-size:12.5px;font-weight:700;color:var(--g400)}
+.hs-nav .bar{flex:1;height:3px;border-radius:2px;background:var(--g100);overflow:hidden}
+.hs-nav .bar i{display:block;height:100%;background:var(--g400);border-radius:2px;transition:width .15s}
+.hs-nav .cnt{font-variant-numeric:tabular-nums;white-space:nowrap}
+.hs-nav .cnt b{color:var(--g900)}
+.hs-nav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--g200);background:var(--surface,#fff);color:var(--g600);
+  font-size:15px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+.hs-nav button:disabled{opacity:.35;cursor:default}
+.hs-nav .hint{white-space:nowrap}
+@media(hover:none){.hs-nav button{display:none}}
+@media(max-width:600px){section{padding-top:48px}.body>p,section>p,p.body-p{margin-bottom:20px}}
+/* ④ 긴 카드 접기·펼치기 */
+.hs>.hs-i.rd-clamp{max-height:var(--rd-clamp,300px);overflow:hidden;position:relative;padding-bottom:44px!important}
+.hs>.hs-i.rd-clamp.rd-open{max-height:none}
+.hs.rd-has-open{align-items:flex-start}
+.rd-more{position:absolute;left:0;right:0;bottom:0;height:64px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;
+  border:0;cursor:pointer;font:inherit;font-size:13px;font-weight:800;color:var(--blue);border-radius:0 0 16px 16px;
+  background:linear-gradient(to bottom,transparent,var(--rd-card,var(--g50)) 55%)}
+.hs-i.rd-open .rd-more{height:auto;padding:10px 0 12px;background:none}
+.hs>.wgrp,.hs>.stock-g{--rd-card:var(--surface,#fff)}
+.hs>.cause.main{--rd-card:var(--blue-bg)}
+/* ⑤ 목차 칩 + 읽기 진행 바 */
+.rd-toc{position:sticky;top:var(--rd-gnb,57px);z-index:9;background:var(--surface,#fff);border-bottom:1px solid var(--g100)}
+.rd-toc .rd-prog{position:absolute;left:0;top:0;height:2px;background:var(--blue);width:0;transition:width .1s linear}
+.rd-toc .rd-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:9px 28px}
+.rd-toc .rd-chips::-webkit-scrollbar{display:none}
+.rd-toc a{flex:0 0 auto;font-size:13px;font-weight:700;color:var(--g500);background:var(--g100);border-radius:20px;padding:6px 12px;text-decoration:none;white-space:nowrap;transition:.15s}
+.rd-toc a.on{background:var(--blue);color:#fff}
+.rd-anchor{scroll-margin-top:calc(var(--rd-gnb,57px) + 64px)}
+/* ⑥ 출처 접기 */
+.source-note.rd-src{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.rd-src-btn{border:0;background:var(--g100);color:var(--g500);font:inherit;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:8px;cursor:pointer}
+.source-note.rd-src .rd-src-body{display:none}
+.source-note.rd-src.rd-open .rd-src-body{display:block}
+/* ⑦ 모바일 KPI 2열 */
+@media(max-width:600px){
+  .rd-toc .rd-chips{padding:9px 20px}
+  .kpis{grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .kpis .kpi{padding:13px 14px}
+  .kpis .kpi .l{font-size:12px}
+  .kpis .kpi .v{font-size:20px}
+  .kpis .kpi .d{font-size:11.5px;line-height:1.45}
+}
+/*<!--/rd-css-->*/
+</style><line x1="14" y1="246.0" x2="644" y2="246.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="250.0" class="ax">2.67</text><line x1="14" y1="191.0" x2="644" y2="191.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="195.0" class="ax">3.15</text><line x1="14" y1="136.0" x2="644" y2="136.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="140.0" class="ax">3.62</text><line x1="14" y1="81.0" x2="644" y2="81.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="85.0" class="ax">4.10</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">4.58</text><line x1="171.5" y1="26" x2="171.5" y2="246.0" stroke="#EDEFF2" stroke-width="1"/><line x1="329.0" y1="26" x2="329.0" y2="246.0" stroke="#EDEFF2" stroke-width="1"/><line x1="486.5" y1="26" x2="486.5" y2="246.0" stroke="#EDEFF2" stroke-width="1"/><line x1="14" y1="107.1" x2="644" y2="107.1" stroke="#8B95A1" stroke-width="1.5" stroke-dasharray="5,4"/><text x="17.0" y="122.1" text-anchor="start" class="cl" style="fill:#4E5968" stroke="#fff" stroke-width="3.5" paint-order="stroke" stroke-linejoin="round">현재 3.875%</text><circle cx="58.1" cy="49.2" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="40.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="49.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="58.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="67.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="76.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="49.1" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="58.1" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="67.1" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="26.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="35.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="44.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="53.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="62.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="71.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="80.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="89.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="58.1" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><line x1="23.7" y1="115.7" x2="92.5" y2="115.7" stroke="#8B95A1" stroke-width="2" stroke-dasharray="4,3"/><circle cx="113.9" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="122.9" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="131.9" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="140.9" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="77.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="86.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="95.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="104.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="113.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="122.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="131.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="140.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="149.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="158.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="167.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="176.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="122.9" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="131.9" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><line x1="93.0" y1="81.0" x2="161.8" y2="81.0" stroke="#4E5968" stroke-width="2.5"/><text x="92.8" y="276" text-anchor="middle" class="cl">2026</text><text x="92.8" y="293" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">3.8 → 4.1%</text><circle cx="215.6" cy="49.2" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="211.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="220.1" cy="78.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="197.6" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="206.6" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="215.6" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="224.6" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="233.6" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="211.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="220.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="206.6" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="215.6" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="224.6" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="202.1" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="211.1" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="220.1" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="229.1" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="215.6" cy="222.8" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><line x1="181.2" y1="138.9" x2="250.0" y2="138.9" stroke="#8B95A1" stroke-width="2" stroke-dasharray="4,3"/><circle cx="253.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="262.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="271.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="280.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="289.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="298.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="307.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="316.4" cy="49.2" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="262.4" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="271.4" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="280.4" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="289.4" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="298.4" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="307.4" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="275.9" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="284.9" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="293.9" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="284.9" cy="193.9" r="4.0" fill="#3182F6" opacity="0.85"/><line x1="250.5" y1="81.0" x2="319.3" y2="81.0" stroke="#4E5968" stroke-width="2.5"/><text x="250.2" y="276" text-anchor="middle" class="cl">2027</text><text x="250.2" y="293" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">3.6 → 4.1%</text><circle cx="364.1" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="373.1" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="382.1" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="355.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="364.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="373.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="382.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="391.1" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="368.6" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="377.6" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="350.6" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="359.6" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="368.6" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="377.6" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="386.6" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="395.6" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="373.1" cy="222.8" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><line x1="338.7" y1="162.1" x2="407.5" y2="162.1" stroke="#8B95A1" stroke-width="2" stroke-dasharray="4,3"/><circle cx="428.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="437.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="446.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="455.9" cy="78.1" r="4.0" fill="#F04452" opacity="0.85"/><circle cx="424.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="433.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="442.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="451.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="460.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="433.4" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="442.4" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="451.4" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="442.4" cy="164.9" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="428.9" cy="193.9" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="437.9" cy="193.9" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="446.9" cy="193.9" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="455.9" cy="193.9" r="4.0" fill="#3182F6" opacity="0.85"/><line x1="408.0" y1="104.2" x2="476.8" y2="104.2" stroke="#4E5968" stroke-width="2.5"/><text x="407.8" y="276" text-anchor="middle" class="cl">2028</text><text x="407.8" y="293" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">3.4 → 3.9%</text><circle cx="530.6" cy="107.1" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="530.6" cy="121.5" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="530.6" cy="136.0" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="530.6" cy="150.5" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="526.1" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="535.1" cy="164.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="530.6" cy="179.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="526.1" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="535.1" cy="193.9" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="503.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="512.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="521.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="530.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="539.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="548.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="557.6" cy="208.4" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="526.1" cy="222.8" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><circle cx="535.1" cy="222.8" r="4.0" fill="#fff" stroke="#B0B8C1" stroke-width="1.8"/><line x1="496.2" y1="196.8" x2="565.0" y2="196.8" stroke="#8B95A1" stroke-width="2" stroke-dasharray="4,3"/><circle cx="595.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="604.4" cy="107.1" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="599.9" cy="121.5" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="595.4" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="604.4" cy="136.0" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="595.4" cy="150.5" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="604.4" cy="150.5" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="599.9" cy="164.9" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="595.4" cy="179.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="604.4" cy="179.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="599.9" cy="193.9" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="577.4" cy="208.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="586.4" cy="208.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="595.4" cy="208.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="604.4" cy="208.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="613.4" cy="208.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="622.4" cy="208.4" r="4.0" fill="#3182F6" opacity="0.85"/><circle cx="599.9" cy="222.8" r="4.0" fill="#3182F6" opacity="0.85"/><line x1="565.5" y1="185.2" x2="634.3" y2="185.2" stroke="#4E5968" stroke-width="2.5"/><text x="565.2" y="276" text-anchor="middle" class="cl">장기</text><text x="565.2" y="293" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">3.1 → 3.2%</text></svg>
+  <div class="legend"><span><i style="background:#8B95A1;border-radius:50%"></i>직전 SEP(6월)</span><span><i style="background:#3182F6"></i>현재 이하</span><span><i style="background:#F04452"></i>인상</span></div>
+</div>
+<p class="body-p">이번 회의는 경제전망(SEP)이 없어 점도표가 갱신되지 않았어요. 그래서 여전히 유효한 공식 신호는 <b>9월 점도표</b>예요. 2026년말 중간값 4.1%는 현재 중간값 3.875%보다 높아 <b>연내 추가 인상 한 번</b>을 가리키고, 18명 중 16명이 그 방향이었어요. 2027년 중간값도 4.1%로 같은 자리인데 <mark class="r">인상 8명·동결 6명·인하 4명으로 가장 크게 갈려 있어요.</mark> 12월 회의에서 이 분포가 어떻게 바뀌는지가 내년 경로의 핵심이에요.</p>
+<div class="sub-head">📋 9월 SEP Table 1 — 2026년 전망</div>
+<div class="kpi">
+<div class="k"><div class="l">2026 실질 GDP 성장률</div><div class="v"><span class="down">2.3%</span></div><div class="d">2026년 6월 2.2% → +0.1%p 상향</div></div>
+<div class="k"><div class="l">2026 실업률</div><div class="v"><span class="down">4.1%</span></div><div class="d">2026년 6월 4.3% → -0.2%p 하향</div></div>
+<div class="k"><div class="l">2026 PCE 물가</div><div class="v"><span class="up">3.7%</span></div><div class="d">2026년 6월 3.6% → +0.1%p 상향</div></div>
+<div class="k"><div class="l">2026 근원 PCE 물가</div><div class="v"><span class="up">3.4%</span></div><div class="d">2026년 6월 3.3% → +0.1%p 상향</div></div>
+</div>
+<div class="v2sum"><span class="cap">한 문장 요약</span>정책금리는 제자리인데 2년물은 내려가고 10년물은 5% 위에 머물렀어요. 공식 신호는 아직 <b>9월 점도표의 "연내 한 번 더"</b>예요.</div>
+<div class="sub-head">📄 성명서에서 바뀐 것</div>
+<div class="sub-desc">문장 수는 거의 그대로인데, 경기 판단이 한 단계 올라가고 인내심을 뜻하는 문장이 새로 들어갔어요.</div>
+<div class="twrap"><table class="htable">
+  <tr><th>항목</th><th>9월 회의</th><th>10월 회의</th><th>해석</th></tr>
+  <tr class="new"><td>경제활동</td><td data-h="9월 회의">견고한 속도(solid)</td><td class="w a up" data-h="10월 회의">강한 속도(strong)</td><td class="w" data-h="해석">판단을 한 단계 올렸어요. 민간 지출은 "견조", 설비투자는 "강건"으로 묘사했어요. 애틀랜타 연은 GDPNow는 3분기 연율 3.4%를 가리켜요.</td></tr>
+  <tr><td>물가</td><td data-h="9월 회의">여전히 높다(elevated)</td><td class="w a" data-h="10월 회의">여전히 높다(elevated)</td><td class="w" data-h="해석">표현 그대로예요. 물가가 2% 목표를 넘은 기간이 5년을 넘었어요.</td></tr>
+  <tr><td>신규 문장</td><td data-h="9월 회의">—</td><td class="w a" data-h="10월 회의">"더 많은 정보가 쌓이면 …적절한 정책 스탠스를 판단하는 데 도움이 될 것"</td><td class="w" data-h="해석">이번 동결의 공식 근거예요. 방향을 바꾼 게 아니라 판단을 미뤘다는 신호예요.</td></tr>
+  <tr><td>삭제 문장</td><td data-h="9월 회의">9월 인상을 설명하는 문장</td><td class="w a" data-h="10월 회의">삭제</td><td class="w" data-h="해석">인상 이벤트 설명이 빠진 것 외에 실질적 변화는 없어요.</td></tr>
+  <tr><td>다짐 문장</td><td data-h="9월 회의">"위원회는 물가 안정을 이뤄낼 것"</td><td class="w a" data-h="10월 회의">"위원회는 물가 안정을 제공할 것"</td><td class="w" data-h="해석">9월부터 들어간 강한 다짐 문장이 유지됐어요. 포워드 가이던스는 여전히 없어요.</td></tr>
+  <tr><td>표결</td><td data-h="9월 회의">12-0 만장일치 인상</td><td class="w a up" data-h="10월 회의">10-2 동결</td><td class="w" data-h="해석">쿡 이사와 해맥 총재가 0.25%p 인상을 주장했어요. 7월 회의에서 반대했던 로건·카시카리 총재는 이번엔 다수 의견에 섰어요.</td></tr>
+</table></div>
+<div class="quote">"더 많은 정보가 쌓이면 위원회가 물가를 2% 목표로 적시에 되돌리는 데 적절한 정책 스탠스를 판단하는 데 도움이 될 것입니다. 위원회는 물가 안정을 제공할 것입니다." — 10월 FOMC 성명서</div>
+<p class="body-p">반대표 두 장의 무게가 달라요. <b>리사 쿡 이사는 2022년 취임 이후 첫 반대</b>예요. 이사(Governor)가 금리 표결에서 반대하는 건 드문 일이에요. 쿡 이사는 주택담보대출 신청 정보 관련 의혹으로 트럼프 대통령의 해임 시도 대상이 돼 있고, <b>11월 초에 관련 심리가 예정</b>돼 있어요. 베스 해맥 클리블랜드 연은 총재는 7월에도 인상을 주장했던 인물이에요. 두 사람은 주말까지 반대 사유 성명을 낼 예정이에요.</p>
+<div class="v2sum"><span class="cap">한 문장 요약</span>성명서는 경기를 올려 보고 물가는 그대로 보면서 "더 보고 판단한다"를 추가했어요. <b>반대표 2장이 긴축 쪽으로 기울어 있다는 사실</b>이 이번 문서의 핵심이에요.</div>
+<div class="sub-head">🎙️ 워시 기자회견 — 2027년부터 금리 결정 회의가 줄어요</div>
+<div class="sub-desc">금리 이야기보다 제도 변경이 더 큰 뉴스였어요.</div>
+<div class="quote">"연 8회가 FOMC에 맞는 횟수라고 봅니다. 다만 2027년에는 한 회의를 통화정책 전략 논의에만 할당하고, 금리 표결도 정책성명서도 내지 않을 예정입니다. 2028년에는 전략 논의 회의를 두 번으로 늘려 정책 결정 회의는 여섯 번이 될 것으로 봅니다." — Kevin Warsh, 연준 의장</div>
+<p class="body-p">케빈 워시 의장이 공개한 변경은 단순한 일정 조정이 아니에요. <mark class="r">2028년이면 긴급회의를 빼고 금리를 조정할 기회가 1년에 여섯 번으로 줄어요.</mark> 회의 사이 간격이 길어지면 한 번의 결정에 실리는 무게가 커지고, 시장은 그만큼 회의 사이에 지표로 경로를 추측해야 해요. 워시 의장 취임 이후 기자회견 시간이 45분에서 30분으로 줄고 기자 질문도 1인 1개로 제한된 흐름의 연장선이에요.</p>
+<p class="body-p">금리 관련 발언은 신중했어요. 워시 의장은 연준이 <b>"행동할 의지와 준비가 되어 있다"</b>면서도 물가 통제는 점진적 과정이라고 했어요. AI 투자 붐에 대해서는 <b>"경제가 과열된 것은 아니다"</b>라며, AI 지출이 자본 형성과 생산성을 뒷받침하고 있고 생산성이 개선됐다고 평가했어요. 고용 상황은 <b>"상당히 긍정적"</b>이라고 표현했어요. 제프리스의 토머스 사이먼스는 "비둘기인지 매인지 규정하기 어렵다"고 평했어요.</p>
+<div class="v2sum"><span class="cap">한 문장 요약</span>기자회견의 진짜 뉴스는 금리가 아니라 <b>2028년부터 금리 결정 회의가 연 6회로 줄어든다</b>는 제도 변경이에요.</div>
+<div class="sub-head">🏛️ 시장 반응과 연준 경로</div>
+<div class="sub-desc">주가는 올랐고 단기금리는 내렸는데, 12월 인상 확률만 올라갔어요.</div>
+<div class="twrap"><table class="htable">
+  <tr><th>자산</th><th>10월 28일</th><th>전일</th><th>변화</th></tr>
+  <tr><td>S&amp;P 500</td><td class="a">7,743.98</td><td>7,722.60</td><td class="up">+0.28%</td></tr>
+  <tr><td>나스닥 종합</td><td class="a">26,549.85</td><td>26,477.81</td><td class="up">+0.27%</td></tr>
+  <tr><td>다우</td><td class="a">52,475.10</td><td>52,377.57</td><td class="up">+0.19%</td></tr>
+  <tr><td>미국 2년물</td><td class="a">4.70%</td><td>4.74%</td><td class="down">-4bp</td></tr>
+  <tr><td>미국 10년물</td><td class="a">5.02%</td><td>5.01%</td><td class="up">+2bp</td></tr>
+  <tr><td>미국 30년물</td><td class="a">5.33%</td><td>5.30%</td><td class="up">+2bp</td></tr>
+  <tr><td>WTI 원유</td><td class="a">$101.67</td><td>$99.90</td><td class="up">+1.77%</td></tr>
+  <tr><td>12월 인상 확률</td><td class="a">86.0%</td><td>78.3%</td><td class="up">+7.7%p</td></tr>
+</table></div>
+<p class="body-p">주가는 사흘 연속 올랐어요. 동결이 예상대로였고, 같은 날 오라클이 장기 매출 전망을 상향해 11% 급등하면서 AI 인프라 쪽 분위기도 나아진 날이에요. 반면 채권시장의 메시지는 달랐어요. <b>2년물은 4bp 내려가고 10년물은 2bp 올라</b> 커브가 벌어졌는데, 이건 "당장은 안 올리지만 결국 올린다"와 "장기 물가·재정 부담은 그대로"가 섞인 모양이에요.</p>
+<p class="body-p">12월 경로는 거의 정해진 분위기예요. CME 페드워치 기준 <b>12월 9일 회의에서의 인상 확률 86.0%</b>로, 전일 78.3%에서 7.7%포인트 올랐어요. 다만 10월 21일 94.8%보다는 낮아서 10월 말 금리 급락 구간의 흔적이 남아 있어요. 프린시펄의 시마 샤는 <b>"연준은 여전히 작년 인하분을 되감고 있고, 반대표 2장이 긴축 편향을 보여준다. 12월 인상과 2027년 초 추가 인상을 예상한다"</b>고 했어요. 제프 슐츠는 <b>"오늘 결정에서 연말 전 25bp 인상을 배제하는 내용은 없었다"</b>고 평했어요.</p>
+<p class="body-p">같은 날 발표된 9월 도매재고는 +0.6%로 예상(+0.5%)을 소폭 넘겼어요. 그리고 바로 다음 날인 <b>10월 29일 밤 21:30(한국시간)에 9월 PCE 물가와 3분기 GDP 속보치가 동시에 나와요.</b> 연준이 "강한 속도"라고 쓴 판단과 "여전히 높다"고 쓴 물가가 숫자로 확인되는 자리예요.</p>
+<div class="callout"><div class="ct">한 문장 요약</div>연준은 동결했지만 완화 신호는 없었어요. <b>경기 판단은 올라갔고, 반대표는 2장, 12월 인상 확률은 86%</b>예요. 주가가 오른 건 동결 때문이 아니라 불확실성이 하루 걷혔기 때문이에요.</div>
+<div class="sub-head">💼 보유 종목 영향</div>
+<div class="sub-desc">FOMC보다 같은 날 쏟아진 실적이 주가를 움직였어요.</div>
+<div class="stock-g">
+  <div class="sg-t">금리민감 성장주 <span class="tks">PLTR · IONQ · SMR · CRWV</span> <span class="badge neu">중립</span></div>
+  <div class="rr"><b>결과</b> CRWV만 <b>+7.32%</b>($63.93)로 크게 올랐고, PLTR -0.97%($196.81), IONQ -1.58%($32.43), SMR -0.53%($5.67)는 조용했어요.</div><div class="rr"><b>이유</b> 2년물이 4bp 내려온 건 이 그룹에 우호적이지만, 움직인 이유는 금리가 아니라 업종 반등이에요. CRWV는 <a href="../실적브리핑/실적브리핑_CRWV_2026Q2_2026.08.12.html">덴마크 컴퓨트 가동과 월가의 "과매도" 코멘트</a>로 3거래일 18% 올랐어요. 다만 장 마감 뒤 마이크로소프트 설비투자가 컨센서스를 밑돌자 시간외에서 5% 가까이 되밀렸어요. 12월 인상이 현실화되면 차입 비용이 이 그룹의 가장 큰 변수로 남아요.</div>
+</div>
+<div class="stock-g">
+  <div class="sg-t">반도체·메모리 <span class="tks">NVDA · MU · SK하이닉스</span> <span class="badge pos">우호적</span></div>
+  <div class="rr"><b>결과</b> <a href="../실적브리핑/실적브리핑_MU_FY2026Q4_2026.10.01.html">MU가 +5.86%($983.23)</a>, <a href="../실적브리핑/실적브리핑_000660_2026Q3_2026.10.28.html">SK하이닉스는 한국장에서 +10.89%(1,487,000원)</a>로 급등했고 NVDA만 -1.17%($215.38)였어요.</div><div class="rr"><b>이유</b> FOMC와 무관해요. SK하이닉스가 컨퍼런스콜에서 <b>2030년까지 메모리 공급 부족·2029년까지 D램·HBM 솔드아웃</b>을 제시하자 메모리 업종 전체가 반응했어요. 금리 쪽에서 보면 "강한 속도" 판단은 설비투자 수요에 우호적이고, 반대로 12월 인상은 고객사 자금조달에 부담이에요.</div>
+</div>
+<div class="stock-g">
+  <div class="sg-t">빅테크 <span class="tks">AAPL · MSFT · GOOGL</span> <span class="badge neu">중립</span></div>
+  <div class="rr"><b>결과</b> 정규장에서는 <a href="../실적브리핑/실적브리핑_GOOGL_2026Q3_2026.10.29.html">GOOGL +1.34%($324.89)</a>, <a href="../실적브리핑/실적브리핑_MSFT_FY2027Q1_2026.10.29.html">MSFT -0.06%($531.01)</a>, AAPL -0.94%($343.83)였어요. 장 마감 뒤 실적이 나오자 MSFT는 +3~4%, GOOGL은 -10%로 갈렸어요.</div><div class="rr"><b>이유</b> 이 그룹의 변수는 금리가 아니라 설비투자 회수 속도예요. 같은 날 MSFT는 Azure 48%·FCF +$18.6B으로 투자 대비 회수를 보여줬고, GOOGL은 FCF -$9.07B에 2027년 투자 확대를 예고했어요. 연준이 "AI 투자가 경제를 과열시키지 않는다"고 평가한 것과 시장이 개별 기업에 요구하는 기준은 다르다는 게 이 하루에 드러났어요. 다음 확인 자리는 10월 30일 애플 실적이에요.</div>
+</div>
+<div class="stock-g">
+  <div class="sg-t">배당·방어 <span class="tks">O · KO · ABBV</span> <span class="badge neu">중립</span></div>
+  <div class="rr"><b>결과</b> <a href="../실적브리핑/실적브리핑_KO_2026Q3_2026.10.28.html">KO +0.60%($91.73)</a>, ABBV -0.14%($285.99), <a href="../실적브리핑/실적브리핑_O_2026Q2_2026.08.08.html">O -1.04%($56.23)</a>로 보합권이었어요.</div><div class="rr"><b>이유</b> 리츠인 O가 가장 금리에 민감한데, 10년물이 5% 위에 머물러 있어 부담이 남아 있어요. 12월 인상이 현실화되면 배당수익률의 상대 매력이 더 줄어요. 다음 확인 자리는 11월 3일 O와 애플 실적, 그리고 10월 30일 애브비 실적이에요.</div>
+</div>
+<div class="v2sum"><span class="cap">한 문장 요약</span>FOMC는 종목을 움직이지 않았어요. 이날 포트폴리오를 가른 건 <b>SK하이닉스 컨퍼런스콜과 MSFT·GOOGL 실적</b>이었어요.</div>
+<div class="sub-head">👀 다음 발표에선 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">12월 9일 회의에서 실제로 0.25%p 인상이 나오는지<small>시장은 86%를 반영하고 있어요. 동결이면 "점도표와 실제 결정의 괴리"가 두 번 반복되는 거고, 인상이면 2027년 경로가 다시 쟁점이 돼요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">쿡·해맥의 반대 사유 성명과 다음 회의에서 반대표가 늘어나는지<small>10-2에서 9-3이 되면 12월 인상은 사실상 확정이에요. 쿡 이사의 거취 심리(11월 초)가 표결 구성 자체를 바꿀 수 있다는 점도 함께 봐요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">10월 29일 밤 9월 PCE와 3분기 GDP 속보치가 "강한 속도" 판단을 뒷받침하는지<small>근원 PCE가 3.0%에서 더 내려가면 12월 인상 확률이 꺾여요. 반대로 3%를 넘고 GDP가 3%대면 인상 쪽 근거가 단단해져요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">12월 SEP에서 2027년 점 분포(인상 8 · 동결 6 · 인하 4)가 좁혀지는지<small>중간값 4.1%보다 분포가 중요해요. 좁혀지면 내년 경로의 예측 가능성이 올라가고, 그대로면 회의 횟수 축소와 겹쳐 변동성이 커져요</small></div></div>
+</div>
+<div class="wp-preview">📌 다음 보고서에서는 위 4가지가 실제로 어떻게 됐는지 <b>하나씩 점검</b>해서 맨 앞에 보여드릴게요.</div>
+<div class="next-box">다음 FOMC 금리결정 · <b>2026년 12월 10일 04:00</b>(한국시간) 발표 <span class="est">12월 9~10일 회의 · SEP 발표 회의</span></div>
+<div class="v2sum"><span class="cap">한 문장 요약</span>12월 회의는 <b>인상 결정과 새 점도표가 같이 나오는 자리</b>라, 올해 마지막이면서 내년 경로를 정하는 회의예요.</div>
+<div class="sub-head">📚 FOMC 금리결정이란?</div>
+<div class="explain">
+<p><b>FOMC(연방공개시장위원회)</b>는 미국의 기준금리를 정하는 회의예요. 연준 이사 7명과 연방준비은행 총재 5명, 모두 12명이 투표해요. 1년에 8번 열리고, 그중 3·6·9·12월 회의에서는 <b>경제전망(SEP)</b>과 위원 개인별 금리 전망을 점으로 찍은 <b>점도표</b>를 함께 발표해요. 이번 10월 회의는 SEP이 없는 회의였어요.</p>
+<p>기준금리는 하나의 숫자가 아니라 <b>0.25%포인트 폭의 목표범위</b>로 제시돼요. 지금은 3.75~4.00%이고, 중간값 3.875%가 점도표의 기준선이 돼요. 금리를 올리면 돈을 빌리는 비용이 올라가 소비와 투자가 줄고 물가 상승 압력이 낮아져요. 대신 성장주처럼 먼 미래 이익으로 평가받는 자산은 할인율이 올라가 불리해져요.</p>
+<p><b>반대표(dissent)</b>도 중요한 정보예요. 결정 자체는 다수결로 끝나지만, 반대표의 방향과 숫자는 다음 회의의 예고편이 되는 경우가 많아요. 특히 연은 총재보다 <b>연준 이사(Governor)의 반대</b>가 더 드물고 무겁게 읽혀요.</p>
+<p>연준이 보는 물가는 소비자물가지수(CPI)가 아니라 <b>개인소비지출(PCE) 물가</b>예요. 산출 방식과 가중치가 달라 두 지표는 보통 다르게 나오고, 2% 목표도 PCE 기준이에요. 그래서 CPI가 높게 나와도 PCE가 낮으면 연준의 판단은 달라질 수 있어요.</p>
+</div>
+
+<!--rnav-->
+<div class="rnav"><a class="prev" href="../실적브리핑/실적브리핑_MSFT_FY2027Q1_2026.10.29.html"><span class="av"><img src="../logos/MSFT.png" alt=""></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">MSFT</div><div class="rs"><span class="tx BEAT">상회</span> · Microsoft · FY2027 Q1</div></div></a><a class="next" href="../급등락/급등락_MU_2026.10.29.html"><span class="av"><img src="../logos/MU.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">MU</div><div class="rs"><span class="tx UPM">+5.86%</span> · Micron · 업종 재평가</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: 연방준비제도 FOMC 성명서·기자회견(2026.10.28 미국시간), 2026년 9월 SEP(fomcprojtabl20260916), 미 재무부 일별 국채수익률곡선, CME 페드워치, CNBC·Daily Economics 보도 · macro-briefing 스킬이 자동 생성했습니다.
+</div>
+</div>
+</div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="경제지표/경제지표_FOMC_2026.10회의_2026.10.29.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+<!--rd-js-->
+<script>
+/* 가독성 레이어 v2.18 — 긴 문단 분리 + 나열형 블록 가로 스크롤 카드 */
+(function(){
+if(window.__rd)return;window.__rd=1;
+var Q=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+var kids=function(el){return Array.prototype.slice.call(el.children);};
+/* ① 긴 문단 분리 — 최상위 텍스트 노드의 문장 경계에서만 자른다(굵게·형광펜 안은 건드리지 않음) */
+function splitP(p){
+  if(p.closest('.hs,.cause,.hcard,.callout,.explain,.disclaimer,.kpi,.memo,.chart'))return;
+  if(p.textContent.length<200)return;
+  var groups=[[]],acc=0;
+  Array.prototype.slice.call(p.childNodes).forEach(function(n){
+    if(n.nodeType!==3){groups[groups.length-1].push(n);acc+=(n.textContent||'').length;return;}
+    var parts=n.textContent.replace(/([요다]\.)\s+(?=\S)/g,'$1\u0000').split('\u0000');
+    parts.forEach(function(t,i){
+      if(i>0&&acc>=120){groups.push([]);acc=0;}
+      else if(i>0){groups[groups.length-1].push(document.createTextNode(' '));}
+      groups[groups.length-1].push(document.createTextNode(t));acc+=t.length;
+    });
+  });
+  if(groups.length<2)return;
+  var last=groups[groups.length-1],len=last.reduce(function(a,n){return a+(n.textContent||'').length;},0);
+  if(len<40){groups.pop();var prev=groups[groups.length-1];prev.push(document.createTextNode(' '));last.forEach(function(n){prev.push(n);});}
+  if(groups.length<2)return;
+  groups.forEach(function(g,i){
+    var q=i===0?p:p.cloneNode(false);
+    if(i===0){while(p.firstChild)p.removeChild(p.firstChild);}else{q.classList.add('rd-s');}
+    g.forEach(function(n){q.appendChild(n);});
+    if(i>0){var ref=groups.__last||p;ref.parentNode.insertBefore(q,ref.nextSibling);groups.__last=q;}
+  });
+}
+Q('.body p, p.body-p').forEach(splitP);
+/* li "굵은 제목 — 설명" → 카드 제목/본문 */
+function liCard(li){
+  var f=li.firstChild;while(f&&f.nodeType===3&&!f.textContent.trim())f=f.nextSibling;
+  if(!f||f.nodeType!==1||f.tagName!=='B')return;
+  var nx=f.nextSibling;if(!nx||nx.nodeType!==3||!/^\s*[—–-]\s*/.test(nx.textContent))return;
+  nx.textContent=nx.textContent.replace(/^\s*[—–-]\s*/,'');
+  var h=document.createElement('span');h.className='rd-h';li.insertBefore(h,f);h.appendChild(f);
+  var x=document.createElement('span');x.className='rd-x';
+  while(h.nextSibling)x.appendChild(h.nextSibling);li.appendChild(x);
+}
+/* ③ 가로 스크롤 카드 */
+var all=[];
+function mk(box,items,wide){
+  if(items.length<2)return;
+  box.classList.add('hs');if(wide)box.classList.add('wide');
+  items.forEach(function(it){it.classList.add('hs-i');});
+  var nav=document.createElement('div');nav.className='hs-nav';
+  nav.innerHTML='<span class="cnt"><b>1</b> / '+items.length+'</span><span class="bar"><i></i></span><span class="hint">옆으로 넘겨보세요</span><button type="button" aria-label="이전">‹</button><button type="button" aria-label="다음">›</button>';
+  box.parentNode.insertBefore(nav,box.nextSibling);
+  var b=nav.querySelectorAll('button'),cnt=nav.querySelector('.cnt b'),bar=nav.querySelector('.bar i'),hint=nav.querySelector('.hint');
+  var step=function(){return items[0].getBoundingClientRect().width+10;};
+  function upd(){
+    var max=box.scrollWidth-box.clientWidth,i=Math.round(box.scrollLeft/step());
+    if(box.scrollLeft>=max-4)i=items.length-1;
+    var vis=Math.max(1,Math.floor((box.clientWidth+10)/step()));
+    cnt.textContent=Math.min(items.length,i+1);
+    bar.style.width=(max>0?Math.min(100,(box.scrollLeft+box.clientWidth)/box.scrollWidth*100):100)+'%';
+    b[0].disabled=box.scrollLeft<=4;b[1].disabled=box.scrollLeft>=max-4;
+    if(box.scrollLeft>8)hint.style.display='none';
+    nav.style.display=max>4?'':'none';
+  }
+  b[0].onclick=function(){box.scrollBy({left:-step(),behavior:'smooth'});};
+  b[1].onclick=function(){box.scrollBy({left:step(),behavior:'smooth'});};
+  box.addEventListener('scroll',upd,{passive:true});
+  all.push({box:box,upd:upd});
+}
+function wrapRun(run){ /* 연속 형제들을 div.hs로 묶는다 */
+  var w=document.createElement('div');run[0].parentNode.insertBefore(w,run[0]);
+  run.forEach(function(e){w.appendChild(e);});return w;
+}
+function runs(sel){ /* 같은 부모 아래 연속된 sel 형제 묶음 */
+  var out=[],seen=new Set();
+  Q(sel).forEach(function(e){
+    if(seen.has(e)||e.closest('.hs'))return;var r=[e];seen.add(e);var n=e.nextElementSibling;
+    while(n&&n.matches(sel)){r.push(n);seen.add(n);n=n.nextElementSibling;}
+    out.push(r);
+  });return out;
+}
+runs('.wgrp').forEach(function(r){
+  if(r.length>=2){mk(wrapRun(r),r,true);return;}
+  var g=r[0],ul=g.querySelector(':scope>ul');if(!ul)return;var li=kids(ul).filter(function(e){return e.tagName==='LI';});
+  if(li.length<5)return;g.classList.add('rd-flat');li.forEach(liCard);mk(ul,li);
+});
+Q('.tl').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('tli');});if(k.length>=3)mk(b,k,true);});
+Q('.cause-grid').forEach(function(b){var k=kids(b);if(k.length>=3)mk(b,k,true);});
+Q('.wp-list').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('wp');});if(k.length>=3)mk(b,k);});
+Q('.wlist').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('witem');});if(k.length>=3)mk(b,k);});
+runs('.stock-g').forEach(function(r){if(r.length>=2)mk(wrapRun(r),r,true);});
+Q('ul.dots').forEach(function(ul){
+  if(ul.closest('.hs'))return;var li=kids(ul);if(li.length<4)return;
+  var avg=li.reduce(function(a,e){return a+e.textContent.length;},0)/li.length;if(avg<50)return;
+  li.forEach(liCard);mk(ul,li);
+});
+/* 카드 줄을 화면 가장자리까지 넓힌다(본문 여백만큼 bleed) */
+function bleed(){
+  var pg=document.querySelector('.page')||document.body,pr=pg.getBoundingClientRect();
+  all.forEach(function(o){
+    var s=o.box.style;s.marginLeft=s.marginRight=s.paddingLeft=s.paddingRight='';
+    var r=o.box.getBoundingClientRect(),l=Math.max(0,Math.round(r.left-pr.left)),rr=Math.max(0,Math.round(pr.right-r.right));
+    s.setProperty('margin-left',-l+'px','important');s.setProperty('margin-right',-rr+'px','important');
+    s.setProperty('padding-left',l+'px','important');s.setProperty('padding-right',rr+'px','important');s.scrollPaddingLeft=l+'px';
+    o.upd();
+  });
+}
+/* ④ 긴 카드 접기 — 카드가 340px을 넘으면 300px까지만 보여주고 「더보기」 */
+function clamp(){
+  all.forEach(function(o){
+    o.box.style.alignItems='flex-start';  /* 늘어난 높이가 아니라 원래 높이로 판단 */
+    var cs=kids(o.box);var hs=cs.map(function(c){return c.scrollHeight;});
+    o.box.style.alignItems='';
+    cs.forEach(function(c,ix){
+      if(!c.classList.contains('hs-i')||c.querySelector(':scope>.rd-more'))return;
+      if(hs[ix]<=340)return;
+      c.classList.add('rd-clamp');
+      var b=document.createElement('button');b.type='button';b.className='rd-more';b.textContent='더보기 ⌄';
+      b.onclick=function(e){e.preventDefault();var op=c.classList.toggle('rd-open');b.textContent=op?'접기 ⌃':'더보기 ⌄';
+        o.box.classList.toggle('rd-has-open',!!o.box.querySelector('.rd-open'));o.upd();};
+      c.appendChild(b);
+    });
+  });
+}
+/* ⑥ 출처 접기 */
+Q('.source-note').forEach(function(s){
+  if(s.classList.contains('rd-src'))return;
+  var body=document.createElement('div');body.className='rd-src-body';
+  while(s.firstChild)body.appendChild(s.firstChild);
+  var b=document.createElement('button');b.type='button';b.className='rd-src-btn';b.textContent='출처 보기 ›';
+  b.onclick=function(){var op=s.classList.toggle('rd-open');b.textContent=op?'출처 접기 ‹':'출처 보기 ›';};
+  s.classList.add('rd-src');s.appendChild(b);s.appendChild(body);
+});
+/* ⑤ 목차 칩 + 읽기 진행 바 — .sec-head가 3개 이상이면 그것, 아니면 .sub-head(3~12개) */
+(function(){
+  var gnb=document.querySelector('.gnb');if(!gnb)return;
+  var hs=Q('.sec-head');var label=function(h){var l=h.querySelector('.l1');return (l||h).textContent;};
+  if(hs.length<3){hs=Q('.body .sub-head').filter(function(h){return !h.closest('.hs');});if(hs.length<3||hs.length>12)return;}
+  var toc=document.createElement('nav');toc.className='rd-toc';toc.setAttribute('aria-label','목차');
+  toc.innerHTML='<div class="rd-prog"></div><div class="rd-chips"></div>';
+  var chips=toc.querySelector('.rd-chips'),prog=toc.querySelector('.rd-prog'),links=[];
+  hs.forEach(function(h,i){
+    var t=label(h).replace(/^[^\p{L}\p{N}①-⑳]+/u,'').replace(/[,，\s]+$/,'').trim();
+    var tgt=h.closest('section')||h;if(!tgt.id)tgt.id='rd-s'+i;tgt.classList.add('rd-anchor');
+    var a=document.createElement('a');a.href='#'+tgt.id;a.textContent=t;chips.appendChild(a);links.push([a,tgt]);
+  });
+  gnb.parentNode.insertBefore(toc,gnb.nextSibling);
+  var setH=function(){document.documentElement.style.setProperty('--rd-gnb',gnb.offsetHeight+'px');};setH();addEventListener('resize',setH);
+  var cur=-1;
+  function onScroll(){
+    var de=document.documentElement,max=de.scrollHeight-innerHeight;
+    prog.style.width=(max>0?Math.min(100,scrollY/max*100):0)+'%';
+    var line=gnb.offsetHeight+toc.offsetHeight+24,k=-1;
+    links.forEach(function(p,i){if(p[1].getBoundingClientRect().top<=line)k=i;});
+    if(k!==cur){cur=k;links.forEach(function(p,i){p[0].classList.toggle('on',i===k);});
+      if(k>=0){var a=links[k][0];chips.scrollTo({left:a.offsetLeft-chips.clientWidth/2+a.offsetWidth/2,behavior:'smooth'});}}
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+function layout(){bleed();clamp();}
+layout();addEventListener('resize',bleed);addEventListener('load',layout);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout);
+})();
+</script>
+<!--/rd-js-->
+<!--ask-->
+<script src="../ask.js" defer></script>
+<!--/ask-->
+</body>
+</html>

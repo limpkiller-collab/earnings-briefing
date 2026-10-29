@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alphabet 2026 Q3 실적브리핑</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<!--theme--><script>try{var t=localStorage.getItem('mb-theme');if(t=='light'||t=='dark')document.documentElement.dataset.theme=t}catch(e){}</script><!--/theme-->
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+
+/* 헤더 */
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px;font-weight:800}
+.gnb .home{background:var(--blue);color:#fff;font-size:13px;font-weight:700;
+  padding:8px 16px;border-radius:10px;text-decoration:none}
+
+.body{padding:36px 28px 80px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px;margin-bottom:18px}
+h1{font-size:30px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:14px}
+.byline{font-size:14px;color:var(--g400);margin-bottom:8px}
+.source-note{font-size:13px;color:var(--g400);padding-bottom:24px;border-bottom:1px solid var(--g200);margin-bottom:28px}
+p{font-size:16.5px;color:var(--g700);margin-bottom:16px}
+b,strong{font-weight:700;color:var(--g900)}
+mark{background:var(--green-bg);color:var(--g900);padding:1px 2px;border-radius:2px;font-weight:500}
+mark.b{background:var(--blue-bg)}
+mark.r{background:var(--red-bg)}
+
+/* 섹션 */
+section{padding-top:44px}
+.sec-head{margin-bottom:20px}
+.sec-head .l1{font-size:22px;font-weight:800;line-height:1.4;letter-spacing:-0.03em}
+.sec-head .l2{font-size:22px;font-weight:800;line-height:1.4;letter-spacing:-0.03em}
+.sub-head{font-size:17px;font-weight:700;margin:32px 0 12px;display:flex;align-items:center;gap:7px}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 24px}
+.kpi{background:var(--g50);border-radius:14px;padding:16px 18px}
+.kpi .l{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:4px}
+.kpi .v{font-size:23px;font-weight:800;letter-spacing:-0.03em}
+.kpi .d{font-size:13px;font-weight:700;margin-top:2px}
+.pos{color:var(--green)} .neg{color:var(--red)} .amb{color:var(--amber)}
+
+.verdict{display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);color:var(--green);
+  font-size:13px;font-weight:800;padding:6px 14px;border-radius:20px;margin-left:8px;vertical-align:middle}
+
+/* 강조 박스 */
+.callout{background:var(--blue-bg);border-radius:14px;padding:18px 20px;margin:22px 0;
+  font-size:16.5px;font-weight:700;color:var(--g900);line-height:1.6}
+.callout .cap{display:block;font-size:12.5px;font-weight:700;color:var(--blue);margin-bottom:6px;letter-spacing:0}
+
+/* 차트 */
+.chart{background:var(--g50);border-radius:16px;padding:20px 16px 12px;margin:20px 0 8px}
+.chart .ct{font-size:14px;font-weight:700;padding:0 6px 4px;color:var(--g900)}
+.chart .cs{font-size:12.5px;font-weight:500;color:var(--g400);padding:0 6px 12px;display:block}
+svg{width:100%;height:auto;display:block}
+.s-lab{font-size:12.5px;fill:var(--g400);font-weight:600}
+.s-val{font-size:13px;fill:var(--g900);font-weight:800}
+.s-yoy{font-size:12px;fill:var(--green);font-weight:800}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--g500);padding:8px 6px 4px;font-weight:600}
+.legend .d{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
+
+/* 표 */
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0 20px}
+th,td{padding:12px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+th:first-child,td:first-child{text-align:left}
+thead th{color:var(--g500);font-size:13px;font-weight:600;border-bottom:1px solid var(--g200)}
+tbody td{color:var(--g700);font-weight:500}
+tbody tr.hl td{background:var(--g50);font-weight:700;color:var(--g900)}
+/* 가이던스 비교표 */
+.gtable{margin:8px 0 10px}
+.gtable thead th{background:var(--g50)}
+.gtable thead th:first-child{border-radius:10px 0 0 0}
+.gtable thead th:last-child{border-radius:0 10px 0 0}
+.gtable td.g{font-weight:700;color:var(--g900)}
+.gtable td.diff{font-weight:800}
+.g-note{font-size:13.5px;color:var(--g500);font-weight:600;margin:-6px 0 18px}
+
+/* 토스 스타일 분기 재무 */
+.fin-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 8px}
+.fin-kpi{background:var(--g50);border-radius:14px;padding:16px 18px}
+.fin-kpi .l{font-size:12.5px;color:var(--g500);font-weight:600}
+.fin-kpi .v{font-size:22px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.fin-kpi .s{font-size:12px;color:var(--g400);font-weight:600;margin-top:2px}
+.fin-block{margin-top:26px}
+.fin-block h4{font-size:17px;font-weight:800;letter-spacing:-0.03em}
+.fin-block .lede{font-size:14.5px;color:var(--g600);margin:6px 0 4px;font-weight:500}
+.period-chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:12px;
+  font-weight:700;padding:5px 12px;border-radius:20px;margin:8px 6px 4px 0}
+.cv{font-size:12.5px;font-weight:800;fill:var(--g900)}
+.cl{font-size:11.5px;font-weight:600;fill:var(--g400)}
+.clegend{display:flex;gap:14px;font-size:12px;color:var(--g500);font-weight:600;padding:6px 8px 2px;flex-wrap:wrap}
+.clegend .d{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
+.clegend .ln{width:14px;height:3px;border-radius:2px;display:inline-block;margin-right:5px;vertical-align:3px}
+@media(max-width:600px){.fin-kpis{grid-template-columns:1fr 1fr}.fin-kpis .fin-kpi:last-child{grid-column:span 2}}
+/* 지난 분기 체크포인트 점검 */
+.wp-list{display:flex;flex-direction:column;gap:10px;margin:16px 0 20px}
+.wp{display:flex;gap:14px;background:var(--g50);border-radius:14px;padding:16px 18px}
+.wp-badge{flex:0 0 auto;align-self:flex-start;font-size:12px;font-weight:800;
+  padding:5px 12px;border-radius:20px;white-space:nowrap}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp.partial .wp-badge{background:var(--amber-bg);color:var(--amber)}
+.wp.hold .wp-badge{background:var(--g100);color:var(--g500)}
+.wp-q{font-size:15px;font-weight:700;color:var(--g900);line-height:1.5}
+.wp-a{font-size:14.5px;color:var(--g600);margin-top:4px;line-height:1.55}
+.wp-score{font-size:14px;color:var(--g500);font-weight:600;margin:-8px 0 20px}
+.wp-preview{background:var(--blue-bg);border-radius:14px;padding:16px 18px;
+  font-size:14.5px;color:var(--g700);font-weight:500;margin:4px 0 8px}
+
+.gtable td.none{color:var(--g400);font-weight:500}
+.tag{display:inline-block;background:var(--g100);color:var(--g500);font-size:10.5px;font-weight:700;
+  padding:2px 7px;border-radius:6px;margin-left:5px;vertical-align:1px}
+.pending{background:var(--amber-bg);color:var(--amber);border-radius:14px;
+  padding:18px 20px;font-weight:700;font-size:15.5px;margin:16px 0}
+
+/* 인용 */
+.quote{border-left:3px solid var(--blue);padding:2px 0 2px 16px;margin:18px 0;
+  font-size:16.5px;color:var(--g700);line-height:1.65}
+.quote .who{display:block;font-size:13.5px;color:var(--g400);font-weight:600;margin-top:8px}
+
+/* 키워드 */
+.kws{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 20px}
+.kws span{background:var(--blue-bg);color:var(--blue);font-size:13.5px;font-weight:700;
+  padding:7px 14px;border-radius:20px}
+
+/* 장단점 */
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 22px}
+.pc{border-radius:14px;padding:18px}
+.pc.good{background:var(--green-bg)}
+.pc.bad{background:var(--red-bg)}
+.pc h4{font-size:15px;font-weight:800;margin-bottom:10px}
+.pc.good h4{color:var(--green)} .pc.bad h4{color:var(--red)}
+.pc ul{list-style:none}
+.pc li{font-size:14.5px;color:var(--g700);padding-left:14px;position:relative;margin-bottom:9px;line-height:1.55}
+.pc li:before{content:'';position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--g400)}
+.pc li:last-child{margin-bottom:0}
+
+/* 리스트 */
+ul.dots{list-style:none;margin:6px 0 18px}
+ul.dots li{font-size:16.5px;color:var(--g700);padding-left:16px;position:relative;margin-bottom:12px}
+ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--g400)}
+.foot-note{font-size:13px;color:var(--g400);margin-top:-6px;margin-bottom:16px}
+
+/* 다음 일정 */
+.next{background:var(--g50);border-radius:14px;padding:18px 20px;margin-top:24px}
+.next .t{font-size:13px;color:var(--g500);font-weight:700;margin-bottom:4px}
+.next .d{font-size:18px;font-weight:800}
+
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:25px}
+  .kpis,.pros-cons{grid-template-columns:1fr}
+  .sec-head .l1,.sec-head .l2{font-size:20px}
+  p,ul.dots li{font-size:16px}
+}
+/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  :where(:root:not([data-theme="light"])) body{background:var(--bg)}
+  :where(:root:not([data-theme="light"])) .page,:where(:root:not([data-theme="light"])) .gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  :where(:root:not([data-theme="light"])) svg .cl,:where(:root:not([data-theme="light"])) svg .ax{fill:#8B95A1}
+  :where(:root:not([data-theme="light"])) svg .cv{fill:#D5DAE0}
+  :where(:root:not([data-theme="light"])) svg [stroke="#EDEFF2"]{stroke:#2A2F36}
+  :where(:root:not([data-theme="light"])) svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  :where(:root:not([data-theme="light"])) svg [stroke="#4E5968"]{stroke:#B0B8C1}
+  :where(:root:not([data-theme="light"])) svg [fill="#F2F4F6"]{fill:#1F2329}
+  :where(:root:not([data-theme="light"])) svg [fill="#E5E8EB"]{fill:#333A44}
+  :where(:root:not([data-theme="light"])) svg [fill="#fff"]{fill:#17171C}
+  :where(:root:not([data-theme="light"])) svg [stroke="#fff"]{stroke:#17171C}
+  :where(:root:not([data-theme="light"])) svg [fill="#333D4B"],:where(:root:not([data-theme="light"])) svg [fill="#191F28"],:where(:root:not([data-theme="light"])) svg [fill="#4E5968"]{fill:#D5DAE0}
+  :where(:root:not([data-theme="light"])) svg [stroke="#191F28"],:where(:root:not([data-theme="light"])) svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+:root[data-theme="dark"]{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  :where(:root[data-theme="dark"]) body{background:var(--bg)}
+  :where(:root[data-theme="dark"]) .page,:where(:root[data-theme="dark"]) .gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  :where(:root[data-theme="dark"]) svg .cl,:where(:root[data-theme="dark"]) svg .ax{fill:#8B95A1}
+  :where(:root[data-theme="dark"]) svg .cv{fill:#D5DAE0}
+  :where(:root[data-theme="dark"]) svg [stroke="#EDEFF2"]{stroke:#2A2F36}
+  :where(:root[data-theme="dark"]) svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  :where(:root[data-theme="dark"]) svg [stroke="#4E5968"]{stroke:#B0B8C1}
+  :where(:root[data-theme="dark"]) svg [fill="#F2F4F6"]{fill:#1F2329}
+  :where(:root[data-theme="dark"]) svg [fill="#E5E8EB"]{fill:#333A44}
+  :where(:root[data-theme="dark"]) svg [fill="#fff"]{fill:#17171C}
+  :where(:root[data-theme="dark"]) svg [stroke="#fff"]{stroke:#17171C}
+  :where(:root[data-theme="dark"]) svg [fill="#333D4B"],:where(:root[data-theme="dark"]) svg [fill="#191F28"],:where(:root[data-theme="dark"]) svg [fill="#4E5968"]{fill:#D5DAE0}
+  :where(:root[data-theme="dark"]) svg [stroke="#191F28"],:where(:root[data-theme="dark"]) svg [stroke="#333D4B"]{stroke:#B0B8C1}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+/*theme-scoped*/
+
+/*<!--/dark-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+/*<!--rd-css-->*/
+body{word-break:keep-all;overflow-wrap:break-word}
+h1,.sec-head .l1,.sec-head .l2,.sub-head{text-wrap:balance}
+p,li,.tlx,.wp-a,.witem .tx{text-wrap:pretty}
+.body p,.body-p{line-height:1.85}
+.body>p,section>p,p.body-p{margin-bottom:22px}
+p.rd-s{margin-top:-6px}
+section{padding-top:56px}
+.sub-head{margin-top:40px}
+mark{padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* 가로 스크롤 카드 */
+.hs{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:10px!important;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:stretch;list-style:none;
+  margin-top:14px!important;margin-bottom:0!important;padding-top:2px;padding-bottom:4px;grid-template-columns:none!important;background:none!important;border-radius:0!important}
+.hs::-webkit-scrollbar{display:none}
+.hs>.hs-i{flex:0 0 var(--hs-w,min(calc(100vw - 76px),318px))!important;min-width:0;scroll-snap-align:start;margin:0!important;
+  background:var(--g50);border:1px solid var(--g100);border-radius:16px;padding:18px 18px 16px!important;
+  display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.7;color:var(--g700);white-space:normal}
+.hs>.hs-i::before{display:none!important}
+.hs.wide>.hs-i{--hs-w:min(calc(100vw - 64px),356px)}
+.hs-i .rd-h{display:block;font-size:15.5px;font-weight:800;line-height:1.45;color:var(--g900)}
+.hs-i .rd-x{display:block;font-size:14px;color:var(--g600);line-height:1.7}
+.hs-i .rd-no{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);font-size:12.5px;font-weight:800}
+/* 카드 종류별 보정 */
+.hs>.tli{flex-direction:column}
+.hs>.tli .tld{flex:none;text-align:left;display:flex;align-items:baseline;gap:6px}
+.hs>.tli .tlt{font-size:15.5px;line-height:1.45}
+.hs>.tli .tlx{font-size:14px;line-height:1.7}
+.hs>.wp{flex-direction:column}
+.hs>.wp .wp-badge{align-self:flex-start;margin:0}
+.hs>.wp .wp-q{font-size:15px;line-height:1.5}
+.hs>.wp .wp-a{font-size:14px;line-height:1.7;margin-top:4px}
+.hs>.witem{flex-direction:column;border-bottom:1px solid var(--g100)}
+.hs>.witem .tx{font-size:15px;font-weight:700;color:var(--g900)}
+.hs>.witem .tx small{font-size:13.5px;font-weight:500;color:var(--g500);line-height:1.65;margin-top:6px}
+.hs>.cause.main{background:var(--blue-bg);border-color:transparent}
+.hs>.cause p{font-size:14px;line-height:1.7}
+.hs>.wgrp{background:var(--surface,#fff);border:1px solid var(--g200)}
+.hs>.wgrp .wh{flex-wrap:wrap;line-height:1.45}
+.hs>.wgrp .wh .wd{margin-left:0;flex-basis:100%;font-weight:600;color:var(--g400)}
+.hs>.wgrp ul{gap:10px}
+.hs>.stock-g{background:var(--surface,#fff);border:1px solid var(--g200)}
+.wgrp.rd-flat{border:0;padding:0;margin:28px 0 8px;background:none}
+.wgrp.rd-flat>.wh{font-size:17px}
+/* 카운터·버튼 */
+.hs-nav{display:flex;align-items:center;gap:10px;margin:10px 0 18px;font-size:12.5px;font-weight:700;color:var(--g400)}
+.hs-nav .bar{flex:1;height:3px;border-radius:2px;background:var(--g100);overflow:hidden}
+.hs-nav .bar i{display:block;height:100%;background:var(--g400);border-radius:2px;transition:width .15s}
+.hs-nav .cnt{font-variant-numeric:tabular-nums;white-space:nowrap}
+.hs-nav .cnt b{color:var(--g900)}
+.hs-nav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--g200);background:var(--surface,#fff);color:var(--g600);
+  font-size:15px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+.hs-nav button:disabled{opacity:.35;cursor:default}
+.hs-nav .hint{white-space:nowrap}
+@media(hover:none){.hs-nav button{display:none}}
+@media(max-width:600px){section{padding-top:48px}.body>p,section>p,p.body-p{margin-bottom:20px}}
+/* ④ 긴 카드 접기·펼치기 */
+.hs>.hs-i.rd-clamp{max-height:var(--rd-clamp,300px);overflow:hidden;position:relative;padding-bottom:44px!important}
+.hs>.hs-i.rd-clamp.rd-open{max-height:none}
+.hs.rd-has-open{align-items:flex-start}
+.rd-more{position:absolute;left:0;right:0;bottom:0;height:64px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;
+  border:0;cursor:pointer;font:inherit;font-size:13px;font-weight:800;color:var(--blue);border-radius:0 0 16px 16px;
+  background:linear-gradient(to bottom,transparent,var(--rd-card,var(--g50)) 55%)}
+.hs-i.rd-open .rd-more{height:auto;padding:10px 0 12px;background:none}
+.hs>.wgrp,.hs>.stock-g{--rd-card:var(--surface,#fff)}
+.hs>.cause.main{--rd-card:var(--blue-bg)}
+/* ⑤ 목차 칩 + 읽기 진행 바 */
+.rd-toc{position:sticky;top:var(--rd-gnb,57px);z-index:9;background:var(--surface,#fff);border-bottom:1px solid var(--g100)}
+.rd-toc .rd-prog{position:absolute;left:0;top:0;height:2px;background:var(--blue);width:0;transition:width .1s linear}
+.rd-toc .rd-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:9px 28px}
+.rd-toc .rd-chips::-webkit-scrollbar{display:none}
+.rd-toc a{flex:0 0 auto;font-size:13px;font-weight:700;color:var(--g500);background:var(--g100);border-radius:20px;padding:6px 12px;text-decoration:none;white-space:nowrap;transition:.15s}
+.rd-toc a.on{background:var(--blue);color:#fff}
+.rd-anchor{scroll-margin-top:calc(var(--rd-gnb,57px) + 64px)}
+/* ⑥ 출처 접기 */
+.source-note.rd-src{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.rd-src-btn{border:0;background:var(--g100);color:var(--g500);font:inherit;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:8px;cursor:pointer}
+.source-note.rd-src .rd-src-body{display:none}
+.source-note.rd-src.rd-open .rd-src-body{display:block}
+/* ⑦ 모바일 KPI 2열 */
+@media(max-width:600px){
+  .rd-toc .rd-chips{padding:9px 20px}
+  .kpis{grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .kpis .kpi{padding:13px 14px}
+  .kpis .kpi .l{font-size:12px}
+  .kpis .kpi .v{font-size:20px}
+  .kpis .kpi .d{font-size:11.5px;line-height:1.45}
+}
+/*<!--/rd-css-->*/
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.gtable th{white-space:nowrap}
+.gtable td:not(:first-child){white-space:nowrap}
+.gtable td:first-child{white-space:normal;min-width:150px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="gnb">
+  <div class="brand"><span class="dot">📊</span> 실적브리핑</div>
+  <a class="home" href="../index.html">전체 보고서</a>
+</div>
+
+<div class="body">
+
+<span class="chip">#실적분석 #GOOGL</span>
+<h1>클라우드는 103% 늘었는데 4년 만에 첫 동시 미달이에요<br>알파벳 2026 Q3<span class="verdict" style="background:var(--red-bg);color:var(--red)">MISS</span></h1>
+<div class="byline">2026.10.29 · 2026 Q3 (2026.07~09) · 발표 2026.10.29 (한국시간)</div>
+<div class="source-note">출처: Alphabet Q3 2026 Earnings Release(2026.10.28 미국시간), Benzinga 어닝콜 전문, Google 공식 블로그, CNBC(LSEG·FactSet), Converge Digest, stockanalysis.com</div>
+<p>안녕하세요. 보유 종목 실적 브리핑이에요. 알파벳이 한국시간 <b>10월 29일 새벽</b> 3분기 실적을 냈어요.</p>
+<p>결과는 <b>매출 $127.58B(YoY +25%), 조정 EPS $2.67</b>로 시장 예상(매출 $128.22B·EPS $3.02)을 <mark class="r">둘 다 밑돌았어요. 약 4년 만의 첫 매출·이익 동시 미달이에요.</mark> 주가는 시간외에서 <b>10% 가까이</b> 빠졌어요. 그런데 클라우드는 103% 늘었고 영업이익도 30% 늘었어요. 미달의 원인은 본업이 아니라 다른 곳에 있어요.</p>
+<div class="sub-head">✅ 지난 분기 체크포인트 점검</div>
+<p>2026 Q2 보고서에서 "다음 분기엔 이걸 보자"고 했던 4가지를 먼저 확인해볼게요.</p>
+<div class="wp-list">
+  <div class="wp met"><div class="wp-badge">충족</div><div>
+    <div class="wp-q">연간 CapEx가 $195~205B에서 또 올라가는지 — 상향이 반복되면 주가 부담이 커져요</div>
+    <div class="wp-a">올리지 않았어요. 2026년 가이던스는 <b>$195~205B 그대로</b> 유지했고, 3분기 실제 CapEx $51.36B도 컨센서스 $55.09B을 <b>$3.7B 밑돌았어요</b>. 다만 아낫 아슈케나지 CFO가 "2027년에는 상당한 증가를 예상하며 4분기 콜에서 상세히 밝히겠다"고 했어요. 상향은 이번이 아니라 다음으로 미뤄진 셈이에요.</div></div></div>
+  <div class="wp miss"><div class="wp-badge">미충족</div><div>
+    <div class="wp-q">FCF가 마이너스(-$5.9B)에서 회복되는지</div>
+    <div class="wp-a">더 나빠졌어요. 3분기 잉여현금흐름은 <b>-$9.07B</b>으로 2분기 -$5.86B보다 $3.2B 더 깊어졌고, 시장 예상 -$2.70B의 3배가 넘어요. 회사는 CapEx와 <b>계약 기반 TPU 재고 축적</b>, 그리고 <b>EU 과징금 $5.2B 납부</b>를 이유로 들었어요.</div></div></div>
+  <div class="wp met"><div class="wp-badge">충족</div><div>
+    <div class="wp-q">클라우드 성장률 +82%와 백로그 $514B이 유지·확대되는지</div>
+    <div class="wp-a">둘 다 확대됐어요. 클라우드 매출 성장률은 <b>+103%</b>로 올라갔고($30.71B, 컨센 $28.7B 상회), 백로그는 <b>$561B</b>으로 $47B 늘었어요. 회사는 백로그의 55% 이상이 24개월 안에 매출로 인식된다고 밝혔어요.</div></div></div>
+  <div class="wp miss"><div class="wp-badge">미충족</div><div>
+    <div class="wp-q">영업이익률이 34.0%에서 더 내려가는지 — 감가상각 부담의 실체 확인</div>
+    <div class="wp-a">내려갔어요. 3분기 영업이익률은 <b>31.8%</b>로 2분기 34.0%에서 2.2%포인트 하락했어요. 영업이익 $40.58B 자체는 전년 대비 30% 늘었지만 FactSet 예상 $43.19B에는 미달했어요. 매출원가가 24%, 영업비용이 20% 늘었고 R&amp;D는 36% 급증했어요. 감가상각 부담은 실체가 있었어요.</div></div></div>
+</div>
+<div class="wp-score">4개 중 2개 충족 · 2개 미충족</div>
+<!-- ① -->
+<section>
+<div class="sec-head"><div class="l1">📌 ① 실적 해석,</div><div class="l2">미달의 원인은 영업 밖에 있어요</div></div>
+<div class="kpis">
+  <div class="kpi"><div class="l">매출</div><div class="v">$127.58B</div><div class="d neg">YoY +25% · 예상 $128.22B 미달</div></div>
+  <div class="kpi"><div class="l">조정 EPS</div><div class="v">$2.67</div><div class="d neg">예상 $3.02 → Miss -11.6%</div></div>
+  <div class="kpi"><div class="l">Google Cloud</div><div class="v">$30.71B</div><div class="d pos">YoY +103% · 영업이익 $11.12B</div></div>
+  <div class="kpi"><div class="l">잉여현금흐름</div><div class="v">-$9.07B</div><div class="d neg">예상 -$2.70B보다 3배 악화</div></div>
+</div>
+<p>먼저 <b>왜 EPS가 미달했는지</b>부터 정리할게요. GAAP 희석 EPS는 $2.12로 전년 $2.87보다 26% 줄었는데, 범인은 <mark class="r">영업외손익이 +$12.76B에서 -$8.22B으로 약 $21B 뒤집힌 것</mark>이에요. 그중 핵심은 보유 지분 평가손실 <b>-$8.66B</b>이고, 아슈케나지 CFO는 <b>스페이스X 투자의 미실현 손실</b>을 지목했어요. 2분기에는 같은 항목이 스페이스X·앤트로픽 덕에 <b>+$99B</b>의 평가이익을 만들어 EPS를 $9.11까지 밀어올렸어요. 방향만 반대인 같은 성질의 항목이에요.</p>
+<p>그래서 이번 분기를 읽을 때는 <b>영업이익</b>이 기준이에요. 영업이익 $40.576B은 전년 대비 <b>+30%</b>이고, 영업이익률은 31.8%예요. 전년 동기 30.5%보다 1.3%포인트 높아요. 다만 <b>직전 분기 34.0%에서는 2.2%포인트 내려왔고</b>, FactSet 예상 $43.19B에도 $2.6B 미달했어요. 즉 <mark>본업은 괜찮았지만 시장 기대만큼은 아니었고, 기대와의 간격은 영업 밖 손실이 키웠어요.</mark></p>
+<p>매출 쪽 미달은 폭이 작아요(-0.5%). 제프리스의 브렌트 틸이 CNBC에서 요약한 말이 정확해요. "클라우드만 103% 성장으로 넘겼다. 시장은 100%를 원했으니 크게 넘긴 것도 아니고, 나머지는 전부 미달이었다."</p>
+<div class="chart"><div class="ct">분기 매출: 시장 예상 vs 실제 (최근 2개 분기)</div><svg viewBox="0 0 700 270" xmlns="http://www.w3.org/2000/svg"><line x1="16" y1="44.0" x2="684" y2="44.0" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="90.5" x2="684" y2="90.5" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="137.0" x2="684" y2="137.0" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="183.5" x2="684" y2="183.5" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="230.0" x2="684" y2="230.0" stroke="#EDEFF2" stroke-width="1"/><rect x="106.5" y="91.0" width="73.5" height="139.0" rx="5" fill="#D1D6DB"/><text x="143.3" y="83.0" text-anchor="middle" class="cv" fill="#8B95A1">$116.90B</text><rect x="186.0" y="87.6" width="73.5" height="142.4" rx="5" fill="#C9DEFB"/><text x="222.7" y="79.6" text-anchor="middle" class="cv">$119.80B</text><text x="183.0" y="256" text-anchor="middle" class="cl">26 Q2</text><rect x="440.5" y="77.5" width="73.5" height="152.5" rx="5" fill="#D1D6DB"/><text x="477.3" y="69.5" text-anchor="middle" class="cv" fill="#8B95A1">$128.22B</text><rect x="520.0" y="78.3" width="73.5" height="151.7" rx="5" fill="#3182F6"/><text x="556.7" y="70.3" text-anchor="middle" class="cv">$127.58B</text><text x="517.0" y="256" text-anchor="middle" class="cl">26 Q3</text><text x="16" y="22" class="cl">회색 = 시장 예상 · 파랑 = 실제 (분기 매출, $B)</text></svg></div>
+<p>2분기에는 예상 $116.9B을 $2.9B 넘었는데(+2.5%), 3분기에는 $128.22B에 $0.64B 못 미쳤어요(-0.5%). 두 분기 사이에 시장 눈높이가 $11.3B 올라간 게 핵심이에요.</p>
+<div class="sub-head">🔮 회사 전망치 vs 시장 예상치</div>
+<div class="twrap"><table class="gtable">
+<thead><tr><th>항목</th><th>회사 가이던스</th><th>시장 예상</th><th>차이</th></tr></thead>
+<tbody>
+<tr class="hl"><td>2026년 CapEx</td><td class="g">$195~205B (유지)</td><td></td><td></td></tr>
+<tr><td>2027년 CapEx</td><td class="g">"상당한 증가" · 4분기 콜에서 구체화</td><td></td><td></td></tr>
+<tr><td>└ 3분기 실제 CapEx</td><td>$51.36B</td><td>$55.09B</td><td class="neg">-6.8%</td></tr>
+<tr><td>4분기 매출 환율 영향</td><td class="g">3분기보다 역풍 소폭 확대 (검색·유튜브 광고 중심)</td><td></td><td></td></tr>
+<tr><td>4분기 성장률 기저</td><td class="g">2025년 3분기 검색 가속의 역기저 시작</td><td></td><td></td></tr>
+<tr><td>클라우드 마진</td><td class="g">서드파티 컴퓨트 사용 확대로 단기 역풍</td><td></td><td></td></tr>
+<tr><td>TPU 시스템 매출</td><td class="g">4분기 확대 · 2027년 본격 램프업</td><td></td><td></td></tr>
+<tr><td>분기 배당</td><td class="g">주당 $0.22 (12월 지급)</td><td></td><td></td></tr>
+<tr><td>매출 · EPS · 마진</td><td class="none">회사 가이던스 미제시</td><td></td><td></td></tr>
+</tbody></table></div>
+<div class="g-note">알파벳은 창업 이후 <b>매출·EPS 숫자 가이던스를 주지 않는 회사</b>예요. CapEx와 정성적 방향성(환율·기저·마진)만 안내해요. 직전 가이던스 대비 2026년 CapEx는 <b>유지</b>(2분기에 $190B → $195~205B로 올린 뒤 그대로)이고, 2027년은 "상당한 증가"라는 표현만 나왔어요. 빈 칸은 시장 컨센서스를 확인하지 못한 항목이에요.</div>
+<p>CapEx 숫자만 보면 아끼는 것처럼 보이지만, 콜에서 공개된 <b>계약·약정 규모</b>는 방향이 반대예요. 미래 구매 약정이 <b>$924B</b>, 별도로 개시 전 리스 등 의무가 <b>$152B</b>이에요(최대 계약금액 기준으로 일부는 조정 가능). 기술 인프라 투자의 65%가 서버·네트워크, 35%가 데이터센터에 들어갔어요. <mark class="r">시장이 10% 급락으로 반응한 건 "지금 얼마 썼나"가 아니라 "2027년에 얼마 더 쓸 건가"에 대한 불안</mark>이에요. CNBC는 연간 CapEx가 2026년 $200B을 넘긴 뒤 2027년에는 $300B을 넘어설 것으로 전망된다고 전했어요.</p>
+<div class="sub-head">💵 포워드 EPS와 밸류에이션</div>
+<div class="twrap"><table class="gtable">
+<thead><tr><th>구분</th><th>FY2025 (실적)</th><th>FY2026 (E)</th><th>FY2027 (E)</th></tr></thead>
+<tbody>
+<tr class="hl"><td>조정 EPS</td><td>$10.81</td><td class="g">$11.89</td><td class="g">$15.36</td></tr>
+<tr><td>EPS 성장률</td><td class="pos">+34.5%</td><td class="pos">+10.0%</td><td class="pos">+29.2%</td></tr>
+<tr><td>매출</td><td>$402.84B</td><td>$500.29B</td><td>$626.82B</td></tr>
+<tr><td>매출 성장률</td><td class="pos">+15.1%</td><td class="pos">+24.2%</td><td class="pos">+25.3%</td></tr>
+<tr><td><b>Forward P/E</b></td><td>30.1배</td><td class="diff">27.3배</td><td class="diff">21.2배</td></tr>
+</tbody></table></div>
+<div class="g-note">기준 주가 <b>$324.89</b>(2026.10.28 미국 종가 · 발표 직전). 시간외에서 약 10% 하락한 가격($292 안팎)으로 계산하면 FY2026 24.6배·FY2027 19.0배가 돼요. 추정치는 stockanalysis.com(S&amp;P Global Market Intelligence) 집계로 FY2026은 2026.10.28 갱신본, FY2027은 현재 비공개 구간이라 10.26~27 조회값($15.36·$626.82B)을 썼어요. FY2026 EPS 범위는 $11.38~12.43, 매출 범위는 $489.8~528.9B이에요. Forward P/E는 주가 ÷ 해당 연도 EPS로 직접 계산했고, FY2026 27.3배는 사이트 표기값 27.32배와 일치해요.</div>
+<div class="chart"><div class="ct">연도별 조정 EPS와 Forward P/E</div><svg viewBox="0 0 700 290" xmlns="http://www.w3.org/2000/svg"><line x1="60" y1="44.0" x2="640" y2="44.0" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="94.5" x2="640" y2="94.5" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="145.0" x2="640" y2="145.0" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="195.5" x2="640" y2="195.5" stroke="#EDEFF2" stroke-width="1"/><line x1="60" y1="246.0" x2="640" y2="246.0" stroke="#EDEFF2" stroke-width="1"/><rect x="118.0" y="125.5" width="77.3" height="120.5" rx="6" fill="#C9DEFB"/><text x="156.7" y="115.5" text-anchor="middle" class="cv">$10.81</text><text x="156.7" y="274" text-anchor="middle" class="cl">FY2025 (실적)</text><rect x="311.3" y="113.5" width="77.3" height="132.5" rx="6" fill="#3182F6"/><text x="350.0" y="103.5" text-anchor="middle" class="cv">$11.89</text><text x="350.0" y="274" text-anchor="middle" class="cl">FY2026 (E)</text><rect x="504.7" y="74.8" width="77.3" height="171.2" rx="6" fill="#3182F6"/><text x="543.3" y="64.8" text-anchor="middle" class="cv">$15.36</text><text x="543.3" y="274" text-anchor="middle" class="cl">FY2027 (E)</text><polyline points="156.7,83.7 350.0,98.4 543.3,131.8" fill="none" stroke="#FF9500" stroke-width="3" stroke-linejoin="round"/><circle cx="156.7" cy="83.7" r="5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="156.7" y="70.7" text-anchor="middle" class="cv" fill="#FF9500">30.1배</text><circle cx="350.0" cy="98.4" r="5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="350.0" y="85.4" text-anchor="middle" class="cv" fill="#FF9500">27.3배</text><circle cx="543.3" cy="131.8" r="5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="543.3" y="118.8" text-anchor="middle" class="cv" fill="#FF9500">21.2배</text><text x="60" y="24" class="cl">막대 = 조정 EPS (좌)</text><text x="640" y="24" text-anchor="end" class="cl" fill="#FF9500">선 = Forward P/E (우)</text></svg></div>
+<p><b>배수만 보면 싸 보여요.</b> FY2027 21.2배(시간외 가격 기준 19.0배)는 매출 +25%·EPS +29% 성장에 붙은 값이라 PEG가 0.7배예요. 보유 종목 중에서 성장률 대비 가장 낮은 배수예요.</p>
+<p>문제는 <mark class="r">그 EPS 추정치가 "감가상각이 어디까지 올라가는지"에 달려 있다는 점</mark>이에요. 2027년 CapEx가 $300B 수준으로 간다면 감가상각비가 또 한 단계 뛰고, FY2027 EPS $15.36은 하향 압력을 받아요. 지금의 21배는 "싸다"가 아니라 "2027년 숫자가 지켜질 때만 싸다"로 읽는 게 맞아요. 4분기 콜에서 나올 2027년 CapEx 숫자가 이 배수의 분모를 결정해요.</p>
+</section>
+<!-- ② -->
+<section>
+<div class="sec-head"><div class="l1">📊 ② 분기 재무제표,</div><div class="l2">클라우드가 이익 증가분의 대부분을 만들었어요</div></div>
+<div class="sub-head">📈 매출 성장률은 네 분기째 올라가고 있어요</div>
+<div class="chart"><div class="ct">분기 매출 추이와 전년 대비 성장률</div><svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg"><line x1="16" y1="46.0" x2="684" y2="46.0" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="94.5" x2="684" y2="94.5" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="143.0" x2="684" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="191.5" x2="684" y2="191.5" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="240.0" x2="684" y2="240.0" stroke="#EDEFF2" stroke-width="1"/><rect x="52.1" y="98.5" width="61.5" height="141.5" rx="6" fill="#C9DEFB"/><text x="82.8" y="72.5" text-anchor="middle" class="cv" fill="#15C47E">+16.0%</text><text x="82.8" y="89.5" text-anchor="middle" class="cv">$102.3B</text><text x="82.8" y="266" text-anchor="middle" class="cl">25 Q3</text><rect x="185.7" y="82.6" width="61.5" height="157.4" rx="6" fill="#C9DEFB"/><text x="216.4" y="56.6" text-anchor="middle" class="cv" fill="#15C47E">+18.0%</text><text x="216.4" y="73.6" text-anchor="middle" class="cv">$113.8B</text><text x="216.4" y="266" text-anchor="middle" class="cl">25 Q4</text><rect x="319.3" y="88.1" width="61.5" height="151.9" rx="6" fill="#C9DEFB"/><text x="350.0" y="62.1" text-anchor="middle" class="cv" fill="#15C47E">+21.8%</text><text x="350.0" y="79.1" text-anchor="middle" class="cv">$109.9B</text><text x="350.0" y="266" text-anchor="middle" class="cl">26 Q1</text><rect x="452.9" y="74.4" width="61.5" height="165.6" rx="6" fill="#C9DEFB"/><text x="483.6" y="48.4" text-anchor="middle" class="cv" fill="#15C47E">+24.2%</text><text x="483.6" y="65.4" text-anchor="middle" class="cv">$119.8B</text><text x="483.6" y="266" text-anchor="middle" class="cl">26 Q2</text><rect x="586.5" y="63.6" width="61.5" height="176.4" rx="6" fill="#3182F6"/><text x="617.2" y="37.6" text-anchor="middle" class="cv" fill="#15C47E">+24.7%</text><text x="617.2" y="54.6" text-anchor="middle" class="cv">$127.6B</text><text x="617.2" y="266" text-anchor="middle" class="cl">26 Q3</text><text x="16" y="22" class="cl">막대 = 분기 매출 · 위 숫자 = 전년 동기 대비</text></svg></div>
+<p>성장률이 <b>+16.0% → +18.0% → +21.8% → +24.2% → +24.7%</b>로 네 분기 연속 올라갔어요. 분기 매출 $127.58B은 사상 최대이고, 순다 피차이 CEO 표현으로는 <b>"연 매출 5,000억 달러 런레이트"</b>예요.</p>
+<div class="sub-head">☁️ 성장의 전부가 클라우드예요</div>
+<div class="chart"><svg viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg"><rect x="16.0" y="40" width="331.7" height="38" fill="#3182F6"/><text x="181.9" y="64" text-anchor="middle" class="s-val" fill="#fff">49.7%</text><rect x="347.7" y="40" width="160.8" height="38" fill="#15C47E"/><text x="428.1" y="64" text-anchor="middle" class="s-val" fill="#fff">24.1%</text><rect x="508.5" y="40" width="74.8" height="38" fill="#7BB0F8"/><text x="545.9" y="64" text-anchor="middle" class="s-val" fill="#fff">11.2%</text><rect x="583.3" y="40" width="58.7" height="38" fill="#A3C9FA"/><rect x="642.0" y="40" width="39.0" height="38" fill="#C9DEFB"/><rect x="681.0" y="40" width="3.0" height="38" fill="#D8DEE6"/><text x="16" y="26" class="cl">2026 Q3 사업부별 매출 · 합계 $127.6B</text><rect x="16.0" y="98.0" width="10" height="10" rx="3" fill="#3182F6"/><text x="32.0" y="107.0" class="cl">Search & other $63.4B</text><rect x="238.7" y="98.0" width="10" height="10" rx="3" fill="#15C47E"/><text x="254.7" y="107.0" class="cl">Google Cloud $30.7B</text><rect x="461.3" y="98.0" width="10" height="10" rx="3" fill="#7BB0F8"/><text x="477.3" y="107.0" class="cl">구독·플랫폼·기기 $14.3B</text><rect x="16.0" y="132.0" width="10" height="10" rx="3" fill="#A3C9FA"/><text x="32.0" y="141.0" class="cl">YouTube 광고 $11.2B</text><rect x="238.7" y="132.0" width="10" height="10" rx="3" fill="#C9DEFB"/><text x="254.7" y="141.0" class="cl">Google Network $7.5B</text><rect x="461.3" y="132.0" width="10" height="10" rx="3" fill="#D8DEE6"/><text x="477.3" y="141.0" class="cl">Other Bets·기타 $0.6B</text></svg></div>
+<p>사업부별로 보면 격차가 분명해요. <b>Google Cloud가 $30.71B(+103%)</b>으로 전체 매출의 24%를 차지해요. 1년 전 15%였어요. 더 중요한 건 이익이에요. 클라우드 영업이익이 $3.59B → <b>$11.12B</b>으로 $7.5B 늘었는데, <mark>알파벳 전체 영업이익 증가분 $9.3B의 80%를 클라우드 한 곳이 만들었어요.</mark> 클라우드 부문 영업이익률은 36.2%예요.</p>
+<p>반면 광고는 느려요. <b>검색·기타 $63.35B(+12%)</b>는 예상 $64.96B에 미달했고, <b>유튜브 광고 $11.21B(+9%)</b>, <b>Google Network $7.46B(+1%)</b>예요. 필립 쉰들러는 환율 영향과 FIFA 월드컵 이후 미디어 지출 정상화를 이유로 들었어요. 구독·플랫폼·기기는 $14.29B(+11%)이고, Other Bets는 $372M(+8%)에 영업손실 -$2.05B이에요.</p>
+<p>알파벳 레벨 비용(-$7.66B)이 전년 -$4.47B에서 $3.2B 더 커진 것도 눈여겨볼 대목이에요. 전사 차원의 AI 투자·소송·충당 성격의 비용이 모이는 항목이에요.</p>
+<div class="sub-head">💰 마진 구조</div>
+<div class="chart"><div class="ct">2026 Q3 마진 프로필 (%)</div><svg viewBox="0 0 700 161" xmlns="http://www.w3.org/2000/svg"><text x="140" y="40" text-anchor="end" class="s-lab">매출총이익률</text><rect x="199.5" y="25" width="416.5" height="24" fill="#3182F6" rx="6"/><text x="602.0" y="41" text-anchor="end" class="s-val" fill="#fff">59.7%</text><text x="140" y="74" text-anchor="end" class="s-lab">영업이익률</text><rect x="199.5" y="59" width="221.9" height="24" fill="#5AD3A0" rx="6"/><text x="407.4" y="75" text-anchor="end" class="s-val" fill="#fff">31.8%</text><text x="140" y="108" text-anchor="end" class="s-lab">순이익률</text><rect x="199.5" y="93" width="143.0" height="24" fill="#7BB0F8" rx="6"/><text x="328.6" y="109" text-anchor="end" class="s-val" fill="#fff">20.5%</text><text x="140" y="142" text-anchor="end" class="s-lab">FCF 마진</text><rect x="150.0" y="127" width="49.5" height="24" fill="#F04452" rx="6"/><text x="207.5" y="143" class="s-val" fill="#F04452">-7.1%</text><line x1="199.5" y1="20" x2="199.5" y2="157" stroke="#D1D6DB" stroke-width="1.5"/></svg></div>
+<p>매출총이익률 <b>59.7%</b>는 전년 59.6%와 거의 같아요. 영업이익률 31.8%는 전년 30.5%보다 높고 직전 34.0%보다 낮아요. 순이익률 20.5%는 영업외 손실 탓이에요. 그리고 <mark class="r">FCF 마진은 -7.1%</mark>예요. 영업으로 $42.29B을 벌었는데 CapEx로 $51.36B을 써서 $9.07B이 모자랐어요. 여기에 EU 과징금 $5.2B 납부와 계약 기반 TPU 재고 축적이 더해졌어요.</p>
+<p>TPU 재고는 성격이 조금 달라요. 아슈케나지 CFO 설명대로 <b>이미 서명된 고객 계약에 맞춰 부품을 사서 재고로 쌓고, 인도·청구 시점에 매출로 인식</b>하는 구조예요. 즉 지금의 현금 유출은 나중에 매출로 돌아오는 선투입이에요. 다만 그 "나중"이 2027년이라는 점이 이번 분기 숫자를 나쁘게 만들었어요.</p>
+<div class="sub-head">📊 최근 3년 분기 재무</div>
+<div class="fin-kpis">
+  <div class="fin-kpi"><div class="l">부채비율</div><div class="v pos">48.1%</div><div class="s">총부채 ÷ 총자본</div></div>
+  <div class="fin-kpi"><div class="l">유동비율</div><div class="v pos">278.6%</div><div class="s">단기 지급능력</div></div>
+  <div class="fin-kpi"><div class="l">순현금</div><div class="v pos">+$123.2B</div><div class="s">현금·투자 − 총차입금</div></div>
+</div>
+<p>부채비율은 44.0% → <b>48.1%</b>로 올라왔어요. 자본이 $640B → $678B으로 늘었지만 부채가 $282B → $326B으로 더 빨리 늘었기 때문이에요. 특히 <mark class="r">장기차입금이 1년 전 $21.6B에서 $125.1B으로 약 479% 늘었어요.</mark> 유동비율 278.6%와 순현금 +$123.2B은 여전히 매우 튼튼하지만, 순현금은 직전 +$129.7B에서 줄어드는 쪽으로 돌아섰어요. 임직원 수는 204,757명으로 8% 늘었어요.</p>
+<div><span class="period-chip">최근 3년</span><span class="period-chip">분기별</span></div>
+<div class="fin-block"><h4>수익성</h4>
+<div class="lede">매출·순이익률 — 분기 매출 <b>$127.6B</b>으로 최고치를 다시 썼고, 순이익률은 <b>20.5%</b>예요. 26 Q1·Q2의 56.9%·93.6%는 지분 평가이익 때문에 왜곡된 값이라 추세만 참고하세요.</div>
+<div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30.0" x2="654" y2="30.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87.0" x2="654" y2="87.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144.0" x2="654" y2="144.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201.0" x2="654" y2="201.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#EDEFF2" stroke-width="1"/><rect x="23.8" y="103.8" width="30.0" height="154.2" rx="4" fill="#C9DEFB"/><rect x="77.3" y="114.1" width="30.0" height="143.9" rx="4" fill="#C9DEFB"/><rect x="130.8" y="106.6" width="30.0" height="151.4" rx="4" fill="#C9DEFB"/><rect x="184.3" y="100.3" width="30.0" height="157.7" rx="4" fill="#C9DEFB"/><rect x="237.8" y="85.6" width="30.0" height="172.4" rx="4" fill="#C9DEFB"/><rect x="291.3" y="96.7" width="30.0" height="161.3" rx="4" fill="#C9DEFB"/><rect x="344.8" y="85.7" width="30.0" height="172.3" rx="4" fill="#C9DEFB"/><rect x="398.3" y="75.1" width="30.0" height="182.9" rx="4" fill="#C9DEFB"/><rect x="451.8" y="54.6" width="30.0" height="203.4" rx="4" fill="#C9DEFB"/><rect x="505.3" y="61.6" width="30.0" height="196.4" rx="4" fill="#C9DEFB"/><rect x="558.8" y="43.9" width="30.0" height="214.1" rx="4" fill="#C9DEFB"/><rect x="612.3" y="30.0" width="30.0" height="228.0" rx="4" fill="#3182F6"/><polyline points="38.8,198.7 92.2,187.9 145.8,190.9 199.2,187.1 252.8,191.6 306.2,170.1 359.8,188.2 413.2,178.3 466.8,186.1 520.2,132.8 573.8,59.6 627.2,205.6" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="627.2" cy="205.6" r="4.5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="619.2" y="194.6" text-anchor="end" class="cv" fill="#FF9500">20.5%</text><text x="627.2" y="22.0" text-anchor="middle" class="cv">127.6B</text><text x="38.8" y="284" text-anchor="middle" class="cl">23 Q4</text><text x="145.8" y="284" text-anchor="middle" class="cl">24 Q2</text><text x="252.8" y="284" text-anchor="middle" class="cl">24 Q4</text><text x="359.8" y="284" text-anchor="middle" class="cl">25 Q2</text><text x="466.8" y="284" text-anchor="middle" class="cl">25 Q4</text><text x="573.8" y="284" text-anchor="middle" class="cl">26 Q2</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>매출(막대)</span><span><span class="ln" style="background:#FF9500"></span>순이익률(선)</span></div></div></div>
+<div class="fin-block"><h4>성장성</h4>
+<div class="lede">영업이익·영업이익률 — 영업이익 <b>$40.6B</b>, 영업이익률 <b>31.8%</b>예요. 이쪽이 왜곡 없는 실질 수익성 지표이고, 2분기 34.0%에서 내려왔어요.</div>
+<div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30.0" x2="654" y2="30.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87.0" x2="654" y2="87.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144.0" x2="654" y2="144.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201.0" x2="654" y2="201.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#EDEFF2" stroke-width="1"/><rect x="23.8" y="125.5" width="30.0" height="132.5" rx="4" fill="#C9DEFB"/><rect x="77.3" y="115.6" width="30.0" height="142.4" rx="4" fill="#C9DEFB"/><rect x="130.8" y="104.6" width="30.0" height="153.4" rx="4" fill="#C9DEFB"/><rect x="184.3" y="98.5" width="30.0" height="159.5" rx="4" fill="#C9DEFB"/><rect x="237.8" y="84.8" width="30.0" height="173.2" rx="4" fill="#C9DEFB"/><rect x="291.3" y="86.8" width="30.0" height="171.2" rx="4" fill="#C9DEFB"/><rect x="344.8" y="83.1" width="30.0" height="174.9" rx="4" fill="#C9DEFB"/><rect x="398.3" y="83.4" width="30.0" height="174.6" rx="4" fill="#C9DEFB"/><rect x="451.8" y="57.0" width="30.0" height="201.0" rx="4" fill="#C9DEFB"/><rect x="505.3" y="36.0" width="30.0" height="222.0" rx="4" fill="#C9DEFB"/><rect x="558.8" y="30.0" width="30.0" height="228.0" rx="4" fill="#C9DEFB"/><rect x="612.3" y="31.1" width="30.0" height="226.9" rx="4" fill="#3182F6"/><polyline points="38.8,104.5 92.2,82.9 145.8,79.1 199.2,79.4 252.8,80.4 306.2,71.0 359.8,78.7 413.2,88.7 466.8,83.2 520.2,59.6 573.8,70.5 627.2,82.0" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="627.2" cy="82.0" r="4.5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="619.2" y="71.0" text-anchor="end" class="cv" fill="#FF9500">31.8%</text><text x="627.2" y="23.1" text-anchor="middle" class="cv">40.6B</text><text x="38.8" y="284" text-anchor="middle" class="cl">23 Q4</text><text x="145.8" y="284" text-anchor="middle" class="cl">24 Q2</text><text x="252.8" y="284" text-anchor="middle" class="cl">24 Q4</text><text x="359.8" y="284" text-anchor="middle" class="cl">25 Q2</text><text x="466.8" y="284" text-anchor="middle" class="cl">25 Q4</text><text x="573.8" y="284" text-anchor="middle" class="cl">26 Q2</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>영업이익(막대)</span><span><span class="ln" style="background:#FF9500"></span>영업이익률(선)</span></div></div></div>
+<div class="fin-block"><h4>안정성</h4>
+<div class="lede">총자본·총부채·부채비율 — 자본 <b>$678B</b>, 부채 <b>$326B</b>으로 부채비율이 <b>48.1%</b>까지 올라왔어요. 자본과 부채가 함께 커지는 건 대규모 투자 국면의 전형이에요.</div>
+<div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30.0" x2="654" y2="30.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87.0" x2="654" y2="87.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144.0" x2="654" y2="144.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201.0" x2="654" y2="201.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#EDEFF2" stroke-width="1"/><rect x="21.2" y="162.6" width="16.1" height="95.4" rx="3" fill="#C9DEFB"/><rect x="40.2" y="218.0" width="16.1" height="40.0" rx="3" fill="#D8DEE6"/><rect x="74.7" y="159.5" width="16.1" height="98.5" rx="3" fill="#C9DEFB"/><rect x="93.8" y="219.5" width="16.1" height="38.5" rx="3" fill="#D8DEE6"/><rect x="128.2" y="156.8" width="16.1" height="101.2" rx="3" fill="#C9DEFB"/><rect x="147.2" y="219.6" width="16.1" height="38.4" rx="3" fill="#D8DEE6"/><rect x="181.7" y="152.3" width="16.1" height="105.7" rx="3" fill="#C9DEFB"/><rect x="200.8" y="218.9" width="16.1" height="39.1" rx="3" fill="#D8DEE6"/><rect x="235.2" y="148.6" width="16.1" height="109.4" rx="3" fill="#C9DEFB"/><rect x="254.2" y="215.9" width="16.1" height="42.1" rx="3" fill="#D8DEE6"/><rect x="288.7" y="141.8" width="16.1" height="116.2" rx="3" fill="#C9DEFB"/><rect x="307.8" y="214.2" width="16.1" height="43.8" rx="3" fill="#D8DEE6"/><rect x="342.2" y="135.9" width="16.1" height="122.1" rx="3" fill="#C9DEFB"/><rect x="361.2" y="211.2" width="16.1" height="46.8" rx="3" fill="#D8DEE6"/><rect x="395.7" y="127.8" width="16.1" height="130.2" rx="3" fill="#C9DEFB"/><rect x="414.8" y="207.7" width="16.1" height="50.3" rx="3" fill="#D8DEE6"/><rect x="449.2" y="118.3" width="16.1" height="139.7" rx="3" fill="#C9DEFB"/><rect x="468.2" y="197.4" width="16.1" height="60.6" rx="3" fill="#D8DEE6"/><rect x="502.7" y="96.9" width="16.1" height="161.1" rx="3" fill="#C9DEFB"/><rect x="521.8" y="182.2" width="16.1" height="75.8" rx="3" fill="#D8DEE6"/><rect x="556.2" y="42.5" width="16.1" height="215.5" rx="3" fill="#C9DEFB"/><rect x="575.2" y="163.3" width="16.1" height="94.7" rx="3" fill="#D8DEE6"/><rect x="609.7" y="30.0" width="16.1" height="228.0" rx="3" fill="#3182F6"/><rect x="628.8" y="148.4" width="16.1" height="109.6" rx="3" fill="#D8DEE6"/><polyline points="38.8,73.7 92.2,87.9 145.8,93.8 199.2,98.4 252.8,90.9 306.2,94.9 359.8,91.7 413.2,90.0 466.8,67.0 520.2,48.8 573.8,64.0 627.2,43.7" fill="none" stroke="#FF9500" stroke-width="2.5" stroke-linejoin="round"/><circle cx="627.2" cy="43.7" r="4.5" fill="#fff" stroke="#FF9500" stroke-width="3"/><text x="619.2" y="32.7" text-anchor="end" class="cv" fill="#FF9500">48%</text><text x="627.2" y="48.0" text-anchor="middle" class="cv">677.5B</text><text x="38.8" y="284" text-anchor="middle" class="cl">23 Q4</text><text x="145.8" y="284" text-anchor="middle" class="cl">24 Q2</text><text x="252.8" y="284" text-anchor="middle" class="cl">24 Q4</text><text x="359.8" y="284" text-anchor="middle" class="cl">25 Q2</text><text x="466.8" y="284" text-anchor="middle" class="cl">25 Q4</text><text x="573.8" y="284" text-anchor="middle" class="cl">26 Q2</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>총자본(막대)</span><span><span class="d" style="background:#D8DEE6"></span>총부채(막대)</span><span><span class="ln" style="background:#FF9500"></span>부채비율(선)</span></div></div></div>
+<div class="fin-block"><h4>현금흐름</h4>
+<div class="lede">영업현금흐름·순현금변동 — 영업으로 <b>$42.3B</b>을 벌었고 조달까지 더해 현금·투자가 <b>+$22.6B</b> 늘었어요. 2분기 +$115.6B은 대규모 채권 발행의 결과예요.</div>
+<div class="chart"><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="30.0" x2="654" y2="30.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="87.0" x2="654" y2="87.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="144.0" x2="654" y2="144.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="201.0" x2="654" y2="201.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#EDEFF2" stroke-width="1"/><line x1="12" y1="258.0" x2="654" y2="258.0" stroke="#D1D6DB" stroke-width="1.5"/><rect x="23.8" y="175.7" width="30.0" height="82.3" rx="4" fill="#C9DEFB"/><rect x="77.3" y="132.5" width="30.0" height="125.5" rx="4" fill="#C9DEFB"/><rect x="130.8" y="142.1" width="30.0" height="115.9" rx="4" fill="#C9DEFB"/><rect x="184.3" y="124.4" width="30.0" height="133.6" rx="4" fill="#C9DEFB"/><rect x="237.8" y="87.8" width="30.0" height="170.2" rx="4" fill="#C9DEFB"/><rect x="291.3" y="100.7" width="30.0" height="157.3" rx="4" fill="#C9DEFB"/><rect x="344.8" y="137.3" width="30.0" height="120.7" rx="4" fill="#C9DEFB"/><rect x="398.3" y="47.4" width="30.0" height="210.6" rx="4" fill="#C9DEFB"/><rect x="451.8" y="30.0" width="30.0" height="228.0" rx="4" fill="#C9DEFB"/><rect x="505.3" y="58.8" width="30.0" height="199.2" rx="4" fill="#C9DEFB"/><rect x="558.8" y="88.0" width="30.0" height="170.0" rx="4" fill="#C9DEFB"/><rect x="612.3" y="74.0" width="30.0" height="184.0" rx="4" fill="#3182F6"/><polyline points="38.8,246.6 92.2,237.3 145.8,244.1 199.2,244.3 252.8,229.4 306.2,233.6 359.8,233.3 413.2,228.1 466.8,190.6 520.2,233.1 573.8,59.6 627.2,199.1" fill="none" stroke="#9B7BF4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="627.2" cy="199.1" r="4.5" fill="#fff" stroke="#9B7BF4" stroke-width="3"/><text x="619.2" y="188.1" text-anchor="end" class="cv" fill="#9B7BF4">+22,624M</text><text x="627.2" y="66.0" text-anchor="middle" class="cv">42.3B</text><text x="38.8" y="284" text-anchor="middle" class="cl">23 Q4</text><text x="145.8" y="284" text-anchor="middle" class="cl">24 Q2</text><text x="252.8" y="284" text-anchor="middle" class="cl">24 Q4</text><text x="359.8" y="284" text-anchor="middle" class="cl">25 Q2</text><text x="466.8" y="284" text-anchor="middle" class="cl">25 Q4</text><text x="573.8" y="284" text-anchor="middle" class="cl">26 Q2</text></svg><div class="clegend"><span><span class="d" style="background:#3182F6"></span>영업현금흐름(막대)</span><span><span class="ln" style="background:#9B7BF4"></span>순현금변동(선)</span></div></div></div>
+<p class="foot-note">※ 재무 수치 출처: 2026 Q3는 Alphabet Q3 2026 Earnings Release(2026.10.28), 그 이전 11개 분기는 stockanalysis.com(Fiscal.ai) · 순현금변동은 현금+단기투자 증감 기준이에요.</p>
+</section>
+<!-- ③ -->
+<section>
+<div class="sec-head"><div class="l1">🎙️ ③ 어닝콜에서 나온 이야기,</div><div class="l2">키워드는 '백로그 $561B과 2027년'이었어요</div></div>
+<div class="kws"><span>#백로그 $561B</span><span>#약정 $924B</span><span>#TPU 외부 판매</span><span>#Gemini 10억 명</span></div>
+<p>콜의 무게중심은 이번 분기 숫자가 아니라 <b>앞으로의 약속</b>에 있었어요. 피차이 CEO는 성장 지표를, 토마스 쿠리안 클라우드 CEO는 수요를, 아슈케나지 CFO는 그 수요를 감당할 투자와 현금흐름을 설명했어요.</p>
+<div class="quote">"AI 랩, 자본시장, 금융기관, 그리고 일반 기업 모두에서 비범한 수요와 강한 성장을 보고 있어요." — Thomas Kurian, Google Cloud CEO (첫 실적 콜 발언)</div>
+<p>숫자로 확인된 수요는 이래요. <b>클라우드 백로그 $561B</b>(2분기 $514B), 그중 55% 이상이 24개월 안에 매출로 인식돼요. 쿠리안은 클라우드에 <b>연 매출 $1B 이상인 제품 라인이 18개</b>라고 밝혔고, BNP파리바가 제미나이 엔터프라이즈를 6만 5,000명 이상에게 배포한 사례를 들었어요. 기업용 AI 좌석은 <b>1억 개 이상</b> 판매됐고 포춘 100대 기업의 약 90%가 제미나이 엔터프라이즈를 쓴다고 했어요.</p>
+<div class="sub-head">TPU를 밖으로 팔기 시작했어요</div>
+<p>이번 콜에서 가장 구조적인 변화는 <b>TPU 사업 모델</b>이에요. 알파벳은 "우리 클라우드용 인프라를 짓는 것"과 "완성된 TPU 시스템을 외부에 판매하는 것"을 명확히 구분했어요. 컴퓨트·스토리지·광네트워크·소프트웨어를 묶은 완제품 시스템을 <b>오라클과 Crux AI</b> 같은 고객·서드파티 시설에 넣고 있어요. 쿠리안은 "데이터를 클라우드로 옮길 수 없는 고객에게 AI 컴퓨트를 가져다줄 수 있고, 그만큼 구글이 직접 지어야 할 시설이 줄어든다"고 했어요. 메타와 함께 개발한 <b>TorchTPU</b>로 파이토치 이식성도 확보했어요.</p>
+<p>신형 <b>TPU 8t·8i</b>는 이전 세대 대비 학습 성능 2.7배, 추론 가격 대비 성능 +80%라고 밝혔어요. 고객·생태계로는 앤트로픽, 애플, 시타델 증권, 점프 트레이딩, 칼텍, 피지컬 인텔리전스가 언급됐어요. 다만 <mark class="r">TPU 단독 매출과 마진, 시스템 가격은 공개하지 않았어요.</mark></p>
+<div class="sub-head">모델과 소비자 지표</div>
+<div class="quote">"제미나이 앱이 10억 명에 도달했어요. 구글 역사상 가장 빠르게 성장한 제품이에요." — Sundar Pichai, CEO</div>
+<p>2주 전 출시한 <b>Gemini 4 Argon</b>은 개발자 플랫폼에서 첫 주 사용량이 Gemini 3보다 3.5배 빠르게 올라왔고, 콜 당일 공개한 <b>Carbon</b>은 Artificial Analysis 지능 지수 59점으로 1위라고 했어요. 1자 모델 API는 분당 <b>약 320억 토큰</b>을 처리하는데 전분기 대비 +40%, 전년 대비 4배예요. AI 모드 질의는 일반 검색보다 평균 3배 길고, 5건 중 1건이 음성·이미지·문서를 쓴다고 했어요. 월 시각 검색은 500억 건을 넘었어요. 유튜브 음악·프리미엄 구독자는 1억 5,000만 명이에요.</p>
+<div class="sub-head">❓ 애널리스트들이 파고든 것</div>
+<ul class="dots">
+<li><b>검색 성장률이 왜 둔화됐나요? (제프리스·모건스탠리 외)</b> 필립 쉰들러는 환율 영향과 버티컬별 요인, 특히 FIFA 월드컵 이후 미디어 지출 정상화를 들었어요. 피차이는 반대편 지표로 "AI 투자가 질의 증가를 끌어 최근 5년 중 가장 높은 질의 성장률"을 제시했어요.</li>
+<li><b>TPU 매출은 어떻게 인식되나요? (골드만삭스)</b> 아슈케나지 CFO는 TPU 시스템이 하드웨어와 소프트웨어를 묶은 솔루션이고, 서명된 계약이 먼저 백로그에 들어간 뒤 재고를 쌓으면서 현금이 나가고, 인도·청구 시점에 매출이 인식된다고 설명했어요. 본격 램프업은 2027년이에요.</li>
+<li><b>에이전틱 검색이 기존 광고를 잡아먹나요? (모펫네이선슨 외)</b> 쉰들러는 "대체가 아니라 추가"라고 답했어요. 상업적 의도가 강한 질의는 그대로 두고, 에이전틱 경험이 새로운 수익화 기회를 만든다는 논리예요. 피차이는 기업용부터 먼저 완성한 이유로 보안·거버넌스 기준을 들었어요.</li>
+<li><b>클라우드 성장률에서 TPU 판매를 빼면요?</b> 쿠리안은 제품 라인 전반의 수요가 강했다고만 답하고 분해는 하지 않았어요. 서드파티 컴퓨트 용량이 4분기부터 쓰이기 시작하면 <b>단기적으로 클라우드 마진에 역풍</b>이 있다고 덧붙였어요.</li>
+</ul>
+<p>4분기 전망으로는 <b>환율 역풍이 3분기보다 소폭 확대</b>(검색·유튜브 광고 중심)되고, <b>2025년 3분기부터 시작된 검색 가속의 역기저</b>가 보고 성장률을 누른다고 안내했어요. 2027년 CapEx 규모는 4분기 콜에서 밝혀요. 이사회는 주당 $0.22 분기 배당을 결의했어요(12월 지급).</p>
+<p class="foot-note">※ 어닝콜 내용은 Benzinga가 공개한 2026 Q3 어닝콜 전문, Google 공식 블로그의 CEO 발언 전문, Converge Digest의 투자자 콜 정리를 기준으로 했고, 인용문은 영문 발언을 우리말로 옮긴 것이에요.</p>
+</section>
+<!-- ④ -->
+<section>
+<div class="sec-head"><div class="l1">🧭 ④ 종합 의견,</div><div class="l2">본업은 괜찮고, 문제는 2027년 청구서예요</div></div>
+<div class="pros-cons">
+  <div class="pros"><div class="h">긍정 요인</div><ul>
+    <li><b>클라우드 +103%</b> - 영업이익이 $3.6B → $11.1B으로 3배가 됐어요</li>
+    <li><b>백로그 $561B</b> - 2분기 $514B에서 $47B 늘었고 55%가 24개월 내 매출이에요</li>
+    <li><b>매출 성장률 4분기 연속 상승</b> - 16% → 18% → 22% → 24% → 25%</li>
+    <li><b>2026 CapEx 가이던스 유지</b> - 상향 반복을 멈췄어요</li>
+    <li><b>TPU 외부 판매 개시</b> - 오라클·Crux AI 등으로 하드웨어 매출 경로가 열렸어요</li>
+    <li><b>Forward P/E 21.2배</b> - PEG 0.7배로 보유 종목 중 가장 낮아요</li>
+  </ul></div>
+  <div class="cons"><div class="h">부정 요인</div><ul>
+    <li><b>4년 만의 동시 미달</b> - 매출 -0.5%, 조정 EPS -11.6%예요</li>
+    <li><b>FCF -$9.07B</b> - 2분기 -$5.9B에서 더 깊어졌고 예상의 3배예요</li>
+    <li><b>영업이익률 -2.2%p</b> - 34.0% → 31.8%, 감가상각 부담이 실체화됐어요</li>
+    <li><b>장기차입금 +479%</b> - 1년 만에 $21.6B → $125.1B이에요</li>
+    <li><b>2027 CapEx "상당한 증가"</b> - 금액은 4분기로 미뤄졌어요. $300B 전망도 나와요</li>
+    <li><b>검색 +12%</b> - 예상 $64.96B에 미달하고 환율·기저 역풍이 4분기에 더 커져요</li>
+  </ul></div>
+</div>
+<p><b>이번 분기를 한 문장으로 쓰면</b>, 영업은 30% 성장했는데 영업 밖에서 $21B이 뒤집혀 "미달"로 기록된 분기예요. 평가손실은 다음 분기에 다시 플러스로 돌 수도 있는 항목이라 그 자체로 기업가치를 바꾸지는 않아요. <mark>주가가 10% 빠진 진짜 이유는 EPS 미달이 아니라 잉여현금흐름 -$9.07B과 "2027년에는 상당히 더 쓴다"는 문장</mark>이에요.</p>
+<p>구조적으로 보면 알파벳은 지금 <b>세 가지를 동시에 하고 있어요.</b> 클라우드 용량을 짓고, TPU를 외부에 팔 재고를 쌓고, 차입으로 그 돈을 조달해요. 세 번째가 가장 새로워요. 1년 전 $21.6B이던 장기차입금이 $125.1B이 됐고, 순현금은 여전히 $123B이지만 처음으로 줄어드는 방향으로 돌았어요. 메타가 FCF 마이너스로, 알파벳이 차입 급증으로, 마이크로소프트가 FCF 27% 감소로 — 같은 분기에 세 회사가 각자 다른 방식으로 같은 압력을 보여줬어요.</p>
+<p><b>발표 후 컨센서스와의 관계</b>도 짚어둘 만해요. FY2026 EPS 추정치 $11.89는 10월 28일 갱신본이지만 이번 실적을 반영하기 전 숫자예요. 조정 EPS가 $2.67로 예상보다 $0.35 낮았으니 연간 추정치도 소폭 내려올 가능성이 커요. 반대로 클라우드 매출·백로그는 예상을 넘었으니 매출 추정치는 올라올 수 있어요. <b>다음 분기의 평가선은 "매출은 올라가고 EPS는 내려간" 새 컨센서스</b>가 돼요.</p>
+<div class="sub-head">🎯 애널리스트 목표주가</div>
+<p>애널리스트 <b>60명</b> 중 55명(적극 매수 42 + 매수 13)이 매수 의견이고 매도는 없어요. 1년 후 목표주가 평균은 <b>$429.68</b>로 발표 직전 주가보다 <b>32.3% 높은</b> 수준이에요.</p>
+<div class="chart"><svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg"><rect x="74.7" y="134.0" width="54.6" height="6.0" rx="6" fill="#D8DEE6"/><text x="102.0" y="124.0" text-anchor="middle" class="cv">0명</text><text x="102.0" y="162.0" text-anchor="middle" class="cl">적극 매도</text><rect x="198.7" y="134.0" width="54.6" height="6.0" rx="6" fill="#D8DEE6"/><text x="226.0" y="124.0" text-anchor="middle" class="cv">0명</text><text x="226.0" y="162.0" text-anchor="middle" class="cl">매도</text><rect x="322.7" y="128.1" width="54.6" height="11.9" rx="6" fill="#D8DEE6"/><text x="350.0" y="118.1" text-anchor="middle" class="cv">5명</text><text x="350.0" y="162.0" text-anchor="middle" class="cl">중립</text><rect x="446.7" y="109.0" width="54.6" height="31.0" rx="6" fill="#C9DEFB"/><text x="474.0" y="99.0" text-anchor="middle" class="cv">13명</text><text x="474.0" y="162.0" text-anchor="middle" class="cl">매수</text><rect x="570.7" y="40.0" width="54.6" height="100.0" rx="6" fill="#3182F6"/><text x="598.0" y="30.0" text-anchor="middle" class="cv">42명</text><text x="598.0" y="162.0" text-anchor="middle" class="cl">적극 매수</text></svg></div>
+<div class="chart"><div class="ct">1년 후 목표주가 전망</div><span class="cs">목표주가는 S&amp;P Global 집계(2026.10.28 갱신 · 실적 발표 직전) · 주가 흐름은 10/7~10/28 실제 종가</span><svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><line x1="16" y1="26.0" x2="692" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="106.0" x2="692" y2="106.0" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="186.0" x2="692" y2="186.0" stroke="#EDEFF2" stroke-width="1"/><line x1="16" y1="266.0" x2="692" y2="266.0" stroke="#EDEFF2" stroke-width="1"/><polyline points="16.0,210.9 35.9,213.3 55.9,209.6 75.8,208.5 95.7,207.3 115.7,214.0 135.6,212.3 155.6,221.7 175.5,217.8 195.4,222.1 215.4,228.1 235.3,239.6 255.2,244.0 275.2,247.7 295.1,243.5 315.0,238.8" fill="none" stroke="#B0B8C1" stroke-width="2.5" stroke-linejoin="round"/><circle cx="315.0" cy="238.8" r="6" fill="#fff" stroke="#4E5968" stroke-width="3"/><text x="305.0" y="224.8" text-anchor="end" class="cv">현재 $324.89</text><line x1="315.0" y1="238.8" x2="550.0" y2="47.8" stroke="#F04452" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550.0" cy="47.8" r="4.5" fill="#fff" stroke="#F04452" stroke-width="3"/><rect x="561.0" y="36.8" width="138" height="22" rx="11" fill="#F04452" opacity="0.12"/><text x="569.0" y="52.3" class="cv" fill="#F04452">최고 $500 (+53.9%)</text><line x1="315.0" y1="238.8" x2="550.0" y2="124.2" stroke="#9B7BF4" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550.0" cy="124.2" r="4.5" fill="#fff" stroke="#9B7BF4" stroke-width="3"/><line x1="555.0" y1="124.2" x2="561.0" y2="115.2" stroke="#9B7BF4" stroke-width="1.5" opacity="0.5"/><rect x="561.0" y="104.2" width="138" height="22" rx="11" fill="#9B7BF4" opacity="0.12"/><text x="569.0" y="119.7" class="cv" fill="#9B7BF4">중간 $430 (+32.4%)</text><line x1="315.0" y1="238.8" x2="550.0" y2="124.5" stroke="#15C47E" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550.0" cy="124.5" r="4.5" fill="#fff" stroke="#15C47E" stroke-width="3"/><line x1="555.0" y1="124.5" x2="561.0" y2="133.5" stroke="#15C47E" stroke-width="1.5" opacity="0.5"/><rect x="561.0" y="122.5" width="138" height="22" rx="11" fill="#15C47E" opacity="0.12"/><text x="569.0" y="138.0" class="cv" fill="#15C47E">평균 $430 (+32.3%)</text><line x1="315.0" y1="238.8" x2="550.0" y2="222.4" stroke="#3182F6" stroke-width="2" stroke-dasharray="4 5" opacity="0.85"/><circle cx="550.0" cy="222.4" r="4.5" fill="#fff" stroke="#3182F6" stroke-width="3"/><rect x="561.0" y="211.4" width="138" height="22" rx="11" fill="#3182F6" opacity="0.12"/><text x="569.0" y="226.9" class="cv" fill="#3182F6">최저 $340 (+4.7%)</text><text x="16" y="288" class="cl">10/7~10/28 종가</text><text x="321.0" y="288" class="cl">← 오늘 · 1년 후 전망 →</text></svg></div>
+<p>최저 전망 $340도 발표 직전 주가보다 4.6% 높아요. 즉 <mark>애널리스트 60명 전원이 지금보다 높은 가격을 보고 있어요.</mark> 다만 이 집계는 실적 발표 전이고, 시간외 10% 하락분이 반영되지 않았어요. 10월 중 주가는 $353 → $325로 8% 내려왔는데 목표가는 거의 움직이지 않아서 괴리가 벌어진 상태였고, 발표 후 하향 조정이 나오는지가 다음 확인점이에요.</p>
+<div class="sub-head">👀 다음 분기엔 이걸 보면 돼요</div>
+<ul class="dots">
+<li><b>4분기 콜에서 나올 2027년 CapEx 금액</b> - "상당한 증가"가 숫자로 바뀌는 자리예요. $250B 안쪽이면 안도, $300B 이상이면 EPS 추정치가 흔들려요</li>
+<li><b>잉여현금흐름이 플러스로 돌아오는지</b> - 3분기 -$9.07B에는 EU 과징금 $5.2B 같은 일회성이 섞여 있어요. 4분기에 그게 빠져도 마이너스면 구조적이에요</li>
+<li><b>클라우드 성장률과 마진</b> - 서드파티 컴퓨트 사용으로 단기 마진 역풍을 예고했어요. 영업이익률 36.2%가 얼마나 깎이는지 봐요</li>
+<li><b>검색 성장률이 기저 역풍을 넘는지</b> - 4분기부터 2025년 3분기 가속의 역기저가 시작돼요. +12%가 한 자릿수로 내려가는지가 분기점이에요</li>
+<li><b>TPU 매출이 숫자로 공개되는지</b> - 2027년 본격 램프업이라고 했으니 4분기에 백로그·인도 규모라도 나오는지 확인해요</li>
+</ul>
+<div class="wp-preview">📌 다음 보고서에서는 위 5가지가 실제로 어떻게 됐는지 <b>하나씩 충족·미충족으로 점검</b>해서 맨 앞에 보여드릴게요.</div>
+<div class="next"><div class="t">다음 실적발표</div><div class="d">2027년 2월 초 예정 <span style="font-size:13px;color:var(--g400);font-weight:600">⚠️ 확정 시 업데이트 · 2026 Q4와 2027년 CapEx 가이던스 동시 발표</span></div></div>
+</section>
+
+<!--rnav-->
+<div class="rnav"><a class="prev off"><span class="av"></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">가장 최근 보고서예요</div></div></a><a class="next" href="실적브리핑_MSFT_FY2027Q1_2026.10.29.html"><span class="av"><img src="../logos/MSFT.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">MSFT</div><div class="rs"><span class="tx BEAT">상회</span> · Microsoft · FY2027 Q1</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+데이터 출처: Alphabet Q3 2026 Earnings Release(2026.10.28), Benzinga 어닝콜 전문, Google 공식 블로그, CNBC(LSEG·FactSet 컨센서스), Converge Digest, Investing.com, stockanalysis.com(S&amp;P Global·Fiscal.ai) · earnings-briefing 스킬 자동 생성
+</div>
+
+</div>
+</div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="실적브리핑/실적브리핑_GOOGL_2026Q3_2026.10.29.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+<!--rd-js-->
+<script>
+/* 가독성 레이어 v2.18 — 긴 문단 분리 + 나열형 블록 가로 스크롤 카드 */
+(function(){
+if(window.__rd)return;window.__rd=1;
+var Q=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+var kids=function(el){return Array.prototype.slice.call(el.children);};
+/* ① 긴 문단 분리 — 최상위 텍스트 노드의 문장 경계에서만 자른다(굵게·형광펜 안은 건드리지 않음) */
+function splitP(p){
+  if(p.closest('.hs,.cause,.hcard,.callout,.explain,.disclaimer,.kpi,.memo,.chart'))return;
+  if(p.textContent.length<200)return;
+  var groups=[[]],acc=0;
+  Array.prototype.slice.call(p.childNodes).forEach(function(n){
+    if(n.nodeType!==3){groups[groups.length-1].push(n);acc+=(n.textContent||'').length;return;}
+    var parts=n.textContent.replace(/([요다]\.)\s+(?=\S)/g,'$1\u0000').split('\u0000');
+    parts.forEach(function(t,i){
+      if(i>0&&acc>=120){groups.push([]);acc=0;}
+      else if(i>0){groups[groups.length-1].push(document.createTextNode(' '));}
+      groups[groups.length-1].push(document.createTextNode(t));acc+=t.length;
+    });
+  });
+  if(groups.length<2)return;
+  var last=groups[groups.length-1],len=last.reduce(function(a,n){return a+(n.textContent||'').length;},0);
+  if(len<40){groups.pop();var prev=groups[groups.length-1];prev.push(document.createTextNode(' '));last.forEach(function(n){prev.push(n);});}
+  if(groups.length<2)return;
+  groups.forEach(function(g,i){
+    var q=i===0?p:p.cloneNode(false);
+    if(i===0){while(p.firstChild)p.removeChild(p.firstChild);}else{q.classList.add('rd-s');}
+    g.forEach(function(n){q.appendChild(n);});
+    if(i>0){var ref=groups.__last||p;ref.parentNode.insertBefore(q,ref.nextSibling);groups.__last=q;}
+  });
+}
+Q('.body p, p.body-p').forEach(splitP);
+/* li "굵은 제목 — 설명" → 카드 제목/본문 */
+function liCard(li){
+  var f=li.firstChild;while(f&&f.nodeType===3&&!f.textContent.trim())f=f.nextSibling;
+  if(!f||f.nodeType!==1||f.tagName!=='B')return;
+  var nx=f.nextSibling;if(!nx||nx.nodeType!==3||!/^\s*[—–-]\s*/.test(nx.textContent))return;
+  nx.textContent=nx.textContent.replace(/^\s*[—–-]\s*/,'');
+  var h=document.createElement('span');h.className='rd-h';li.insertBefore(h,f);h.appendChild(f);
+  var x=document.createElement('span');x.className='rd-x';
+  while(h.nextSibling)x.appendChild(h.nextSibling);li.appendChild(x);
+}
+/* ③ 가로 스크롤 카드 */
+var all=[];
+function mk(box,items,wide){
+  if(items.length<2)return;
+  box.classList.add('hs');if(wide)box.classList.add('wide');
+  items.forEach(function(it){it.classList.add('hs-i');});
+  var nav=document.createElement('div');nav.className='hs-nav';
+  nav.innerHTML='<span class="cnt"><b>1</b> / '+items.length+'</span><span class="bar"><i></i></span><span class="hint">옆으로 넘겨보세요</span><button type="button" aria-label="이전">‹</button><button type="button" aria-label="다음">›</button>';
+  box.parentNode.insertBefore(nav,box.nextSibling);
+  var b=nav.querySelectorAll('button'),cnt=nav.querySelector('.cnt b'),bar=nav.querySelector('.bar i'),hint=nav.querySelector('.hint');
+  var step=function(){return items[0].getBoundingClientRect().width+10;};
+  function upd(){
+    var max=box.scrollWidth-box.clientWidth,i=Math.round(box.scrollLeft/step());
+    if(box.scrollLeft>=max-4)i=items.length-1;
+    var vis=Math.max(1,Math.floor((box.clientWidth+10)/step()));
+    cnt.textContent=Math.min(items.length,i+1);
+    bar.style.width=(max>0?Math.min(100,(box.scrollLeft+box.clientWidth)/box.scrollWidth*100):100)+'%';
+    b[0].disabled=box.scrollLeft<=4;b[1].disabled=box.scrollLeft>=max-4;
+    if(box.scrollLeft>8)hint.style.display='none';
+    nav.style.display=max>4?'':'none';
+  }
+  b[0].onclick=function(){box.scrollBy({left:-step(),behavior:'smooth'});};
+  b[1].onclick=function(){box.scrollBy({left:step(),behavior:'smooth'});};
+  box.addEventListener('scroll',upd,{passive:true});
+  all.push({box:box,upd:upd});
+}
+function wrapRun(run){ /* 연속 형제들을 div.hs로 묶는다 */
+  var w=document.createElement('div');run[0].parentNode.insertBefore(w,run[0]);
+  run.forEach(function(e){w.appendChild(e);});return w;
+}
+function runs(sel){ /* 같은 부모 아래 연속된 sel 형제 묶음 */
+  var out=[],seen=new Set();
+  Q(sel).forEach(function(e){
+    if(seen.has(e)||e.closest('.hs'))return;var r=[e];seen.add(e);var n=e.nextElementSibling;
+    while(n&&n.matches(sel)){r.push(n);seen.add(n);n=n.nextElementSibling;}
+    out.push(r);
+  });return out;
+}
+runs('.wgrp').forEach(function(r){
+  if(r.length>=2){mk(wrapRun(r),r,true);return;}
+  var g=r[0],ul=g.querySelector(':scope>ul');if(!ul)return;var li=kids(ul).filter(function(e){return e.tagName==='LI';});
+  if(li.length<5)return;g.classList.add('rd-flat');li.forEach(liCard);mk(ul,li);
+});
+Q('.tl').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('tli');});if(k.length>=3)mk(b,k,true);});
+Q('.cause-grid').forEach(function(b){var k=kids(b);if(k.length>=3)mk(b,k,true);});
+Q('.wp-list').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('wp');});if(k.length>=3)mk(b,k);});
+Q('.wlist').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('witem');});if(k.length>=3)mk(b,k);});
+runs('.stock-g').forEach(function(r){if(r.length>=2)mk(wrapRun(r),r,true);});
+Q('ul.dots').forEach(function(ul){
+  if(ul.closest('.hs'))return;var li=kids(ul);if(li.length<4)return;
+  var avg=li.reduce(function(a,e){return a+e.textContent.length;},0)/li.length;if(avg<50)return;
+  li.forEach(liCard);mk(ul,li);
+});
+/* 카드 줄을 화면 가장자리까지 넓힌다(본문 여백만큼 bleed) */
+function bleed(){
+  var pg=document.querySelector('.page')||document.body,pr=pg.getBoundingClientRect();
+  all.forEach(function(o){
+    var s=o.box.style;s.marginLeft=s.marginRight=s.paddingLeft=s.paddingRight='';
+    var r=o.box.getBoundingClientRect(),l=Math.max(0,Math.round(r.left-pr.left)),rr=Math.max(0,Math.round(pr.right-r.right));
+    s.setProperty('margin-left',-l+'px','important');s.setProperty('margin-right',-rr+'px','important');
+    s.setProperty('padding-left',l+'px','important');s.setProperty('padding-right',rr+'px','important');s.scrollPaddingLeft=l+'px';
+    o.upd();
+  });
+}
+/* ④ 긴 카드 접기 — 카드가 340px을 넘으면 300px까지만 보여주고 「더보기」 */
+function clamp(){
+  all.forEach(function(o){
+    o.box.style.alignItems='flex-start';  /* 늘어난 높이가 아니라 원래 높이로 판단 */
+    var cs=kids(o.box);var hs=cs.map(function(c){return c.scrollHeight;});
+    o.box.style.alignItems='';
+    cs.forEach(function(c,ix){
+      if(!c.classList.contains('hs-i')||c.querySelector(':scope>.rd-more'))return;
+      if(hs[ix]<=340)return;
+      c.classList.add('rd-clamp');
+      var b=document.createElement('button');b.type='button';b.className='rd-more';b.textContent='더보기 ⌄';
+      b.onclick=function(e){e.preventDefault();var op=c.classList.toggle('rd-open');b.textContent=op?'접기 ⌃':'더보기 ⌄';
+        o.box.classList.toggle('rd-has-open',!!o.box.querySelector('.rd-open'));o.upd();};
+      c.appendChild(b);
+    });
+  });
+}
+/* ⑥ 출처 접기 */
+Q('.source-note').forEach(function(s){
+  if(s.classList.contains('rd-src'))return;
+  var body=document.createElement('div');body.className='rd-src-body';
+  while(s.firstChild)body.appendChild(s.firstChild);
+  var b=document.createElement('button');b.type='button';b.className='rd-src-btn';b.textContent='출처 보기 ›';
+  b.onclick=function(){var op=s.classList.toggle('rd-open');b.textContent=op?'출처 접기 ‹':'출처 보기 ›';};
+  s.classList.add('rd-src');s.appendChild(b);s.appendChild(body);
+});
+/* ⑤ 목차 칩 + 읽기 진행 바 — .sec-head가 3개 이상이면 그것, 아니면 .sub-head(3~12개) */
+(function(){
+  var gnb=document.querySelector('.gnb');if(!gnb)return;
+  var hs=Q('.sec-head');var label=function(h){var l=h.querySelector('.l1');return (l||h).textContent;};
+  if(hs.length<3){hs=Q('.body .sub-head').filter(function(h){return !h.closest('.hs');});if(hs.length<3||hs.length>12)return;}
+  var toc=document.createElement('nav');toc.className='rd-toc';toc.setAttribute('aria-label','목차');
+  toc.innerHTML='<div class="rd-prog"></div><div class="rd-chips"></div>';
+  var chips=toc.querySelector('.rd-chips'),prog=toc.querySelector('.rd-prog'),links=[];
+  hs.forEach(function(h,i){
+    var t=label(h).replace(/^[^\p{L}\p{N}①-⑳]+/u,'').replace(/[,，\s]+$/,'').trim();
+    var tgt=h.closest('section')||h;if(!tgt.id)tgt.id='rd-s'+i;tgt.classList.add('rd-anchor');
+    var a=document.createElement('a');a.href='#'+tgt.id;a.textContent=t;chips.appendChild(a);links.push([a,tgt]);
+  });
+  gnb.parentNode.insertBefore(toc,gnb.nextSibling);
+  var setH=function(){document.documentElement.style.setProperty('--rd-gnb',gnb.offsetHeight+'px');};setH();addEventListener('resize',setH);
+  var cur=-1;
+  function onScroll(){
+    var de=document.documentElement,max=de.scrollHeight-innerHeight;
+    prog.style.width=(max>0?Math.min(100,scrollY/max*100):0)+'%';
+    var line=gnb.offsetHeight+toc.offsetHeight+24,k=-1;
+    links.forEach(function(p,i){if(p[1].getBoundingClientRect().top<=line)k=i;});
+    if(k!==cur){cur=k;links.forEach(function(p,i){p[0].classList.toggle('on',i===k);});
+      if(k>=0){var a=links[k][0];chips.scrollTo({left:a.offsetLeft-chips.clientWidth/2+a.offsetWidth/2,behavior:'smooth'});}}
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+function layout(){bleed();clamp();}
+layout();addEventListener('resize',bleed);addEventListener('load',layout);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout);
+})();
+</script>
+<!--/rd-js-->
+<!--ask-->
+<script src="../ask.js" defer></script>
+<!--/ask-->
+</body>
+</html>
