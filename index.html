@@ -644,7 +644,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.10.29";   // v2.19: 매수 시그널 탭 추가
+const LAST_UPDATED = "2026.10.30";   // v2.19: 매수 시그널 탭 추가
 
 const REPORTS_DB = [
   {
@@ -831,6 +831,20 @@ const UPCOMING_DB = [
 // ----- 경제 지표 (macro-briefing 스킬이 갱신) -----
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
+  {
+    id: "PCE", name: "PCE 물가지수", period: "2026년 9월", category: "물가", tier: 3,
+    report_date: "2026-10-29", created: "2026.10.30", verdict: "BAD", vlabel: "재가속",
+    surprise: { text: "예측 부합", cls: "flat" },
+    oneliner: "헤드라인 3.6%·근원 3.1%로 예측과 같았지만 둘 다 다시 위로 돌았어요.",
+    file: "경제지표/경제지표_PCE_2026.09_2026.10.29.html"
+  },
+  {
+    id: "GDP_ADV", name: "GDP 속보치", period: "2026년 3분기", category: "성장", tier: 3,
+    report_date: "2026-10-29", created: "2026.10.30", verdict: "GOOD", vlabel: "가속",
+    surprise: { text: "예측 +0.2%p", cls: "up" },
+    oneliner: "3.4%로 예측을 넘었지만 재고를 빼면 1.7%예요. 민간 최종수요는 4.9%예요.",
+    file: "경제지표/경제지표_GDP_ADV_2026.3Q_2026.10.29.html"
+  },
   {
     id: "FOMC", name: "FOMC 금리결정", period: "2026년 10월 회의", category: "연준", tier: 3,
     report_date: "2026-10-29", created: "2026.10.29", verdict: "NEUT", vlabel: "동결",
@@ -1035,15 +1049,15 @@ const MACRO_UPCOMING_DB = [
   { id: "RETAIL", name: "소매판매", short: "소매판매", period: "10월", date: "2026-11-17", estimated: false, utc: "20261117T133000Z", tier: 2, last_release: "2026-10-15" },
   { id: "IMPORT", name: "수출입물가", short: "수출입물가", period: "10월", date: "2026-11-17", estimated: false, utc: "20261117T133000Z", tier: 1, last_release: "2026-10-16" },
   { id: "FOMC", name: "FOMC 금리결정", short: "FOMC", period: "12월 회의", date: "2026-12-10", estimated: false, utc: "20261209T190000Z", tier: 3, last_release: "2026-10-29" },
-  { id: "GDP_ADV", name: "GDP 속보치", short: "GDP속보", period: "3분기", date: "2026-10-29", estimated: false, utc: "20261029T123000Z", tier: 3, last_release: "2026-07-30" },
-  { id: "PCE", name: "PCE 물가지수", short: "PCE", period: "9월", date: "2026-10-29", estimated: false, utc: "20261029T123000Z", tier: 3, last_release: "2026-09-30" },
+  { id: "GDP_ADV", name: "GDP 속보치", short: "GDP속보", period: "4분기", date: "2027-01-28", estimated: true, utc: null, tier: 3, last_release: "2026-10-29" },
+  { id: "PCE", name: "PCE 물가지수", short: "PCE", period: "10월", date: "2026-11-25", estimated: false, utc: "20261125T133000Z", tier: 3, last_release: "2026-10-29" },
   { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "10월", date: "2026-11-02", estimated: true, utc: null, tier: 2, last_release: "2026-10-01" },
   { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "10월", date: "2026-11-04", estimated: true, utc: null, tier: 2, last_release: "2026-10-05" },
   { id: "JOLTS", name: "JOLTs 구인건수", short: "JOLTs", period: "9월", date: "2026-11-04", estimated: false, utc: "20261103T150000Z", tier: 2, last_release: "2026-09-29" },
   { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "10월", date: "2026-11-06", estimated: false, utc: "20261106T133000Z", tier: 3, last_release: "2026-10-02" },
   { id: "FOMC_MIN", name: "FOMC 의사록", short: "의사록", period: "10월 회의", date: "2026-11-19", estimated: true, utc: null, tier: 2, last_release: "2026-10-08" },
   { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "10월", date: "2026-11-10", estimated: false, utc: "20261110T133000Z", tier: 3, last_release: "2026-10-14" },
-  { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "3분기", date: "2026-11-25", estimated: false, utc: "20261125T133000Z", tier: 2, last_release: "2026-08-26" },
+  { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "3분기", date: "2026-11-25", estimated: false, utc: "20261125T133000Z", tier: 2, last_release: "2026-08-27" },
   { id: "JACKSON", name: "잭슨홀 심포지엄", short: "잭슨홀", period: "2027년", date: "2027-08-27", estimated: true, utc: null, tier: 2, last_release: "2026-08-28" }
 
 ];
@@ -1075,16 +1089,16 @@ const WATCH_DB = [
     "쿡·해맥의 반대 사유 성명과 다음 회의에서 반대표가 10-2에서 더 늘어나는지",
     "10월 29일 밤 9월 PCE와 3분기 GDP 속보치가 '강한 속도' 판단을 뒷받침하는지",
     "12월 SEP에서 2027년 점 분포(인상 8 · 동결 6 · 인하 4)가 좁혀지는지"]},
-  { key: "PCE", name: "PCE 물가지수 9월", date: "2026-10-29", type: "m", items: [
-    "개편된 기준으로 근원 3.0%가 더 내려가는지 — 개편 효과가 아닌 실제 둔화가 확인되는지",
-    "전월 대비 가속(7월 +0.1% → 8월 +0.3%)이 9월에도 이어지는지 — 전년 대비보다 이게 더 중요해요",
-    "실질 소비 +0.6%가 유지되는지, 저축률 4.1%가 다시 내려가는지",
-    "10월 FOMC(10/29) 결과와 12월 인상 전망 — 윌리엄스가 말한 '연말 한 차례'가 유효한지"]},
-  { key: "GDP_ADV", name: "GDP 속보치 2026년 3분기", date: "2026-10-29", type: "m", items: [
-    "3분기 속보치가 2분기 확정치 2.2%를 유지하는지 — 2분기 상향이 추세였는지 일회성이었는지",
-    "민간 최종수요 4.6%가 3분기에도 4%대를 지키는지 — 내수 체력의 핵심 지표예요",
-    "근원 PCE 물가 3.3%가 더 내려가는지 — 8월 PCE 산출방법 개편 효과가 분기 통계에도 이어지는지",
-    "기업이익 +$3,840억이 3분기에도 유지되는지 (11/25 잠정치에서 확인)"]},
+  { key: "PCE", name: "PCE 물가지수 10월", date: "2026-11-25", type: "m", items: [
+    "근원 MoM +0.3%가 +0.2% 아래로 돌아오는지 — 두 달 연속 +0.3%라 이번이 세 번째 자리예요",
+    "헤드라인 MoM +0.5%를 만든 에너지가 10월에 되돌려지는지 — 11/10 10월 CPI 가솔린이 먼저 답을 줘요",
+    "실질 소비 0.0%와 저축률 3.8%가 한 달 더 내려가는지 — 저축률은 2022년 10월 이후 최저예요",
+    "12월 SEP에서 2026년말 PCE 전망 3.7%·근원 3.4%가 수정되는지 — 실제치가 각각 0.1%p·0.3%p 아래예요"]},
+  { key: "GDP_ADV", name: "GDP 잠정치 2026년 3분기", date: "2026-11-25", type: "m", items: [
+    "3분기 기업이익이 2분기 +$3,840억을 유지하는지 — 속보치에 없던 항목이라 잠정치가 첫 공개예요",
+    "재고 기여도 +1.61%p가 4분기에 마이너스로 되돌려지는지 — 재고를 빼면 3분기 성장률은 1.7%예요",
+    "민간 최종수요 4.9%가 4%대를 유지하는지 — 3개 분기 연속이라 넷째 분기가 추세 확인 자리예요",
+    "잠정치에서 수입 +19.7%와 투자의 정보처리 장비가 어떻게 수정되는지 — 수정폭이 큰 항목이에요"]},
   { key: "RETAIL", name: "소매판매 10월", date: "2026-11-17", type: "m", items: [
     "컨트롤 그룹 +0.1%가 10월에 회복되는지 — GDP 소비 기여도의 핵심이에요",
     "주유소 기여가 빠진 뒤에도 헤드라인이 플러스인지 — 휘발유가 10월엔 하락 전환했어요",
@@ -1176,19 +1190,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 215.38, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 983.23, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
-  { ticker: "MSFT", price: 531.01, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "⚠ 발표 전 컨센" },
-  { ticker: "GOOGL", price: 324.89, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 발표 전 컨센" },
-  { ticker: "AAPL", price: 343.83, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
-  { ticker: "PLTR", price: 196.81, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
-  { ticker: "KO", price: 91.73, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
-  { ticker: "ABBV", price: 285.99, tgt: 284.79, eps_cur: 13.96, eps_next: 16.20, note: "" },
-  { ticker: "O", price: 56.23, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
-  { ticker: "CRWV", price: 63.93, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 32.43, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
-  { ticker: "SMR", price: 5.67, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
-  { ticker: "000660", price: 1487000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 213.66, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 934.27, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
+  { ticker: "MSFT", price: 530.14, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "⚠ 발표 전 컨센" },
+  { ticker: "GOOGL", price: 283.82, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 발표 전 컨센" },
+  { ticker: "AAPL", price: 348.91, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
+  { ticker: "PLTR", price: 196.42, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
+  { ticker: "KO", price: 92.82, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
+  { ticker: "ABBV", price: 290.79, tgt: 284.79, eps_cur: 13.96, eps_next: 16.20, note: "" },
+  { ticker: "O", price: 57.20, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
+  { ticker: "CRWV", price: 60.74, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 31.72, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 5.92, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "000660", price: 1526000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1286,17 +1300,24 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
   {
+    asset: "SMR", name: "NuScale Power", kind: "stock", date: "2026-10-30",
+    chg: 4.41, chg_label: "+4.41%", price_label: "$5.92", cause: "회사 뉴스",
+    oneliner: "두산에너빌리티 제작 계약 하나로 올랐어요. 업종이 아니라 자기 재료예요.",
+    spark: [7.75,7.68,8.02,7.67,7.32,7.20,6.70,6.49,5.83,6.15,5.83,5.69,5.58,5.50,5.38,5.38,5.27,5.70,5.67,5.92],
+    created: "2026.10.30", file: "급등락/급등락_SMR_2026.10.30.html"
+  },
+  {
     asset: "MU", name: "Micron", kind: "stock", date: "2026-10-29",
     chg: 5.86, chg_label: "+5.86%", price_label: "$983.23", cause: "업종 재평가",
-    oneliner: "SK하이닉스가 2030년까지 공급 부족을 제시하자 나흘 연속 올라 $983을 되찾았어요.",
-    spark: [1097.39,1074.89,1063.96,1045.56,1088.00,1035.84,1029.00,989.04,953.19,914.13,931.24,878.84,904.90,896.07,913.67,856.49,877.55,903.70,928.76,983.23],
+    oneliner: "$983을 되찾았다가 삼성 실적 미달로 -4.98%($934.27) 반납했어요(후속).",
+    spark: [1074.89,1063.96,1045.56,1088.00,1035.84,1029.00,989.04,953.19,914.13,931.24,878.84,904.90,896.07,913.67,856.49,877.55,903.70,928.76,983.23,934.27],
     created: "2026.10.29", file: "급등락/급등락_MU_2026.10.29.html"
   },
   {
     asset: "MARKET", name: "AI 인프라 3종목", kind: "market", date: "2026-10-28",
     chg: 8.16, chg_label: "SMR +8.16%", price_label: "나스닥 +1.18%", cause: "매도 공백",
-    oneliner: "세 종목이 7~8% 올랐고, CRWV는 다음 세션에도 +7.32%로 이어졌어요(후속).",
-    spark: [87.12,88.57,89.62,87.39,91.72,88.45,81.58,82.08,80.26,77.81,65.78,69.69,61.39,61.12,62.13,61.82,55.60,54.24,55.19,59.57],
+    oneliner: "세 종목이 7~8% 올랐고, CRWV는 +7.32% 뒤 -4.99%로 되밀렸어요(후속).",
+    spark: [89.62,87.39,91.72,88.45,81.58,82.08,80.26,77.81,65.78,69.69,61.39,61.12,62.13,61.82,55.60,54.24,55.19,59.57,63.93,60.74],
     created: "2026.10.28", file: "급등락/급등락_MARKET_2026.10.28.html"
   },
   {
@@ -1700,9 +1721,9 @@ const moverKinds = ['전체', '주식', '금리', '환율'];
 /* 로고: logos/{키}.png 우선 → 없으면 사이트 파비콘 → 모노그램 */
 const LOGO = { NVDA:'nvidia.com', AAPL:'apple.com', MSFT:'microsoft.com', GOOGL:'google.com', O:'realtyincome.com', ABBV:'abbvie.com',
   PLTR:'palantir.com', CRWV:'coreweave.com', IONQ:'ionq.com', SMR:'nuscalepower.com', MU:'micron.com', KO:'coca-colacompany.com',   /* 000660: 파비콘 16px뿐이라 모노그램 */
-  ISM_SVC:'ismworld.org', ISM_MFG:'ismworld.org', JOLTS:'bls.gov', NFP:'bls.gov', CPI:'bls.gov', PPI:'bls.gov', PCE:'bea.gov', GDP_2ND:'bea.gov', GDP_3RD:'bea.gov',
+  ISM_SVC:'ismworld.org', ISM_MFG:'ismworld.org', JOLTS:'bls.gov', NFP:'bls.gov', CPI:'bls.gov', PPI:'bls.gov', PCE:'bea.gov', GDP_ADV:'bea.gov', GDP_2ND:'bea.gov', GDP_3RD:'bea.gov',
   RETAIL:'census.gov', FOMC:'federalreserve.gov', FOMC_MIN:'federalreserve.gov', JACKSON:'federalreserve.gov' };
-const MSHORT = { USDKRW:'환율', ISM_SVC:'ISM', ISM_MFG:'ISM', JOLTS:'JOLT', REVIEW:'월간', JACKSON:'JH', PCE:'PCE', GDP_2ND:'GDP', GDP_3RD:'GDP', CPI:'CPI', PPI:'PPI', RETAIL:'소매', FOMC_MIN:'FOMC', FOMC:'FOMC', NFP:'고용' };
+const MSHORT = { USDKRW:'환율', ISM_SVC:'ISM', ISM_MFG:'ISM', JOLTS:'JOLT', REVIEW:'월간', JACKSON:'JH', PCE:'PCE', GDP_ADV:'GDP', GDP_2ND:'GDP', GDP_3RD:'GDP', CPI:'CPI', PPI:'PPI', RETAIL:'소매', FOMC_MIN:'FOMC', FOMC:'FOMC', NFP:'고용' };
 const AVC = { NVDA:'#76B900', AAPL:'#555B66', MSFT:'#0E7CD3', GOOGL:'#EA4335', O:'#8B6F47', ABBV:'#071D49', PLTR:'#191F28', CRWV:'#2E6BE6',
   IONQ:'#5B4FE9', SMR:'#0F8A6F', MU:'#1B4FD8', KO:'#F40009', '000660':'#E2231A', USDKRW:'#4E5968', MONTH:'#3182F6' };
 function avatar(key, label){
