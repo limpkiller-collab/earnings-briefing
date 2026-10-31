@@ -644,9 +644,27 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.10.30";   // v2.19: 매수 시그널 탭 추가
+const LAST_UPDATED = "2026.10.31";   // v2.19: 매수 시그널 탭 추가
 
 const REPORTS_DB = [
+  {
+    ticker: "ABBV", company: "AbbVie", quarter: "2026 Q3",
+    report_date: "2026-10-30", created: "2026.10.31", verdict: "BEAT",
+    oneliner: "스스로 깎았던 연간 가이던스를 $0.11 그대로 되돌리고 배당도 5.2% 올렸어요.",
+    file: "실적브리핑/실적브리핑_ABBV_2026Q3_2026.10.31.html"
+  },
+  {
+    ticker: "AAPL", company: "Apple", quarter: "FY2026 Q4",
+    report_date: "2026-11-03", created: "2026.10.31", verdict: "PREV", vlabel: "프리뷰",
+    oneliner: "컨센서스가 가이던스 상단에 붙었어요. 승부는 메모리 원가와 12월 분기 가이던스예요.",
+    file: "실적브리핑/실적프리뷰_AAPL_FY2026Q4_2026.10.31.html"
+  },
+  {
+    ticker: "O", company: "Realty Income", quarter: "2026 Q3",
+    report_date: "2026-11-03", created: "2026.10.31", verdict: "PREV", vlabel: "프리뷰",
+    oneliner: "매출은 +7.6%인데 AFFO/주는 +2.8%예요. 주식 희석과 금리가 쟁점이에요.",
+    file: "실적브리핑/실적프리뷰_O_2026Q3_2026.10.31.html"
+  },
   {
     ticker: "GOOGL", company: "Alphabet", quarter: "2026 Q3",
     report_date: "2026-10-29", created: "2026.10.29", verdict: "MISS",
@@ -813,8 +831,7 @@ const REPORTS_DB = [
 //                 화면은 항상 KST로 보여주고, 캘린더 일정은 이 값으로 만들어 해외에서도 현지시간 자동 변환된다.
 //   last_report : 직전 실제 발표일 (state.json의 last_report_date) — KPI '이번 분기 발표 n/13' 계산에 쓴다
 const UPCOMING_DB = [
-  { ticker: "ABBV", name: "AbbVie", date: "2026-10-30", estimated: false, when: "bmo", utc: "20261030T130000Z", last_report: "2026-07-31" },
-  { ticker: "AAPL", name: "Apple", date: "2026-11-03", estimated: false, when: "amc", utc: "20261102T220000Z", last_report: "2026-08-01" },
+  { ticker: "AAPL", name: "Apple", date: "2026-11-03", estimated: false, when: "amc", utc: "20261102T213000Z", last_report: "2026-08-01" },
   { ticker: "O", name: "Realty Income", date: "2026-11-03", estimated: false, when: "amc", utc: "20261102T220000Z", last_report: "2026-08-07" },
   { ticker: "PLTR", name: "Palantir", date: "2026-11-04", estimated: true, when: null, utc: null, last_report: "2026-08-05" },
   { ticker: "IONQ", name: "IonQ", date: "2026-11-05", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
@@ -824,6 +841,7 @@ const UPCOMING_DB = [
   { ticker: "MU", name: "Micron", date: "2026-12-17", estimated: true, when: null, utc: null, last_report: "2026-10-01" },
   { ticker: "000660", name: "SK하이닉스", short: "하이닉스", date: "2027-01-27", estimated: true, when: null, utc: null, last_report: "2026-10-28" },
   { ticker: "MSFT", name: "Microsoft", date: "2027-01-28", estimated: true, when: null, utc: null, last_report: "2026-10-29" },
+  { ticker: "ABBV", name: "AbbVie", date: "2027-01-29", estimated: true, when: null, utc: null, last_report: "2026-10-30" },
   { ticker: "GOOGL", name: "Alphabet", date: "2027-02-03", estimated: true, when: null, utc: null, last_report: "2026-10-29" },
   { ticker: "KO", name: "Coca-Cola", date: "2027-02-09", estimated: true, when: null, utc: null, last_report: "2026-10-27" }
 ];
@@ -1114,6 +1132,12 @@ const WATCH_DB = [
     "가솔린 +20.3%가 10월에 되돌려지는지 — EIA 전국 평균이 9/28 $4.465 → 10/12 $4.331로 내려왔어요",
     "중간재 미가공 에너지 +22.2%·원유 +28.3%가 10월 최종수요로 더 전가되는지",
     "거래(유통) 마진 +1.4%가 유지되는지 — 자동차 연료 소매 마진 -30.3%의 복원 여부"]},
+  { key: "ABBV", name: "AbbVie 2026 Q4 실적", date: "2027-01-29", type: "e", items: [
+    "4분기 매출이 가이던스 약 $18.4B을 지키는지 — 연간 약 $67.8B의 마지막 조각이에요",
+    "4분기 조정 EPS가 역산 가이던스 $3.83~3.87 안인지 — 컨센서스 $3.72보다 3~4% 높은 자리예요",
+    "2027년 가이던스가 아포지 희석 $0.46을 흡수하는지 — 컨센서스 $16.04(+15%)를 지키는 숫자인지",
+    "에스테틱이 역성장에서 벗어나는지 — 3분기 $1.176B(-1.4%)·쥬비덤 -11.9%예요",
+    "목표주가 평균 $283.19이 현재가 $294.89 위로 올라오는지"]},
   { key: "MU", name: "Micron FY27 Q1 실적", date: "2026-12-17", type: "e", items: [
     "FY27 Q1 매출이 가이던스 $61.5B을 달성하는지 — 컨센서스($56.77B)보다 8.3% 높게 잡은 전망을 지키는지",
     "매출총이익률이 86.25%를 지키고 'Q1이 FY2027의 바닥'이라는 설명이 맞는지 — Q2 가이던스가 더 높게 나오는지",
@@ -1190,19 +1214,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 213.66, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 934.27, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
-  { ticker: "MSFT", price: 530.14, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "⚠ 발표 전 컨센" },
-  { ticker: "GOOGL", price: 283.82, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 발표 전 컨센" },
-  { ticker: "AAPL", price: 348.91, tgt: 322.28, eps_cur: 8.80, eps_next: 9.51, note: "⚠ 목표가 상향 전" },
-  { ticker: "PLTR", price: 196.42, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "" },
-  { ticker: "KO", price: 92.82, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
-  { ticker: "ABBV", price: 290.79, tgt: 284.79, eps_cur: 13.96, eps_next: 16.20, note: "" },
-  { ticker: "O", price: 57.20, tgt: 68.22, eps_cur: 4.37, eps_next: null, note: "P/FFO" },
-  { ticker: "CRWV", price: 60.74, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 31.72, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
-  { ticker: "SMR", price: 5.92, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
-  { ticker: "000660", price: 1526000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 204.64, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 884.74, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
+  { ticker: "MSFT", price: 521.91, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
+  { ticker: "GOOGL", price: 279.84, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
+  { ticker: "AAPL", price: 344.63, tgt: 332.39, eps_cur: 8.84, eps_next: 9.55, note: "⚠ 발표 전 컨센" },
+  { ticker: "PLTR", price: 184.11, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "⚠ 발표 전 컨센" },
+  { ticker: "KO", price: 94.08, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
+  { ticker: "ABBV", price: 294.89, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
+  { ticker: "O", price: 56.93, tgt: 64.63, eps_cur: 4.45, eps_next: null, note: "P/AFFO" },
+  { ticker: "CRWV", price: 54.87, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 30.04, tgt: 67.68, eps_cur: -1.23, eps_next: -1.17, note: "" },
+  { ticker: "SMR", price: 5.62, tgt: 12.90, eps_cur: -0.48, eps_next: -0.63, note: "" },
+  { ticker: "000660", price: 1418000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1299,6 +1323,13 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
+  {
+    asset: "MARKET", name: "AI 복합체 7종목", kind: "market", date: "2026-10-30",
+    chg: -9.66, chg_label: "CRWV -9.66%", price_label: "SOX -7.20%", cause: "인텔 쇼크",
+    oneliner: "인텔 가이던스 쇼크에 SOX -7.2%, 보유 7종목이 4~10% 빠졌어요. 금리는 내렸어요.",
+    spark: [87.39,91.72,88.45,81.58,82.08,80.26,77.81,65.78,69.69,61.39,61.12,62.13,61.82,55.60,54.24,55.19,59.57,63.93,60.74,54.87],
+    created: "2026.10.31", file: "급등락/급등락_MARKET_2026.10.30.html"
+  },
   {
     asset: "SMR", name: "NuScale Power", kind: "stock", date: "2026-10-30",
     chg: 4.41, chg_label: "+4.41%", price_label: "$5.92", cause: "회사 뉴스",

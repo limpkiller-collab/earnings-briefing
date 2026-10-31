@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 복합체 7종목 급등락 분석 · 2026.10.30</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<!--theme--><script>try{var t=localStorage.getItem('mb-theme');if(t=='light'||t=='dark')document.documentElement.dataset.theme=t}catch(e){}</script><!--/theme-->
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 2카드 */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .num.down{color:var(--red)} .hcard .num.up{color:var(--green)}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--red)} .hcard .cmp .up{color:var(--green)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--blue-bg);color:var(--blue)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 표 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200);white-space:nowrap}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable td.tx{white-space:normal;text-align:left;font-weight:500;color:var(--g600);font-size:13px;line-height:1.55}
+.htable .up{color:var(--green)} .htable .down{color:var(--red)}
+.htable tr.new td{background:var(--blue-bg)}
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--red)} .kpi .k .v .up{color:var(--green)}
+/* 원인 4분면 (급등락 전용) — 주원인만 블루, 나머지 무채색 */
+.cause-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.cause{border-radius:14px;padding:15px 17px;background:var(--g50);border:1px solid var(--g100)}
+.cause.main{background:var(--blue-bg);border-color:var(--blue-bg)}
+.cause.none{opacity:.55}
+.cause .ch{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+.cause .cn{font-size:14px;font-weight:800;color:var(--g900)}
+.cause .cb{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px;background:var(--g100);color:var(--g500);white-space:nowrap}
+.cause.main .cb{background:var(--blue);color:#fff}
+.cause p{font-size:13.5px;color:var(--g700);line-height:1.6}
+.cause .src{font-size:12px;color:var(--g400);font-weight:600;margin-top:6px}
+/* 콜아웃 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+/* 보유 종목 파급 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 관전포인트 */
+.wp-preview{background:var(--g50);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지난번 체크포인트 점검 (같은 자산 재발 시) */
+.wp-list{margin:12px 0}
+.wp{display:flex;gap:12px;padding:12px 4px;border-bottom:1px solid var(--g100)}
+.wp-badge{flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;background:var(--g100);color:var(--g500);height:fit-content;margin-top:2px}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp-q{font-size:14.5px;font-weight:700;color:var(--g900)} .wp-a{font-size:13.5px;color:var(--g600);margin-top:2px}
+/* 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+/* 📎 후속 블록 (같은 자산이 3거래일 안에 다시 기준선을 넘었을 때) */
+.fu{background:var(--g50);border-radius:16px;padding:18px 20px;margin:0 0 28px}
+.fu .fh{font-size:14px;font-weight:800;color:var(--g700);margin-bottom:10px}
+.fu .fr{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-top:1px solid var(--g200);flex-wrap:wrap}
+.fu .fr:first-of-type{border-top:0}
+.fu .fa{font-size:14px;font-weight:800;flex:0 0 96px}
+.fu .fc{font-size:15px;font-weight:800;flex:0 0 72px;text-align:right}
+.fu .fc.up{color:var(--green)} .fu .fc.down{color:var(--red)}
+.fu .ft{font-size:13.5px;color:var(--g600);font-weight:600;flex:1 1 200px;line-height:1.6}
+.fu .fd{font-size:12px;color:var(--g400);font-weight:700}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .cause-grid{grid-template-columns:1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+/* v2 시안: 결과/이유 줄 분리 · 종목 카드 */
+.rr{display:block;font-size:14.5px;color:var(--g700);line-height:1.7}
+.rr+.rr{margin-top:7px}
+.cause .rr{font-size:13.5px}
+.stock-g .rr{font-size:14.5px}
+.v2sum{background:var(--blue-bg);border-radius:14px;padding:17px 20px;margin:18px 0 8px;font-size:15px;line-height:1.7;color:var(--g900);font-weight:600}
+.v2sum .cap{display:block;font-size:12.5px;font-weight:700;color:var(--blue);margin-bottom:5px}
+.stock-g.v2{border:1px solid var(--g200);border-radius:16px;padding:16px 18px;margin-bottom:10px;background:var(--surface,#fff)}
+.stock-g.v2 .skh{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.stock-g.v2 .skh .tk{font-size:16px;font-weight:800}
+.stock-g.v2 .skh .pct{font-size:15px;font-weight:800}
+.stock-g.v2 .skh .pct.pos{color:var(--green)} .stock-g.v2 .skh .pct.neg{color:var(--red)}
+.stock-g.v2 .skh .px{margin-left:auto;font-size:12.5px;color:var(--g400);font-weight:600;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">🚨</span> 급등락 분석</div>
+  <a href="../index.html">← 아카이브</a>
+</div>
+<div class="body">
+<div class="chips">
+  <span class="chip b">#인텔 쇼크</span><span class="chip">#AI 채권</span><span class="chip">#메모리</span><span class="chip">#네오클라우드</span><span class="chip">#하락</span>
+</div>
+<h1>이번엔 'AI에 들어간 돈을 누가 대는가'가 문제였어요<br>금리는 내렸는데 보유 7종목이 4~10% 빠졌어요</h1>
+<div class="meta">2026년 10월 30일(금) 미국 증시 마감 기준(한국시간 10월 31일) · 한국 10월 30일(금) 포함 · CRWV·000660·PLTR·MU·IONQ·SMR·NVDA · 감시 기준선 ±3.0% 초과</div>
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">가장 크게 빠진 보유 종목</div>
+    <div class="num down">-9.66%</div>
+    <div class="cmp"><b>CoreWeave $54.87</b> · 전일 $60.74 · 52주 최저 종가 <b class="down">경신</b>(기존 $55.60)</div>
+    <div class="core">000660 <b class="down">-7.08%</b> · PLTR <b class="down">-6.27%</b> · MU <b class="down">-5.30%</b> · IONQ <b class="down">-5.30%</b> · SMR <b class="down">-5.07%</b> · NVDA <b class="down">-4.22%</b>, 보유 13종목 중 <b>7개</b>가 기준선을 넘었어요</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">필라델피아 반도체지수(SOX)</div>
+    <div class="num down">-7.20%</div>
+    <div class="cmp">10,688.80 · 30종목 중 <b>29개 하락</b> · 고점 대비 약 -20% 구간</div>
+    <div class="core">나스닥 <b class="down">-2.86%</b>(25,437.00·6월 이후 최악) · S&amp;P500 <b class="down">-1.82%</b>(7,580.07) · 다우 <b class="down">-1.09%</b> · VIX 19.42(<b class="down">+12.91%</b>) · 그런데 10년물은 <b>4.94%(-4bp)</b>로 내렸어요</div>
+  </div>
+</div>
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p>방아쇠는 <b>인텔</b>이었어요. 3분기 실적과 함께 낸 4분기 전망이 부진했고, PC 시장 둔화로 <b>올해 순현금 유출</b>을 예상한다고 밝혔어요. 주가는 <b>-28.58%</b>($65.76)로 1974년 이후 최악의 하루를 썼고, 더 중요한 건 채권시장 반응이에요. 5년 신용부도스왑(CDS) 스프레드가 하루에 17.5bp 벌어져 <b>사상 최고 124.75bp</b>가 됐어요. 2022년 10월 이후 최대 일간 상승폭이에요. 반도체 전체로 번져 샌디스크 -13.47%·퀄컴 -11%대·AMD -10%대·TSMC·브로드컴 -5%대가 되고 SOX 30종목 중 29개가 빠졌어요.</p>
+  <p>두 번째는 <b>아마존</b>이에요. 10월 29일 장 마감 후 낸 3분기는 매출·이익 모두 시장 예상을 밑돌았고, 잉여현금흐름이 마이너스로 공개됐어요. 2026년 설비투자 전망 <b>$2,200억</b>은 그대로 유지했는데, 같은 분기보고서에서 <mark>2027년 초부터 2028년 3분기 사이 임의로 끌어 쓸 수 있는 담보부 금융 한도를 새로 공개했어요.</mark> 데이터센터와 칩을 사는 돈을 영업현금흐름과 채권 발행만으로는 대지 않겠다는 뜻이에요. 이 소식을 그대로 맞은 곳이 <b>한국장</b>이에요. 코스피는 10월 30일 <b>-3.48%</b>(5,730.74)로 밀렸고 외국인이 유가증권시장에서 <b>1조 6,212억원</b>을 순매도했어요. SK하이닉스 -7.08%, 삼성전자는 약 -3%였어요.</p>
+  <p>세 번째는 <b>조달 이야기</b>예요. 뱅크오브아메리카 집계로 AI 하이퍼스케일러의 올해 채권 발행액은 <b>$1,820억</b>으로 2024년 $170억의 열 배가 넘고, 그 공급 부담에 미국 투자등급 테크 채권의 상대 총수익률은 <b>30년 최저</b>로 내려왔어요. 블랙스톤은 앤트로픽이 상장 직후 투자등급을 받지 못하고 BB급에 머물 가능성이 크다고 투자자에게 전했어요. <mark>그런데 국채 금리는 오히려 내렸어요</mark> — 10년물 4.94%(-4bp), 2년물 4.56%(-5bp)예요. 할인율이 불리해진 날이 아니라, <b>AI에 들어간 돈을 누가 어떤 조건으로 대는지</b>가 팔린 날이에요. 돈은 방어주로 갔어요(에너지 +1.91%·필수소비재 +1.41%·유틸리티 +0.67%·헬스케어 +0.45% vs 기술 -4.89%).</p>
+</div>
+<div class="sub-head">✅ 지난번엔 이걸 보자고 했죠</div>
+<div class="sub-desc">10월 29~30일 보고서들의 관전포인트를 MARKET·MU·CRWV·SMR 항목으로 묶어 점검했어요.</div>
+<div class="wp-list">
+  <div class="wp miss"><div class="wp-badge">미충족</div><div>
+    <div class="wp-q">CRWV가 10월 낙폭의 절반인 $72선을 되찾는지</div>
+    <div class="wp-a">반대로 갔어요. 종가 <b>$54.87</b>로 아래쪽 확인선이던 10/22 52주 최저 종가 <b>$55.60까지 깨고</b> 새 최저를 썼어요. $72선과의 거리는 24.1%로 벌어졌어요.</div></div></div>
+  <div class="wp"><div class="wp-badge">부분 충족</div><div>
+    <div class="wp-q">MSFT 서드파티 용량 인도 지연이 네오클라우드 매출 인식 시점을 미루는지</div>
+    <div class="wp-a">방향은 확인됐지만 숫자는 아직이에요. 아마존은 2026년 설비투자 <b>$2,200억</b>을 유지해 <b>수요가 꺾인 건 아니라는 쪽</b>을 보여줬어요. 대신 같은 공시에서 담보부 금융 한도를 새로 열었어요. <mark>쟁점이 '인도 지연'에서 '조달 조건'으로 옮겨갔어요.</mark> CRWV의 직접 수치는 11월 11일 3분기 실적에서 나와요.</div></div></div>
+  <div class="wp"><div class="wp-badge">판단 보류</div><div>
+    <div class="wp-q">11월 초 3분기 실적에서 반등의 근거가 숫자로 확인되는지</div>
+    <div class="wp-a">아직 전부 발표 전이에요. PLTR 11/4, IONQ 11/5, SMR 11/6, CRWV 11/11이고 그 앞에 AAPL·O가 11/3에 있어요. 다음 회차로 넘겨요.</div></div></div>
+  <div class="wp met"><div class="wp-badge">충족</div><div>
+    <div class="wp-q">(MU) $928.76(10/27 종가) 아래로 내려가는지</div>
+    <div class="wp-a">내려갔어요. 종가 <b>$884.74</b>로 그 자리보다 4.7% 아래예요. 10/28 $983.23에서 이틀 만에 10.0% 빠져 10월 고점 $1,088.00 대비 -18.7%가 됐어요.</div></div></div>
+  <div class="wp met"><div class="wp-badge">충족</div><div>
+    <div class="wp-q">(MU) 거래량이 20거래일 평균 위로 올라오는지</div>
+    <div class="wp-a">올라왔어요. <b>3,078만 주</b>로 19거래일 평균 약 2,650만 주의 <b>1.16배</b>예요. 10/29 하락이 0.83배였던 것과 달라요. 평균을 넘는 거래량에 10% 하락이면 매수 공백이 아니라 <b>주주 교체</b>가 일어나는 국면이에요.</div></div></div>
+  <div class="wp miss"><div class="wp-badge">미충족</div><div>
+    <div class="wp-q">(CRWV) 거래량이 20거래일 평균 위에서 움직이는지</div>
+    <div class="wp-a">안 올라왔어요. <b>5,350만 주</b>로 19거래일 평균 6,270만 주의 <b>0.85배</b>예요. 10/29와 같은 배수예요. <mark>평균을 밑도는 거래량으로 9.66% 빠지는 건 팔 사람이 많아서가 아니라 받아줄 사람이 없어서예요.</mark></div></div></div>
+  <div class="wp met"><div class="wp-badge">충족</div><div>
+    <div class="wp-q">(SMR) 10월 6일처럼 이틀 안에 상승분을 반납하는지</div>
+    <div class="wp-a">하루 만에 반납했어요. 10/29 +4.41%($5.92)로 올랐던 걸 10/30 <b>-5.07%($5.62)</b>로 되돌려 10/28 종가 $5.67보다 낮아졌어요. 두산에너빌리티 계약 소식으로 올랐던 자리가 하루를 못 버틴 셈이에요.</div></div></div>
+</div>
+<div class="v2sum"><span class="cap">한 문장 요약</span>CRWV는 새 52주 최저를 썼고 SMR은 전날 상승분을 하루에 반납했어요. 차이는 거래량이에요 — <b>MU는 평균의 1.16배로 주주가 바뀌며 빠졌고, CRWV는 0.85배로 받아줄 사람이 없어 빠졌어요.</b></div>
+<div class="sub-head">📉 무슨 일이 있었나</div>
+<div class="sub-desc">가장 많이 빠진 CoreWeave의 최근 19거래일이에요. 10월 초 $90선에서 한 달 만에 $55선 아래로 내려왔어요.</div>
+<div class="chart-card">
+  <div class="ct">CoreWeave 최근 19거래일 종가</div>
+  <div class="cs">2026.10.06 ~ 10.30 (미국 현지 날짜) · 빨간 점이 이번 급락일(10/30)</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="638" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="264.0" class="ax">$47.49</text><line x1="14" y1="201.5" x2="638" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="205.5" class="ax">$60.24</text><line x1="14" y1="143.0" x2="638" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="147.0" class="ax">$72.98</text><line x1="14" y1="84.5" x2="638" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="88.5" class="ax">$85.72</text><line x1="14" y1="26.0" x2="638" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="30.0" class="ax">$98.47</text><polygon points="14.0,260 14.0,57.0 48.7,72.0 83.3,103.5 118.0,101.2 152.7,109.6 187.3,120.8 222.0,176.1 256.7,158.1 291.3,196.2 326.0,197.4 360.7,192.8 395.3,194.2 430.0,222.8 464.7,229.0 499.3,224.7 534.0,204.6 568.7,184.5 603.3,199.2 638.0,226.1 638.0,260" fill="#F2F4F6" opacity="0.85"/><polyline points="14.0,57.0 48.7,72.0 83.3,103.5 118.0,101.2 152.7,109.6 187.3,120.8 222.0,176.1 256.7,158.1 291.3,196.2 326.0,197.4 360.7,192.8 395.3,194.2 430.0,222.8 464.7,229.0 499.3,224.7 534.0,204.6 568.7,184.5 603.3,199.2 638.0,226.1" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="603.3" cy="199.2" r="4" fill="#fff" stroke="#8B95A1" stroke-width="2.5"/><text x="603.3" y="188.2" text-anchor="middle" class="cv" style="fill:#8B95A1;font-size:11.5px">$60.74</text><line x1="638.0" y1="226.1" x2="638.0" y2="260" stroke="#F04452" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/><circle cx="638.0" cy="226.1" r="5.5" fill="#fff" stroke="#F04452" stroke-width="3"/><text x="630.0" y="248.1" text-anchor="end" class="cv" style="fill:#F04452">$54.87 (-9.66%)</text><text x="14.0" y="286" text-anchor="middle" class="cl">10.6</text><text x="118.0" y="286" text-anchor="middle" class="cl">10.9</text><text x="222.0" y="286" text-anchor="middle" class="cl">10.14</text><text x="326.0" y="286" text-anchor="middle" class="cl">10.19</text><text x="430.0" y="286" text-anchor="middle" class="cl">10.22</text><text x="534.0" y="286" text-anchor="middle" class="cl">10.27</text><text x="638.0" y="286" text-anchor="middle" class="cl">10.30</text></svg>
+</div>
+<div class="chart-card">
+  <div class="ct">CoreWeave 일별 거래량</div>
+  <div class="cs">10/14~10/20의 1억 주대 손바뀜 뒤 거래량이 식었어요 · 10/30은 평균의 0.85배</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="638" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="264.0" class="ax">0M</text><line x1="14" y1="182.0" x2="638" y2="182.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="186.0" class="ax">50M</text><line x1="14" y1="104.0" x2="638" y2="104.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="108.0" class="ax">100M</text><line x1="14" y1="26.0" x2="638" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="648" y="30.0" class="ax">150M</text><rect x="20.6" y="210.0" width="19.7" height="50.0" rx="3" fill="#E5E8EB"/><text x="30.4" y="286" text-anchor="middle" class="cl">10.6</text><rect x="53.4" y="229.0" width="19.7" height="31.0" rx="3" fill="#E5E8EB"/><rect x="86.3" y="194.0" width="19.7" height="66.0" rx="3" fill="#E5E8EB"/><rect x="119.1" y="228.8" width="19.7" height="31.2" rx="3" fill="#E5E8EB"/><text x="128.9" y="286" text-anchor="middle" class="cl">10.9</text><rect x="151.9" y="230.4" width="19.7" height="29.6" rx="3" fill="#E5E8EB"/><rect x="184.8" y="206.6" width="19.7" height="53.4" rx="3" fill="#E5E8EB"/><rect x="217.6" y="86.7" width="19.7" height="173.3" rx="3" fill="#E5E8EB"/><text x="227.5" y="286" text-anchor="middle" class="cl">10.14</text><rect x="250.5" y="56.5" width="19.7" height="203.5" rx="3" fill="#E5E8EB"/><rect x="283.3" y="111.3" width="19.7" height="148.7" rx="3" fill="#E5E8EB"/><rect x="316.1" y="102.6" width="19.7" height="157.4" rx="3" fill="#E5E8EB"/><text x="326.0" y="286" text-anchor="middle" class="cl">10.19</text><rect x="349.0" y="112.3" width="19.7" height="147.7" rx="3" fill="#E5E8EB"/><rect x="381.8" y="140.6" width="19.7" height="119.4" rx="3" fill="#E5E8EB"/><rect x="414.7" y="132.5" width="19.7" height="127.5" rx="3" fill="#E5E8EB"/><text x="424.5" y="286" text-anchor="middle" class="cl">10.22</text><rect x="447.5" y="186.8" width="19.7" height="73.2" rx="3" fill="#E5E8EB"/><rect x="480.4" y="152.5" width="19.7" height="107.5" rx="3" fill="#E5E8EB"/><rect x="513.2" y="176.5" width="19.7" height="83.5" rx="3" fill="#E5E8EB"/><text x="523.1" y="286" text-anchor="middle" class="cl">10.27</text><rect x="546.0" y="163.9" width="19.7" height="96.1" rx="3" fill="#E5E8EB"/><rect x="578.9" y="186.5" width="19.7" height="73.5" rx="3" fill="#E5E8EB"/><rect x="611.7" y="176.6" width="19.7" height="83.4" rx="3" fill="#F04452"/><text x="621.6" y="170.6" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">53.5M</text><text x="621.6" y="286" text-anchor="middle" class="cl">10.30</text><line x1="14" y1="162.3" x2="638" y2="162.3" stroke="#8B95A1" stroke-width="1.5" stroke-dasharray="6,4"/><text x="17" y="156.3" class="cl" style="fill:#8B95A1">19일 평균 62.7M</text></svg>
+</div>
+<p class="body-p">차트에서 읽을 건 두 가지예요. 첫째 <b>10월 14~20일에 하루 1억 주대 손바뀜</b>이 있었고 그때 주가가 $65 → $62로 내려앉았어요. 그 구간에서 주주가 크게 바뀐 뒤로는 거래량이 5~6천만 주대로 식었어요. 둘째 10월 27~28일의 반등(+7.94%·+7.32%)도 거래량 5~6천만 주대였어요. <mark>올라갈 때도 내려갈 때도 평균을 밑도는 거래량이라, 양방향 모두 호가가 얇아서 생긴 움직임이에요.</mark></p>
+<div class="twrap"><table class="htable">
+  <tr><th>종목</th><th>등락률</th><th>종가</th><th>전일</th></tr>
+  <tr class="new"><td>CRWV CoreWeave</td><td class="a down" data-h="등락률">-9.66%</td><td class="a" data-h="종가">$54.87</td><td class="a" data-h="전일">$60.74</td></tr>
+  <tr class="new"><td>000660 SK하이닉스</td><td class="a down" data-h="등락률">-7.08%</td><td class="a" data-h="종가">1,418,000원</td><td class="a" data-h="전일">1,526,000원</td></tr>
+  <tr class="new"><td>PLTR Palantir</td><td class="a down" data-h="등락률">-6.27%</td><td class="a" data-h="종가">$184.11</td><td class="a" data-h="전일">$196.42</td></tr>
+  <tr class="new"><td>MU Micron</td><td class="a down" data-h="등락률">-5.30%</td><td class="a" data-h="종가">$884.74</td><td class="a" data-h="전일">$934.27</td></tr>
+  <tr class="new"><td>IONQ IonQ</td><td class="a down" data-h="등락률">-5.30%</td><td class="a" data-h="종가">$30.04</td><td class="a" data-h="전일">$31.72</td></tr>
+  <tr class="new"><td>SMR NuScale Power</td><td class="a down" data-h="등락률">-5.07%</td><td class="a" data-h="종가">$5.62</td><td class="a" data-h="전일">$5.92</td></tr>
+  <tr class="new"><td>NVDA NVIDIA</td><td class="a down" data-h="등락률">-4.22%</td><td class="a" data-h="종가">$204.64</td><td class="a" data-h="전일">$213.66</td></tr>
+</table></div>
+<div class="g-note">기준선 안에 머문 종목은 ABBV <b>+1.41%</b>($294.89 · 3분기 실적 발표일), KO +1.36%($94.08), MSFT -1.55%($521.91), GOOGL -1.40%($279.84), AAPL -1.23%($344.63), O -0.47%($56.93)예요. 방어주 두 종목이 오른 게 이날의 성격을 말해줘요.</div>
+<div class="v2sum"><span class="cap">한 문장 요약</span>7종목이 같은 방향으로 빠졌는데 거래량은 종목마다 달랐어요. 보유 종목 중 오른 건 <b>ABBV·KO 두 방어주</b>뿐이에요.</div>
+<div class="sub-head">🔍 왜 움직였나</div>
+<div class="sub-desc">네 가지 후보 중 주원인은 하나예요.</div>
+<div class="cause-grid">
+  <div class="cause main">
+    <div class="ch"><div class="cn">경쟁·업종</div><div class="cb">주원인</div></div>
+    <div class="rr"><b>결과</b> 인텔의 4분기 전망 하나로 SOX가 -7.20%, 30종목 중 29개가 빠졌어요. 보유 반도체 3종목(NVDA -4.22%·MU -5.30%·000660 -7.08%)이 전부 나스닥(-2.86%)보다 더 밀렸어요.</div><div class="rr"><b>이유</b> 인텔은 보유 종목이 아니지만 <b>PC·메모리 수요의 선행 지표</b>예요. 올해 순현금 유출을 예고한 회사의 CDS가 사상 최고로 벌어지자, 같은 업종의 수요 가정이 한꺼번에 의심받았어요. 샌디스크 -13.47%가 메모리 쪽 전염을 가장 잘 보여줘요.</div>
+  </div>
+  <div class="cause">
+    <div class="ch"><div class="cn">수급·밸류에이션</div><div class="cb">보조</div></div>
+    <div class="rr"><b>결과</b> 낙폭 순서가 부채·적자·배수 순서와 거의 같아요. 차입으로 짓는 CRWV -9.66%, 외국인 1.62조 순매도를 맞은 000660 -7.08%, Forward P/E 115배인 PLTR -6.27%, 적자 성장주 IONQ·SMR -5%대, 이익이 나는 NVDA가 -4.22%로 가장 적게 빠졌어요.</div><div class="rr"><b>이유</b> 거래량은 종목마다 갈렸어요. MU는 평균의 1.16배(주주 교체), CRWV는 0.85배(매수 공백)예요. <b>한 가지 수급 요인으로 설명되는 하락이 아니라, 종목별 체력대로 깎인 하락</b>이에요.</div>
+  </div>
+  <div class="cause">
+    <div class="ch"><div class="cn">회사 뉴스</div><div class="cb">무관</div></div>
+    <div class="rr"><b>결과</b> 7종목 중 당일 자체 재료가 확인된 종목이 없어요. SMR은 전날 두산에너빌리티 계약 소식으로 올랐던 자리를 되돌렸을 뿐이고, PLTR·IONQ·CRWV는 발표가 없었어요.</div><div class="rr"><b>이유</b> 개별 뉴스가 아니라 묶음 전체가 같은 방향으로 움직였다는 게 핵심이에요. 보유 종목 밖에서 나온 인텔·아마존 소식이 방향을 정했어요.</div>
+  </div>
+  <div class="cause">
+    <div class="ch"><div class="cn">매크로·금리</div><div class="cb">무관</div></div>
+    <div class="rr"><b>결과</b> 10년물 4.94%(-4bp)·2년물 4.56%(-5bp)로 둘 다 내렸고, 달러인덱스는 101.92(-0.12%)로 거의 그대로예요. 원/달러도 1,334.3원(-2.5원)이에요.</div><div class="rr"><b>이유</b> 댈러스 연은 로건 총재가 "최소 50bp 더 올린 뒤 멈춰야 한다"고 말한 날인데도 채권시장은 반대로 움직였어요. <mark>할인율이 유리해진 날에 성장주만 빠졌으니 매크로 탓이 아니에요.</mark></div>
+  </div>
+</div>
+<p class="body-p">10월의 급락 세 번을 나란히 놓으면 질문이 어떻게 옮겨왔는지 보여요. <a href="급등락_MARKET_2026.10.17.html">10월 17일</a>은 "AI를 빚으로 짓는 회사가 돈을 구할 수 있나"(조달 가능성), <a href="급등락_MARKET_2026.10.23.html">10월 23일</a>은 "돈을 구할 수 있는 회사조차 계속 쓸까"(수요 지속), 그리고 이번 10월 30일은 <b>"계속 쓰기로 한 회사가 그 돈을 어디서 어떤 조건으로 대나"</b>(조달 조건)예요. 아마존이 설비투자 $2,200억을 유지한 채 담보부 금융 한도를 새로 열었다는 사실이 세 번째 질문의 출발점이에요.</p>
+<p class="body-p">그 증거가 <b>인텔의 CDS</b>예요. 주가가 28% 빠진 것보다 신용부도스왑 스프레드가 사상 최고로 벌어진 게 더 중요한 신호예요. 신용시장이 특정 기업의 상환 능력을 다시 계산하기 시작하면, 같은 돈을 빌려야 하는 다른 회사들의 조달 비용도 함께 올라가요. BofA가 집계한 <b>미국 투자등급 테크 채권의 상대 총수익률 30년 최저</b>가 그 결과예요. CoreWeave처럼 차입으로 데이터센터를 짓는 회사가 이 환경에서 가장 먼저 맞아요.</p>
+<div class="chart-card">
+  <div class="ct">관련 자산 당일 등락 (미국 10/30 · 한국 10/30)</div>
+  <div class="cs">파란 막대가 CoreWeave · 지수 → 반도체·성장주 → 네오클라우드로 갈수록 낙폭이 커져요</div>
+  <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  :where(:root:not([data-theme="light"])) body{background:var(--bg)}
+  :where(:root:not([data-theme="light"])) .page,:where(:root:not([data-theme="light"])) .gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  :where(:root:not([data-theme="light"])) svg .cl,:where(:root:not([data-theme="light"])) svg .ax{fill:#8B95A1}
+  :where(:root:not([data-theme="light"])) svg .cv{fill:#D5DAE0}
+  :where(:root:not([data-theme="light"])) svg [stroke="#EDEFF2"]{stroke:#2A2F36}
+  :where(:root:not([data-theme="light"])) svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  :where(:root:not([data-theme="light"])) svg [stroke="#4E5968"]{stroke:#B0B8C1}
+  :where(:root:not([data-theme="light"])) svg [fill="#F2F4F6"]{fill:#1F2329}
+  :where(:root:not([data-theme="light"])) svg [fill="#E5E8EB"]{fill:#333A44}
+  :where(:root:not([data-theme="light"])) svg [fill="#fff"]{fill:#17171C}
+  :where(:root:not([data-theme="light"])) svg [stroke="#fff"]{stroke:#17171C}
+  :where(:root:not([data-theme="light"])) svg [fill="#333D4B"],:where(:root:not([data-theme="light"])) svg [fill="#191F28"],:where(:root:not([data-theme="light"])) svg [fill="#4E5968"]{fill:#D5DAE0}
+  :where(:root:not([data-theme="light"])) svg [stroke="#191F28"],:where(:root:not([data-theme="light"])) svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+:root[data-theme="dark"]{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  :where(:root[data-theme="dark"]) body{background:var(--bg)}
+  :where(:root[data-theme="dark"]) .page,:where(:root[data-theme="dark"]) .gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  :where(:root[data-theme="dark"]) svg .cl,:where(:root[data-theme="dark"]) svg .ax{fill:#8B95A1}
+  :where(:root[data-theme="dark"]) svg .cv{fill:#D5DAE0}
+  :where(:root[data-theme="dark"]) svg [stroke="#EDEFF2"]{stroke:#2A2F36}
+  :where(:root[data-theme="dark"]) svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  :where(:root[data-theme="dark"]) svg [stroke="#4E5968"]{stroke:#B0B8C1}
+  :where(:root[data-theme="dark"]) svg [fill="#F2F4F6"]{fill:#1F2329}
+  :where(:root[data-theme="dark"]) svg [fill="#E5E8EB"]{fill:#333A44}
+  :where(:root[data-theme="dark"]) svg [fill="#fff"]{fill:#17171C}
+  :where(:root[data-theme="dark"]) svg [stroke="#fff"]{stroke:#17171C}
+  :where(:root[data-theme="dark"]) svg [fill="#333D4B"],:where(:root[data-theme="dark"]) svg [fill="#191F28"],:where(:root[data-theme="dark"]) svg [fill="#4E5968"]{fill:#D5DAE0}
+  :where(:root[data-theme="dark"]) svg [stroke="#191F28"],:where(:root[data-theme="dark"]) svg [stroke="#333D4B"]{stroke:#B0B8C1}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+/*theme-scoped*/
+
+/*<!--/dark-css-->*/
+/*<!--rd-css-->*/
+body{word-break:keep-all;overflow-wrap:break-word}
+h1,.sec-head .l1,.sec-head .l2,.sub-head{text-wrap:balance}
+p,li,.tlx,.wp-a,.witem .tx{text-wrap:pretty}
+.body p,.body-p{line-height:1.85}
+.body>p,section>p,p.body-p{margin-bottom:22px}
+p.rd-s{margin-top:-6px}
+section{padding-top:56px}
+.sub-head{margin-top:40px}
+mark{padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* 가로 스크롤 카드 */
+.hs{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:10px!important;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:stretch;list-style:none;
+  margin-top:14px!important;margin-bottom:0!important;padding-top:2px;padding-bottom:4px;grid-template-columns:none!important;background:none!important;border-radius:0!important}
+.hs::-webkit-scrollbar{display:none}
+.hs>.hs-i{flex:0 0 var(--hs-w,min(calc(100vw - 76px),318px))!important;min-width:0;scroll-snap-align:start;margin:0!important;
+  background:var(--g50);border:1px solid var(--g100);border-radius:16px;padding:18px 18px 16px!important;
+  display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.7;color:var(--g700);white-space:normal}
+.hs>.hs-i::before{display:none!important}
+.hs.wide>.hs-i{--hs-w:min(calc(100vw - 64px),356px)}
+.hs-i .rd-h{display:block;font-size:15.5px;font-weight:800;line-height:1.45;color:var(--g900)}
+.hs-i .rd-x{display:block;font-size:14px;color:var(--g600);line-height:1.7}
+.hs-i .rd-no{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);font-size:12.5px;font-weight:800}
+/* 카드 종류별 보정 */
+.hs>.tli{flex-direction:column}
+.hs>.tli .tld{flex:none;text-align:left;display:flex;align-items:baseline;gap:6px}
+.hs>.tli .tlt{font-size:15.5px;line-height:1.45}
+.hs>.tli .tlx{font-size:14px;line-height:1.7}
+.hs>.wp{flex-direction:column}
+.hs>.wp .wp-badge{align-self:flex-start;margin:0}
+.hs>.wp .wp-q{font-size:15px;line-height:1.5}
+.hs>.wp .wp-a{font-size:14px;line-height:1.7;margin-top:4px}
+.hs>.witem{flex-direction:column;border-bottom:1px solid var(--g100)}
+.hs>.witem .tx{font-size:15px;font-weight:700;color:var(--g900)}
+.hs>.witem .tx small{font-size:13.5px;font-weight:500;color:var(--g500);line-height:1.65;margin-top:6px}
+.hs>.cause.main{background:var(--blue-bg);border-color:transparent}
+.hs>.cause p{font-size:14px;line-height:1.7}
+.hs>.wgrp{background:var(--surface,#fff);border:1px solid var(--g200)}
+.hs>.wgrp .wh{flex-wrap:wrap;line-height:1.45}
+.hs>.wgrp .wh .wd{margin-left:0;flex-basis:100%;font-weight:600;color:var(--g400)}
+.hs>.wgrp ul{gap:10px}
+.hs>.stock-g{background:var(--surface,#fff);border:1px solid var(--g200)}
+.wgrp.rd-flat{border:0;padding:0;margin:28px 0 8px;background:none}
+.wgrp.rd-flat>.wh{font-size:17px}
+/* 카운터·버튼 */
+.hs-nav{display:flex;align-items:center;gap:10px;margin:10px 0 18px;font-size:12.5px;font-weight:700;color:var(--g400)}
+.hs-nav .bar{flex:1;height:3px;border-radius:2px;background:var(--g100);overflow:hidden}
+.hs-nav .bar i{display:block;height:100%;background:var(--g400);border-radius:2px;transition:width .15s}
+.hs-nav .cnt{font-variant-numeric:tabular-nums;white-space:nowrap}
+.hs-nav .cnt b{color:var(--g900)}
+.hs-nav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--g200);background:var(--surface,#fff);color:var(--g600);
+  font-size:15px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+.hs-nav button:disabled{opacity:.35;cursor:default}
+.hs-nav .hint{white-space:nowrap}
+@media(hover:none){.hs-nav button{display:none}}
+@media(max-width:600px){section{padding-top:48px}.body>p,section>p,p.body-p{margin-bottom:20px}}
+/* ④ 긴 카드 접기·펼치기 */
+.hs>.hs-i.rd-clamp{max-height:var(--rd-clamp,300px);overflow:hidden;position:relative;padding-bottom:44px!important}
+.hs>.hs-i.rd-clamp.rd-open{max-height:none}
+.hs.rd-has-open{align-items:flex-start}
+.rd-more{position:absolute;left:0;right:0;bottom:0;height:64px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;
+  border:0;cursor:pointer;font:inherit;font-size:13px;font-weight:800;color:var(--blue);border-radius:0 0 16px 16px;
+  background:linear-gradient(to bottom,transparent,var(--rd-card,var(--g50)) 55%)}
+.hs-i.rd-open .rd-more{height:auto;padding:10px 0 12px;background:none}
+.hs>.wgrp,.hs>.stock-g{--rd-card:var(--surface,#fff)}
+.hs>.cause.main{--rd-card:var(--blue-bg)}
+/* ⑤ 목차 칩 + 읽기 진행 바 */
+.rd-toc{position:sticky;top:var(--rd-gnb,57px);z-index:9;background:var(--surface,#fff);border-bottom:1px solid var(--g100)}
+.rd-toc .rd-prog{position:absolute;left:0;top:0;height:2px;background:var(--blue);width:0;transition:width .1s linear}
+.rd-toc .rd-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:9px 28px}
+.rd-toc .rd-chips::-webkit-scrollbar{display:none}
+.rd-toc a{flex:0 0 auto;font-size:13px;font-weight:700;color:var(--g500);background:var(--g100);border-radius:20px;padding:6px 12px;text-decoration:none;white-space:nowrap;transition:.15s}
+.rd-toc a.on{background:var(--blue);color:#fff}
+.rd-anchor{scroll-margin-top:calc(var(--rd-gnb,57px) + 64px)}
+/* ⑥ 출처 접기 */
+.source-note.rd-src{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.rd-src-btn{border:0;background:var(--g100);color:var(--g500);font:inherit;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:8px;cursor:pointer}
+.source-note.rd-src .rd-src-body{display:none}
+.source-note.rd-src.rd-open .rd-src-body{display:block}
+/* ⑦ 모바일 KPI 2열 */
+@media(max-width:600px){
+  .rd-toc .rd-chips{padding:9px 20px}
+  .kpis{grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .kpis .kpi{padding:13px 14px}
+  .kpis .kpi .l{font-size:12px}
+  .kpis .kpi .v{font-size:20px}
+  .kpis .kpi .d{font-size:11.5px;line-height:1.45}
+}
+/*<!--/rd-css-->*/
+</style><line x1="586.2" y1="14" x2="586.2" y2="360" stroke="#D1D6DB" stroke-width="1.5"/><rect x="501.7" y="20" width="84.5" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="36" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">S&P500</text><text x="495.7" y="36" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-1.8%</text><rect x="453.4" y="54" width="132.8" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="70" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">나스닥</text><text x="447.4" y="70" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-2.9%</text><rect x="390.3" y="88" width="195.9" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="104" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">NVDA</text><text x="384.3" y="104" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-4.2%</text><rect x="350.9" y="122" width="235.3" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="138" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">SMR</text><text x="344.9" y="138" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-5.1%</text><rect x="340.2" y="156" width="246.0" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="172" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">IONQ</text><text x="334.2" y="172" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-5.3%</text><rect x="340.2" y="190" width="246.0" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="206" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">MU</text><text x="334.2" y="206" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-5.3%</text><rect x="295.2" y="224" width="291.0" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="240" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">PLTR</text><text x="289.2" y="240" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-6.3%</text><rect x="257.6" y="258" width="328.6" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="274" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">하이닉스</text><text x="251.6" y="274" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-7.1%</text><rect x="252.0" y="292" width="334.2" height="22" rx="4" fill="#F8C7CC"/><text x="74" y="308" text-anchor="end" class="cv" style="fill:#6B7684;font-size:12.5px">SOX</text><text x="246.0" y="308" text-anchor="end" class="cv" style="fill:#F04452;font-size:12px">-7.2%</text><rect x="137.8" y="326" width="448.4" height="22" rx="4" fill="#3182F6"/><text x="74" y="342" text-anchor="end" class="cv" style="fill:#191F28;font-size:12.5px">CRWV</text><text x="131.8" y="342" text-anchor="end" class="cv" style="fill:#3182F6;font-size:12px">-9.7%</text></svg>
+</div>
+<p class="body-p">막대 순서가 이날의 지도예요. S&amp;P500 -1.82%에서 시작해 나스닥 -2.86%, 반도체·성장주 -4~7%, SOX -7.20%, CoreWeave -9.66%로 갈수록 깊어져요. <b>지수에서 멀어질수록, 그리고 자기 현금 대신 남의 돈으로 성장하는 쪽일수록 더 빠졌어요.</b> 반대쪽 끝에는 에너지 +1.91%·필수소비재 +1.41%가 있었어요.</p>
+<div class="v2sum"><span class="cap">한 문장 요약</span>주원인은 인텔이 만든 업종 매도예요. 금리는 내렸으니 매크로 탓이 아니고, 질문이 <b>수요 지속에서 조달 조건으로</b> 옮겨갔어요.</div>
+<div class="sub-head">📐 밸류에이션은 어떻게 바뀌었나</div>
+<div class="kpi">
+  <div class="k"><div class="l">CRWV 목표가 대비</div><div class="v"><span class="up">+161.1%</span></div><div class="d">$54.87 vs 평균 $143.26 · 전일 +135.9%</div></div>
+  <div class="k"><div class="l">MU Forward P/E</div><div class="v">5.0배</div><div class="d">$884.74 ÷ FY27E $176.58 · 전일 5.3배</div></div>
+  <div class="k"><div class="l">NVDA Forward P/E</div><div class="v">22.7배</div><div class="d">$204.64 ÷ $9.02 · 전일 23.7배</div></div>
+  <div class="k"><div class="l">PLTR Forward P/E</div><div class="v">115배</div><div class="d">$184.11 ÷ $1.60 · 전일 123배</div></div>
+</div>
+<p class="body-p">CoreWeave의 목표가 괴리가 <b>+161.1%</b>까지 벌어졌어요. 대시보드 평균 목표가 $143.26은 10월 중순 집계라 번스타인($51)·HSBC($39)의 하향이 반영되면 빠르게 내려올 숫자예요. 괴리가 커졌다는 건 저평가가 심해졌다는 뜻이 아니라 <b>집계가 주가를 못 따라왔다</b>는 뜻이에요.</p>
+<p class="body-p">MU 5.0배는 보유 13종목 중 가장 낮고, 지난 보고서의 5.5배보다도 더 싸졌어요. 그런데 이날 -5.30%로 묶음의 중간에서 빠졌어요. <mark>이 국면에서 낮은 배수는 방어력이 아니에요.</mark> 배수의 분모인 FY2027 EPS 컨센서스 $176.58이 메모리 가격 상승 지속을 전제로 하고 있고, 인텔의 PC 수요 둔화 경고가 바로 그 전제를 흔들었기 때문이에요. PLTR 115배는 11월 4일 실적에서 정당화해야 하는 숫자예요.</p>
+<div class="v2sum"><span class="cap">한 문장 요약</span>배수는 10월 내내 낮아졌지만 분모가 되는 EPS 컨센서스가 흔들리고 있어서 <b>싸다고 읽기 어려워요</b>.</div>
+<div class="sub-head">💼 보유 종목 파급</div>
+<div class="sub-desc">11월 첫째 주에 보유 종목 실적이 다섯 건 몰려 있어요 — AAPL·O(11/3), PLTR(11/4), IONQ(11/5), SMR(11/6)이에요.</div>
+<div class="stock-g">
+  <div class="sg-t">AI 조달 의존군 <span class="tks">CRWV · IONQ · SMR</span> <span class="badge neg">비우호</span></div>
+  <div class="rr"><b>결과</b> CRWV -9.66%($54.87)로 52주 최저 종가를 다시 썼고, IONQ -5.30%($30.04)는 칼라 하단 $33.07에서 더 멀어졌어요. SMR -5.07%($5.62)는 전날 상승분을 하루에 반납했어요.</div><div class="rr"><b>이유</b> 셋 다 자기 현금이 아니라 외부 자금으로 성장하는 구조예요. 인텔 CDS 사상 최고와 투자등급 테크 채권 30년 최저 수익률은 이 묶음의 <b>조달 조건을 직접 건드리는 뉴스</b>예요. IONQ 11/5·SMR 11/6·CRWV 11/11 실적이 차례로 확인 자리예요.</div>
+</div>
+<div class="stock-g">
+  <div class="sg-t">반도체 <span class="tks">000660 · MU · NVDA</span> <span class="badge neg">비우호</span></div>
+  <div class="rr"><b>결과</b> SK하이닉스 -7.08%(1,418,000원)로 외국인 1조 6,212억원 순매도를 맞았고, MU -5.30%($884.74)는 평균의 1.16배 거래량으로 $900선을 내줬어요. NVDA -4.22%($204.64)는 묶음 중 가장 적게 빠졌어요.</div><div class="rr"><b>이유</b> 인텔의 PC 수요 둔화 경고가 메모리 수요 가정을 흔들었어요. 한국장은 아마존 실적까지 겹쳐 더 크게 맞았고, <b>11월 2일(월) 한국장이 SOX -7.20%를 한 번 더 받아야 해요.</b> NVDA의 수주잔고 확인은 11월 26일이에요.</div>
+</div>
+<div class="stock-g">
+  <div class="sg-t">빅테크·소프트웨어 <span class="tks">PLTR · MSFT · GOOGL · AAPL</span> <span class="badge neg">비우호</span></div>
+  <div class="rr"><b>결과</b> PLTR만 기준선을 넘겨 -6.27%($184.11)이고, MSFT -1.55%·GOOGL -1.40%·AAPL -1.23%는 지수보다 덜 빠졌어요.</div><div class="rr"><b>이유</b> PLTR은 설비투자를 하지 않는데도 가장 많이 빠졌어요. Forward P/E 115배라 <b>위험회피 국면에서 배수가 먼저 깎이는 자리</b>이고, 11월 4일 실적이 사흘 앞이라 경계 매도가 겹쳤어요. 빅테크 셋은 이미 실적을 끝냈고 AAPL은 11월 3일이에요.</div>
+</div>
+<div class="stock-g">
+  <div class="sg-t">배당·방어 <span class="tks">ABBV · KO · O</span> <span class="badge pos">우호</span></div>
+  <div class="rr"><b>결과</b> ABBV <b>+1.41%</b>($294.89)로 3분기 실적 발표일에 올랐고, KO +1.36%($94.08)도 상승했어요. O는 -0.47%($56.93)로 보합이에요.</div><div class="rr"><b>이유</b> AI에서 빠진 돈이 이쪽으로 왔어요. 헬스케어 +0.45%·필수소비재 +1.41%·부동산 +0.26%라는 섹터 흐름과 같은 방향이에요. ABBV는 연간 가이던스 상향과 배당 5.2% 인상이 더해졌고, O는 금리가 4bp 내렸는데도 못 오른 게 아쉬운 대목이에요(11/3 실적).</div>
+</div>
+<div class="v2sum"><span class="cap">한 문장 요약</span>조달 의존군과 반도체가 맞고 배당·방어주로 돈이 갔어요. <b>11/3 AAPL·O부터 11/11 CRWV까지</b>가 이 묶음의 반박 자리예요.</div>
+<div class="sub-head">👀 이 다음엔 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">11월 첫째 주 실적이 반등 근거를 숫자로 들고 오는지<small>AAPL·O 11/3 · PLTR 11/4 · IONQ 11/5 · SMR 11/6 · CRWV 11/11이에요 · CRWV 3분기 이자비용이 가이던스 $860~940M 안인지, IONQ 20억 달러 조달의 용처, SMR 분기 현금 소진액과 ENTRA1·TVA 계약 진척이 각각의 핵심이에요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">CRWV가 새 52주 최저 $54.87 아래로 더 내려가는지, 거래량이 평균 위로 올라오는지<small>19거래일 평균 거래량은 6,270만 주이고 10/30은 0.85배였어요 · 평균을 넘는 거래량에 가격이 유지되는 날이 며칠 나와야 바닥 확인으로 읽을 수 있어요 · 위쪽 확인선은 10/28 종가 $63.93이에요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">11월 2일(월) 한국장이 SOX -7.20%를 어떻게 받는지<small>SK하이닉스는 10/30 종가 1,418,000원이고 10/28 실적 발표 직후 고점 1,526,000원(10/29) 대비 -7.1%예요 · 외국인이 1조 6,212억원 순매도 뒤 이어서 파는지, 10/27 종가 1,341,000원이 지지로 작동하는지를 봐요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">AI 채권 발행 $1,820억이 조달 조건으로 번지는지<small>인텔 5년 CDS 124.75bp(사상 최고)가 더 벌어지는지, 미국 투자등급 테크 채권의 상대 총수익률 30년 최저가 해소되는지, 앤트로픽이 상장 때 투자등급을 받는지가 신호예요 · 주식보다 신용시장 지표가 먼저 움직여요</small></div></div>
+</div>
+<div class="wp-preview">📌 다음 보고서에서는 위 4가지가 실제로 어떻게 됐는지 <b>하나씩 충족·미충족으로 점검</b>해서 맨 앞에 보여드릴게요.</div>
+<div class="v2sum"><span class="cap">한 문장 요약</span>11월 첫째 주 실적 다섯 건과 <b>신용시장 지표</b>가 이 하락의 성격을 확정할 자리예요.</div>
+<div class="sub-head">📚 이런 움직임을 어떻게 봐야 하나</div>
+<div class="explain">
+  <h3>CDS 스프레드가 주가보다 먼저 말해주는 것</h3>
+  <p>신용부도스왑(CDS)은 어떤 회사가 빚을 못 갚을 경우에 대비해 드는 보험이에요. 스프레드는 그 보험료예요. 보험료가 올라가면 시장이 그 회사의 상환 능력을 전보다 낮게 본다는 뜻이고, 단위는 bp(0.01%포인트)를 써요. 인텔의 5년 CDS가 하루에 17.5bp 올라 124.75bp가 됐다는 건, 1년에 원금의 1.2% 정도를 보험료로 내야 한다고 시장이 값을 매겼다는 얘기예요.</p>
+  <p>주식 투자자가 이 숫자를 봐야 하는 이유는 <b>순서</b>예요. 주가는 이익 전망으로 움직이지만 CDS는 상환 능력으로 움직여요. 같은 악재가 와도 주가는 "이익이 줄겠네"로 반응하고 CDS는 "돈을 갚을 수 있을까"로 반응해요. 그래서 CDS가 먼저 벌어지면 회사가 다음에 빌릴 돈의 금리가 올라가고, 그 금리가 다음 분기 이익을 또 깎아요. 이익 전망의 하향이 한 번으로 끝나지 않는 구조가 되는 거예요.</p>
+  <p>이 연결이 AI 투자 국면에서 특히 중요해요. 데이터센터를 짓는 돈의 상당 부분이 채권에서 나오는데, 올해 하이퍼스케일러 발행액이 $1,820억으로 2024년의 열 배를 넘었어요. 공급이 늘면 채권 가격이 내려가고(금리는 올라가고), 그 금리가 다음 투자의 손익분기점을 높여요. <b>그래서 AI 종목을 볼 때는 주가 차트와 함께 신용 지표를 봐야 해요.</b> 인텔 CDS, 투자등급 테크 채권의 상대 수익률, 앤트로픽 같은 신규 발행자의 등급이 그 창문이에요. 주가가 먼저 빠지는 날도 있지만, 이번처럼 신용이 먼저 벌어진 날의 하락이 더 오래 남아요.</p>
+</div>
+
+<!--rnav-->
+<div class="rnav"><a class="prev" href="../실적브리핑/실적프리뷰_O_2026Q3_2026.10.31.html"><span class="av"><img src="../logos/O.png" alt=""></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">O 프리뷰</div><div class="rs"><span class="tx PREV">프리뷰</span> · Realty Income · 2026 Q3</div></div></a><a class="next" href="../경제지표/경제지표_PCE_2026.09_2026.10.29.html"><span class="av"><img src="../logos/PCE.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">PCE 물가지수</div><div class="rs"><span class="tx BAD">재가속</span> · 2026년 9월</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: stockanalysis.com 일별 시세(보유 13종목), Cappnotes 10월 30일 미국 증시 마감 집계(지수·SOX·VIX·금리·섹터), TradingKey 10월 30일 미국 증시 마감 정리(인텔·아마존·연준·BofA·블랙스톤), 연준 H.15 선택금리(10월 29일분), 한국경제·세계일보 10월 30일 코스피 마감, 네이트뉴스 10월 30일 코스피·원달러 종가, 철강금속신문 10월 30일 환율 · movers-briefing 스킬이 자동 생성했습니다.
+</div>
+</div>
+</div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="급등락/급등락_MARKET_2026.10.30.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+<!--rd-js-->
+<script>
+/* 가독성 레이어 v2.18 — 긴 문단 분리 + 나열형 블록 가로 스크롤 카드 */
+(function(){
+if(window.__rd)return;window.__rd=1;
+var Q=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+var kids=function(el){return Array.prototype.slice.call(el.children);};
+/* ① 긴 문단 분리 — 최상위 텍스트 노드의 문장 경계에서만 자른다(굵게·형광펜 안은 건드리지 않음) */
+function splitP(p){
+  if(p.closest('.hs,.cause,.hcard,.callout,.explain,.disclaimer,.kpi,.memo,.chart'))return;
+  if(p.textContent.length<200)return;
+  var groups=[[]],acc=0;
+  Array.prototype.slice.call(p.childNodes).forEach(function(n){
+    if(n.nodeType!==3){groups[groups.length-1].push(n);acc+=(n.textContent||'').length;return;}
+    var parts=n.textContent.replace(/([요다]\.)\s+(?=\S)/g,'$1\u0000').split('\u0000');
+    parts.forEach(function(t,i){
+      if(i>0&&acc>=120){groups.push([]);acc=0;}
+      else if(i>0){groups[groups.length-1].push(document.createTextNode(' '));}
+      groups[groups.length-1].push(document.createTextNode(t));acc+=t.length;
+    });
+  });
+  if(groups.length<2)return;
+  var last=groups[groups.length-1],len=last.reduce(function(a,n){return a+(n.textContent||'').length;},0);
+  if(len<40){groups.pop();var prev=groups[groups.length-1];prev.push(document.createTextNode(' '));last.forEach(function(n){prev.push(n);});}
+  if(groups.length<2)return;
+  groups.forEach(function(g,i){
+    var q=i===0?p:p.cloneNode(false);
+    if(i===0){while(p.firstChild)p.removeChild(p.firstChild);}else{q.classList.add('rd-s');}
+    g.forEach(function(n){q.appendChild(n);});
+    if(i>0){var ref=groups.__last||p;ref.parentNode.insertBefore(q,ref.nextSibling);groups.__last=q;}
+  });
+}
+Q('.body p, p.body-p').forEach(splitP);
+/* li "굵은 제목 — 설명" → 카드 제목/본문 */
+function liCard(li){
+  var f=li.firstChild;while(f&&f.nodeType===3&&!f.textContent.trim())f=f.nextSibling;
+  if(!f||f.nodeType!==1||f.tagName!=='B')return;
+  var nx=f.nextSibling;if(!nx||nx.nodeType!==3||!/^\s*[—–-]\s*/.test(nx.textContent))return;
+  nx.textContent=nx.textContent.replace(/^\s*[—–-]\s*/,'');
+  var h=document.createElement('span');h.className='rd-h';li.insertBefore(h,f);h.appendChild(f);
+  var x=document.createElement('span');x.className='rd-x';
+  while(h.nextSibling)x.appendChild(h.nextSibling);li.appendChild(x);
+}
+/* ③ 가로 스크롤 카드 */
+var all=[];
+function mk(box,items,wide){
+  if(items.length<2)return;
+  box.classList.add('hs');if(wide)box.classList.add('wide');
+  items.forEach(function(it){it.classList.add('hs-i');});
+  var nav=document.createElement('div');nav.className='hs-nav';
+  nav.innerHTML='<span class="cnt"><b>1</b> / '+items.length+'</span><span class="bar"><i></i></span><span class="hint">옆으로 넘겨보세요</span><button type="button" aria-label="이전">‹</button><button type="button" aria-label="다음">›</button>';
+  box.parentNode.insertBefore(nav,box.nextSibling);
+  var b=nav.querySelectorAll('button'),cnt=nav.querySelector('.cnt b'),bar=nav.querySelector('.bar i'),hint=nav.querySelector('.hint');
+  var step=function(){return items[0].getBoundingClientRect().width+10;};
+  function upd(){
+    var max=box.scrollWidth-box.clientWidth,i=Math.round(box.scrollLeft/step());
+    if(box.scrollLeft>=max-4)i=items.length-1;
+    var vis=Math.max(1,Math.floor((box.clientWidth+10)/step()));
+    cnt.textContent=Math.min(items.length,i+1);
+    bar.style.width=(max>0?Math.min(100,(box.scrollLeft+box.clientWidth)/box.scrollWidth*100):100)+'%';
+    b[0].disabled=box.scrollLeft<=4;b[1].disabled=box.scrollLeft>=max-4;
+    if(box.scrollLeft>8)hint.style.display='none';
+    nav.style.display=max>4?'':'none';
+  }
+  b[0].onclick=function(){box.scrollBy({left:-step(),behavior:'smooth'});};
+  b[1].onclick=function(){box.scrollBy({left:step(),behavior:'smooth'});};
+  box.addEventListener('scroll',upd,{passive:true});
+  all.push({box:box,upd:upd});
+}
+function wrapRun(run){ /* 연속 형제들을 div.hs로 묶는다 */
+  var w=document.createElement('div');run[0].parentNode.insertBefore(w,run[0]);
+  run.forEach(function(e){w.appendChild(e);});return w;
+}
+function runs(sel){ /* 같은 부모 아래 연속된 sel 형제 묶음 */
+  var out=[],seen=new Set();
+  Q(sel).forEach(function(e){
+    if(seen.has(e)||e.closest('.hs'))return;var r=[e];seen.add(e);var n=e.nextElementSibling;
+    while(n&&n.matches(sel)){r.push(n);seen.add(n);n=n.nextElementSibling;}
+    out.push(r);
+  });return out;
+}
+runs('.wgrp').forEach(function(r){
+  if(r.length>=2){mk(wrapRun(r),r,true);return;}
+  var g=r[0],ul=g.querySelector(':scope>ul');if(!ul)return;var li=kids(ul).filter(function(e){return e.tagName==='LI';});
+  if(li.length<5)return;g.classList.add('rd-flat');li.forEach(liCard);mk(ul,li);
+});
+Q('.tl').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('tli');});if(k.length>=3)mk(b,k,true);});
+Q('.cause-grid').forEach(function(b){var k=kids(b);if(k.length>=3)mk(b,k,true);});
+Q('.wp-list').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('wp');});if(k.length>=3)mk(b,k);});
+Q('.wlist').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('witem');});if(k.length>=3)mk(b,k);});
+runs('.stock-g').forEach(function(r){if(r.length>=2)mk(wrapRun(r),r,true);});
+Q('ul.dots').forEach(function(ul){
+  if(ul.closest('.hs'))return;var li=kids(ul);if(li.length<4)return;
+  var avg=li.reduce(function(a,e){return a+e.textContent.length;},0)/li.length;if(avg<50)return;
+  li.forEach(liCard);mk(ul,li);
+});
+/* 카드 줄을 화면 가장자리까지 넓힌다(본문 여백만큼 bleed) */
+function bleed(){
+  var pg=document.querySelector('.page')||document.body,pr=pg.getBoundingClientRect();
+  all.forEach(function(o){
+    var s=o.box.style;s.marginLeft=s.marginRight=s.paddingLeft=s.paddingRight='';
+    var r=o.box.getBoundingClientRect(),l=Math.max(0,Math.round(r.left-pr.left)),rr=Math.max(0,Math.round(pr.right-r.right));
+    s.setProperty('margin-left',-l+'px','important');s.setProperty('margin-right',-rr+'px','important');
+    s.setProperty('padding-left',l+'px','important');s.setProperty('padding-right',rr+'px','important');s.scrollPaddingLeft=l+'px';
+    o.upd();
+  });
+}
+/* ④ 긴 카드 접기 — 카드가 340px을 넘으면 300px까지만 보여주고 「더보기」 */
+function clamp(){
+  all.forEach(function(o){
+    o.box.style.alignItems='flex-start';  /* 늘어난 높이가 아니라 원래 높이로 판단 */
+    var cs=kids(o.box);var hs=cs.map(function(c){return c.scrollHeight;});
+    o.box.style.alignItems='';
+    cs.forEach(function(c,ix){
+      if(!c.classList.contains('hs-i')||c.querySelector(':scope>.rd-more'))return;
+      if(hs[ix]<=340)return;
+      c.classList.add('rd-clamp');
+      var b=document.createElement('button');b.type='button';b.className='rd-more';b.textContent='더보기 ⌄';
+      b.onclick=function(e){e.preventDefault();var op=c.classList.toggle('rd-open');b.textContent=op?'접기 ⌃':'더보기 ⌄';
+        o.box.classList.toggle('rd-has-open',!!o.box.querySelector('.rd-open'));o.upd();};
+      c.appendChild(b);
+    });
+  });
+}
+/* ⑥ 출처 접기 */
+Q('.source-note').forEach(function(s){
+  if(s.classList.contains('rd-src'))return;
+  var body=document.createElement('div');body.className='rd-src-body';
+  while(s.firstChild)body.appendChild(s.firstChild);
+  var b=document.createElement('button');b.type='button';b.className='rd-src-btn';b.textContent='출처 보기 ›';
+  b.onclick=function(){var op=s.classList.toggle('rd-open');b.textContent=op?'출처 접기 ‹':'출처 보기 ›';};
+  s.classList.add('rd-src');s.appendChild(b);s.appendChild(body);
+});
+/* ⑤ 목차 칩 + 읽기 진행 바 — .sec-head가 3개 이상이면 그것, 아니면 .sub-head(3~12개) */
+(function(){
+  var gnb=document.querySelector('.gnb');if(!gnb)return;
+  var hs=Q('.sec-head');var label=function(h){var l=h.querySelector('.l1');return (l||h).textContent;};
+  if(hs.length<3){hs=Q('.body .sub-head').filter(function(h){return !h.closest('.hs');});if(hs.length<3||hs.length>12)return;}
+  var toc=document.createElement('nav');toc.className='rd-toc';toc.setAttribute('aria-label','목차');
+  toc.innerHTML='<div class="rd-prog"></div><div class="rd-chips"></div>';
+  var chips=toc.querySelector('.rd-chips'),prog=toc.querySelector('.rd-prog'),links=[];
+  hs.forEach(function(h,i){
+    var t=label(h).replace(/^[^\p{L}\p{N}①-⑳]+/u,'').replace(/[,，\s]+$/,'').trim();
+    var tgt=h.closest('section')||h;if(!tgt.id)tgt.id='rd-s'+i;tgt.classList.add('rd-anchor');
+    var a=document.createElement('a');a.href='#'+tgt.id;a.textContent=t;chips.appendChild(a);links.push([a,tgt]);
+  });
+  gnb.parentNode.insertBefore(toc,gnb.nextSibling);
+  var setH=function(){document.documentElement.style.setProperty('--rd-gnb',gnb.offsetHeight+'px');};setH();addEventListener('resize',setH);
+  var cur=-1;
+  function onScroll(){
+    var de=document.documentElement,max=de.scrollHeight-innerHeight;
+    prog.style.width=(max>0?Math.min(100,scrollY/max*100):0)+'%';
+    var line=gnb.offsetHeight+toc.offsetHeight+24,k=-1;
+    links.forEach(function(p,i){if(p[1].getBoundingClientRect().top<=line)k=i;});
+    if(k!==cur){cur=k;links.forEach(function(p,i){p[0].classList.toggle('on',i===k);});
+      if(k>=0){var a=links[k][0];chips.scrollTo({left:a.offsetLeft-chips.clientWidth/2+a.offsetWidth/2,behavior:'smooth'});}}
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+function layout(){bleed();clamp();}
+layout();addEventListener('resize',bleed);addEventListener('load',layout);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout);
+})();
+</script>
+<!--/rd-js-->
+<!--ask-->
+<script src="../ask.js" defer></script>
+<!--/ask-->
+</body>
+</html>
