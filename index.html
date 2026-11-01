@@ -649,6 +649,12 @@ const LAST_UPDATED = "2026.11.01";   // v2.21: 🎙️ 구루 전망(GURU_DB) �
 
 const REPORTS_DB = [
   {
+    ticker: "PLTR", company: "Palantir", quarter: "2026 Q3",
+    report_date: "2026-11-03", created: "2026.11.01", verdict: "PREV", vlabel: "프리뷰",
+    oneliner: "컨센서스가 회사 가이던스 위에 올라앉았어요. 가이던스만 맞추면 미달로 읽혀요.",
+    file: "실적브리핑/실적프리뷰_PLTR_2026Q3_2026.11.01.html"
+  },
+  {
     ticker: "ABBV", company: "AbbVie", quarter: "2026 Q3",
     report_date: "2026-10-30", created: "2026.10.31", verdict: "BEAT",
     oneliner: "스스로 깎았던 연간 가이던스를 $0.11 그대로 되돌리고 배당도 5.2% 올렸어요.",
@@ -834,7 +840,7 @@ const REPORTS_DB = [
 const UPCOMING_DB = [
   { ticker: "AAPL", name: "Apple", date: "2026-11-03", estimated: false, when: "amc", utc: "20261102T213000Z", last_report: "2026-08-01" },
   { ticker: "O", name: "Realty Income", date: "2026-11-03", estimated: false, when: "amc", utc: "20261102T220000Z", last_report: "2026-08-07" },
-  { ticker: "PLTR", name: "Palantir", date: "2026-11-04", estimated: true, when: null, utc: null, last_report: "2026-08-05" },
+  { ticker: "PLTR", name: "Palantir", date: "2026-11-03", estimated: false, when: "amc", utc: "20261102T210000Z", last_report: "2026-08-05" },
   { ticker: "IONQ", name: "IonQ", date: "2026-11-05", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
   { ticker: "SMR", name: "NuScale Power", date: "2026-11-06", estimated: true, when: null, utc: null, last_report: "2026-08-07" },
   { ticker: "CRWV", name: "CoreWeave", date: "2026-11-11", estimated: true, when: null, utc: null, last_report: "2026-08-12" },
@@ -1177,7 +1183,7 @@ const WATCH_DB = [
     "9월 분기 매출 성장률이 가이던스 +9~11% 상단을 넘는지",
     "서비스 매출이 다시 컨센서스를 상회하는지 — 두 자릿수 성장 유지",
     "아이폰 가격 정책 — 메모리 원가를 제품 가격에 반영하는지"]},
-  { key: "PLTR", name: "Palantir 2026 Q3 실적", date: "2026-11-04", type: "e", items: [
+  { key: "PLTR", name: "Palantir 2026 Q3 실적", date: "2026-11-03", type: "e", items: [
     "Q3 매출이 가이던스 상단($2.164B)을 또 넘는지",
     "미국 상업 성장률(+149%)이 유지되는지, 상업이 정부를 언제 추월하는지",
     "Sovereignty 부트캠프가 실제 대형 계약으로 얼마나 이어지는지",
@@ -1220,7 +1226,7 @@ const VAL_DB = [
   { ticker: "MSFT", price: 521.91, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
   { ticker: "GOOGL", price: 279.84, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
   { ticker: "AAPL", price: 344.63, tgt: 332.39, eps_cur: 8.84, eps_next: 9.55, note: "⚠ 발표 전 컨센" },
-  { ticker: "PLTR", price: 184.11, tgt: 189.90, eps_cur: 1.60, eps_next: 2.31, note: "⚠ 발표 전 컨센" },
+  { ticker: "PLTR", price: 184.11, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 발표 전 컨센" },
   { ticker: "KO", price: 94.08, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
   { ticker: "ABBV", price: 294.89, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
   { ticker: "O", price: 56.93, tgt: 64.63, eps_cur: 4.45, eps_next: null, note: "P/AFFO" },
