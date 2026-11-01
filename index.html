@@ -331,6 +331,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .row .t .t3{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue);margin-left:5px;vertical-align:3px}   /* v2.10: ★★★ 지표만 파란 점 */
 .row .t small{font-size:12.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 .row .t small .ftype{font-size:10px;font-weight:800;padding:1px 6px;border-radius:5px;background:var(--g100);color:var(--g500);margin-right:5px;vertical-align:1px}
+.row .t small .ftype.upd{background:var(--blue-bg);color:var(--blue)}   /* v2.21 구루 업데이트 */
 .row .o{font-size:13px;color:var(--g500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;line-height:1.5}
 .row .rt{text-align:right;flex:0 0 auto}
 .row .rt .v{font-size:15px;font-weight:800;line-height:1.3}
@@ -580,7 +581,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   <div class="search" id="fq-box">🔍 <input type="search" id="fq" placeholder="종목·지표·키워드 검색"><span class="cnt" id="fq-cnt"></span></div>
   <div class="feed" id="feed"></div>
   <div class="empty" id="feed-empty" style="display:none">아직 콘텐츠가 없어요</div>
-  <div class="sec-foot">실적·경제 지표·급등락·위클리를 발간 시간 역순으로 한 줄씩 보여드려요 · 파란 점은 아직 안 읽은 콘텐츠예요 · 읽음 표시는 이 기기에만 저장돼요</div>
+  <div class="sec-foot">실적·경제 지표·급등락·구루 전망·위클리를 발간 시간 역순으로 한 줄씩 보여드려요 · 파란 점은 아직 안 읽은 콘텐츠예요 · 읽음 표시는 이 기기에만 저장돼요</div>
 </div>
 
 <div class="sec" id="signal-sec" style="display:none">
@@ -644,7 +645,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.10.31";   // v2.19: 매수 시그널 탭 추가
+const LAST_UPDATED = "2026.11.01";   // v2.21: 🎙️ 구루 전망(GURU_DB) 추가
 
 const REPORTS_DB = [
   {
@@ -1739,6 +1740,27 @@ const MOVERS_DB = [
   }
 ];
 
+/* v2.21 (2026-11-01) 🎙️ 구루 전망 — guru-briefing 스킬이 갱신(최신이 맨 앞). 탭 없이 스레드 피드 '구루' 칩으로만 노출.
+   updated에 날짜를 넣으면 읽음 키가 file#u{updated}로 바뀌어 안읽음 점이 다시 켜지고 피드에 「업데이트」 칩이 붙는다. */
+const GURU_DB = [
+  {
+    id: "PTJ", mono: "PTJ", name: "폴 튜더 존스", org: "튜더 인베스트먼트",
+    topic: "2027년 주식 1년 내내 숏", venue: "CNBC Squawk Box", date: "2026-10-13",
+    stance: "약세", scls: "DOWN",
+    oneliner: "AI 상장·증자·락업 해제로 새 주식이 쏟아진다며 2027년엔 1년 내내 숏 하겠대요. 원유는 롱이에요.",
+    created: "2026.11.01", updated: null,
+    file: "구루전망/구루전망_PTJ_2026.11.01.html"
+  },
+  {
+    id: "DALIO", mono: "RD", name: "레이 달리오", org: "브리지워터 어소시에이츠",
+    topic: "3년 안 미국 부채위기", venue: "블룸버그 TV · X 기고", date: "2026-10-06",
+    stance: "약세", scls: "DOWN",
+    oneliner: "정부 적자에 AI 차입까지 겹쳐 채권 공급이 수요를 넘는대요. 채권 약세장은 아직 중간이고 3년 안에 부채위기가 온대요.",
+    created: "2026.11.01", updated: null,
+    file: "구루전망/구루전망_DALIO_2026.11.01.html"
+  }
+];
+
 // ===== 데이터 블록 끝 =====
 
 /* 업데이트 일자는 캘린더 탭 하단 문구에만 표시 */
@@ -1772,7 +1794,7 @@ let VIEW = 'thread';   // 항상 스레드로 시작
 
 /* ===== 읽음/안읽음 (이 기기 localStorage · 첫 방문 시 기존 콘텐츠는 읽음 처리) ===== */
 const READ_KEY = 'mb_read', READ_INIT = 'mb_read_init';
-const itemKey = r => r.file || `${r.asset || r.id || r.ticker}-${r.date || r.created}`;
+const itemKey = r => (r.file || `${r.asset || r.id || r.ticker}-${r.date || r.created}`) + (r.updated ? '#u' + r.updated : '');   // v2.21 구루 업데이트 시 안읽음 재점등
 const ALL_ITEMS = [
   ...REPORTS_DB.map(r => ({ type: 'earn', ico: r.verdict === 'PREV' ? '🔭' : '📊', tlabel: '실적',
     title: `${r.ticker} · ${r.company} ${r.quarter}${r.verdict === 'PREV' ? ' 프리뷰' : ''}`,
@@ -1785,7 +1807,9 @@ const ALL_ITEMS = [
   ...WEEKLY_REPORTS_DB.map(r => ({ type: 'weekly', ico: '🗞️', tlabel: '위클리',
     title: `위클리 리뷰 · ${r.week}`, badge: r.vlabel, bcls: r.verdict, one: r.title || r.oneliner, created: r.created, date: r.range, file: r.file, raw: r })),
   ...MONTHLY_DB.map(r => ({ type: 'monthly', ico: '🗓️', tlabel: '월간',
-    title: monthlyTitle(r), badge: r.vlabel, bcls: r.verdict, get one(){ return monthlyOne(r); }, created: r.created, date: r.month, file: r.file, raw: r }))
+    title: monthlyTitle(r), badge: r.vlabel, bcls: r.verdict, get one(){ return monthlyOne(r); }, created: r.created, date: r.month, file: r.file, raw: r })),
+  ...GURU_DB.map(r => ({ type: 'guru', ico: '🎙️', tlabel: '구루',
+    title: `${r.name} · ${r.topic}`, badge: r.stance, bcls: r.scls, one: r.oneliner, created: r.updated || r.created, date: r.date, file: r.file, raw: r }))
 ];
 ALL_ITEMS.forEach(it => { it.key = itemKey(it.raw); });
 let READ = new Set();
@@ -2235,8 +2259,8 @@ function sparkline(v, up, big){
 }
 
 /* ===== 스레드 피드 (4개 DB 통합 · 발간 시간 역순 · 날짜별 그룹) ===== */
-const feedTypes = ['전체', '실적', '지표', '급등락', '위클리', '월간'];
-const TYPE_KEY = { '실적': 'earn', '지표': 'macro', '급등락': 'movers', '위클리': 'weekly', '월간': 'monthly' };
+const feedTypes = ['전체', '실적', '지표', '급등락', '구루', '위클리', '월간'];
+const TYPE_KEY = { '실적': 'earn', '지표': 'macro', '급등락': 'movers', '구루': 'guru', '위클리': 'weekly', '월간': 'monthly' };
 let feedActive = '전체', feedQuery = '';
 function renderFeed(){
   const box = document.getElementById('feed');
@@ -2287,6 +2311,7 @@ function renderFeed(){
                      ? `<div class="rt sp"><div class="v">${sparkline(r.spark, r.chg >= 0, true)}</div><div class="d"><span class="tx ${r.chg >= 0 ? 'UPM' : 'DOWNM'}">${r.chg_label}</span> · ${MD(r.date)}</div></div>`
                      : rt(r.chg >= 0 ? 'UPM' : 'DOWNM', r.chg_label, MD(r.date))]
                : it.type === 'monthly' ? [avatar('MONTH', r.kind === 'asset' ? '가계' : '투자'), monthlyTitle(r), `${r.month} · 🔒`, rt(r.verdict, r.vlabel, r.created.slice(5).replace('.', '/'))]
+               : it.type === 'guru' ? [avatar('GURU_' + r.id, r.mono), r.name, `${r.updated ? '<span class="ftype upd">업데이트</span>' : ''}${r.topic}`, rt(r.scls, r.stance, MD(r.updated || r.date))]
                : [avatar('WEEK', 'W' + (r.week.match(/(\d+)주차/) || [,''])[1]), r.week, r.range, rt(r.verdict, r.vlabel, r.created.slice(5).replace('.', '/'))];
     a.innerHTML = `<span class="udot"></span>${head[0]}
       <div class="mid"><div class="t"><span class="tt">${head[1]}</span><small>${type}${head[2]}</small></div><div class="o">${it.one}</div></div>${head[3]}`;
