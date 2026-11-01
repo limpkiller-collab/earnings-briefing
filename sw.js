@@ -2,7 +2,8 @@
    캐시 전략: 같은 출처의 GET(index·보고서·아이콘·manifest)과 Pretendard 폰트 CSS를
    캐시에서 먼저 응답하고 뒤에서 최신본으로 갱신한다. 보고서는 최근 40개까지만 보관.
    CACHE 이름을 바꾸면 이전 캐시는 activate 때 지워진다. */
-const CACHE = 'mb-cache-v7';   // v2.21: 구루전망/ 폴더·GURU_DB 추가(2026-11-01) — 이전 캐시의 index 폐기
+const CACHE = 'mb-cache-v8';   // v2.22: 하단 탭 4개로 정비(2026-11-01)
+// (v7)    // v2.21: 구루전망/ 폴더·GURU_DB 추가(2026-11-01) — 이전 캐시의 index 폐기
 // (v6)    // v2.18: 보고서 가독성 레이어(rd-css/rd-js) 일괄 적용 — 이전 캐시의 구 보고서 폐기
 const FALLBACK_URL = './index.html';
 const PRECACHE = ['./index.html', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];

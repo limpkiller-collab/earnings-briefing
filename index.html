@@ -332,6 +332,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 .row .t small{font-size:12.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 .row .t small .ftype{font-size:10px;font-weight:800;padding:1px 6px;border-radius:5px;background:var(--g100);color:var(--g500);margin-right:5px;vertical-align:1px}
 .row .t small .ftype.upd{background:var(--blue-bg);color:var(--blue)}   /* v2.21 구루 업데이트 */
+.fdesc{font-size:13px;font-weight:600;color:var(--g500);line-height:1.55;margin:2px 2px 10px}   /* v2.22 칩 소개 */
 .row .o{font-size:13px;color:var(--g500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;line-height:1.5}
 .row .rt{text-align:right;flex:0 0 auto}
 .row .rt .v{font-size:15px;font-weight:800;line-height:1.3}
@@ -527,7 +528,6 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
   <div class="brand"><span class="dot">📊</span> 마켓브리핑</div>
   <div class="right">
     <button type="button" class="thbtn" id="thbtn" aria-label="다크 모드로 전환" title="다크 모드로 전환"><svg class="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg></button>
-    <button type="button" class="gcal" id="gcal" aria-label="캘린더" title="캘린더"><span class="nd"></span><svg viewBox="0 0 24 24"><rect class="fl" x="3" y="5" width="18" height="16" rx="2.5"/><path class="in" d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path class="in" d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></svg></button>
     <button type="button" class="nbtn" id="nbtn" aria-label="알림" title="알림"><span class="nd-dot"></span><svg viewBox="0 0 24 24"><path class="fl" d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.6 2H4.4z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></button>
   </div>
 </div>
@@ -578,10 +578,11 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 <div class="sec" id="feed-sec" style="display:none">
   <h2>🧵 전체 스레드 <button type="button" class="readall" id="readall">모두 읽음</button></h2>
   <div class="frow"><div class="filters" id="feed-filters"></div><div class="fx" id="feed-filters-x"></div></div>
+  <div class="fdesc" id="feed-desc" style="display:none"></div>
   <div class="search" id="fq-box">🔍 <input type="search" id="fq" placeholder="종목·지표·키워드 검색"><span class="cnt" id="fq-cnt"></span></div>
   <div class="feed" id="feed"></div>
   <div class="empty" id="feed-empty" style="display:none">아직 콘텐츠가 없어요</div>
-  <div class="sec-foot">실적·경제 지표·급등락·구루 전망·위클리를 발간 시간 역순으로 한 줄씩 보여드려요 · 파란 점은 아직 안 읽은 콘텐츠예요 · 읽음 표시는 이 기기에만 저장돼요</div>
+  <div class="sec-foot">실적·경제 지표·급등락·구루 전망·위클리·월간리뷰를 발간 시간 역순으로 한 줄씩 보여드려요 · 파란 점은 아직 안 읽은 콘텐츠예요 · 읽음 표시는 이 기기에만 저장돼요</div>
 </div>
 
 <div class="sec" id="signal-sec" style="display:none">
@@ -623,11 +624,8 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 <nav class="tabbar" aria-label="탭 이동"><div class="in">
   <button type="button" id="seg-thread" aria-label="스레드" title="스레드"><svg viewBox="0 0 24 24"><path class="fl" d="M3.5 10.6 12 3.5l8.5 7.1V20a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1z"/><path class="in" d="M10 21v-6h4v6"/></svg><span class="nd"></span></button>
   <button type="button" id="seg-earn" aria-label="실적" title="실적"><svg viewBox="0 0 24 24"><rect class="fl" x="3.5" y="12" width="4.4" height="8" rx="1.2"/><rect class="fl" x="9.8" y="4" width="4.4" height="16" rx="1.2"/><rect class="fl" x="16.1" y="8.5" width="4.4" height="11.5" rx="1.2"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-macro" aria-label="경제 지표" title="경제 지표"><svg viewBox="0 0 24 24"><path class="fl" d="M3.5 20V15.2l5.8-5.6 4.1 3.9L20.5 7v13z"/><path class="keep" d="M3.5 15.2l5.8-5.6 4.1 3.9L20.5 7"/><path class="keep" d="M16.5 7h4v4"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-movers" aria-label="급등락" title="급등락"><svg viewBox="0 0 24 24"><path class="fl" d="M13.5 2.5 4.5 13.5h6.2l-1.2 8 9-11.5h-6.2z"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-weekly" aria-label="위클리" title="위클리"><svg viewBox="0 0 24 24"><path class="fl" d="M4 4.5h13.5a1 1 0 0 1 1 1V17a3 3 0 0 0 3 3H5.5a2.5 2.5 0 0 1-2.5-2.5v-12a1 1 0 0 1 1-1z"/><path class="keep" d="M18.5 9h2.5v8.5a2.5 2.5 0 0 1-2.5 2.5"/><path class="in" d="M7 8.5h4.5V13H7z"/><path class="in" d="M14 9h1.5M14 12.5h1.5M7 16h8.5"/></svg><span class="nd"></span></button>
-  <button type="button" id="seg-monthly" aria-label="월간리뷰" title="월간리뷰"><svg viewBox="0 0 24 24"><rect class="fl" x="3.5" y="5" width="17" height="15.5" rx="2.2"/><path class="in" d="M3.5 10h17"/><path class="in" d="M8 3v4M16 3v4"/><rect class="in" x="7.5" y="13" width="3" height="3" rx=".6"/></svg><span class="nd"></span></button>
   <button type="button" id="seg-signal" aria-label="매수 시그널" title="매수 시그널"><svg viewBox="0 0 24 24"><circle class="fl" cx="12" cy="12" r="8.5"/><circle class="in" cx="12" cy="12" r="4.5"/><circle class="keep" cx="12" cy="12" r="1.2"/><path class="keep" d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg><span class="nd"></span></button>
+  <button type="button" id="seg-cal" aria-label="일정" title="일정"><svg viewBox="0 0 24 24"><rect class="fl" x="3.5" y="5" width="17" height="15.5" rx="2.2"/><path class="in" d="M3.5 10h17"/><path class="in" d="M8 3v4M16 3v4"/><rect class="in" x="7.5" y="13" width="3" height="3" rx=".6"/></svg><span class="nd"></span></button>
 </div></nav>
 
 <div class="dim" id="notify-dim"></div>
@@ -645,7 +643,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.11.01";   // v2.21: 🎙️ 구루 전망(GURU_DB) 추가
+const LAST_UPDATED = "2026.11.01";   // v2.22 탭 정비(4탭) · v2.21 🎙️ 구루 전망(GURU_DB)
 
 const REPORTS_DB = [
   {
@@ -1849,7 +1847,7 @@ window.addEventListener('storage', e => { if (e.key === READ_KEY) syncRead(); })
 function markAllRead(){ ALL_ITEMS.forEach(it => READ.add(it.key)); saveRead(); renderBadges(); renderCards(); renderFeed(); }
 function unreadCount(type){ return ALL_ITEMS.filter(it => (type === 'thread' || it.type === type) && isUnread(it.key)).length; }
 function renderBadges(){
-  ['thread','earn','macro','movers','weekly','monthly'].forEach(t => {
+  ['thread','earn'].forEach(t => {   /* v2.22: 지표·급등락·위클리·월간 탭 폐지 → 홈 칩 숫자 */
     const b = document.getElementById('seg-' + t);
     if (b) b.classList.toggle('unread', unreadCount(t) > 0);
   });
@@ -2101,7 +2099,7 @@ renderCal();
 /* 캘린더 버튼 — 3일 이내(D-0~D-3) 일정이 있으면 파란 점 */
 (function(){
   const soon = UP_ALL.some(u => { const d = showDate(u); if (!d) return false; const n = dday(d); return n >= 0 && n <= 3; });
-  document.getElementById('gcal').classList.toggle('soon', soon);
+  const c = document.getElementById('seg-cal'); if (c) c.classList.toggle('unread', soon);   /* v2.22: GNB 버튼 → 일정 탭 점 */
 })();
 
 /* ===== 밸류에이션 스냅샷 (실적발표 탭 전용) ===== */
@@ -2268,6 +2266,14 @@ function sparkline(v, up, big){
 const feedTypes = ['전체', '실적', '지표', '급등락', '구루', '위클리', '월간'];
 const TYPE_KEY = { '실적': 'earn', '지표': 'macro', '급등락': 'movers', '구루': 'guru', '위클리': 'weekly', '월간': 'monthly' };
 let feedActive = '전체', feedQuery = '';
+const FEED_DESC = {   /* v2.22: 폐지된 탭의 소개 문구를 홈 칩 아래로 옮김 */
+  '실적': '보유 13종목 분기 실적을 발표되면 바로 정리해요. 밸류에이션·발표 현황은 실적 탭에서 볼 수 있어요.',
+  '지표': '미국 경제 지표 21종을 발표되면 바로 해석해요 — 결과, 시장 반응, 연준 경로까지.',
+  '급등락': '보유 종목 ±3%, 미 국채금리 ±15bp, 원/달러 ±1.5%를 넘긴 날의 원인을 풀어드려요.',
+  '구루': '투자 구루·주요 기업인이 시장을 전망하면 다음 날 정리해요. 같은 주제로 다시 말하면 업데이트로 알려드려요.',
+  '위클리': '매주 일요일 아침, 한 주의 시장과 다음 주 관전 포인트를 정리해요.',
+  '월간': '매월 1일, 지난달 투자와 가계를 돌아봐요. 🔒 비밀번호로 잠겨 있어요.'
+};
 function renderFeed(){
   const box = document.getElementById('feed');
   const fl = document.getElementById('feed-filters');
@@ -2281,6 +2287,8 @@ function renderFeed(){
     fl.appendChild(c);
   });
   const ffx = document.getElementById('feed-filters-x'); ffx.innerHTML = ''; ffx.appendChild(searchToggle('fq-box', 'fq'));
+  const fdesc = document.getElementById('feed-desc');   /* v2.22: 칩별 소개 한 줄 */
+  if (fdesc) { const t = FEED_DESC[feedActive]; fdesc.textContent = t || ''; fdesc.style.display = t ? '' : 'none'; }
   const onf = fl.querySelector('.f.on'); if (onf) fl.scrollLeft = Math.max(0, onf.offsetLeft - fl.clientWidth / 2 + onf.offsetWidth / 2);
   let rows = ALL_ITEMS.filter(it => feedActive === '전체' || it.type === TYPE_KEY[feedActive]);
   if (feedQuery) rows = rows.filter(it => `${it.title} ${it.one} ${it.badge}`.toLowerCase().includes(feedQuery));
@@ -2466,8 +2474,7 @@ function loadSignal(){
 }
 function setView(v){
   VIEW = v;
-  VIEWS.filter(k => k !== 'cal').forEach(k => { document.getElementById('seg-' + k).classList.toggle('on', k === v); });
-  document.getElementById('gcal').classList.toggle('on', v === 'cal');
+  TAB_VIEWS.forEach(k => { const b = document.getElementById('seg-' + k); if (b) b.classList.toggle('on', k === v); });
   document.getElementById('hero-chip').textContent = HERO[v].chip;
   document.getElementById('hero-h1').innerHTML = HERO[v].h1.replace(/<br\s*\/?>/g, ' ');   /* v2.8: 제목 1줄 */
   document.getElementById('hero-lead').textContent = HERO[v].lead;
@@ -2490,21 +2497,26 @@ function setView(v){
   window.scrollTo(0, 0);
   if (window.mbShowGnb) window.mbShowGnb();
 }
-const TAB_VIEWS = ['thread','earn','macro','movers','weekly','monthly','signal'];   // 하단 탭바 순서 (캘린더는 GNB 버튼) · v2.16 월간 · v2.19 시그널 추가
+/* v2.22 탭 정비 (2026-11-01, A안): 4탭 — 보고서 종류는 홈의 칩으로. setView는 macro·movers·weekly·monthly도 그대로 그릴 수 있지만 탭에서는 열지 않는다 */
+const TAB_VIEWS = ['thread','earn','signal','cal'];
 TAB_VIEWS.forEach(k => {
   document.getElementById('seg-' + k).onclick = () => {
     if (VIEW === k) window.scrollTo({ top: 0, behavior: 'smooth' });   // 활성 탭 재탭 → 맨 위로
     else setView(k);
   };
 });
-document.getElementById('gcal').onclick = () => {
-  if (VIEW === 'cal') window.scrollTo({ top: 0, behavior: 'smooth' }); else setView('cal');
-};
-setView(location.hash === '#monthly' ? 'monthly' : location.hash === '#signal' ? 'signal' : VIEW);
-window.addEventListener('hashchange', () => {   /* v2.16: 같은 문서에서 해시만 바뀔 때 · v2.19 #signal */
-  if (location.hash === '#monthly' && VIEW !== 'monthly') setView('monthly');
-  if (location.hash === '#signal' && VIEW !== 'signal') setView('signal');
-});
+/* v2.22 해시 라우팅 — 예전 탭 링크(#monthly 등, 월간리뷰 상단 버튼·푸시)는 홈 + 해당 칩으로 */
+const HASH_CHIP = { '#monthly': '월간', '#macro': '지표', '#movers': '급등락', '#weekly': '위클리', '#guru': '구루' };
+function routeHash(first){
+  const h = location.hash;
+  if (HASH_CHIP[h]) { feedActive = HASH_CHIP[h]; setView('thread'); return; }
+  if (h === '#signal') { setView('signal'); return; }
+  if (h === '#cal' || h === '#calendar') { setView('cal'); return; }
+  if (h === '#earn') { setView('earn'); return; }
+  if (first) setView(VIEW);
+}
+routeHash(true);
+window.addEventListener('hashchange', () => routeHash(false));
 
 /* ===== v2.16 월간리뷰 한줄평 — 잠금 해제된 기기(localStorage에 복호화 키)에서만 monthly/index.enc.json을 풀어 채운다 ===== */
 (async function(){
@@ -2544,7 +2556,6 @@ function swipeTo(view, dir){
     if (!ok) return;
     const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
     if (Date.now() - st > 600 || Math.abs(dx) < 64 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
-    if (VIEW === 'cal') return;
     const i = TAB_VIEWS.indexOf(VIEW);
     const n = dx < 0 ? i + 1 : i - 1;
     if (n < 0 || n >= TAB_VIEWS.length) return;
