@@ -643,7 +643,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.11.01";   // 44주차 위클리 리뷰 · v2.22 탭 정비(4탭) · v2.21 🎙️ 구루 전망(GURU_DB)
+const LAST_UPDATED = "2026.11.01";   // v2.23 안읽음 칩 · 44주차 위클리 리뷰 · v2.22 탭 정비(4탭) · v2.21 🎙️ 구루 전망(GURU_DB)
 
 const REPORTS_DB = [
   {
@@ -1847,7 +1847,7 @@ function saveRead(){ loadRead(); try { localStorage.setItem(READ_KEY, JSON.strin
 const isUnread = key => !READ.has(key);
 function paintRead(){ document.querySelectorAll('a.row.unread[data-key]').forEach(a => { if (READ.has(a.dataset.key)) a.classList.remove('unread'); }); renderBadges(); }
 function markRead(key){ READ.add(key); saveRead(); paintRead(); }
-function syncRead(){ loadRead(); paintRead(); }
+function syncRead(){ loadRead(); paintRead(); if (VIEW === 'thread' && feedActive === '안읽음') renderFeed(); }
 window.addEventListener('pageshow', syncRead);
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') syncRead(); });
 window.addEventListener('storage', e => { if (e.key === READ_KEY) syncRead(); });
@@ -2270,7 +2270,7 @@ function sparkline(v, up, big){
 }
 
 /* ===== 스레드 피드 (4개 DB 통합 · 발간 시간 역순 · 날짜별 그룹) ===== */
-const feedTypes = ['전체', '실적', '지표', '급등락', '구루', '위클리', '월간'];
+const feedTypes = ['전체', '안읽음', '실적', '지표', '급등락', '구루', '위클리', '월간'];   /* v2.23 안읽음 칩 */
 const TYPE_KEY = { '실적': 'earn', '지표': 'macro', '급등락': 'movers', '구루': 'guru', '위클리': 'weekly', '월간': 'monthly' };
 let feedActive = '전체', feedQuery = '';
 const FEED_DESC = {   /* v2.22: 폐지된 탭의 소개 문구를 홈 칩 아래로 옮김 */
@@ -2288,7 +2288,7 @@ function renderFeed(){
   feedTypes.forEach(t => {
     const c = document.createElement('span');
     c.className = 'f' + (t === feedActive ? ' on' : '');
-    const n = t === '전체' ? unreadCount('thread') : unreadCount(TYPE_KEY[t]);
+    const n = t === '전체' ? 0 : t === '안읽음' ? unreadCount('thread') : unreadCount(TYPE_KEY[t]);
     c.textContent = t + (n ? ` ${n}` : '');
     c.onclick = () => { feedActive = t; renderFeed(); };
     fl.appendChild(c);
@@ -2297,11 +2297,13 @@ function renderFeed(){
   const fdesc = document.getElementById('feed-desc');   /* v2.22: 칩별 소개 한 줄 */
   if (fdesc) { const t = FEED_DESC[feedActive]; fdesc.textContent = t || ''; fdesc.style.display = t ? '' : 'none'; }
   const onf = fl.querySelector('.f.on'); if (onf) fl.scrollLeft = Math.max(0, onf.offsetLeft - fl.clientWidth / 2 + onf.offsetWidth / 2);
-  let rows = ALL_ITEMS.filter(it => feedActive === '전체' || it.type === TYPE_KEY[feedActive]);
+  let rows = ALL_ITEMS.filter(it => feedActive === '전체' || (feedActive === '안읽음' ? isUnread(it.key) : it.type === TYPE_KEY[feedActive]));
   if (feedQuery) rows = rows.filter(it => `${it.title} ${it.one} ${it.badge}`.toLowerCase().includes(feedQuery));
   rows = rows.slice().sort((a, b) => a.created < b.created ? 1 : a.created > b.created ? -1 : 0);
   document.getElementById('fq-cnt').textContent = feedQuery ? `${rows.length}건` : '';
-  document.getElementById('feed-empty').style.display = rows.length ? 'none' : 'block';
+  const fe = document.getElementById('feed-empty');
+  fe.textContent = feedActive === '안읽음' && !feedQuery ? '새 글을 모두 읽었어요' : '아직 콘텐츠가 없어요';
+  fe.style.display = rows.length ? 'none' : 'block';
   box.innerHTML = '';
   let lastDay = '';
   const dayLabel = c => {
@@ -2513,7 +2515,7 @@ TAB_VIEWS.forEach(k => {
   };
 });
 /* v2.22 해시 라우팅 — 예전 탭 링크(#monthly 등, 월간리뷰 상단 버튼·푸시)는 홈 + 해당 칩으로 */
-const HASH_CHIP = { '#monthly': '월간', '#macro': '지표', '#movers': '급등락', '#weekly': '위클리', '#guru': '구루' };
+const HASH_CHIP = { '#monthly': '월간', '#macro': '지표', '#movers': '급등락', '#weekly': '위클리', '#guru': '구루', '#unread': '안읽음' };
 function routeHash(first){
   const h = location.hash;
   if (HASH_CHIP[h]) { feedActive = HASH_CHIP[h]; setView('thread'); return; }
