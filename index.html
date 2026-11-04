@@ -643,7 +643,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.11.03";   // AAPL FY26Q4·O 3Q·PLTR 3Q 실적 · SMR 3분기 프리뷰 · ISM 제조업 10월 · 급등락 3건(CRWV·MU·하이닉스) · v2.23 안읽음 칩
+const LAST_UPDATED = "2026.11.04";   // JOLTs 9월 경제지표 · 급등락 IONQ +6.46% · CRWV·하이닉스 후속 블록 · VAL_DB 13종목 종가 갱신
 
 const REPORTS_DB = [
   {
@@ -886,6 +886,13 @@ const UPCOMING_DB = [
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
   {
+    id: "JOLTS", name: "JOLTs 구인건수", period: "2026년 9월", category: "고용", tier: 2,
+    report_date: "2026-11-04", created: "2026.11.04", verdict: "NEUT", vlabel: "견조",
+    surprise: { text: "예측 +42.3만건", cls: "up" },
+    oneliner: "구인 752.3만건으로 예측을 42.3만건 넘겼어요. 퇴직은 18개월 최고, 해고는 1.0%로 낮아요.",
+    file: "경제지표/경제지표_JOLTS_2026.09_2026.11.04.html"
+  },
+  {
     id: "ISM_MFG", name: "ISM 제조업 PMI", period: "2026년 10월", category: "심리", tier: 2,
     report_date: "2026-11-03", created: "2026.11.03", verdict: "GOOD", vlabel: "가속",
     surprise: { text: "예측 +0.9p", cls: "up" },
@@ -1113,7 +1120,6 @@ const MACRO_REPORTS_DB = [
 
 // 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
 const MACRO_UPCOMING_DB = [
-  { id: "JOLTS", name: "JOLTs 구인건수", short: "JOLTs", period: "9월", date: "2026-11-04", estimated: false, utc: "20261103T150000Z", tier: 2, last_release: "2026-09-29" },
   { id: "ADP", name: "ADP 민간고용", short: "ADP", period: "10월", date: "2026-11-04", estimated: false, utc: "20261104T131500Z", tier: 1, last_release: null },
   { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "10월", date: "2026-11-05", estimated: false, utc: "20261104T150000Z", tier: 2, last_release: "2026-10-05" },
   { id: "CLAIMS", name: "주간 신규실업수당", short: "실업수당", period: "주간", date: "2026-11-05", estimated: false, utc: "20261105T133000Z", tier: 1, last_release: null },
@@ -1134,6 +1140,7 @@ const MACRO_UPCOMING_DB = [
   { id: "DURABLE", name: "내구재 주문", short: "내구재", period: "10월", date: "2026-11-25", estimated: false, utc: "20261125T133000Z", tier: 1, last_release: null },
   { id: "BEIGE", name: "베이지북", short: "베이지북", period: "12월 회의 대비", date: "2026-11-26", estimated: false, utc: "20261125T190000Z", tier: 1, last_release: null },
   { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "11월", date: "2026-12-02", estimated: false, utc: "20261201T150000Z", tier: 2, last_release: "2026-11-03" },
+  { id: "JOLTS", name: "JOLTs 구인건수", short: "JOLTs", period: "10월", date: "2026-12-02", estimated: false, utc: "20261201T150000Z", tier: 2, last_release: "2026-11-04" },
   { id: "FOMC", name: "FOMC 금리결정", short: "FOMC", period: "12월 회의", date: "2026-12-10", estimated: false, utc: "20261209T190000Z", tier: 3, last_release: "2026-10-29" },
   { id: "GDP_3RD", name: "GDP 확정치", short: "GDP확정", period: "3분기", date: "2026-12-23", estimated: true, utc: null, tier: 2, last_release: "2026-10-01" },
   { id: "GDP_ADV", name: "GDP 속보치", short: "GDP속보", period: "4분기", date: "2027-01-28", estimated: true, utc: null, tier: 3, last_release: "2026-10-29" },
@@ -1147,11 +1154,11 @@ const WATCH_DB = [
     "실업률 4.2%가 4.3%로 올라가는지 — 참가율 상승 때문이 아니라 고용 감소 때문이면 의미가 달라요",
     "참가율 61.8% 상승이 유지되는지 — 1월 대비로는 아직 -0.3%p예요",
     "금융활동 -7천 감소가 이어지는지 — 보험 고용은 2025년 5월 이후 9만명 줄었어요"]},
-  { key: "JOLTS", name: "JOLTs 구인건수 9월", date: "2026-11-04", type: "m", items: [
-    "구인 707.9만건이 700만 아래로 내려가는지 — 구인 1건당 실업자 1.00배가 1배 아래로 깨지는지",
-    "1~9인 사업장 구인 -33.5만건이 되돌려지는지 — 이번 감소의 대부분이 여기서 나왔어요",
-    "해고 164.1만건(2025년 3월 이후 최저)이 유지되는지 — 저해고가 깨지면 국면 전환이에요",
-    "전문·비즈니스 서비스 구인 118.6만건이 더 줄어드는지 — 경기 전환기 선행 업종"]},
+  { key: "JOLTS", name: "JOLTs 구인건수 10월", date: "2026-12-02", type: "m", items: [
+    "구인 752.3만건이 수정으로 깎이는지 — 8월이 11.1만건 상향됐듯 반대 방향 수정도 흔해요",
+    "퇴직 336.5만건·2.1%가 더 올라가는지 — 2.2%면 2024년 이후 처음이에요",
+    "해고 164.1만건·1.0%가 유지되는지 — 10월 대형 기술기업 감원이 수치로 들어오는 첫 달이에요",
+    "주·지방정부(교육 제외) 구인 51.9만건이 유지되고 전문·비즈니스 채용이 공고를 따라오는지"]},
   { key: "ISM_SVC", name: "ISM 서비스업 PMI 10월", date: "2026-11-05", type: "m", items: [
     "가격 지수 74.0이 75를 넘는지 — 넘으면 2022년 6월 이후 최고 구간이에요",
     "고용 50.1이 두 달 연속 50 위를 지키는지 — 한 달짜리 반등인지 추세 전환인지",
@@ -1274,19 +1281,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 202.06, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 833.60, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "⚠ 종가 산출치" },
-  { ticker: "MSFT", price: 521.91, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
-  { ticker: "GOOGL", price: 279.03, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
-  { ticker: "AAPL", price: 328.85, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
-  { ticker: "PLTR", price: 178.44, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
-  { ticker: "KO", price: 94.08, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
-  { ticker: "ABBV", price: 294.89, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
-  { ticker: "O", price: 57.58, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
-  { ticker: "CRWV", price: 49.85, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 30.04, tgt: 64.06, eps_cur: -1.31, eps_next: -1.34, note: "적자 · P/S 28배" },
-  { ticker: "SMR", price: 5.62, tgt: 11.07, eps_cur: -0.48, eps_next: -0.66, note: "⚠ 주가 10.30 종가" },
-  { ticker: "000660", price: 1472000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 206.69, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 855.10, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
+  { ticker: "MSFT", price: 520.99, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
+  { ticker: "GOOGL", price: 280.03, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
+  { ticker: "AAPL", price: 331.90, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
+  { ticker: "PLTR", price: 175.40, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
+  { ticker: "KO", price: 94.80, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
+  { ticker: "ABBV", price: 286.00, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
+  { ticker: "O", price: 57.50, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
+  { ticker: "CRWV", price: 53.74, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 29.99, tgt: 62.28, eps_cur: -1.31, eps_next: -1.34, note: "적자 · 목표가 11.03 집계" },
+  { ticker: "SMR", price: 5.37, tgt: 11.07, eps_cur: -0.48, eps_next: -0.66, note: "" },
+  { ticker: "000660", price: 1398000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1390,9 +1397,16 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
   {
+    asset: "IONQ", name: "IonQ", kind: "stock", date: "2026-11-03",
+    chg: 6.46, chg_label: "+6.46%", price_label: "$29.99", cause: "과매도 되돌림",
+    oneliner: "목표가가 25% 깎인 다음 날 20거래일 최저에서 반등했어요. 거래량은 평균의 0.78배예요.",
+    spark: [41.34,39.45,39.89,36.27,34.73,31.42,34.35,31.28,30.78,31.26,32.28,31.16,31.27,30.76,32.95,32.43,31.72,30.04,28.17,29.99],
+    created: "2026.11.04", file: "급등락/급등락_IONQ_2026.11.04.html"
+  },
+  {
     asset: "CRWV", name: "CoreWeave", kind: "stock", date: "2026-11-02",
     chg: -9.15, chg_label: "-9.15%", price_label: "$49.85", cause: "조달 경계",
-    oneliner: "오라클 200억 달러 조달 발표에 빚으로 짓는 순서대로 빠져 상장 이후 최저예요.",
+    oneliner: "오라클 조달 발표에 상장 이후 최저. 📎 후속 11/3 +7.16%($53.74)로 조달 마무리에 되돌렸어요.",
     spark: [91.72,88.45,81.58,82.08,80.26,77.81,65.78,69.69,61.39,61.12,62.13,61.82,55.60,54.24,55.19,59.57,63.93,60.74,54.87,49.85],
     created: "2026.11.03", file: "급등락/급등락_MARKET_2026.11.03.html"
   },
@@ -1406,7 +1420,7 @@ const MOVERS_DB = [
   {
     asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-11-02",
     chg: 3.81, chg_label: "+3.81%", price_label: "1,472,000원", cause: "공매도 급감",
-    oneliner: "공매도가 하루 만에 56% 줄고 기관이 1.23조 받아 혼자 올랐어요. 외국인은 아직 순매도예요.",
+    oneliner: "공매도 급감에 혼자 올랐어요. 📎 후속 11/3 -5.03%, 코스피 -3.59%에 반등분을 전부 반납했어요.",
     spark: [1841000,1773000,1723000,1681000,1605000,1443000,1419000,1262000,1272000,1277000,1223000,1294000,1223000,1277000,1275000,1341000,1487000,1526000,1418000,1472000],
     created: "2026.11.03", file: "급등락/급등락_MARKET_2026.11.03.html"
   },
