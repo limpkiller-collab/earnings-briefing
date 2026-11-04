@@ -1,13 +1,13 @@
 {
  "version": "v2",
- "generated": "2026-11-03 12:38 KST",
- "asof": "2026-10-30",
- "px": 7580.07,
- "dd": -3.05,
- "vix": 19.42,
- "hy_bp": 344,
- "fg": 26.3,
- "fg_live": 22.7,
+ "generated": "2026-11-04 11:36 KST",
+ "asof": "2026-11-02",
+ "px": 7541.4,
+ "dd": -3.55,
+ "vix": 21.15,
+ "hy_bp": 343,
+ "fg": 19.4,
+ "fg_live": 19.1,
  "score": 0,
  "max": 14,
  "t1": 4,
@@ -21,17 +21,17 @@
    "label": "하이일드 스프레드",
    "cond": "400bp 이상",
    "w": 3,
-   "value": 344.0,
+   "value": 343.0,
    "unit": "bp",
    "on": false,
-   "gap": 56.0
+   "gap": 57.0
   },
   {
    "key": "hy_turn",
    "label": "하이일드 스프레드 반전",
    "cond": "60일 고점에서 50bp 축소",
    "w": 3,
-   "value": 0.0,
+   "value": 1.0,
    "unit": "bp 축소",
    "on": false,
    "gap": null,
@@ -42,65 +42,53 @@
    "label": "고점 대비 하락",
    "cond": "-8% 이하",
    "w": 2,
-   "value": -3.1,
+   "value": -3.5,
    "unit": "%",
    "on": false,
-   "gap": 4.9
+   "gap": 4.5
   },
   {
    "key": "drsi",
    "label": "일봉 RSI(14)",
    "cond": "35 이하",
    "w": 2,
-   "value": 40.1,
+   "value": 37.7,
    "unit": "",
    "on": false,
-   "gap": 5.1
+   "gap": 2.7
   },
   {
    "key": "fg",
    "label": "공포·탐욕 지수",
    "cond": "15 이하",
    "w": 2,
-   "value": 26.3,
+   "value": 19.4,
    "unit": "",
    "on": false,
-   "gap": 11.3
+   "gap": 4.4
   },
   {
    "key": "wrsi",
    "label": "주봉 RSI(14)",
    "cond": "40 이하",
    "w": 1,
-   "value": 53.6,
+   "value": 51.7,
    "unit": "",
    "on": false,
-   "gap": 13.6
+   "gap": 11.7
   },
   {
    "key": "ret20",
    "label": "20일 수익률",
    "cond": "-10% 이하",
    "w": 1,
-   "value": -1.8,
+   "value": -3.0,
    "unit": "%",
    "on": false,
-   "gap": 8.2
+   "gap": 7.0
   }
  ],
  "history": [
-  {
-   "date": "2025-10-16",
-   "px": 6629.07,
-   "score": 0,
-   "hy": 304.0,
-   "hy_turn": 14.0,
-   "dd": -1.8,
-   "drsi": 49.7,
-   "fg": 23.1,
-   "wrsi": 60.5,
-   "ret20": -0.0
-  },
   {
    "date": "2025-10-17",
    "px": 6664.01,
@@ -3232,6 +3220,18 @@
    "fg": 26.3,
    "wrsi": 53.6,
    "ret20": -1.8
+  },
+  {
+   "date": "2026-11-02",
+   "px": 7541.4,
+   "score": 0,
+   "hy": 343.0,
+   "hy_turn": 1.0,
+   "dd": -3.5,
+   "drsi": 37.7,
+   "fg": 19.4,
+   "wrsi": 51.7,
+   "ret20": -3.0
   }
  ],
  "stale": [],
