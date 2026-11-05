@@ -643,7 +643,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.11.04";   // JOLTs 9월 경제지표 · 급등락 IONQ +6.46% · CRWV·하이닉스 후속 블록 · VAL_DB 13종목 종가 갱신
+const LAST_UPDATED = "2026.11.05";   // ISM 서비스업 10월 경제지표 · 급등락 MARKET 7종목(선거 재배치) · VAL_DB 13종목 11/4 종가 갱신
 
 const REPORTS_DB = [
   {
@@ -886,6 +886,13 @@ const UPCOMING_DB = [
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
   {
+    id: "ISM_SVC", name: "ISM 서비스업 PMI", period: "2026년 10월", category: "심리", tier: 2,
+    report_date: "2026-11-05", created: "2026.11.05", verdict: "NEUT", vlabel: "둔화",
+    surprise: { text: "예측 -0.3p", cls: "down" },
+    oneliner: "54.5로 예측을 0.3p 밑돌았어요. 신규주문이 3.9p 빠졌지만 10개 지수가 전부 확장권이에요.",
+    file: "경제지표/경제지표_ISM_SVC_2026.10_2026.11.05.html"
+  },
+  {
     id: "JOLTS", name: "JOLTs 구인건수", period: "2026년 9월", category: "고용", tier: 2,
     report_date: "2026-11-04", created: "2026.11.04", verdict: "NEUT", vlabel: "견조",
     surprise: { text: "예측 +42.3만건", cls: "up" },
@@ -1120,8 +1127,7 @@ const MACRO_REPORTS_DB = [
 
 // 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
 const MACRO_UPCOMING_DB = [
-  { id: "ADP", name: "ADP 민간고용", short: "ADP", period: "10월", date: "2026-11-04", estimated: false, utc: "20261104T131500Z", tier: 1, last_release: null },
-  { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "10월", date: "2026-11-05", estimated: false, utc: "20261104T150000Z", tier: 2, last_release: "2026-10-05" },
+  { id: "ADP", name: "ADP 민간고용", short: "ADP", period: "11월", date: "2026-12-02", estimated: true, utc: null, tier: 1, last_release: "2026-11-04" },
   { id: "CLAIMS", name: "주간 신규실업수당", short: "실업수당", period: "주간", date: "2026-11-05", estimated: false, utc: "20261105T133000Z", tier: 1, last_release: null },
   { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "10월", date: "2026-11-06", estimated: false, utc: "20261106T133000Z", tier: 3, last_release: "2026-10-02" },
   { id: "UMICH", name: "미시간대 소비자심리", short: "미시간대", period: "11월 예비", date: "2026-11-07", estimated: false, utc: "20261106T150000Z", tier: 1, last_release: null },
@@ -1139,6 +1145,7 @@ const MACRO_UPCOMING_DB = [
   { id: "GDP_2ND", name: "GDP 잠정치", short: "GDP잠정", period: "3분기", date: "2026-11-25", estimated: false, utc: "20261125T133000Z", tier: 2, last_release: "2026-08-27" },
   { id: "DURABLE", name: "내구재 주문", short: "내구재", period: "10월", date: "2026-11-25", estimated: false, utc: "20261125T133000Z", tier: 1, last_release: null },
   { id: "BEIGE", name: "베이지북", short: "베이지북", period: "12월 회의 대비", date: "2026-11-26", estimated: false, utc: "20261125T190000Z", tier: 1, last_release: null },
+  { id: "ISM_SVC", name: "ISM 서비스업 PMI", short: "ISM서비스", period: "11월", date: "2026-12-04", estimated: false, utc: "20261203T150000Z", tier: 2, last_release: "2026-11-05" },
   { id: "ISM_MFG", name: "ISM 제조업 PMI", short: "ISM제조", period: "11월", date: "2026-12-02", estimated: false, utc: "20261201T150000Z", tier: 2, last_release: "2026-11-03" },
   { id: "JOLTS", name: "JOLTs 구인건수", short: "JOLTs", period: "10월", date: "2026-12-02", estimated: false, utc: "20261201T150000Z", tier: 2, last_release: "2026-11-04" },
   { id: "FOMC", name: "FOMC 금리결정", short: "FOMC", period: "12월 회의", date: "2026-12-10", estimated: false, utc: "20261209T190000Z", tier: 3, last_release: "2026-10-29" },
@@ -1159,11 +1166,11 @@ const WATCH_DB = [
     "퇴직 336.5만건·2.1%가 더 올라가는지 — 2.2%면 2024년 이후 처음이에요",
     "해고 164.1만건·1.0%가 유지되는지 — 10월 대형 기술기업 감원이 수치로 들어오는 첫 달이에요",
     "주·지방정부(교육 제외) 구인 51.9만건이 유지되고 전문·비즈니스 채용이 공고를 따라오는지"]},
-  { key: "ISM_SVC", name: "ISM 서비스업 PMI 10월", date: "2026-11-05", type: "m", items: [
-    "가격 지수 74.0이 75를 넘는지 — 넘으면 2022년 6월 이후 최고 구간이에요",
-    "고용 50.1이 두 달 연속 50 위를 지키는지 — 한 달짜리 반등인지 추세 전환인지",
-    "신규수출주문 46.9가 50선으로 되돌아오는지 — 한 달에 9.4p 낙폭은 이례적이에요",
-    "사업활동 56.5와 신규주문 59.8의 간격이 좁혀지는지 — 주문은 들어오는데 활동이 못 따라가요"]},
+  { key: "ISM_SVC", name: "ISM 서비스업 PMI 11월", date: "2026-12-04", type: "m", items: [
+    "신규주문 55.9가 두 달 연속 내려가는지 — 55 아래면 수요 둔화, 58 위면 10월이 일회성이에요",
+    "수주잔고 58.0과 공급자배송 56.7이 함께 더 오르는지 — 둘 다 2022년 중반 이후 최고 구간이에요",
+    "가격 73.0이 70선을 깨는지 — 12개월 평균 69.2는 2023년 4월 이후 최고예요",
+    "고용 51.4가 석 달 연속 50 위를 지키는지 — 11월 6일 고용보고서와 방향이 맞는지 먼저 봐요"]},
   { key: "ISM_MFG", name: "ISM 제조업 PMI 11월", date: "2026-12-02", type: "m", items: [
     "가격 지수 75.2가 두 달 연속 내려가는지 — 70선을 깨는지",
     "생산 59.0 고점이 유지되고 신규주문 55.5가 따라 올라오는지 — 7월 고점 56.7 돌파 여부",
@@ -1281,19 +1288,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 206.69, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 855.10, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
-  { ticker: "MSFT", price: 520.99, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
-  { ticker: "GOOGL", price: 280.03, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
-  { ticker: "AAPL", price: 331.90, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
-  { ticker: "PLTR", price: 175.40, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
-  { ticker: "KO", price: 94.80, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
-  { ticker: "ABBV", price: 286.00, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
-  { ticker: "O", price: 57.50, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
-  { ticker: "CRWV", price: 53.74, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 29.99, tgt: 62.28, eps_cur: -1.31, eps_next: -1.34, note: "적자 · 목표가 11.03 집계" },
-  { ticker: "SMR", price: 5.37, tgt: 11.07, eps_cur: -0.48, eps_next: -0.66, note: "" },
-  { ticker: "000660", price: 1398000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 200.24, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 795.30, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
+  { ticker: "MSFT", price: 556.00, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
+  { ticker: "GOOGL", price: 289.02, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
+  { ticker: "AAPL", price: 349.59, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
+  { ticker: "PLTR", price: 171.63, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
+  { ticker: "KO", price: 95.87, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
+  { ticker: "ABBV", price: 294.77, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
+  { ticker: "O", price: 59.18, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
+  { ticker: "CRWV", price: 48.39, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 29.54, tgt: 62.28, eps_cur: -1.31, eps_next: -1.34, note: "적자 · 목표가 11.03 집계" },
+  { ticker: "SMR", price: 5.13, tgt: 11.07, eps_cur: -0.48, eps_next: -0.66, note: "" },
+  { ticker: "000660", price: 1396000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1396,6 +1403,13 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
+  {
+    asset: "MARKET", name: "선거 재배치 7종목", kind: "market", date: "2026-11-04",
+    chg: -9.96, chg_label: "-9.96%", price_label: "CRWV $48.39 ↔ MSFT +6.72%", cause: "데이터센터 규제",
+    oneliner: "민주당 양원 장악에 MSFT·AAPL은 사상 최고, CRWV는 상장 이후 최저로 갈렸어요.",
+    spark: [81.58,82.08,80.26,77.81,65.78,69.69,61.39,61.12,62.13,61.82,55.60,54.24,55.19,59.57,63.93,60.74,54.87,50.15,53.74,48.39],
+    created: "2026.11.05", file: "급등락/급등락_MARKET_2026.11.05.html"
+  },
   {
     asset: "IONQ", name: "IonQ", kind: "stock", date: "2026-11-03",
     chg: 6.46, chg_label: "+6.46%", price_label: "$29.99", cause: "과매도 되돌림",

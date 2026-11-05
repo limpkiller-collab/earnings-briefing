@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISM 서비스업 PMI 2026년 10월 · 경제 지표</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<!--theme--><script>try{var t=localStorage.getItem('mb-theme');if(t=='light'||t=='dark')document.documentElement.dataset.theme=t}catch(e){}</script><!--/theme-->
+<style>
+:root{
+  --blue:#3182F6; --blue-bg:#E8F3FF;
+  --green:#00B26B; --green-bg:#E3F4EA;
+  --red:#F04452; --red-bg:#FEECEE;
+  --amber:#FF9500; --amber-bg:#FFF4E3;
+  --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
+  --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--g100);color:var(--g900);
+  font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
+.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
+.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
+  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
+  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body{padding:36px 28px 80px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:8px}
+.chip.b{background:var(--blue-bg);color:var(--blue)}
+h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
+.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
+/* 헤드라인 수치 2카드 */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
+.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
+.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
+.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
+.hcard .cmp b{font-weight:800}
+.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
+.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
+  padding-top:9px;border-top:1px solid var(--g200)}
+/* ✦ 해석 콜아웃 */
+.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
+.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
+.ai p+p{margin-top:8px}
+/* 섹션 */
+.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
+  display:flex;align-items:center;gap:7px}
+.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
+p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
+mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
+mark.r{background:var(--red-bg);color:var(--red)}
+b{font-weight:800}
+/* 차트 카드 */
+.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
+.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
+  padding:4px 4px 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* 발표 이력 테이블 */
+.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
+.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
+  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
+.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
+.htable th:last-child{border-radius:0 10px 10px 0}
+.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
+  font-weight:600;color:var(--g700);white-space:nowrap}
+.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
+.htable td.a{font-weight:800}
+.htable td.w{white-space:normal;text-align:left;font-weight:600;color:var(--g600);font-size:13px}
+.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
+.htable tr.new td{background:var(--blue-bg)}
+/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.htable th{white-space:nowrap}
+.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
+/* KPI 카드 */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
+.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
+.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
+.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
+.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
+/* 콜아웃·인용 */
+.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
+  color:var(--g700);margin:16px 0;line-height:1.75}
+.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
+.quote{border-left:3px solid var(--g200);padding:2px 0 2px 14px;margin:16px 0;font-size:15px;
+  color:var(--g600);line-height:1.75}
+.quote small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:5px}
+/* 보유 종목 영향 */
+.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
+.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
+.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
+.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
+.badge.pos{background:var(--green-bg);color:var(--green)}
+.badge.neg{background:var(--red-bg);color:var(--red)}
+.badge.neu{background:var(--g100);color:var(--g500)}
+/* 지난번 체크포인트 점검 */
+.wp-list{margin:12px 0}
+.wp{display:flex;gap:12px;padding:12px 4px;border-bottom:1px solid var(--g100)}
+.wp-badge{flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;background:var(--g100);color:var(--g500);height:fit-content;margin-top:2px}
+.wp.met .wp-badge{background:var(--green-bg);color:var(--green)}
+.wp.miss .wp-badge{background:var(--red-bg);color:var(--red)}
+.wp.partial .wp-badge{background:var(--amber-bg);color:var(--amber)}
+.wp-q{font-size:14.5px;font-weight:700;color:var(--g900)} .wp-a{font-size:13.5px;color:var(--g600);margin-top:2px}
+/* 관전포인트 */
+.wp-preview{background:var(--g50);border-radius:14px;padding:16px 19px;font-size:14.5px;
+  color:var(--g700);margin:16px 0;line-height:1.7}
+.wlist{margin:14px 0}
+.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
+.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
+  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
+.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
+.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
+/* 지표 설명 */
+.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
+.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
+.explain p+p{margin-top:8px}
+.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
+  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
+.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
+  font-size:12.5px;color:var(--g400);line-height:1.7}
+@media(max-width:600px){
+  .body{padding:28px 20px 60px}
+  h1{font-size:24px}
+  .hero{grid-template-columns:1fr}
+  .hcard .num{font-size:32px}
+  .kpi{grid-template-columns:1fr 1fr}
+  .htable{font-size:12.5px}
+  .htable td{padding:10px 6px}
+}
+/*<!--rnav-css-->*/
+.rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
+.rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
+.rnav a:hover{background:var(--g100)}
+.rnav a.next{flex-direction:row-reverse;text-align:right}
+.rnav .av{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--g200);overflow:hidden;display:grid;place-items:center;flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.rnav .av img{width:62%;height:62%;object-fit:contain;display:block;border-radius:4px}
+.rnav .av.mono{background:var(--g600);border-color:transparent}
+.rnav .mid{min-width:0;flex:1}
+.rnav .rl{font-size:10.5px;color:var(--g400);font-weight:700;line-height:1.3}
+.rnav .rt{font-size:13px;font-weight:800;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rnav .rs{font-size:11.5px;color:var(--g500);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rnav .tx.BEAT,.rnav .tx.GOOD,.rnav .tx.UPM,.rnav .tx.UP{color:var(--green)}
+.rnav .tx.MISS,.rnav .tx.BAD,.rnav .tx.DOWNM,.rnav .tx.DOWN{color:var(--red)}
+.rnav .tx.MIXED,.rnav .tx.NEUT,.rnav .tx.MIX{color:var(--amber)}
+.rnav .tx.PREV{color:var(--blue)}
+.rnav a.off{opacity:.45;pointer-events:none}
+.rnav a.off .av{background:transparent;border-style:dashed}
+/*<!--/rnav-css-->*/
+/*<!--dark-css-->*/
+:root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  :where(:root:not([data-theme="light"])) body{background:var(--bg)}
+  :where(:root:not([data-theme="light"])) .page,:where(:root:not([data-theme="light"])) .gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  :where(:root:not([data-theme="light"])) svg .cl,:where(:root:not([data-theme="light"])) svg .ax{fill:#8B95A1}
+  :where(:root:not([data-theme="light"])) svg .cv{fill:#D5DAE0}
+  :where(:root:not([data-theme="light"])) svg [stroke="#EDEFF2"]{stroke:#2A2F36}
+  :where(:root:not([data-theme="light"])) svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  :where(:root:not([data-theme="light"])) svg [stroke="#4E5968"]{stroke:#B0B8C1}
+  :where(:root:not([data-theme="light"])) svg [fill="#F2F4F6"]{fill:#1F2329}
+  :where(:root:not([data-theme="light"])) svg [fill="#E5E8EB"]{fill:#333A44}
+  :where(:root:not([data-theme="light"])) svg [fill="#fff"]{fill:#17171C}
+  :where(:root:not([data-theme="light"])) svg [stroke="#fff"]{stroke:#17171C}
+  :where(:root:not([data-theme="light"])) svg [fill="#333D4B"],:where(:root:not([data-theme="light"])) svg [fill="#191F28"],:where(:root:not([data-theme="light"])) svg [fill="#4E5968"]{fill:#D5DAE0}
+  :where(:root:not([data-theme="light"])) svg [stroke="#191F28"],:where(:root:not([data-theme="light"])) svg [stroke="#333D4B"]{stroke:#B0B8C1}
+}
+:root[data-theme="dark"]{--blue:#4593FC;--blue-bg:#1B2A44;--green:#1FC48A;--green-bg:#12332A;--red:#F6606C;--red-bg:#3A1E24;
+    --amber:#FFAA33;--amber-bg:#3A2C14;--g900:#F2F4F6;--g700:#D5DAE0;--g600:#B0B8C1;--g500:#8B95A1;--g400:#6B7684;
+    --g200:#333A44;--g100:#262B33;--g50:#1E2228;--surface:#17171C;--bg:#0F1013}
+  :where(:root[data-theme="dark"]) body{background:var(--bg)}
+  :where(:root[data-theme="dark"]) .page,:where(:root[data-theme="dark"]) .gnb{background:var(--surface)}
+  /* SVG 차트: 회색 격자·라벨·선을 다크 톤으로 */
+  :where(:root[data-theme="dark"]) svg .cl,:where(:root[data-theme="dark"]) svg .ax{fill:#8B95A1}
+  :where(:root[data-theme="dark"]) svg .cv{fill:#D5DAE0}
+  :where(:root[data-theme="dark"]) svg [stroke="#EDEFF2"]{stroke:#2A2F36}
+  :where(:root[data-theme="dark"]) svg [stroke="#D1D6DB"]{stroke:#3A414B}
+  :where(:root[data-theme="dark"]) svg [stroke="#4E5968"]{stroke:#B0B8C1}
+  :where(:root[data-theme="dark"]) svg [fill="#F2F4F6"]{fill:#1F2329}
+  :where(:root[data-theme="dark"]) svg [fill="#E5E8EB"]{fill:#333A44}
+  :where(:root[data-theme="dark"]) svg [fill="#fff"]{fill:#17171C}
+  :where(:root[data-theme="dark"]) svg [stroke="#fff"]{stroke:#17171C}
+  :where(:root[data-theme="dark"]) svg [fill="#333D4B"],:where(:root[data-theme="dark"]) svg [fill="#191F28"],:where(:root[data-theme="dark"]) svg [fill="#4E5968"]{fill:#D5DAE0}
+  :where(:root[data-theme="dark"]) svg [stroke="#191F28"],:where(:root[data-theme="dark"]) svg [stroke="#333D4B"]{stroke:#B0B8C1}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+/*theme-scoped*/
+
+/*<!--/dark-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
+/* v2 시안: 결과/이유 줄 분리 · 종목 카드 */
+.rr{display:block;font-size:14.5px;color:var(--g700);line-height:1.7}
+.rr+.rr{margin-top:7px}
+.cause .rr{font-size:13.5px}
+.stock-g .rr{font-size:14.5px}
+.v2sum{background:var(--blue-bg);border-radius:14px;padding:17px 20px;margin:18px 0 8px;font-size:15px;line-height:1.7;color:var(--g900);font-weight:600}
+.v2sum .cap{display:block;font-size:12.5px;font-weight:700;color:var(--blue);margin-bottom:5px}
+.stock-g.v2{border:1px solid var(--g200);border-radius:16px;padding:16px 18px;margin-bottom:10px;background:var(--surface,#fff)}
+.stock-g.v2 .skh{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.stock-g.v2 .skh .tk{font-size:16px;font-weight:800}
+.stock-g.v2 .skh .pct{font-size:15px;font-weight:800}
+.stock-g.v2 .skh .pct.pos{color:var(--green)} .stock-g.v2 .skh .pct.neg{color:var(--red)}
+.stock-g.v2 .skh .px{margin-left:auto;font-size:12.5px;color:var(--g400);font-weight:600;white-space:nowrap}
+/*<!--rd-css-->*/
+body{word-break:keep-all;overflow-wrap:break-word}
+h1,.sec-head .l1,.sec-head .l2,.sub-head{text-wrap:balance}
+p,li,.tlx,.wp-a,.witem .tx{text-wrap:pretty}
+.body p,.body-p{line-height:1.85}
+.body>p,section>p,p.body-p{margin-bottom:22px}
+p.rd-s{margin-top:-6px}
+section{padding-top:56px}
+.sub-head{margin-top:40px}
+mark{padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* 가로 스크롤 카드 */
+.hs{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:10px!important;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:stretch;list-style:none;
+  margin-top:14px!important;margin-bottom:0!important;padding-top:2px;padding-bottom:4px;grid-template-columns:none!important;background:none!important;border-radius:0!important}
+.hs::-webkit-scrollbar{display:none}
+.hs>.hs-i{flex:0 0 var(--hs-w,min(calc(100vw - 76px),318px))!important;min-width:0;scroll-snap-align:start;margin:0!important;
+  background:var(--g50);border:1px solid var(--g100);border-radius:16px;padding:18px 18px 16px!important;
+  display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.7;color:var(--g700);white-space:normal}
+.hs>.hs-i::before{display:none!important}
+.hs.wide>.hs-i{--hs-w:min(calc(100vw - 64px),356px)}
+.hs-i .rd-h{display:block;font-size:15.5px;font-weight:800;line-height:1.45;color:var(--g900)}
+.hs-i .rd-x{display:block;font-size:14px;color:var(--g600);line-height:1.7}
+.hs-i .rd-no{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);font-size:12.5px;font-weight:800}
+/* 카드 종류별 보정 */
+.hs>.tli{flex-direction:column}
+.hs>.tli .tld{flex:none;text-align:left;display:flex;align-items:baseline;gap:6px}
+.hs>.tli .tlt{font-size:15.5px;line-height:1.45}
+.hs>.tli .tlx{font-size:14px;line-height:1.7}
+.hs>.wp{flex-direction:column}
+.hs>.wp .wp-badge{align-self:flex-start;margin:0}
+.hs>.wp .wp-q{font-size:15px;line-height:1.5}
+.hs>.wp .wp-a{font-size:14px;line-height:1.7;margin-top:4px}
+.hs>.witem{flex-direction:column;border-bottom:1px solid var(--g100)}
+.hs>.witem .tx{font-size:15px;font-weight:700;color:var(--g900)}
+.hs>.witem .tx small{font-size:13.5px;font-weight:500;color:var(--g500);line-height:1.65;margin-top:6px}
+.hs>.cause.main{background:var(--blue-bg);border-color:transparent}
+.hs>.cause p{font-size:14px;line-height:1.7}
+.hs>.wgrp{background:var(--surface,#fff);border:1px solid var(--g200)}
+.hs>.wgrp .wh{flex-wrap:wrap;line-height:1.45}
+.hs>.wgrp .wh .wd{margin-left:0;flex-basis:100%;font-weight:600;color:var(--g400)}
+.hs>.wgrp ul{gap:10px}
+.hs>.stock-g{background:var(--surface,#fff);border:1px solid var(--g200)}
+.wgrp.rd-flat{border:0;padding:0;margin:28px 0 8px;background:none}
+.wgrp.rd-flat>.wh{font-size:17px}
+/* 카운터·버튼 */
+.hs-nav{display:flex;align-items:center;gap:10px;margin:10px 0 18px;font-size:12.5px;font-weight:700;color:var(--g400)}
+.hs-nav .bar{flex:1;height:3px;border-radius:2px;background:var(--g100);overflow:hidden}
+.hs-nav .bar i{display:block;height:100%;background:var(--g400);border-radius:2px;transition:width .15s}
+.hs-nav .cnt{font-variant-numeric:tabular-nums;white-space:nowrap}
+.hs-nav .cnt b{color:var(--g900)}
+.hs-nav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--g200);background:var(--surface,#fff);color:var(--g600);
+  font-size:15px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+.hs-nav button:disabled{opacity:.35;cursor:default}
+.hs-nav .hint{white-space:nowrap}
+@media(hover:none){.hs-nav button{display:none}}
+@media(max-width:600px){section{padding-top:48px}.body>p,section>p,p.body-p{margin-bottom:20px}}
+/* ④ 긴 카드 접기·펼치기 */
+.hs>.hs-i.rd-clamp{max-height:var(--rd-clamp,300px);overflow:hidden;position:relative;padding-bottom:44px!important}
+.hs>.hs-i.rd-clamp.rd-open{max-height:none}
+.hs.rd-has-open{align-items:flex-start}
+.rd-more{position:absolute;left:0;right:0;bottom:0;height:64px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;
+  border:0;cursor:pointer;font:inherit;font-size:13px;font-weight:800;color:var(--blue);border-radius:0 0 16px 16px;
+  background:linear-gradient(to bottom,transparent,var(--rd-card,var(--g50)) 55%)}
+.hs-i.rd-open .rd-more{height:auto;padding:10px 0 12px;background:none}
+.hs>.wgrp,.hs>.stock-g{--rd-card:var(--surface,#fff)}
+.hs>.cause.main{--rd-card:var(--blue-bg)}
+/* ⑤ 목차 칩 + 읽기 진행 바 */
+.rd-toc{position:sticky;top:var(--rd-gnb,57px);z-index:9;background:var(--surface,#fff);border-bottom:1px solid var(--g100)}
+.rd-toc .rd-prog{position:absolute;left:0;top:0;height:2px;background:var(--blue);width:0;transition:width .1s linear}
+.rd-toc .rd-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:9px 28px}
+.rd-toc .rd-chips::-webkit-scrollbar{display:none}
+.rd-toc a{flex:0 0 auto;font-size:13px;font-weight:700;color:var(--g500);background:var(--g100);border-radius:20px;padding:6px 12px;text-decoration:none;white-space:nowrap;transition:.15s}
+.rd-toc a.on{background:var(--blue);color:#fff}
+.rd-anchor{scroll-margin-top:calc(var(--rd-gnb,57px) + 64px)}
+/* ⑥ 출처 접기 */
+.source-note.rd-src{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.rd-src-btn{border:0;background:var(--g100);color:var(--g500);font:inherit;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:8px;cursor:pointer}
+.source-note.rd-src .rd-src-body{display:none}
+.source-note.rd-src.rd-open .rd-src-body{display:block}
+/* ⑦ 모바일 KPI 2열 */
+@media(max-width:600px){
+  .rd-toc .rd-chips{padding:9px 20px}
+  .kpis{grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .kpis .kpi{padding:13px 14px}
+  .kpis .kpi .l{font-size:12px}
+  .kpis .kpi .v{font-size:20px}
+  .kpis .kpi .d{font-size:11.5px;line-height:1.45}
+}
+/*<!--/rd-css-->*/
+</style>
+</head>
+<body>
+<div class="page">
+<div class="gnb">
+  <div class="brand"><span class="dot">📈</span> 경제 지표</div>
+  <a href="../index.html">← 아카이브</a>
+</div>
+<div class="body">
+<div class="chips">
+  <span class="chip b">#심리</span><span class="chip">#매달 발표</span><span class="chip">#★★</span><span class="chip">#확산지수 · 50 기준</span>
+</div>
+<h1>ISM 서비스업 PMI<br>2026년 10월</h1>
+<div class="meta">2026년 11월 5일 00:00 발표 (한국시간) · 미국 공급관리협회(ISM) 10월분</div>
+
+<div class="hero">
+  <div class="hcard">
+    <div class="hl">서비스업 PMI</div>
+    <div class="num">54.5</div>
+    <div class="cmp">예측(54.8)보다 <b class="down">0.3p 하회</b> · 지난달 54.9에서 <b class="down">0.4p 하락</b></div>
+    <div class="core"><b>28개월 연속</b> 50 상회 · 12개월 평균 54.3을 0.2p 웃돌아요</div>
+  </div>
+  <div class="hcard">
+    <div class="hl">가격 지수</div>
+    <div class="num">73.0</div>
+    <div class="cmp">지난달 74.0에서 <b class="down">1.0p 하락</b> · 여덟 달 중 일곱 번째 70 상회</div>
+    <div class="core">상승 <b>113개월</b>째 · 12개월 평균 69.2로 2023년 4월 이후 가장 높아요</div>
+  </div>
+</div>
+
+<div class="ai">
+  <div class="t">✦ 세 줄 해석</div>
+  <p>10월 서비스업 PMI는 <b>54.5</b>로 예측 54.8을 0.3p 밑돌았어요. 9월 54.9에서 0.4p 내려왔지만 <b>28개월 연속 확장</b>이고 12개월 평균 54.3보다는 높아요. ISM은 이 수준이 연 <b>2.0%</b>의 실질 성장에 대응한다고 밝혔어요. 9월(2.1%)에서 0.1%p 낮아진 값이에요.</p>
+  <p>헤드라인을 끌어내린 건 수요 쪽 두 지수예요. <mark>신규주문이 55.9로 3.9p, 사업활동이 53.8로 2.7p 내려 11개 지수 중 낙폭 1·2위였어요.</mark> 대신 고용이 51.4로 1.3p 올라 두 달 연속 확장했고, 공급자배송 56.7(+3.5p)과 수주잔고 58.0(+1.4p)이 받쳐 지수를 지켰어요. 수주잔고는 2022년 7월(58.3) 이후 가장 높고, <b>10개 지수가 모두 확장권에 들어온 건 2026년 2월 이후 처음</b>이에요.</p>
+  <p>발표 당일 시장은 이 지표를 거의 보지 않았어요. 중간선거에서 민주당이 양원을 모두 가져가면서 다우가 <b>3.03%</b> 오르고 VIX가 16.61로 20% 넘게 빠졌어요. 10년물은 4.90%로 5bp 내렸고 WTI는 8.29% 급락해 88.12달러에 마감했어요. <mark class="r">CME 기준 12월 인상 확률은 약 76.9%로 남았어요.</mark></p>
+</div>
+
+<div class="sub-head">✅ 지난번엔 이걸 보자고 했죠</div>
+<div class="sub-desc">9월 보고서에서 확인하기로 한 네 가지를 수치로 점검했어요.</div>
+<div class="wp-list">
+  <div class="wp miss"><span class="wp-badge">오히려 내려왔어요</span><div><div class="wp-q">가격 지수 74.0이 75를 넘는지</div><div class="wp-a">넘지 않았어요. <b>73.0으로 1.0p 내려왔어요.</b> 2022년 6월 80.1 이후 최고 구간으로 올라갈지를 걱정했는데 방향이 반대로 돌았어요. 다만 70 위는 여덟 달 중 일곱 번째고, 12개월 평균은 0.2p 올라 <b>69.2</b>로 2023년 4월 이후 가장 높아요. 수준이 아니라 속도만 꺾인 상태예요.</div></div></div>
+  <div class="wp met"><span class="wp-badge">두 달 연속 지켰어요</span><div><div class="wp-q">고용 50.1이 두 달 연속 50 위를 지키는지</div><div class="wp-a">지켰어요. <mark>51.4로 1.3p 올라 12개월 평균 49.3을 2.1p 웃돌았어요.</mark> 운송·창고, 소매, 부동산, 숙박·음식, 유틸리티, 도매 6개 업종이 고용을 늘렸고 7개 업종이 줄였어요. 11월 6일 10월 고용보고서와 방향이 맞는지는 다음 확인 자리예요.</div></div></div>
+  <div class="wp met"><span class="wp-badge">한 달 만에 되돌렸어요</span><div><div class="wp-q">신규수출주문 46.9가 50선으로 되돌아오는지</div><div class="wp-a">되돌아왔어요. <b>55.2로 8.3p 급반등</b>해 11개 지수 중 상승폭이 가장 컸어요. 9월의 -9.4p가 최대 낙폭이었으니 한 달 만에 그 이상을 회복한 셈이에요. 구독 수요 증가와 서비스센터 해외 이전이 이유로 꼽혔어요.</div></div></div>
+  <div class="wp met"><span class="wp-badge">간격이 좁혀졌어요</span><div><div class="wp-q">사업활동 56.5와 신규주문 59.8의 간격이 좁혀지는지</div><div class="wp-a">좁혀졌어요. 사업활동 <b>53.8</b>, 신규주문 <b>55.9</b>로 격차가 3.3p에서 <b>2.1p</b>로 줄었어요. 다만 좁혀진 방식이 둘 다 내려오면서라는 점이 문제예요. 함께 보기로 한 수주잔고는 58.0으로 9개월 연속 확장, 공급자배송은 56.7로 지연 23개월째를 기록했어요.</div></div></div>
+</div>
+<div class="wp-score">4개 중 3개 충족 · 1개 미충족</div>
+
+<div class="v2sum"><span class="cap">한 문장 요약</span>지목한 네 가지 중 셋이 예상대로 왔고, 빗나간 가격 지수는 <b>걱정했던 방향의 반대</b>였어요. 다만 간격이 좁혀진 건 수요 두 지수가 함께 내려온 결과예요.</div>
+
+<div class="sub-head">📈 ISM 서비스업 PMI 추이</div>
+<div class="sub-desc">2월 56.1 고점 뒤로 53~55 박스를 벗어나지 않고 있고, 8월 55.4에서 두 달 연속 내려왔어요.</div>
+
+<div class="chart-card">
+  <div class="ct">ISM 서비스업 PMI</div>
+  <div class="cs">2026년 2월 ~ 10월 · 50 위면 확장, 아래면 위축</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">53.4</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">54.1</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">54.9</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">55.6</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">56.4</text><polygon points="14.0,260 14.0,45.5 92.8,209.3 171.5,240.5 250.2,170.3 329.0,209.3 407.8,201.5 486.5,100.1 565.2,139.1 644.0,170.3 644.0,260" fill="#F2F4F6" opacity="0.85"/><polyline points="14.0,45.5 92.8,209.3 171.5,240.5 250.2,170.3 329.0,209.3 407.8,201.5 486.5,100.1 565.2,139.1 644.0,170.3" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><line x1="644.0" y1="170.3" x2="644.0" y2="260" stroke="#3182F6" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/><circle cx="644.0" cy="146.9" r="8.5" fill="none" stroke="#8B95A1" stroke-width="2" stroke-dasharray="3.5,3"/><text x="631.0" y="150.9" text-anchor="end" class="cv" style="fill:#8B95A1;font-size:11.5px">예측 54.8</text><circle cx="644.0" cy="170.3" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/><text x="634.0" y="157.3" text-anchor="end" class="cv" style="fill:#3182F6">발표 54.5</text><text x="14.0" y="286" text-anchor="middle" class="cl">26.2</text><text x="171.5" y="286" text-anchor="middle" class="cl">26.4</text><text x="329.0" y="286" text-anchor="middle" class="cl">26.6</text><text x="486.5" y="286" text-anchor="middle" class="cl">26.8</text><text x="644.0" y="286" text-anchor="middle" class="cl">26.10</text></svg>
+  <div class="legend"><span><i style="background:#3182F6"></i>발표치(실선 점)</span><span><i style="background:#8B95A1;border-radius:50%"></i>예측치(점선 원)</span></div>
+</div>
+<div class="chart-card">
+  <div class="ct">10월 세부지수 전월 대비 변화</div>
+  <div class="cs">단위 %p · 상승은 파랑, 하락은 빨강</div>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg"><style>.cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}.cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}.ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}</style><line x1="14" y1="260.0" x2="644" y2="260.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="264.0" class="ax">-4.0</text><line x1="14" y1="201.5" x2="644" y2="201.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="205.5" class="ax">-0.7</text><line x1="14" y1="143.0" x2="644" y2="143.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="147.0" class="ax">2.6</text><line x1="14" y1="84.5" x2="644" y2="84.5" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="88.5" class="ax">6.0</text><line x1="14" y1="26.0" x2="644" y2="26.0" stroke="#EDEFF2" stroke-width="1"/><text x="654" y="30.0" class="ax">9.3</text><line x1="14" y1="189.0" x2="644" y2="189.0" stroke="#D1D6DB" stroke-width="1.5"/><rect x="36.8" y="43.5" width="33.1" height="145.5" rx="3.5" fill="#3182F6"/><text x="53.4" y="37.5" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+8.3</text><text x="53.4" y="286" text-anchor="middle" class="cl">신규수출주문</text><rect x="115.6" y="127.6" width="33.1" height="61.4" rx="3.5" fill="#3182F6"/><text x="132.1" y="121.6" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+3.5</text><text x="132.1" y="286" text-anchor="middle" class="cl">공급자배송</text><rect x="194.3" y="164.4" width="33.1" height="24.5" rx="3.5" fill="#3182F6"/><text x="210.9" y="158.4" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+1.4</text><text x="210.9" y="286" text-anchor="middle" class="cl">수주잔고</text><rect x="273.1" y="166.2" width="33.1" height="22.8" rx="3.5" fill="#3182F6"/><text x="289.6" y="160.2" text-anchor="middle" class="cv" style="fill:#3182F6;font-size:11.5px">+1.3</text><text x="289.6" y="286" text-anchor="middle" class="cl">고용</text><rect x="351.8" y="189.0" width="33.1" height="17.5" rx="3.5" fill="#F04452"/><text x="368.4" y="221.5" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-1.0</text><text x="368.4" y="286" text-anchor="middle" class="cl">가격</text><rect x="430.6" y="189.0" width="33.1" height="42.1" rx="3.5" fill="#F04452"/><text x="447.1" y="246.1" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-2.4</text><text x="447.1" y="286" text-anchor="middle" class="cl">재고</text><rect x="509.3" y="189.0" width="33.1" height="47.3" rx="3.5" fill="#F04452"/><text x="525.9" y="251.3" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-2.7</text><text x="525.9" y="286" text-anchor="middle" class="cl">사업활동</text><rect x="588.1" y="189.0" width="33.1" height="68.4" rx="3.5" fill="#F04452"/><text x="604.6" y="272.4" text-anchor="middle" class="cv" style="fill:#F04452;font-size:11.5px">-3.9</text><text x="604.6" y="286" text-anchor="middle" class="cl">신규주문</text></svg>
+</div>
+
+<div class="sub-head">🗓️ 발표 이력</div>
+<div class="sub-desc">예측 상회는 빨강, 하회는 파랑으로 표시해요.</div>
+<div class="twrap"><table class="htable">
+  <tr><th>발표일 (대상월)</th><th>발표</th><th>예측</th><th>이전</th><th>비고</th></tr>
+  <tr class="new"><td>2026.11.05 (10월)</td><td class="a down" data-h="발표">54.5</td><td data-h="예측">54.8</td><td data-h="이전">54.9</td><td class="w">28개월 연속 확장 · 10개 지수 전부 확장권</td></tr>
+  <tr><td>2026.10.05 (9월)</td><td class="a down" data-h="발표">54.9</td><td data-h="예측">55.2</td><td data-h="이전">55.4</td><td class="w">27개월 연속 확장 · 고용 확장 전환, 가격 4년 최고</td></tr>
+  <tr><td>2026.09.03 (8월)</td><td class="a up" data-h="발표">55.4</td><td data-h="예측">54.3</td><td data-h="이전">54.1</td><td class="w">26개월 연속 확장, 신규주문 3년 반 최고</td></tr>
+  <tr><td>2026.08.05 (7월)</td><td class="a down" data-h="발표">54.1</td><td data-h="예측">54.6</td><td data-h="이전">54.0</td><td class="w">예측 하회</td></tr>
+  <tr><td>2026.07.06 (6월)</td><td class="a" data-h="발표">54.0</td><td data-h="예측">—</td><td data-h="이전">54.5</td><td class="w">소폭 둔화</td></tr>
+  <tr><td>2026.06 (5월)</td><td class="a" data-h="발표">54.5</td><td data-h="예측">—</td><td data-h="이전">53.6</td><td class="w">반등</td></tr>
+</table></div>
+
+<div class="v2sum"><span class="cap">한 문장 요약</span>세 번 연속 예측을 밑돌았지만 하회 폭은 0.5p, 0.3p, 0.3p로 크지 않아요. <b>54~55 박스가 1년째 유지되는 중</b>이에요.</div>
+
+<div class="sub-head">🔍 세부지수, 주문은 식고 병목은 깊어졌어요</div>
+<div class="sub-desc">서비스업 PMI는 사업활동·신규주문·고용·공급자배송 네 지수를 같은 비중으로 묶어요.</div>
+<div class="twrap"><table class="htable">
+  <tr><th>지수</th><th>10월</th><th>9월</th><th>변화</th><th>상태</th></tr>
+  <tr class="new"><td>서비스업 PMI</td><td class="a down" data-h="10월">54.5</td><td data-h="9월">54.9</td><td class="down" data-h="변화">-0.4</td><td class="w">확장 28개월째 · 12개월 평균 54.3보다 0.2p 높아요</td></tr>
+  <tr><td>사업활동</td><td class="a down" data-h="10월">53.8</td><td data-h="9월">56.5</td><td class="down" data-h="변화">-2.7</td><td class="w">확장 28개월째 · 12개월 평균 56.7을 2.9p 밑돌아요</td></tr>
+  <tr><td>신규주문</td><td class="a down" data-h="10월">55.9</td><td data-h="9월">59.8</td><td class="down" data-h="변화">-3.9</td><td class="w">확장 17개월째 · <b>이번 달 최대 하락폭</b></td></tr>
+  <tr><td>고용</td><td class="a up" data-h="10월">51.4</td><td data-h="9월">50.1</td><td class="up" data-h="변화">+1.3</td><td class="w">확장 2개월째 · 12개월 평균 49.3을 2.1p 상회</td></tr>
+  <tr><td>공급자배송</td><td class="a up" data-h="10월">56.7</td><td data-h="9월">53.2</td><td class="up" data-h="변화">+3.5</td><td class="w">지연 23개월째(역방향 지수) · 2022년 7월 이후 두 번째로 높아요</td></tr>
+  <tr><td>재고</td><td class="a down" data-h="10월">55.4</td><td data-h="9월">57.8</td><td class="down" data-h="변화">-2.4</td><td class="w">확장 9개월째 · 응답자 30%는 재고를 두지 않아요</td></tr>
+  <tr><td>가격</td><td class="a down" data-h="10월">73.0</td><td data-h="9월">74.0</td><td class="down" data-h="변화">-1.0</td><td class="w">상승 113개월째 · 12개월 평균 69.2보다 3.8p 높아요</td></tr>
+  <tr><td>수주잔고</td><td class="a up" data-h="10월">58.0</td><td data-h="9월">56.6</td><td class="up" data-h="변화">+1.4</td><td class="w">확장 9개월째 · <b>2022년 7월 이후 최고</b></td></tr>
+  <tr><td>신규 수출주문</td><td class="a up" data-h="10월">55.2</td><td data-h="9월">46.9</td><td class="up" data-h="변화">+8.3</td><td class="w"><b>확장 전환</b> · 이번 달 최대 상승폭</td></tr>
+  <tr><td>수입</td><td class="a up" data-h="10월">54.2</td><td data-h="9월">52.9</td><td class="up" data-h="변화">+1.3</td><td class="w">확장 4개월째 · 여덟 달 중 일곱 번째 확장</td></tr>
+  <tr><td>재고 심리</td><td class="a up" data-h="10월">52.1</td><td data-h="9월">51.7</td><td class="up" data-h="변화">+0.4</td><td class="w">'너무 높음' 42개월째</td></tr>
+</table></div>
+
+<div class="kpi">
+  <div class="k"><div class="l">GDP 환산</div><div class="v">연 2.0%</div><div class="d">ISM이 PMI 54.5에 대응한다고 밝힌 실질 성장률</div></div>
+  <div class="k"><div class="l">성장 업종</div><div class="v">15 : 2</div><div class="d">위축은 건설, 헬스케어·사회복지 둘이에요</div></div>
+  <div class="k"><div class="l">수주잔고</div><div class="v"><span class="up">58.0</span></div><div class="d">+1.4p · 2022년 7월 58.3 이후 최고</div></div>
+  <div class="k"><div class="l">가격 하락 품목</div><div class="v">0개</div><div class="d">가격이 내린 품목이 하나도 없었어요</div></div>
+</div>
+<p class="body-p">이번 달 서비스업은 <b>'주문은 식었는데 처리할 물량은 더 쌓인'</b> 모습이에요. 신규주문이 55.9로 3.9p, 사업활동이 53.8로 2.7p 내려 수요 쪽 두 지수가 동시에 밀렸어요. 그런데 수주잔고는 58.0으로 올라 2022년 7월 이후 최고, 공급자배송은 56.7로 같은 기간 두 번째로 높은 지연을 기록했어요. 응답자 코멘트도 "선박과 공급사 일정이 몇 주에서 몇 달까지 반복적으로 밀려 리드타임이 길어지고 재주문·재일정이 늘었다"는 쪽이었어요. 성장 업종은 운송·창고를 선두로 <b>15개</b>, 위축은 건설과 헬스케어·사회복지 <b>2개</b>였어요.</p>
+<p class="body-p">가격은 73.0으로 1.0p 내렸지만 체감은 다릅니다. <mark class="r">10월에 가격이 내린 품목은 하나도 없었어요.</mark> 연료는 9개월 연속, 가솔린·경유도 각각 9개월·8개월 연속 상승 품목에 들었고 <b>메모리 제품은 10개월 연속</b> 올랐어요. 부족 품목은 7개에서 3개로 줄었는데 남은 셋이 컴퓨터·관련 제품, <b>메모리 컴포넌트(10개월째)</b>, 전선·케이블로 모두 컴퓨터 기술 관련이에요. 스티브 밀러 ISM 조사위원장은 "관세와 연료비가 여전히 가장 많이 언급되는 이슈이고, 많은 응답자가 비용 상승분을 아직 고객에게 넘기지 않았다"며 <b>"현 수준에서 더 오르지 않아도 가격 압력은 더 올 것"</b>이라고 했어요.</p>
+
+<div class="v2sum"><span class="cap">한 문장 요약</span>수요 지수 두 개가 밀려 헤드라인이 내려왔지만, <b>수주잔고 58.0과 배송지연 56.7</b>은 서비스업의 제약이 수요가 아니라 공급 쪽에 있다고 말해요.</div>
+
+<div class="sub-head">🏛️ 시장 반응과 연준 경로</div>
+<div class="sub-desc">발표 당일 주가를 움직인 건 이 지표가 아니라 중간선거 결과와 유가였어요.</div>
+<p class="body-p">11월 3일 중간선거에서 민주당이 하원과 상원을 모두 가져갔고 텍사스 주지사 선거까지 이겼어요. 다음 날 다우는 1,569포인트, <b>3.03%</b> 올라 2025년 4월 9일 이후 최고의 하루를 보냈어요. 상승 종목이 하락 종목을 약 3대 1로 눌렀고 동일가중 S&P 500이 시가총액 가중 지수를 앞섰어요. 반면 <mark>데이터센터 규제가 강화될 거라는 쪽에 베팅이 몰려 반도체와 AI 인프라만 따로 빠졌어요.</mark> 필라델피아 반도체지수는 3.13% 내렸고 기술 섹터만 보합(-0.01%), 산업재는 1.09% 하락했어요.</p>
+<div class="twrap"><table class="htable">
+  <tr><th>자산</th><th>11월 4일</th><th>변화</th><th>해석</th></tr>
+  <tr><td>S&amp;P 500</td><td class="a" data-h="11월 4일">7,688.62</td><td class="up" data-h="변화">+1.58%</td><td class="w">석 달 만에 가장 큰 하루 상승이에요</td></tr>
+  <tr><td>다우</td><td class="a" data-h="11월 4일">53,356.12</td><td class="up" data-h="변화">+3.03%</td><td class="w">2025년 4월 이후 최고 · 역대 5위 포인트 상승</td></tr>
+  <tr><td>나스닥 종합</td><td class="a" data-h="11월 4일">25,736.51</td><td class="up" data-h="변화">+1.44%</td><td class="w">반도체가 발목을 잡아 상승 폭이 작았어요</td></tr>
+  <tr><td>필라델피아 반도체</td><td class="a" data-h="11월 4일">—</td><td class="down" data-h="변화">-3.13%</td><td class="w">데이터센터 규제 우려가 몰린 유일한 구역이에요</td></tr>
+  <tr><td>미국 2년물</td><td class="a" data-h="11월 4일">4.58%</td><td class="down" data-h="변화">-3bp</td><td class="w">정책금리 기대는 거의 그대로예요</td></tr>
+  <tr><td>미국 10년물</td><td class="a" data-h="11월 4일">4.90%</td><td class="down" data-h="변화">-5bp</td><td class="w">유가 급락이 물가 전망을 낮췄어요</td></tr>
+  <tr><td>미국 30년물</td><td class="a" data-h="11월 4일">5.28%</td><td class="down" data-h="변화">-4bp</td><td class="w">2년물과 10년물 격차는 약 31bp예요</td></tr>
+  <tr><td>달러지수(DXY)</td><td class="a" data-h="11월 4일">101.53</td><td class="down" data-h="변화">-0.34%</td><td class="w">8월 19일 이후 가장 큰 장중 낙폭이었어요</td></tr>
+  <tr><td>WTI 원유</td><td class="a" data-h="11월 4일">$88.12</td><td class="down" data-h="변화">-8.29%</td><td class="w">두 달 만의 최저 · 이란 종전 압력 기대예요</td></tr>
+  <tr><td>금</td><td class="a" data-h="11월 4일">$4,070.20</td><td class="up" data-h="변화">+3.29%</td><td class="w">4,000달러 선을 되찾았어요</td></tr>
+  <tr><td>VIX</td><td class="a" data-h="11월 4일">16.61</td><td class="down" data-h="변화">-20.26%</td><td class="w">선거 불확실성이 해소되며 20선 아래로 내려왔어요</td></tr>
+</table></div>
+<p class="body-p">기준금리는 <b>3.75~4.00%</b>예요. 10월 28일 FOMC가 10 대 2로 동결했고 반대한 두 명(쿡·해맥)은 0.25%p 인상을 원했어요. <mark>CME 연방기금선물 기준 12월 8~9일 회의의 인상 확률은 선거 직후 약 76.9%로, 10월 28일 86.0%에서 9%p 넘게 내려왔어요.</mark> 이번 ISM은 헤드라인이 예측을 밑돌고 가격도 1.0p 내려 인상 논거를 약하게 만드는 쪽이었지만, 같은 날 ADP 민간고용이 8만 6,000명으로 예측(7만 5,000명)을 넘겨 고용 쪽은 반대 신호를 냈어요.</p>
+<p class="body-p">가격 지수가 아직 70 위에 있고 12개월 평균이 2023년 4월 이후 최고라는 점은 연준에 불편한 숫자예요. 밀러 위원장이 짚은 <b>"비용 전가가 아직 안 끝났다"</b>는 말이 그대로라면, 서비스 물가는 유가가 멈춘 뒤에도 한두 달 더 올라갈 수 있어요. 11월 6일 10월 고용보고서와 11월 10일 10월 CPI가 12월 회의 직전의 두 분기점이에요.</p>
+<div class="callout"><div class="ct">한 문장 요약</div>지표 자체는 인상 논거를 약하게 만들었지만 <b>12월 인상 확률 77%</b>는 유지됐어요. 주가는 ISM이 아니라 선거 결과로 갈렸고, 그 갈림의 축이 <b>AI 데이터센터 규제</b>였어요.</div>
+
+<div class="sub-head">💼 보유 종목 영향</div>
+<div class="sub-desc">서비스업 온도보다 선거 결과가 만든 'AI 설비투자 재평가'가 당일 통로였어요.</div>
+
+<div class="stock-g">
+  <div class="sg-t">빅테크 <span class="tks">AAPL · MSFT · GOOGL</span> <span class="badge pos">우호적</span></div>
+  <div class="rr"><b>결과</b> 셋 다 크게 올랐어요. <a href="../실적브리핑/실적브리핑_MSFT_FY2027Q1_2026.10.29.html">MSFT</a> +6.72%(556.00달러), <a href="../실적브리핑/실적브리핑_AAPL_FY2026Q4_2026.11.03.html">AAPL</a> +5.33%(349.59달러)로 <b>둘 다 사상 최고 종가</b>, <a href="../실적브리핑/실적브리핑_GOOGL_2026Q3_2026.10.29.html">GOOGL</a> +3.21%(289.02달러)였어요.</div>
+  <div class="rr"><b>이유</b> 서비스업 지표와의 직접 연결은 약해요. 당일 상승은 <mark>민주당 의회가 클라우드 업체들의 AI 설비투자 경쟁을 식힐 것이라는 베팅</mark>에서 왔어요. 돈을 쓰는 쪽이 아니라 아껴서 이익을 남길 쪽으로 분류된 거예요. 다만 ISM이 꼽은 부족 품목에 메모리 컴포넌트가 10개월째 남아 있다는 건 하드웨어 원가 이야기라, AAPL의 12월 분기 매출총이익률 가이던스 45~46%가 확인 자리예요.</div>
+</div>
+<div class="stock-g">
+  <div class="sg-t">배당·방어 <span class="tks">O · KO · ABBV</span> <span class="badge pos">우호적</span></div>
+  <div class="rr"><b>결과</b> 섹터가 함께 올랐어요. 부동산 +3.32%, 필수소비재 +3.36%, 헬스케어 +3.06%였고 <a href="../실적브리핑/실적브리핑_O_2026Q3_2026.11.03.html">O</a> +2.91%(59.18달러), <a href="../실적브리핑/실적브리핑_KO_2026Q3_2026.10.28.html">KO</a> +1.13%(95.87달러), <a href="../실적브리핑/실적브리핑_ABBV_2026Q3_2026.10.31.html">ABBV</a> +3.07%(294.77달러)였어요.</div>
+  <div class="rr"><b>이유</b> 10년물이 4.90%로 5bp 내려오고 유가가 8% 넘게 빠진 조합이 리츠와 소비재에 그대로 숨통이에요. ISM에서도 연료가 9개월 연속 상승 품목이었으니 유가 하락은 배송 원가를 바로 낮춰줘요. 다만 서비스업 가격 지수가 73.0으로 여전히 높아 임차인·소비자의 비용 부담은 남아 있어요.</div>
+</div>
+<div class="stock-g">
+  <div class="sg-t">반도체 <span class="tks">NVDA · MU · SK하이닉스</span> <span class="badge neg">비우호적</span></div>
+  <div class="rr"><b>결과</b> 지수와 반대로 갔어요. <a href="../실적브리핑/실적브리핑_NVDA_FY2027Q2_2026.08.27.html">NVDA</a> -3.12%(200.24달러), <a href="../실적브리핑/실적브리핑_MU_FY2026Q4_2026.10.01.html">MU</a> -6.99%(795.30달러)로 메모리가 특히 밀렸고, <a href="../실적브리핑/실적브리핑_000660_2026Q3_2026.10.28.html">SK하이닉스</a>는 한국장에서 장중 5~6% 급락했다가 -0.14%(139만 6,000원)로 복구했어요.</div>
+  <div class="rr"><b>이유</b> ISM 내용은 이 그룹에 유리했어요. 메모리 제품이 10개월 연속 상승 품목, 메모리 컴포넌트가 10개월 연속 부족 품목이니 수급은 여전히 타이트해요. 그런데 <mark class="r">텍사스 주지사 당선자가 신규 데이터센터 승인 유예를 공약했고 텍사스가 미국 데이터센터 전력의 약 27%를 차지해요.</mark> 수요의 출구가 막힐 수 있다는 쪽이 하루짜리 수급을 지배했어요.</div>
+</div>
+<div class="stock-g">
+  <div class="sg-t">금리민감 성장주 <span class="tks">PLTR · IONQ · SMR · CRWV</span> <span class="badge neg">비우호적</span></div>
+  <div class="rr"><b>결과</b> 금리가 내린 날인데도 다 빠졌어요. <a href="../실적브리핑/실적브리핑_CRWV_2026Q2_2026.08.12.html">CRWV</a> -9.96%(48.39달러)로 상장 이후 최저를 다시 쓰고, <a href="../실적브리핑/실적프리뷰_SMR_2026Q3_2026.11.03.html">SMR</a> -4.56%, <a href="../실적브리핑/실적브리핑_PLTR_2026Q3_2026.11.03.html">PLTR</a> -2.15%, <a href="../실적브리핑/실적프리뷰_IONQ_2026Q3_2026.11.02.html">IONQ</a> -1.50%였어요.</div>
+  <div class="rr"><b>이유</b> 이 그룹의 변수는 금리보다 데이터센터 정책이에요. CRWV는 2031년 만기 회사채가 달러당 79.5센트까지 밀리고 5년물 CDS가 1,139.7bp로 3% 올랐어요. 서비스업 공급자배송 56.7과 수주잔고 58.0이 보여주는 공급 제약은 설비를 짓는 쪽의 완공 지연을 뜻하기도 해요. 11월 6일 IONQ·SMR, 11월 11일 CRWV 실적이 차례로 나와요.</div>
+</div>
+
+<div class="v2sum"><span class="cap">한 문장 요약</span>같은 포트폴리오 안에서 <b>돈을 아낄 쪽은 오르고 돈을 쓸 쪽은 내린</b> 하루예요. ISM은 두 그룹 모두에 중립이었고, 갈림을 만든 건 선거였어요.</div>
+
+<div class="sub-head">👀 다음 발표에선 이걸 보면 돼요</div>
+<div class="wlist">
+  <div class="witem"><div class="no">1</div><div class="tx">신규주문 55.9가 두 달 연속 내려가는지<small>9월 59.8에서 3.9p 빠진 게 8월 60.9부터의 되돌림인지 추세인지가 여기서 갈려요. 55 아래로 내려오면 수요 둔화 신호고, 58 위로 되돌아가면 10월이 일회성이에요</small></div></div>
+  <div class="witem"><div class="no">2</div><div class="tx">수주잔고 58.0과 공급자배송 56.7이 함께 더 오르는지<small>둘 다 2022년 중반 이후 최고 구간이에요. 더 오르면 서비스업 제약이 수요가 아니라 공급이라는 쪽이 굳고, 함께 내려오면 10월의 병목은 일시적 지연이었다는 뜻이에요</small></div></div>
+  <div class="witem"><div class="no">3</div><div class="tx">가격 73.0이 70선을 깨는지<small>두 달 연속 하락이지만 12개월 평균은 69.2로 2023년 4월 이후 최고예요. 70 아래로 내려오면 서비스 물가 압력이 실제로 풀리는 국면이고, 75 위로 되튀면 유가 하락 효과가 비용 전가에 못 미쳤다는 뜻이에요</small></div></div>
+  <div class="witem"><div class="no">4</div><div class="tx">고용 51.4가 석 달 연속 50 위를 지키는지<small>12개월 평균 49.3을 2.1p 웃돈 상태예요. 11월 6일 10월 고용보고서와 방향이 맞는지를 먼저 보고, 다음 ISM에서 50 위가 유지되면 서비스업 고용이 바닥을 지났다고 볼 수 있어요</small></div></div>
+</div>
+<div class="wp-preview">📌 다음 보고서에서는 위 4가지가 실제로 어떻게 됐는지 <b>하나씩 점검</b>해서 보여드릴게요.</div>
+
+<div class="next-box">🗓️ 다음 발표, 2026년 12월 4일 (금) 00:00 <span class="est">ISM 공식 일정 · 11월분 · 현지 12월 3일 10:00</span></div>
+
+<div class="v2sum"><span class="cap">한 문장 요약</span>다음 발표의 쟁점은 하나예요. <b>신규주문이 되돌아오면</b> 10월 둔화는 잡음이고, 수주잔고만 더 쌓이면 서비스업이 수요가 아니라 공급에 걸린 거예요.</div>
+
+<div class="sub-head">📚 ISM 서비스업 PMI란?</div>
+<div class="explain">
+  <h3>서비스 기업 구매담당자에게 "지난달보다 나아졌나요"를 묻는 설문이에요</h3>
+  <p>미국 공급관리협회(ISM)가 운수·금융·의료·소매·숙박 등 18개 서비스 업종의 구매·공급 책임자에게 매달 설문을 돌려 만드는 확산지수예요. 사업활동·신규주문·고용·공급자배송 네 항목의 답변을 '좋아짐 / 같음 / 나빠짐'으로 받아 같은 비중으로 묶어요. 업종별 비중은 그 업종이 GDP에서 차지하는 몫으로 가중해요.</p>
+  <p>50이 기준선이에요. <b>50 위면 지난달보다 좋아졌다는 응답이 더 많다</b>는 뜻이고, 아래면 반대예요. 54.5는 서비스 생산이 54.5만큼 늘었다는 게 아니라, 좋아졌다고 답한 비중이 나빠졌다는 비중보다 꽤 많다는 의미예요. 방향을 보는 지표라 수준 자체보다 전월 대비 변화가 중요해요.</p>
+  <p>읽을 때 예외가 두 가지 있어요. <b>공급자배송</b>은 방향이 뒤집힌 지수라 50 위면 '배송이 느려짐'을 뜻해요. 수요가 좋아 공급망이 밀릴 때도 올라가니 좋은 신호일 수도, 병목일 수도 있어요. <b>재고 심리</b>는 50 위면 '재고가 너무 많다고 느낀다'는 뜻이에요. 가격·수주잔고·수출주문·수입·재고는 PMI 계산에 들어가지 않는 참고 지수예요.</p>
+  <p>서비스업은 미국 경제의 약 70%를 차지해 제조업보다 체급이 큽니다. 다만 변동이 작아 시장 반응은 제조업 PMI보다 조용한 편이에요. ISM은 PMI 48.1 위면 경제 전체가 확장 중인 것으로 보고, 10월 54.5는 연 2.0% 실질 성장에 대응한다고 밝혔어요. 발표는 매달 셋째 영업일 미국 동부시간 10시(서머타임 해제 기간 한국시간 익일 0시)예요.</p>
+</div>
+
+<!--rnav-->
+<div class="rnav"><a class="prev off"><span class="av"></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">가장 최근 보고서예요</div></div></a><a class="next" href="../급등락/급등락_MARKET_2026.11.05.html"><span class="av mono">MA</span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">MARKET</div><div class="rs"><span class="tx DOWNM">-9.96%</span> · 선거 재배치 7종목 · 데이터센터 규제</div></div></a></div>
+<!--/rnav-->
+<div class="disclaimer">
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: 미국 공급관리협회(ISM) 「October 2026 Manufacturing ISM Report On Business」(PR Newswire 배포 전문 및 ISM 공식 PDF), FXStreet, Verified Investing, Reuters, IndustryWeek, Cappnotes·MarketAlleys·StockTitan 시장 마감 집계, FatTail(CME 연방기금선물), 한국경제 · macro-briefing 스킬이 자동 생성했습니다.
+</div>
+</div>
+</div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="경제지표/경제지표_ISM_SVC_2026.10_2026.11.05.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
+<!--rd-js-->
+<script>
+/* 가독성 레이어 v2.18 — 긴 문단 분리 + 나열형 블록 가로 스크롤 카드 */
+(function(){
+if(window.__rd)return;window.__rd=1;
+var Q=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+var kids=function(el){return Array.prototype.slice.call(el.children);};
+/* ① 긴 문단 분리 — 최상위 텍스트 노드의 문장 경계에서만 자른다(굵게·형광펜 안은 건드리지 않음) */
+function splitP(p){
+  if(p.closest('.hs,.cause,.hcard,.callout,.explain,.disclaimer,.kpi,.memo,.chart'))return;
+  if(p.textContent.length<200)return;
+  var groups=[[]],acc=0;
+  Array.prototype.slice.call(p.childNodes).forEach(function(n){
+    if(n.nodeType!==3){groups[groups.length-1].push(n);acc+=(n.textContent||'').length;return;}
+    var parts=n.textContent.replace(/([요다]\.)\s+(?=\S)/g,'$1\u0000').split('\u0000');
+    parts.forEach(function(t,i){
+      if(i>0&&acc>=120){groups.push([]);acc=0;}
+      else if(i>0){groups[groups.length-1].push(document.createTextNode(' '));}
+      groups[groups.length-1].push(document.createTextNode(t));acc+=t.length;
+    });
+  });
+  if(groups.length<2)return;
+  var last=groups[groups.length-1],len=last.reduce(function(a,n){return a+(n.textContent||'').length;},0);
+  if(len<40){groups.pop();var prev=groups[groups.length-1];prev.push(document.createTextNode(' '));last.forEach(function(n){prev.push(n);});}
+  if(groups.length<2)return;
+  groups.forEach(function(g,i){
+    var q=i===0?p:p.cloneNode(false);
+    if(i===0){while(p.firstChild)p.removeChild(p.firstChild);}else{q.classList.add('rd-s');}
+    g.forEach(function(n){q.appendChild(n);});
+    if(i>0){var ref=groups.__last||p;ref.parentNode.insertBefore(q,ref.nextSibling);groups.__last=q;}
+  });
+}
+Q('.body p, p.body-p').forEach(splitP);
+/* li "굵은 제목 — 설명" → 카드 제목/본문 */
+function liCard(li){
+  var f=li.firstChild;while(f&&f.nodeType===3&&!f.textContent.trim())f=f.nextSibling;
+  if(!f||f.nodeType!==1||f.tagName!=='B')return;
+  var nx=f.nextSibling;if(!nx||nx.nodeType!==3||!/^\s*[—–-]\s*/.test(nx.textContent))return;
+  nx.textContent=nx.textContent.replace(/^\s*[—–-]\s*/,'');
+  var h=document.createElement('span');h.className='rd-h';li.insertBefore(h,f);h.appendChild(f);
+  var x=document.createElement('span');x.className='rd-x';
+  while(h.nextSibling)x.appendChild(h.nextSibling);li.appendChild(x);
+}
+/* ③ 가로 스크롤 카드 */
+var all=[];
+function mk(box,items,wide){
+  if(items.length<2)return;
+  box.classList.add('hs');if(wide)box.classList.add('wide');
+  items.forEach(function(it){it.classList.add('hs-i');});
+  var nav=document.createElement('div');nav.className='hs-nav';
+  nav.innerHTML='<span class="cnt"><b>1</b> / '+items.length+'</span><span class="bar"><i></i></span><span class="hint">옆으로 넘겨보세요</span><button type="button" aria-label="이전">‹</button><button type="button" aria-label="다음">›</button>';
+  box.parentNode.insertBefore(nav,box.nextSibling);
+  var b=nav.querySelectorAll('button'),cnt=nav.querySelector('.cnt b'),bar=nav.querySelector('.bar i'),hint=nav.querySelector('.hint');
+  var step=function(){return items[0].getBoundingClientRect().width+10;};
+  function upd(){
+    var max=box.scrollWidth-box.clientWidth,i=Math.round(box.scrollLeft/step());
+    if(box.scrollLeft>=max-4)i=items.length-1;
+    var vis=Math.max(1,Math.floor((box.clientWidth+10)/step()));
+    cnt.textContent=Math.min(items.length,i+1);
+    bar.style.width=(max>0?Math.min(100,(box.scrollLeft+box.clientWidth)/box.scrollWidth*100):100)+'%';
+    b[0].disabled=box.scrollLeft<=4;b[1].disabled=box.scrollLeft>=max-4;
+    if(box.scrollLeft>8)hint.style.display='none';
+    nav.style.display=max>4?'':'none';
+  }
+  b[0].onclick=function(){box.scrollBy({left:-step(),behavior:'smooth'});};
+  b[1].onclick=function(){box.scrollBy({left:step(),behavior:'smooth'});};
+  box.addEventListener('scroll',upd,{passive:true});
+  all.push({box:box,upd:upd});
+}
+function wrapRun(run){ /* 연속 형제들을 div.hs로 묶는다 */
+  var w=document.createElement('div');run[0].parentNode.insertBefore(w,run[0]);
+  run.forEach(function(e){w.appendChild(e);});return w;
+}
+function runs(sel){ /* 같은 부모 아래 연속된 sel 형제 묶음 */
+  var out=[],seen=new Set();
+  Q(sel).forEach(function(e){
+    if(seen.has(e)||e.closest('.hs'))return;var r=[e];seen.add(e);var n=e.nextElementSibling;
+    while(n&&n.matches(sel)){r.push(n);seen.add(n);n=n.nextElementSibling;}
+    out.push(r);
+  });return out;
+}
+runs('.wgrp').forEach(function(r){
+  if(r.length>=2){mk(wrapRun(r),r,true);return;}
+  var g=r[0],ul=g.querySelector(':scope>ul');if(!ul)return;var li=kids(ul).filter(function(e){return e.tagName==='LI';});
+  if(li.length<5)return;g.classList.add('rd-flat');li.forEach(liCard);mk(ul,li);
+});
+Q('.tl').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('tli');});if(k.length>=3)mk(b,k,true);});
+Q('.cause-grid').forEach(function(b){var k=kids(b);if(k.length>=3)mk(b,k,true);});
+Q('.wp-list').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('wp');});if(k.length>=3)mk(b,k);});
+Q('.wlist').forEach(function(b){var k=kids(b).filter(function(e){return e.classList.contains('witem');});if(k.length>=3)mk(b,k);});
+runs('.stock-g').forEach(function(r){if(r.length>=2)mk(wrapRun(r),r,true);});
+Q('ul.dots').forEach(function(ul){
+  if(ul.closest('.hs'))return;var li=kids(ul);if(li.length<4)return;
+  var avg=li.reduce(function(a,e){return a+e.textContent.length;},0)/li.length;if(avg<50)return;
+  li.forEach(liCard);mk(ul,li);
+});
+/* 카드 줄을 화면 가장자리까지 넓힌다(본문 여백만큼 bleed) */
+function bleed(){
+  var pg=document.querySelector('.page')||document.body,pr=pg.getBoundingClientRect();
+  all.forEach(function(o){
+    var s=o.box.style;s.marginLeft=s.marginRight=s.paddingLeft=s.paddingRight='';
+    var r=o.box.getBoundingClientRect(),l=Math.max(0,Math.round(r.left-pr.left)),rr=Math.max(0,Math.round(pr.right-r.right));
+    s.setProperty('margin-left',-l+'px','important');s.setProperty('margin-right',-rr+'px','important');
+    s.setProperty('padding-left',l+'px','important');s.setProperty('padding-right',rr+'px','important');s.scrollPaddingLeft=l+'px';
+    o.upd();
+  });
+}
+/* ④ 긴 카드 접기 — 카드가 340px을 넘으면 300px까지만 보여주고 「더보기」 */
+function clamp(){
+  all.forEach(function(o){
+    o.box.style.alignItems='flex-start';  /* 늘어난 높이가 아니라 원래 높이로 판단 */
+    var cs=kids(o.box);var hs=cs.map(function(c){return c.scrollHeight;});
+    o.box.style.alignItems='';
+    cs.forEach(function(c,ix){
+      if(!c.classList.contains('hs-i')||c.querySelector(':scope>.rd-more'))return;
+      if(hs[ix]<=340)return;
+      c.classList.add('rd-clamp');
+      var b=document.createElement('button');b.type='button';b.className='rd-more';b.textContent='더보기 ⌄';
+      b.onclick=function(e){e.preventDefault();var op=c.classList.toggle('rd-open');b.textContent=op?'접기 ⌃':'더보기 ⌄';
+        o.box.classList.toggle('rd-has-open',!!o.box.querySelector('.rd-open'));o.upd();};
+      c.appendChild(b);
+    });
+  });
+}
+/* ⑥ 출처 접기 */
+Q('.source-note').forEach(function(s){
+  if(s.classList.contains('rd-src'))return;
+  var body=document.createElement('div');body.className='rd-src-body';
+  while(s.firstChild)body.appendChild(s.firstChild);
+  var b=document.createElement('button');b.type='button';b.className='rd-src-btn';b.textContent='출처 보기 ›';
+  b.onclick=function(){var op=s.classList.toggle('rd-open');b.textContent=op?'출처 접기 ‹':'출처 보기 ›';};
+  s.classList.add('rd-src');s.appendChild(b);s.appendChild(body);
+});
+/* ⑤ 목차 칩 + 읽기 진행 바 — .sec-head가 3개 이상이면 그것, 아니면 .sub-head(3~12개) */
+(function(){
+  var gnb=document.querySelector('.gnb');if(!gnb)return;
+  var hs=Q('.sec-head');var label=function(h){var l=h.querySelector('.l1');return (l||h).textContent;};
+  if(hs.length<3){hs=Q('.body .sub-head').filter(function(h){return !h.closest('.hs');});if(hs.length<3||hs.length>12)return;}
+  var toc=document.createElement('nav');toc.className='rd-toc';toc.setAttribute('aria-label','목차');
+  toc.innerHTML='<div class="rd-prog"></div><div class="rd-chips"></div>';
+  var chips=toc.querySelector('.rd-chips'),prog=toc.querySelector('.rd-prog'),links=[];
+  hs.forEach(function(h,i){
+    var t=label(h).replace(/^[^\p{L}\p{N}①-⑳]+/u,'').replace(/[,，\s]+$/,'').trim();
+    var tgt=h.closest('section')||h;if(!tgt.id)tgt.id='rd-s'+i;tgt.classList.add('rd-anchor');
+    var a=document.createElement('a');a.href='#'+tgt.id;a.textContent=t;chips.appendChild(a);links.push([a,tgt]);
+  });
+  gnb.parentNode.insertBefore(toc,gnb.nextSibling);
+  var setH=function(){document.documentElement.style.setProperty('--rd-gnb',gnb.offsetHeight+'px');};setH();addEventListener('resize',setH);
+  var cur=-1;
+  function onScroll(){
+    var de=document.documentElement,max=de.scrollHeight-innerHeight;
+    prog.style.width=(max>0?Math.min(100,scrollY/max*100):0)+'%';
+    var line=gnb.offsetHeight+toc.offsetHeight+24,k=-1;
+    links.forEach(function(p,i){if(p[1].getBoundingClientRect().top<=line)k=i;});
+    if(k!==cur){cur=k;links.forEach(function(p,i){p[0].classList.toggle('on',i===k);});
+      if(k>=0){var a=links[k][0];chips.scrollTo({left:a.offsetLeft-chips.clientWidth/2+a.offsetWidth/2,behavior:'smooth'});}}
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+function layout(){bleed();clamp();}
+layout();addEventListener('resize',bleed);addEventListener('load',layout);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout);
+})();
+</script>
+<!--/rd-js-->
+<!--ask-->
+<script src="../ask.js" defer></script>
+<!--/ask-->
+</body>
+</html>
