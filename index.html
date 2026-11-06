@@ -643,9 +643,21 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.11.05";   // ISM 서비스업 10월 경제지표 · 급등락 MARKET 7종목(선거 재배치) · VAL_DB 13종목 11/4 종가 갱신
+const LAST_UPDATED = "2026.11.06";   // IONQ·SMR 2026Q3 실적 2건 · 급등락 MARKET(미국 11/5 세션)·000660(한국 11/5) 2건 · VAL_DB 13종목 11/5 종가 갱신
 
 const REPORTS_DB = [
+  {
+    ticker: "IONQ", company: "IonQ", quarter: "2026 Q3",
+    report_date: "2026-11-06", created: "2026.11.06", verdict: "BEAT",
+    oneliner: "매출 $173.8M(+336%)으로 컨센 23% 상회, 연간 가이던스도 $505~515M로 올렸어요.",
+    file: "실적브리핑/실적브리핑_IONQ_2026Q3_2026.11.06.html"
+  },
+  {
+    ticker: "SMR", company: "NuScale Power", quarter: "2026 Q3",
+    report_date: "2026-11-06", created: "2026.11.06", verdict: "MISS",
+    oneliner: "매출 $281K로 컨센 91~97% 미달, TVA 계약은 또 안 나왔어요. 시총≈순현금이에요.",
+    file: "실적브리핑/실적브리핑_SMR_2026Q3_2026.11.06.html"
+  },
   {
     ticker: "SMR", company: "NuScale Power", quarter: "2026 Q3",
     report_date: "2026-11-06", created: "2026.11.03", verdict: "PREV", vlabel: "프리뷰",
@@ -866,8 +878,6 @@ const REPORTS_DB = [
 //                 화면은 항상 KST로 보여주고, 캘린더 일정은 이 값으로 만들어 해외에서도 현지시간 자동 변환된다.
 //   last_report : 직전 실제 발표일 (state.json의 last_report_date) — KPI '이번 분기 발표 n/13' 계산에 쓴다
 const UPCOMING_DB = [
-  { ticker: "IONQ", name: "IonQ", date: "2026-11-06", estimated: false, when: "amc", utc: "20261105T213000Z", last_report: "2026-08-07" },
-  { ticker: "SMR", name: "NuScale Power", date: "2026-11-06", estimated: false, when: "amc", utc: "20261105T220000Z", last_report: "2026-08-07" },
   { ticker: "CRWV", name: "CoreWeave", date: "2026-11-11", estimated: false, when: "amc", utc: "20261110T220000Z", last_report: "2026-08-12" },
   { ticker: "NVDA", name: "NVIDIA", date: "2026-11-26", estimated: true, when: null, utc: null, last_report: "2026-08-27" },
   { ticker: "MU", name: "Micron", date: "2026-12-17", estimated: true, when: null, utc: null, last_report: "2026-10-01" },
@@ -878,7 +888,9 @@ const UPCOMING_DB = [
   { ticker: "PLTR", name: "Palantir", date: "2027-02-02", estimated: true, when: null, utc: null, last_report: "2026-11-03" },
   { ticker: "GOOGL", name: "Alphabet", date: "2027-02-03", estimated: true, when: null, utc: null, last_report: "2026-10-29" },
   { ticker: "KO", name: "Coca-Cola", date: "2027-02-09", estimated: true, when: null, utc: null, last_report: "2026-10-27" },
-  { ticker: "O", name: "Realty Income", date: "2027-02-24", estimated: true, when: null, utc: null, last_report: "2026-11-03" }
+  { ticker: "O", name: "Realty Income", date: "2027-02-24", estimated: true, when: null, utc: null, last_report: "2026-11-03" },
+  { ticker: "IONQ", name: "IonQ", date: "2027-02-25", estimated: true, when: null, utc: null, last_report: "2026-11-06" },
+  { ticker: "SMR", name: "NuScale Power", date: "2027-02-26", estimated: true, when: null, utc: null, last_report: "2026-11-06" }
 ];
 
 
@@ -1128,7 +1140,7 @@ const MACRO_REPORTS_DB = [
 // 경제 지표 일정 (모든 날짜 한국시간 · tier 3=★★★ 2=★★ 1=★ · last_release=직전 발표일)
 const MACRO_UPCOMING_DB = [
   { id: "ADP", name: "ADP 민간고용", short: "ADP", period: "11월", date: "2026-12-02", estimated: true, utc: null, tier: 1, last_release: "2026-11-04" },
-  { id: "CLAIMS", name: "주간 신규실업수당", short: "실업수당", period: "주간", date: "2026-11-05", estimated: false, utc: "20261105T133000Z", tier: 1, last_release: null },
+  { id: "CLAIMS", name: "주간 신규실업수당", short: "실업수당", period: "주간", date: "2026-11-12", estimated: false, utc: "20261112T133000Z", tier: 1, last_release: "2026-11-05" },
   { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "10월", date: "2026-11-06", estimated: false, utc: "20261106T133000Z", tier: 3, last_release: "2026-10-02" },
   { id: "UMICH", name: "미시간대 소비자심리", short: "미시간대", period: "11월 예비", date: "2026-11-07", estimated: false, utc: "20261106T150000Z", tier: 1, last_release: null },
   { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "10월", date: "2026-11-10", estimated: false, utc: "20261110T133000Z", tier: 3, last_release: "2026-10-14" },
@@ -1260,16 +1272,16 @@ const WATCH_DB = [
     "투자 스프레드 170bp 유지 — 캡레이트 6.8%와 1년차 혼합 자본비용 5.0%의 간격",
     "부동산 손상차손의 정상화 — 3분기 $111.6M이 분기 평균(약 $72M)으로 돌아오는지",
     "2027년 가이던스와 데이터센터 비중 — ABR 1.0%의 확대 속도, $2.9B(2.9%) 차환 금리"]},
-  { key: "IONQ", name: "IonQ 2026 Q3 실적", date: "2026-11-06", type: "e", items: [
-    "연간 가이던스 $450~460M을 또 올리는지 — 컨센서스 $455M은 이미 범위 안",
-    "SkyWater 연결 효과 — Q3부터 합산되는 매출 규모와 통합 비용",
-    "RPO가 $485M에서 더 늘어나는지 — 신규 시스템 계약 발표 여부",
-    "현금 소진 속도 — 분기 OCF -$104M에서 더 커지는지, 현금·투자 $2.12B 유지"]},
-  { key: "SMR", name: "NuScale Power 2026 Q3 실적", date: "2026-11-06", type: "e", items: [
-    "TVA·ENTRA1 최종 계약(6~8GW) 발표 여부",
-    "매출 재개 여부 — Q3 매출이 $75K 수준을 벗어나는지",
-    "현금 소진 속도 — 현금·투자 $1.9B 유지 여부, 추가 증자 언급",
-    "신규 고객 파이프라인 — 데이터센터 전력 수요 관련 신규 MOU·FEED"]},
+  { key: "IONQ", name: "IonQ 2026 Q4 실적", date: "2027-02-25", type: "e", items: [
+    "4분기 매출이 역산 가이던스 $186.5~196.5M 구간에 드는지 — 발표 직전 컨센서스 $169.19M보다 13% 높은 자리예요",
+    "조정 EBITDA 적자가 -$133.6M에서 줄어드는지 — CFO가 S&P Global 컨센서스 -$127M을 수용했어요",
+    "매출총이익률이 21.9%에서 더 내려가는지 — SkyWater가 두 달이 아니라 온기로 반영되는 첫 분기예요",
+    "현금 소진이 한 분기짜리였는지 — 영업현금흐름 -$315.5M에 일회성 통합비용 $42.7M이 섞여 있었어요"]},
+  { key: "SMR", name: "NuScale Power 2026 Q4 실적", date: "2027-02-26", type: "e", items: [
+    "TVA PPA가 체결되는지, 그 다음 단계(선행 용역·OEM 계약)가 함께 나오는지 — PPA만으로는 매출이 생기지 않아요",
+    "두산 계약금액이 공개되고 장기 소재 재공품이 $69.7M에서 늘어나는지 — 현금이 재고로 바뀌는지의 증거예요",
+    "분기 영업현금 유출이 -$28.6M 수준에 머무는지 — 현금·투자 $1.86B 유지와 증자 재개 여부를 함께 봐요",
+    "회사가 실제로 가이던스를 제시하는지 — CFO가 '곧 줄 수 있기를 바란다'고 했어요"]},
   { key: "CRWV", name: "CoreWeave 2026 Q3 실적", date: "2026-11-11", type: "e", items: [
     "Q3 매출이 가이던스 상단 $3.6B을 넘는지 — 컨센서스($3.43B) 대비 폭",
     "Q3 조정 영업이익이 가이던스 $200~260M을 넘고 Q4 '10%대 초반 마진' 경로 유지",
@@ -1288,19 +1300,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 200.24, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 795.30, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
-  { ticker: "MSFT", price: 556.00, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
-  { ticker: "GOOGL", price: 289.02, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
-  { ticker: "AAPL", price: 349.59, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
-  { ticker: "PLTR", price: 171.63, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
-  { ticker: "KO", price: 95.87, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
-  { ticker: "ABBV", price: 294.77, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
-  { ticker: "O", price: 59.18, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
-  { ticker: "CRWV", price: 48.39, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 29.54, tgt: 62.28, eps_cur: -1.31, eps_next: -1.34, note: "적자 · 목표가 11.03 집계" },
-  { ticker: "SMR", price: 5.13, tgt: 11.07, eps_cur: -0.48, eps_next: -0.66, note: "" },
-  { ticker: "000660", price: 1396000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 181.84, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 658.73, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
+  { ticker: "MSFT", price: 536.21, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
+  { ticker: "GOOGL", price: 282.60, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
+  { ticker: "AAPL", price: 344.65, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
+  { ticker: "PLTR", price: 154.96, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
+  { ticker: "KO", price: 95.74, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
+  { ticker: "ABBV", price: 287.89, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
+  { ticker: "O", price: 59.49, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
+  { ticker: "CRWV", price: 43.63, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 26.49, tgt: 62.28, eps_cur: -1.31, eps_next: null, note: "적자 · 추정 10.15 집계 · FY27 확인 불가" },
+  { ticker: "SMR", price: 4.35, tgt: 10.38, eps_cur: -0.48, eps_next: -0.62, note: "적자 · 목표가 11.06 집계" },
+  { ticker: "000660", price: 1264000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1403,6 +1415,20 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
+  {
+    asset: "MARKET", name: "AI 매도 5종목", kind: "market", date: "2026-11-06",
+    chg: -17.16, chg_label: "-17.16%", price_label: "MU $658.73 · 나스닥 -5.52%", cause: "AI 설비투자 재평가",
+    oneliner: "지표는 전부 좋았는데 나스닥이 조정에 들어갔어요. 보유 7종목이 기준선을 넘었어요.",
+    spark: [1029.0, 989.04, 953.19, 914.13, 931.24, 878.84, 904.9, 896.07, 913.67, 856.49, 877.55, 903.7, 928.76, 983.23, 934.27, 884.74, 833.59, 855.1, 795.23, 658.73],
+    created: "2026.11.06", file: "급등락/급등락_MARKET_2026.11.06.html"
+  },
+  {
+    asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-11-05",
+    chg: -9.46, chg_label: "-9.46%", price_label: "1,264,000원", cause: "외국인 순매도",
+    oneliner: "미국 지수가 오른 날 외국인이 1조 5,121억원을 팔아 반도체만 무너졌어요.",
+    spark: [1681000, 1605000, 1443000, 1419000, 1262000, 1272000, 1277000, 1223000, 1294000, 1223000, 1277000, 1275000, 1341000, 1487000, 1526000, 1418000, 1472000, 1398000, 1396000, 1264000],
+    created: "2026.11.06", file: "급등락/급등락_000660_2026.11.05.html"
+  },
   {
     asset: "MARKET", name: "선거 재배치 7종목", kind: "market", date: "2026-11-04",
     chg: -9.96, chg_label: "-9.96%", price_label: "CRWV $48.39 ↔ MSFT +6.72%", cause: "데이터센터 규제",
