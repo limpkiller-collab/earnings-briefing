@@ -1,6 +1,7 @@
 /*
  * 마켓브리핑 — 보고서 질문하기 (ask.js v1, 2026-10-11 · 2026-11-01 구루전망/ 추가 — GAS v1.2와 짝)
  * 보고서 HTML에 <script src="../ask.js" defer></script> 한 줄로 붙는다.
+ * 2026-11-07: PC(넓은 화면 + 마우스)에서는 떠 있는 창 — 제목줄 드래그로 이동, 왼쪽 위 모서리로 크기 조절, 위치·크기 기억.
  * 서버: 마켓브리핑 Ask GAS 웹앱 (API 키는 GAS에만 있음 — 이 파일에는 비밀값 없음)
  * ASK_URL이 비어 있으면 데모 모드(비밀번호 000000, 가짜 답변)로 동작한다.
  */
@@ -105,6 +106,20 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   border-radius:20px 20px 0 0;max-width:760px;margin:0 auto;height:min(86vh,720px);display:flex;flex-direction:column;
   transform:translateY(101%);transition:transform .26s cubic-bezier(.32,.72,0,1);padding-bottom:env(safe-area-inset-bottom)}
 .sheet.on{transform:translateY(0)}
+/* ── PC: 떠 있는 창 (이동·크기 조절) ── */
+.sheet.float{right:auto;bottom:auto;margin:0;max-width:none;border-radius:16px;border:1px solid var(--g200);
+  box-shadow:0 16px 48px rgba(0,0,0,.35);transform:none;opacity:0;visibility:hidden;padding-bottom:0;overflow:hidden;
+  transition:opacity .16s,visibility .16s}
+.sheet.float.on{opacity:1;visibility:visible}
+.sheet.float .grab{display:none}
+.sheet.float .head{cursor:move;padding-top:14px;user-select:none;-webkit-user-select:none}
+.sheet.float .head .x{cursor:pointer}
+.sheet.float.moving{transition:none;user-select:none;-webkit-user-select:none}
+.sheet.float .pin-top{min-height:110px}
+.sheet.float .key{height:48px}
+.rz{display:none}
+.sheet.float .rz{display:block;position:absolute;left:0;top:0;width:20px;height:20px;cursor:nwse-resize;touch-action:none;z-index:1;
+  background:linear-gradient(315deg,transparent 0 55%,var(--g300) 55% 61%,transparent 61% 72%,var(--g300) 72% 78%,transparent 78%)}
 .grab{width:36px;height:4px;border-radius:4px;background:var(--g200);margin:10px auto 6px;flex:none}
 .head{display:flex;align-items:center;gap:8px;padding:6px 20px 10px;flex:none}
 .title{font-size:18px;font-weight:800;letter-spacing:-0.03em}
@@ -176,10 +191,11 @@ textarea::placeholder{color:var(--g400)}
 </style>
 <button class="fab" type="button" aria-label="이 보고서에 질문하기">💬 질문하기</button>
 <div class="dim"></div>
-<div class="sheet" role="dialog" aria-modal="true" aria-label="이 보고서에 질문하기">
+<div class="sheet" role="dialog" aria-label="이 보고서에 질문하기">
   <div class="grab"></div>
   <div class="head"><div class="title">이 보고서에 질문하기</div><button class="x" type="button" aria-label="닫기">✕</button></div>
   <div class="body" style="flex:1;display:flex;min-height:0"></div>
+  <div class="rz" aria-hidden="true" title="크기 조절"></div>
 </div>`;
 
   const $ = s => root.querySelector(s);
@@ -189,16 +205,90 @@ textarea::placeholder{color:var(--g400)}
   let spent = null, cap = 80;
   let suggestions = null;
 
+  /* ───────── PC 떠 있는 창: 위치·크기 ───────── */
+  const WIN_KEY = 'mb_ask_win';
+  const MIN_W = 340, MIN_H = 440, GAP = 8;
+  const floatMQ = window.matchMedia('(min-width: 768px) and (pointer: fine)');
+  let win = null;
+  try { win = JSON.parse(store.get(localStorage, WIN_KEY) || 'null'); } catch (e) { win = null; }
+  function clampWin(w) {
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const width = Math.min(Math.max(w.w, MIN_W), vw - GAP * 2);
+    const height = Math.min(Math.max(w.h, MIN_H), vh - GAP * 2);
+    return {
+      w: width, h: height,
+      x: Math.min(Math.max(w.x, GAP), vw - width - GAP),
+      y: Math.min(Math.max(w.y, GAP), vh - height - GAP),
+    };
+  }
+  function defaultWin() {
+    const w = 420, h = Math.min(640, window.innerHeight - 48);
+    return { w, h, x: window.innerWidth - w - 24, y: window.innerHeight - h - 24 };
+  }
+  function applyWin() {
+    win = clampWin(win || defaultWin());
+    Object.assign(sheet.style, { left: win.x + 'px', top: win.y + 'px', width: win.w + 'px', height: win.h + 'px' });
+  }
+  function saveWin() { store.set(localStorage, WIN_KEY, JSON.stringify(win)); }
+  function setMode() {
+    const f = floatMQ.matches;
+    sheet.classList.toggle('float', f);
+    if (f) applyWin();
+    else ['left', 'top', 'width', 'height'].forEach(k => { sheet.style[k] = ''; });
+    return f;
+  }
+  // 포인터 드래그 공통: 제목줄 = 이동, 왼쪽 위 모서리 = 크기 조절 (오른쪽·아래 변은 고정)
+  function dragger(handle, onMove) {
+    handle.addEventListener('pointerdown', e => {
+      if (!sheet.classList.contains('float') || e.button !== 0 || e.target.closest('.x')) return;
+      e.preventDefault();
+      const start = { px: e.clientX, py: e.clientY, ...win };
+      handle.setPointerCapture(e.pointerId);
+      sheet.classList.add('moving');
+      const move = ev => { win = clampWin(onMove(start, ev.clientX - start.px, ev.clientY - start.py)); applyWin(); };
+      const up = () => {
+        handle.removeEventListener('pointermove', move);
+        handle.removeEventListener('pointerup', up);
+        handle.removeEventListener('pointercancel', up);
+        sheet.classList.remove('moving');
+        saveWin();
+      };
+      handle.addEventListener('pointermove', move);
+      handle.addEventListener('pointerup', up);
+      handle.addEventListener('pointercancel', up);
+    });
+  }
+  dragger($('.head'), (s, dx, dy) => ({ w: s.w, h: s.h, x: s.x + dx, y: s.y + dy }));
+  dragger($('.rz'), (s, dx, dy) => {
+    const right = s.x + s.w, bottom = s.y + s.h;
+    const w = Math.min(Math.max(s.w - dx, MIN_W), right - GAP);
+    const h = Math.min(Math.max(s.h - dy, MIN_H), bottom - GAP);
+    return { w, h, x: right - w, y: bottom - h };
+  });
+  // 제목줄 더블클릭 = 기본 위치·크기로
+  $('.head').addEventListener('dblclick', e => {
+    if (!sheet.classList.contains('float') || e.target.closest('.x')) return;
+    win = defaultWin(); applyWin(); saveWin();
+  });
+  window.addEventListener('resize', () => { if (sheet.classList.contains('on')) setMode(); });
+
   /* ───────── 열기 · 닫기 ───────── */
   let prevOverflow = '';
+  let locked = false;
   function open() {
-    prevOverflow = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = 'hidden';
-    dim.classList.add('on'); sheet.classList.add('on'); fab.classList.add('hide');
+    const f = setMode();
+    // 떠 있는 창은 뒤 페이지를 계속 보고 스크롤할 수 있게 둔다
+    if (!f) {
+      prevOverflow = document.documentElement.style.overflow;
+      document.documentElement.style.overflow = 'hidden';
+      locked = true;
+      dim.classList.add('on');
+    }
+    sheet.classList.add('on'); fab.classList.add('hide');
     if (getToken()) showChat(); else showPin();
   }
   function close() {
-    document.documentElement.style.overflow = prevOverflow;
+    if (locked) { document.documentElement.style.overflow = prevOverflow; locked = false; }
     dim.classList.remove('on'); sheet.classList.remove('on'); fab.classList.remove('hide');
     if (document.activeElement) document.activeElement.blur && document.activeElement.blur();
   }
@@ -210,7 +300,7 @@ textarea::placeholder{color:var(--g400)}
   if (window.visualViewport) {
     const vv = window.visualViewport;
     const fit = () => {
-      if (!sheet.classList.contains('on')) return;
+      if (!sheet.classList.contains('on') || sheet.classList.contains('float')) return;
       const kb = window.innerHeight - vv.height - vv.offsetTop;
       sheet.style.bottom = Math.max(0, kb) + 'px';
       sheet.style.height = kb > 80 ? Math.round(vv.height * 0.94) + 'px' : '';
