@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """매수 시그널 점수(v2) 일일 계산기 — 표준 라이브러리만 사용.
 
-데이터: S&P 500·VIX = Yahoo(^GSPC·^VIX) 우선, 실패 시 FRED(SP500·VIXCLS)
+데이터: S&P 500·VIX = CBOE(_SPX·_VIX) → Yahoo(^GSPC·^VIX) → FRED(SP500·VIXCLS) 순
       하이일드 = FRED(BAMLH0A0HYM2, 원래 1영업일 늦게 게시) · 공포탐욕 = CNN Fear&Greed.
 출력: signal/score.json (대시보드가 읽음), signal/state.json (푸시 중복 방지).
 종료코드 0. 푸시가 필요하면 stdout 마지막 줄에 'PUSH\t제목\t본문\tbadge|nobadge' 를 찍는다.
@@ -12,6 +12,8 @@
 구간: 0~3 대기 · 4~7 1차(1/3) · 8+ 2차(1/3) · 1차 후 확인신호 → 3차(1/3)
 
 변경이력(최신 3개)
+  2026-11-07b CBOE 공식 일봉(delayed_quotes/charts/historical)을 1순위로 추가. GitHub 러너에서 Yahoo가 429로
+              막혀(같은 날 수동 실행에서 확인) 직전 수정이 효과가 없었다. CBOE 값은 FRED 캐시 420거래일과 전부 일치.
   2026-11-07  S&P·VIX 1순위를 FRED → Yahoo로 교체. FRED SP500은 다음 영업일 낮(미 중부)에야 게시돼
               KST 아침 실행 시 기준일이 매일 1거래일씩 밀렸다(10/30~11/07 실행분 전부). Yahoo 실패(429 등) 시
               기존처럼 FRED → 캐시 순으로 내려간다. 장중·마감 직후 미확정 봉은 제외. score.json에 src(지표별 출처·최종일) 추가.
@@ -60,6 +62,26 @@ def fred(series):
     return out
 
 
+def settled(day, now=None):
+    """당일 봉은 16:30 ET 이후에만 확정으로 본다."""
+    now = now or dt.datetime.now(ET)
+    return not (day == now.date() and now.time() < SETTLE)
+
+
+def cboe(symbol):
+    """CBOE 공식 일봉 {YYYY-MM-DD: close}. symbol 예: _SPX, _VIX"""
+    d = json.loads(get(f"https://cdn.cboe.com/api/global/delayed_quotes/charts/historical/{symbol}.json",
+                       {**BROWSER_UA, "Accept": "application/json", "Referer": "https://www.cboe.com/", "Origin": "https://www.cboe.com"}))
+    out = {}
+    for r in d["data"]:
+        c = float(r["close"])
+        if c > 0 and settled(dt.date.fromisoformat(r["date"])):
+            out[r["date"]] = round(c, 2)
+    if not out:
+        raise RuntimeError("CBOE 빈 응답")
+    return dict(sorted(out.items())[-500:])
+
+
 def yahoo(symbol):
     """일봉 종가 {YYYY-MM-DD(ET): close}. query1 → query2 순. 당일 봉은 16:30 ET 이후에만 채택."""
     q = urllib.request.quote(symbol); last = None
@@ -72,12 +94,12 @@ def yahoo(symbol):
     else:
         raise last
     r = d["chart"]["result"][0]; ts = r["timestamp"]; cl = r["indicators"]["quote"][0]["close"]
-    now = dt.datetime.now(ET); out = {}
+    out = {}
     for t, c in zip(ts, cl):
         if c is None:
             continue
         day = dt.datetime.fromtimestamp(t, ET).date()
-        if day == now.date() and now.time() < SETTLE:
+        if not settled(day):
             continue   # 장중·마감 직후 봉은 미확정
         out[day.isoformat()] = round(c, 2)
     if not out:
@@ -94,10 +116,10 @@ def cnn_fg():
 
 
 def load_series(cache, errors):
-    """S&P·VIX는 Yahoo → FRED, HY·F&G는 단일 소스. 모두 실패하면 캐시. 결과를 캐시에 병합해 돌려준다."""
+    """S&P·VIX는 CBOE → Yahoo → FRED, HY·F&G는 단일 소스. 모두 실패하면 캐시. 결과를 캐시에 병합해 돌려준다."""
     srcs = {
-        "spx": [("Yahoo ^GSPC", lambda: yahoo("^GSPC")), ("FRED SP500", lambda: fred("SP500"))],
-        "vix": [("Yahoo ^VIX", lambda: yahoo("^VIX")), ("FRED VIXCLS", lambda: fred("VIXCLS"))],
+        "spx": [("CBOE _SPX", lambda: cboe("_SPX")), ("Yahoo ^GSPC", lambda: yahoo("^GSPC")), ("FRED SP500", lambda: fred("SP500"))],
+        "vix": [("CBOE _VIX", lambda: cboe("_VIX")), ("Yahoo ^VIX", lambda: yahoo("^VIX")), ("FRED VIXCLS", lambda: fred("VIXCLS"))],
         "hy": [("FRED BAMLH0A0HYM2", lambda: fred("BAMLH0A0HYM2"))],
         "fg": [("CNN F&G", lambda: cnn_fg()[0])],
     }
