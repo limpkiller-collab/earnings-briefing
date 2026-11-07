@@ -643,7 +643,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.11.06";   // IONQ·SMR 2026Q3 실적 2건 · 급등락 MARKET(미국 11/5 세션)·000660(한국 11/5) 2건 · VAL_DB 13종목 11/5 종가 갱신
+const LAST_UPDATED = "2026.11.07";   // 경제지표 NFP 10월 1건 · 급등락 MARKET(미국 11/6 세션)·000660(한국 11/6) 2건 · VAL_DB 13종목 11/6 종가 갱신
 
 const REPORTS_DB = [
   {
@@ -898,6 +898,13 @@ const UPCOMING_DB = [
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
   {
+    id: "NFP", name: "고용보고서(NFP)", period: "2026년 10월", category: "고용", tier: 3,
+    report_date: "2026-11-06", created: "2026.11.07", verdict: "NEUT", vlabel: "과열",
+    surprise: { text: "예측 +10.0만", cls: "up" },
+    oneliner: "취업자 +16.5만으로 예측의 두 배 반, 실업률 4.1%. 12월 인상 확률이 78%로 올랐어요.",
+    file: "경제지표/경제지표_NFP_2026.10_2026.11.07.html"
+  },
+  {
     id: "ISM_SVC", name: "ISM 서비스업 PMI", period: "2026년 10월", category: "심리", tier: 2,
     report_date: "2026-11-05", created: "2026.11.05", verdict: "NEUT", vlabel: "둔화",
     surprise: { text: "예측 -0.3p", cls: "down" },
@@ -1141,8 +1148,8 @@ const MACRO_REPORTS_DB = [
 const MACRO_UPCOMING_DB = [
   { id: "ADP", name: "ADP 민간고용", short: "ADP", period: "11월", date: "2026-12-02", estimated: true, utc: null, tier: 1, last_release: "2026-11-04" },
   { id: "CLAIMS", name: "주간 신규실업수당", short: "실업수당", period: "주간", date: "2026-11-12", estimated: false, utc: "20261112T133000Z", tier: 1, last_release: "2026-11-05" },
-  { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "10월", date: "2026-11-06", estimated: false, utc: "20261106T133000Z", tier: 3, last_release: "2026-10-02" },
-  { id: "UMICH", name: "미시간대 소비자심리", short: "미시간대", period: "11월 예비", date: "2026-11-07", estimated: false, utc: "20261106T150000Z", tier: 1, last_release: null },
+  { id: "NFP", name: "고용보고서(NFP)", short: "고용보고서", period: "11월", date: "2026-12-04", estimated: true, utc: "20261204T133000Z", tier: 3, last_release: "2026-11-06" },
+  { id: "UMICH", name: "미시간대 소비자심리", short: "미시간대", period: "11월 확정", date: "2026-11-25", estimated: true, utc: null, tier: 1, last_release: "2026-11-07" },
   { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "10월", date: "2026-11-10", estimated: false, utc: "20261110T133000Z", tier: 3, last_release: "2026-10-14" },
   { id: "HOMESALES", name: "기존주택 판매", short: "주택판매", period: "10월", date: "2026-11-13", estimated: false, utc: "20261112T150000Z", tier: 1, last_release: null },
   { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "10월", date: "2026-11-13", estimated: false, utc: "20261113T133000Z", tier: 2, last_release: "2026-10-15" },
@@ -1168,11 +1175,11 @@ const MACRO_UPCOMING_DB = [
 
 // 다음 발표 체크포인트 (skills가 두 state.json의 watchpoints를 동기화 · 발표 가까운 순 3건 표시)
 const WATCH_DB = [
-  { key: "NFP", name: "고용보고서(NFP) 10월", date: "2026-11-06", type: "m", items: [
-    "9월 +2.9만이 또 하향 수정되는지 — 7·8월이 이미 합계 6.0만 깎였어요",
-    "실업률 4.2%가 4.3%로 올라가는지 — 참가율 상승 때문이 아니라 고용 감소 때문이면 의미가 달라요",
-    "참가율 61.8% 상승이 유지되는지 — 1월 대비로는 아직 -0.3%p예요",
-    "금융활동 -7천 감소가 이어지는지 — 보험 고용은 2025년 5월 이후 9만명 줄었어요"]},
+  { key: "NFP", name: "고용보고서(NFP) 11월", date: "2026-12-04", type: "m", items: [
+    "상향 수정이 한 번으로 끝나는지 — 10월 +16.5만도 깎이는지, 9월 +6.0만이 다시 수정되는지",
+    "전문·사업서비스 +7만이 이어지는지 — 헬스케어 단독 의존 구조로 되돌아가는지",
+    "임금 상승률 3.1%가 물가를 다시 넘어서는지 — 11월 10일 10월 CPI와의 격차가 관건이에요",
+    "12월 회의 결과와 실업률 4.1%의 방향 — 경제적 이유 시간제 480만 명이 더 늘어나는지"]},
   { key: "JOLTS", name: "JOLTs 구인건수 10월", date: "2026-12-02", type: "m", items: [
     "구인 752.3만건이 수정으로 깎이는지 — 8월이 11.1만건 상향됐듯 반대 방향 수정도 흔해요",
     "퇴직 336.5만건·2.1%가 더 올라가는지 — 2.2%면 2024년 이후 처음이에요",
@@ -1300,19 +1307,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 181.84, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 658.73, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
-  { ticker: "MSFT", price: 536.21, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
-  { ticker: "GOOGL", price: 282.60, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
-  { ticker: "AAPL", price: 344.65, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
-  { ticker: "PLTR", price: 154.96, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
-  { ticker: "KO", price: 95.74, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
-  { ticker: "ABBV", price: 287.89, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
-  { ticker: "O", price: 59.49, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
-  { ticker: "CRWV", price: 43.63, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
-  { ticker: "IONQ", price: 26.49, tgt: 62.28, eps_cur: -1.31, eps_next: null, note: "적자 · 추정 10.15 집계 · FY27 확인 불가" },
-  { ticker: "SMR", price: 4.35, tgt: 10.38, eps_cur: -0.48, eps_next: -0.62, note: "적자 · 목표가 11.06 집계" },
-  { ticker: "000660", price: 1264000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 186.71, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 690.43, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
+  { ticker: "MSFT", price: 530.62, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
+  { ticker: "GOOGL", price: 284.68, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
+  { ticker: "AAPL", price: 342.42, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
+  { ticker: "PLTR", price: 160.35, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
+  { ticker: "KO", price: 95.68, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
+  { ticker: "ABBV", price: 291.47, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
+  { ticker: "O", price: 59.04, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
+  { ticker: "CRWV", price: 46.34, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "IONQ", price: 32.60, tgt: 62.28, eps_cur: -1.31, eps_next: null, note: "적자 · 추정 10.15 집계 · FY27 확인 불가" },
+  { ticker: "SMR", price: 5.08, tgt: 10.38, eps_cur: -0.48, eps_next: -0.62, note: "적자 · 목표가 11.06 집계" },
+  { ticker: "000660", price: 1132000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1415,6 +1422,20 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
+  {
+    asset: "MARKET", name: "AI 되돌림 5종목", kind: "market", date: "2026-11-07",
+    chg: 6.14, chg_label: "+6.14%", price_label: "CRWV $46.34 · 나스닥 +1.09%", cause: "과매도 되돌림",
+    oneliner: "전날 깊게 맞은 순서대로 되돌렸는데 거래량은 평균을 밑돌았어요.",
+    spark: [80.26, 77.81, 65.78, 69.69, 61.39, 61.12, 62.13, 61.82, 55.6, 54.24, 55.19, 59.57, 63.93, 60.74, 54.87, 50.15, 53.74, 48.42, 43.66, 46.34],
+    created: "2026.11.07", file: "급등락/급등락_MARKET_2026.11.07.html"
+  },
+  {
+    asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-11-06",
+    chg: -10.44, chg_label: "-10.44%", price_label: "1,132,000원", cause: "외국인 순매도",
+    oneliner: "외국인이 하루에 1조 8,227억원을 팔아 장 시작 3분 만에 서킷브레이커가 걸렸어요.",
+    spark: [1605000, 1443000, 1419000, 1262000, 1272000, 1277000, 1223000, 1294000, 1223000, 1277000, 1275000, 1341000, 1487000, 1526000, 1418000, 1472000, 1398000, 1396000, 1264000, 1132000],
+    created: "2026.11.07", file: "급등락/급등락_000660_2026.11.06.html"
+  },
   {
     asset: "MARKET", name: "AI 매도 5종목", kind: "market", date: "2026-11-06",
     chg: -17.16, chg_label: "-17.16%", price_label: "MU $658.73 · 나스닥 -5.52%", cause: "AI 설비투자 재평가",
