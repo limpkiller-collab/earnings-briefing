@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """매수 시그널 점수(v2) 일일 계산기 — 표준 라이브러리만 사용.
 
-데이터: FRED(SP500·VIXCLS·BAMLH0A0HYM2) + CNN Fear&Greed.
+데이터: S&P 500·VIX = Yahoo(^GSPC·^VIX) 우선, 실패 시 FRED(SP500·VIXCLS)
+      하이일드 = FRED(BAMLH0A0HYM2, 원래 1영업일 늦게 게시) · 공포탐욕 = CNN Fear&Greed.
 출력: signal/score.json (대시보드가 읽음), signal/state.json (푸시 중복 방지).
 종료코드 0. 푸시가 필요하면 stdout 마지막 줄에 'PUSH\t제목\t본문\tbadge|nobadge' 를 찍는다.
 
@@ -9,8 +10,17 @@
   HY OAS ≥ 400bp 3 · HY 반전(60일 고점-50bp) 3 · 고점대비 ≤-8% 2 · 일봉 RSI ≤35 2
   F&G ≤15 2 · 주봉 RSI ≤40 1 · 20일 수익률 ≤-10% 1
 구간: 0~3 대기 · 4~7 1차(1/3) · 8+ 2차(1/3) · 1차 후 확인신호 → 3차(1/3)
+
+변경이력(최신 3개)
+  2026-11-07  S&P·VIX 1순위를 FRED → Yahoo로 교체. FRED SP500은 다음 영업일 낮(미 중부)에야 게시돼
+              KST 아침 실행 시 기준일이 매일 1거래일씩 밀렸다(10/30~11/07 실행분 전부). Yahoo 실패(429 등) 시
+              기존처럼 FRED → 캐시 순으로 내려간다. 장중·마감 직후 미확정 봉은 제외. score.json에 src(지표별 출처·최종일) 추가.
 """
 import csv, io, json, os, sys, time, datetime as dt, urllib.request
+from zoneinfo import ZoneInfo
+
+ET = ZoneInfo("America/New_York")
+SETTLE = dt.time(16, 30)   # 마감(16:00 ET) 후 이 시각 전의 당일 봉은 미확정으로 보고 버린다
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "score.json")
@@ -51,12 +61,27 @@ def fred(series):
 
 
 def yahoo(symbol):
-    d = json.loads(get(f"https://query1.finance.yahoo.com/v8/finance/chart/{urllib.request.quote(symbol)}?range=2y&interval=1d", BROWSER_UA))
+    """일봉 종가 {YYYY-MM-DD(ET): close}. query1 → query2 순. 당일 봉은 16:30 ET 이후에만 채택."""
+    q = urllib.request.quote(symbol); last = None
+    for host in ("query1", "query2"):
+        try:
+            d = json.loads(get(f"https://{host}.finance.yahoo.com/v8/finance/chart/{q}?range=2y&interval=1d", BROWSER_UA, tries=1))
+            break
+        except Exception as e:
+            last = e
+    else:
+        raise last
     r = d["chart"]["result"][0]; ts = r["timestamp"]; cl = r["indicators"]["quote"][0]["close"]
-    out = {}
+    now = dt.datetime.now(ET); out = {}
     for t, c in zip(ts, cl):
-        if c is not None:
-            out[dt.datetime.fromtimestamp(t, dt.timezone(dt.timedelta(hours=-4))).strftime("%Y-%m-%d")] = round(c, 2)
+        if c is None:
+            continue
+        day = dt.datetime.fromtimestamp(t, ET).date()
+        if day == now.date() and now.time() < SETTLE:
+            continue   # 장중·마감 직후 봉은 미확정
+        out[day.isoformat()] = round(c, 2)
+    if not out:
+        raise RuntimeError("Yahoo 빈 응답")
     return out
 
 
@@ -69,19 +94,19 @@ def cnn_fg():
 
 
 def load_series(cache, errors):
-    """FRED → (S&P·VIX는 Yahoo 대체) → 캐시 순. 결과를 캐시에 병합해 돌려준다."""
+    """S&P·VIX는 Yahoo → FRED, HY·F&G는 단일 소스. 모두 실패하면 캐시. 결과를 캐시에 병합해 돌려준다."""
     srcs = {
-        "spx": [("FRED SP500", lambda: fred("SP500")), ("Yahoo ^GSPC", lambda: yahoo("^GSPC"))],
-        "vix": [("FRED VIXCLS", lambda: fred("VIXCLS")), ("Yahoo ^VIX", lambda: yahoo("^VIX"))],
+        "spx": [("Yahoo ^GSPC", lambda: yahoo("^GSPC")), ("FRED SP500", lambda: fred("SP500"))],
+        "vix": [("Yahoo ^VIX", lambda: yahoo("^VIX")), ("FRED VIXCLS", lambda: fred("VIXCLS"))],
         "hy": [("FRED BAMLH0A0HYM2", lambda: fred("BAMLH0A0HYM2"))],
         "fg": [("CNN F&G", lambda: cnn_fg()[0])],
     }
-    out, stale = {}, []
+    out, stale, src = {}, [], {}
     for key, cands in srcs.items():
-        got = None
+        got, used = None, "cache"
         for name, fn in cands:
             try:
-                got = fn(); break
+                got = fn(); used = name; break
             except Exception as e:
                 errors.append(f"{name} 실패: {str(e)[:80]}")
         merged = dict(cache.get(key, {}))
@@ -89,7 +114,8 @@ def load_series(cache, errors):
         else: stale.append(key)
         keys = sorted(merged)[-420:]
         out[key] = {k: merged[k] for k in keys}
-    return out, stale
+        src[key] = dict(name=used, last=keys[-1] if keys else None)
+    return out, stale, src
 
 
 def rsi(vals, n=14):
@@ -118,7 +144,7 @@ def ffill(series, dates):
 def main():
     errors = []
     cache = json.load(open(CACHE)) if os.path.exists(CACHE) else {}
-    ser, stale = load_series(cache, errors)
+    ser, stale, src = load_series(cache, errors)
     json.dump(ser, open(CACHE, "w"), separators=(",", ":"))
     spx, vix, hy, fg = ser["spx"], ser["vix"], ser["hy"], ser["fg"]
     if not spx:
@@ -183,7 +209,7 @@ def main():
         asof=dates[i], px=round(px[i], 2), dd=round(DD[i] * 100, 2), vix=VIX[i], hy_bp=round(HY[i] * 100) if HY[i] is not None else None,
         fg=round(FG[i], 1) if FG[i] is not None else None, fg_live=round(fg_now, 1) if fg_now is not None else None,
         score=score, max=MAXW, t1=T1, t2=T2, tier=tier, confirm=confirm, vix_cross=vix_cross,
-        signals=sig, history=hist, stale=stale, errors=errors)
+        signals=sig, history=hist, stale=stale, errors=errors, src=src)
     json.dump(out, open(OUT, "w"), ensure_ascii=False, indent=1)
 
     # 푸시: 매일 재산정 결과를 점수와 함께 보낸다. 구간 상승·확인 신호 신규 점등은 제목에서 강조
@@ -207,6 +233,7 @@ def main():
     body = f"{dates[i][5:].replace('-', '/')} 종가 기준 · {delta} · 1차 {T1}점 / 2차 {T2}점" + (f" · 켜진 신호: {on_names}" if on_names else "")
     push = (title, body, badge)
     json.dump(dict(tier=tier, confirm=confirm, score=score, asof=dates[i]), open(STATE, "w"))
+    print("출처:", " · ".join(f"{k}={v['name']}({v['last']})" for k, v in src.items()))
     print(f"{dates[i]} S&P {px[i]:.0f} DD {DD[i]*100:.1f}% F&G {FG[i]} VIX {VIX[i]} HY {out['hy_bp']}bp → 점수 {score}/{MAXW} (구간 {tier}, 확인 {confirm})")
     for e in errors: print("WARN", e, file=sys.stderr)
     if push:
