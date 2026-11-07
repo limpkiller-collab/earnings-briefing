@@ -1,6 +1,6 @@
 {
  "version": "v2",
- "generated": "2026-11-07 11:15 KST",
+ "generated": "2026-11-07 16:47 KST",
  "asof": "2026-11-05",
  "px": 7353.73,
  "dd": -5.95,
@@ -3235,5 +3235,26 @@
   }
  ],
  "stale": [],
- "errors": []
+ "errors": [
+  "Yahoo ^GSPC 실패: HTTP Error 429: Too Many Requests",
+  "Yahoo ^VIX 실패: HTTP Error 429: Too Many Requests"
+ ],
+ "src": {
+  "spx": {
+   "name": "FRED SP500",
+   "last": "2026-11-05"
+  },
+  "vix": {
+   "name": "FRED VIXCLS",
+   "last": "2026-11-05"
+  },
+  "hy": {
+   "name": "FRED BAMLH0A0HYM2",
+   "last": "2026-11-05"
+  },
+  "fg": {
+   "name": "CNN F&G",
+   "last": "2026-11-06"
+  }
+ }
 }
