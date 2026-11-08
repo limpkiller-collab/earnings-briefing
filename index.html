@@ -643,9 +643,15 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.11.07";   // 월간리뷰 2026-10 투자·가계 2편 · 경제지표 NFP 10월 1건 · 급등락 MARKET(미국 11/6 세션)·000660(한국 11/6) 2건 · VAL_DB 13종목 11/6 종가 갱신
+const LAST_UPDATED = "2026.11.08";   // 실적 프리뷰 CRWV 2026Q3(D-3) 1건 · VAL_DB CRWV 갱신(11/6 확정 종가 $46.40·목표가 $131.53·FY26/27 EPS 추정) · 경제지표·급등락 신규 없음
 
 const REPORTS_DB = [
+  {
+    ticker: "CRWV", company: "CoreWeave", quarter: "2026 Q3",
+    report_date: "2026-11-11", created: "2026.11.08", verdict: "PREV", vlabel: "프리뷰",
+    oneliner: "매출은 가이던스와 겹쳐요. 승부는 조정 영업이익 $200~260M과 이자비용이에요.",
+    file: "실적브리핑/실적프리뷰_CRWV_2026Q3_2026.11.08.html"
+  },
   {
     ticker: "IONQ", company: "IonQ", quarter: "2026 Q3",
     report_date: "2026-11-06", created: "2026.11.06", verdict: "BEAT",
@@ -1290,7 +1296,7 @@ const WATCH_DB = [
     "분기 영업현금 유출이 -$28.6M 수준에 머무는지 — 현금·투자 $1.86B 유지와 증자 재개 여부를 함께 봐요",
     "회사가 실제로 가이던스를 제시하는지 — CFO가 '곧 줄 수 있기를 바란다'고 했어요"]},
   { key: "CRWV", name: "CoreWeave 2026 Q3 실적", date: "2026-11-11", type: "e", items: [
-    "Q3 매출이 가이던스 상단 $3.6B을 넘는지 — 컨센서스($3.43B) 대비 폭",
+    "Q3 매출이 가이던스 상단 $3.6B을 넘는지 — 컨센서스($3.54B) 대비 폭",
     "Q3 조정 영업이익이 가이던스 $200~260M을 넘고 Q4 '10%대 초반 마진' 경로 유지",
     "이자비용이 가이던스 $860~940M 안에 들어오는지, 총차입금 $51.6B 증가 속도",
     "가동 전력 연말 1.85GW 경로(Q3 약 1.7GW), 계약 전력 4.2GW 확대 여부",
@@ -1316,7 +1322,7 @@ const VAL_DB = [
   { ticker: "KO", price: 95.68, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
   { ticker: "ABBV", price: 291.47, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
   { ticker: "O", price: 59.04, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
-  { ticker: "CRWV", price: 46.34, tgt: 143.26, eps_cur: -3.81, eps_next: -1.68, note: "" },
+  { ticker: "CRWV", price: 46.40, tgt: 131.53, eps_cur: -3.99, eps_next: -2.05, note: "적자 · 추정 11.04 집계" },
   { ticker: "IONQ", price: 32.60, tgt: 62.28, eps_cur: -1.31, eps_next: null, note: "적자 · 추정 10.15 집계 · FY27 확인 불가" },
   { ticker: "SMR", price: 5.08, tgt: 10.38, eps_cur: -0.48, eps_next: -0.62, note: "적자 · 목표가 11.06 집계" },
   { ticker: "000660", price: 1132000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
