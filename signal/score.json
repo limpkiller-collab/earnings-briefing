@@ -1,13 +1,13 @@
 {
  "version": "v2",
- "generated": "2026-11-07 16:52 KST",
- "asof": "2026-11-06",
- "px": 7376.86,
- "dd": -5.65,
- "vix": 25.64,
- "hy_bp": 348,
- "fg": 22.1,
- "fg_live": 22.1,
+ "generated": "2026-11-10 13:16 KST",
+ "asof": "2026-11-09",
+ "px": 7549.94,
+ "dd": -3.44,
+ "vix": 19.92,
+ "hy_bp": 342,
+ "fg": 31.7,
+ "fg_live": 31.7,
  "score": 0,
  "max": 14,
  "t1": 4,
@@ -21,17 +21,17 @@
    "label": "하이일드 스프레드",
    "cond": "400bp 이상",
    "w": 3,
-   "value": 348.0,
+   "value": 342.0,
    "unit": "bp",
    "on": false,
-   "gap": 52.0
+   "gap": 58.0
   },
   {
    "key": "hy_turn",
    "label": "하이일드 스프레드 반전",
    "cond": "60일 고점에서 50bp 축소",
    "w": 3,
-   "value": 0.0,
+   "value": 6.0,
    "unit": "bp 축소",
    "on": false,
    "gap": null,
@@ -42,65 +42,53 @@
    "label": "고점 대비 하락",
    "cond": "-8% 이하",
    "w": 2,
-   "value": -5.7,
+   "value": -3.4,
    "unit": "%",
    "on": false,
-   "gap": 2.3
+   "gap": 4.6
   },
   {
    "key": "drsi",
    "label": "일봉 RSI(14)",
    "cond": "35 이하",
    "w": 2,
-   "value": 35.1,
+   "value": 45.8,
    "unit": "",
    "on": false,
-   "gap": 0.1
+   "gap": 10.8
   },
   {
    "key": "fg",
    "label": "공포·탐욕 지수",
    "cond": "15 이하",
    "w": 2,
-   "value": 22.1,
+   "value": 31.7,
    "unit": "",
    "on": false,
-   "gap": 7.1
+   "gap": 16.7
   },
   {
    "key": "wrsi",
    "label": "주봉 RSI(14)",
    "cond": "40 이하",
    "w": 1,
-   "value": 45.0,
+   "value": 52.0,
    "unit": "",
    "on": false,
-   "gap": 5.0
+   "gap": 12.0
   },
   {
    "key": "ret20",
    "label": "20일 수익률",
    "cond": "-10% 이하",
    "w": 1,
-   "value": -5.6,
+   "value": -3.3,
    "unit": "%",
    "on": false,
-   "gap": 4.4
+   "gap": 6.7
   }
  ],
  "history": [
-  {
-   "date": "2025-10-23",
-   "px": 6738.44,
-   "score": 0,
-   "hy": 296.0,
-   "hy_turn": 22.0,
-   "dd": -0.2,
-   "drsi": 58.3,
-   "fg": 27.6,
-   "wrsi": 65.0,
-   "ret20": 2.0
-  },
   {
    "date": "2025-10-24",
    "px": 6791.69,
@@ -3225,13 +3213,25 @@
    "date": "2026-11-06",
    "px": 7376.86,
    "score": 0,
-   "hy": 348.0,
-   "hy_turn": 0.0,
+   "hy": 342.0,
+   "hy_turn": 6.0,
    "dd": -5.7,
    "drsi": 35.1,
-   "fg": 22.1,
+   "fg": 24.4,
    "wrsi": 45.0,
    "ret20": -5.6
+  },
+  {
+   "date": "2026-11-09",
+   "px": 7549.94,
+   "score": 0,
+   "hy": 342.0,
+   "hy_turn": 6.0,
+   "dd": -3.4,
+   "drsi": 45.8,
+   "fg": 31.7,
+   "wrsi": 52.0,
+   "ret20": -3.3
   }
  ],
  "stale": [],
@@ -3239,19 +3239,19 @@
  "src": {
   "spx": {
    "name": "CBOE _SPX",
-   "last": "2026-11-06"
+   "last": "2026-11-09"
   },
   "vix": {
    "name": "CBOE _VIX",
-   "last": "2026-11-06"
+   "last": "2026-11-09"
   },
   "hy": {
    "name": "FRED BAMLH0A0HYM2",
-   "last": "2026-11-05"
+   "last": "2026-11-06"
   },
   "fg": {
    "name": "CNN F&G",
-   "last": "2026-11-06"
+   "last": "2026-11-09"
   }
  }
 }
