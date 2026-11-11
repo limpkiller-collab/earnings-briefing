@@ -1,3 +1,5 @@
 .DS_Store
 temp/
 __pycache__/
+
+index.html.bak_*
