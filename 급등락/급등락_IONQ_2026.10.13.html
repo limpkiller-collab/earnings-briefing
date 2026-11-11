@@ -374,6 +374,9 @@ mark{padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clo
   display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.7;color:var(--g700);white-space:normal}
 .hs>.hs-i::before{display:none!important}
 .hs.wide>.hs-i{--hs-w:min(calc(100vw - 64px),356px)}
+/* 2열 그리드(.pros-cons) 안에서 가로 스크롤 카드가 칸을 밀어내 가로 스크롤을 만드는 문제 — 그리드 아이템 min-width:auto 해제 (2026-11-11) */
+.pros-cons>div{min-width:0}
+.pros-cons .hs{max-width:100%}
 .hs-i .rd-h{display:block;font-size:15.5px;font-weight:800;line-height:1.45;color:var(--g900)}
 .hs-i .rd-x{display:block;font-size:14px;color:var(--g600);line-height:1.7}
 .hs-i .rd-no{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);font-size:12.5px;font-weight:800}
