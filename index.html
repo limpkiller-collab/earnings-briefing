@@ -643,7 +643,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.11.11";   // 실적 CRWV 2026Q3(BEAT) 1건 · 경제지표 10월 CPI(★★★) 1건 · 급등락 4건(US2Y +17bp·000660 +6.69%·NVDA -4.27%·MARKET 유가 반등) + 카드 1건(SMR) · VAL_DB 13종목 price를 11/10 확정 종가로 일괄 갱신 · CRWV 목표가 $134.58·FY27 EPS -$1.97
+const LAST_UPDATED = "2026.11.12";   // 급등락 1건(MU +11.89% 코어위브 설비투자 상향) + 000660 11/11 후속 블록(+5.36%) · VAL_DB 13종목 price를 11/11 확정 종가로 일괄 갱신 · 1부 실적·2부 경제지표는 대상 없음(CLAIMS는 ★로 보고서 제외)
 
 const REPORTS_DB = [
   {
@@ -1325,19 +1325,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 168.78, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 724.77, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
-  { ticker: "MSFT", price: 533.20, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
-  { ticker: "GOOGL", price: 287.44, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
-  { ticker: "AAPL", price: 348.53, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
-  { ticker: "PLTR", price: 168.87, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
-  { ticker: "KO", price: 96.91, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
-  { ticker: "ABBV", price: 293.91, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
-  { ticker: "O", price: 59.55, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
-  { ticker: "CRWV", price: 48.77, tgt: 134.58, eps_cur: -3.99, eps_next: -1.97, note: "적자 · 추정 10.27 집계(발표 전)" },
-  { ticker: "IONQ", price: 34.95, tgt: 62.28, eps_cur: -1.31, eps_next: null, note: "적자 · 추정 10.15 집계 · FY27 확인 불가" },
+  { ticker: "NVDA", price: 173.73, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 811.30, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
+  { ticker: "MSFT", price: 521.13, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
+  { ticker: "GOOGL", price: 293.45, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
+  { ticker: "AAPL", price: 355.63, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
+  { ticker: "PLTR", price: 172.40, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
+  { ticker: "KO", price: 97.57, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
+  { ticker: "ABBV", price: 294.98, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
+  { ticker: "O", price: 59.57, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
+  { ticker: "CRWV", price: 60.77, tgt: 134.58, eps_cur: -3.99, eps_next: -1.97, note: "적자 · 추정 10.27 집계(발표 전)" },
+  { ticker: "IONQ", price: 34.06, tgt: 62.28, eps_cur: -1.31, eps_next: null, note: "적자 · 추정 10.15 집계 · FY27 확인 불가" },
   { ticker: "SMR", price: 5.23, tgt: 10.38, eps_cur: -0.48, eps_next: -0.62, note: "적자 · 목표가 11.06 집계" },
-  { ticker: "000660", price: 1212000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
+  { ticker: "000660", price: 1277000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1450,6 +1450,13 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
   {
+    asset: "MU", name: "Micron", kind: "stock", date: "2026-11-12",
+    chg: 11.89, chg_label: "+11.89%", price_label: "$811.30 · 샌디스크 +13.69%", cause: "고객사 설비투자 상향",
+    oneliner: "코어위브가 설비투자 하단을 올리자 메모리 네 종목이 8~14% 올랐어요. 거래량은 1.18배예요.",
+    spark: [931.24, 878.84, 904.90, 896.07, 913.67, 856.49, 877.55, 903.70, 928.76, 983.23, 934.27, 884.74, 833.59, 855.10, 795.23, 656.39, 690.00, 733.15, 725.11, 811.30],
+    created: "2026.11.12", file: "급등락/급등락_MU_2026.11.12.html"
+  },
+  {
     asset: "US2Y", name: "미국 2년물 국채", kind: "rate", date: "2026-11-11",
     chg: 17, chg_label: "+17bp", price_label: "4.73% · 10년물 4.98%(+10bp)", cause: "10월 CPI 근원 +0.3%",
     oneliner: "근원 물가가 월러 기준선에 닿아 12월 50bp 확률이 1.1%에서 15.3%로 뛰었어요.",
@@ -1466,7 +1473,7 @@ const MOVERS_DB = [
   {
     asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-11-10",
     chg: 6.69, chg_label: "+6.69%", price_label: "1,212,000원 · 코스피 +4.39%", cause: "외국인 순매수 전환",
-    oneliner: "외국인이 8거래일 만에 돌아왔어요. 다만 거래량은 평균의 0.84배였어요.",
+    oneliner: "외국인이 이틀 연속 사들여 1,262,000원을 되찾았어요. 11/11에 +5.36%를 더했어요.",
     spark: [1419000, 1262000, 1272000, 1277000, 1223000, 1294000, 1223000, 1277000, 1275000, 1341000, 1487000, 1526000, 1418000, 1472000, 1398000, 1396000, 1264000, 1132000, 1136000, 1212000],
     created: "2026.11.11", file: "급등락/급등락_000660_2026.11.10.html"
   },
