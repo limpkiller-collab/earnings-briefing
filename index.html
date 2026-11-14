@@ -643,7 +643,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.11.13";   // 급등락 1건(MARKET 금리 급등 3종목 IONQ -9.40%·SMR -7.84%·CRWV -6.86%) + NVDA 11/10 보고서에 CEO 사임 후속 블록(-4.34%) · VAL_DB 13종목 price를 11/12 확정 종가로 갱신 · 경제 캘린더 CLAIMS(11/7주 20.0만)·HOMESALES(10월 375만) 갱신(둘 다 ★로 보고서 제외) · 1부 실적은 대상 없음
+const LAST_UPDATED = "2026.11.14";   // 경제 지표 1건(PPI 10월 MoM +0.3%·YoY 6.5%) 신규 보고서 + 급등락 후속 2건(MARKET 11/13 세션 IONQ -6.42%·CRWV -6.13%·SMR -3.32% / 000660 11/13 -3.03%)은 규칙 ⓐ로 기존 보고서에 📎후속 블록 추가 · VAL_DB 13종목 price를 11/13 확정 종가로 갱신 · PPI UPCOMING·WATCH를 11월분(12/15)으로 교체 · 1부 실적은 대상 없음
 
 const REPORTS_DB = [
   {
@@ -910,6 +910,13 @@ const UPCOMING_DB = [
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
   {
+    id: "PPI", name: "생산자물가지수(PPI)", period: "2026년 10월", category: "물가", tier: 2,
+    report_date: "2026-11-13", created: "2026.11.14", verdict: "NEUT", vlabel: "혼조",
+    surprise: { text: "예측 -0.1%p", cls: "down" },
+    oneliner: "MoM은 +0.3%로 식었는데 YoY는 6.5%로 4년 만의 최고예요. 12월 인상 확률은 100%예요.",
+    file: "경제지표/경제지표_PPI_2026.10_2026.11.13.html"
+  },
+  {
     id: "CPI", name: "소비자물가지수(CPI)", period: "2026년 10월", category: "물가", tier: 3,
     report_date: "2026-11-10", created: "2026.11.11", verdict: "BAD", vlabel: "상회",
     surprise: { text: "예측 +0.1%p", cls: "up" },
@@ -1171,7 +1178,7 @@ const MACRO_UPCOMING_DB = [
   { id: "UMICH", name: "미시간대 소비자심리", short: "미시간대", period: "11월 확정", date: "2026-11-25", estimated: true, utc: null, tier: 1, last_release: "2026-11-07" },
   { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "11월", date: "2026-12-10", estimated: false, utc: "20261210T133000Z", tier: 3, last_release: "2026-11-10" },
   { id: "HOMESALES", name: "기존주택 판매", short: "주택판매", period: "11월", date: "2026-12-10", estimated: false, utc: "20261209T150000Z", tier: 1, last_release: "2026-11-13" },
-  { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "10월", date: "2026-11-13", estimated: false, utc: "20261113T133000Z", tier: 2, last_release: "2026-10-15" },
+  { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "11월", date: "2026-12-15", estimated: false, utc: "20261215T133000Z", tier: 2, last_release: "2026-11-13" },
   { id: "RETAIL", name: "소매판매", short: "소매판매", period: "10월", date: "2026-11-17", estimated: false, utc: "20261117T133000Z", tier: 2, last_release: "2026-10-15" },
   { id: "IMPORT", name: "수출입물가", short: "수출입물가", period: "10월", date: "2026-11-17", estimated: false, utc: "20261117T133000Z", tier: 1, last_release: "2026-10-16" },
   { id: "INDPRO", name: "산업생산", short: "산업생산", period: "10월", date: "2026-11-17", estimated: false, utc: "20261117T141500Z", tier: 1, last_release: null },
@@ -1239,11 +1246,11 @@ const WATCH_DB = [
     "근원 MoM이 네 달 연속 +0.3%를 찍는지 — 3개월 연율은 이미 약 3.7%예요",
     "에너지가 마이너스로 돌아서는지 — 10월 가솔린은 계절조정 전 기준 이미 -0.7%였어요",
     "12월 9일 FOMC가 25bp인지 50bp인지 — 11월 CPI는 회의 다음 날 나와요"]},
-  { key: "PPI", name: "생산자물가지수(PPI) 10월", date: "2026-11-13", type: "m", items: [
-    "근원(식품·에너지 제외) +0.7%가 0.3% 아래로 돌아오는지 — 이번 발표의 최대 쟁점이에요",
-    "가솔린 +20.3%가 10월에 되돌려지는지 — EIA 전국 평균이 9/28 $4.465 → 10/12 $4.331로 내려왔어요",
-    "중간재 미가공 에너지 +22.2%·원유 +28.3%가 10월 최종수요로 더 전가되는지",
-    "거래(유통) 마진 +1.4%가 유지되는지 — 자동차 연료 소매 마진 -30.3%의 복원 여부"]},
+  { key: "PPI", name: "생산자물가지수(PPI) 11월", date: "2026-12-15", type: "m", items: [
+    "식품·에너지·거래서비스 제외 기준이 세 달 연속 +0.5%를 찍는지 — 이번 발표의 최대 쟁점이에요",
+    "근원 상품(식품·에너지 제외) +0.5%가 +0.2~0.4% 박스로 돌아오는지 — 기초 유기화학 +3.9%가 일회성인지",
+    "중간재 미가공품 -3.1%가 11월 최종수요 하락으로 이어지는지 — 9월의 전가 경로가 반대로 작동하는지",
+    "거래(유통) 마진 -0.2%가 한 번 더 마이너스로 가는지 — 기계·차량 도매 마진 -4.2%의 방향"]},
   { key: "ABBV", name: "AbbVie 2026 Q4 실적", date: "2027-01-29", type: "e", items: [
     "4분기 매출이 가이던스 약 $18.4B을 지키는지 — 연간 약 $67.8B의 마지막 조각이에요",
     "4분기 조정 EPS가 역산 가이던스 $3.83~3.87 안인지 — 컨센서스 $3.72보다 3~4% 높은 자리예요",
@@ -1325,19 +1332,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 166.19, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
-  { ticker: "MU", price: 798.44, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
-  { ticker: "MSFT", price: 523.00, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
-  { ticker: "GOOGL", price: 298.70, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
-  { ticker: "AAPL", price: 354.88, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
-  { ticker: "PLTR", price: 171.58, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
-  { ticker: "KO", price: 97.44, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
-  { ticker: "ABBV", price: 294.45, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
-  { ticker: "O", price: 59.26, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
-  { ticker: "CRWV", price: 56.60, tgt: 134.58, eps_cur: -3.99, eps_next: -1.97, note: "적자 · 추정 10.27 집계(발표 전)" },
-  { ticker: "IONQ", price: 30.86, tgt: 62.28, eps_cur: -1.31, eps_next: null, note: "적자 · 추정 10.15 집계 · FY27 확인 불가" },
-  { ticker: "SMR", price: 4.82, tgt: 10.38, eps_cur: -0.48, eps_next: -0.62, note: "적자 · 목표가 11.06 집계" },
-  { ticker: "000660", price: 1254000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 162.85, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "MU", price: 778.31, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
+  { ticker: "MSFT", price: 523.88, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
+  { ticker: "GOOGL", price: 295.77, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
+  { ticker: "AAPL", price: 356.27, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
+  { ticker: "PLTR", price: 167.99, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
+  { ticker: "KO", price: 99.25, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
+  { ticker: "ABBV", price: 295.03, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
+  { ticker: "O", price: 58.82, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
+  { ticker: "CRWV", price: 53.13, tgt: 134.58, eps_cur: -3.99, eps_next: -1.97, note: "적자 · 추정 10.27 집계(발표 전)" },
+  { ticker: "IONQ", price: 28.88, tgt: 62.28, eps_cur: -1.31, eps_next: null, note: "적자 · 추정 10.15 집계 · FY27 확인 불가" },
+  { ticker: "SMR", price: 4.66, tgt: 10.38, eps_cur: -0.48, eps_next: -0.62, note: "적자 · 목표가 11.06 집계" },
+  { ticker: "000660", price: 1216000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1452,7 +1459,7 @@ const MOVERS_DB = [
   {
     asset: "MARKET", name: "금리 급등 3종목", kind: "market", date: "2026-11-13",
     chg: -9.40, chg_label: "-9.40%", price_label: "IONQ $30.86 · 러셀2000 -1.66%", cause: "금리 급등",
-    oneliner: "금리가 13bp 오른 날 적자 성장주 세 종목만 7~9% 빠졌어요. 거래량은 평균 수준이에요.",
+    oneliner: "금리 급등에 적자 성장주 세 종목이 7~9% 빠지고, 11/13 세션에 3~6%를 더 잃었어요.",
     spark: [31.28, 30.78, 31.26, 32.28, 31.16, 31.27, 30.76, 32.95, 32.43, 31.72, 30.04, 28.17, 29.99, 29.54, 26.43, 32.62, 35.34, 34.99, 34.06, 30.86],
     created: "2026.11.13", file: "급등락/급등락_MARKET_2026.11.13.html"
   },
@@ -1480,7 +1487,7 @@ const MOVERS_DB = [
   {
     asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-11-10",
     chg: 6.69, chg_label: "+6.69%", price_label: "1,212,000원 · 코스피 +4.39%", cause: "외국인 순매수 전환",
-    oneliner: "외국인이 이틀 연속 사들여 1,262,000원을 되찾았어요. 11/11에 +5.36%를 더했어요.",
+    oneliner: "외국인 순매수로 1,262,000원을 되찾았다가, 11/13 4,714억 순매도에 -3.03%로 되돌렸어요.",
     spark: [1419000, 1262000, 1272000, 1277000, 1223000, 1294000, 1223000, 1277000, 1275000, 1341000, 1487000, 1526000, 1418000, 1472000, 1398000, 1396000, 1264000, 1132000, 1136000, 1212000],
     created: "2026.11.11", file: "급등락/급등락_000660_2026.11.10.html"
   },
