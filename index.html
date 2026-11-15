@@ -643,9 +643,15 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.11.14";   // 경제 지표 1건(PPI 10월 MoM +0.3%·YoY 6.5%) 신규 보고서 + 급등락 후속 2건(MARKET 11/13 세션 IONQ -6.42%·CRWV -6.13%·SMR -3.32% / 000660 11/13 -3.03%)은 규칙 ⓐ로 기존 보고서에 📎후속 블록 추가 · VAL_DB 13종목 price를 11/13 확정 종가로 갱신 · PPI UPCOMING·WATCH를 11월분(12/15)으로 교체 · 1부 실적은 대상 없음
+const LAST_UPDATED = "2026.11.15";   // NVDA FY2027 Q3 실적 프리뷰(D-3) 신규 발행 — 공식 IR 확인으로 발표일을 추정 11/26에서 확정 11/18(KST, 현지 11/17 AMC)로 정정하고 UPCOMING·WATCH(type:"e") 날짜 동기화 · VAL_DB NVDA 목표가 279.63·FY27 EPS 9.32로 갱신 · 2부 경제 지표와 3부 급등락은 대상 없음
 
 const REPORTS_DB = [
+  {
+    ticker: "NVDA", company: "NVIDIA", quarter: "FY2027 Q3",
+    report_date: "2026-11-18", created: "2026.11.15", verdict: "PREV", vlabel: "프리뷰",
+    oneliner: "컨센서스가 가이던스($108.0B) 위 0.7~0.9%까지 붙었어요. 임시 CEO 체제 첫 발표예요.",
+    file: "실적브리핑/실적프리뷰_NVDA_FY2027Q3_2026.11.15.html"
+  },
   {
     ticker: "CRWV", company: "CoreWeave", quarter: "2026 Q3",
     report_date: "2026-11-11", created: "2026.11.11", verdict: "BEAT",
@@ -890,7 +896,7 @@ const REPORTS_DB = [
 //                 화면은 항상 KST로 보여주고, 캘린더 일정은 이 값으로 만들어 해외에서도 현지시간 자동 변환된다.
 //   last_report : 직전 실제 발표일 (state.json의 last_report_date) — KPI '이번 분기 발표 n/13' 계산에 쓴다
 const UPCOMING_DB = [
-  { ticker: "NVDA", name: "NVIDIA", date: "2026-11-26", estimated: true, when: null, utc: null, last_report: "2026-08-27" },
+  { ticker: "NVDA", name: "NVIDIA", date: "2026-11-18", estimated: false, when: "amc", utc: "20261117T212000Z", last_report: "2026-08-27" },
   { ticker: "MU", name: "Micron", date: "2026-12-17", estimated: true, when: null, utc: null, last_report: "2026-10-01" },
   { ticker: "000660", name: "SK하이닉스", short: "하이닉스", date: "2027-01-27", estimated: true, when: null, utc: null, last_report: "2026-10-28" },
   { ticker: "MSFT", name: "Microsoft", date: "2027-01-28", estimated: true, when: null, utc: null, last_report: "2026-10-29" },
@@ -1321,7 +1327,7 @@ const WATCH_DB = [
     "투자적격 DDTL이 연 7~7.5%로 프라이싱되고 모회사 조달이 $5B 미만에 머무는지",
     "연말 ARR $20~21B과 가동 전력 1.85GW가 달성되는지 — ARR은 $18.5~19.5B에서 상향됐어요",
     "2027년 CapEx가 '2026년과 비슷한 수준'으로 제시되는지"]},
-  { key: "NVDA", name: "NVIDIA FY27 Q3 실적", date: "2026-11-26", type: "e", items: [
+  { key: "NVDA", name: "NVIDIA FY27 Q3 실적", date: "2026-11-18", type: "e", items: [
     "FY27 Q3 매출이 가이던스 $108.0B을 넘는지 — 서프라이즈 폭이 이번(+4.4%)보다 커지는지",
     "매출총이익률이 Q3 가이던스 74.0%를 지키는지, Q4 저점 71~72% 전망이 유지되는지",
     "FCF 마진 22.2%가 회복되는지 — 매출채권 +$22.3B이 실제 현금으로 회수되는지",
@@ -1332,7 +1338,7 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 162.85, tgt: 305.79, eps_cur: 9.02, eps_next: 13.04, note: "⚠ 발표 전 컨센" },
+  { ticker: "NVDA", price: 162.85, tgt: 279.63, eps_cur: 9.32, eps_next: 13.04, note: "⚠ 발표 전 컨센 · FY28은 8.25 집계" },
   { ticker: "MU", price: 778.31, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
   { ticker: "MSFT", price: 523.88, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
   { ticker: "GOOGL", price: 295.77, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
