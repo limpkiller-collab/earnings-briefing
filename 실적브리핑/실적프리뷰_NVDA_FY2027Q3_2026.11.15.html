@@ -14,123 +14,169 @@
   --amber:#FF9500; --amber-bg:#FFF4E3;
   --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
   --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+  --surface:#fff; --bg:#F2F4F6;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--g100);color:var(--g900);
+body{background:var(--bg);color:var(--g900);
   font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
-  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
-.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
-.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
-  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em;word-break:keep-all}
+.page{max-width:640px;margin:0 auto;min-height:100vh}
+.page.v3{background:var(--bg)}
+.gnb{position:sticky;top:0;z-index:10;background:var(--surface);border-bottom:1px solid var(--g200);
+  padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
 .gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
-.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
-  display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);display:grid;place-items:center;color:#fff;font-size:11px}
 .gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
-.body{padding:36px 28px 80px}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
-  padding:5px 12px;border-radius:8px}
-.chip.b{background:var(--blue-bg);color:var(--blue)}
-h1{font-size:29px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:10px}
-.meta{font-size:13.5px;color:var(--g400);font-weight:600;margin-bottom:28px}
-/* 헤드라인 수치 2카드 (토스증권 경제지표 페이지 스타일) */
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
-.hcard{background:var(--g50);border-radius:16px;padding:20px 22px}
-.hcard .hl{font-size:13.5px;color:var(--g500);font-weight:700;margin-bottom:6px}
-.hcard .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;line-height:1.15}
-.hcard .cmp{font-size:13.5px;font-weight:600;color:var(--g500);margin-top:8px;line-height:1.55}
-.hcard .cmp b{font-weight:800}
-.hcard .cmp .down{color:var(--blue)} .hcard .cmp .up{color:var(--red)} .hcard .cmp .flat{color:var(--g600)}
-.hcard .core{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:9px;
-  padding-top:9px;border-top:1px solid var(--g200)}
-/* ✦ 해석 콜아웃 */
-.ai{background:var(--blue-bg);border-radius:16px;padding:20px 22px;margin-bottom:40px}
-.ai .t{font-size:13.5px;font-weight:800;color:var(--blue);margin-bottom:8px}
-.ai p{font-size:15.5px;color:var(--g700);line-height:1.75}
-.ai p+p{margin-top:8px}
-/* 섹션 */
-.sub-head{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:44px 0 6px;
-  display:flex;align-items:center;gap:7px}
-.sub-desc{font-size:14.5px;color:var(--g500);font-weight:600;margin-bottom:16px}
-p.body-p{font-size:16px;color:var(--g700);margin-bottom:14px}
-mark{background:var(--blue-bg);color:var(--blue);font-weight:800;padding:1px 4px;border-radius:4px}
-mark.r{background:var(--red-bg);color:var(--red)}
+.body.v3{padding:24px 16px 72px;display:flex;flex-direction:column;gap:14px}
+.meta{font-size:12.5px;color:var(--g400);font-weight:600}
+h1{font-size:25px;font-weight:800;line-height:1.3;letter-spacing:-0.035em;text-wrap:balance}
 b{font-weight:800}
-/* 차트 카드 */
-.chart-card{border:1px solid var(--g200);border-radius:16px;padding:18px 18px 10px;margin-bottom:14px}
-.chart-card .ct{font-size:15px;font-weight:800;margin-bottom:2px}
-.chart-card .cs{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:8px}
-.chart-card svg{width:100%;height:auto;display:block}
-.legend{display:flex;gap:14px;font-size:12.5px;color:var(--g500);font-weight:600;
-  padding:4px 4px 8px;flex-wrap:wrap}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
-/* 발표 이력 테이블 */
-.htable{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px}
-.htable th{background:var(--g50);color:var(--g500);font-size:12.5px;font-weight:700;
-  padding:9px 10px;text-align:right;border-bottom:1px solid var(--g200)}
-.htable th:first-child{text-align:left;border-radius:10px 0 0 10px}
-.htable th:last-child{border-radius:0 10px 10px 0}
-.htable td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--g100);
-  font-weight:600;color:var(--g700);white-space:nowrap}
-.htable td:first-child{text-align:left;color:var(--g600);font-size:13px}
-.htable td.a{font-weight:800}
-.htable .up{color:var(--red)} .htable .down{color:var(--blue)}
-.htable tr.new td{background:var(--blue-bg)}
-/* 표 모바일 가드 — 표는 항상 .twrap으로 감싸 영역 초과를 막는다 */
-.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.htable th{white-space:nowrap}
-.htable td:last-child,.htable th:last-child{white-space:normal;text-align:left;
-  min-width:150px;line-height:1.55;font-size:12.5px;color:var(--g600)}
-.g-note{font-size:12.5px;color:var(--g400);font-weight:600;margin:6px 2px 0;line-height:1.6}
-/* KPI 카드 */
-.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
-.kpi .k{background:var(--g50);border-radius:14px;padding:15px 17px}
-.kpi .k .l{font-size:13px;color:var(--g500);font-weight:700}
-.kpi .k .v{font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-top:2px}
-.kpi .k .d{font-size:12.5px;font-weight:600;color:var(--g400);margin-top:2px}
-.kpi .k .v .down{color:var(--blue)} .kpi .k .v .up{color:var(--red)}
-/* 콜아웃·인용 */
-.callout{background:var(--g50);border-radius:14px;padding:17px 20px;font-size:15px;
-  color:var(--g700);margin:16px 0;line-height:1.75}
-.callout .ct{font-weight:800;margin-bottom:4px;font-size:14px}
-/* 보유 종목 영향 */
-.stock-g{border:1px solid var(--g200);border-radius:14px;padding:16px 19px;margin-bottom:10px}
-.stock-g .sg-t{font-size:14.5px;font-weight:800;margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.stock-g .sg-t .tks{font-size:12px;color:var(--g400);font-weight:700}
-.stock-g p{font-size:14.5px;color:var(--g700);line-height:1.7}
-.stock-g a{color:var(--blue);font-weight:800;text-decoration:none;border-bottom:1px dotted var(--blue)}
-.badge{font-size:11px;font-weight:800;padding:2.5px 9px;border-radius:20px}
-.badge.pos{background:var(--green-bg);color:var(--green)}
-.badge.neg{background:var(--red-bg);color:var(--red)}
-.badge.neu{background:var(--g100);color:var(--g500)}
-/* 관전포인트 */
-.wp-preview{background:var(--amber-bg);border-radius:14px;padding:16px 19px;font-size:14.5px;
-  color:var(--g700);margin:16px 0;line-height:1.7}
-.wlist{margin:14px 0}
-.witem{display:flex;gap:11px;padding:13px 4px;border-bottom:1px solid var(--g100)}
-.witem .no{flex:0 0 24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue);
-  font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-top:2px}
-.witem .tx{font-size:14.5px;color:var(--g700);line-height:1.65}
-.witem .tx small{display:block;font-size:12.5px;color:var(--g400);font-weight:600;margin-top:2px}
-/* 지표 설명 */
-.explain{background:var(--g50);border-radius:16px;padding:22px 24px;margin-top:18px}
-.explain h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
-.explain p{font-size:14.5px;color:var(--g600);line-height:1.75}
-.explain p+p{margin-top:8px}
-.next-box{display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;
-  padding:15px 19px;margin-top:16px;font-size:14.5px;font-weight:700;color:var(--g700)}
-.next-box .est{font-size:12px;color:var(--g400);font-weight:600}
-.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
-  font-size:12.5px;color:var(--g400);line-height:1.7}
-@media(max-width:600px){
-  .body{padding:28px 20px 60px}
-  h1{font-size:24px}
-  .hero{grid-template-columns:1fr}
-  .hcard .num{font-size:32px}
-  .kpi{grid-template-columns:1fr 1fr}
-  .htable{font-size:12.5px}
-  .htable td{padding:10px 6px}
-}
+a{color:var(--blue)}
+.up{color:var(--green)} .down{color:var(--red)}
+svg .cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}
+svg .cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}
+svg .ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}
+/* ── v3 카드 ── */
+.c3{background:var(--surface);border:1px solid var(--g200);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.c3 svg{display:block;width:100%;height:auto}
+.q3{font-size:12.5px;font-weight:700;color:var(--blue);letter-spacing:.02em}
+.big3{font-size:28px;font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums}
+.c3 p{font-size:15px;line-height:1.7;color:var(--g600)}
+.c3 p b,.rows3 b,.grp3 b,.note3 b{color:var(--g900)}
+.c3 p.lead3{font-size:17px;font-weight:700;color:var(--g900);line-height:1.5}
+.h3{font-size:13px;font-weight:700;color:var(--g900)}
+.pill3{align-self:flex-start;font-size:12.5px;font-weight:700;color:#fff;background:var(--blue);border-radius:999px;padding:2px 12px}
+.pill3.g{background:var(--g100);color:var(--g600)}
+/* 수치 칸 (3~4칸) */
+.kv3{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--g200);border-radius:12px;overflow:hidden;border:1px solid var(--g200)}
+.kv3.n3{grid-template-columns:repeat(3,1fr)}
+.kv3>div{background:var(--surface);padding:10px 6px;text-align:center;min-width:0}
+.kv3 span{display:block;font-size:11.5px;color:var(--g400)}
+.kv3 b{display:block;font-size:15px;font-variant-numeric:tabular-nums}
+.kv3 em{font-style:normal;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums}
+@media (max-width:400px){.kv3,.kv3.n3{grid-template-columns:1fr 1fr}}
+/* 결과 2칸 (경제지표·실적) */
+.res3{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.res3>div{background:var(--g50);border-radius:14px;padding:12px 14px;min-width:0}
+.res3 span{display:block;font-size:12.5px;color:var(--g400)}
+.res3 b{display:block;font-size:28px;line-height:1.25;font-variant-numeric:tabular-nums}
+.res3 em{font-style:normal;font-size:12.5px;color:var(--g600);font-variant-numeric:tabular-nums}
+/* 전후 비교 막대: 막대 길이 = --v × 0.8% (값 100이 칸의 80%) */
+.ba3{display:flex;flex-direction:column;gap:12px;background:var(--g50);border-radius:14px;padding:14px}
+.ba3 .r{display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:center}
+.ba3 .r>span{font-size:13px;font-weight:700;color:var(--g600)}
+.ba3 .bars{display:flex;flex-direction:column;gap:4px;min-width:0}
+.ba3 .b{display:flex;align-items:center;gap:8px;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--g400)}
+.ba3 .b i{display:block;height:10px;border-radius:5px;background:var(--g200);min-width:3px;flex:none;width:calc(var(--v)*0.8%)}
+.ba3 .b.a{color:var(--g900);font-weight:700}
+.ba3 .b.a i{background:var(--g400)}
+.ba3 .r.key>span,.ba3 .r.key .b.a{color:var(--blue)}
+.ba3 .r.key .b.a i{background:var(--blue)}
+.ba3 .lg{display:flex;gap:14px;font-size:12px;color:var(--g400)}
+.ba3 .lg i{display:inline-block;width:10px;height:10px;border-radius:5px;margin-right:5px;vertical-align:-1px;background:var(--g200)}
+.ba3 .lg .a i{background:var(--blue)}
+/* 라벨 행 */
+.rows3{display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.6;color:var(--g600)}
+.rows3>div{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline}
+.rows3 span{font-size:11.5px;font-weight:700;padding:1px 7px;border-radius:6px;background:var(--g100);color:var(--g600);white-space:nowrap}
+.rows3 .key span{background:var(--blue);color:#fff}
+/* 일정 */
+.dates3{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dates3>div{background:var(--g50);border-radius:12px;padding:10px 12px;font-size:13.5px;color:var(--g600);line-height:1.5;min-width:0}
+.dates3 b{display:block;color:var(--g900);font-variant-numeric:tabular-nums}
+/* 내 종목 그룹 */
+.grp3{display:flex;flex-direction:column;border-top:1px solid var(--g200)}
+.grp3>div{padding:10px 0;border-bottom:1px solid var(--g200);display:flex;flex-direction:column;gap:2px}
+.grp3>div:last-child{border-bottom:0;padding-bottom:0}
+.grp3 .gh{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;font-weight:700}
+.grp3 .gh em{font-style:normal;font-variant-numeric:tabular-nums;white-space:nowrap}
+.grp3 .gd{font-size:13.5px;color:var(--g600);line-height:1.55;font-variant-numeric:tabular-nums}
+.note3{font-size:13.5px;color:var(--g600);background:var(--g50);border-radius:12px;padding:10px 12px;line-height:1.6}
+/* 자세히 보기 (차트·표만, 해설 문단 없음) */
+.more3{background:var(--surface);border:1px solid var(--g200);border-radius:18px;padding:14px 18px}
+.more3>summary{cursor:pointer;color:var(--blue);font-weight:700;font-size:14px}
+.more3>summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.more3 .in{display:flex;flex-direction:column;gap:14px;padding-top:14px}
+.more3 svg{display:block;width:100%;height:auto}
+.more3 .h3{margin-bottom:-6px}
+.twrap{overflow-x:auto}
+.htable{width:100%;border-collapse:collapse;font-size:13.5px}
+.htable th{color:var(--g400);font-size:12px;font-weight:700;padding:8px;text-align:right;border-bottom:1px solid var(--g200);white-space:nowrap}
+.htable th:first-child,.htable td:first-child{text-align:left}
+.htable td{padding:8px;border-bottom:1px solid var(--g200);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.htable td.w{white-space:normal;text-align:left;color:var(--g600)}
+.disclaimer{margin-top:20px;padding-top:18px;border-top:1px solid var(--g200);font-size:12px;color:var(--g400);line-height:1.7}
+/* ── v3 2단계 추가(실적·프리뷰·구루) ── */
+svg .s-lab{font-size:12.5px;fill:var(--g400);font-weight:600}
+svg .s-val{font-size:13px;fill:var(--g900);font-weight:800}
+svg .s-yoy{font-size:12px;fill:var(--green);font-weight:800}
+/* 성적표: 실제 vs 예상 */
+.score3{display:flex;flex-direction:column;border-top:1px solid var(--g200)}
+.score3>div{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--g200);font-size:14px;font-variant-numeric:tabular-nums}
+.score3.n2>div{grid-template-columns:1fr auto}
+.score3 span{color:var(--g600)}
+.score3 span small{display:block;font-size:12px;color:var(--g400)}
+.score3 b{font-size:16px}
+.score3 em{font-style:normal;font-weight:700;font-size:13px;min-width:4.2em;text-align:right;color:var(--blue)}
+.score3 em.down{color:var(--red)}
+.line3{display:flex;justify-content:space-between;gap:10px;align-items:baseline;background:var(--g50);border-radius:12px;padding:10px 14px;font-size:14px;color:var(--g600)}
+.line3 b{font-variant-numeric:tabular-nums}
+.line3 b.big{font-size:18px;color:var(--g900)}
+/* 좋았던 것(+) / 아쉬운 것(−) */
+.pm3{display:flex;flex-direction:column;gap:7px;list-style:none;font-size:14.5px;line-height:1.6;color:var(--g600)}
+.pm3 li{display:grid;grid-template-columns:18px 1fr;gap:6px}
+.pm3 li::before{font-weight:800}
+.pm3.good li::before{content:"+";color:var(--green)}
+.pm3.bad li::before{content:"−";color:var(--red)}
+.pm3 b{color:var(--g900)}
+.ba3 .r.bad>span,.ba3 .r.bad .b.a{color:var(--red)}
+.ba3 .r.bad .b.a i{background:var(--red)}
+/* 인용 */
+.quote3{padding:12px 14px;background:var(--g50);border-radius:12px;font-size:15.5px;font-weight:700;line-height:1.55}
+.quote3 cite{display:block;font-style:normal;font-weight:500;font-size:12.5px;color:var(--g400);margin-top:2px}
+/* 좌우 막대: 막대 길이 = --v % (최대 절댓값이 50) */
+.dv3{display:flex;flex-direction:column;gap:9px;background:var(--g50);border-radius:14px;padding:14px}
+.dv3 .r{display:grid;grid-template-columns:86px 1fr 64px;gap:8px;align-items:center;font-size:13px}
+.dv3 .r>span{font-weight:700;color:var(--g600)}
+.dv3 .ax{position:relative;height:12px}
+.dv3 .ax::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--g200)}
+.dv3 .ax i{position:absolute;top:0;height:12px;border-radius:4px;width:calc(var(--v)*1%)}
+.dv3 .ax .p{left:50%;background:var(--green)}
+.dv3 .ax .n{right:50%;background:var(--red)}
+.dv3 .ax .rng{left:calc(50% - var(--v)*1%);width:calc(var(--v)*2%);border:2px dashed var(--blue);box-sizing:border-box}
+.dv3 em{font-style:normal;font-variant-numeric:tabular-nums;font-weight:700;text-align:right;white-space:nowrap}
+.dv3 .r.key>span,.dv3 .r.key em{color:var(--blue)}
+/* 번호 목록(확인할 것) */
+.chk3{list-style:none;counter-reset:c;display:flex;flex-direction:column;border-top:1px solid var(--g200)}
+.chk3 li{counter-increment:c;display:grid;grid-template-columns:24px 1fr;gap:8px;padding:10px 0;border-bottom:1px solid var(--g200);font-size:14.5px;line-height:1.6;color:var(--g600)}
+.chk3 li:last-child{border-bottom:0;padding-bottom:0}
+.chk3 li::before{content:counter(c);font-weight:800;color:var(--blue);font-variant-numeric:tabular-nums}
+.chk3 b{color:var(--g900);display:block}
+/* 포지션 표(구루) */
+.pos3{display:flex;flex-direction:column;border-top:1px solid var(--g200)}
+.pos3>div{display:grid;grid-template-columns:74px 44px 1fr;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--g200);font-size:14px;color:var(--g600)}
+.pos3 b{color:var(--g900)}
+.pos3 em{font-style:normal;font-weight:800}
+/* 구루 업데이트 블록 · 인물 소개(자세히 보기 안) */
+.gup-wrap:empty{display:none}
+.gup{background:var(--blue-bg);border-radius:16px;padding:16px 18px}
+.gup+.gup{margin-top:10px}
+.gup .gh{font-size:13px;font-weight:800;color:var(--blue);margin-bottom:4px}
+.gup .gt{font-size:15.5px;font-weight:800;color:var(--g900);line-height:1.55}
+.gup ul{list-style:none;margin-top:6px}
+.gup li{font-size:14.5px;color:var(--g700);line-height:1.65;padding:3px 0 3px 14px;position:relative}
+.gup li:before{content:"";position:absolute;left:2px;top:13px;width:5px;height:5px;border-radius:50%;background:var(--blue)}
+.profile .ph{font-size:13px;font-weight:700;color:var(--g900);margin-bottom:10px}
+.pf-top{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.pf-av{flex:0 0 48px;height:48px;border-radius:50%;background:var(--blue-bg);color:var(--blue);display:grid;place-items:center;font-weight:800;font-size:14px}
+.pf-nm{font-size:16px;font-weight:800;line-height:1.35}
+.pf-nm small{font-size:12.5px;color:var(--g400);font-weight:600;margin-left:4px}
+.pf-role{font-size:13px;color:var(--g500);font-weight:600;line-height:1.5}
+.pf-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.pf-tags span{font-size:12px;font-weight:700;color:var(--g600);background:var(--g100);padding:4px 10px;border-radius:20px}
+.pf-li{list-style:none}
+.pf-li li{font-size:13.5px;color:var(--g600);line-height:1.6;padding:8px 0;border-top:1px solid var(--g200)}
+.pf-li li b{color:var(--g900)}
 /*<!--rnav-css-->*/
 .rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
 .rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
@@ -150,6 +196,23 @@ b{font-weight:800}
 .rnav a.off{opacity:.45;pointer-events:none}
 .rnav a.off .av{background:transparent;border-style:dashed}
 /*<!--/rnav-css-->*/
+/*<!--mtab-css-->*/
+@media(max-width:600px){
+  .htable:has(td.w){display:block;font-size:14px}
+  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
+  .htable:has(td.w) tr:first-child:has(th){display:none}
+  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
+  .htable:has(td.w) tr:last-child{border-bottom:0}
+  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
+  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
+  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
+  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
+  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
+  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
+  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
+  .htable:has(td.w) tr.new td{background:transparent}
+}
+/*<!--/mtab-css-->*/
 /*<!--dark-css-->*/
 :root{--surface:#fff;--bg:#F2F4F6;color-scheme:light dark}
 @media (prefers-color-scheme: dark){
@@ -193,23 +256,6 @@ b{font-weight:800}
 /*theme-scoped*/
 
 /*<!--/dark-css-->*/
-/*<!--mtab-css-->*/
-@media(max-width:600px){
-  .htable:has(td.w){display:block;font-size:14px}
-  .htable:has(td.w) tbody,.htable:has(td.w) tr{display:block}
-  .htable:has(td.w) tr:first-child:has(th){display:none}
-  .htable:has(td.w) tr{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding:11px 2px;border-bottom:1px solid var(--g100)}
-  .htable:has(td.w) tr:last-child{border-bottom:0}
-  .htable:has(td.w) td{display:inline;padding:0;border:0;white-space:normal}
-  .htable:has(td.w) td:first-child{flex:1 1 auto;min-width:0;font-size:14px;color:var(--g900);font-weight:700;text-align:left}
-  .htable:has(td.w) td.a{font-size:15px;font-weight:800;text-align:right;white-space:nowrap}
-  .htable:has(td.w) td:not(:first-child):not(.a):not(.w){font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right}
-  .htable:has(td.w) td[data-h]::before{content:attr(data-h);font-size:10.5px;color:var(--g400);font-weight:600;margin-right:3px;letter-spacing:0}
-  .htable:has(td.w) td.w{flex-basis:100%;width:100%;font-size:13px;color:var(--g500);font-weight:500;line-height:1.55;margin-top:3px;text-align:left}
-  .htable:has(td.w) tr.new{background:var(--blue-bg);border-radius:10px;padding:11px 10px}
-  .htable:has(td.w) tr.new td{background:transparent}
-}
-/*<!--/mtab-css-->*/
 /*<!--rd-css-->*/
 body{word-break:keep-all;overflow-wrap:break-word}
 h1,.sec-head .l1,.sec-head .l2,.sub-head{text-wrap:balance}
@@ -305,124 +351,87 @@ mark{padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clo
 </style>
 </head>
 <body>
-<div class="page">
+<div class="page v3">
 <div class="gnb">
   <div class="brand"><span class="dot">🔭</span> 실적 프리뷰</div>
   <a href="../index.html">← 아카이브</a>
 </div>
-<div class="body">
-<div class="chips">
-  <span class="chip b">#프리뷰</span><span class="chip">#NVDA</span><span class="chip">#발표 11/18 (수) 06:20</span><span class="chip">#가이던스 $108.0B</span><span class="chip">#임시 CEO 첫 발표</span>
-</div>
-<h1>NVIDIA FY2027 3분기<br>실적 프리뷰</h1>
-<div class="meta">발표 2026년 11월 18일(수) 06:20 (한국시간) · 미국 11/17(화) 13:20 PT 보도자료 · 어닝콜 14:00 PT = 한국시간 07:00 · 프리뷰 작성 2026.11.15 · 발표 후 정식 실적 브리핑이 자동 발행돼요</div>
+<div class="body v3">
+<div class="meta">2026.11.15 · 엔비디아(NVDA) · FY2027 3분기 프리뷰</div>
+<h1>이번 발표는 숫자보다 임시 CEO의 첫 발언이 더 중요해요.</h1>
 
-<div class="hero">
-  <div class="hcard">
-    <div class="hl">매출 컨센서스</div>
-    <div class="num">$108.7~109.0B</div>
-    <div class="cmp">회사 가이던스 <b>$108.0B</b>보다 <b class="up">+0.7~0.9%</b>뿐 — 지난 분기 프리뷰 때는 컨센서스가 가이던스보다 2~4% 위였어요</div>
-    <div class="core">전분기(FY27 Q2) 실제 $96.221B → QoQ +12.2% · 전년 동기 $57.006B → YoY 약 +91%</div>
+<div class="c3">
+  <span class="q3">언제, 얼마를 기대하나</span>
+  <div class="line3"><b class="big">11월 18일(수) 06:20</b><span>어닝콜 07:00</span></div>
+  <div class="score3 n2">
+    <div><span>매출 예상<small>회사 전망 $108.0B</small></span><b>$108.7~109.0B</b></div>
+    <div><span>주당순이익(EPS) 예상<small>1년 전 $1.30</small></span><b>$2.47~2.49</b></div>
+    <div><span>매출총이익률 전망<small>지난 분기 실제 75.0%</small></span><b>74.0%</b></div>
   </div>
-  <div class="hcard">
-    <div class="hl">조정 EPS 컨센서스</div>
-    <div class="num">$2.47~2.49</div>
-    <div class="cmp">집계 기관별 편차 — theta.md $2.47 · Zacks $2.49(60일간 +1센트 상향)</div>
-    <div class="core">전년 동기 $1.30 대비 약 +91% · 매출총이익률 가이던스 74.0%(±50bp) 유지 여부가 변수</div>
+  <p>시장 예상이 회사 전망 바로 위(+0.7~0.9%)에 붙어 있어요. <b>넘어야 할 기준선은 지난 분기보다 낮아졌어요.</b></p>
+</div><!--/c3-->
+
+<div class="c3">
+  <span class="q3">왜 중요한가</span>
+  <p class="lead3">이익 예상은 올랐는데 주가는 25.8% 빠졌어요.</p>
+  <div class="kv3 n3">
+    <div><span>주가 (8월 발표 이후)</span><b>$219.55 → $162.85</b><em class="down">-25.8%</em></div>
+    <div><span>올해 이익 예상</span><b>$9.02 → $9.32</b><em class="up">상향</em></div>
+    <div><span>주가수익비율</span><b>24.3 → 17.5배</b><em class="down">하락</em></div>
   </div>
-</div>
+  <p>11월 12일 황런쉰 CEO가 사임했고 콜레트 크레스 CFO가 임시 CEO를 맡았어요. 이후 나흘 동안 목표주가 하향이 이어졌어요.</p>
+  <div class="h3">실적 발표 다음 날 주가 변동, 최근 4번과 이번 예상</div>
+  <div class="dv3">
+    <div class="r"><span>4번 전</span><div class="ax"><i class="n" style="--v:16.3"></i></div><em class="down">-3.15%</em></div>
+    <div class="r"><span>3번 전</span><div class="ax"><i class="n" style="--v:28.2"></i></div><em class="down">-5.46%</em></div>
+    <div class="r"><span>2번 전</span><div class="ax"><i class="n" style="--v:9.2"></i></div><em class="down">-1.77%</em></div>
+    <div class="r"><span>지난 분기</span><div class="ax"><i class="p" style="--v:45.2"></i></div><em class="up">+8.74%</em></div>
+    <div class="r key"><span>이번 예상 폭</span><div class="ax"><i class="rng" style="--v:50"></i></div><em>±9.67%</em></div>
+  </div><!--/dv3-->
+  <p>옵션시장이 보는 변동 폭은 최근 4번 평균(4.78%)의 두 배예요. 어느 방향이든 크게 움직일 수 있는 발표예요.</p>
+</div><!--/c3-->
 
-<div class="ai">
-  <div class="t">✦ 세 줄 프리뷰</div>
-  <p>숫자 눈높이는 오히려 <b>낮아졌어요.</b> 8월 발표 때 회사가 내놓은 Q3 가이던스 $108.0B은 그때 컨센서스($104.2B)를 3.6% 앞질렀는데, 석 달 뒤 컨센서스는 가이던스 바로 위 <b>+0.7~0.9%</b>에 붙었어요. 시장이 회사 숫자를 앞서 달리는 걸 멈췄다는 뜻이에요.</p>
-  <p>그런데 추정치는 오르고 주가는 내렸어요. FY2027 조정 EPS 컨센서스는 <b>$9.02 → $9.32</b>로 올랐는데 주가는 <b>$219.55 → $162.85</b>로 25.8% 빠졌어요. <mark>Forward P/E가 24.3배에서 17.5배로</mark> 내려앉았으니, 이번 발표가 검증하는 건 실적이 아니라 "멀티플이 어디까지 내려가야 하는가"예요.</p>
-  <p>그래서 변수는 숫자 밖에 있어요. <b>황런쉰 CEO 사임 뒤 콜레트 크레스 임시 CEO의 첫 실적 발표</b>이고, 옵션시장은 발표 다음날 <mark class="r">±9.67%</mark>를 반영하고 있어요 — 최근 네 번 발표의 평균 변동폭(4.78%)의 두 배이고 2024년 이후 최대예요.</p>
-</div>
+<div class="c3">
+  <span class="q3">확인할 것 3가지</span>
+  <ol class="chk3">
+    <li><span><b>내년 매출 +70% 전망을 다시 말하는지</b>임시 CEO가 이 전망과 후계 구도를 어떤 표현으로 설명하는지가 핵심이에요.</span></li>
+    <li><span><b>매출총이익률 74.0%를 지키는지</b>다음 분기 저점으로 예고한 71~72%가 유지되는지도 함께 봐요.</span></li>
+    <li><span><b>매출이 $108.0B을 얼마나 넘는지</b>지난 분기는 시장 예상을 4.4% 넘었어요.</span></li>
+  </ol>
+</div><!--/c3-->
 
-<div class="sub-head">📋 가이던스 vs 컨센서스</div>
-<div class="sub-desc">회사가 8월 발표 때 제시한 전망과 지금 시장 기대치를 미리 비교해두면 발표를 읽기 쉬워요.</div>
-<div class="twrap"><table class="htable">
-  <tr><th>항목</th><th>회사 가이던스</th><th>시장 컨센서스</th><th>보는 법</th></tr>
-  <tr><td>매출</td><td class="w a">$108.0B ±2%<br><span style="font-weight:600;color:var(--g500);font-size:12.5px">$105.84~110.16B</span></td><td class="a up" data-h="시장 컨센서스">$108.7~109.0B</td><td style="white-space:normal" class="w">가이던스 중간값 대비 +0.7~0.9%. 컨센서스 미달이면 부정적 서프라이즈</td></tr>
-  <tr><td>GAAP·조정 매출총이익률</td><td class="w a">74.0% ±50bp</td><td data-h="시장 컨센서스">—</td><td style="white-space:normal" class="w">Q2 실제 75.0%에서 1%p 내려가는 구간. 메모리 원가 전가의 한계선</td></tr>
-  <tr><td>조정 영업비용</td><td class="w a">약 $9.0B</td><td data-h="시장 컨센서스">—</td><td style="white-space:normal" class="w">매출×74.0% − $9.0B으로 조정 영업이익을 역산할 수 있어요</td></tr>
-  <tr><td>조정 EPS</td><td class="w none">미제시</td><td class="a" data-h="시장 컨센서스">$2.47~2.49</td><td style="white-space:normal" class="w">$2.49 이상이면 상단 돌파. 엔비디아는 EPS를 가이던스로 주지 않아요</td></tr>
-  <tr class="new"><td>FY27 Q4 매출총이익률 <span class="tag">어닝콜</span></td><td class="w a">71~72% (저점)</td><td data-h="시장 컨센서스">—</td><td style="white-space:normal" class="w">8월 콜에서 예고한 저점. 이 전망이 유지되는지가 이번 콜의 핵심</td></tr>
-  <tr class="new"><td>FY2028 매출 <span class="tag">어닝콜</span></td><td class="w a">+70%</td><td data-h="시장 컨센서스">—</td><td style="white-space:normal" class="w">CFO가 "수요가 아니라 공급 제약을 반영한" 숫자라고 못 박은 값. 재확인·상향 여부</td></tr>
-</table></div>
-<div class="g-note">컨센서스는 2026.11.13 기준 집계(theta.md $108.73B·$2.47 / Zacks $108.99B·$2.49) · 가이던스는 중국 데이터센터 컴퓨트 매출을 하나도 넣지 않은 값이에요 · 발표 직전까지 변동될 수 있어요</div>
-
-<div class="sub-head">📐 "넘는다"의 기준선이 달라졌어요</div>
-<div class="sub-desc">같은 서프라이즈 폭이 이번엔 훨씬 큰 숫자를 요구해요.</div>
-<div class="twrap"><table class="htable">
-  <tr><th>기준</th><th>FY27 Q2 (8월 발표)</th><th>FY27 Q3 (이번)</th></tr>
-  <tr><td>회사 가이던스</td><td class="a">$91.0B</td><td class="a">$108.0B</td></tr>
-  <tr><td>발표 시점 컨센서스</td><td class="a">$92.2B</td><td class="a">$108.7~109.0B</td></tr>
-  <tr><td>컨센서스 − 가이던스</td><td class="a">+1.3%</td><td class="a">+0.7~0.9%</td></tr>
-  <tr><td>실제 매출</td><td class="a">$96.221B</td><td>11/18 확인</td></tr>
-  <tr><td>가이던스 상단 대비</td><td class="a up">+3.7%</td><td style="white-space:normal">같은 폭이면 약 <b>$114.2B</b></td></tr>
-  <tr><td>컨센서스 대비</td><td class="a up">+4.4%</td><td style="white-space:normal">$114.2B이면 약 <b>+4.9%</b></td></tr>
-</table></div>
-<div class="g-note">Zacks 기준 최근 4분기 연속 컨센서스 상회, 평균 서프라이즈 +5.82% · 다만 그 폭을 이번에 그대로 재현하려면 매출이 약 $115.3B으로 가이던스 상단($110.16B)을 4.7% 넘겨야 해요 <span class="tag">계산값</span></div>
-
-<div class="sub-head">🎯 애널리스트 동향</div>
-<div class="sub-desc">CEO 사임 이후 나흘 동안 목표가 하향이 쏟아졌어요. 집계처별 평균도 크게 벌어져 있어요.</div>
-<div class="kpi">
-  <div class="k"><div class="l">S&amp;P Global 평균</div><div class="v">$279.63</div><div class="d">61명(적극매수 37·매수 10·중립 14) · 현재가 대비 <b>+71.7%</b> · 11/13</div></div>
-  <div class="k"><div class="l">TipRanks 평균</div><div class="v">$254.84</div><div class="d">37명(매수 27·중립 10) · Moderate Buy · <b>+56.5%</b> · 11/13</div></div>
-  <div class="k"><div class="l">Bloomberg 평균</div><div class="v">$288.06</div><div class="d">60명 12개월 목표가 · <b>+76.9%</b> · 11/12 보도</div></div>
-  <div class="k"><div class="l">현재가</div><div class="v">$162.85</div><div class="d">11/13 종가 <span class="down">-2.01%</span> · 시간외 $161.04 · 52주 저 $148.80</div></div>
-</div>
-<div class="twrap"><table class="htable">
-  <tr><th>기관</th><th>등급</th><th>목표가</th><th>메모</th></tr>
-  <tr><td>HSBC</td><td class="a" data-h="등급">매수 → <b>중립</b></td><td class="a down" data-h="목표가">$365~375 → $170</td><td style="white-space:normal" class="w">프랭크 리 · 정식 후계 구도가 나오기 전까지 압력 지속 · 종전 목표가는 보도별로 $365·$375로 갈려요 ⚠️ · 수출 규제 베어 시 FY2028 EPS -13%($15.65→$13.57)</td></tr>
-  <tr><td>BMO Capital</td><td data-h="등급">Outperform 유지</td><td class="a down" data-h="목표가">$340 → $240</td><td style="white-space:normal" class="w">하시 쿠마르 · 최선호주에서 제외 · 후임 확정 전까지 보류</td></tr>
-  <tr><td>RBC Capital</td><td data-h="등급">Outperform 유지</td><td class="a down" data-h="목표가">$330 → $230</td><td style="white-space:normal" class="w">스리니 파주리 · 단기 펀더멘털은 온전(수요가 공급을 약 50% 초과)하나 장기 영향은 과소평가 말라</td></tr>
-  <tr><td>DA Davidson</td><td data-h="등급">긍정 등급 유지</td><td class="a down" data-h="목표가">$300 → $200</td><td style="white-space:normal" class="w">—</td></tr>
-  <tr><td>Citi</td><td data-h="등급">긍정 등급 유지</td><td class="a down" data-h="목표가">$285 → $225</td><td style="white-space:normal" class="w">11/12</td></tr>
-  <tr><td>Barclays</td><td data-h="등급">긍정 등급 유지</td><td class="a down" data-h="목표가">$275 → $210</td><td style="white-space:normal" class="w">—</td></tr>
-  <tr><td>TD Cowen</td><td data-h="등급">Buy 유지</td><td class="a" data-h="목표가">$275</td><td style="white-space:normal" class="w">조슈아 부칼터 · 최선호주에서 제외 · "전례가 없어 모델이 없다"</td></tr>
-  <tr><td>Wells Fargo</td><td data-h="등급">Overweight 유지</td><td class="a" data-h="목표가">$300</td><td style="white-space:normal" class="w">목표가 변경 없음</td></tr>
-</table></div>
-<div class="g-note">11/11~11/14 보도 기준 · 이 기간 중립성 등급으로의 강등이 최소 9건(트루이스트·번스타인·키뱅크·에버코어 ISI·오펜하이머 등 보도) · 집계처 평균은 하향분이 아직 전부 반영되지 않았을 수 있어요</div>
-
-<div class="sub-head">📉 발표 당일 변동 폭</div>
-<div class="sub-desc">옵션시장이 반영한 폭이 최근 실적 발표의 두 배예요.</div>
-<div class="kpi">
-  <div class="k"><div class="l">옵션 내재 변동폭</div><div class="v">±9.67%</div><div class="d">2024년 이후 최대 · 최근 4회 평균 절대값 4.78%의 약 2배</div></div>
-  <div class="k"><div class="l">최근 4회 발표 다음날</div><div class="v">+8.7% ~ -5.5%</div><div class="d">+8.74% · -1.77% · -5.46% · -3.15%(최근 순)</div></div>
-  <div class="k"><div class="l">10/29 이후</div><div class="v"><span class="down">-23.8%</span></div><div class="d">6주 연속 주간 하락 · 직전 주 -12.75%</div></div>
-  <div class="k"><div class="l">연초 이후</div><div class="v"><span class="down">-12.5%</span></div><div class="d">같은 기간 S&amp;P500 +10.62% · 시총 약 $3.93T</div></div>
-</div>
-
-<div class="sub-head">⚠️ 숫자 밖의 변수 — 임시 CEO 체제 첫 발표</div>
-<div class="sub-desc">이번 발표는 실적만 보고 끝낼 수 없어요. 아래는 확인된 사실만 정리한 거예요.</div>
-<div class="wp-preview">
-<b>11월 8일(일)</b> 이사회가 황런쉰 CEO 관련 언론 보도에 대해 독립 조사에 착수했다고 발표했어요(외부 독립 법률고문 + 독립 사외이사 위원회). 회사는 영업기밀이나 국가안보가 훼손됐다고 볼 근거는 없다는 입장이에요.<br><br>
-<b>11월 12일(목)</b> 황 CEO가 사장·CEO·이사직에서 즉시 사임하고, <b>콜레트 크레스 CFO가 임시 CEO</b>, 하비 존스가 초대 이사회 의장을 맡았어요. 당일 주가는 -4.34%로 마감했어요.<br><br>
-<b>11월 9일</b> 은폐를 주장하는 소송이 제기됐어요 — 주장 단계이고 법원 판단이 아니에요.<br><br>
-그래서 이번 콜에서는 <b>FY2028 +70% 전망의 재확인 여부</b>와 <b>후계 구도·거버넌스에 대한 설명</b>이 숫자와 같은 무게를 가져요. 사임 직후 하향 리포트들이 공통으로 지적한 지점이 "후임이 정해지기 전까지는 평가를 보류한다"였기 때문이에요.
-</div>
-
-<div class="sub-head">👀 이번 발표에서 확인할 6가지</div>
-<div class="sub-desc">지난 분기 보고서에서 "다음 분기엔 이걸 보자"고 했던 항목이에요 — 발표 후 정식 브리핑에서 하나씩 판정해요.</div>
-<div class="wlist">
-  <div class="witem"><div class="no">1</div><div class="tx">FY27 Q3 매출이 가이던스 $108.0B을 넘는지<small>서프라이즈 폭이 지난 분기(컨센서스 대비 +4.4%)보다 커지는지가 진짜 관전 포인트예요</small></div></div>
-  <div class="witem"><div class="no">2</div><div class="tx">매출총이익률이 Q3 가이던스 74.0%를 지키는지, Q4 저점 71~72% 전망이 유지되는지<small>Q2 실제 75.0%에서 내려오는 구간이라 전가의 한계가 드러나요</small></div></div>
-  <div class="witem"><div class="no">3</div><div class="tx">FCF 마진 22.2%가 회복되는지 — 매출채권 +$22.3B이 실제 현금으로 회수되는지<small>매출채권 $63.06B·재고 $31.58B이 비교 기준이에요</small></div></div>
-  <div class="witem"><div class="no">4</div><div class="tx">FY2028 매출 +70% 전망이 재확인·상향되는지, 수주잔고 $2조가 더 늘어나는지<small>CEO 교체 직후라 이 전망을 누가 어떤 표현으로 다시 말하는지가 중요해요</small></div></div>
-  <div class="witem"><div class="no">5</div><div class="tx">새로 조달한 차입금 $24.9B의 용처와 총차입금 $38.4B의 추가 증가 여부<small>총차입금 $38.35B·장기차입금 $32.37B이 비교 기준이에요</small></div></div>
-  <div class="witem"><div class="no">6</div><div class="tx">중국 데이터센터 컴퓨트 매출이 가이던스에 포함되기 시작하는지<small>Q3 가이던스는 중국 매출을 0으로 가정했어요 — Q4 가이던스에 들어오는지 봐요</small></div></div>
-</div>
-
-<div class="callout"><div class="ct">한 줄 정리</div>컨센서스가 가이던스에 붙어 숫자 기준선은 낮아졌는데, 추정치가 오르는 동안 주가는 25% 빠져 Forward P/E가 17.5배까지 내려왔어요. 임시 CEO 체제의 첫 콜이라 FY2028 +70% 전망을 누가 어떻게 재확인하는지가 숫자보다 더 큰 변수예요. 발표 당일 새벽(한국시간 11/18 06:20) 이후 정식 브리핑으로 정리해 드릴게요.</div>
+<details class="more3"><summary>자세히 보기</summary><div class="in">
+  <div class="h3">회사 전망과 시장 예상</div>
+  <div class="twrap"><table class="htable">
+    <tr><th>항목</th><th>회사 전망</th><th>시장 예상</th></tr>
+    <tr><td>매출</td><td>$108.0B ±2%</td><td>$108.7~109.0B</td></tr>
+    <tr><td>매출총이익률</td><td>74.0% ±50bp</td><td></td></tr>
+    <tr><td>조정 영업비용</td><td>약 $9.0B</td><td></td></tr>
+    <tr><td>조정 EPS</td><td>미제시</td><td>$2.47~2.49</td></tr>
+  </table></div>
+  <div class="h3">애널리스트 목표주가 조정 (11/11~11/14)</div>
+  <div class="twrap"><table class="htable">
+    <tr><th>기관</th><th>등급</th><th>목표가</th></tr>
+    <tr><td>HSBC</td><td>매수 → 중립</td><td>→ $170</td></tr>
+    <tr><td>BMO Capital</td><td>Outperform 유지</td><td>$340 → $240</td></tr>
+    <tr><td>RBC Capital</td><td>Outperform 유지</td><td>$330 → $230</td></tr>
+    <tr><td>Citi</td><td>긍정 유지</td><td>$285 → $225</td></tr>
+  </table></div>
+  <div class="h3">나머지 확인 항목</div>
+  <div class="twrap"><table class="htable">
+    <tr><th>항목</th><th>비교 기준</th></tr>
+    <tr><td class="w">FCF 마진 회복과 매출채권 회수</td><td class="w">FCF 마진 22.2% · 매출채권 $63.06B</td></tr>
+    <tr><td class="w">차입금 용처와 추가 증가</td><td class="w">총차입금 $38.35B</td></tr>
+    <tr><td class="w">중국 데이터센터 매출의 전망 포함 여부</td><td class="w">3분기 전망은 0으로 가정</td></tr>
+  </table></div>
+</div></details>
 
 <!--rnav-->
 <div class="rnav"><a class="prev off"><span class="av"></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">가장 최근 보고서예요</div></div></a><a class="next" href="../위클리리뷰/위클리리뷰_2026_46주차_2026.11.15.html"><span class="av mono">W46</span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">2026년 46주차</div><div class="rs"><span class="tx UP">상승</span> · 11.09 ~ 11.14</div></div></a></div>
 <!--/rnav-->
 <div class="disclaimer">
-본 프리뷰는 발표 전 컨센서스 기반 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 실제 발표 결과는 컨센서스와 다를 수 있습니다. 이사회 조사·소송 관련 내용은 보도된 사실과 회사 공식 입장만 기재했으며 법원 판단이 아닙니다.<br>
-출처: NVIDIA IR 보도자료(콜 일정), stockanalysis.com(주가·목표가·분기 실적), theta.md·Zacks(분기 컨센서스), OANDA(가이던스 세부), TipRanks(옵션 내재 변동폭·목표가), Yahoo Finance·AOL·CNBC(애널리스트 조정·경영진 변동) — 모두 2026.11.13~11.15 기준 · earnings-briefing 스킬의 D-3 프리뷰 기능이 자동 생성합니다.
+본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+출처: NVIDIA IR, stockanalysis.com, Zacks, TipRanks, CNBC · 발표 전 예상치 기준이며 실제 결과는 다를 수 있습니다 · earnings-briefing 스킬이 자동 생성했습니다.
 </div>
 </div>
 </div>

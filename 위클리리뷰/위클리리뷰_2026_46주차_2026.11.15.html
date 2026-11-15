@@ -12,117 +12,216 @@
   --green:#00B26B; --green-bg:#E3F4EA;
   --red:#F04452; --red-bg:#FEECEE;
   --amber:#FF9500; --amber-bg:#FFF4E3;
-  --purple:#9B7BF4; --purple-bg:#F1EBFF;
   --g900:#191F28; --g700:#333D4B; --g600:#4E5968; --g500:#6B7684; --g400:#8B95A1;
   --g200:#E5E8EB; --g100:#F2F4F6; --g50:#F9FAFB;
+  --surface:#fff; --bg:#F2F4F6;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--g100);color:var(--g900);
+body{background:var(--bg);color:var(--g900);
   font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,BlinkMacSystemFont,sans-serif;
-  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em}
-.page{max-width:760px;margin:0 auto;background:#fff;min-height:100vh}
-.gnb{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--g200);
-  padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+  -webkit-font-smoothing:antialiased;line-height:1.7;letter-spacing:-0.02em;word-break:keep-all}
+.page{max-width:640px;margin:0 auto;min-height:100vh}
+.page.v3{background:var(--bg)}
+.gnb{position:sticky;top:0;z-index:10;background:var(--surface);border-bottom:1px solid var(--g200);
+  padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
 .gnb .brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700}
-.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);
-  display:grid;place-items:center;color:#fff;font-size:11px;font-weight:800}
-.gnb .home{background:var(--blue);color:#fff;font-size:13px;font-weight:700;
-  padding:8px 16px;border-radius:10px;text-decoration:none}
-.body{padding:36px 28px 80px}
-.chip{display:inline-block;background:var(--g100);color:var(--g600);font-size:13px;font-weight:600;
-  padding:5px 12px;border-radius:8px;margin-bottom:18px;margin-right:6px}
-h1{font-size:30px;font-weight:800;line-height:1.35;letter-spacing:-0.035em;margin-bottom:14px}
-.byline{font-size:14px;color:var(--g400);margin-bottom:8px}
-.source-note{font-size:13px;color:var(--g400);padding-bottom:24px;border-bottom:1px solid var(--g200);margin-bottom:28px}
-p{font-size:16.5px;color:var(--g700);margin-bottom:16px}
-b,strong{font-weight:700;color:var(--g900)}
-/* 형광펜은 블루 한 가지로 통일 — 색은 등락 수치(pos/neg)에만 사용 */
-mark{background:var(--blue-bg);color:var(--g900);padding:1px 2px;border-radius:2px;font-weight:500}
-mark.b{background:var(--blue-bg)}
-mark.r{background:var(--blue-bg)}
-section{padding-top:44px}
-.sec-head{margin-bottom:20px}
-.sec-head .l1,.sec-head .l2{font-size:22px;font-weight:800;line-height:1.4;letter-spacing:-0.03em}
-.sub-head{font-size:17px;font-weight:700;margin:32px 0 12px;display:flex;align-items:center;gap:7px}
-.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 24px}
-.kpi{background:var(--g50);border-radius:14px;padding:16px 18px}
-.kpi .l{font-size:13px;color:var(--g500);font-weight:600;margin-bottom:4px}
-.kpi .v{font-size:23px;font-weight:800;letter-spacing:-0.03em}
-.kpi .d{font-size:13px;font-weight:700;margin-top:2px}
-.pos{color:var(--green)} .neg{color:var(--red)} .amb{color:var(--amber)}
-.verdict{display:inline-flex;align-items:center;gap:6px;background:var(--g100);color:var(--g600);
-  font-size:13px;font-weight:800;padding:6px 14px;border-radius:20px;margin-left:8px;vertical-align:middle}
-.callout{background:var(--blue-bg);border-radius:14px;padding:18px 20px;margin:22px 0;
-  font-size:16.5px;font-weight:700;color:var(--g900);line-height:1.6}
-.callout .cap{display:block;font-size:12.5px;font-weight:700;color:var(--blue);margin-bottom:6px;letter-spacing:0}
-.chart{background:var(--g50);border-radius:16px;padding:20px 16px 12px;margin:20px 0 8px}
-.chart .ct{font-size:14px;font-weight:700;padding:0 6px 4px;color:var(--g900)}
-.chart .cs{font-size:12.5px;font-weight:500;color:var(--g400);padding:0 6px 12px;display:block}
-svg{width:100%;height:auto;display:block}
-.s-lab{font-size:12.5px;fill:var(--g400);font-weight:600}
-.s-val{font-size:13px;fill:var(--g900);font-weight:800}
-.cv{font-size:12.5px;font-weight:800;fill:var(--g900)}
-.cl{font-size:11.5px;font-weight:600;fill:var(--g400)}
-.legend{display:flex;gap:16px;font-size:12.5px;color:var(--g500);padding:8px 6px 4px;font-weight:600;flex-wrap:wrap}
-.legend .d{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
-.legend .ln{width:14px;height:3px;border-radius:2px;display:inline-block;margin-right:5px;vertical-align:3px}
-table{width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0 20px}
-th,td{padding:12px 10px;text-align:right;border-bottom:1px solid var(--g200)}
-th:first-child,td:first-child{text-align:left}
-thead th{color:var(--g500);font-size:13px;font-weight:600;border-bottom:1px solid var(--g200)}
-tbody td{color:var(--g700);font-weight:500}
-tbody tr.hl td{background:var(--g50);font-weight:700;color:var(--g900)}
-ul.dots{list-style:none;margin:6px 0 18px}
-ul.dots li{font-size:16.5px;color:var(--g700);padding-left:16px;position:relative;margin-bottom:12px}
-ul.dots li:before{content:'';position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--g400)}
-.foot-note{font-size:13px;color:var(--g400);margin-top:-6px;margin-bottom:16px}
-.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--g200);
-  font-size:12.5px;color:var(--g400);line-height:1.7}
-
-/* ===== 위클리 전용 ===== */
-.tl{display:flex;flex-direction:column;gap:10px;margin:16px 0 8px}
-.tli{display:flex;gap:14px;background:var(--g50);border-radius:14px;padding:16px 18px}
-.tld{flex:0 0 52px;text-align:center;align-self:flex-start}
-.tld .d1{font-size:15px;font-weight:800;line-height:1.3}
-.tld .d2{font-size:11.5px;color:var(--g400);font-weight:700}
-.tlb{min-width:0}
-.tlt{font-size:15px;font-weight:700;line-height:1.5;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-/* 카테고리 배지는 무채색 한 가지로 통일 */
-.tcat{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;white-space:nowrap;
-  background:var(--g100);color:var(--g500);border:1px solid var(--g200)}
-.tcat.earn,.tcat.macro,.tcat.fed,.tcat.news{background:var(--g100);color:var(--g500)}
-.tlx{font-size:14.5px;color:var(--g600);margin-top:4px;line-height:1.55}
-.tlk{font-size:13px;font-weight:700;margin-top:6px}
-.tlk a{color:var(--blue);text-decoration:none}
-.nw{display:flex;flex-direction:column;gap:1px;background:var(--g200);border-radius:14px;overflow:hidden;margin:16px 0 8px}
-.nwr{background:#fff;padding:14px 18px;display:flex;align-items:center;gap:10px}
-.nwr .tm{width:20px;flex:0 0 20px;text-align:center;font-size:13px}
-.nwr .tk{font-size:15px;font-weight:800;min-width:96px}
-.nwr .co{font-size:13.5px;color:var(--g400);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.nwr .dt{font-size:14.5px;color:var(--g500);font-weight:600;margin-left:auto;white-space:nowrap;flex:0 0 auto}
-.nwr.hot{background:var(--blue-bg)}
-.nwr.hot .dt{color:var(--blue);font-weight:800}
-.wgrp{border:1px solid var(--g200);border-radius:16px;padding:16px 19px;margin-bottom:10px}
-.wgrp .wh{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800}
-.wgrp .wh .wd{margin-left:auto;font-size:13px;color:var(--g500);font-weight:700;white-space:nowrap}
-.wgrp ul{list-style:none;margin-top:9px;display:flex;flex-direction:column;gap:7px}
-.wgrp li{font-size:14px;color:var(--g700);line-height:1.6;padding-left:20px;position:relative}
-.wgrp li::before{content:'';position:absolute;left:4px;top:9px;width:6px;height:6px;border-radius:50%;
-  background:var(--blue-bg);border:2px solid var(--blue)}
-.wp-preview{background:var(--blue-bg);border-radius:14px;padding:16px 18px;
-  font-size:14.5px;color:var(--g700);font-weight:500;margin:4px 0 8px}
-.memo{border:1.5px dashed var(--g400);background:var(--g50);border-radius:14px;
-  padding:14px 18px;margin:0 0 26px;font-size:13.5px;color:var(--g700);line-height:1.65}
-.memo .t{display:block;font-size:12px;font-weight:800;color:var(--g500);margin-bottom:4px}
-@media(max-width:600px){
-  .body{padding:28px 20px 60px}
-  h1{font-size:25px}
-  .kpis{grid-template-columns:1fr}
-  .sec-head .l1,.sec-head .l2{font-size:20px}
-  p,ul.dots li{font-size:16px}
-  .nwr{padding:13px 14px;gap:8px}
-  .nwr .tk{font-size:14px;min-width:84px}
-}
+.gnb .brand .dot{width:20px;height:20px;border-radius:6px;background:var(--blue);display:grid;place-items:center;color:#fff;font-size:11px}
+.gnb a{font-size:13.5px;color:var(--g500);text-decoration:none;font-weight:600}
+.body.v3{padding:24px 16px 72px;display:flex;flex-direction:column;gap:14px}
+.meta{font-size:12.5px;color:var(--g400);font-weight:600}
+h1{font-size:25px;font-weight:800;line-height:1.3;letter-spacing:-0.035em;text-wrap:balance}
+b{font-weight:800}
+a{color:var(--blue)}
+.up{color:var(--green)} .down{color:var(--red)}
+svg .cl{font:600 12px Pretendard,sans-serif;fill:#8B95A1}
+svg .cv{font:800 12.5px Pretendard,sans-serif;fill:#333D4B}
+svg .ax{font:600 11.5px Pretendard,sans-serif;fill:#B0B8C1}
+/* ── v3 카드 ── */
+.c3{background:var(--surface);border:1px solid var(--g200);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.c3 svg{display:block;width:100%;height:auto}
+.q3{font-size:12.5px;font-weight:700;color:var(--blue);letter-spacing:.02em}
+.big3{font-size:28px;font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums}
+.c3 p{font-size:15px;line-height:1.7;color:var(--g600)}
+.c3 p b,.rows3 b,.grp3 b,.note3 b{color:var(--g900)}
+.c3 p.lead3{font-size:17px;font-weight:700;color:var(--g900);line-height:1.5}
+.h3{font-size:13px;font-weight:700;color:var(--g900)}
+.pill3{align-self:flex-start;font-size:12.5px;font-weight:700;color:#fff;background:var(--blue);border-radius:999px;padding:2px 12px}
+.pill3.g{background:var(--g100);color:var(--g600)}
+/* 수치 칸 (3~4칸) */
+.kv3{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--g200);border-radius:12px;overflow:hidden;border:1px solid var(--g200)}
+.kv3.n3{grid-template-columns:repeat(3,1fr)}
+.kv3>div{background:var(--surface);padding:10px 6px;text-align:center;min-width:0}
+.kv3 span{display:block;font-size:11.5px;color:var(--g400)}
+.kv3 b{display:block;font-size:15px;font-variant-numeric:tabular-nums}
+.kv3 em{font-style:normal;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums}
+@media (max-width:400px){.kv3,.kv3.n3{grid-template-columns:1fr 1fr}}
+/* 결과 2칸 (경제지표·실적) */
+.res3{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.res3>div{background:var(--g50);border-radius:14px;padding:12px 14px;min-width:0}
+.res3 span{display:block;font-size:12.5px;color:var(--g400)}
+.res3 b{display:block;font-size:28px;line-height:1.25;font-variant-numeric:tabular-nums}
+.res3 em{font-style:normal;font-size:12.5px;color:var(--g600);font-variant-numeric:tabular-nums}
+/* 전후 비교 막대: 막대 길이 = --v × 0.8% (값 100이 칸의 80%) */
+.ba3{display:flex;flex-direction:column;gap:12px;background:var(--g50);border-radius:14px;padding:14px}
+.ba3 .r{display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:center}
+.ba3 .r>span{font-size:13px;font-weight:700;color:var(--g600)}
+.ba3 .bars{display:flex;flex-direction:column;gap:4px;min-width:0}
+.ba3 .b{display:flex;align-items:center;gap:8px;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--g400)}
+.ba3 .b i{display:block;height:10px;border-radius:5px;background:var(--g200);min-width:3px;flex:none;width:calc(var(--v)*0.8%)}
+.ba3 .b.a{color:var(--g900);font-weight:700}
+.ba3 .b.a i{background:var(--g400)}
+.ba3 .r.key>span,.ba3 .r.key .b.a{color:var(--blue)}
+.ba3 .r.key .b.a i{background:var(--blue)}
+.ba3 .lg{display:flex;gap:14px;font-size:12px;color:var(--g400)}
+.ba3 .lg i{display:inline-block;width:10px;height:10px;border-radius:5px;margin-right:5px;vertical-align:-1px;background:var(--g200)}
+.ba3 .lg .a i{background:var(--blue)}
+/* 라벨 행 */
+.rows3{display:flex;flex-direction:column;gap:8px;font-size:14.5px;line-height:1.6;color:var(--g600)}
+.rows3>div{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline}
+.rows3 span{font-size:11.5px;font-weight:700;padding:1px 7px;border-radius:6px;background:var(--g100);color:var(--g600);white-space:nowrap}
+.rows3 .key span{background:var(--blue);color:#fff}
+/* 일정 */
+.dates3{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dates3>div{background:var(--g50);border-radius:12px;padding:10px 12px;font-size:13.5px;color:var(--g600);line-height:1.5;min-width:0}
+.dates3 b{display:block;color:var(--g900);font-variant-numeric:tabular-nums}
+/* 내 종목 그룹 */
+.grp3{display:flex;flex-direction:column;border-top:1px solid var(--g200)}
+.grp3>div{padding:10px 0;border-bottom:1px solid var(--g200);display:flex;flex-direction:column;gap:2px}
+.grp3>div:last-child{border-bottom:0;padding-bottom:0}
+.grp3 .gh{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;font-weight:700}
+.grp3 .gh em{font-style:normal;font-variant-numeric:tabular-nums;white-space:nowrap}
+.grp3 .gd{font-size:13.5px;color:var(--g600);line-height:1.55;font-variant-numeric:tabular-nums}
+.note3{font-size:13.5px;color:var(--g600);background:var(--g50);border-radius:12px;padding:10px 12px;line-height:1.6}
+/* 자세히 보기 (차트·표만, 해설 문단 없음) */
+.more3{background:var(--surface);border:1px solid var(--g200);border-radius:18px;padding:14px 18px}
+.more3>summary{cursor:pointer;color:var(--blue);font-weight:700;font-size:14px}
+.more3>summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.more3 .in{display:flex;flex-direction:column;gap:14px;padding-top:14px}
+.more3 svg{display:block;width:100%;height:auto}
+.more3 .h3{margin-bottom:-6px}
+.twrap{overflow-x:auto}
+.htable{width:100%;border-collapse:collapse;font-size:13.5px}
+.htable th{color:var(--g400);font-size:12px;font-weight:700;padding:8px;text-align:right;border-bottom:1px solid var(--g200);white-space:nowrap}
+.htable th:first-child,.htable td:first-child{text-align:left}
+.htable td{padding:8px;border-bottom:1px solid var(--g200);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.htable td.w{white-space:normal;text-align:left;color:var(--g600)}
+.disclaimer{margin-top:20px;padding-top:18px;border-top:1px solid var(--g200);font-size:12px;color:var(--g400);line-height:1.7}
+/* ── v3 2단계 추가(실적·프리뷰·구루) ── */
+svg .s-lab{font-size:12.5px;fill:var(--g400);font-weight:600}
+svg .s-val{font-size:13px;fill:var(--g900);font-weight:800}
+svg .s-yoy{font-size:12px;fill:var(--green);font-weight:800}
+/* 성적표: 실제 vs 예상 */
+.score3{display:flex;flex-direction:column;border-top:1px solid var(--g200)}
+.score3>div{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--g200);font-size:14px;font-variant-numeric:tabular-nums}
+.score3.n2>div{grid-template-columns:1fr auto}
+.score3 span{color:var(--g600)}
+.score3 span small{display:block;font-size:12px;color:var(--g400)}
+.score3 b{font-size:16px}
+.score3 em{font-style:normal;font-weight:700;font-size:13px;min-width:4.2em;text-align:right;color:var(--blue)}
+.score3 em.down{color:var(--red)}
+.line3{display:flex;justify-content:space-between;gap:10px;align-items:baseline;background:var(--g50);border-radius:12px;padding:10px 14px;font-size:14px;color:var(--g600)}
+.line3 b{font-variant-numeric:tabular-nums}
+.line3 b.big{font-size:18px;color:var(--g900)}
+/* 좋았던 것(+) / 아쉬운 것(−) */
+.pm3{display:flex;flex-direction:column;gap:7px;list-style:none;font-size:14.5px;line-height:1.6;color:var(--g600)}
+.pm3 li{display:grid;grid-template-columns:18px 1fr;gap:6px}
+.pm3 li::before{font-weight:800}
+.pm3.good li::before{content:"+";color:var(--green)}
+.pm3.bad li::before{content:"−";color:var(--red)}
+.pm3 b{color:var(--g900)}
+.ba3 .r.bad>span,.ba3 .r.bad .b.a{color:var(--red)}
+.ba3 .r.bad .b.a i{background:var(--red)}
+/* 인용 */
+.quote3{padding:12px 14px;background:var(--g50);border-radius:12px;font-size:15.5px;font-weight:700;line-height:1.55}
+.quote3 cite{display:block;font-style:normal;font-weight:500;font-size:12.5px;color:var(--g400);margin-top:2px}
+/* 좌우 막대: 막대 길이 = --v % (최대 절댓값이 50) */
+.dv3{display:flex;flex-direction:column;gap:9px;background:var(--g50);border-radius:14px;padding:14px}
+.dv3 .r{display:grid;grid-template-columns:86px 1fr 64px;gap:8px;align-items:center;font-size:13px}
+.dv3 .r>span{font-weight:700;color:var(--g600)}
+.dv3 .ax{position:relative;height:12px}
+.dv3 .ax::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--g200)}
+.dv3 .ax i{position:absolute;top:0;height:12px;border-radius:4px;width:calc(var(--v)*1%)}
+.dv3 .ax .p{left:50%;background:var(--green)}
+.dv3 .ax .n{right:50%;background:var(--red)}
+.dv3 .ax .rng{left:calc(50% - var(--v)*1%);width:calc(var(--v)*2%);border:2px dashed var(--blue);box-sizing:border-box}
+.dv3 em{font-style:normal;font-variant-numeric:tabular-nums;font-weight:700;text-align:right;white-space:nowrap}
+.dv3 .r.key>span,.dv3 .r.key em{color:var(--blue)}
+/* 번호 목록(확인할 것) */
+.chk3{list-style:none;counter-reset:c;display:flex;flex-direction:column;border-top:1px solid var(--g200)}
+.chk3 li{counter-increment:c;display:grid;grid-template-columns:24px 1fr;gap:8px;padding:10px 0;border-bottom:1px solid var(--g200);font-size:14.5px;line-height:1.6;color:var(--g600)}
+.chk3 li:last-child{border-bottom:0;padding-bottom:0}
+.chk3 li::before{content:counter(c);font-weight:800;color:var(--blue);font-variant-numeric:tabular-nums}
+.chk3 b{color:var(--g900);display:block}
+/* 포지션 표(구루) */
+.pos3{display:flex;flex-direction:column;border-top:1px solid var(--g200)}
+.pos3>div{display:grid;grid-template-columns:74px 44px 1fr;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--g200);font-size:14px;color:var(--g600)}
+.pos3 b{color:var(--g900)}
+.pos3 em{font-style:normal;font-weight:800}
+/* 구루 업데이트 블록 · 인물 소개(자세히 보기 안) */
+.gup-wrap:empty{display:none}
+.gup{background:var(--blue-bg);border-radius:16px;padding:16px 18px}
+.gup+.gup{margin-top:10px}
+.gup .gh{font-size:13px;font-weight:800;color:var(--blue);margin-bottom:4px}
+.gup .gt{font-size:15.5px;font-weight:800;color:var(--g900);line-height:1.55}
+.gup ul{list-style:none;margin-top:6px}
+.gup li{font-size:14.5px;color:var(--g700);line-height:1.65;padding:3px 0 3px 14px;position:relative}
+.gup li:before{content:"";position:absolute;left:2px;top:13px;width:5px;height:5px;border-radius:50%;background:var(--blue)}
+.profile .ph{font-size:13px;font-weight:700;color:var(--g900);margin-bottom:10px}
+.pf-top{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.pf-av{flex:0 0 48px;height:48px;border-radius:50%;background:var(--blue-bg);color:var(--blue);display:grid;place-items:center;font-weight:800;font-size:14px}
+.pf-nm{font-size:16px;font-weight:800;line-height:1.35}
+.pf-nm small{font-size:12.5px;color:var(--g400);font-weight:600;margin-left:4px}
+.pf-role{font-size:13px;color:var(--g500);font-weight:600;line-height:1.5}
+.pf-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.pf-tags span{font-size:12px;font-weight:700;color:var(--g600);background:var(--g100);padding:4px 10px;border-radius:20px}
+.pf-li{list-style:none}
+.pf-li li{font-size:13.5px;color:var(--g600);line-height:1.6;padding:8px 0;border-top:1px solid var(--g200)}
+.pf-li li b{color:var(--g900)}
+/* ── v3 위클리 슬라이드 ── */
+.deck3{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;scrollbar-width:none;border-radius:18px;align-items:stretch}
+.deck3::-webkit-scrollbar{display:none}
+.deck3:focus-visible,.nav3 button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.deck3>.c3{flex:0 0 100%;scroll-snap-align:center}
+.h3s{font-size:22px;font-weight:800;line-height:1.35;letter-spacing:-0.03em;text-wrap:balance}
+.no3{margin-top:auto;padding-top:6px;font-size:11.5px;color:var(--g400);font-variant-numeric:tabular-nums}
+.nav3{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.nav3 button{font:inherit;font-size:13.5px;font-weight:700;color:var(--blue);background:var(--surface);border:1px solid var(--g200);border-radius:999px;padding:7px 18px;cursor:pointer}
+.nav3 button:disabled{color:var(--g400);cursor:default}
+.nav3 .dots{display:flex;gap:6px}
+.nav3 .dots i{width:6px;height:6px;border-radius:50%;background:var(--g200)}
+.nav3 .dots i.on{background:var(--blue);width:16px;border-radius:3px}
+/* 이슈 목록 */
+.iss3{display:flex;flex-direction:column;border-top:1px solid var(--g200)}
+.iss3>div{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid var(--g200);font-size:14.5px;line-height:1.6;color:var(--g600)}
+.iss3>div:last-child{border-bottom:0}
+.iss3 em{font-style:normal;font-weight:800;color:var(--blue)}
+.iss3 b{display:block;color:var(--g900)}
+.dates3.one{grid-template-columns:1fr}
+.dates3.one>div{display:grid;grid-template-columns:96px 1fr;gap:10px}
+.deck3 .dv3{gap:6px;padding:12px}
+.deck3 .dv3 .r{grid-template-columns:72px 1fr 64px;font-size:12.5px}
+.deck3 .dv3 .ax,.deck3 .dv3 .ax i{height:11px}
+/* 매수 시그널 점수·게이지 */
+.sc3{display:flex;align-items:baseline;gap:10px}
+.sc3 b{font-size:40px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.sc3 span{font-size:14px;color:var(--g400)}
+.sc3 em{font-style:normal;font-size:12.5px;font-weight:700;background:var(--g100);color:var(--g600);border-radius:999px;padding:2px 12px;margin-left:auto}
+.gg3{position:relative;height:10px;border-radius:5px;background:var(--g200);margin:8px 0 22px}
+.gg3 i{position:absolute;top:-4px;width:2px;height:18px;background:var(--g400)}
+.gg3 u{position:absolute;top:18px;font-size:11.5px;color:var(--g400);text-decoration:none;transform:translateX(-50%);white-space:nowrap}
+.gg3 .me{position:absolute;top:-5px;width:20px;height:20px;margin-left:-4px;border-radius:50%;background:var(--blue);border:3px solid var(--surface);box-sizing:border-box}
+/* 자세히 보기 안 7개 신호 표(signal_week.html 그대로) */
+.sg .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--g500)}
+.sg .num{font-size:24px;font-weight:800;color:var(--g900)}
+.sg .num small{font-size:13px;color:var(--g400);font-weight:700}
+.sg .tier{font-size:12px;font-weight:800;padding:2px 9px;border-radius:8px;background:var(--g100);color:var(--g500)}
+.sg .bar,.sg .ticks{display:none}
+.sg table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+.sg th,.sg td{padding:8px 6px;border-bottom:1px solid var(--g200);text-align:right;white-space:nowrap}
+.sg th{color:var(--g400);font-size:12px}
+.sg td.gap{color:var(--g500);font-weight:600}
+.sg .st{font-size:11px;font-weight:800;padding:2px 7px;border-radius:6px;background:var(--g100);color:var(--g500)}
+.sg .st.on{background:var(--green-bg);color:var(--green)}
 /*<!--rnav-css-->*/
 .rnav{display:flex;gap:8px;margin-top:36px;align-items:stretch}
 .rnav a{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:var(--g50);border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;transition:.12s}
@@ -294,123 +393,30 @@ mark{padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clo
   .kpis .kpi .d{font-size:11.5px;line-height:1.45}
 }
 /*<!--/rd-css-->*/
-/* v2 시안: 매수 시그널 섹션 */
-.sg{border:1px solid var(--g200);border-radius:16px;padding:18px 20px;margin:18px 0}
-.sg .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.sg .num{font-size:34px;font-weight:800;letter-spacing:-0.04em}
-.sg .num small{font-size:16px;color:var(--g400);font-weight:700}
-.sg .tier{font-size:12.5px;font-weight:800;padding:3px 10px;border-radius:8px;background:var(--g100);color:var(--g500)}
-.sg .bar{position:relative;height:10px;border-radius:6px;background:var(--g100);margin:14px 0 6px;overflow:visible}
-.sg .bar i{position:absolute;top:0;bottom:0;width:2px;background:var(--g400)}
-.sg .bar b{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:var(--blue)}
-.sg .ticks{position:relative;height:18px;font-size:12px;color:var(--g400);font-weight:600}
-.sg .ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
-.sg .ticks span:first-child{transform:none}
-.sg .ticks span:last-child{transform:translateX(-100%)}
-.sg table{margin:14px 0 6px;font-size:13.5px}
-.sg td.gap{color:var(--g500);font-weight:600}
-.sg .st{font-size:11px;font-weight:800;padding:2px 7px;border-radius:6px;background:var(--g100);color:var(--g500)}
-.sg .st.on{background:var(--green-bg);color:var(--green)}
-.vs{font-size:12.5px;color:var(--g400);font-weight:600;margin-top:6px}
-.lead{font-size:16px;line-height:1.75}
-.sum{display:grid;gap:8px;margin:14px 0 22px}
-.sum .row{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.6}
-.sum .row .k{flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 8px;border-radius:6px;margin-top:4px;background:var(--g100);color:var(--g500)}
-.sum .row .k.ok{background:var(--green-bg);color:var(--green)}
-.sum .row .k.no{background:var(--red-bg);color:var(--red)}
-/* v2 시안: 종목 카드 · 결과/이유 줄 분리 */
-.stock-g{border:1px solid var(--g200);border-radius:16px;padding:16px 18px;margin-bottom:10px;background:var(--surface,#fff)}
-.stock-g .skh{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;flex-wrap:wrap}
-.stock-g .skh .tk{font-size:16px;font-weight:800}
-.stock-g .skh .pct{font-size:15px;font-weight:800}
-.stock-g .skh .px{margin-left:auto;font-size:12.5px;color:var(--g400);font-weight:600;white-space:nowrap}
-.stock-g .rr{font-size:14px;color:var(--g700);line-height:1.65}
-.rr+.rr{margin-top:7px}
-.tlx .rr{display:block}
 </style>
 </head>
 <body>
-<div class="page">
-
+<div class="page v3">
 <div class="gnb">
   <div class="brand"><span class="dot">🗞️</span> 위클리 리뷰</div>
-  <a class="home" href="../index.html">전체 보고서</a>
+  <a href="../index.html">← 아카이브</a>
 </div>
+<div class="body v3">
+<div class="meta">2026.11.15 · 2026년 46주차 · 11.09 ~ 11.14</div>
 
-<div class="body">
+<div class="deck3" id="deck3" tabindex="0" aria-label="위클리 리뷰 슬라이드">
 
-<span class="chip">#위클리리뷰</span><span class="chip">#2026년 46주차</span>
-<h1>젠슨 황이 떠난 주에,<br>지수는 4주 만에 올랐어요<span class="verdict">상승</span></h1>
-<div class="byline">2026.11.15 (일) 발간 · 대상 기간 2026.11.09 (월) ~ 11.14 (토) · 한국시간 기준</div>
-
-<p>한 주의 주인공은 목요일 밤에 나온 한 문장이었어요. 엔비디아 이사회가 <b>젠슨 황의 사임</b>을 수리했고, CFO였던 콜레트 크레스가 임시 CEO를 맡았어요. 그런데 지수는 올랐어요. <b>S&amp;P 500이 주간 +2.51%(7,561.67)</b>로 4주 연속 하락을 끊고 8월 초 이후 가장 좋은 주를 썼거든요. 그걸 만든 날은 이틀이에요. 월요일엔 이란 추가 공습 가능성이 후퇴하면서 하루에 <b>+2.35%</b>가 들어왔고, 수요일엔 코어위브가 3분기 조정 영업이익률 10.4%를 내며 <b>+24.71%</b> 뛰어 AI 인프라 거래를 되살렸어요. <mark>지난주 하락의 이유가 'AI 설비투자가 멈춘다'였다면, 이번 주 상승의 이유는 그 전제가 숫자로 반박됐다는 것</mark>이에요. 황의 사임은 엔비디아 한 종목의 사건으로 좁혀졌고, NVDA만 주간 -12.75%로 6주 연속 하락하며 시가총액 4조 달러를 내줬어요.</p>
-<p>대신 값이 오른 건 돈이에요. <b>10년물이 5.15%로 주간 +29bp</b> 올라 사상 처음 5%대에 자리를 잡았고, 2년물은 <b>+37bp(4.88%)</b>로 2년 만의 최대 주간 상승이에요. 화요일 10월 CPI에서 근원이 세 달 연속 +0.3%로 나온 뒤 12월 인상이 <b>확률 100%</b>로 굳었고, 50bp 인상 확률도 10.3%가 붙었어요. 금요일 10월 PPI는 월간 +0.3%로 식었는데 연간은 6.5%로 4년 만의 최고라 금리를 더 밀어 올렸고, 같은 날 FAA의 전면 운항 중단과 마이크로소프트 365 장애가 겹쳐 나스닥만 -0.91%로 끝났어요. 보유 종목은 <b>상승 8 · 하락 5</b>로 지난주 5:8에서 뒤집혔고, 1위는 CRWV +14.50%, 최하위는 NVDA -12.75%예요.</p>
-
-<div class="wgrp">
-  <div class="wh">👀 지난주 관전 포인트 점검<span class="wd">45주차 · 핵심 7개</span></div>
-  <ul>
-    <li><b>10월 CPI 근원은 세 달 연속 +0.3%로 충족됐어요</b> - 헤드라인은 MoM +0.4%로 예측(+0.3%)을 넘겼고 근원도 +0.3%로 예측을 0.1%p 상회했어요. 연간 상승률은 2025년 10월 조사가 없어 BLS가 산출하지 못했으니, 확인선으로 뒀던 헤드라인 3.7%는 이번엔 비교할 수가 없었어요</li>
-    <li><b>12월 인상 확률은 78%에서 100%로 갔어요</b> - 90%대로 올라가면 금리민감 성장주가 불리하다고 봤던 쪽이 맞았어요. 25bp가 89.7%·50bp가 10.3%이고, 50bp 확률은 CPI 전 1.1%에서 15.3%까지 튀었다가 PPI 뒤 10.3%로 내려왔어요</li>
-    <li><b>코어위브는 이자비용을 영업이익으로 넘겼어요</b> - 이자비용이 가이던스 하단보다 낮은 <b>$846M</b>으로 나왔고 조정 영업이익은 <b>$379M</b>이에요. 영업이익이 이자를 못 넘기면 상환 능력 이야기로 넘어간다고 봤는데, 넘기지는 못했지만 가이던스 상단을 45.8% 초과해 마진 경로를 한 분기 앞당겼어요. 주가는 확인선 $43.66을 지키고 $53.13까지 올라왔어요</li>
-    <li><b>반도체 지수는 10,000을 되찾았어요</b> - 9,390.25에서 <b>10,146.32(+8.05%)</b>예요. 되찾으면 11.5는 하루 사건으로 정리된다고 봤던 쪽이에요. MU도 확인선 $650을 지켜 $778.31(+12.80%), SK하이닉스는 1,216,000원(+7.42%)이에요</li>
-    <li><b>10월 PPI에서 메모리 원가는 '에너지 밖 상품'으로 보였어요</b> - 근원 상품이 +0.5%로 10월 상승분의 60% 이상을 혼자 설명했고 기초 유기화학이 +3.9%로 뛰었어요. 애플의 12월 마진 45~46%와 인텔 경고가 도매 단계에서 처음 확인된 자리예요</li>
-    <li><b>NVDA는 더 빠졌고, VIX는 20 아래로 돌아왔어요</b> - $186.64가 $162.85로 또 -12.75%인데 이유가 반도체가 아니라 CEO 공백이에요. VIX는 25.64에서 <b>19.30</b>으로 내려와 확인선을 충족했고, 수요일엔 17.49까지 갔어요</li>
-    <li><b>매수 시그널 확인선 7,369는 깨지지 않고 멀어졌어요</b> - 지수가 올라 일봉 RSI가 35.1에서 46.8로 되올라왔고, 그만큼 선 자체가 <b>7,259</b>로 내려갔어요. 점수는 0/14점 그대로예요</li>
-  </ul>
-</div>
-
-<!-- ① -->
-<section>
-<div class="sec-head">
-  <div class="l1">📌 ① 이번 주 시장,</div>
-  <div class="l2">한눈에 보기</div>
-</div>
-
-<div class="kpis">
-  <div class="kpi"><div class="l">S&amp;P 500 (주간)</div><div class="v pos">+2.51%</div><div class="d">7,561.67 · 4주 연속 하락을 끊었어요</div></div>
-  <div class="kpi"><div class="l">나스닥 / 러셀2000 (주간)</div><div class="v pos">+2.27% / +1.32%</div><div class="d">25,136.27 / 2,790.49</div></div>
-  <div class="kpi"><div class="l">미 10년물 금리</div><div class="v">5.15%</div><div class="d neg">주간 +29bp · 처음 5%대 마감</div></div>
-  <div class="kpi"><div class="l">12월 FOMC 인상 확률</div><div class="v">100%</div><div class="d">25bp 89.7% · 50bp 10.3%</div></div>
-</div>
-
-<div class="sub-head">📈 주식은 올랐고, 안전자산은 다 내렸어요</div>
-<div class="chart">
-  <div class="ct">주요 자산 주간 등락률 (%)</div>
-  <span class="cs">11.6 (금) 종가 → 11.13 (금) 종가</span>
-<svg viewBox="0 0 700 266" xmlns="http://www.w3.org/2000/svg">
-<line x1="350" y1="14" x2="350" y2="252" stroke="#D1D6DB" stroke-width="1.5"/>
-<text x="150" y="47" text-anchor="end" class="s-lab">반도체(SOX)</text>
-<rect x="350" y="30" width="108.2" height="24" fill="#00B26B" rx="6"/>
-<text x="466.2" y="47" class="cv" fill="#00B26B">+8.05%</text>
-<text x="150" y="81" text-anchor="end" class="s-lab">S&amp;P 500</text>
-<rect x="350" y="64" width="33.7" height="24" fill="#00B26B" rx="6"/>
-<text x="391.7" y="81" class="cv" fill="#00B26B">+2.51%</text>
-<text x="150" y="115" text-anchor="end" class="s-lab">나스닥</text>
-<rect x="350" y="98" width="30.5" height="24" fill="#00B26B" rx="6"/>
-<text x="388.5" y="115" class="cv" fill="#00B26B">+2.27%</text>
-<text x="150" y="149" text-anchor="end" class="s-lab">달러인덱스</text>
-<rect x="350" y="132" width="15.3" height="24" fill="#00B26B" rx="6"/>
-<text x="373.3" y="149" class="cv" fill="#00B26B">+1.14%</text>
-<text x="150" y="183" text-anchor="end" class="s-lab">WTI 유가</text>
-<rect x="316.4" y="166" width="33.6" height="24" fill="#F04452" rx="6"/>
-<text x="308.4" y="183" text-anchor="end" class="cv" fill="#F04452">-2.50%</text>
-<text x="150" y="217" text-anchor="end" class="s-lab">금(12월물)</text>
-<rect x="288.2" y="200" width="61.8" height="24" fill="#F04452" rx="6"/>
-<text x="280.2" y="217" text-anchor="end" class="cv" fill="#F04452">-4.60%</text>
-<text x="150" y="251" text-anchor="end" class="s-lab">비트코인</text>
-<rect x="216.4" y="234" width="133.6" height="24" fill="#F04452" rx="6"/>
-<text x="208.4" y="251" text-anchor="end" class="cv" fill="#F04452">-9.94%</text>
-</svg>
-  <div class="legend"><span><span class="d" style="background:#00B26B"></span>주간 상승</span><span><span class="d" style="background:#F04452"></span>주간 하락</span></div>
-</div>
-
-<p>갈린 기준이 지난주와 정반대예요. 지난주엔 지수 네 개가 전부 내리고 금·은·달러만 올랐는데, 이번 주는 <b>주식과 달러만 오르고 금·유가·비트코인이 전부 내렸어요</b>. 반도체가 +8.05%로 가장 크게 반등해 매도의 진원지가 그대로 되돌았다는 걸 보여주고, 그 뒤를 S&amp;P 500 +2.51%와 나스닥 +2.27%가 따라갔어요. 금은 $3,886.30으로 <b>-4.60%</b>, 6월 초 이후 최악의 주예요. 금리가 주간 29bp 오르면서 금을 들고 있는 비용이 커졌고, 달러인덱스가 103.43으로 +1.14% 올라 2025년 4월 이후 최고가 된 것도 같은 방향이에요. 유가는 월요일 하루에 브렌트가 -5.85%($92.57) 빠지며 주간 -2.50%($88.56)가 됐는데, 이란 긴장 완화가 지난주 프리미엄을 되돌린 결과예요. 비트코인은 $68,237로 8월 말 이후 처음 7만 달러를 내주고 <mark>6주 연속 주간 하락</mark>인데, 주식이 오른 주에 혼자 빠진 자산이에요.</p>
-
-<div class="sub-head">📊 월요일과 수요일이 한 주를 만들었어요</div>
-<div class="chart">
-  <div class="ct">S&amp;P 500 일별 종가 (11.9~11.13 현지시간)</div>
-  <span class="cs">종가 기준 · 점선은 전주 금요일 종가(7,376.86)예요</span>
-<svg viewBox="0 0 700 272" xmlns="http://www.w3.org/2000/svg">
+<div class="c3">
+  <span class="q3">이번 주 한 줄</span>
+  <h1 class="h3s">젠슨 황이 떠난 주에 지수는 4주 만에 올랐어요.</h1>
+  <div class="kv3">
+    <div><span>S&amp;P 500</span><b class="up">+2.51%</b></div>
+    <div><span>나스닥</span><b class="up">+2.27%</b></div>
+    <div><span>10년물</span><b>5.15%</b></div>
+    <div><span>12월 인상</span><b>100%</b></div>
+  </div>
+  <div class="h3">S&amp;P 500 일별 종가 (점선은 전주 금요일 종가)</div>
+  <svg viewBox="0 0 700 272" xmlns="http://www.w3.org/2000/svg">
   <line x1="70" y1="34.0" x2="658" y2="34.0" stroke="#EDEFF2" stroke-width="1"/>
   <text x="62" y="38.0" text-anchor="end" class="cl">7,700</text>
   <line x1="70" y1="79.0" x2="658" y2="79.0" stroke="#EDEFF2" stroke-width="1"/>
@@ -442,274 +448,217 @@ mark{padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clo
   <text x="642.0" y="117.2" text-anchor="end" class="cv">7,561.67</text>
   <text x="642.0" y="258" text-anchor="end" class="s-lab">11.13(금)</text>
 </svg>
-  <div class="evl" style="display:grid;gap:5px;padding:2px 6px 6px;font-size:12.5px;line-height:1.5;color:var(--g500)">
-    <div><b style="display:inline-block;min-width:68px;color:var(--g700);font-weight:700">11.9(월)</b>이란 추가 공습 가능성 후퇴 · 하루 +2.35%</div>
-    <div><b style="display:inline-block;min-width:68px;color:var(--g700);font-weight:700">11.10(화)</b>10월 CPI 근원 +0.3% 세 달 연속 · 2년물 +17bp</div>
-    <div><b style="display:inline-block;min-width:68px;color:var(--g700);font-weight:700">11.11(수)</b>코어위브 실적 호조 · 반도체 지수 +5.7%, 주간 최고 종가</div>
-    <div><b style="display:inline-block;min-width:68px;color:var(--g700);font-weight:700">11.12(목)</b>젠슨 황 엔비디아 CEO 사임 · 30년물 5.43%</div>
-    <div><b style="display:inline-block;min-width:68px;color:var(--g700);font-weight:700">11.13(금)</b>10월 PPI 연간 6.5% · 10년물 5.15%로 마감</div>
-  </div>
-</div>
-
-<p>다섯 거래일 중 오른 날은 이틀뿐인데 그 이틀이 전부예요. 월요일 <b>+2.35%</b>와 수요일 <b>+1.31%</b>를 합치면 주간 상승분보다 크고, 나머지 사흘은 -0.38%·-0.35%·-0.40%로 조금씩 반납했어요. 주간 최고 종가는 수요일 <b>7,619.38</b>이고 거기서 금요일까지 -0.76% 밀렸어요. 읽는 법은 간단해요. 올린 건 <b>지정학 리스크 완화와 AI 실적</b>이고, 되돌린 건 <b>금리</b>예요. 화요일 CPI 뒤로 10년물이 5%를 넘긴 다음부터는 좋은 뉴스가 나와도 지수가 더 가지 못했고, 목요일 황의 사임과 금요일 운항 중단 같은 개별 사건이 겹칠 때마다 조금씩 깎였어요.</p>
-
-<div class="sub-head">🔬 핵심 변수는 금리였어요</div>
-<div class="chart">
-  <div class="ct">미국 10년물 국채금리 일별 (11.9~11.13 현지시간)</div>
-  <span class="cs">재무부 일별 금리 · 11.11은 재향군인의 날로 채권시장 휴장이에요</span>
-<svg viewBox="0 0 700 272" xmlns="http://www.w3.org/2000/svg">
+  <div class="h3">나스닥 일별 종가 (점선은 전주 금요일 종가)</div>
+  <svg viewBox="0 0 700 272" xmlns="http://www.w3.org/2000/svg">
   <line x1="70" y1="34.0" x2="658" y2="34.0" stroke="#EDEFF2" stroke-width="1"/>
-  <text x="62" y="38.0" text-anchor="end" class="cl">5.20</text>
+  <text x="62" y="38.0" text-anchor="end" class="cl">25,500</text>
   <line x1="70" y1="79.0" x2="658" y2="79.0" stroke="#EDEFF2" stroke-width="1"/>
-  <text x="62" y="83.0" text-anchor="end" class="cl">5.10</text>
+  <text x="62" y="83.0" text-anchor="end" class="cl">25,250</text>
   <line x1="70" y1="124.0" x2="658" y2="124.0" stroke="#EDEFF2" stroke-width="1"/>
-  <text x="62" y="128.0" text-anchor="end" class="cl">5.00</text>
+  <text x="62" y="128.0" text-anchor="end" class="cl">25,000</text>
   <line x1="70" y1="169.0" x2="658" y2="169.0" stroke="#EDEFF2" stroke-width="1"/>
-  <text x="62" y="173.0" text-anchor="end" class="cl">4.90</text>
+  <text x="62" y="173.0" text-anchor="end" class="cl">24,750</text>
   <line x1="70" y1="214.0" x2="658" y2="214.0" stroke="#EDEFF2" stroke-width="1"/>
-  <text x="62" y="218.0" text-anchor="end" class="cl">4.80</text>
-  <line x1="70" y1="187.0" x2="658" y2="187.0" stroke="#8B95A1" stroke-width="1.2" stroke-dasharray="4 4"/>
-  <polyline points="70.0,187.0 214.5,178.0 359.0,133.0 503.5,79.0 648.0,56.5" fill="none" stroke="#3182F6" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
-  <circle cx="70.0" cy="187.0" r="4" fill="#fff" stroke="#3182F6" stroke-width="2.2"/>
-  <text x="76.0" y="208.0" text-anchor="start" class="cv">4.86%</text>
+  <text x="62" y="218.0" text-anchor="end" class="cl">24,500</text>
+  <line x1="70" y1="199.7" x2="658" y2="199.7" stroke="#8B95A1" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <polyline points="70.0,199.7 185.6,78.4 301.2,112.1 416.8,40.1 532.4,58.1 648.0,99.5" fill="none" stroke="#3182F6" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="70.0" cy="199.7" r="4" fill="#fff" stroke="#3182F6" stroke-width="2.2"/>
+  <text x="76.0" y="220.7" text-anchor="start" class="cv">24,579.42</text>
   <text x="76.0" y="258" text-anchor="start" class="s-lab">11.6(금)</text>
-  <circle cx="214.5" cy="178.0" r="4" fill="#fff" stroke="#3182F6" stroke-width="2.2"/>
-  <text x="214.5" y="168.0" text-anchor="middle" class="cv">4.88%</text>
-  <text x="214.5" y="258" text-anchor="middle" class="s-lab">11.9(월)</text>
-  <circle cx="359.0" cy="133.0" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/>
-  <text x="359.0" y="123.0" text-anchor="middle" class="cv">4.98%</text>
-  <text x="359.0" y="258" text-anchor="middle" class="s-lab">11.10(화)</text>
-  <circle cx="503.5" cy="79.0" r="4" fill="#fff" stroke="#3182F6" stroke-width="2.2"/>
-  <text x="503.5" y="69.0" text-anchor="middle" class="cv">5.10%</text>
-  <text x="503.5" y="258" text-anchor="middle" class="s-lab">11.12(목)</text>
-  <circle cx="648.0" cy="56.5" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/>
-  <text x="642.0" y="46.5" text-anchor="end" class="cv">5.15%</text>
+  <circle cx="185.6" cy="78.4" r="4" fill="#fff" stroke="#3182F6" stroke-width="2.2"/>
+  <text x="185.6" y="68.4" text-anchor="middle" class="cv">25,253.14</text>
+  <text x="185.6" y="258" text-anchor="middle" class="s-lab">11.9(월)</text>
+  <circle cx="301.2" cy="112.1" r="4" fill="#fff" stroke="#3182F6" stroke-width="2.2"/>
+  <text x="301.2" y="133.1" text-anchor="middle" class="cv">25,065.88</text>
+  <text x="301.2" y="258" text-anchor="middle" class="s-lab">11.10(화)</text>
+  <circle cx="416.8" cy="40.1" r="4" fill="#fff" stroke="#3182F6" stroke-width="2.2"/>
+  <text x="416.8" y="30.1" text-anchor="middle" class="cv">25,466.19</text>
+  <text x="416.8" y="258" text-anchor="middle" class="s-lab">11.11(수)</text>
+  <circle cx="532.4" cy="58.1" r="4" fill="#fff" stroke="#3182F6" stroke-width="2.2"/>
+  <text x="532.4" y="48.1" text-anchor="middle" class="cv">25,366.09</text>
+  <text x="532.4" y="258" text-anchor="middle" class="s-lab">11.12(목)</text>
+  <circle cx="648.0" cy="99.5" r="5" fill="#fff" stroke="#3182F6" stroke-width="3"/>
+  <text x="642.0" y="120.5" text-anchor="end" class="cv">25,136.27</text>
   <text x="642.0" y="258" text-anchor="end" class="s-lab">11.13(금)</text>
 </svg>
-  <div class="evl" style="display:grid;gap:5px;padding:2px 6px 6px;font-size:12.5px;line-height:1.5;color:var(--g500)">
-    <div><b style="display:inline-block;min-width:68px;color:var(--g700);font-weight:700">11.10(화)</b>10월 CPI · 장중 5% 돌파</div>
-    <div><b style="display:inline-block;min-width:68px;color:var(--g700);font-weight:700">11.12(목)</b>30년물 입찰 부진 · 2년물 4.88%</div>
-    <div><b style="display:inline-block;min-width:68px;color:var(--g700);font-weight:700">11.13(금)</b>10월 이후 최고 · 주간 +29bp</div>
-  </div>
-</div>
+  <p><b>오른 날은 월요일과 수요일 이틀뿐인데 그 이틀이 전부였어요.</b> 올린 건 지정학 완화와 AI 실적이고, 되돌린 건 금리예요.</p>
+  <span class="no3">1 / 6</span>
+</div><!--/c3-->
 
-<p>10년물이 처음으로 5%대에서 한 주를 마쳤어요. 화요일 CPI 직후 장중에 5%를 넘겼고, 목요일 30년물 입찰이 부진하면서 5.10%, 금요일 PPI 연간 6.5% 확인 뒤 <b>5.15%</b>로 끝났어요. 이게 왜 중요한지는 주중 흐름이 말해줘요. 지수가 가장 높았던 수요일은 채권시장이 재향군인의 날로 쉬던 날이고, 금리가 다시 거래된 목·금 이틀 동안 지수가 연속으로 밀렸어요. <b>금리가 열려 있는 날엔 주식이 못 올라간 주</b>예요. 보유 종목에서도 같은 선이 보여요. 금리에 가장 민감한 O가 -0.37%로 홀로 소폭 하락했고, 적자 성장주인 IONQ -11.47%·SMR -8.27%가 하락 2·3위예요.</p>
-
-<div class="sub-head">💵 전 구간이 올랐고 커브는 다시 좁혀졌어요</div>
-<table>
-<thead><tr><th>만기</th><th>11.6 (금)</th><th>11.13 (금)</th><th>변화</th></tr></thead>
-<tbody>
-<tr><td>2년물</td><td>4.51%</td><td>4.88%</td><td class="neg">+37bp</td></tr>
-<tr><td>10년물</td><td>4.86%</td><td>5.15%</td><td class="neg">+29bp</td></tr>
-<tr><td>30년물</td><td>5.26%</td><td>5.47%</td><td class="neg">+21bp</td></tr>
-<tr class="hl"><td>10년-2년</td><td>35bp</td><td>27bp</td><td>-8bp</td></tr>
-</tbody>
-</table>
-
-<p>짧은 쪽이 가장 많이 올라 커브가 다시 좁혀졌어요. 2년물 +37bp는 2년 만의 최대 주간 상승인데, 이건 경기가 좋아졌다는 신호가 아니라 <b>12월에 금리를 올린다는 걸 시장이 완전히 받아들였다</b>는 뜻이에요. 10월 FOMC에서 쉬어간 몫이 12월로 몰렸고, CPI 근원 +0.3%가 월러 이사가 말해둔 50bp 검토 기준선에 정확히 닿으면서 50bp 확률까지 10.3% 붙었어요. 10년-2년이 35bp에서 27bp로 좁혀진 건 지난주의 스티프닝이 한 주 만에 되돌았다는 의미이고, 다음 확인 자리는 <b>11월 19일 새벽 10월 FOMC 의사록</b>이에요. 10-2 동결에서 인상을 주장한 반대표 두 장의 논거가 공개돼요.</p>
-
-<div class="callout"><span class="cap">한 문장 요약</span>이번 주 상승은 <b>AI 설비투자가 멈춘다는 지난주의 전제가 코어위브 실적으로 반박된 결과</b>이고, 상승 폭을 깎은 건 CPI 뒤 처음 5%대에 올라앉은 10년물이에요.</div>
-</section>
-
-<!-- ② -->
-<section>
-<div class="sec-head">
-  <div class="l1">🗞️ ② 이번 주 주요 이슈,</div>
-  <div class="l2">결과와 이유로 정리했어요</div>
-</div>
-
-<div class="tl">
-  <div class="tli">
-    <div class="tld"><div class="d1">11.9</div><div class="d2">월</div></div>
-    <div class="tlb">
-      <div class="tlt"><span class="tcat news">거시 이슈</span>이란 추가 공습 가능성이 후퇴하자 유가가 빠지고 주식이 올랐어요</div>
-      <div class="tlx"><span class="rr"><b>결과</b> S&amp;P 500이 하루 <b>+2.35%(7,549.94)</b> 올라 주간 상승분 대부분을 첫날에 만들었어요. 브렌트는 -5.85%로 $92.57까지 빠졌고, 전주에 유가 급등으로 맞았던 적자 성장주들이 되돌았어요. IONQ가 <b>+8.34%($35.34)</b>, SMR이 +7.09%예요.</span><span class="rr"><b>이유</b> 트럼프 대통령이 이란에 대한 추가 공습을 "매우 가능성이 낮다"고 말한 게 출발점이에요. 지난주 호르무즈 유조선 피격으로 붙은 전쟁 프리미엄이 한꺼번에 빠지면서, 기름값이 물가를 밀어 올린다는 경로와 위험회피 경로가 같이 풀렸어요. 이 하루가 없었으면 주간 성적은 보합이었어요.</span></div>
-    </div>
+<div class="c3">
+  <span class="q3">금리</span>
+  <div class="h3s">10년물이 처음 5%대에서 한 주를 마쳤어요.</div>
+  <div class="kv3">
+    <div><span>2년물</span><b>4.88%</b><em class="up">+37bp</em></div>
+    <div><span>10년물</span><b>5.15%</b><em class="up">+29bp</em></div>
+    <div><span>30년물</span><b>5.47%</b><em class="up">+21bp</em></div>
+    <div><span>10년-2년</span><b>27bp</b><em class="down">-8bp</em></div>
   </div>
-  <div class="tli">
-    <div class="tld"><div class="d1">11.10</div><div class="d2">화</div></div>
-    <div class="tlb">
-      <div class="tlt"><span class="tcat macro">경제 지표</span>10월 CPI 근원이 세 달 연속 +0.3%로 나왔어요</div>
-      <div class="tlx"><span class="rr"><b>결과</b> 헤드라인 MoM <b>+0.4%</b>(예측 +0.3%)·근원 <b>+0.3%</b>(예측 +0.2%)로 둘 다 예측을 넘겼어요. 2년물이 하루 <b>+17bp</b> 올라 4.73%, 10년물은 장중 5%를 넘겼고 나스닥은 -0.74%로 마감했어요. 12월 50bp 인상 확률이 1.1%에서 <b>15.3%</b>로, 동결 확률은 21%에서 3%로 바뀌었어요.</span><span class="rr"><b>이유</b> 9월 급등을 만든 에너지는 +5.2%에서 +0.7%로 식었는데, 식품 +0.5%와 자동차보험 +0.7%·레크리에이션 +0.8% 같은 근원 서비스가 그 빈자리를 채웠어요. 시장이 본 숫자는 헤드라인이 아니라 근원이에요. 월러 연준 이사가 "근원이 0.3% 이상이면 50bp도 검토 가치가 있다"고 말해둔 기준선에 정확히 닿았거든요. 2025년 10월 조사가 없어 연간 상승률은 공표되지 않았어요.</span></div>
-    </div>
-  </div>
-  <div class="tli">
-    <div class="tld"><div class="d1">11.10</div><div class="d2">화</div></div>
-    <div class="tlb">
-      <div class="tlt"><span class="tcat news">기업 뉴스</span>앤스로픽이 공모가를 $70~78로 정하고 11.19 상장을 예고했어요</div>
-      <div class="tlx"><span class="rr"><b>결과</b> 8억 2,500만 주를 주당 <b>$70~78</b>에 팔겠다고 제시했어요. 상단 기준 기업가치는 약 <b>1조 4,500억 달러</b>이고, 조달 규모로는 스페이스X에 이어 역대 두 번째예요. 공모가는 11.18 확정, 거래는 11.19부터 나스닥에서 티커 <b>ANT</b>로 시작해요.</span><span class="rr"><b>이유</b> 흔들린 시장에서도 일정을 미루지 않았다는 게 이번 주 의미예요. 다리오 아모데이 CEO는 변동성이 상장 계획을 실질적으로 바꾸지 않았다고 말했어요. 다만 이 물량은 폴 튜더 존스가 2027년 약세론의 근거로 든 'AI 신규 주식 공급'의 가장 큰 사례라, 상장 직후 AI 섹터 전체의 수급을 다시 보게 될 자리예요.</span></div>
-    </div>
-  </div>
-  <div class="tli">
-    <div class="tld"><div class="d1">11.11</div><div class="d2">수</div></div>
-    <div class="tlb">
-      <div class="tlt"><span class="tcat earn">실적발표</span>코어위브가 마진 목표를 한 분기 앞당기자 메모리까지 같이 올랐어요</div>
-      <div class="tlx"><span class="rr"><b>결과</b> 3분기 매출 <b>$3,661M(+168%)</b>·조정 영업이익 $379M으로 가이던스 상단을 45.8% 넘겼고, 조정 영업이익률 <b>10.4%</b>는 회사가 4분기 목표로 뒀던 구간이에요. 수주잔고는 $104B에서 <b>$132.5B</b>로 불었어요. 주가는 <b>+24.71%($60.77)</b>, 반도체 지수는 +5.7%, MU는 다음 날까지 <b>+11.89%</b> 올랐고 VIX는 17.49로 내려갔어요.</span><span class="rr"><b>이유</b> 설비투자 가이던스를 $37~39B로 올린 게 메모리로 번졌어요. AI 인프라에 쓰는 돈이 줄어든다는 지난주의 전제가, 가장 빚이 많은 회사의 숫자로 반박된 거예요. 같은 분기에 이자비용 $846M·순손실 -$709M·부채비율 2,173%도 함께 나왔지만, 이자비용이 가이던스 하단보다 낮게 찍힌 쪽이 먼저 읽혔어요. 다음 실적은 2027년 2월이에요.</span></div>
-    </div>
-  </div>
-  <div class="tli">
-    <div class="tld"><div class="d1">11.12</div><div class="d2">목</div></div>
-    <div class="tlb">
-      <div class="tlt"><span class="tcat news">기업 뉴스</span>젠슨 황이 엔비디아 CEO에서 즉시 물러났어요</div>
-      <div class="tlx"><span class="rr"><b>결과</b> 이사회가 사임을 수리하고 CFO 콜레트 크레스를 임시 CEO로, 하비 존스를 첫 이사회 의장으로 세웠어요. NVDA는 <b>-4.34%</b>, 금요일까지 더해 주간 <b>-12.75%($162.85)</b>로 6주 연속 하락이고 시가총액은 2025년 7월 이후 처음 <b>4조 달러</b>를 내줬어요.</span><span class="rr"><b>이유</b> 중국 정보기관과 연결된 인물과의 관계를 둘러싼 독립 조사가 발단이에요. 이사회는 국가안보나 회사 기밀이 유출됐다고 볼 근거는 없다고 밝혔고, 황은 의회 증언에 소환됐어요. 지난주 낙폭은 섹터 전체의 문제였는데 이번엔 엔비디아 혼자의 문제라, 같은 주에 반도체 지수가 +8.05% 오르면서 NVDA만 두 자릿수로 빠졌어요. <mark>11.18 새벽 3분기 실적이 임시 CEO 체제로 치러지는 첫 시험</mark>이에요.</span></div>
-    </div>
-  </div>
-  <div class="tli">
-    <div class="tld"><div class="d1">11.12</div><div class="d2">목</div></div>
-    <div class="tlb">
-      <div class="tlt"><span class="tcat macro">거시 이슈</span>30년물 입찰이 부진해 채권이 전 구간 밀렸어요</div>
-      <div class="tlx"><span class="rr"><b>결과</b> 30년물이 <b>5.43%</b>, 10년물이 5.10%, 2년물이 4.88%로 올랐어요. 러셀2000은 하루 <b>-1.66%</b>로 지수 중 가장 크게 밀렸고, 금은 이 주 하락분의 상당 부분을 이 날과 금요일에 만들었어요.</span><span class="rr"><b>이유</b> CPI로 12월 인상이 확정된 뒤 긴 쪽 수요가 약해졌어요. 중소형주가 가장 크게 맞은 건 러셀2000 구성 기업이 변동금리 차입 비중이 높아 금리 상승이 바로 이자비용으로 들어오기 때문이에요. 금리민감 자산 전반이 같은 통로로 흔들린 하루예요.</span></div>
-    </div>
-  </div>
-  <div class="tli">
-    <div class="tld"><div class="d1">11.13</div><div class="d2">금</div></div>
-    <div class="tlb">
-      <div class="tlt"><span class="tcat macro">경제 지표</span>10월 PPI는 월간으로 식었는데 연간은 4년 만의 최고예요</div>
-      <div class="tlx"><span class="rr"><b>결과</b> MoM <b>+0.3%</b>로 예측(+0.4%)을 밑돌아 9월 +1.4%의 폭주가 멈췄는데, YoY는 6.3%에서 <b>6.5%</b>로 올라 2022년 11월 이후 최고예요. 10년물이 5bp 더 올라 5.15%, 나스닥은 -0.91%였어요. 12월 인상 확률은 100%로, 25bp 89.7%·50bp 10.3%가 됐어요.</span><span class="rr"><b>이유</b> 월간이 식은 이유는 에너지예요. 9월에 +10.8% 뛰었던 최종수요 에너지가 -0.1%로 돌아섰고 거래 마진도 +1.4%에서 -0.2%로 반납했어요. 대신 식품·에너지를 뺀 상품이 +0.5%로 10월 상승분의 60% 이상을 혼자 설명했고, 기초 유기화학이 +3.9%로 뛰었어요. <b>물가의 무게추가 연료에서 일반 상품으로 옮겨간 달</b>이라 시장이 안도하지 않았어요.</span></div>
-    </div>
-  </div>
-  <div class="tli">
-    <div class="tld"><div class="d1">11.13</div><div class="d2">금</div></div>
-    <div class="tlb">
-      <div class="tlt"><span class="tcat news">기업 뉴스</span>통신 장애로 미국 항공편이 전면 중단되고 시스코 수주가 꺾였어요</div>
-      <div class="tlx"><span class="rr"><b>결과</b> FAA가 통신망 장애로 미국 전역 항공편 운항을 중단했고, 마이크로소프트는 아웃룩을 포함한 365 서비스 장애를 사과했어요. 시스코는 실적과 가이던스를 모두 올렸는데 하이퍼스케일러 밖 수주가 둔화해 주가가 내렸고, 엔비디아·AMD·브로드컴이 함께 빠져 나스닥만 -0.91%로 끝났어요.</span><span class="rr"><b>이유</b> 세 사건의 공통점은 <b>AI 수요 자체가 아니라 그걸 떠받치는 인프라</b>라는 점이에요. 마이크로소프트는 악성 활동 징후는 없고 네트워크 증설 과정의 문제라고 설명했어요. 시스코 수주 둔화는 AI 지출이 소수 하이퍼스케일러에 더 몰린다는 신호라, 11.11 코어위브 실적과 같은 이야기의 반대쪽 면이에요.</span></div>
-    </div>
-  </div>
-</div>
-
-<div class="callout"><span class="cap">한 문장 요약</span>이번 주 이슈의 공통점은 <b>AI 수요를 의심하는 이야기가 하나도 없었다</b>는 거예요. 흔든 것은 지정학·금리·경영진 공백처럼 수요 밖에서 온 변수들이고, 수요를 직접 가리킨 코어위브 실적은 지수를 올렸어요.</div>
-</section>
-
-<!-- ③ -->
-<section>
-<div class="sec-head">
-  <div class="l1">💼 ③ 보유 종목,</div>
-  <div class="l2">지난주에 깊게 맞은 쪽이 가장 크게 올라왔어요</div>
-</div>
-
-<p>11.6(금) → 11.13(금) 종가 기준이에요. 13종목 중 <b>상승 8 · 하락 5</b>로 지난주 5:8에서 뒤집혔고, 두 자릿수 상승이 둘, 두 자릿수 하락도 둘이에요. 지난주 최하위였던 MU(-22.01%)와 SK하이닉스(-20.17%)가 이번 주 상승 2·3위가 됐고, 지난주 하락 3위였던 CRWV가 1위예요. 반대로 지난주 1위였던 IONQ는 이번 주 하락 2위예요.</p>
-<div class="chart">
-  <div class="ct">주간 등락률 상·하위 3종목 (%)</div>
-  <span class="cs">11.6 (금) 종가 → 11.13 (금) 종가 · 전체 13종목은 아래 카드에 있어요</span>
-<svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg">
-  <line x1="350" y1="14" x2="350" y2="236" stroke="#D1D6DB" stroke-width="1.5"/>
-  <text x="150" y="46" text-anchor="end" class="s-lab">CRWV</text>
-  <rect x="350" y="30" width="144" height="24" fill="#00B26B" rx="6"/>
-  <text x="502" y="47" class="cv" fill="#00B26B">+14.50%</text>
-  <text x="150" y="80" text-anchor="end" class="s-lab">MU</text>
-  <rect x="350" y="64" width="127" height="24" fill="#00B26B" rx="6"/>
-  <text x="485" y="81" class="cv" fill="#00B26B">+12.80%</text>
-  <text x="150" y="114" text-anchor="end" class="s-lab">SK하이닉스</text>
-  <rect x="350" y="98" width="73" height="24" fill="#00B26B" rx="6"/>
-  <text x="431" y="115" class="cv" fill="#00B26B">+7.42%</text>
-  <text x="150" y="148" text-anchor="end" class="s-lab">SMR</text>
-  <rect x="268" y="132" width="82" height="24" fill="#F04452" rx="6"/>
-  <text x="260" y="149" text-anchor="end" class="cv" fill="#F04452">-8.27%</text>
-  <text x="150" y="182" text-anchor="end" class="s-lab">IONQ</text>
-  <rect x="236" y="166" width="114" height="24" fill="#F04452" rx="6"/>
-  <text x="228" y="183" text-anchor="end" class="cv" fill="#F04452">-11.47%</text>
-  <text x="150" y="216" text-anchor="end" class="s-lab">NVDA</text>
-  <rect x="224" y="200" width="126" height="24" fill="#F04452" rx="6"/>
-  <text x="216" y="217" text-anchor="end" class="cv" fill="#F04452">-12.75%</text>
+  <div class="h3">미국 10년물·2년물 국채금리 일별 (11.11은 휴장)</div>
+  <svg viewBox="0 0 700 272" xmlns="http://www.w3.org/2000/svg">
+<line x1="70" y1="214.0" x2="600" y2="214.0" stroke="#EDEFF2" stroke-width="1"/>
+<text x="62" y="218.0" text-anchor="end" class="cl">4.40%</text>
+<line x1="70" y1="169.0" x2="600" y2="169.0" stroke="#EDEFF2" stroke-width="1"/>
+<text x="62" y="173.0" text-anchor="end" class="cl">4.60%</text>
+<line x1="70" y1="124.0" x2="600" y2="124.0" stroke="#EDEFF2" stroke-width="1"/>
+<text x="62" y="128.0" text-anchor="end" class="cl">4.80%</text>
+<line x1="70" y1="79.0" x2="600" y2="79.0" stroke="#EDEFF2" stroke-width="1"/>
+<text x="62" y="83.0" text-anchor="end" class="cl">5.00%</text>
+<line x1="70" y1="34.0" x2="600" y2="34.0" stroke="#EDEFF2" stroke-width="1"/>
+<text x="62" y="38.0" text-anchor="end" class="cl">5.20%</text>
+<polyline points="70.0,110.5 200.0,106.0 330.0,83.5 460.0,56.5 590.0,45.2" fill="none" stroke="#4E5968" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="70.0" cy="110.5" r="4.5" fill="#fff" stroke="#4E5968" stroke-width="2.5"/>
+<circle cx="590.0" cy="45.2" r="4.5" fill="#fff" stroke="#4E5968" stroke-width="2.5"/>
+<polyline points="70.0,189.3 200.0,178.0 330.0,139.7 460.0,106.0 590.0,106.0" fill="none" stroke="#3182F6" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="70.0" cy="189.3" r="4.5" fill="#fff" stroke="#3182F6" stroke-width="2.5"/>
+<circle cx="590.0" cy="106.0" r="4.5" fill="#fff" stroke="#3182F6" stroke-width="2.5"/>
+<text x="70.0" y="100.5" text-anchor="start" class="cv">4.86%</text>
+<text x="70.0" y="209.3" text-anchor="start" class="cv" style="fill:#3182F6">4.51%</text>
+<text x="604" y="49.2" text-anchor="start" class="cv">10년물 5.15%</text>
+<text x="604" y="110.0" text-anchor="start" class="cv" style="fill:#3182F6">2년물 4.88%</text>
+<text x="70.0" y="258" text-anchor="start" class="cl">11.6(금)</text>
+<text x="200.0" y="258" text-anchor="middle" class="cl">11.9(월)</text>
+<text x="330.0" y="258" text-anchor="middle" class="cl">11.10(화)</text>
+<text x="460.0" y="258" text-anchor="middle" class="cl">11.12(목)</text>
+<text x="590.0" y="258" text-anchor="end" class="cl">11.13(금)</text>
 </svg>
-  <div class="legend"><span><span class="d" style="background:#00B26B"></span>주간 상승</span><span><span class="d" style="background:#F04452"></span>주간 하락</span></div>
+  <p>짧은 쪽이 가장 많이 올랐어요. <b>2년물 +37bp는 2년 만의 최대 주간 상승</b>이고, 12월 인상을 시장이 완전히 받아들였다는 뜻이에요.</p>
+  <span class="no3">2 / 6</span>
+</div><!--/c3-->
+
+<div class="c3">
+  <span class="q3">핵심 이슈 3가지</span>
+  <div class="h3s">AI 수요를 의심하는 이야기는 하나도 없었어요.</div>
+  <div class="iss3">
+    <div><em>월</em><span><b>이란 추가 공습 가능성 후퇴</b>유가가 빠지고 S&amp;P 500이 하루 +2.35% 올랐어요. 이 하루가 없었으면 주간 보합이에요.</span></div>
+    <div><em>수</em><span><b>코어위브 실적 호조</b>마진 목표를 한 분기 앞당겨 주가 +24.71%. 설비투자가 멈춘다던 지난주 전제가 숫자로 반박됐어요.</span></div>
+    <div><em>목</em><span><b>젠슨 황 엔비디아 CEO 사임</b>엔비디아만 주간 -12.75%로 6주 연속 하락. 업종이 아니라 한 종목의 사건으로 좁혀졌어요.</span></div>
+  </div>
+  <p>세 건 모두 AI 수요 밖에서 온 변수예요. <b>흔든 것은 지정학, 실적, 경영진 공백이었어요.</b></p>
+  <span class="no3">3 / 6</span>
+</div><!--/c3-->
+
+<div class="c3">
+  <span class="q3">내 종목</span>
+  <div class="h3s">상승 8, 하락 5. 지난주에 깊게 맞은 쪽이 가장 크게 올라왔어요.</div>
+  <div class="h3">보유 13종목 주간 등락률</div>
+  <div class="dv3">
+  <div class="r"><span>CRWV</span><div class="ax"><i class="p" style="--v:50.0"></i></div><em class="up">+14.50%</em></div>
+  <div class="r"><span>MU</span><div class="ax"><i class="p" style="--v:44.1"></i></div><em class="up">+12.80%</em></div>
+  <div class="r"><span>SK하이닉스</span><div class="ax"><i class="p" style="--v:25.6"></i></div><em class="up">+7.42%</em></div>
+  <div class="r"><span>PLTR</span><div class="ax"><i class="p" style="--v:16.3"></i></div><em class="up">+4.74%</em></div>
+  <div class="r"><span>AAPL</span><div class="ax"><i class="p" style="--v:14.0"></i></div><em class="up">+4.06%</em></div>
+  <div class="r"><span>GOOGL</span><div class="ax"><i class="p" style="--v:13.3"></i></div><em class="up">+3.86%</em></div>
+  <div class="r"><span>KO</span><div class="ax"><i class="p" style="--v:12.9"></i></div><em class="up">+3.74%</em></div>
+  <div class="r"><span>ABBV</span><div class="ax"><i class="p" style="--v:4.4"></i></div><em class="up">+1.28%</em></div>
+  <div class="r"><span>O</span><div class="ax"><i class="n" style="--v:1.3"></i></div><em class="down">-0.37%</em></div>
+  <div class="r"><span>MSFT</span><div class="ax"><i class="n" style="--v:4.4"></i></div><em class="down">-1.27%</em></div>
+  <div class="r"><span>SMR</span><div class="ax"><i class="n" style="--v:28.5"></i></div><em class="down">-8.27%</em></div>
+  <div class="r"><span>IONQ</span><div class="ax"><i class="n" style="--v:39.6"></i></div><em class="down">-11.47%</em></div>
+  <div class="r"><span>NVDA</span><div class="ax"><i class="n" style="--v:44.0"></i></div><em class="down">-12.75%</em></div>
+</div><!--/dv3-->
+  <p>메모리(MU·SK하이닉스)는 코어위브의 설비투자 상향으로 되돌았어요. <b>내린 쪽은 이유가 둘이에요.</b> 엔비디아는 CEO 공백, IONQ·SMR은 금리예요.</p>
+  <span class="no3">4 / 6</span>
+</div><!--/c3-->
+
+<div class="c3">
+  <span class="q3">매수 시그널</span>
+  <div class="h3s">다음 주도 대기예요. 선이 한 주 만에 더 멀어졌어요.</div>
+  <div class="sc3"><b>0</b><span>/ 14점 · 지난주 0점</span><em>대기</em></div>
+<div class="gg3"><span class="me" style="left:0.0%"></span><i style="left:28.6%"></i><u style="left:28.6%">4점 · 1차 매수</u><i style="left:57.1%"></i><u style="left:57.1%">8점 · 2차</u></div>
+<div class="h3">아직 안 켜진 신호까지 남은 거리</div>
+<div class="score3">
+  <div><span><b>S&amp;P 500 7,259</b> · 일봉 RSI 35</span><span>2점</span><em>-4.0%</em></div>
+  <div><span><b>S&amp;P 500 7,193</b> · 고점 대비 -8%</span><span>2점</span><em>-4.9%</em></div>
+  <div><span><b>공포·탐욕 15</b> · 현재 38.6</span><span>2점</span><em>23.6</em></div>
 </div>
+  <p>지수가 올라 일곱 신호가 모두 멀어졌어요. <b>7,259까지 밀리면 바로 아래 7,193과 함께 켜져 4점, 1차 매수(1/3)예요.</b></p>
+  <span class="no3">5 / 6</span>
+</div><!--/c3-->
 
-<div class="stock-g v2"><div class="skh"><b class="tk">CRWV</b><span class="pct pos">+14.50%</span><span class="px">$46.40 → $53.13</span></div><div class="rr"><b>결과</b> 수요일 실적 발표로 하루 <b>+24.71%($60.77)</b>까지 올랐다가 목·금 이틀에 -12.6%를 반납해 $53.13으로 끝났어요. 주간 등락률은 13종목 중 1위예요.</div><div class="rr"><b>이유</b> 3분기 조정 영업이익률 <b>10.4%</b>로 4분기 목표를 한 분기 앞당기고 수주잔고를 $132.5B까지 늘린 게 상승분 전부예요. 반납한 이유는 금리로, 목·금에 10년물이 5.10%에서 5.15%로 오르자 총부채 $87.5B·부채비율 2,173%인 구조가 다시 할인됐어요. 다음 실적은 2027년 2월이에요.</div></div>
-<div class="stock-g v2"><div class="skh"><b class="tk">MU</b><span class="pct pos">+12.80%</span><span class="px">$690.00 → $778.31</span></div><div class="rr"><b>결과</b> 수요일 하루 <b>+11.89%($811.30)</b>로 주간 고점을 찍고 이틀에 걸쳐 -4.1%를 반납했어요. 지난주 -22.01% 낙폭의 약 58%를 되돌렸어요.</div><div class="rr"><b>이유</b> 코어위브가 설비투자 가이던스를 $37~39B로 올린 게 메모리 수요로 바로 연결됐어요. 같은 날 샌디스크가 +13.69% 오른 것도 같은 통로예요. 다음 실적이 12.17이라 그사이 자체 재료가 없고, 11.18 새벽 엔비디아 실적이 대신 방향을 정해요.</div></div>
-<div class="stock-g v2"><div class="skh"><b class="tk">SK하이닉스</b><span class="pct pos">+7.42%</span><span class="px">1,132,000원 → 1,216,000원</span></div><div class="rr"><b>결과</b> 화·수 이틀에 +12.4% 올라 1,277,000원까지 갔다가 목·금에 -4.8% 밀려 <b>1,216,000원</b>으로 끝났어요. 지난주 -20.17% 낙폭의 약 37%를 되돌렸어요.</div><div class="rr"><b>이유</b> 외국인이 순매수로 돌아선 게 화요일 +6.69%를 만들고, 코어위브 실적이 수요일 +5.36%를 보탰어요. 금요일 -3.03%는 외국인이 코스피에서 7,034억원 순매도로 돌아선 날이고, 코스피도 장중 5,504.44까지 올랐다가 5,290.53으로 5,300선을 내줬어요. 다음 실적은 2027년 1월이에요.</div></div>
-<div class="stock-g v2"><div class="skh"><b class="tk">PLTR</b><span class="pct pos">+4.74%</span><span class="px">$160.38 → $167.99</span></div><div class="rr"><b>결과</b> 월요일 하루 <b>+5.50%($169.20)</b>로 주간 상승분 대부분을 만들고, 남은 나흘은 $167~172 사이에서 움직였어요. 2주 연속 두 자릿수 하락이 멈췄어요.</div><div class="rr"><b>이유</b> 자체 재료는 없었어요. 월요일 이란 긴장 완화로 고밸류 성장주가 일제히 반등한 흐름을 그대로 받았고, 금리가 오른 목·금엔 다시 밀렸어요. 3분기 수주 증가율 +6% 둔화라는 지난주의 숙제는 그대로 남아 있고, 다음 실적은 2027년 2월이에요.</div></div>
-<div class="stock-g v2"><div class="skh"><b class="tk">AAPL</b><span class="pct pos">+4.06%</span><span class="px">$342.37 → $356.27</span></div><div class="rr"><b>결과</b> 다섯 거래일 중 나흘이 올라 <b>$356.27</b>로 끝났고, 11.4에 쓴 종전 최고 종가 $349.51을 넘어섰어요. 13종목 중 상승 5위예요.</div><div class="rr"><b>이유</b> 자체 재료는 없었고 월요일 지정학 리스크 완화와 수요일 기술주 반등을 그대로 받았어요. 12월 분기 매출총이익률 가이던스 45~46%라는 메모리 원가 숙제는 그대로 남아 있는데, 금리가 오른 주에 지수보다 더 오른 걸 보면 시장이 아직 그 가이던스를 일시적인 것으로 보고 있어요. 다음 실적은 2027년 1월이에요.</div></div>
-<div class="stock-g v2"><div class="skh"><b class="tk">GOOGL</b><span class="pct pos">+3.86%</span><span class="px">$284.78 → $295.77</span></div><div class="rr"><b>결과</b> 나흘 올라 목요일 $298.70까지 갔고 <b>$295.77</b>로 끝났어요. 지난주 관전 포인트였던 $300선까지 1.4%가 남았어요.</div><div class="rr"><b>이유</b> 10.29 실적 쇼크(-12.64%)의 낙폭을 메우는 흐름이 이어졌어요. 3분기 클라우드 +103%라는 수요 숫자는 그대로인데 CapEx $51.36B와 잉여현금흐름 -$9.07B가 문제였던 종목이라, 코어위브 실적으로 AI 투자가 매출로 돌아온다는 쪽이 이긴 주에 같이 올랐어요. 다음 실적은 2027년 2월이에요.</div></div>
-<div class="stock-g v2"><div class="skh"><b class="tk">KO</b><span class="pct pos">+3.74%</span><span class="px">$95.67 → $99.25</span></div><div class="rr"><b>결과</b> 다섯 거래일 모두 올라 <b>$99.25</b>로 끝났고, 금요일 하루 +1.86%가 가장 컸어요. 2주 연속 상승이에요.</div><div class="rr"><b>이유</b> 자체 재료는 없고, 기술주에서 나온 돈이 방어주로 간 흐름이에요. 금리가 주간 29bp 오른 주에 배당주가 오르는 건 드문 조합인데, 가장 크게 오른 날이 FAA 운항 중단과 기술주 하락이 겹친 금요일이라는 점이 성격을 말해줘요. 다음 실적은 2027년 2월이에요.</div></div>
-<div class="stock-g v2"><div class="skh"><b class="tk">ABBV</b><span class="pct pos">+1.28%</span><span class="px">$291.31 → $295.03</span></div><div class="rr"><b>결과</b> 다섯 거래일 모두 하루 변동이 ±0.7% 안이었고 <b>$295.03</b>으로 끝났어요. 13종목 중 변동이 가장 작아요.</div><div class="rr"><b>이유</b> 자체 재료가 없었어요. 10.30 3분기 실적 이후 새 소식이 없고, 금리와 AI 양쪽 변수에서 가장 멀리 있는 종목이라 지수와 거의 무관하게 움직였어요. 다음 실적은 2027년 1월이에요.</div></div>
-<div class="stock-g v2"><div class="skh"><b class="tk">O</b><span class="pct neg">-0.37%</span><span class="px">$59.04 → $58.82</span></div><div class="rr"><b>결과</b> 수요일 $59.57까지 올랐다가 목·금 이틀에 -1.26% 밀려 <b>$58.82</b>로 끝났어요. 13종목 중 하락 폭이 가장 작아요.</div><div class="rr"><b>이유</b> 금리 하나예요. 채권시장이 쉰 수요일까지는 사흘 연속 올랐고, 금리가 다시 거래된 목·금에 10년물이 5.15%까지 오르자 그대로 반납했어요. 월 배당 리츠라 장기금리와 가장 직접 연결된 종목이고, 다음 실적은 2027년 2월이에요.</div></div>
-<div class="stock-g v2"><div class="skh"><b class="tk">MSFT</b><span class="pct neg">-1.27%</span><span class="px">$530.61 → $523.88</span></div><div class="rr"><b>결과</b> 월요일 $545.18까지 올랐다가 화·수 이틀에 -4.4% 빠져 <b>$523.88</b>로 끝났어요. 11.4 사상 최고 종가 $555.80 대비 -5.7%예요.</div><div class="rr"><b>이유</b> 반도체 지수가 +8.05% 오른 주에 혼자 내렸어요. 지난주엔 '설비투자를 아낄 쪽'으로 분류돼 올랐는데, 코어위브 실적으로 AI 투자가 계속 늘어난다는 쪽이 이기자 그 프리미엄이 빠진 거예요. 금요일엔 365 서비스 장애도 겹쳤고, 11.17~20 Ignite의 설비투자 메시지가 다음 확인 자리예요.</div></div>
-<div class="stock-g v2"><div class="skh"><b class="tk">SMR</b><span class="pct neg">-8.27%</span><span class="px">$5.08 → $4.66</span></div><div class="rr"><b>결과</b> 월요일 $5.44까지 올랐다가 목·금 이틀에 -11.0% 빠져 <b>$4.66</b>으로 끝났어요. 11.5 종가 $4.37 이후 가장 낮은 종가예요.</div><div class="rr"><b>이유</b> 금리예요. 분기 매출이 $281K뿐인 회사라 가치가 거의 전부 먼 미래 현금흐름에 있고, 10년물이 5.15%까지 오르면 그 할인이 바로 들어와요. 11.6 실적에서 기다렸던 TVA 계약은 이번 주에도 나오지 않았고, 다음 실적은 2027년 2월이에요.</div></div>
-<div class="stock-g v2"><div class="skh"><b class="tk">IONQ</b><span class="pct neg">-11.47%</span><span class="px">$32.62 → $28.88</span></div><div class="rr"><b>결과</b> 월요일 $35.34까지 올랐다가 목·금 이틀에 -15.3% 빠져 <b>$28.88</b>로 끝났어요. 지난주 상승 1위(+8.59%)에서 이번 주 하락 2위로 뒤집혔어요.</div><div class="rr"><b>이유</b> 11.6 실적(매출 $173.8M·+336%) 뒤 자체 재료가 없는 상태에서 금리만 받았어요. 적자 성장주 중에서도 금리 민감도가 큰 쪽이라 목·금 이틀의 금리 급등이 그대로 들어왔고, 실적 발표 당일 +23.42% 급등분의 약 60%를 돌려줬어요. 다음 실적은 2027년 2월이에요.</div></div>
-<div class="stock-g v2"><div class="skh"><b class="tk">NVDA</b><span class="pct neg">-12.75%</span><span class="px">$186.64 → $162.85</span></div><div class="rr"><b>결과</b> 다섯 거래일 중 나흘이 내려 <b>$162.85</b>로 끝났고 6주 연속 주간 하락이에요. 9월 고점 $230.36 대비 <b>-29.3%</b>이고, 시가총액은 2025년 7월 이후 처음 4조 달러를 내줬어요.</div><div class="rr"><b>이유</b> 업종이 아니라 회사예요. 반도체 지수가 +8.05% 오른 주에 혼자 두 자릿수로 빠졌고, 월요일엔 이사회의 CEO 조사 보도로 -4.27%, 목요일엔 젠슨 황 사임으로 -4.34%를 맞았어요. CFO였던 콜레트 크레스가 임시 CEO를 맡았고, <b>11.18 (수) 06:20 3분기 실적</b>이 임시 CEO 체제로 치르는 첫 시험이에요.</div></div>
+<div class="c3">
+  <span class="q3">다음 주</span>
+  <div class="h3s">엔비디아 실적과 앤스로픽 상장이 이틀 간격으로 방향을 정해요.</div>
+  <div class="dates3 one">
+    <div><b>11.18 (수) 새벽</b><span>엔비디아 실적. 임시 CEO 체제의 첫 발표예요.</span></div>
+    <div><b>11.19 (목)</b><span>앤스로픽 상장, FOMC 의사록. AI 신규 주식 공급이 수급으로 나타나는지 봐요.</span></div>
+    <div><b>11.20 (금)</b><span>옵션 만기. 사흘 연속이라 변동성이 한곳에 몰려요.</span></div>
+  </div>
+  <div class="rows3">
+    <div class="key"><span>오르는 조건</span><div>엔비디아가 내년 매출 +70% 전망을 재확인하면 이번 주 반등이 이어져요.</div></div>
+    <div><span>내리는 조건</span><div>실적 실망에 사흘 연속 밀리면 S&amp;P 500 <b>7,259</b>가 사정권에 들어와요.</div></div>
+    <div><span>금리</span><div>10년물 5.15%가 더 오르면 O·IONQ·SMR·CRWV가 가장 불리해요.</div></div>
+  </div>
+  <span class="no3">6 / 6</span>
+</div><!--/c3-->
 
-<p>선별 기준은 <b>지난주 낙폭과 AI 설비투자와의 거리</b> 두 개예요. 코어위브 실적이 설비투자가 계속 늘어난다는 걸 숫자로 보여주자, 지난주에 그 전제가 흔들려 가장 깊게 맞았던 종목들이 거의 그 순서대로 되돌았어요. CRWV·MU·SK하이닉스 세 종목의 주간 상승률 합이 34.7%p인데, 지난주 이 셋의 하락률 합은 -57.6%p였어요. 되돌린 폭이 맞은 폭의 60% 정도예요.</p>
-<p>내린 쪽은 성격이 둘로 나뉘어요. NVDA는 업종과 무관한 CEO 공백이고, IONQ·SMR은 금리예요. 둘 다 적자 성장주라 10년물이 5.15%까지 오른 주에 할인율이 바로 반영됐어요. MSFT -1.27%와 O -0.37%는 소폭인데 이유가 다르고, MSFT는 11.17~20 Ignite를 앞둔 관망에 금요일 365 장애가 겹쳤고 O는 금리 상승을 그대로 받았어요. <mark>같은 주에 반도체가 +8.05% 오르고 NVDA가 -12.75% 내린 건 올해 처음</mark>이에요.</p>
-
-<div class="callout"><span class="cap">한 문장 요약</span>이번 주 보유 종목은 <b>지난주 낙폭의 역순</b>으로 줄이 섰고, 그 줄에서 유일하게 벗어난 NVDA는 업종이 아니라 경영진 공백 때문이에요.</div>
-</section>
-
-<!-- ④ -->
-<section>
-<div class="sec-head">
-  <div class="l1">🔭 ④ 다음 주 예정,</div>
-  <div class="l2">엔비디아 실적과 앤스로픽 상장이 이틀 간격이에요</div>
 </div>
+<div class="nav3" id="nav3"><button type="button" class="pv">이전</button><div class="dots"></div><button type="button" class="nx">다음</button></div>
 
-<div class="nw">
-  <div class="nwr"><span class="tm">🇰🇷</span><span class="tk">한국장</span><span class="co">SK하이닉스가 1,216,000원에서 어떻게 출발하는지 ★★ · 코스피는 11.13에 5,290.53으로 5,300선을 내줬어요</span><span class="dt">11.16 (월)</span></div>
-  <div class="nwr hot"><span class="tm">🎮</span><span class="tk">엔비디아</span><span class="co">NVDA 3분기(FY27 Q3) 실적 ★★★ · 회사 가이던스 $108.0B, 매출 컨센서스 $108.7~109.0B·조정 EPS $2.47~2.49 · 임시 CEO 체제의 첫 발표예요</span><span class="dt">11.18 (수) 06:20</span></div>
-  <div class="nwr"><span class="tm">🛒</span><span class="tk">소매·산업생산</span><span class="co">미 10월 소매판매·산업생산·수출입물가 ★★ · 9월 컨트롤 그룹 +0.1%가 회복되는지</span><span class="dt">11.17 (화) 22:30</span></div>
-  <div class="nwr"><span class="tm">🖥️</span><span class="tk">MSFT Ignite</span><span class="co">Microsoft Ignite 2026 (11.17~20) ★★ · 설비투자와 Azure 메시지가 나오는 자리예요</span><span class="dt">11.17 (화)</span></div>
-  <div class="nwr"><span class="tm">🏠</span><span class="tk">주택착공</span><span class="co">미 10월 주택착공·건축허가 ★ · 금리가 5%대로 올라앉은 뒤 첫 주택 지표예요</span><span class="dt">11.18 (수) 22:30</span></div>
-  <div class="nwr hot"><span class="tm">🚀</span><span class="tk">앤스로픽</span><span class="co">공모가 확정(11.18) → 나스닥 상장 ★★★ · 8.25억 주 · $70~78 · 티커 ANT · AI 신규 공급의 최대 사례예요</span><span class="dt">11.19 (목)</span></div>
-  <div class="nwr"><span class="tm">🏛️</span><span class="tk">FOMC 의사록</span><span class="co">10월 회의 의사록 ★★ · 10-2 동결에서 인상을 주장한 반대표 두 장의 논거가 공개돼요</span><span class="dt">11.19 (목) 04:00</span></div>
-  <div class="nwr"><span class="tm">📋</span><span class="tk">실업수당</span><span class="co">미 주간 신규실업수당 ★ · 직전치는 57년 만의 최저 수준 구간에 있어요</span><span class="dt">11.19 (목) 22:30</span></div>
-  <div class="nwr"><span class="tm">🗓️</span><span class="tk">옵션 만기</span><span class="co">미 월간 옵션 만기 ★ · 엔비디아 실적과 앤스로픽 상장 직후라 변동성이 겹칠 수 있어요</span><span class="dt">11.20 (금)</span></div>
-  <div class="nwr"><span class="tm">💰</span><span class="tk">PCE·GDP</span><span class="co">미 10월 PCE·3분기 GDP 잠정치·미시간대 확정 ★★★ · 근원 PCE가 세 달 연속 +0.3%인지 (D-10)</span><span class="dt">11.25 (수) 22:30</span></div>
-</div>
-
-<div class="sub-head">👀 다음 주 관전 포인트</div>
-
-<div class="wgrp">
-  <div class="wh">🎮 엔비디아 실적, 임시 CEO 체제로 치르는 첫 분기<span class="wd">11.18 (수) 06:20 · ★★★</span></div>
-  <ul>
-    <li><b>컨센서스가 가이던스 위 0.7~0.9%까지 내려붙었어요</b> - 매출 컨센서스 $108.7~109.0B이 회사 가이던스 $108.0B 바로 위예요. 지난 분기 프리뷰 때는 컨센서스가 가이던스보다 2~4% 위였으니, 시장이 회사 숫자를 앞서 달리는 걸 멈춘 자리예요</li>
-    <li><b>$162.85가 지켜지는지, 시가총액 4조 달러를 되찾는지</b> - 9월 고점 $230.36 대비 -29.3%이고 6주 연속 하락이에요. FY2027 조정 EPS 컨센서스는 $9.02에서 $9.32로 올랐는데 주가가 25.8% 빠져 Forward P/E가 24.3배에서 17.5배로 내려앉았으니, 검증 대상은 실적이 아니라 멀티플이에요</li>
-    <li><b>반도체 지수 10,146.32가 실적으로 11,000을 보는지</b> - 이번 주 +8.05%는 코어위브가 만든 반등이에요. 엔비디아 실적이 같은 방향이면 섹터 이익 전망이 올라가고, 어긋나면 이번 주 반등이 되돌아요</li>
-  </ul>
-</div>
-<div class="wgrp">
-  <div class="wh">🚀 11.19 앤스로픽 상장, AI 신규 공급이 수급으로 확인되는지<span class="wd">11.18 공모가 · 11.19 거래 · ★★★</span></div>
-  <ul>
-    <li><b>공모가가 $70~78 밴드의 어디에서 확정되는지</b> - 상단이면 기업가치 약 1조 4,500억 달러예요. 흔들린 주에 밴드 상단이 유지되는지가 AI 자금 조달 환경을 보는 첫 숫자예요</li>
-    <li><b>상장 첫날 기존 AI 종목에서 돈이 빠지는지</b> - 8.25억 주는 역대 두 번째 규모예요. 폴 튜더 존스가 2027년 약세론의 근거로 든 'AI 신규 주식 공급'이 실제 수급으로 나타나는지 보는 자리예요</li>
-    <li><b>엔비디아 실적 이틀 뒤라는 순서</b> - 실적이 좋으면 상장에 힘이 붙고, 나쁘면 두 사건이 같은 방향으로 겹쳐요. 11.20 옵션 만기까지 사흘 연속이라 변동성이 쌓일 수 있어요</li>
-  </ul>
-</div>
-<div class="wgrp">
-  <div class="wh">💵 금리와 12월 FOMC, 50bp 이야기가 커지는지<span class="wd">11.19 의사록 · 11.25 PCE · ★★★</span></div>
-  <ul>
-    <li><b>10년물 5.15%가 5% 아래로 돌아오는지</b> - 처음으로 5%대에서 한 주를 마쳤어요. 더 올라가면 O·IONQ·SMR·CRWV가 가장 불리하고, 내려오면 이번 주 상승에 힘이 붙어요</li>
-    <li><b>50bp 인상 확률 10.3%가 어디로 가는지</b> - CPI 직후 15.3%까지 갔다가 PPI로 내려왔어요. 11.19 의사록에서 반대표 두 장의 논거가 강하면 다시 올라가요</li>
-    <li><b>2년물 4.88%의 +37bp가 한 주로 끝나는지</b> - 2년 만의 최대 주간 상승이라 되돌림이 나올 자리예요. 10년-2년 27bp가 더 좁혀지면 12월 인상 뒤 경로까지 반영되는 국면이에요</li>
-  </ul>
-</div>
-<div class="wgrp">
-  <div class="wh">💾 메모리와 하이퍼스케일러, 이번 주 반등이 유지되는지<span class="wd">11.17~20 Ignite · ★★</span></div>
-  <ul>
-    <li><b>MU $778.31과 SK하이닉스 1,216,000원이 유지되는지</b> - 둘 다 코어위브의 설비투자 상향으로 되돌았어요. MU 다음 실적은 12.17이라 그사이 자체 재료가 없고, 엔비디아 실적이 대신 방향을 정해요</li>
-    <li><b>11.17~20 Ignite에서 설비투자 메시지가 나오는지</b> - 지난주에 같은 포인트를 뒀는데 아직 확인되지 않았어요. 줄이겠다고 하면 MSFT엔 호재, NVDA·MU엔 악재인 통로가 그대로예요</li>
-    <li><b>시스코가 짚은 '하이퍼스케일러 밖 수주 둔화'가 다른 회사에서도 보이는지</b> - AI 지출이 소수에 더 몰린다는 신호예요. 보인다면 CRWV 같은 네오클라우드와 하이퍼스케일러의 격차가 다시 벌어져요</li>
-  </ul>
-</div>
-<div class="wgrp">
-  <div class="wh">🎯 심리와 매수 시그널, 선이 한 주 만에 멀어졌어요<span class="wd">주중 내내 · ★</span></div>
-  <ul>
-    <li><b>S&amp;P 500 7,259가 다시 사정권에 들어오는지</b> - 일봉 RSI 35에 닿는 수준인데 금요일 종가에서 <b>-4.0%</b>예요. 지난주엔 -0.1%였으니 한 주 만에 멀어졌어요</li>
-    <li><b>공포·탐욕 38.6이 15 쪽으로 돌아서는지</b> - 24.4에서 38.6으로 14.2포인트 올라왔어요. 1차 진입 4점에 가장 가까운 조합이 RSI 35와 공포·탐욕 15인데, 둘 다 멀어졌어요</li>
-    <li><b>하이일드 스프레드 320bp가 벌어지는지</b> - 342bp에서 오히려 22bp 좁혀졌어요. 배점 3점짜리 신호 두 개가 전부 여기 걸려 있어서, 400bp까지 80bp가 열리지 않으면 점수가 크게 오를 길이 없어요</li>
-  </ul>
-</div>
-<div class="callout"><span class="cap">한 문장 요약</span>다음 주는 <b>11.18 새벽 엔비디아 실적과 11.19 앤스로픽 상장</b>이 이틀 간격으로 방향을 정하고, 11.20 옵션 만기까지 사흘이 붙어 있어 변동성이 한곳에 몰려요.</div>
-</section>
-
-<!-- ⑤ -->
-<section>
-<div class="sec-head">
-  <div class="l1">🎯 ⑤ 매수 시그널,</div>
-  <div class="l2">다음 주도 '대기'인데 선이 더 멀어졌어요</div>
-</div>
-
-<p>마켓브리핑 🎯 탭의 S&amp;P 500 매수 시그널(7개 신호·14점 만점)을 금요일 종가 기준으로 다시 계산했어요. <b>0~3점 대기 · 4~7점 1차(1/3) · 8점 이상 2차(1/3) · 1차 뒤 확인 신호 점등 시 3차</b>예요.</p>
-
-<div class="sg">
+<details class="more3"><summary>자세히 보기</summary><div class="in">
+  <div class="h3">지난주 관전 포인트 점검</div>
+  <div class="twrap"><table class="htable">
+    <tr><th>항목</th><th>결과</th></tr>
+    <tr><td class="w">10월 CPI 근원</td><td class="w">세 달 연속 +0.3%로 충족</td></tr>
+    <tr><td class="w">12월 인상 확률</td><td class="w">78% → 100%</td></tr>
+    <tr><td class="w">코어위브 이자비용과 영업이익</td><td class="w">조정 영업이익 $379M, 가이던스 상단 45.8% 초과</td></tr>
+    <tr><td class="w">반도체 지수 10,000 회복</td><td class="w">9,390.25 → 10,146.32</td></tr>
+    <tr><td class="w">엔비디아와 VIX</td><td class="w">NVDA -12.75% · VIX 19.30</td></tr>
+    <tr><td class="w">매수 시그널 확인선</td><td class="w">깨지지 않고 7,259로 멀어짐 · 0점</td></tr>
+  </table></div>
+  <div class="h3">주요 자산 주간 등락률</div>
+  <svg viewBox="0 0 700 266" xmlns="http://www.w3.org/2000/svg">
+<line x1="350" y1="14" x2="350" y2="252" stroke="#D1D6DB" stroke-width="1.5"/>
+<text x="150" y="47" text-anchor="end" class="s-lab">반도체(SOX)</text>
+<rect x="350" y="30" width="108.2" height="24" fill="#00B26B" rx="6"/>
+<text x="466.2" y="47" class="cv" fill="#00B26B">+8.05%</text>
+<text x="150" y="81" text-anchor="end" class="s-lab">S&amp;P 500</text>
+<rect x="350" y="64" width="33.7" height="24" fill="#00B26B" rx="6"/>
+<text x="391.7" y="81" class="cv" fill="#00B26B">+2.51%</text>
+<text x="150" y="115" text-anchor="end" class="s-lab">나스닥</text>
+<rect x="350" y="98" width="30.5" height="24" fill="#00B26B" rx="6"/>
+<text x="388.5" y="115" class="cv" fill="#00B26B">+2.27%</text>
+<text x="150" y="149" text-anchor="end" class="s-lab">달러인덱스</text>
+<rect x="350" y="132" width="15.3" height="24" fill="#00B26B" rx="6"/>
+<text x="373.3" y="149" class="cv" fill="#00B26B">+1.14%</text>
+<text x="150" y="183" text-anchor="end" class="s-lab">WTI 유가</text>
+<rect x="316.4" y="166" width="33.6" height="24" fill="#F04452" rx="6"/>
+<text x="308.4" y="183" text-anchor="end" class="cv" fill="#F04452">-2.50%</text>
+<text x="150" y="217" text-anchor="end" class="s-lab">금(12월물)</text>
+<rect x="288.2" y="200" width="61.8" height="24" fill="#F04452" rx="6"/>
+<text x="280.2" y="217" text-anchor="end" class="cv" fill="#F04452">-4.60%</text>
+<text x="150" y="251" text-anchor="end" class="s-lab">비트코인</text>
+<rect x="216.4" y="234" width="133.6" height="24" fill="#F04452" rx="6"/>
+<text x="208.4" y="251" text-anchor="end" class="cv" fill="#F04452">-9.94%</text>
+</svg>
+  <div class="h3">나머지 이슈</div>
+  <div class="twrap"><table class="htable">
+    <tr><th>날짜</th><th>이슈</th><th>결과</th></tr>
+    <tr><td>11.10</td><td class="w">10월 CPI</td><td class="w">근원 +0.3% · 2년물 하루 +17bp</td></tr>
+    <tr><td>11.10</td><td class="w">앤스로픽 공모가 제시</td><td class="w">주당 $70~78 · 11.19 상장</td></tr>
+    <tr><td>11.12</td><td class="w">30년물 입찰 부진</td><td class="w">30년물 5.43% · 러셀2000 -1.66%</td></tr>
+    <tr><td>11.13</td><td class="w">10월 PPI</td><td class="w">월간 +0.3% · 연간 6.5%</td></tr>
+    <tr><td>11.13</td><td class="w">미국 항공편 운항 중단, 시스코 수주 둔화</td><td class="w">나스닥 -0.91%</td></tr>
+  </table></div>
+  <div class="h3">보유 종목 주간 등락과 이유</div>
+  <div class="twrap"><table class="htable">
+  <tr><th>종목</th><th>주간</th><th>종가 변화</th><th>이유</th></tr>
+  <tr><td>CRWV</td><td class="up" data-h="주간">+14.50%</td><td class="w">$46.40 → $53.13</td><td class="w">3분기 마진 목표를 한 분기 앞당겼어요</td></tr>
+  <tr><td>MU</td><td class="up" data-h="주간">+12.80%</td><td class="w">$690.00 → $778.31</td><td class="w">코어위브 설비투자 상향이 메모리 수요로 연결</td></tr>
+  <tr><td>SK하이닉스</td><td class="up" data-h="주간">+7.42%</td><td class="w">1,132,000원 → 1,216,000원</td><td class="w">외국인 순매수 전환과 코어위브 실적</td></tr>
+  <tr><td>PLTR</td><td class="up" data-h="주간">+4.74%</td><td class="w">$160.38 → $167.99</td><td class="w">월요일 하루 +5.50%가 대부분</td></tr>
+  <tr><td>AAPL</td><td class="up" data-h="주간">+4.06%</td><td class="w">$342.37 → $356.27</td><td class="w"></td></tr>
+  <tr><td>GOOGL</td><td class="up" data-h="주간">+3.86%</td><td class="w">$284.78 → $295.77</td><td class="w"></td></tr>
+  <tr><td>KO</td><td class="up" data-h="주간">+3.74%</td><td class="w">$95.67 → $99.25</td><td class="w"></td></tr>
+  <tr><td>ABBV</td><td class="up" data-h="주간">+1.28%</td><td class="w">$291.31 → $295.03</td><td class="w"></td></tr>
+  <tr><td>O</td><td class="down" data-h="주간">-0.37%</td><td class="w">$59.04 → $58.82</td><td class="w">금리 상승을 그대로 받았어요</td></tr>
+  <tr><td>MSFT</td><td class="down" data-h="주간">-1.27%</td><td class="w">$530.61 → $523.88</td><td class="w">Ignite 앞둔 관망과 365 장애</td></tr>
+  <tr><td>SMR</td><td class="down" data-h="주간">-8.27%</td><td class="w">$5.08 → $4.66</td><td class="w">금리 상승에 적자 성장주 할인</td></tr>
+  <tr><td>IONQ</td><td class="down" data-h="주간">-11.47%</td><td class="w">$32.62 → $28.88</td><td class="w">금리 상승에 적자 성장주 할인</td></tr>
+  <tr><td>NVDA</td><td class="down" data-h="주간">-12.75%</td><td class="w">$186.64 → $162.85</td><td class="w">CEO 사임, 6주 연속 하락</td></tr>
+</table></div>
+  <div class="h3">매수 시그널 7개 신호</div>
+  <div class="sg">
   <div class="top"><span class="num">0<small> / 14점</small></span><span class="tier">대기 구간</span><span class="vs">지난주 금요일 0점 → 이번 주 0점 · 켜진 신호 0개</span></div>
   <div class="bar"><b style="width:0.0%"></b><i style="left:28.6%"></i><i style="left:57.1%"></i></div>
   <div class="ticks"><span style="left:0">0</span><span style="left:28.6%">4 · 1차</span><span style="left:57.1%">8 · 2차</span><span style="left:100%">14</span></div>
@@ -725,27 +674,50 @@ mark{padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clo
       <tr><td style="text-align:left">20일 수익률 (1)</td><td>-10% 이하</td><td>-5.6 → <b>-1.3%</b></td><td class="gap">8.7%p</td></tr>
     </tbody>
   </table>
-  <div class="vs">S&amp;P 500·공포탐욕·VIX는 11.13 종가, 하이일드 스프레드는 FRED 최신 공표일 기준이에요. 사상 최고는 10.6 7,818.93.</div>
 </div>
-
-<p>점수는 0점으로 지난주와 같은데, 방향이 지난주와 정반대예요. 지난주엔 일곱 신호 중 여섯 개가 조건에 가까워졌는데 이번 주는 <b>일곱 개가 전부 멀어졌어요</b>. 일봉 RSI가 35.1에서 <b>46.8</b>로, 고점 대비 하락이 -5.7%에서 -3.3%로, 공포·탐욕이 24.4에서 38.6으로, 20일 수익률이 -5.6%에서 -1.3%로, 하이일드 스프레드가 342bp에서 320bp로 움직였어요. 지난주에 "선이 눈앞"이라고 썼던 상태에서 한 주 만에 뒤로 물러난 거예요.</p>
-<p>이유는 하나예요. 지수가 올랐어요. 이 시그널은 전부 <b>하락과 공포를 측정하는 지표</b>라서, S&amp;P 500이 +2.51% 오르면 일곱 개가 같이 멀어져요. 특히 눈여겨볼 건 신용 쪽이에요. 하이일드 스프레드가 400bp 조건에서 멀어지는 방향으로 22bp 좁혀졌는데, 배점 3점짜리 신호 두 개가 전부 여기 걸려 있어요. <mark>주가가 흔들린 지난 한 달 동안 신용 시장은 한 번도 겁먹지 않았어요</mark>. 그래서 1차 진입 4점으로 가는 길은 여전히 일봉 RSI 35(2점)와 공포·탐욕 15(2점) 조합뿐이에요.</p>
-<p>다음 주 판단은 <b>대기</b>예요. 확인할 선은 가까운 순서로 <b>S&amp;P 500 7,259</b>(일봉 RSI 35, 금요일 종가 대비 -4.0%)·<b>S&amp;P 500 7,193</b>(고점 -8%, -4.9%)·<b>공포·탐욕 15</b>예요. RSI 선과 고점 -8% 선의 거리가 0.9%p밖에 안 되니, 한 번 밀리기 시작하면 두 신호가 거의 같이 켜져 4점이 열려요. 그 선을 건드릴 일정은 <b>11.18 새벽 엔비디아 실적</b>과 <b>11.19 앤스로픽 상장</b>이고, 둘 중 하나가 실망으로 끝나 사흘 연속 밀리면 사정권에 들어와요. 반대로 실적이 좋으면 이번 주처럼 전부 더 멀어져요.</p>
-<p>실행 규칙은 그대로예요. 신호는 미국 종가 기준으로 다음 날 아침 07:30에 갱신되고, 켜지면 그날 밤 개장(KST 23:30)에 1/3을 사요. 쿨다운은 10거래일이고, 2차(8점)는 하이일드 스프레드 400bp나 고점 대비 -8%가 추가로 필요해요.</p>
-<div class="callout"><span class="cap">한 문장 요약 · 다음 주 매수 판단</span><b>대기.</b> 먼저 볼 선은 <b>S&amp;P 500 7,259</b>로 금요일 종가에서 -4.0%예요. 고점 -8%인 <b>7,193</b>이 바로 아래 붙어 있어, 여기까지 밀리면 두 신호가 같이 켜져 1차 1/3이고, 그 전까진 계속 대기예요.</div>
-
-<div class="wp-preview">📌 다음 주 위클리 리뷰에서는 위 포인트들과 매수 시그널 점수 변화를 맨 앞에서 점검하고 시작할게요.</div>
-</section>
+  <div class="h3">다음 주 관전 포인트</div>
+  <div class="twrap"><table class="htable">
+    <tr><th>주제</th><th>확인할 것</th></tr>
+    <tr><td class="w">앤스로픽 상장</td><td class="w">공모가가 $70~78 밴드의 어디에서 확정되는지</td></tr>
+    <tr><td class="w">금리</td><td class="w">10년물 5.15%가 5% 아래로 돌아오는지 · 50bp 확률 10.3%</td></tr>
+    <tr><td class="w">메모리</td><td class="w">MU $778.31과 SK하이닉스 1,216,000원 유지 여부</td></tr>
+    <tr><td class="w">심리</td><td class="w">공포·탐욕 38.6 · 하이일드 스프레드 320bp</td></tr>
+  </table></div>
+</div></details>
 
 <!--rnav-->
 <div class="rnav"><a class="prev" href="../실적브리핑/실적프리뷰_NVDA_FY2027Q3_2026.11.15.html"><span class="av"><img src="../logos/NVDA.png" alt=""></span><div class="mid"><div class="rl">← 더 최근</div><div class="rt">NVDA 프리뷰</div><div class="rs"><span class="tx PREV">프리뷰</span> · NVIDIA · FY2027 Q3</div></div></a><a class="next" href="../경제지표/경제지표_PPI_2026.10_2026.11.13.html"><span class="av"><img src="../logos/PPI.png" alt=""></span><div class="mid"><div class="rl">더 이전 →</div><div class="rt">생산자물가지수(PPI)</div><div class="rs"><span class="tx NEUT">혼조</span> · 2026년 10월</div></div></a></div>
 <!--/rnav-->
 <div class="disclaimer">
 본 보고서는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
-데이터 출처: 연준 H.15·미 재무부 CMT, CME FedWatch, FRED(ICE BofA HY OAS·VIX), CNN 공포·탐욕 지수, stockanalysis.com 시세, 각 사 실적 공시·보도자료, 로이터·AP·CNBC·블룸버그·야후파이낸스 등 주요 언론 보도 · weekly-review 스킬 v2
-
+출처: 연준 H.15·미 재무부, CME FedWatch, FRED, CNN 공포·탐욕 지수, stockanalysis.com, 각 사 공시, 주요 언론 보도 · weekly-review 스킬 v3
+</div>
+<script>
+/* v3 슬라이드 넘김: 옆으로 밀기 · 이전/다음 버튼 · 좌우 화살표 키 */
+(function(){
+  var deck=document.getElementById('deck3');if(!deck)return;
+  var nav=document.getElementById('nav3'),prev=nav.querySelector('.pv'),next=nav.querySelector('.nx'),box=nav.querySelector('.dots');
+  var n=deck.children.length,i;
+  for(i=0;i<n;i++)box.appendChild(document.createElement('i'));
+  var dots=box.children;
+  function idx(){return Math.round(deck.scrollLeft/(deck.scrollWidth/n))}
+  function paint(){var k=idx();for(var d=0;d<n;d++)dots[d].className=d===k?'on':'';prev.disabled=k===0;next.disabled=k===n-1}
+  function go(d){var k=Math.max(0,Math.min(n-1,idx()+d));deck.scrollTo({left:deck.children[k].offsetLeft-deck.offsetLeft,behavior:'smooth'})}
+  prev.addEventListener('click',function(){go(-1)});next.addEventListener('click',function(){go(1)});
+  deck.addEventListener('scroll',paint,{passive:true});
+  deck.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
+  paint();
+})();
+</script>
 </div>
 </div>
+<!--readmark-->
+<script>
+/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
+try{const k="위클리리뷰/위클리리뷰_2026_46주차_2026.11.15.html";
+const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
+</script>
+<!--/readmark-->
 <!--rd-js-->
 <script>
 /* 가독성 레이어 v2.18 — 긴 문단 분리 + 나열형 블록 가로 스크롤 카드 */
@@ -911,13 +883,6 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout);
 })();
 </script>
 <!--/rd-js-->
-<!--readmark-->
-<script>
-/* 보고서를 직접(푸시·링크로) 열어도 대시보드의 읽음 상태에 반영 */
-try{const k="위클리리뷰/위클리리뷰_2026_46주차_2026.11.15.html";
-const r=new Set(JSON.parse(localStorage.getItem('mb_read')||'[]'));if(!r.has(k)){r.add(k);localStorage.setItem('mb_read',JSON.stringify([...r]));}}catch(e){}
-</script>
-<!--/readmark-->
 <!--ask-->
 <script src="../ask.js" defer></script>
 <!--/ask-->
