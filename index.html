@@ -643,9 +643,15 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.11.17";   // 3부 급등락 신규 2건 — (1) MARKET 2026.11.17(AI 가속기 지출 전망 하향 · IONQ -8.41%·SMR -8.37%·MU -7.62%·CRWV -6.12%·PLTR -4.52%·GOOGL -4.07%, 나스닥 -2.49% 조정 진입) (2) SK하이닉스 2026.11.16(-7.89% 1,120,000원 · 외국인 2,241억 순매도 · 20거래일 저점 이탈) · NVDA -4.12%는 11/18 실적 +-1거래일 규칙으로 skipped · VAL_DB 13종목 price를 11/16 종가로 갱신 · 1부 실적(NVDA는 11/18 발표)과 2부 경제 지표(소매판매·산업생산·수출입물가는 11/17 밤 발표 예정)는 대상 없음
+const LAST_UPDATED = "2026.11.18";   // 1부 NVDA FY2027Q3 정식 실적(BEAT) · 2부 소매판매 10월(★★) · 3부 급등락 IONQ·SMR 2건 · VAL_DB 13종목 price 11/17 종가 반영
 
 const REPORTS_DB = [
+  {
+    ticker: "NVDA", company: "NVIDIA", quarter: "FY2027 Q3",
+    report_date: "2026-11-18", created: "2026.11.18", verdict: "BEAT",
+    oneliner: "매출 $115.8B(+103%)로 컨센 6.3% 상회, 내년 성장 전망도 70%에서 75%로 올렸어요.",
+    file: "실적브리핑/실적브리핑_NVDA_FY2027Q3_2026.11.18.html"
+  },
   {
     ticker: "NVDA", company: "NVIDIA", quarter: "FY2027 Q3",
     report_date: "2026-11-18", created: "2026.11.15", verdict: "PREV", vlabel: "프리뷰",
@@ -896,7 +902,6 @@ const REPORTS_DB = [
 //                 화면은 항상 KST로 보여주고, 캘린더 일정은 이 값으로 만들어 해외에서도 현지시간 자동 변환된다.
 //   last_report : 직전 실제 발표일 (state.json의 last_report_date) — KPI '이번 분기 발표 n/13' 계산에 쓴다
 const UPCOMING_DB = [
-  { ticker: "NVDA", name: "NVIDIA", date: "2026-11-18", estimated: false, when: "amc", utc: "20261117T212000Z", last_report: "2026-08-27" },
   { ticker: "MU", name: "Micron", date: "2026-12-17", estimated: true, when: null, utc: null, last_report: "2026-10-01" },
   { ticker: "000660", name: "SK하이닉스", short: "하이닉스", date: "2027-01-27", estimated: true, when: null, utc: null, last_report: "2026-10-28" },
   { ticker: "MSFT", name: "Microsoft", date: "2027-01-28", estimated: true, when: null, utc: null, last_report: "2026-10-29" },
@@ -905,16 +910,24 @@ const UPCOMING_DB = [
   { ticker: "PLTR", name: "Palantir", date: "2027-02-02", estimated: true, when: null, utc: null, last_report: "2026-11-03" },
   { ticker: "GOOGL", name: "Alphabet", date: "2027-02-03", estimated: true, when: null, utc: null, last_report: "2026-10-29" },
   { ticker: "KO", name: "Coca-Cola", date: "2027-02-09", estimated: true, when: null, utc: null, last_report: "2026-10-27" },
-  { ticker: "CRWV", name: "CoreWeave", date: "2027-02-26", estimated: true, when: null, utc: null, last_report: "2026-11-11" },
   { ticker: "O", name: "Realty Income", date: "2027-02-24", estimated: true, when: null, utc: null, last_report: "2026-11-03" },
   { ticker: "IONQ", name: "IonQ", date: "2027-02-25", estimated: true, when: null, utc: null, last_report: "2026-11-06" },
-  { ticker: "SMR", name: "NuScale Power", date: "2027-02-26", estimated: true, when: null, utc: null, last_report: "2026-11-06" }
+  { ticker: "CRWV", name: "CoreWeave", date: "2027-02-26", estimated: true, when: null, utc: null, last_report: "2026-11-11" },
+  { ticker: "SMR", name: "NuScale Power", date: "2027-02-26", estimated: true, when: null, utc: null, last_report: "2026-11-06" },
+  { ticker: "NVDA", name: "NVIDIA", date: "2027-02-26", estimated: true, when: null, utc: null, last_report: "2026-11-18" }
 ];
 
 
 // ----- 경제 지표 (macro-briefing 스킬이 갱신) -----
 // verdict: GOOD(시장 우호적)/BAD(비우호적)/NEUT(중립), vlabel: 한글 한 단어
 const MACRO_REPORTS_DB = [
+  {
+    id: "RETAIL", name: "소매판매", period: "2026년 10월", category: "소비", tier: 2,
+    report_date: "2026-11-17", created: "2026.11.18", verdict: "NEUT", vlabel: "견조",
+    surprise: { text: "예측 +0.1%p", cls: "up" },
+    oneliner: "컨트롤 그룹이 +0.1%에서 +0.6%로 되살아났어요. 12월 인상 확률 96%는 그대로예요.",
+    file: "경제지표/경제지표_RETAIL_2026.10_2026.11.17.html"
+  },
   {
     id: "PPI", name: "생산자물가지수(PPI)", period: "2026년 10월", category: "물가", tier: 2,
     report_date: "2026-11-13", created: "2026.11.14", verdict: "NEUT", vlabel: "혼조",
@@ -1185,9 +1198,9 @@ const MACRO_UPCOMING_DB = [
   { id: "CPI", name: "소비자물가지수(CPI)", short: "CPI", period: "11월", date: "2026-12-10", estimated: false, utc: "20261210T133000Z", tier: 3, last_release: "2026-11-10" },
   { id: "HOMESALES", name: "기존주택 판매", short: "주택판매", period: "11월", date: "2026-12-10", estimated: false, utc: "20261209T150000Z", tier: 1, last_release: "2026-11-13" },
   { id: "PPI", name: "생산자물가지수(PPI)", short: "PPI", period: "11월", date: "2026-12-15", estimated: false, utc: "20261215T133000Z", tier: 2, last_release: "2026-11-13" },
-  { id: "RETAIL", name: "소매판매", short: "소매판매", period: "10월", date: "2026-11-17", estimated: false, utc: "20261117T133000Z", tier: 2, last_release: "2026-10-15" },
-  { id: "IMPORT", name: "수출입물가", short: "수출입물가", period: "10월", date: "2026-11-17", estimated: false, utc: "20261117T133000Z", tier: 1, last_release: "2026-10-16" },
-  { id: "INDPRO", name: "산업생산", short: "산업생산", period: "10월", date: "2026-11-17", estimated: false, utc: "20261117T141500Z", tier: 1, last_release: null },
+  { id: "RETAIL", name: "소매판매", short: "소매판매", period: "11월", date: "2026-12-16", estimated: false, utc: "20261216T133000Z", tier: 2, last_release: "2026-11-17" },
+  { id: "IMPORT", name: "수출입물가", short: "수출입물가", period: "11월", date: "2026-12-17", estimated: false, utc: "20261217T133000Z", tier: 1, last_release: "2026-11-17" },
+  { id: "INDPRO", name: "산업생산", short: "산업생산", period: "11월", date: "2026-12-16", estimated: true, utc: null, tier: 1, last_release: "2026-11-17" },
   { id: "HOUSING", name: "주택착공·건축허가", short: "주택착공", period: "10월", date: "2026-11-18", estimated: false, utc: "20261118T133000Z", tier: 1, last_release: null },
   { id: "FOMC_MIN", name: "FOMC 의사록", short: "의사록", period: "10월 회의", date: "2026-11-19", estimated: false, utc: "20261118T190000Z", tier: 2, last_release: "2026-10-08" },
   { id: "CASESHILLER", name: "케이스실러 주택가격", short: "케이스실러", period: "9월", date: "2026-11-24", estimated: false, utc: "20261124T140000Z", tier: 1, last_release: null },
@@ -1242,11 +1255,11 @@ const WATCH_DB = [
     "재고 기여도 +1.61%p가 4분기에 마이너스로 되돌려지는지 — 재고를 빼면 3분기 성장률은 1.7%예요",
     "민간 최종수요 4.9%가 4%대를 유지하는지 — 3개 분기 연속이라 넷째 분기가 추세 확인 자리예요",
     "잠정치에서 수입 +19.7%와 투자의 정보처리 장비가 어떻게 수정되는지 — 수정폭이 큰 항목이에요"]},
-  { key: "RETAIL", name: "소매판매 10월", date: "2026-11-17", type: "m", items: [
-    "컨트롤 그룹 +0.1%가 10월에 회복되는지 — GDP 소비 기여도의 핵심이에요",
-    "주유소 기여가 빠진 뒤에도 헤드라인이 플러스인지 — 휘발유가 10월엔 하락 전환했어요",
-    "외식·주점 +1.1%가 유지되는지 — 주유소와 합쳐 증가분의 88%, 재량소비의 마지막 버팀목이에요",
-    "온라인 +0.3% 둔화가 홀리데이 시즌에 되돌려지는지 — NRF는 11~12월 +4.2%를 전망해요"]},
+  { key: "RETAIL", name: "소매판매 11월", date: "2026-12-16", type: "m", items: [
+    "컨트롤 그룹 +0.6%가 11월에도 +0.5% 이상인지 — 4분기 GDP 소비 기여도의 핵심이에요",
+    "자동차 -1.6%가 되돌려지는지 — 10월 급락이 일회성이었는지 가려져요",
+    "외식·주점이 +0.2% 둔화에서 반등하는지 — 재량소비의 마지막 버팀목이에요",
+    "온라인 +1.2%·전년 대비 +11.8%가 블랙프라이데이가 포함된 11월에 더 올라가는지"]},
   { key: "CPI", name: "소비자물가지수(CPI) 11월", date: "2026-12-10", type: "m", items: [
     "11월분에서 전년 대비 상승률이 되살아나는지, 그 숫자가 3%대인지 4%대인지",
     "근원 MoM이 네 달 연속 +0.3%를 찍는지 — 3개월 연율은 이미 약 3.7%예요",
@@ -1327,30 +1340,28 @@ const WATCH_DB = [
     "투자적격 DDTL이 연 7~7.5%로 프라이싱되고 모회사 조달이 $5B 미만에 머무는지",
     "연말 ARR $20~21B과 가동 전력 1.85GW가 달성되는지 — ARR은 $18.5~19.5B에서 상향됐어요",
     "2027년 CapEx가 '2026년과 비슷한 수준'으로 제시되는지"]},
-  { key: "NVDA", name: "NVIDIA FY27 Q3 실적", date: "2026-11-18", type: "e", items: [
-    "FY27 Q3 매출이 가이던스 $108.0B을 넘는지 — 서프라이즈 폭이 이번(+4.4%)보다 커지는지",
-    "매출총이익률이 Q3 가이던스 74.0%를 지키는지, Q4 저점 71~72% 전망이 유지되는지",
-    "FCF 마진 22.2%가 회복되는지 — 매출채권 +$22.3B이 실제 현금으로 회수되는지",
-    "FY2028 매출 +70% 전망이 재확인·상향되는지, 수주잔고 $2조가 더 늘어나는지",
-    "새로 조달한 차입금 $24.9B의 용처와 총차입금 $38.4B의 추가 증가 여부",
-    "중국 데이터센터 컴퓨트 매출이 가이던스에 포함되기 시작하는지"]}
+  { key: "NVDA", name: "NVIDIA FY2027 4분기 실적", date: "2027-02-26", type: "e", items: [
+    "4분기 매출이 가이던스 $130.0B과 상단 $133.9B을 넘는지 — 서프라이즈 폭이 이번(+6.3%)보다 커지는지",
+    "매출총이익률이 4분기 가이던스 71~72%를 지키고 FY2028 72~73% 전망이 유지되는지",
+    "매출채권 $81.03B·재고 $39.72B가 꺾이는지 — 잉여현금흐름 마진 37.8%가 유지되는지",
+    "영구 최고경영자 선임과 FY2028 매출 성장 약 75% 전망 유지, 중국 데이터센터 컴퓨트의 가이던스 포함 여부"]},
 ];
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 156.14, tgt: 279.63, eps_cur: 9.32, eps_next: 13.04, note: "⚠ 발표 전 컨센 · FY28은 8.25 집계" },
-  { ticker: "MU", price: 719.02, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
-  { ticker: "MSFT", price: 517.99, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
-  { ticker: "GOOGL", price: 283.72, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
-  { ticker: "AAPL", price: 352.78, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
-  { ticker: "PLTR", price: 160.39, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
-  { ticker: "KO", price: 99.48, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
-  { ticker: "ABBV", price: 294.55, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
-  { ticker: "O", price: 58.55, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
-  { ticker: "CRWV", price: 49.88, tgt: 134.58, eps_cur: -3.99, eps_next: -1.97, note: "적자 · 추정 10.27 집계(발표 전)" },
-  { ticker: "IONQ", price: 26.45, tgt: 62.28, eps_cur: -1.31, eps_next: null, note: "적자 · 추정 10.15 집계 · FY27 확인 불가" },
-  { ticker: "SMR", price: 4.27, tgt: 10.38, eps_cur: -0.48, eps_next: -0.62, note: "적자 · 목표가 11.06 집계" },
-  { ticker: "000660", price: 1120000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 155.46, tgt: 265.23, eps_cur: 9.34, eps_next: 15.86, note: "발표 후 11.17 집계" },
+  { ticker: "MU", price: 712.42, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
+  { ticker: "MSFT", price: 506.24, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
+  { ticker: "GOOGL", price: 280.2, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
+  { ticker: "AAPL", price: 351.91, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
+  { ticker: "PLTR", price: 156.56, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
+  { ticker: "KO", price: 98.79, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
+  { ticker: "ABBV", price: 292.82, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
+  { ticker: "O", price: 58.04, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
+  { ticker: "CRWV", price: 49.89, tgt: 134.58, eps_cur: -3.99, eps_next: -1.97, note: "적자 · 추정 10.27 집계(발표 전)" },
+  { ticker: "IONQ", price: 24.84, tgt: 62.28, eps_cur: -1.31, eps_next: null, note: "적자 · 추정 10.15 집계 · FY27 확인 불가" },
+  { ticker: "SMR", price: 4.09, tgt: 10.38, eps_cur: -0.48, eps_next: -0.62, note: "적자 · 목표가 11.06 집계" },
+  { ticker: "000660", price: 1098000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1469,6 +1480,20 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
+  {
+    asset: "IONQ", name: "IonQ", kind: "stock", date: "2026-11-18",
+    chg: -6.09, chg_label: "-6.09%", price_label: "$24.84 · 리게티 -6.62%", cause: "업종 동반 하락",
+    oneliner: "회사 뉴스 없이 양자컴퓨팅 4종목이 2~7% 빠졌어요. 실적 급등분을 모두 반납했어요.",
+    spark: [32.28, 31.16, 31.27, 30.76, 32.95, 32.43, 31.72, 30.04, 28.17, 29.99, 29.54, 26.43, 32.62, 35.34, 34.99, 34.06, 30.86, 28.88, 26.45, 24.84],
+    created: "2026.11.18", file: "급등락/급등락_IONQ_2026.11.18.html"
+  },
+  {
+    asset: "SMR", name: "NuScale Power", kind: "stock", date: "2026-11-18",
+    chg: -4.22, chg_label: "-4.22%", price_label: "$4.09 · 오클로 -2.87%", cause: "변동성",
+    oneliner: "원전 업종이 함께 밀려 20거래일 저점이에요. 회사 뉴스는 찾지 못했어요.",
+    spark: [5.50, 5.38, 5.38, 5.27, 5.70, 5.67, 5.92, 5.62, 5.35, 5.37, 5.13, 4.37, 5.08, 5.44, 5.22, 5.23, 4.82, 4.66, 4.27, 4.09],
+    created: "2026.11.18", file: "급등락/급등락_SMR_2026.11.18.html"
+  },
   {
     asset: "MARKET", name: "AI 설비투자 전망 하향 6종목", kind: "market", date: "2026-11-17",
     chg: -8.41, chg_label: "-8.41%", price_label: "IONQ $26.45 · 나스닥 -2.49%", cause: "AI 설비투자 전망 하향",
