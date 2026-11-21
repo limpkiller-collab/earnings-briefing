@@ -643,7 +643,7 @@ h2{font-size:20px;font-weight:800;letter-spacing:-0.03em;margin:0 0 14px;display
 
 <script>
 // ===== 스킬이 갱신하는 데이터 블록 (새 항목은 배열 맨 앞에 추가) =====
-const LAST_UPDATED = "2026.11.20";   // 1부 대상 없음 · 2부 주간 실업수당(★) 캘린더 갱신 · 3부 급등락 MARKET 묶음 1건(CRWV·GOOGL·NVDA·IONQ) + SK하이닉스 1건 · VAL_DB 13종목 price 11/19 종가 반영
+const LAST_UPDATED = "2026.11.21";   // 1부·2부 대상 없음 · 3부 급등락 MARKET 묶음 1건(NVDA·MU·CRWV·SMR·IONQ·PLTR) + SK하이닉스 1건 · VAL_DB 13종목 price 11/20 종가 반영
 
 const REPORTS_DB = [
   {
@@ -1356,19 +1356,19 @@ const WATCH_DB = [
 
 // 밸류에이션 스냅샷 (실적 보고서 발행 시 해당 종목 행 갱신 · KRW 종목은 원 단위 · eps는 조정 EPS 컨센서스)
 const VAL_DB = [
-  { ticker: "NVDA", price: 145.98, tgt: 265.23, eps_cur: 9.34, eps_next: 15.86, note: "발표 후 11.17 집계" },
-  { ticker: "MU", price: 690.44, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
-  { ticker: "MSFT", price: 498.30, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
-  { ticker: "GOOGL", price: 272.66, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
-  { ticker: "AAPL", price: 349.21, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
-  { ticker: "PLTR", price: 153.68, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
-  { ticker: "KO", price: 96.09, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
-  { ticker: "ABBV", price: 283.54, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
-  { ticker: "O", price: 57.66, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
-  { ticker: "CRWV", price: 44.91, tgt: 134.58, eps_cur: -3.99, eps_next: -1.97, note: "적자 · 추정 10.27 집계(발표 전)" },
-  { ticker: "IONQ", price: 22.71, tgt: 62.28, eps_cur: -1.31, eps_next: null, note: "적자 · 추정 10.15 집계 · FY27 확인 불가" },
-  { ticker: "SMR", price: 3.81, tgt: 10.38, eps_cur: -0.48, eps_next: -0.62, note: "적자 · 목표가 11.06 집계" },
-  { ticker: "000660", price: 1183000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
+  { ticker: "NVDA", price: 125.53, tgt: 265.23, eps_cur: 9.34, eps_next: 15.86, note: "발표 후 11.17 집계" },
+  { ticker: "MU", price: 594.51, tgt: 1562, eps_cur: 176.58, eps_next: null, note: "" },
+  { ticker: "MSFT", price: 484.52, tgt: 605.12, eps_cur: 19.76, eps_next: 23.69, note: "" },
+  { ticker: "GOOGL", price: 265.29, tgt: 429.68, eps_cur: 11.89, eps_next: 15.36, note: "⚠ 목표가 하향 전" },
+  { ticker: "AAPL", price: 342.56, tgt: 332.39, eps_cur: 9.55, eps_next: null, note: "⚠ 목표가 10.30 집계 · FY28 미공개" },
+  { ticker: "PLTR", price: 143.49, tgt: 212.50, eps_cur: 1.61, eps_next: 2.35, note: "⚠ 컨센 10.30 집계" },
+  { ticker: "KO", price: 96.99, tgt: 95.63, eps_cur: 3.35, eps_next: 3.51, note: "" },
+  { ticker: "ABBV", price: 286.20, tgt: 283.19, eps_cur: 13.95, eps_next: 16.04, note: "" },
+  { ticker: "O", price: 58.03, tgt: 64.63, eps_cur: 4.455, eps_next: null, note: "P/AFFO" },
+  { ticker: "CRWV", price: 39.51, tgt: 134.58, eps_cur: -3.99, eps_next: -1.97, note: "적자 · 추정 10.27 집계(발표 전)" },
+  { ticker: "IONQ", price: 20.72, tgt: 62.28, eps_cur: -1.31, eps_next: null, note: "적자 · 추정 10.15 집계 · FY27 확인 불가" },
+  { ticker: "SMR", price: 3.36, tgt: 10.38, eps_cur: -0.48, eps_next: -0.62, note: "적자 · 목표가 11.06 집계" },
+  { ticker: "000660", price: 1113000, tgt: 3096288, eps_cur: 354500, eps_next: 467761, note: "컨센 편차 큼" }
 ];
 
 // 기업 이벤트 (실적발표 제외 · macro-briefing 월간 갱신 때 함께 확인 · estimated=보도 기준 예상)
@@ -1487,6 +1487,20 @@ const monthlyOne = r => (window.MONTHLY_ONE && window.MONTHLY_ONE[r.id]) || MONT
 // kind: stock | rate | fx | market · chg: 주가·환율은 % / 금리는 bp · cause: 주원인 한 단어(무채색 배지) · file null이면 카드만
 // spark: 최근 20거래일 종가(오래된→최신) — 스레드 행의 미니 스파크라인에 쓴다 (gen_mover_charts.py의 TREND 배열 그대로)
 const MOVERS_DB = [
+  {
+    asset: "MARKET", name: "SEC 회계 조사 보도 6종목", kind: "market", date: "2026-11-21",
+    chg: -14.01, chg_label: "-14.01%", price_label: "NVDA $125.53 · 나스닥 -5.28%", cause: "SEC 회계 조사 보도",
+    oneliner: "엔비디아 SEC 회계 조사 보도에 보유 6종목이 6~14% 빠지고 나스닥은 올해 상승분을 지웠어요.",
+    spark: [216.00, 217.94, 215.38, 213.66, 204.64, 202.06, 206.69, 200.13, 181.60, 186.64, 178.67, 168.89, 173.73, 166.19, 162.85, 156.14, 155.46, 150.96, 145.98, 125.53],
+    created: "2026.11.21", file: "급등락/급등락_MARKET_2026.11.21.html"
+  },
+  {
+    asset: "000660", name: "SK하이닉스", kind: "stock", date: "2026-11-20",
+    chg: -5.92, chg_label: "-5.92%", price_label: "1,113,000원 · 삼성전자 -7.01%", cause: "외국인 순매도",
+    oneliner: "외국인이 2,001억원을 팔았어요. 코스피가 5.21% 밀려 매도 사이드카까지 걸렸어요.",
+    spark: [1275000, 1341000, 1487000, 1526000, 1418000, 1472000, 1398000, 1396000, 1264000, 1132000, 1136000, 1212000, 1277000, 1254000, 1216000, 1120000, 1098000, 1144000, 1183000, 1113000],
+    created: "2026.11.21", file: "급등락/급등락_000660_2026.11.20.html"
+  },
   {
     asset: "MARKET", name: "앤트로픽 상장 차익실현 4종목", kind: "market", date: "2026-11-20",
     chg: -6.10, chg_label: "-6.10%", price_label: "CRWV $44.91 · S&P500 -2.02%", cause: "앤트로픽 상장 차익실현",
